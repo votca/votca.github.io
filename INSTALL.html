@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; VOTCA 1.7-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CSG Manual" href="CSG-MANUAL.html" />
+    <link rel="prev" title="Welcome to VOTCA’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#votca-structure">VOTCA structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ubuntu">Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fedora">Fedora</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resolving-the-not-found-dependency-errors">Resolving the ‘not found’ dependency errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-cmake-flags">Common CMake Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-cmake-flags">Other CMake Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-source-installation-instructions">Legacy (Source) Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binary-packages-for-various-linux-distributions">Binary Packages for various Linux Distributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Fedora</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#centos">CentOs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opensuse">OpenSuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sles">SLES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#linking-error-undefined-reference-to">Linking Error: Undefined reference to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gcc-and-mkl-undefined-symbol">GCC and MKL : undefined symbol:</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/INSTALL.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="votca-structure">
+<h2>VOTCA structure<a class="headerlink" href="#votca-structure" title="Permalink to this headline">¶</a></h2>
+<p>VOTCA is currently composed of four major repositories:</p>
+<ul class="simple">
+<li><p>TOOLS - general tools</p></li>
+<li><p>CSG - topographical classes and course graining functionality</p></li>
+<li><p>XTP - exciton and excited states functionality GW-BSE and DFT engine</p></li>
+</ul>
+<p>TOOLS -&gt; CSG -&gt; XTP</p>
+<div class="section" id="dependency-installation">
+<h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ubuntu">
+<h4>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
+<p>Dependencies for core functionality</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">make</span> <span class="n">cmake</span> <span class="n">git</span> <span class="n">g</span><span class="o">++</span> <span class="n">libexpat</span><span class="o">-</span><span class="n">dev</span> <span class="n">libfftw3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libboost</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">dev</span> <span class="n">txt2tags</span> <span class="n">gnuplot</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span> <span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span> <span class="n">graphviz</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">psmisc</span> <span class="n">libeigen3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxc</span><span class="o">-</span><span class="n">dev</span> <span class="n">libgromacs</span><span class="o">-</span><span class="n">dev</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">openmpi</span>
+</pre></div>
+</div>
+<p>Dependencies for Manual</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ghostscript</span> <span class="n">texlive</span> <span class="n">inkscape</span> <span class="n">transfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">extra</span> <span class="n">texlive</span><span class="o">-</span><span class="n">pstricks</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedora">
+<h4>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h4>
+<p>Dependencies for core functionality</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">make</span> <span class="n">cmake</span> <span class="n">git</span> <span class="n">gcc</span><span class="o">-</span><span class="n">c</span><span class="o">++</span> <span class="n">expat</span><span class="o">-</span><span class="n">devel</span> <span class="n">fftw</span><span class="o">-</span><span class="n">devel</span> <span class="n">gsl</span><span class="o">-</span><span class="n">devel</span> <span class="n">boost</span><span class="o">-</span><span class="n">devel</span> <span class="n">txt2tags</span> <span class="n">procps</span><span class="o">-</span><span class="n">ng</span> <span class="n">gnuplot</span> <span class="n">psmisc</span> <span class="n">hdf5</span><span class="o">-</span><span class="n">devel</span> <span class="n">lammps</span> <span class="n">eigen3</span><span class="o">-</span><span class="n">devel</span> <span class="n">libxc</span><span class="o">-</span><span class="n">devel</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">devel</span> <span class="n">gromacs</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">openmpi</span>
+</pre></div>
+</div>
+<p>Dependencies for Manual</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">dnf</span> <span class="n">install</span> <span class="n">ghostscript</span> <span class="n">texlive</span> <span class="n">doxygen</span> <span class="n">texlive</span><span class="o">-</span><span class="n">appendix</span> <span class="n">texlive</span><span class="o">-</span><span class="n">wrapfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">a4wide</span> <span class="n">texlive</span><span class="o">-</span><span class="n">xstring</span> <span class="n">inkscape</span> <span class="n">transfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">units</span> <span class="n">texlive</span><span class="o">-</span><span class="n">sidecap</span> <span class="n">texlive</span><span class="o">-</span><span class="n">bclogo</span> <span class="n">texlive</span><span class="o">-</span><span class="n">mdframed</span> <span class="n">texlive</span><span class="o">-</span><span class="n">braket</span> <span class="n">graphviz</span> <span class="n">ImageMagick</span> <span class="n">ghostscript</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">dvipdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="general-source-installation-instructions">
+<h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
+<p>To install the full package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
+version=master # or &#39;stable&#39; or &#39;v1.4.1&#39;
+git clone -b ${version} --recursive https://github.com/votca/votca.git
+cd votca
+mkdir build
+cd build
+cmake -DBUILD_CSGAPPS=ON -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} ..
+make -j5
+make install
+</pre></div>
+</div>
+<div class="section" id="resolving-the-not-found-dependency-errors">
+<h3>Resolving the ‘not found’ dependency errors<a class="headerlink" href="#resolving-the-not-found-dependency-errors" title="Permalink to this headline">¶</a></h3>
+<p>Assuming all the <a class="reference external" href="#dependency-installation">dependencies</a> have been correctly
+installed, one or more might still appear ‘not found’ upon configuring with
+<code class="docutils literal notranslate"><span class="pre">cmake</span></code> command (see above). In this case you will need to find out the
+‘non-standard’ location for each missed dependency (most often a shared or
+dynamically loaded library, e.g. <code class="docutils literal notranslate"><span class="pre">libgromacs.so.*</span></code>, <code class="docutils literal notranslate"><span class="pre">libhdf5.so.*</span></code> etc).</p>
+<p>Error messages produced by Cmake usually provide instructive suggestions for
+resolving dependency issues. In particular, an appropriate extra <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag is
+necessary to specify the path to a missed package. You will have to rerun the
+<code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s) added. For example, in the case of a
+locally installed version of Gromacs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DBUILD_CSGAPPS=ON -DCMAKE_INSTALL_PREFIX=${prefix} -DWITH_GMX=ON -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
+</pre></div>
+</div>
+<p>Be careful to use exactly the option suggested in the error message! You can
+also add <code class="docutils literal notranslate"><span class="pre">-LH</span></code> or <code class="docutils literal notranslate"><span class="pre">-LAH</span></code> options to the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command in order to see the
+available options with brief explanations (note that <em>changing some of the
+variables may result in more variables being created</em>; run <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cmake</span></code> for more
+info).</p>
+<p><em>Only for Linux</em>: For each dependency package not found by Cmake initially, it
+might be necessary to add the location of its <code class="docutils literal notranslate"><span class="pre">lib</span></code> directory to the environment
+variable <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>, <strong>before</strong> building and installing VOTCA, i.e.
+before running any <code class="docutils literal notranslate"><span class="pre">make</span></code> command. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gromacs/lib:$HOME/anaconda/lib
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> also needs to be set every time when running an
+executable from the VOTCA installation afterwards (which can be automated via
+user’s login profile, e.g. in .bashrc). Alternatively, CMake has options to
+<em>remember</em> where libraries came from at link time, which can be enabled by
+setting <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_RPATH_USE_LINK_PATH</span></code> to <code class="docutils literal notranslate"><span class="pre">ON</span></code>. VOTCA has enabled this
+option and a couple of other rpath related tweaks when setting
+<code class="docutils literal notranslate"><span class="pre">ENABLE_RPATH_INJECT</span></code> to <code class="docutils literal notranslate"><span class="pre">ON</span></code>.</p>
+</div>
+<div class="section" id="common-cmake-flags">
+<h3>Common CMake Flags<a class="headerlink" href="#common-cmake-flags" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSGAPPS</span></code> - Build the extra csg applications repo (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_XTP</span></code> - Build the xtp repo (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> - where to install the votca executables (Default is
+/usr/local/bin)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENABLE_TESTING</span></code> - compile tests (ON/OFF, Default OFF)</p></li>
+</ul>
+</div>
+<div class="section" id="other-cmake-flags">
+<h3>Other CMake Flags<a class="headerlink" href="#other-cmake-flags" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSG_MANUAL</span></code> - Build csg pdf manual</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WITH_GMX</span></code> - Build with Gromacs support (ON/OFF, Default ON)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_&lt;name&gt;</span></code> - Disable using an optional package called
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> (ON/OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_HDF5</span></code> - Disable using the optional package <code class="docutils literal notranslate"><span class="pre">HDF5</span></code>
+(ON/OFF, Default OFF; relevant only for the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="legacy-source-installation-instructions">
+<h2>Legacy (Source) Installation Instructions<a class="headerlink" href="#legacy-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
+<p>Check <a class="reference external" href="#dependency-installation">dependencies</a> first. Do <strong>NOT</strong> download
+anything yourself, this is done by <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> below.</p>
+<p>When installing for the first time, run the following commands in bash:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
+mkdir -p ${prefix}/src
+cd ${prefix}/src
+wget https://raw.githubusercontent.com/votca/buildutil/master/build.sh
+chmod +x build.sh
+./build.sh --prefix ${prefix} --dev tools csg xtp
+</pre></div>
+</div>
+<p>Replace the <em>WHERE/TO/INSTALL/VOTCA</em> with directory where you want to install
+votca, usually \${HOME}/votca is good choice.</p>
+<p>This commands will:</p>
+<ul class="simple">
+<li><p>Create a directory, where the sources are to be stored (above <code class="docutils literal notranslate"><span class="pre">${prefix}/src</span></code>)</p></li>
+<li><p>Go there</p></li>
+<li><p>Download our build script</p></li>
+<li><p>Make the build script executable</p></li>
+<li><p>Run the build script to download all votca modules using git, it uses the
+development version, as xtp still undergoes extensive development and no
+releases are available yet.</p></li>
+</ul>
+</div>
+<div class="section" id="binary-packages-for-various-linux-distributions">
+<h2>Binary Packages for various Linux Distributions<a class="headerlink" href="#binary-packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Fedora<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="centos">
+<h3>CentOs<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
+<span class="n">yum</span> <span class="n">update</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opensuse">
+<h3>OpenSuse<a class="headerlink" href="#opensuse" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sles">
+<h3>SLES<a class="headerlink" href="#sles" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUSEConnect</span> <span class="o">-</span><span class="n">p</span> <span class="n">PackageHub</span><span class="o">/</span><span class="mf">12.2</span><span class="o">/</span><span class="n">x86_64</span>
+<span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debian-ubuntu">
+<h3>Debian / Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gentoo">
+<h3>Gentoo<a class="headerlink" href="#gentoo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emerge</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spack">
+<h3>Spack<a class="headerlink" href="#spack" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://spack.io/">Spack</a> is an package manager, which allows to build VOTCA
+and all its dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">spack</span><span class="o">/</span><span class="n">spack</span><span class="o">.</span><span class="n">git</span> <span class="n">spack</span>
+<span class="n">source</span> <span class="n">spack</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">spack</span><span class="o">/</span><span class="n">setup</span><span class="o">-</span><span class="n">env</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+<span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
+</pre></div>
+</div>
+<div class="section" id="development-version">
+<h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h4>
+<p>Spack can also install the latest development version from git using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span><span class="nd">@develop</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<p>Votca is also available through docker and can be accessed and run with the
+following docker commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="linking-error-undefined-reference-to">
+<h2>Linking Error: Undefined reference to<a class="headerlink" href="#linking-error-undefined-reference-to" title="Permalink to this headline">¶</a></h2>
+<p>This error can happen due to a multitude of reasons. You may have forgotten to add paths to the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> or forgotten to import an environment module. In these cases deleting the <code class="docutils literal notranslate"><span class="pre">CMakeCache.txt</span></code> in your <code class="docutils literal notranslate"><span class="pre">build</span></code> folder and rerunning <code class="docutils literal notranslate"><span class="pre">cmake</span></code>  will help. Unfortunately another cause might be ABI incompability between libraries due to different libraries being compiled with different compilers or compiler versions. Click <a class="reference external" href="https://github.com/ICRAR/shark/issues/1">here</a> for an example.</p>
+</div>
+<div class="section" id="gcc-and-mkl-undefined-symbol">
+<h2>GCC and MKL : undefined symbol:<a class="headerlink" href="#gcc-and-mkl-undefined-symbol" title="Permalink to this headline">¶</a></h2>
+<p>This can happen with some GCC versions. Adding the <code class="docutils literal notranslate"><span class="pre">-Wl,--no-as-needed</span></code> to <code class="docutils literal notranslate"><span class="pre">CMAKE_EXE_LINKER_FLAGS:STRING=</span></code>
+to the <code class="docutils literal notranslate"><span class="pre">CMakeCache.txt</span></code> in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory can fix this. For more information look <a class="reference external" href="https://software.intel.com/en-us/articles/symbol-lookup-error-when-linking-intel-mkl-with-gcc-on-ubuntu">here</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CSG-MANUAL.html" class="btn btn-neutral float-right" title="CSG Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to VOTCA’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

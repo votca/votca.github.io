@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer and Contributor Guide &mdash; VOTCA 1.7-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code of Conduct" href="CODE_OF_CONDUCT.html" />
+    <link rel="prev" title="CSG Tutorial" href="CSG-TUTORIAL.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer and Contributor Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-tips">CPP Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#files">Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#includes">Includes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#header-files">Header Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#braces">Braces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto">Auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#naming-in-classes">Naming in Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-set-functions">get/set Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pointers">Pointers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general">General</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-across-repos">Testing Across Repos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#failed-travis-builds">Failed Travis Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-codeing-style-guide">CPP Codeing Style Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clang-format">clang-format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autopep8">autopep8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remark">remark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automating-formatting">Automating Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-comment-guide">CPP Comment Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-git-submodules">Updating Git Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merging-with-stable">Merging With Stable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#failed-release-builds">Failed Release Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gitlab-server">Gitlab Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-in-votca">Units in VOTCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing-in-votca">Indexing in VOTCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#style-guide">Style Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#types-and-ids">Types and Ids</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer and Contributor Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/DEVELOPERS_GUIDE.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-and-contributor-guide">
+<h1>Developer and Contributor Guide<a class="headerlink" href="#developer-and-contributor-guide" title="Permalink to this headline">¶</a></h1>
+<p>The page is designed to give new developers general guidelines for implementing
+code consistent with the VOTCA and cpp style and standard.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#reporting-bugs">Reporting Bugs</a></p></li>
+<li><p><a class="reference external" href="#cpp-resources">CPP Resoures</a></p></li>
+<li><p><a class="reference external" href="#cpp-tips">CPP Tips</a></p></li>
+<li><p><a class="reference external" href="#testing">Testing</a></p></li>
+<li><p><a class="reference external" href="#failed-travis-builds">Failed Travis Builds</a></p></li>
+<li><p><a class="reference external" href="#cpp-codeing-style-guide">CPP Codeing Style Guide</a></p></li>
+<li><p><a class="reference external" href="#cpp-comment-guide">CPP Comment Guide</a></p></li>
+<li><p><a class="reference external" href="#updating-git-submodules">Updating Git Submodules</a></p></li>
+<li><p><a class="reference external" href="#merging-with-stable">Merging With Stable</a></p></li>
+<li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
+<li><p><a class="reference external" href="#gitlab-server">Setting Up A GitLab Runner Server</a></p></li>
+<li><p><a class="reference external" href="#units-in-votca">Units in VOTCA</a></p></li>
+<li><p><a class="reference external" href="#indexing-in-votca">Indexing in VOTCA</a></p></li>
+<li><p><a class="reference external" href="#style-guide">Style Guide</a></p></li>
+</ul>
+<div class="section" id="reporting-bugs">
+<h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
+<p>To report a bug please create an issue on the appropriate github repo. Please be
+sure to provide as much information as possible such as:</p>
+<ul class="simple">
+<li><p>The error messages</p></li>
+<li><p>The operating system</p></li>
+<li><p>What compiler was used</p></li>
+<li><p>What dependencies were installed</p></li>
+<li><p>The calculation that was being run</p></li>
+</ul>
+<p>Issues can be directed created on the appropriate github repo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/votca/tools/issues">tools</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/csg/issues">csg</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/csgapps/issues">csgapps</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/csg-manual/issues">csg-manual</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/csg-tutorials/issues">csg-tutorials</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/xtp/issues">xtp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/votca/votca/issues">votca</a></p></li>
+</ul>
+</div>
+<div class="section" id="formatting-code">
+<h2>Formatting code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
+<p>VOTCA uses <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to format the code, code that is not properly formatted is automatically rejected. The style files can be found in each repo. If you have a version <code class="docutils literal notranslate"><span class="pre">&gt;7.1</span></code> of <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> you can just run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">format</span></code> and your code is formatted. For an even more automated version, see <a class="reference external" href="#votca-dev-tools">VOTCA dev-tools</a></p>
+</div>
+<div class="section" id="votca-dev-tools">
+<h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this headline">¶</a></h2>
+<p>Running clang-format on every commit can be a drag, as can changing the copyright in every header.
+Building artifacts locally from a Gitlab run is also mutliple steps. Fortunately you will find small
+scripts in the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools repo</a>, which can automate this.</p>
+</div>
+<div class="section" id="cpp-resources">
+<h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
+<p>A good starting point is to take a look at the cpp standard. Though the code has
+not always consistently followed the cpp standard we now make an effort to
+really enforce it and follow best practices.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gitbook.com/book/lefticus/cpp-best-practices/details">Best Practices1</a></p></li>
+<li><p><a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Best Practices2</a></p></li>
+</ul>
+</div>
+<div class="section" id="cpp-tips">
+<h2>CPP Tips<a class="headerlink" href="#cpp-tips" title="Permalink to this headline">¶</a></h2>
+<p>Here are a few general tips that should be followed:</p>
+<div class="section" id="files">
+<h3>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>each class goes into a separate file</p></li>
+<li><p>filename is name of class in lowercase</p></li>
+</ul>
+</div>
+<div class="section" id="includes">
+<h3>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>When including a header file from within the same repo that you are working
+use the relative includes. This consists of using quotation marks i.e.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;molecule.h&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>When including from another repository, for instance you are working in the
+csg repostory and want to include a file from the tools repo use the anglular
+brackets i.e.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;votca/tools/table.h&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="header-files">
+<h3>Header Files<a class="headerlink" href="#header-files" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>One class, one header.</p></li>
+<li><p>When creating header guards use the following form, where “VOTCA-REPO-NAME”
+is replaced by whichever repo the header is in tools/csg/xtp, and where
+“CLASS-NAME” is replaced by the name of the class described in the header
+file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H</span>
+<span class="c1">#define VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H</span>
+<span class="p">:</span>
+<span class="n">Code</span>
+<span class="p">:</span>
+<span class="c1">#endif // VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H</span>
+</pre></div>
+</div>
+</li>
+<li><p>Never use the “using namespace” in a header file.</p></li>
+<li><p>Avoid using includes in header files. If possible forward declare a class
+instead.</p></li>
+</ul>
+</div>
+<div class="section" id="braces">
+<h3>Braces<a class="headerlink" href="#braces" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>in functions/classes, the { is in the next line</p></li>
+<li><p>for for loops, if, …, the { is n the same line as if,for</p></li>
+</ul>
+</div>
+<div class="section" id="auto">
+<h3>Auto<a class="headerlink" href="#auto" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>avoid using auto unless the type is very long, the reason being auto obscures
+the underlying type and can make it difficult to discern what a variable is
+meant to be used for</p></li>
+</ul>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>normally begin in upper case</p></li>
+<li><p>order in class definition:</p>
+<ul>
+<li><p>first <code class="docutils literal notranslate"><span class="pre">public</span></code> all functions</p></li>
+<li><p>then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> all member variables</p></li>
+<li><p>then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> member functions</p></li>
+<li><p>no rule where to define a <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">typedef</span></code> in the class</p></li>
+</ul>
+</li>
+<li><p>all member variables are <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">public</span></code></p></li>
+<li><p>maximum one-line-function implementation in class declaration, everything else
+moves to separate file or inline at end of header.</p></li>
+</ul>
+</div>
+<div class="section" id="naming-in-classes">
+<h3>Naming in Classes<a class="headerlink" href="#naming-in-classes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>all member variables are in lower case and end with <code class="docutils literal notranslate"><span class="pre">_</span></code></p></li>
+<li><p>all functions start with upper case, no <code class="docutils literal notranslate"><span class="pre">_</span></code> in names</p></li>
+<li><p>exception: <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> functions</p></li>
+<li><p>for consistency all Ids should start at 0 not 1</p></li>
+</ul>
+</div>
+<div class="section" id="get-set-functions">
+<h3>get/set Functions<a class="headerlink" href="#get-set-functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>get/set functions start with a lowercase set/get (these are only functions
+which directly set/get a private member variable)</p></li>
+<li><p>get must return a constant reference and keep the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">const</span></code>:
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">int</span> <span class="pre">&amp;getId()</span> <span class="pre">const;</span></code></p></li>
+<li><p>set only sets the member, e.g. <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setId(const</span> <span class="pre">int</span> <span class="pre">&amp;id)</span> <span class="pre">{</span> <span class="pre">_id</span> <span class="pre">=</span> <span class="pre">id;</span> <span class="pre">}</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Make functions short.</p></li>
+<li><p>Functions should not have more than one use. So use boolean arguments
+sparingly.</p></li>
+</ul>
+</div>
+<div class="section" id="pointers">
+<h3>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In general, use pointers sparringly. Most objects are small and a copy does
+not change performance. Use references as well</p></li>
+<li><p>If your pointer owns an object (i.e. it has to delete it later) use a
+<code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> to it, so you do not have to call <code class="docutils literal notranslate"><span class="pre">delete</span></code> on it yourself</p></li>
+<li><p>If multiple objects own an object and the last object alive should delete it,
+use a <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code></p></li>
+<li><p>If your object does not have ownership but just wants to visit, you can use a
+raw pointer, but if you can a reference is better.</p></li>
+<li><p>If you ever have to explicitly call <code class="docutils literal notranslate"><span class="pre">delete</span></code>, you did something very wrong.</p></li>
+</ul>
+</div>
+<div class="section" id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Do not comment out code, if you do not use it delete it.</p></li>
+<li><p>Variables should have clear and explicit names.</p></li>
+<li><p>Do not duplicate code.</p></li>
+<li><p>Functions should have no more than 3 arguments. Otherwise create a class.</p></li>
+<li><p>XYZ positions should be <code class="docutils literal notranslate"><span class="pre">Eigen::Vector3d</span></code> from the eigen library.</p></li>
+<li><p>Readability is more important the elegant design.</p></li>
+<li><p>Leave the code better than you found it.</p></li>
+<li><p>Use pointers sparingly and especially try not to pass them around objects.
+Prefer references.</p></li>
+<li><p>Do not write code, which you may use in the future. Only write code you will
+use now. Write code, you need later, later. This avoids cluttering the
+codebase with unused “at some point we will need this functions”.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unit-testing">
+<h3>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h3>
+<p>Each repository contains a src folder. Within the src folder exists a library
+folder: libtools, libcsg etc… and a tools folder. A tests folder should also
+exist in the src folder. If it does not you should create one.</p>
+<p>For every new object and algorithm created there should exist a test. We use the
+Boost libraries testing framework. Good documentation can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ibm.com/developerworks/aix/library/au-ctools1_boost/">Boost link</a></p></li>
+</ul>
+<p>We will outline the general workflow here using the vec object in votca::tools.
+This object only has a header file it is in: tools/include/votca/tools/vec.h</p>
+<p>Determine if a tests folder has already been created or not in /src if it has
+not take a look at what was done in the votca-tools repo.</p>
+<ol>
+<li><p>Create a test file in
+<a class="reference external" href="https://github.com/votca/tools/tree/master/src/tests">tools/src/tests/</a>test_vec.cc
+must have the same name as what appears in the foreach in the CMakeLists.txt
+file. And place the following contents</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#define BOOST_TEST_MAIN</span>
+
+ <span class="c1">#define BOOST_TEST_MODULE vec_test</span>
+ <span class="c1">#include &lt;boost/test/unit_test.hpp&gt;</span>
+ <span class="c1">#include &lt;exception&gt;</span>
+
+ <span class="c1">#include &lt;votca/tools/vec.h&gt;</span>
+
+ <span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+ <span class="n">using</span> <span class="n">namespace</span> <span class="n">votca</span><span class="p">::</span><span class="n">tools</span><span class="p">;</span>
+
+ <span class="n">BOOST_AUTO_TEST_SUITE</span><span class="p">(</span><span class="n">vec_test</span><span class="p">)</span>
+
+
+ <span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test1</span><span class="p">){</span>
+   <span class="n">vecv</span><span class="p">;</span>
+   <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
+   <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
+   <span class="p">:</span>
+ <span class="p">}</span>
+ <span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test2</span><span class="p">){</span>
+   <span class="n">vecv</span><span class="p">;</span>
+   <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
+   <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
+   <span class="p">:</span>
+ <span class="p">}</span>
+ <span class="p">:</span>
+ <span class="n">BOOST_AUTO_TEST_SUITE_END</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Replace the ‘…’ and ‘:’ with the appropriate syntax. For more info on which
+boost test macros to use refer to the boost documentation</p>
+<ol>
+<li><p>To compile and test the code create a folder tools/build and run the
+following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">cmake</span> <span class="o">-</span><span class="n">DENABLE_TESTING</span><span class="o">=</span><span class="n">ON</span> <span class="o">../</span>
+ <span class="n">make</span>
+ <span class="n">make</span> <span class="n">test</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Ensure you have an up to date version of cmake or use cmake3</p>
+</div>
+<div class="section" id="testing-across-repos">
+<h3>Testing Across Repos<a class="headerlink" href="#testing-across-repos" title="Permalink to this headline">¶</a></h3>
+<p>There may come a case where changes have to be committed across more than one
+repo at the same time. Attempting to merge one repo at a time will cause the
+continuous integration to fail as changes in the other repos will not be pulled
+in. To do this correctly the following steps should be taken.</p>
+<p>Assuming you are in the votca/votca repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">base_branch</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">some_descriptive_branch_name</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">submodule</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">update</span>
+<span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module1_to_test</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module2_to_test</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;test &lt;module1&gt; with &lt;module2&gt;&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">some_descriptive_branch_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ol>
+<li><p>Here <code class="docutils literal notranslate"><span class="pre">base_branch</span></code> will typically be the master or stable branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">base_branch</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The submodules are updated to be sure they have incorporated the latest
+changes in your local repository</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a branch with a descriptive name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">some_descriptive_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Update each of the submodules, by pulling in any remote changes to the
+submodules.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">submodule</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">update</span>
+</pre></div>
+</div>
+</li>
+<li><p>‘-C’ changes directory to the submodule directory and then checks out the
+appropriate commit</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module1_to_test</span><span class="o">&gt;</span>  
+ <span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module2_to_test</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The changes are then added and commited</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span>  
+ <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;test &lt;module1&gt; with &lt;module2&gt;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Finally, they are pushed to the remote branch</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">some_descriptive_branch_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>A pull request is then made for the votca/votca repo using the branch name. Once
+the branch passes all tests it can be merged. Pull requests for each of repos
+changed can then be made. They will now compile against the updated votca/votca
+repo. Once they pass their tests they can be merged. If a pull request was
+already made the travis tests may simply need to be restarted.</p>
+</div>
+</div>
+<div class="section" id="failed-travis-builds">
+<h2>Failed Travis Builds<a class="headerlink" href="#failed-travis-builds" title="Permalink to this headline">¶</a></h2>
+<p>There may come a time where one of the docker builds fails. It may be the case
+that the error message is clear and it can be reproduced on your host os.
+However, in the case that the error is specific to the enviorment used in the
+build the local enviornment can be simulated using a docker container.</p>
+<p>Before you can use this approach docker must be installed on your host OS. Begin
+by running a docker image the default is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">buildenv</span><span class="p">:</span><span class="n">fedora</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
+<p>This will run an interative docker container which you can interact with in bash
+. The next commands will need to be adjusted to whatever local environment you
+need to reproduce to test the error in the travis build.</p>
+</div>
+<div class="section" id="cpp-codeing-style-guide">
+<h2>CPP Codeing Style Guide<a class="headerlink" href="#cpp-codeing-style-guide" title="Permalink to this headline">¶</a></h2>
+<p>VOTCA uses a few auto formatting tools to help enforce the rules</p>
+<div class="section" id="clang-format">
+<h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Permalink to this headline">¶</a></h3>
+<p>Automatically ensure consistent formatting for .cc and .h files. The style
+follows the google style fomatting rules. Have a look at the <code class="docutils literal notranslate"><span class="pre">.clang-format</span> <span class="pre">file</span></code> in the <a class="reference external" href="https://github.com/votca/votca/blob/master/.clang-format">main votca
+repository</a> for
+details.</p>
+<p>To run the clang-format function on file.cc</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">style</span><span class="o">=</span><span class="n">file</span> <span class="n">file</span><span class="o">.</span><span class="n">cc</span>
+</pre></div>
+</div>
+<p>‘-i’ ensures it will make change to file.cc, omitting the ‘-i’ will display the
+changes without implementing them. ‘-style=file’ ensures the format is read
+from the .clang-format file otherwise it will use a default style guide.</p>
+<p>By default tabs should not be used to indent, avoid inserting ‘\t’, it is
+preferable that spaces be used instead.</p>
+</div>
+<div class="section" id="autopep8">
+<h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Permalink to this headline">¶</a></h3>
+<p>Automatically formats python .py files. We are use the default format rules of
+autopep8. To run on file.py and update the file run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autopep8</span> <span class="o">-</span><span class="n">i</span> <span class="n">file</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remark">
+<h3><a class="reference external" href="https://github.com/remarkjs/remark">remark</a><a class="headerlink" href="#remark" title="Permalink to this headline">¶</a></h3>
+<p>Remark is used to automatically format markdown files .md. Some of the rules
+applied are:</p>
+<ul class="simple">
+<li><p>single spaces are used instead of tabs after bullets</p></li>
+<li><p>bullets are marked with <code class="docutils literal notranslate"><span class="pre">*</span></code> are used instead of <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p>words are emphasised by placing <code class="docutils literal notranslate"><span class="pre">__</span></code> on both sides</p></li>
+</ul>
+</div>
+<div class="section" id="automating-formatting">
+<h3>Automating Formatting<a class="headerlink" href="#automating-formatting" title="Permalink to this headline">¶</a></h3>
+<p>The above formatters can be automated at every commit using the script found in
+the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a> repository. To use it copy
+the file <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> to your local .git subfolder to the hooks folder. E.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">777</span> <span class="n">dev</span><span class="o">-</span><span class="n">tools</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span>  
+<span class="n">cp</span> <span class="n">dev</span><span class="o">-</span><span class="n">tools</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">tools</span><span class="o">/.</span><span class="n">git</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>The above will make the script executable and then copy it to the local
+.git/hooks directory in the tools repository. The script not only updates the
+file format of every file staged during a commit it will also update the
+license date.</p>
+</div>
+</div>
+<div class="section" id="cpp-comment-guide">
+<h2>CPP Comment Guide<a class="headerlink" href="#cpp-comment-guide" title="Permalink to this headline">¶</a></h2>
+<p>It is preferential that the following guidelines be followed when adding
+comments to code:</p>
+<ol>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">*/</span></code> comment blocks should be avoided and the <code class="docutils literal notranslate"><span class="pre">//</span></code> used in their
+place. This is so that the <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">*/</span></code> comment blocks can be easily used for
+debugging.</p></li>
+<li><p>It would be preferential that the following doxygen commenting stencil be
+used in the header files above each class and function description.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">/**</span>
+ <span class="o">*</span> \<span class="n">brief</span> <span class="n">function</span><span class="o">/</span><span class="k">class</span> <span class="nc">summary</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">Detailed</span> <span class="n">function</span><span class="o">/</span><span class="k">class</span> <span class="nc">description</span> <span class="k">if</span> <span class="n">needed</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="ow">in</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">1</span>
+ <span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="n">out</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">2</span>
+ <span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="ow">in</span><span class="p">,</span><span class="n">out</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">3</span>
+ <span class="o">*</span> <span class="p">:</span>
+ <span class="o">*</span> <span class="nd">@return</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="k">return</span> <span class="nb">type</span>
+ <span class="o">*/</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The doxygen commenting will help future developers maintain the code, in its
+fully compiled state it may be found at: <a class="reference external" href="http://doc.votca.org">http://doc.votca.org</a></p>
+<p>NOTE: Compilation of the doxygen documentation is automated when code is merged
+into the master votca branch!</p>
+</div>
+<div class="section" id="updating-git-submodules">
+<h2>Updating Git Submodules<a class="headerlink" href="#updating-git-submodules" title="Permalink to this headline">¶</a></h2>
+<p>Votca with all of its repos can be build by using the parent
+<a class="reference external" href="https://github.com/votca/votca">votca repo</a>. All the other necessary repos
+appear as submodules in the parent repo. It is worth noting that the submodules
+are not automatically updated whenever changes are made to their respective
+master branches. In essence a submodule refers to a specific commit of the repo
+it represents. If a new commit is merged into the master branch of a repository
+the submodule state in the parent repo has to be updated for the commit to
+propagate to the parent votca repository.</p>
+<p>To update the state of a submodule the following commands can be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">submodule</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">pull</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;update all submodules&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="merging-with-stable">
+<h2>Merging With Stable<a class="headerlink" href="#merging-with-stable" title="Permalink to this headline">¶</a></h2>
+<p>When creating a pull request to merge a branch with master the ci test build
+will by default build agains the master votca branch. This is fine if you are
+merging with the master branch of a given repo. However, if you would like to
+merge a bug fix to stable it becomes a problem because you want to build against
+the stable branch.</p>
+<p>Thus to merge with stable the name of the branch to be merged must be prepended
+with <strong>for/stable/</strong>. As an example if I have a bug fix for stable I would name
+it <strong>for/stable/bug-fix-1-because-I-am-awesome</strong>. When the ci runs it should
+proceed to make the build correctly.</p>
+</div>
+<div class="section" id="failed-release-builds">
+<h2>Failed Release Builds<a class="headerlink" href="#failed-release-builds" title="Permalink to this headline">¶</a></h2>
+<p>To prepare votca for distribution on different linux flavors there are different
+requirements from the package managers. Some of the architectures that the
+package managers support can be quite varied. In the case that a failure occurs
+on an architecture that is not available to you there are different approaches
+to debugging the problem. As an example fedora dnf has extended support to the
+<strong>pcc64le</strong> architecture. Assuming you have access to fedora you can run the
+following commands to simulate the build process on the <strong>pcc64le</strong>
+architecture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">update</span>
+<span class="n">dnf</span> <span class="n">install</span> <span class="n">qemu</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">static</span> <span class="n">dnf</span><span class="o">-</span><span class="n">utils</span>
+<span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="n">mock</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+<span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">dnf</span> <span class="o">--</span><span class="n">init</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">votca</span><span class="o">/</span><span class="n">fedora</span><span class="o">-</span><span class="n">copr</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">spectool</span> <span class="o">-</span><span class="n">g</span> <span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">rpmbuild</span> <span class="o">-</span><span class="n">D</span><span class="s2">&quot;_sourcedir $</span><span class="si">{PWD}</span><span class="s2">&quot;</span> <span class="o">-</span><span class="n">D</span><span class="s2">&quot;_srcrpmdir $</span><span class="si">{PWD}</span><span class="s2">&quot;</span> <span class="o">-</span><span class="n">bs</span> <span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
+<span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">dnf</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">clean</span> <span class="n">votca</span><span class="o">-</span><span class="mf">1.5</span><span class="o">-</span><span class="mf">1.</span><span class="o">*.</span><span class="n">src</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+</div>
+<p>Here, votca-1.5-1 should be replaced with the correct version. The above
+commands would setup and run the dnf installation process on the <strong>pcc64le</strong>
+enviroment. If a bug was found and the build crashes one can interactively
+intervene by issuing the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">shell</span>
+</pre></div>
+</div>
+<p>You will also need to install a text editor if you want to change the source
+files before running the interactive instance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">install</span> <span class="n">vim</span>
+</pre></div>
+</div>
+<p>Note: we have used this process with the <strong>ppc64le</strong> architecture as an example,
+but the same procedure can be extended with different architectures and diferent
+operating systems. For example you could use the <strong>aarch64</strong> or <strong>armv7hl</strong>
+architecture in place of <strong>pcc64le</strong>. You could also replace the
+<strong>epel-7-ppc64le</strong> os-architecure to <strong>fedora-28-ppc64le</strong>,
+<strong>fedora-27-aarch64</strong> or some other combination. A final point, if you simply
+want to build natively for instance if you are running fedora on an <strong>x86_64</strong>
+machine the <code class="docutils literal notranslate"><span class="pre">frocearch</span> <span class="pre">pcc64le</span></code> in the above case could just be dropped.</p>
+</div>
+<div class="section" id="gitlab-server">
+<h2>Gitlab Server<a class="headerlink" href="#gitlab-server" title="Permalink to this headline">¶</a></h2>
+<p>To setup a gitlab server the instructions on the official
+<a class="reference external" href="https://docs.gitlab.com/runner/register/">gitlab website</a> should be followed.
+To obtain the access token contact one of the votca administrators. It is also
+advisable to setup a cron job to help monitor the docker containers, images and
+volumes which can use a substantial amount of space if not cleaned. A docker
+cleanup script has been added in the
+<a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a> repo, instructions on how to set
+it up are provided in the script.</p>
+</div>
+<div class="section" id="units-in-votca">
+<h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this headline">¶</a></h2>
+<p>VOTCA tried as much as possible to standarize units across both CSG and XTP. Externally we parse in the units of the respective file format, e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstroem</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally we convert all parsed units to:</p>
+<ul class="simple">
+<li><p>CSG: length <code class="docutils literal notranslate"><span class="pre">nm</span></code>, energy <code class="docutils literal notranslate"><span class="pre">kJ/mol</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
+<li><p>XTP: length <code class="docutils literal notranslate"><span class="pre">bohr</span></code>, energy <code class="docutils literal notranslate"><span class="pre">Hartree</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="indexing-in-votca">
+<h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this headline">¶</a></h2>
+<p>All indeces in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays start at index 0.</p>
+<p>Apart from special cases all indeces and integers in votca should be <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>.
+<code class="docutils literal notranslate"><span class="pre">.size()</span></code> methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>.
+i.e:
+<code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>
+</div>
+<div class="section" id="style-guide">
+<h2>Style Guide<a class="headerlink" href="#style-guide" title="Permalink to this headline">¶</a></h2>
+<p>This language guide has been created to establish rules to keep VOTCAs code
+consistent between repositories. In the past, there has been difficulty in
+translating functionality between repositories and within the same repositories
+because different properties have been used to describe the same object
+attribute.</p>
+<div class="section" id="types-and-ids">
+<h3>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this headline">¶</a></h3>
+<p>As an example consider the csg bead object which had at one time contained the
+name, type and id attribute. The name of a bead is ill defined and could be
+unique but was not guaranteed to be so.</p>
+<p>If a bead were named C5 it was not clear if this was an arbitrary bead name, or
+if it was the 5th carbon atom in the system. Any any case the name attribute is
+not needed because if a unique id is needed the id of the bead could be used
+whereas if the type of the bead was needed the type attribute could be used.
+As such, the name method and attribute has been removed from the object.</p>
+<p>As a general rule, objects should not have a name method or attribute rather,
+any attribute that is not unique to an object should be indicated with a type
+method and attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getBeadType</span><span class="p">();</span>
+<span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getResidueType</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>To indicate a unique attribute an id should be used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">getBeadId</span><span class="p">();</span>
+<span class="nb">int</span> <span class="n">getMoleculeId</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CODE_OF_CONDUCT.html" class="btn btn-neutral float-right" title="Code of Conduct" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CSG-TUTORIAL.html" class="btn btn-neutral float-left" title="CSG Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
