@@ -263,7 +263,7 @@ resolving dependency issues. In particular, an appropriate extra <code class="do
 necessary to specify the path to a missed package. You will have to rerun the
 <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s) added. For example, in the case of a
 locally installed version of Gromacs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DBUILD_CSGAPPS=ON -DCMAKE_INSTALL_PREFIX=${prefix} -DWITH_GMX=ON -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DBUILD_CSGAPPS=ON -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
 </pre></div>
 </div>
 <p>Be careful to use exactly the option suggested in the error message! You can
@@ -300,7 +300,6 @@ option and a couple of other rpath related tweaks when setting
 <h3>Other CMake Flags<a class="headerlink" href="#other-cmake-flags" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSG_MANUAL</span></code> - Build csg pdf manual</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WITH_GMX</span></code> - Build with Gromacs support (ON/OFF, Default ON)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_&lt;name&gt;</span></code> - Disable using an optional package called
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> (ON/OFF)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_HDF5</span></code> - Disable using the optional package <code class="docutils literal notranslate"><span class="pre">HDF5</span></code>
