@@ -108,10 +108,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stable-version">Stable version</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#release-version">Release version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Stable version</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#linking-error-undefined-reference-to">Linking Error: Undefined reference to</a></li>
@@ -384,6 +389,13 @@ and all its dependencies:</p>
 <span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
+<div class="section" id="stable-version">
+<h4>Stable version<a class="headerlink" href="#stable-version" title="Permalink to this headline">¶</a></h4>
+<p>Spack can also install the latest stable version from git using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span><span class="nd">@stable</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="development-version">
 <h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest development version from git using:</p>
@@ -399,6 +411,20 @@ following docker commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
+</div>
+<div class="section" id="release-version">
+<h4>Release version<a class="headerlink" href="#release-version" title="Permalink to this headline">¶</a></h4>
+<p>Docker can also install the latest released version, e.g.::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v1</span><span class="o">.</span><span class="mi">6</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Stable version<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Docker can also install the latest stable version from git using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">stable</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
