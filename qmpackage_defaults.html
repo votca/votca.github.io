@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; VOTCA 1.7-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/qmpackage_defaults.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 25%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Valid Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>QM package to use</p></td>
+<td><p>xtp</p></td>
+<td><div class="line-block">
+<div class="line">xtp</div>
+<div class="line">orca</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>charge</p></td>
+<td><p>Molecular charge</p></td>
+<td><p>0</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-even"><td><p>spin</p></td>
+<td><p>Molecular multiplicity</p></td>
+<td><p>1</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>basisset</p></td>
+<td><p>Basis set for MOs</p></td>
+<td><p>def2-tzvp</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>auxbasisset</p></td>
+<td><p>Auxiliary basis set for RI</p></td>
+<td><p>aux-def2-tzvp</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>optimize</p></td>
+<td><p>Perform a molecular geometry optimization</p></td>
+<td><p>false</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>functional</p></td>
+<td></td>
+<td><p>XC_HYB_GGA_XC_PBEH</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>scratch</p></td>
+<td><p>path to the scratch folder</p></td>
+<td><p>/tmp/qmpackage</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>polarization</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dipole_spacing</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>read_guess</p></td>
+<td><p>Read wave function guess</p></td>
+<td><p>false</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>write_charges</p></td>
+<td><p>Print atomic charges</p></td>
+<td><p>false</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>convergence_tightness</p></td>
+<td></td>
+<td><p>tight</p></td>
+<td><div class="line-block">
+<div class="line">low</div>
+<div class="line">normal</div>
+<div class="line">tight</div>
+<div class="line">verytight</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>cleanup</p></td>
+<td><p>files to remove after the calculation is done</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>orca.method</p></td>
+<td><p>This is automatically fill with the functional and basis set</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>orca.scf</p></td>
+<td><p>Orca SCF section</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.with_screening</p></td>
+<td><p>screening</p></td>
+<td><p>true</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.screening_eps</p></td>
+<td><p>screening eps</p></td>
+<td><p>1e-9</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.four_center_method</p></td>
+<td><p>method to compute the four-center integrals</p></td>
+<td><p>cache</p></td>
+<td><div class="line-block">
+<div class="line">cache</div>
+<div class="line">direct</div>
+<div class="line">RI</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.energy</p></td>
+<td><p>DeltaE at which calculation is converged</p></td>
+<td><p>1E-7</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.convergence.method</p></td>
+<td><p>Main method to use for convergence accelertation</p></td>
+<td><p>DIIS</p></td>
+<td><div class="line-block">
+<div class="line">DIIS</div>
+<div class="line">mixing</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.DIIS_start</p></td>
+<td><p>DIIS error at which DIIS takes over</p></td>
+<td><p>0.002</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.convergence.ADIIS_start</p></td>
+<td><p>DIIS error at which ADIIS takes over</p></td>
+<td><p>0.8</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.DIIS_length</p></td>
+<td><p>old hamiltonians to keep in history</p></td>
+<td><p>20</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.convergence.DIIS_maxout</p></td>
+<td><div class="line-block">
+<div class="line">if true remove the maximum element in the history if DIIS_length</div>
+<div class="line">is exceeded.Otherwise, the oldest element is removed.</div>
+</div>
+</td>
+<td><p>false</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.levelshift</p></td>
+<td><p>levelshift to apply to hamiltonian</p></td>
+<td><p>0.0</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.convergence.levelshift_end</p></td>
+<td><p>DIIS error at levelshifting is disabled</p></td>
+<td><p>0.2</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.max_iterations</p></td>
+<td><p>max iterations to use</p></td>
+<td><p>100</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.convergence.error</p></td>
+<td><p>convergence error</p></td>
+<td><p>1e-7</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.convergence.mixing</p></td>
+<td><p>mixing parameter for linear mixing of density matrices</p></td>
+<td><p>0.7</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>xtpdft.initial_guess</p></td>
+<td><div class="line-block">
+<div class="line">Method to use to make initial guess, independent(electrons)</div>
+<div class="line">or atom(densities)</div>
+</div>
+</td>
+<td><p>atom</p></td>
+<td><div class="line-block">
+<div class="line">independent</div>
+<div class="line">atom</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>xtpdft.integration_grid</p></td>
+<td><p>vxc grid quality</p></td>
+<td><p>medium</p></td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

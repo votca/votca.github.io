@@ -1,0 +1,80 @@
+
+kmcmultiple
+***********
+Kinetic Monte Carlo simulations of multiple holes or electrons in periodic boundary conditions
+The following table contains the defaults input options for the calculator,
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Description
+     - Default Value
+     - Valid Input
+   * - runtime
+     - | Simulated time in seconds (if a number smaller than 100
+       | is given) or number of KMC steps (if a number larger than
+       | 100 is given)
+     - 1e-4
+     - float+
+   * - outputtime
+     - | Time difference between outputs into the trajectory file.
+       | Set to 0 if you wish to have no trajectory written out.
+     - 1E-8
+     - float+
+   * - trajectoryfile
+     - Name of the trajectory file
+     - trajectory.csv
+     - 
+   * - ratefile
+     - File to write rates
+     - rates.dat
+     - 
+   * - occfile
+     - File to write occupation
+     - occupation.dat
+     - 
+   * - seed
+     - Integer to initialise the random number generator
+     - 123
+     - int+
+   * - injectionpattern
+     - | Name pattern that specifies on which sites injection is
+       | possible. Use the wildcard '*' to inject on any site.
+     - *
+     - 
+   * - injectionmethod
+     - | random: injection sites are selected randomly (generally
+       | the recommended option); equilibrated: sites are chosen
+       | such that the expected energy per carrier is matched,
+       | possibly speeding up convergence
+     - random
+     - random
+   * - numberofcarriers
+     - Number of electrons/holes in the simulation box
+     - 1
+     - int+
+   * - field
+     - external electric field
+     - 0.0 0.0 0.0
+     - 
+   * - carriertype
+     - | Specifies the carrier type of the transport under consideration.
+       | 
+     - electron
+     - | electron
+       | hole
+       | singlet
+       | triplet
+   * - temperature
+     - Temperature in Kelvin.
+     - 300
+     - float+
+   * - maxrealtime
+     - Maximum clocktime allow to the calculation(Seconds)
+     - 
+     - float+
+.. note::
+   An *xml* file containing the defaults for the `kmcmultiple` calculator can be found at `$VOTCASHARE/xtp/xml/kmcmultiple.xml`

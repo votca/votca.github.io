@@ -1,0 +1,81 @@
+
+kmclifetime
+***********
+Perform Kinetic Monte Carlo simulations of singlets with decay
+The following table contains the defaults input options for the calculator,
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Description
+     - Default Value
+     - Valid Input
+   * - lifetimefile
+     - File from which lifetimes are read in.
+     - lifetimes.xml
+     - 
+   * - ratefile
+     - File containing the rates
+     - rates.dat
+     - 
+   * - trajectoryfile
+     - Name of the trajectory file
+     - trajectory.csv
+     - 
+   * - numberofinsertions
+     - 
+     - 
+     - 
+   * - seed
+     - Integer to initialise the random number generator
+     - 23
+     - int+
+   * - numberofcarriers
+     - Number of electrons/holes in the simulation box
+     - 1
+     - int+
+   * - injectionpattern
+     - | Name pattern that specifies on which sites injection is
+       | possible. Use the wildcard '*' to inject on any site.
+     - *
+     - 
+   * - injectionmethod
+     - | random: injection sites are selected randomly (generally
+       | the recommended option); equilibrated: sites are chosen
+       | such that the expected energy per carrier is matched,
+       | possibly speeding up convergence
+     - random
+     - random
+   * - temperature
+     - Temperature in Kelvin.
+     - 300
+     - int+
+   * - occfile
+     - File with the occupations
+     - occupation.dat
+     - 
+   * - maxrealtime
+     - Maximum clocktime allow to the calculation(Seconds)
+     - 
+     - float+
+   * - carrierenergy.run
+     - Switch on/off
+     - false
+     - bool
+   * - carrierenergy.outputfile
+     - File to write energies to
+     - energies.csv
+     - 
+   * - carrierenergy.alpha
+     - Smoothing energy profile
+     - 0.05
+     - float+
+   * - carrierenergy.outputsteps
+     - Write to file every x steps
+     - 10
+     - int+
+.. note::
+   An *xml* file containing the defaults for the `kmclifetime` calculator can be found at `$VOTCASHARE/xtp/xml/kmclifetime.xml`

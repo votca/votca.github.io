@@ -1,0 +1,49 @@
+
+molpol
+******
+Tool to scale distributed polarisibilites to DFT polarisibilites
+The following table contains the defaults input options for the calculator,
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Description
+     - Default Value
+     - Valid Input
+   * - options_polar.tolerance_energy
+     - Energy change as convergence criterion
+     - 1e-5
+     - 
+   * - options_polar.tolerance_dipole
+     - Field change as convergence criterion
+     - 1e-5
+     - 
+   * - options_polar.max_iter
+     - Maximum number of iterations
+     - 500
+     - 
+   * - options_polar.exp_damp
+     - Thole sharpness parameter
+     - 0.39
+     - 
+   * - qmpackage
+     - DFT package polarization calculation was run with
+     - orca
+     - orca
+   * - logfile
+     - logfile of DFTpackage to read Target polarisability from
+     - votca.orb
+     - 
+   * - tolerance
+     - convergence tolerance
+     - 1e-4
+     - float+
+   * - iterations
+     - maximum number of iterations
+     - 100
+     - int+
+.. note::
+   An *xml* file containing the defaults for the `molpol` calculator can be found at `$VOTCASHARE/xtp/xml/molpol.xml`

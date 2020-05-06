@@ -1,0 +1,37 @@
+
+qmmm
+****
+Executes qmmm calculations for individual molecules and clusters
+The following table contains the defaults input options for the calculator,
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Description
+     - Default Value
+     - Valid Input
+   * - print_regions_pdb
+     - print the geometry of the regions to a pdb file
+     - true
+     - bool
+   * - max_iterations
+     - max iterations for qmmm scf loop
+     - 100
+     - int+
+   * - map_file
+     - xml file with segment definition
+     - votca_map.xml
+     - 
+   * - job_file
+     - name of jobfile to which jobs are written
+     - qmmm_jobs.xml
+     - 
+   * - write_parse.states
+     - states to write jobs for and which to parse from jobfile
+     - n e h
+     - 
+.. note::
+   An *xml* file containing the defaults for the `qmmm` calculator can be found at `$VOTCASHARE/xtp/xml/qmmm.xml`

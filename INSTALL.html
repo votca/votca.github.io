@@ -100,7 +100,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#legacy-source-installation-instructions">Legacy (Source) Installation Instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#binary-packages-for-various-linux-distributions">Binary Packages for various Linux Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#packages-for-various-linux-distributions">Packages for various Linux Distributions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Fedora</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#centos">CentOs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#opensuse">OpenSuse</a></li>
@@ -117,6 +117,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id2">Stable version</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#freebsd">FreeBSD</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#linking-error-undefined-reference-to">Linking Error: Undefined reference to</a></li>
@@ -127,10 +128,12 @@
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
@@ -338,8 +341,8 @@ development version, as xtp still undergoes extensive development and no
 releases are available yet.</p></li>
 </ul>
 </div>
-<div class="section" id="binary-packages-for-various-linux-distributions">
-<h2>Binary Packages for various Linux Distributions<a class="headerlink" href="#binary-packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="packages-for-various-linux-distributions">
+<h2>Packages for various Linux Distributions<a class="headerlink" href="#packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>Fedora<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
@@ -425,6 +428,17 @@ following docker commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">stable</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="freebsd">
+<h3>FreeBSD<a class="headerlink" href="#freebsd" title="Permalink to this headline">¶</a></h3>
+<p>On FreeBSD votca can be installed from a binary package (recommended):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pkg</span> <span class="n">install</span> <span class="n">votka</span>
+</pre></div>
+</div>
+<p>or it can be rebuilt and installed from the sources (slow):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">science</span><span class="o">/</span><span class="n">votca</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span> <span class="n">clean</span>
+</pre></div>
 </div>
 </div>
 </div>

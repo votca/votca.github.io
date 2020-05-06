@@ -1,0 +1,152 @@
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Description
+     - Default Value
+     - Valid Input
+   * - name
+     - QM package to use
+     - xtp
+     - | xtp
+       | orca
+   * - charge
+     - Molecular charge
+     - 0
+     - int
+   * - spin
+     - Molecular multiplicity
+     - 1
+     - int+
+   * - basisset
+     - Basis set for MOs
+     - def2-tzvp
+     - 
+   * - auxbasisset
+     - Auxiliary basis set for RI
+     - aux-def2-tzvp
+     - 
+   * - optimize
+     - Perform a molecular geometry optimization
+     - false
+     - bool
+   * - functional
+     - 
+     - XC_HYB_GGA_XC_PBEH
+     - 
+   * - scratch
+     - path to the scratch folder
+     - /tmp/qmpackage
+     - 
+   * - polarization
+     - 
+     - 
+     - 
+   * - dipole_spacing
+     - 
+     - 
+     - 
+   * - read_guess
+     - Read wave function guess
+     - false
+     - bool
+   * - write_charges
+     - Print atomic charges
+     - false
+     - bool
+   * - convergence_tightness
+     - 
+     - tight
+     - | low
+       | normal
+       | tight
+       | verytight
+   * - cleanup
+     - files to remove after the calculation is done
+     - 
+     - 
+   * - orca.method
+     - This is automatically fill with the functional and basis set
+     - 
+     - 
+   * - orca.scf
+     - Orca SCF section
+     - 
+     - 
+   * - xtpdft.with_screening
+     - screening
+     - true
+     - bool
+   * - xtpdft.screening_eps
+     - screening eps
+     - 1e-9
+     - float+
+   * - xtpdft.four_center_method
+     - method to compute the four-center integrals
+     - cache
+     - | cache
+       | direct
+       | RI
+   * - xtpdft.convergence.energy
+     - DeltaE at which calculation is converged
+     - 1E-7
+     - float+
+   * - xtpdft.convergence.method
+     - Main method to use for convergence accelertation
+     - DIIS
+     - | DIIS
+       | mixing
+   * - xtpdft.convergence.DIIS_start
+     - DIIS error at which DIIS takes over
+     - 0.002
+     - float+
+   * - xtpdft.convergence.ADIIS_start
+     - DIIS error at which ADIIS takes over
+     - 0.8
+     - float+
+   * - xtpdft.convergence.DIIS_length
+     - old hamiltonians to keep in history
+     - 20
+     - int+
+   * - xtpdft.convergence.DIIS_maxout
+     - | if true remove the maximum element in the history if DIIS_length
+       | is exceeded.Otherwise, the oldest element is removed.
+     - false
+     - bool
+   * - xtpdft.convergence.levelshift
+     - levelshift to apply to hamiltonian 
+     - 0.0
+     - float+
+   * - xtpdft.convergence.levelshift_end
+     - DIIS error at levelshifting is disabled
+     - 0.2
+     - float+
+   * - xtpdft.convergence.max_iterations
+     - max iterations to use
+     - 100
+     - int+
+   * - xtpdft.convergence.error
+     - convergence error
+     - 1e-7
+     - float+
+   * - xtpdft.convergence.mixing
+     - mixing parameter for linear mixing of density matrices
+     - 0.7
+     - float+
+   * - xtpdft.initial_guess
+     - | Method to use to make initial guess, independent(electrons)
+       | or atom(densities)
+     - atom
+     - | independent
+       | atom
+   * - xtpdft.integration_grid
+     - vxc grid quality
+     - medium
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
