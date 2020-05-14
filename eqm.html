@@ -214,13 +214,16 @@ The following table contains the defaults input options for the calculator,</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>tasks</p></td>
+<td><p>tasks to perform during calculation</p></td>
+<td><p>input,dft,parse,gwbse,esp</p></td>
 <td><div class="line-block">
-<div class="line">tasks to perform during calculation input,dft,parse,gwbse,esp</div>
-<div class="line"><br /></div>
+<div class="line">[input</div>
+<div class="line">dft</div>
+<div class="line">parse</div>
+<div class="line">gwbse</div>
+<div class="line">esp]</div>
 </div>
 </td>
-<td><p>input,dft,parse,gwbse,esp</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>job_file</p></td>
 <td><p>name of jobfile to which jobs are written</p></td>
@@ -253,7 +256,7 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">BSE; other options: factor,explicit</div>
 </div>
 </td>
-<td></td>
+<td><p>default</p></td>
 <td><div class="line-block">
 <div class="line">default</div>
 <div class="line">factor</div>
@@ -336,7 +339,13 @@ The following table contains the defaults input options for the calculator,</p>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.tasks</p></td>
 <td><p>tasks to do</p></td>
 <td><p>gw,singlets</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">[gw</div>
+<div class="line">singlets</div>
+<div class="line">triplets</div>
+<div class="line">all]</div>
+</div>
+</td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.sigma_integrator</p></td>
 <td><p>self-energy correlation integration method</p></td>
@@ -453,7 +462,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 <td><p>true</p></td>
-<td><p>true</p></td>
+<td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.gw_sc_max_iterations</p></td>
 <td><p>Maximum number of iterations in eVGW</p></td>
@@ -559,7 +568,7 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 <tr class="row-odd"><td><p>esp_options.esp2multipole.state</p></td>
 <td><p>ground-,excited or transitionstate</p></td>
-<td><p>n2S1</p></td>
+<td><p>n2s1</p></td>
 <td><div class="line-block">
 <div class="line">groundstate</div>
 <div class="line">singlet</div>
@@ -587,6 +596,8 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">coarse</div>
 <div class="line">medium</div>
 <div class="line">fine</div>
+<div class="line">xfine</div>
+<div class="line">xcoarse</div>
 </div>
 </td>
 </tr>

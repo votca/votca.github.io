@@ -14,10 +14,13 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Valid Input
    * - tasks
-     - | tasks to perform during calculation input,dft,parse,gwbse,esp
-       | 
+     - tasks to perform during calculation
      - input,dft,parse,gwbse,esp
-     - 
+     - | [input
+       | dft
+       | parse
+       | gwbse
+       | esp]
    * - job_file
      - name of jobfile to which jobs are written
      - eqm.jobs
@@ -41,7 +44,7 @@ The following table contains the defaults input options for the calculator,
    * - gwbse_options.gwbse.ranges
      - | default: all levels in RPA, 1:2*HOMO in QP and all in
        | BSE; other options: factor,explicit
-     - 
+     - default
      - | default
        | factor
        | explicit
@@ -91,7 +94,10 @@ The following table contains the defaults input options for the calculator,
    * - gwbse_options.gwbse.tasks
      - tasks to do
      - gw,singlets
-     - 
+     - | [gw
+       | singlets
+       | triplets
+       | all]
    * - gwbse_options.gwbse.sigma_integrator
      - self-energy correlation integration method
      - ppm
@@ -164,7 +170,7 @@ The following table contains the defaults input options for the calculator,
      - | solve without explicitly setting up BSE matrix, (slower
        | but a lot less memory required
      - true
-     - true
+     - bool
    * - gwbse_options.gwbse.gw_sc_max_iterations
      - Maximum number of iterations in eVGW
      - 50
@@ -238,7 +244,7 @@ The following table contains the defaults input options for the calculator,
        | orca
    * - esp_options.esp2multipole.state
      - ground-,excited or transitionstate
-     - n2S1
+     - n2s1
      - | groundstate
        | singlet
        | n2s1
@@ -254,5 +260,7 @@ The following table contains the defaults input options for the calculator,
      - | coarse
        | medium
        | fine
+       | xfine
+       | xcoarse
 .. note::
    An *xml* file containing the defaults for the `eqm` calculator can be found at `$VOTCASHARE/xtp/xml/eqm.xml`

@@ -218,27 +218,36 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>iqm.jobs</p></td>
 <td></td>
 </tr>
+<tr class="row-odd"><td><p>tasks</p></td>
+<td><p>tasks to perform during calculation</p></td>
+<td><p>input,dft,parse,dftcoupling,gwbse,bsecoupling</p></td>
+<td><div class="line-block">
+<div class="line">[input</div>
+<div class="line">dft</div>
+<div class="line">parse</div>
+<div class="line">dftcoupling</div>
+<div class="line">gwbse</div>
+<div class="line">bsecoupling]</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>store</p></td>
+<td><div class="line-block">
+<div class="line">store results in hdf5 file, can require a lot of disk</div>
+<div class="line">space in large systems</div>
+</div>
+</td>
+<td><p>none</p></td>
+<td><div class="line-block">
+<div class="line">none</div>
+<div class="line">gw</div>
+<div class="line">dft</div>
+</div>
+</td>
+</tr>
 <tr class="row-odd"><td><p>map_file</p></td>
 <td><p>xml file with segment definition</p></td>
 <td><p>votca_map.xml</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>tasks</p></td>
-<td><div class="line-block">
-<div class="line">tasks to perform during calculation &gt;input,dft,parse,dftcoupling,gwbse,bsecoupling</div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td><p>input,dft,parse,dftcoupling,gwbse,bsecoupling</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>store</p></td>
-<td><div class="line-block">
-<div class="line">store gw/dft results in hdf5 file, can require a lot of</div>
-<div class="line">disk space in large systems</div>
-</div>
-</td>
-<td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>basisset</p></td>
@@ -262,7 +271,7 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">BSE; other options: factor,explicit</div>
 </div>
 </td>
-<td></td>
+<td><p>default</p></td>
 <td><div class="line-block">
 <div class="line">default</div>
 <div class="line">factor</div>
@@ -345,7 +354,13 @@ The following table contains the defaults input options for the calculator,</p>
 <tr class="row-even"><td><p>gwbse_options.gwbse.tasks</p></td>
 <td><p>tasks to do</p></td>
 <td><p>gw,singlets</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">[gw</div>
+<div class="line">singlets</div>
+<div class="line">triplets</div>
+<div class="line">all]</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_integrator</p></td>
 <td><p>self-energy correlation integration method</p></td>
@@ -462,7 +477,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 <td><p>true</p></td>
-<td><p>true</p></td>
+<td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.gw_sc_max_iterations</p></td>
 <td><p>Maximum number of iterations in eVGW</p></td>
@@ -557,9 +572,9 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.spin</p></td>
+<tr class="row-odd"><td><p>bsecoupling.spin</p></td>
 <td><p>Spin type for couplings</p></td>
-<td><p>singlet</p></td>
+<td><p>all</p></td>
 <td><div class="line-block">
 <div class="line">singlet</div>
 <div class="line">triplet</div>
@@ -567,37 +582,37 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.degeneracy</p></td>
+<tr class="row-even"><td><p>bsecoupling.degeneracy</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>0</p></td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeA.states</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeA.states</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeA.occLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeA.occLevels</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeA.unoccLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeA.unoccLevels</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeB.states</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeB.states</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeB.occLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeB.occLevels</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeB.unoccLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeB.unoccLevels</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
@@ -613,7 +628,7 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">molecule A</div>
 </div>
 </td>
-<td></td>
+<td><p>1</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>dftcoupling_options.levB</p></td>
@@ -622,7 +637,7 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">molecule B</div>
 </div>
 </td>
-<td></td>
+<td><p>1</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>dftpackage.package.name</p></td>
