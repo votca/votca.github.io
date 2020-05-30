@@ -169,7 +169,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-votca-s-documentation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="welcome-to-votca-s-documentation">
 <h1>Welcome to VOTCA’s documentation!<a class="headerlink" href="#welcome-to-votca-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>VOTCA is a software package which focuses on the analysis of molecular dynamics data, the development of systematic coarse-graining techniques as well as methods used for simulating microscopic charge (and exciton) transport in disordered semiconductors. Its C++ core is interfaced to bash and perl flow-control scripts.</p>
 <p>For an installation guide see <a class="reference external" href="INSTALL.html">here</a>.</p>

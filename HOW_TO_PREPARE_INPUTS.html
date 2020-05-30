@@ -168,7 +168,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="how-to-prepare-the-files-for-a-votca-xtp-system">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="how-to-prepare-the-files-for-a-votca-xtp-system">
 <h1>How to prepare the files for a VOTCA XTP system<a class="headerlink" href="#how-to-prepare-the-files-for-a-votca-xtp-system" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="mapping-file">
 <h2>Mapping file<a class="headerlink" href="#mapping-file" title="Permalink to this headline">¶</a></h2>

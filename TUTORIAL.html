@@ -168,7 +168,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="votca-xtp-tutorial">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="votca-xtp-tutorial">
 <h1>VOTCA-XTP tutorial<a class="headerlink" href="#votca-xtp-tutorial" title="Permalink to this headline">¶</a></h1>
 <p>This is the first iteration of the VOTCA-XTP tutorial.</p>
 <p>If you find bugs, weird behaviour or just incomprehensible instructions, please open an issue <a class="reference external" href="https://github.com/votca/xtp-tutorials/issues">here</a></p>
