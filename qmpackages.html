@@ -306,22 +306,17 @@
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>orca.scf</p></td>
-<td><p>Orca SCF section</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>xtpdft.with_screening</p></td>
+<tr class="row-odd"><td><p>xtpdft.with_screening</p></td>
 <td><p>screening</p></td>
 <td><p>true</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.screening_eps</p></td>
+<tr class="row-even"><td><p>xtpdft.screening_eps</p></td>
 <td><p>screening eps</p></td>
 <td><p>1e-9</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.four_center_method</p></td>
+<tr class="row-odd"><td><p>xtpdft.four_center_method</p></td>
 <td><p>method to compute the four-center integrals</p></td>
 <td><p>cache</p></td>
 <td><div class="line-block">
@@ -331,12 +326,12 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.energy</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.energy</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>1E-7</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.convergence.method</p></td>
+<tr class="row-odd"><td><p>xtpdft.convergence.method</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><p>DIIS</p></td>
 <td><div class="line-block">
@@ -345,22 +340,22 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.DIIS_start</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>0.002</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-odd"><td><p>xtpdft.convergence.ADIIS_start</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>0.8</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.DIIS_length</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>20</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-odd"><td><p>xtpdft.convergence.DIIS_maxout</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
 <div class="line">is exceeded.Otherwise, the oldest element is removed.</div>
@@ -369,32 +364,32 @@
 <td><p>false</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.levelshift</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.levelshift</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>0.0</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-odd"><td><p>xtpdft.convergence.levelshift_end</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>0.2</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.max_iterations</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.max_iterations</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>100</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.convergence.error</p></td>
+<tr class="row-odd"><td><p>xtpdft.convergence.error</p></td>
 <td><p>convergence error</p></td>
 <td><p>1e-7</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.convergence.mixing</p></td>
+<tr class="row-even"><td><p>xtpdft.convergence.mixing</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>0.7</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>xtpdft.initial_guess</p></td>
+<tr class="row-odd"><td><p>xtpdft.initial_guess</p></td>
 <td><div class="line-block">
 <div class="line">Method to use to make initial guess, independent(electrons)</div>
 <div class="line">or atom(densities)</div>
@@ -407,7 +402,7 @@
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>xtpdft.integration_grid</p></td>
+<tr class="row-even"><td><p>xtpdft.integration_grid</p></td>
 <td><p>vxc grid quality</p></td>
 <td><p>medium</p></td>
 <td><div class="line-block">
@@ -423,7 +418,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the QM packages defaults can be found at <cite>$VOTCASHARE/xtp/xml/qmpackage_defaults.xml</cite></p>
+<p>An <em>xml</em> file containing the QM packages defaults can be found at <cite>$VOTCASHARE/xtp/data/qmpackage_defaults.xml</cite></p>
 </div>
 </div>
 
