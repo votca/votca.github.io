@@ -461,9 +461,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Runs excitation/charge transport tools
 
@@ -552,14 +552,16 @@ import os
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_map, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_map, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Reading file MD_FILES/topol.tpr, VERSION 5.1.1 (single precision)
 Note: file tpx version 103, software tpx version 116
-an error occurred:
-No such file or directory
+Creating statefile state.hdf5
+Frame with id 0 was not in statefile state.hdf5 ,adding it now.
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
 </pre></div></div>
 </div>
 </div>
@@ -615,12 +617,24 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_run, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
-an error occurred:
-Statefile state.hdf5 not found.
+Initializing calculator
+... mapchecker
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... mapchecker
+Writing segments to md_segments_step_0.pdb
+Writing qmmolecules to qm_segments_n_step_0.pdb
+Writing polarsegments to mp_segments_e_step_0.pdb
+Writing polarsegments to mp_segments_h_step_0.pdb
+
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 </div>
@@ -682,12 +696,30 @@ add_section(&quot;neighborlist&quot;, constant)
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_run, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
-an error occurred:
-Statefile state.hdf5 not found.
+Initializing calculator
+... neighborlist
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... neighborlist  Using 1 threads
+Evaluating 1000 segments for neighborlist.
+ ... ... Evaluating
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+
+ ... ... Created 21093 direct pairs.
+ ... ... Determining classical pairs
+ ... ... Found 8586 classical pairs
+
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
 </pre></div></div>
 </div>
 </div>
@@ -715,12 +747,23 @@ Statefile state.hdf5 not found.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_run, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
-an error occurred:
-Statefile state.hdf5 not found.
+Initializing calculator
+... einternal
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... einternal
+... ... Site, reorg. energies from system.xml.
+
+... ... Read in site, reorg. energies for 1000 segments.
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
 </pre></div></div>
 </div>
 </div>
@@ -749,17 +792,24 @@ Statefile state.hdf5 not found.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... qmmm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+... ... Writing job file qmmm_mm_jobs.xml
+... ... In total 4001 jobs
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>The previous command generates a <code class="docutils literal notranslate"><span class="pre">qmmm_mm_jobs.xml</span></code> containing 4000 <em>MM</em> jobs to compute, if you examine that file, it should look something like</p>
@@ -782,7 +832,7 @@ First frame:0 is larger than number of frames:0
 </pre></div>
 </div>
 <p>Let us run just the first 4 jobs by settings all jobs <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">COMPLETE</span></code> except for the first four. This can be easily done with <a class="reference external" href="https://www.gnu.org/software/sed/manual/sed.html">sed</a> as follows,</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
@@ -794,18 +844,6 @@ First frame:0 is larger than number of frames:0
 !sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_mm_jobs.xml
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
-sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
-sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
-sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
-sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
-</pre></div></div>
 </div>
 <p>Now we can run the jobs and save the results in the state file</p>
 <div class="nbinput docutils container">
@@ -830,17 +868,107 @@ sed: can&#39;t read qmmm_mm_jobs.xml: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... qmmm
 ... ... Initialized with 1 threads.
 
 ... ... Using 2 openmp threads for 1x2=2 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+MST ERR Job file = &#39;qmmm_mm_jobs.xml&#39;, cache size =  8
+MST ERR Initialize jobs from qmmm_mm_jobs.xml
+MST ERR Registered 4000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -9.29812e-16
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.4086e-14
+T00 ERR ... 2020-8-3 20:45:6 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-8-3 20:45:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-8-3 20:45:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-8-3 20:45:6 Evaluating polar 0
+T00 ERR ... 2020-8-3 20:45:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-8-3 20:45:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-8-3 20:45:6 CG: #iterations: 7, estimated error: 4.15528e-06
+T00 ERR ...   Total static energy [hrt]= 8.121948104e-05
+T00 ERR ...   Total polar energy [hrt]= -0.0001235439304
+T00 ERR ...  Total energy [hrt]= -4.232444937e-05
+T00 ERR ... 2020-8-3 20:45:6 Evaluating static 1
+T00 ERR ... 2020-8-3 20:45:6 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 1
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -1
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-8-3 20:45:6 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
+T00 ERR ... 2020-8-3 20:45:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-8-3 20:45:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-8-3 20:45:6 Evaluating polar 0
+T00 ERR ... 2020-8-3 20:45:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-8-3 20:45:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-8-3 20:45:6 CG: #iterations: 27, estimated error: 8.442852524e-06
+T00 ERR ...   Total static energy [hrt]= -0.0009055590147
+T00 ERR ...   Total polar energy [hrt]= -0.03058901395
+T00 ERR ...  Total energy [hrt]= -0.03149457296
+T00 ERR ... 2020-8-3 20:45:6 Evaluating static 1
+T00 ERR ... 2020-8-3 20:45:6 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 2
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= 1
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-8-3 20:45:6 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
+T00 ERR ... 2020-8-3 20:45:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-8-3 20:45:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-8-3 20:45:6 Evaluating polar 0
+T00 ERR ... 2020-8-3 20:45:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-8-3 20:45:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-8-3 20:45:6 CG: #iterations: 7, estimated error: 3.581023691e-06
+T00 ERR ...   Total static energy [hrt]= 0.001994038371
+T00 ERR ...   Total polar energy [hrt]= -0.02768723938
+T00 ERR ...  Total energy [hrt]= -0.02569320101
+T00 ERR ... 2020-8-3 20:45:6 Evaluating static 1
+T00 ERR ... 2020-8-3 20:45:6 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 3
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -7.632783294e-16
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-8-3 20:45:7 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
+T00 ERR ... 2020-8-3 20:45:7 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-8-3 20:45:7 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-8-3 20:45:7 Evaluating polar 0
+T00 ERR ... 2020-8-3 20:45:7 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-8-3 20:45:7 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-8-3 20:45:7 CG: #iterations: 7, estimated error: 5.171454294e-06
+T00 ERR ...   Total static energy [hrt]= 0.0002401293715
+T00 ERR ...   Total polar energy [hrt]= -0.0004782854375
+T00 ERR ...  Total energy [hrt]= -0.000238156066
+T00 ERR ... 2020-8-3 20:45:7 Evaluating static 1
+T00 ERR ... 2020-8-3 20:45:7 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
  This is a XTP app
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
@@ -848,17 +976,29 @@ First frame:0 is larger than number of frames:0
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... qmmm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+Found 1 states of type e
+Found 1 states of type h
+Found 1 states of type s
+Found 1 states of type n
+3996 incomplete jobs found.
+
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
 </pre></div></div>
 </div>
 </div>
@@ -886,12 +1026,26 @@ First frame:0 is larger than number of frames:0
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_run, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
-an error occurred:
-Statefile state.hdf5 not found.
+Initializing calculator
+... eanalyze
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eanalyze
+... ... Short-listed 1000 segments (pattern=&#39;*&#39;)
+... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only.
+... ... ...      Statistics of site-energy differences operate on the full list.
+... ... excited state e
+... ... excited state h
+... ... excited state s
+... ... excited state t
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>You should now see a set of files prefixed with <code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> containing the histrogram and correlation functions.</p>
@@ -909,7 +1063,12 @@ Statefile state.hdf5 not found.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-ls: cannot access &#39;eanalyze*&#39;: No such file or directory
+eanalyze.pairhist_e.out  eanalyze.pairlist_s.out  eanalyze.sitehist_e.out
+eanalyze.pairhist_h.out  eanalyze.pairlist_t.out  eanalyze.sitehist_h.out
+eanalyze.pairhist_s.out  eanalyze.sitecorr_e.out  eanalyze.sitehist_s.out
+eanalyze.pairhist_t.out  eanalyze.sitecorr_h.out  eanalyze.sitehist_t.out
+eanalyze.pairlist_e.out  eanalyze.sitecorr_s.out
+eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </pre></div></div>
 </div>
 </div>
@@ -1003,20 +1162,23 @@ The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/eqm.xml&
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... eqm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
-sed: can&#39;t read eqm.jobs: No such file or directory
-sed: can&#39;t read eqm.jobs: No such file or directory
-sed: can&#39;t read eqm.jobs: No such file or directory
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eqm
+... ... Writing job file: eqm.jobs1000 jobs
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>Now, let run these 2 jobs</p>
@@ -1041,17 +1203,76 @@ sed: can&#39;t read eqm.jobs: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... eqm
 ... ... Initialized with 1 threads.
 
 ... ... Using 2 openmp threads for 1x2=2 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eqm
+MST ERR Job file = &#39;eqm.jobs&#39;, cache size =  1
+MST ERR Initialize jobs from eqm.jobs
+MST ERR Registered 1000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ... 2020-8-3 20:45:21 Evaluating site 0
+T00 ERR ... Running DFT
+T00 ERR ... Running GWBSE
+T00 ERR ... Running ESPFIT
+T00 ERR ... ===== Running on 2 threads =====
+T00 ERR ... 2020-8-3 20:45:23 Calculated Densities at Numerical Grid, Number of electrons is -2.98579e-08
+T00 ERR ... 2020-8-3 20:45:23 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-8-3 20:45:24 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 4.16334e-17
+T00 ERR ...  RMSE of fit:  0.00115777
+T00 ERR ...  RRMSE of fit: 0.067473
+T00 ERR ... El Dipole from fitted charges [e*bohr]:
+                 dx = +0.4971 dy = -0.5153 dz = +0.4035 |d|^2 = +0.6755
+T00 ERR ... El Dipole from exact qm density [e*bohr]:
+                 dx = +0.5080 dy = -0.5276 dz = +0.4131 |d|^2 = +0.7070
+T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_0_n2s1.mps
+T00 ERR ... 2020-8-3 20:45:24 Finished evaluating site 0
+T00 ERR ... Saving data to molecule_0.orb
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 1
+T00 ERR ... 2020-8-3 20:45:24 Evaluating site 1
+T00 ERR ... Running DFT
+T00 ERR ... Running GWBSE
+T00 ERR ... Running ESPFIT
+T00 ERR ... ===== Running on 2 threads =====
+T00 ERR ... 2020-8-3 20:45:27 Calculated Densities at Numerical Grid, Number of electrons is 2.262e-08
+T00 ERR ... 2020-8-3 20:45:27 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-8-3 20:45:28 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: -2.22045e-16
+T00 ERR ...  RMSE of fit:  0.00113806
+T00 ERR ...  RRMSE of fit: 0.0638631
+T00 ERR ... El Dipole from fitted charges [e*bohr]:
+                 dx = -0.5612 dy = -0.1875 dz = -0.6119 |d|^2 = +0.7246
+T00 ERR ... El Dipole from exact qm density [e*bohr]:
+                 dx = -0.5741 dy = -0.1916 dz = -0.6260 |d|^2 = +0.7582
+T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_1_n2s1.mps
+T00 ERR ... 2020-8-3 20:45:28 Finished evaluating site 1
+T00 ERR ... Saving data to molecule_1.orb
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 </div>
@@ -1154,21 +1375,28 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... iqm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm
+... ... Writing job file iqm.jobs
+... ... In total 12507 jobs
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>From the jobs that we just write down, let’s make available only the first job</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
@@ -1177,15 +1405,6 @@ First frame:0 is larger than number of frames:0
 !sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; iqm.jobs
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-sed: can&#39;t read iqm.jobs: No such file or directory
-sed: can&#39;t read iqm.jobs: No such file or directory
-</pre></div></div>
 </div>
 <p>Now we can run and store the jobs results</p>
 <div class="nbinput docutils container">
@@ -1209,17 +1428,49 @@ sed: can&#39;t read iqm.jobs: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... iqm
 ... ... Initialized with 1 threads.
 
 ... ... Using 2 openmp threads for 1x2=2 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm
+MST ERR Job file = &#39;iqm.jobs&#39;, cache size =  1
+MST ERR Initialize jobs from iqm.jobs
+MST ERR Registered 12507 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ... 2020-8-3 20:45:36 Evaluating pair 0 [0:1] out of 21093
+T00 ERR ... Guess requested, reading molecular orbitals
+T00 ERR ... Reading MoleculeA from OR_FILES/molecules/frame_0/molecule_0.orb
+T00 ERR ... Reading MoleculeB from OR_FILES/molecules/frame_0/molecule_1.orb
+T00 ERR ... Running DFT
+T00 ERR ... Calculating electronic couplings
+T00 ERR ... ======WARNING=======
+ Coordinates of monomer and dimer atoms do not agree
+T00 ERR ... Levels:Basis A[2:17] B[2:17]
+T00 ERR ... Done with electronic couplings
+T00 ERR ... Running GWBSE
+T00 ERR ... Running BSECoupling
+T00 ERR ... 2020-8-3 20:45:39 Finished evaluating pair 0:1
+T00 ERR ... Orb file is not saved according to options
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>Finally, we read the results into the state</p>
@@ -1244,17 +1495,23 @@ First frame:0 is larger than number of frames:0
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... iqm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
 </pre></div></div>
 </div>
 </div>
@@ -1319,17 +1576,24 @@ add_section(&quot;iexcitoncl&quot;, state)
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... iexcitoncl
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iexcitoncl
+... ... Writing job file exciton.jobs
+... ... In total 8586 jobs
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>Now we can run and save the jobs. For demo purposes we will run only the first job</p>
@@ -1349,7 +1613,6 @@ First frame:0 is larger than number of frames:0
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-sed: can&#39;t read exciton.jobs: No such file or directory
 sed: can&#39;t read exciton.job: No such file or directory
  This is a XTP app
 ==================================================
@@ -1358,17 +1621,30 @@ sed: can&#39;t read exciton.job: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... iexcitoncl
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iexcitoncl
+MST ERR Job file = &#39;exciton.jobs&#39;, cache size =  8
+MST ERR Initialize jobs from exciton.jobs
+MST ERR Registered 8586 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1407,12 +1683,23 @@ The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_run, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
-an error occurred:
-Statefile state.hdf5 not found.
+Initializing calculator
+... ianalyze
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... ianalyze
+Calculating for state e now.
+Calculating for state h now.
+Calculating for state s now.
+
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 </div>
@@ -1440,17 +1727,24 @@ Statefile state.hdf5 not found.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... qmmm
 ... ... Initialized with 1 threads.
 
 ... ... Using 1 openmp threads for 1x1=1 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+... ... Writing job file qmmm_jobs.xml
+... ... In total 3001 jobs
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>Lets run just the first job</p>
@@ -1470,8 +1764,6 @@ First frame:0 is larger than number of frames:0
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-sed: can&#39;t read qmmm_jobs.xml: No such file or directory
-sed: can&#39;t read qmmm_jobs.xml: No such file or directory
  This is a XTP app
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
@@ -1479,17 +1771,55 @@ sed: can&#39;t read qmmm_jobs.xml: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:28)
-votca_csg, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:08)
-votca_tools, version 2021-dev gitid: 8bed113 (compiled Aug  3 2020, 07:49:05)
+xtp_parallel, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:34:37)
+votca_csg, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:20:09)
+votca_tools, version 2021-dev gitid: 3eca500 (compiled Aug  3 2020, 20:17:17)
 
 Initializing calculator
 ... qmmm
 ... ... Initialized with 1 threads.
 
 ... ... Using 2 openmp threads for 1x2=2 total threads.
-0 frames in statefile, Ids are:
-First frame:0 is larger than number of frames:0
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+MST ERR Job file = &#39;qmmm_jobs.xml&#39;, cache size =  8
+MST ERR Initialize jobs from qmmm_jobs.xml
+MST ERR Registered 3000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.80986e+14
+T00 ERR ... Id: 1 type: polar size: 92 charge[e]= -5.09315e-15
+T00 ERR ... Id: 2 type: static size: 178 charge[e]= -9.86711e-15
+T00 ERR ... 2020-8-3 20:46:0 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-8-3 20:46:0 --Inter Region SCF Iteration 1 of 50
+T00 ERR ... 2020-8-3 20:46:0 Evaluating qm 0terminate called after throwing an instance of &#39;std::runtime_error&#39;
+  what():  Unrecognized keyword &#34;use_auxbasisset&#34;
+Keywords must be one of the following:
+auxbasisset
+basisset
+charge
+cleanup
+convergence_tightness
+dipole_spacing
+ecp
+executable
+functional
+name
+optimize
+orca
+polarization
+read_guess
+spin
+scratch
+write_charges
+xtpdft
+
 </pre></div></div>
 </div>
 <p>Finally, save the results</p>
