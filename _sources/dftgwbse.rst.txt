@@ -34,6 +34,27 @@ The following table contains the defaults input options for the calculator,
      - xtp
      - | xtp
        | orca
+   * - dftpackage.package.use_auxbasisset
+     - use an auxiliar basisset
+     - true
+     - bool
+   * - use_mpsfile
+     - check for MPS file with external multipoles for embedding
+     - false
+     - bool
+   * - mpsfile
+     - MPS file to read from if use_mpsfile
+     - 
+     - 
+   * - use_guess
+     - Use a precomputed wave function
+     - false
+     - bool
+   * - guess
+     - | File to read the wave function if the use guess flag is
+       | set to true
+     - 
+     - 
    * - gwbse_engine.tasks
      - task to compute
      - input,dft,parse,gwbse

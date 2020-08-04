@@ -263,14 +263,32 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>0.39</p></td>
 <td></td>
 </tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p>Read the polar target from a file or a qmpackage logfile</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">file</div>
+<div class="line">qmpackage</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>target_polarisability</p></td>
+<td><p>should have this format: pxx pxy pxz pyy pyz pzz</p></td>
+<td></td>
+<td></td>
+</tr>
 <tr class="row-even"><td><p>qmpackage</p></td>
-<td><p>DFT package polarization calculation was run with</p></td>
+<td><p>qmpackage name if mode is qmpackage</p></td>
 <td><p>orca</p></td>
 <td><p>orca</p></td>
 </tr>
 <tr class="row-odd"><td><p>logfile</p></td>
-<td><p>logfile of DFTpackage to read Target polarisability from</p></td>
-<td><p>votca.orb</p></td>
+<td><div class="line-block">
+<div class="line">logfile of DFTpackage to read Target polarisability from</div>
+<div class="line">if mode is qmpackage</div>
+</div>
+</td>
+<td><p>system.log</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>tolerance</p></td>

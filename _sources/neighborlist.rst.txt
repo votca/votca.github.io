@@ -13,9 +13,31 @@ The following table contains the defaults input options for the calculator,
      - Description
      - Default Value
      - Valid Input
+   * - segmentname
+     - segments names if the segmentname method is used
+     - 
+     - 
+   * - cutoff
+     - cutoff value if the segmentname method is used
+     - 
+     - 
+   * - cutoff_type
+     - method to define the cutoff
+     - constant
+     - | constant
+       | segmentname
    * - constant
-     - cutoff for all other types of pairs
+     - | cutoff for all other types of pairs if the constant method
+       | is used
      - 1.5
      - float+
+   * - use_exciton_cutoff
+     - Use exciton cutoff
+     - false
+     - bool
+   * - exciton_cutoff
+     - cutoff for classical exciton transition charge treatment
+     - 
+     - 
 .. note::
    An *xml* file containing the defaults for the `neighborlist` calculator can be found at `$VOTCASHARE/xtp/xml/neighborlist.xml`

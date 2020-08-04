@@ -29,13 +29,23 @@ The following table contains the defaults input options for the calculator,
      - Thole sharpness parameter
      - 0.39
      - 
+   * - mode
+     - Read the polar target from a file or a qmpackage logfile
+     - 
+     - | file
+       | qmpackage
+   * - target_polarisability
+     - should have this format: pxx pxy pxz pyy pyz pzz
+     - 
+     - 
    * - qmpackage
-     - DFT package polarization calculation was run with
+     - qmpackage name if mode is qmpackage
      - orca
      - orca
    * - logfile
-     - logfile of DFTpackage to read Target polarisability from
-     - votca.orb
+     - | logfile of DFTpackage to read Target polarisability from
+       | if mode is qmpackage
+     - system.log
      - 
    * - tolerance
      - convergence tolerance

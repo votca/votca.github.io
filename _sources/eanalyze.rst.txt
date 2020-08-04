@@ -32,9 +32,22 @@ The following table contains the defaults input options for the calculator,
        | h
        | s
        | t]
-   * - energy_landscape
-     - 
+   * - do_energy_landscape
+     - enable the computation of the energy landscape
      - false
      - bool
+   * - do_distance_mode
+     - enable the distance mode
+     - 
+     - 
+   * - match_pattern
+     - Regex use to search for the segments
+     - *
+     - 
+   * - distancemode
+     - mode to use if do_distance_mode is set to true
+     - centerofmass
+     - | atoms
+       | centerofmass
 .. note::
    An *xml* file containing the defaults for the `eanalyze` calculator can be found at `$VOTCASHARE/xtp/xml/eanalyze.xml`

@@ -25,10 +25,18 @@
      - Basis set for MOs
      - def2-tzvp
      - 
+   * - use_auxbasisset
+     - use an auxiliar basisset
+     - true
+     - bool
    * - auxbasisset
      - Auxiliary basis set for RI
      - aux-def2-tzvp
      - 
+   * - use_ecp
+     - use an Effective Core Potentials for DFT Calculations
+     - false
+     - bool
    * - optimize
      - Perform a molecular geometry optimization
      - false
@@ -75,6 +83,14 @@
    * - xtpdft.with_screening
      - screening
      - true
+     - bool
+   * - xtpdft.use_external_field
+     - whether or not to use an external field
+     - false
+     - bool
+   * - xtpdft.use_external_density
+     - whether or not to use a precomputed external density
+     - false
      - bool
    * - xtpdft.screening_eps
      - screening eps
