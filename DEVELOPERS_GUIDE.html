@@ -103,6 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA continuous integration (Github actions)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-tips">CPP Tips</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#files">Files</a></li>
@@ -116,6 +117,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pointers">Pointers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#general">General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#votca-specifics-indexing-ids-units">VOTCA specifics (indexing, ids, units)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
@@ -123,8 +125,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#testing-across-repos">Testing Across Repos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#failed-travis-builds">Failed Travis Builds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cpp-codeing-style-guide">CPP Codeing Style Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-coding-style-guide">CPP Coding Style Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#clang-format">clang-format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#autopep8">autopep8</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#remark">remark</a></li>
@@ -136,12 +137,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#merging-with-stable">Merging With Stable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#failed-release-builds">Failed Release Builds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gitlab-server">Gitlab Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#units-in-votca">Units in VOTCA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#indexing-in-votca">Indexing in VOTCA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#style-guide">Style Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#types-and-ids">Types and Ids</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
@@ -254,9 +249,6 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <li><p><a class="reference external" href="#merging-with-stable">Merging With Stable</a></p></li>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
 <li><p><a class="reference external" href="#gitlab-server">Setting Up A GitLab Runner Server</a></p></li>
-<li><p><a class="reference external" href="#units-in-votca">Units in VOTCA</a></p></li>
-<li><p><a class="reference external" href="#indexing-in-votca">Indexing in VOTCA</a></p></li>
-<li><p><a class="reference external" href="#style-guide">Style Guide</a></p></li>
 </ul>
 <div class="section" id="reporting-bugs">
 <h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
@@ -295,6 +287,16 @@ copyright in every header. Building artifacts locally from a Gitlab run
 is also mutliple steps. Fortunately you will find small scripts in the
 <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools repo</a>, which can
 automate this.</p>
+</div>
+<div class="section" id="votca-continuous-integration-github-actions">
+<h2>VOTCA continuous integration (Github actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
+<p>Each pull request and push to master in the tools, csg, csgapps, csg-tutorials, csg-manual, xtp, xtp-tutorials and in the votca repository
+is build on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> (There is still some Gitlab for the GPU builds).</p>
+<p>VOTCA can build on various linux distributions, which are not all natively supported by Github actions. So instead of using the default virtual machines,
+VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of votca (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
+<p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. As you can see there are two containers. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires, but not any VOTCA code.
+On top of these containers the actual containers for running the test builds are build, the <strong>votca/votca</strong> container.</p>
+<p>For more information also look at the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
 </div>
 <div class="section" id="cpp-resources">
 <h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
@@ -442,6 +444,10 @@ cluttering the codebase with unused “at some point we will need this
 functions”.</p></li>
 </ul>
 </div>
+<div class="section" id="votca-specifics-indexing-ids-units">
+<h3>VOTCA specifics (indexing, ids, units)<a class="headerlink" href="#votca-specifics-indexing-ids-units" title="Permalink to this headline">¶</a></h3>
+<p>This can all be found here <a class="reference external" href="share/doc/VOTCA_LANGUAGE_GUIDE.rst">VOTCA_LANGUAGE_GUIDE</a></p>
+</div>
 </div>
 <div class="section" id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
@@ -583,24 +589,8 @@ can be merged. If a pull request was already made the travis tests may
 simply need to be restarted.</p>
 </div>
 </div>
-<div class="section" id="failed-travis-builds">
-<h2>Failed Travis Builds<a class="headerlink" href="#failed-travis-builds" title="Permalink to this headline">¶</a></h2>
-<p>There may come a time where one of the docker builds fails. It may be
-the case that the error message is clear and it can be reproduced on
-your host os. However, in the case that the error is specific to the
-enviorment used in the build the local enviornment can be simulated
-using a docker container.</p>
-<p>Before you can use this approach docker must be installed on your host
-OS. Begin by running a docker image the default is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">buildenv</span><span class="p">:</span><span class="n">fedora</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
-</pre></div>
-</div>
-<p>This will run an interative docker container which you can interact with
-in bash . The next commands will need to be adjusted to whatever local
-environment you need to reproduce to test the error in the travis build.</p>
-</div>
-<div class="section" id="cpp-codeing-style-guide">
-<h2>CPP Codeing Style Guide<a class="headerlink" href="#cpp-codeing-style-guide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cpp-coding-style-guide">
+<h2>CPP Coding Style Guide<a class="headerlink" href="#cpp-coding-style-guide" title="Permalink to this headline">¶</a></h2>
 <p>VOTCA uses a few auto formatting tools to help enforce the rules</p>
 <div class="section" id="clang-format">
 <h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Permalink to this headline">¶</a></h3>
@@ -769,58 +759,6 @@ the docker containers, images and volumes which can use a substantial
 amount of space if not cleaned. A docker cleanup script has been added
 in the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a> repo,
 instructions on how to set it up are provided in the script.</p>
-</div>
-<div class="section" id="units-in-votca">
-<h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>VOTCA tried as much as possible to standarize units across both CSG and
-XTP. Externally we parse in the units of the respective file format,
-e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstroem</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally we convert all
-parsed units to:</p>
-<ul class="simple">
-<li><p>CSG: length <code class="docutils literal notranslate"><span class="pre">nm</span></code>, energy <code class="docutils literal notranslate"><span class="pre">kJ/mol</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
-<li><p>XTP: length <code class="docutils literal notranslate"><span class="pre">bohr</span></code>, energy <code class="docutils literal notranslate"><span class="pre">Hartree</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
-</ul>
-</div>
-<div class="section" id="indexing-in-votca">
-<h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>All indeces in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
-start at index 0.</p>
-<p>Apart from special cases all indeces and integers in votca should be
-<code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>. <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
-methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be
-cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>. i.e: <code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>
-</div>
-<div class="section" id="style-guide">
-<h2>Style Guide<a class="headerlink" href="#style-guide" title="Permalink to this headline">¶</a></h2>
-<p>This language guide has been created to establish rules to keep VOTCAs
-code consistent between repositories. In the past, there has been
-difficulty in translating functionality between repositories and within
-the same repositories because different properties have been used to
-describe the same object attribute.</p>
-<div class="section" id="types-and-ids">
-<h3>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this headline">¶</a></h3>
-<p>As an example consider the csg bead object which had at one time
-contained the name, type and id attribute. The name of a bead is ill
-defined and could be unique but was not guaranteed to be so.</p>
-<p>If a bead were named C5 it was not clear if this was an arbitrary bead
-name, or if it was the 5th carbon atom in the system. Any any case the
-name attribute is not needed because if a unique id is needed the id of
-the bead could be used whereas if the type of the bead was needed the
-type attribute could be used. As such, the name method and attribute has
-been removed from the object.</p>
-<p>As a general rule, objects should not have a name method or attribute
-rather, any attribute that is not unique to an object should be
-indicated with a type method and attribute.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getBeadType</span><span class="p">();</span>
-<span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getResidueType</span><span class="p">();</span>
-</pre></div>
-</div>
-<p>To indicate a unique attribute an id should be used.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">getBeadId</span><span class="p">();</span>
-<span class="nb">int</span> <span class="n">getMoleculeId</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
