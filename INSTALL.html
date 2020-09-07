@@ -86,21 +86,17 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#votca-structure">VOTCA structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ubuntu">Ubuntu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fedora">Fedora</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#resolving-the-not-found-dependency-errors">Resolving the ‘not found’ dependency errors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-cmake-flags">Common CMake Flags</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#other-cmake-flags">Other CMake Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#legacy-source-installation-instructions">Legacy (Source) Installation Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#packages-for-various-linux-distributions">Packages for various Linux Distributions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Fedora</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#centos">CentOs</a></li>
@@ -235,15 +231,20 @@
 </style>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="votca-structure">
-<h2>VOTCA structure<a class="headerlink" href="#votca-structure" title="Permalink to this headline">¶</a></h2>
-<p>VOTCA is currently composed of four major repositories:</p>
-<ul class="simple">
-<li><p>TOOLS - general tools</p></li>
-<li><p>CSG - topographical classes and course graining functionality</p></li>
-<li><p>XTP - exciton and excited states functionality GW-BSE and DFT engine</p></li>
-</ul>
-<p>TOOLS -&gt; CSG -&gt; XTP</p>
+<div class="section" id="general-source-installation-instructions">
+<h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
+<p>To install the full package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
+version=master # or &#39;stable&#39; or &#39;v1.4.1&#39;
+git clone -b ${version} --recursive https://github.com/votca/votca.git
+cd votca
+mkdir build
+cd build
+cmake -DBUILD_CSGAPPS=ON -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} ..
+make -j5
+make install
+</pre></div>
+</div>
 <div class="section" id="dependency-installation">
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="ubuntu">
@@ -268,21 +269,6 @@
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="general-source-installation-instructions">
-<h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
-<p>To install the full package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
-version=master # or &#39;stable&#39; or &#39;v1.4.1&#39;
-git clone -b ${version} --recursive https://github.com/votca/votca.git
-cd votca
-mkdir build
-cd build
-cmake -DBUILD_CSGAPPS=ON -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} ..
-make -j5
-make install
-</pre></div>
 </div>
 <div class="section" id="resolving-the-not-found-dependency-errors">
 <h3>Resolving the ‘not found’ dependency errors<a class="headerlink" href="#resolving-the-not-found-dependency-errors" title="Permalink to this headline">¶</a></h3>
@@ -344,33 +330,6 @@ package <code class="docutils literal notranslate"><span class="pre">HDF5</span>
 <code class="docutils literal notranslate"><span class="pre">master</span></code> branch)</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="legacy-source-installation-instructions">
-<h2>Legacy (Source) Installation Instructions<a class="headerlink" href="#legacy-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
-<p>Check <a class="reference external" href="#dependency-installation">dependencies</a> first. Do <strong>NOT</strong>
-download anything yourself, this is done by <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> below.</p>
-<p>When installing for the first time, run the following commands in bash:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
-mkdir -p ${prefix}/src
-cd ${prefix}/src
-wget https://raw.githubusercontent.com/votca/buildutil/master/build.sh
-chmod +x build.sh
-./build.sh --prefix ${prefix} --dev tools csg xtp
-</pre></div>
-</div>
-<p>Replace the <em>WHERE/TO/INSTALL/VOTCA</em> with directory where you want to
-install votca, usually \${HOME}/votca is good choice.</p>
-<p>This commands will:</p>
-<ul class="simple">
-<li><p>Create a directory, where the sources are to be stored (above
-<code class="docutils literal notranslate"><span class="pre">${prefix}/src</span></code>)</p></li>
-<li><p>Go there</p></li>
-<li><p>Download our build script</p></li>
-<li><p>Make the build script executable</p></li>
-<li><p>Run the build script to download all votca modules using git, it uses
-the development version, as xtp still undergoes extensive development
-and no releases are available yet.</p></li>
-</ul>
 </div>
 <div class="section" id="packages-for-various-linux-distributions">
 <h2>Packages for various Linux Distributions<a class="headerlink" href="#packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
