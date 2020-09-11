@@ -105,11 +105,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA continuous integration (Github actions)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cpp-tips">CPP Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-coding-rules">CPP Coding Rules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#files">Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#includes">Includes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#header-files">Header Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#braces">Braces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auto">Auto</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#naming-in-classes">Naming in Classes</a></li>
@@ -240,10 +239,10 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#reporting-bugs">Reporting Bugs</a></p></li>
 <li><p><a class="reference external" href="#cpp-resources">CPP Resoures</a></p></li>
-<li><p><a class="reference external" href="#cpp-tips">CPP Tips</a></p></li>
+<li><p><a class="reference external" href="#cpp-tips">CPP Coding Rules like this</a></p></li>
 <li><p><a class="reference external" href="#testing">Testing</a></p></li>
 <li><p><a class="reference external" href="#failed-travis-builds">Failed Travis Builds</a></p></li>
-<li><p><a class="reference external" href="#cpp-codeing-style-guide">CPP Codeing Style Guide</a></p></li>
+<li><p><a class="reference external" href="#cpp-codeing-style-guide">CPP Coding Style Guide</a></p></li>
 <li><p><a class="reference external" href="#cpp-comment-guide">CPP Comment Guide</a></p></li>
 <li><p><a class="reference external" href="#updating-git-submodules">Updating Git Submodules</a></p></li>
 <li><p><a class="reference external" href="#merging-with-stable">Merging With Stable</a></p></li>
@@ -310,9 +309,9 @@ Practices1</a></p></li>
 Practices2</a></p></li>
 </ul>
 </div>
-<div class="section" id="cpp-tips">
-<h2>CPP Tips<a class="headerlink" href="#cpp-tips" title="Permalink to this headline">¶</a></h2>
-<p>Here are a few general tips that should be followed:</p>
+<div class="section" id="cpp-coding-rules">
+<h2>CPP Coding Rules<a class="headerlink" href="#cpp-coding-rules" title="Permalink to this headline">¶</a></h2>
+<p>Here are a few general rules that should be followed:</p>
 <div class="section" id="files">
 <h3>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -331,7 +330,7 @@ marks i.e.</p>
 <li><p>When including from another repository, for instance you are working
 in the csg repostory and want to include a file from the tools repo
 use the anglular brackets i.e.</p>
-<p>#include</p>
+<p>#include &lt;votca/tools/molecule.h&gt;</p>
 </li>
 </ul>
 </div>
@@ -350,13 +349,6 @@ VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H</p>
 <li><p>Never use the “using namespace” in a header file.</p></li>
 <li><p>Avoid using includes in header files. If possible forward declare a
 class instead.</p></li>
-</ul>
-</div>
-<div class="section" id="braces">
-<h3>Braces<a class="headerlink" href="#braces" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>in functions/classes, the { is in the next line</p></li>
-<li><p>for for loops, if, …, the { is n the same line as if,for</p></li>
 </ul>
 </div>
 <div class="section" id="auto">
@@ -413,7 +405,7 @@ sparingly.</p></li>
 <h3>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>In general, use pointers sparringly. Most objects are small and a
-copy does not change performance. Use references as well</p></li>
+copy does not change performance. Use references if you want to avoid copies.</p></li>
 <li><p>If your pointer owns an object (i.e. it has to delete it later) use a
 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> to it, so you do not have to call <code class="docutils literal notranslate"><span class="pre">delete</span></code> on it
 yourself</p></li>
