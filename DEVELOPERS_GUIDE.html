@@ -294,8 +294,8 @@ automate this.</p>
 is build on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> (There is still some Gitlab for the GPU builds).</p>
 <p>VOTCA can build on various linux distributions, which are not all natively supported by Github actions. So instead of using the default virtual machines,
 VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of votca (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
-<p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. As you can see there are two containers. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires, but not any VOTCA code.
-On top of these containers the actual containers for running the test builds are build, the <strong>votca/votca</strong> container.</p>
+<p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires, but not any VOTCA code. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
+On top of these containers the actual containers for running the test builds are build, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
 <p>For more information also look at the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
 </div>
 <div class="section" id="cpp-resources">
