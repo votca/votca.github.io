@@ -124,10 +124,35 @@ The following table contains the defaults input options for the calculator,
      - ppm
      - | ppm
        |  exact
+       |  cda
    * - gwbse_engine.gwbse_options.gwbse.eta
      - small parameter eta of the Green's function
      - 1e-3
      - float+
+   * - gwbse_engine.gwbse_options.gwbse.alpha
+     - | parameter to smooth residue and integral calculation for
+       | the contour deformation technique
+     - 1e-3
+     - float
+   * - gwbse_engine.gwbse_options.gwbse.quadrature_scheme
+     - | If CDA is used for sigma integration this set the quadrature
+       | scheme to use
+     - legendre
+     - | hermite
+       | laguerre
+       | legendre
+   * - gwbse_engine.gwbse_options.gwbse.quadrature_order
+     - Quadrature order if CDA is used for sigma integration
+     - 12
+     - | 8
+       | 10
+       | 12
+       | 14
+       | 16
+       | 18
+       | 20
+       | 40
+       | 100
    * - gwbse_engine.gwbse_options.gwbse.qp_solver
      - QP equation solve method
      - grid

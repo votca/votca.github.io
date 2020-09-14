@@ -378,6 +378,7 @@ The following table contains the defaults input options for the calculator,</p>
 <div class="line">ppm</div>
 <div class="line-block">
 <div class="line">exact</div>
+<div class="line">cda</div>
 </div>
 </div>
 </td>
@@ -387,7 +388,46 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>1e-3</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.qp_solver</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.alpha</p></td>
+<td><div class="line-block">
+<div class="line">parameter to smooth residue and integral calculation for</div>
+<div class="line">the contour deformation technique</div>
+</div>
+</td>
+<td><p>1e-3</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.quadrature_scheme</p></td>
+<td><div class="line-block">
+<div class="line">If CDA is used for sigma integration this set the quadrature</div>
+<div class="line">scheme to use</div>
+</div>
+</td>
+<td><p>legendre</p></td>
+<td><div class="line-block">
+<div class="line">hermite</div>
+<div class="line">laguerre</div>
+<div class="line">legendre</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>gwbse_options.gwbse.quadrature_order</p></td>
+<td><p>Quadrature order if CDA is used for sigma integration</p></td>
+<td><p>12</p></td>
+<td><div class="line-block">
+<div class="line">8</div>
+<div class="line">10</div>
+<div class="line">12</div>
+<div class="line">14</div>
+<div class="line">16</div>
+<div class="line">18</div>
+<div class="line">20</div>
+<div class="line">40</div>
+<div class="line">100</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.qp_solver</p></td>
 <td><p>QP equation solve method</p></td>
 <td><p>grid</p></td>
 <td><div class="line-block">
@@ -396,27 +436,27 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.qp_grid_steps</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.qp_grid_steps</p></td>
 <td><p>number of QP grid points</p></td>
 <td><p>1001</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.qp_grid_spacing</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.qp_grid_spacing</p></td>
 <td><p>spacing of QP grid points</p></td>
 <td><p>0.001</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.exctotal</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.exctotal</p></td>
 <td><p>maximum number of BSE states to calculate</p></td>
 <td><p>30</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.useTDA</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.useTDA</p></td>
 <td><p>use TDA for BSE</p></td>
 <td><p>false</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
 <td><div class="line-block">
 <div class="line">exclude core MO level from calculation on RPA,GW or BSE</div>
 <div class="line">level</div>
@@ -431,12 +471,12 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.dodavidson</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.dodavidson</p></td>
 <td><p>use davidson solver</p></td>
 <td><p>true</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_correction</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_correction</p></td>
 <td><p>Davidson correction method</p></td>
 <td><p>DPR</p></td>
 <td><div class="line-block">
@@ -445,7 +485,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_tolerance</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_tolerance</p></td>
 <td><p>Numerical tolerance</p></td>
 <td><p>normal</p></td>
 <td><div class="line-block">
@@ -455,7 +495,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_ortho</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_ortho</p></td>
 <td><p>orthogonalisation routine: GramSchmidt or QR</p></td>
 <td><p>GS</p></td>
 <td><div class="line-block">
@@ -464,7 +504,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_update</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_update</p></td>
 <td><p>how large the search space</p></td>
 <td><p>safe</p></td>
 <td><div class="line-block">
@@ -474,12 +514,12 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_maxiter</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_maxiter</p></td>
 <td><p>max iterations</p></td>
 <td><p>50</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.domatrixfree</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.domatrixfree</p></td>
 <td><div class="line-block">
 <div class="line">solve without explicitly setting up BSE matrix, (slower</div>
 <div class="line">but a lot less memory required</div>
@@ -488,12 +528,12 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>true</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.gw_sc_max_iterations</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.gw_sc_max_iterations</p></td>
 <td><p>Maximum number of iterations in eVGW</p></td>
 <td><p>50</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.gw_mixing_order</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.gw_mixing_order</p></td>
 <td><div class="line-block">
 <div class="line">Mixing of QP energies in evGW - 0: plain, 1: linear, &gt;1:</div>
 <div class="line">Anderson</div>
@@ -502,17 +542,17 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>20</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.gw_sc_limit</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.gw_sc_limit</p></td>
 <td><p>evGW convergence criteria</p></td>
 <td><p>1e-5</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.gw_mixing_alpha</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.gw_mixing_alpha</p></td>
 <td><p>mixing alpha, also linear mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.g_sc_max_iterations</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.g_sc_max_iterations</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for quasiparticle equation</div>
 <div class="line">solution</div>
@@ -521,12 +561,12 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>100</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.g_sc_limit</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.g_sc_limit</p></td>
 <td><p>quasiparticle equation solver convergence</p></td>
 <td><p>1e-5</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.use_Hqp_offdiag</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.use_Hqp_offdiag</p></td>
 <td><div class="line-block">
 <div class="line">Using symmetrized off-diagonal elements of QP Hamiltonian</div>
 <div class="line">in BSE</div>
@@ -535,42 +575,42 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>false</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_states</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_states</p></td>
 <td><p>plot sigma(omega) for the following states, e.g 1 3 5</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_steps</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_steps</p></td>
 <td><p>points to plot</p></td>
 <td><p>201</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_spacing</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_spacing</p></td>
 <td><p>spacing of points units</p></td>
 <td><p>1e-2</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_filename</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_filename</p></td>
 <td></td>
 <td><p>QPenergies_sigma.dat</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.bse_print_weight</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.bse_print_weight</p></td>
 <td><p>print exciton WF composition weight larger than minimum</p></td>
 <td><p>0.5</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.rebuild_threecenter_freq</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.rebuild_threecenter_freq</p></td>
 <td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse_options.gwbse.exctotal</p></td>
+<tr class="row-odd"><td><p>gwbse_options.gwbse.exctotal</p></td>
 <td><p>number of eigenvectors to calculate</p></td>
 <td><p>5</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
+<tr class="row-even"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
 <td></td>
 <td><p>none</p></td>
 <td><div class="line-block">
@@ -581,7 +621,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.package.name</p></td>
+<tr class="row-odd"><td><p>dftpackage.package.name</p></td>
 <td><p>Name of the DFT package</p></td>
 <td><p>xtp</p></td>
 <td><div class="line-block">
@@ -590,12 +630,12 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.package.use_auxbasisset</p></td>
+<tr class="row-even"><td><p>dftpackage.package.use_auxbasisset</p></td>
 <td><p>use an auxiliar basisset</p></td>
 <td><p>true</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>esp_options.esp2multipole.state</p></td>
+<tr class="row-odd"><td><p>esp_options.esp2multipole.state</p></td>
 <td><p>ground-,excited or transitionstate</p></td>
 <td><p>n2s1</p></td>
 <td><div class="line-block">
@@ -605,7 +645,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>esp_options.esp2multipole.method</p></td>
+<tr class="row-even"><td><p>esp_options.esp2multipole.method</p></td>
 <td><p>Method to use derive partial charges</p></td>
 <td><p>CHELPG</p></td>
 <td><div class="line-block">
@@ -614,7 +654,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>esp_options.esp2multipole.gridsize</p></td>
+<tr class="row-odd"><td><p>esp_options.esp2multipole.gridsize</p></td>
 <td><div class="line-block">
 <div class="line">Grid accuracy for numerical integration within CHELPG</div>
 <div class="line">and GDMA</div>
