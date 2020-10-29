@@ -134,9 +134,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-comment-guide">CPP Comment Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-git-submodules">Updating Git Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#merging-with-stable">Merging With Stable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#failed-release-builds">Failed Release Builds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gitlab-server">Gitlab Server</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
@@ -688,18 +686,6 @@ repository.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="merging-with-stable">
-<h2>Merging With Stable<a class="headerlink" href="#merging-with-stable" title="Permalink to this headline">¶</a></h2>
-<p>When creating a pull request to merge a branch with master the ci test
-build will by default build agains the master votca branch. This is fine
-if you are merging with the master branch of a given repo. However, if
-you would like to merge a bug fix to stable it becomes a problem because
-you want to build against the stable branch.</p>
-<p>Thus to merge with stable the name of the branch to be merged must be
-prepended with <strong>for/stable/</strong>. As an example if I have a bug fix for
-stable I would name it <strong>for/stable/bug-fix-1-because-I-am-awesome</strong>.
-When the ci runs it should proceed to make the build correctly.</p>
-</div>
 <div class="section" id="failed-release-builds">
 <h2>Failed Release Builds<a class="headerlink" href="#failed-release-builds" title="Permalink to this headline">¶</a></h2>
 <p>To prepare votca for distribution on different linux flavors there are
@@ -741,17 +727,6 @@ could also replace the <strong>epel-7-ppc64le</strong> os-architecure to
 A final point, if you simply want to build natively for instance if you
 are running fedora on an <strong>x86_64</strong> machine the <code class="docutils literal notranslate"><span class="pre">frocearch</span> <span class="pre">pcc64le</span></code>
 in the above case could just be dropped.</p>
-</div>
-<div class="section" id="gitlab-server">
-<h2>Gitlab Server<a class="headerlink" href="#gitlab-server" title="Permalink to this headline">¶</a></h2>
-<p>To setup a gitlab server the instructions on the official <a class="reference external" href="https://docs.gitlab.com/runner/register/">gitlab
-website</a> should be
-followed. To obtain the access token contact one of the votca
-administrators. It is also advisable to setup a cron job to help monitor
-the docker containers, images and volumes which can use a substantial
-amount of space if not cleaned. A docker cleanup script has been added
-in the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a> repo,
-instructions on how to set it up are provided in the script.</p>
 </div>
 </div>
 
