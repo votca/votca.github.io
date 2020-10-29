@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -207,16 +208,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -225,13 +226,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -239,92 +240,104 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
+div.nbinput.container div.prompt pre {
     color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
+div.nboutput.container div.prompt pre {
     color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
-    padding: 0.4em;
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
+div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
 /* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput div.math p {
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -368,6 +381,27 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -405,13 +439,13 @@ div.rendered_html tbody tr:hover {
 /* CSS overrides for sphinx_rtd_theme */
 
 /* 24px margin */
-.nbinput.nblast,
-.nboutput.nblast {
+.nbinput.nblast.container,
+.nboutput.nblast.container {
     margin-bottom: 19px;  /* padding has already 5px */
 }
 
 /* ... except between code cells! */
-.nblast + .nbinput {
+.nblast.container + .nbinput.container {
     margin-top: -19px;
 }
 
@@ -446,7 +480,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools -h
+<span></span><span class="o">!</span>xtp_tools -h
 </pre></div>
 </div>
 </div>
@@ -461,9 +495,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Runs excitation/charge transport tools
 
@@ -503,7 +537,7 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!mkdir -p OPTIONFILES
+<span></span><span class="o">!</span>mkdir -p OPTIONFILES
 </pre></div>
 </div>
 </div>
@@ -513,7 +547,7 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!rm -f state.hdf5
+<span></span><span class="o">!</span>rm -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -523,8 +557,8 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from xml_editor import add_section, edit_calculator
-import os
+<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">add_section</span><span class="p">,</span> <span class="n">edit_calculator</span>
+<span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
 </div>
 </div>
@@ -537,7 +571,7 @@ import os
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_map -t MD_FILES/topol.tpr -c MD_FILES/conf.gro -s system.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_map -t MD_FILES/topol.tpr -c MD_FILES/conf.gro -s system.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -552,9 +586,9 @@ import os
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_map, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_map, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Reading file MD_FILES/topol.tpr, VERSION 5.1.1 (single precision)
 Note: file tpx version 103, software tpx version 116
@@ -573,7 +607,7 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;$VOTCASHARE/xtp/xml/mapchecker.xml&quot; OPTIONFILES/
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/mapchecker.xml&quot;</span> OPTIONFILES/
 </pre></div>
 </div>
 </div>
@@ -584,7 +618,7 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>edit_calculator(&quot;mapchecker&quot;, &quot;map_file&quot;, &quot;system.xml&quot;)
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;mapchecker&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -602,7 +636,7 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_run -e mapchecker -o OPTIONFILES/mapchecker.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e mapchecker -o OPTIONFILES/mapchecker.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -617,9 +651,9 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_run, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... mapchecker
@@ -646,7 +680,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>cp &quot;$VOTCASHARE/xtp/xml/neighborlist.xml&quot; OPTIONFILES/
+<span></span><span class="n">cp</span> <span class="s2">&quot;$VOTCASHARE/xtp/xml/neighborlist.xml&quot;</span> <span class="n">OPTIONFILES</span><span class="o">/</span>
 </pre></div>
 </div>
 </div>
@@ -656,22 +690,22 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>exciton_cutoff = &quot;&quot;&quot;
-&lt;exciton_cutoff&gt;0.5&lt;/exciton_cutoff&gt;
-&quot;&quot;&quot;
-segments = &quot;&quot;&quot;
-&lt;segments&gt;
-  &lt;type&gt;DCV5T_ME3 DCV5T_ME3&lt;/type&gt;
-  &lt;cutoff&gt;3&lt;/cutoff&gt;
-&lt;/segments&gt;
-&quot;&quot;&quot;
-constant = &quot;&quot;&quot;&lt;constant help=&quot;cutoff for all other types of pairs&quot;&gt;0.6&lt;/constant&gt;&quot;&quot;&quot;
-cutoff_type = &quot;&quot;&quot;&lt;cutoff_type&gt;segmentname&lt;/cutoff_type&gt;&quot;&quot;&quot;
+<span></span><span class="n">exciton_cutoff</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;exciton_cutoff&gt;0.5&lt;/exciton_cutoff&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;segments&gt;</span>
+<span class="s2">  &lt;type&gt;DCV5T_ME3 DCV5T_ME3&lt;/type&gt;</span>
+<span class="s2">  &lt;cutoff&gt;3&lt;/cutoff&gt;</span>
+<span class="s2">&lt;/segments&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">constant</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;constant help=&quot;cutoff for all other types of pairs&quot;&gt;0.6&lt;/constant&gt;&quot;&quot;&quot;</span>
+<span class="n">cutoff_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;cutoff_type&gt;segmentname&lt;/cutoff_type&gt;&quot;&quot;&quot;</span>
 
-add_section(&quot;neighborlist&quot;, cutoff_type)
-add_section(&quot;neighborlist&quot;, exciton_cutoff)
-add_section(&quot;neighborlist&quot;, segments)
-add_section(&quot;neighborlist&quot;, constant)
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">cutoff_type</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">exciton_cutoff</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">segments</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -681,7 +715,7 @@ add_section(&quot;neighborlist&quot;, constant)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_run -e neighborlist -o OPTIONFILES/neighborlist.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e neighborlist -o OPTIONFILES/neighborlist.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -696,9 +730,9 @@ add_section(&quot;neighborlist&quot;, constant)
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_run, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... neighborlist an error occurred:
@@ -714,8 +748,8 @@ property not found: segmentname
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;$VOTCASHARE/xtp/xml/einternal.xml&quot; OPTIONFILES/
-!xtp_run -e einternal -o OPTIONFILES/einternal.xml -f state.hdf5
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/einternal.xml&quot;</span> OPTIONFILES/
+<span class="o">!</span>xtp_run -e einternal -o OPTIONFILES/einternal.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -730,9 +764,9 @@ property not found: segmentname
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_run, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... einternal
@@ -758,8 +792,8 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp qmmm_mm.xml OPTIONFILES
-!xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j &quot;write&quot;
+<span></span><span class="o">!</span>cp qmmm_mm.xml OPTIONFILES
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -775,9 +809,9 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... qmmm
@@ -820,11 +854,11 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!sed -i &quot;s/AVAILABLE/COMPLETE/g&quot; qmmm_mm_jobs.xml
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_mm_jobs.xml
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_mm_jobs.xml
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_mm_jobs.xml
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_mm_jobs.xml
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
 </pre></div>
 </div>
 </div>
@@ -834,8 +868,8 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -p 2 -j &quot;run&quot;
-!xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j &quot;read&quot;
+<span></span><span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -p <span class="m">2</span> -j <span class="s2">&quot;run&quot;</span>
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j <span class="s2">&quot;read&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -851,9 +885,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... qmmm
@@ -875,18 +909,18 @@ T00 ERR ... Next job: ID = 0=&gt; [ 0%]
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -9.29812e-16
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.4086e-14
-T00 ERR ... 2020-10-23 12:3:35 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
-T00 ERR ... 2020-10-23 12:3:35 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-10-23 12:3:35 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-10-23 12:3:35 Evaluating polar 0
-T00 ERR ... 2020-10-23 12:3:35 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-10-23 12:3:35 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-10-23 12:3:35 CG: #iterations: 7, estimated error: 4.15528e-06
+T00 ERR ... 2020-10-29 12:3:6 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-10-29 12:3:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-10-29 12:3:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-10-29 12:3:6 Evaluating polar 0
+T00 ERR ... 2020-10-29 12:3:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-10-29 12:3:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:6 CG: #iterations: 7, estimated error: 4.15528e-06
 T00 ERR ...   Total static energy [hrt]= 8.121948104e-05
 T00 ERR ...   Total polar energy [hrt]= -0.0001235439304
 T00 ERR ...  Total energy [hrt]= -4.232444937e-05
-T00 ERR ... 2020-10-23 12:3:35 Evaluating static 1
-T00 ERR ... 2020-10-23 12:3:35 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-10-29 12:3:6 Evaluating static 1
+T00 ERR ... 2020-10-29 12:3:6 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -894,18 +928,18 @@ T00 ERR ... Next job: ID = 1
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -1
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-10-23 12:3:35 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
-T00 ERR ... 2020-10-23 12:3:35 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-10-23 12:3:35 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-10-23 12:3:35 Evaluating polar 0
-T00 ERR ... 2020-10-23 12:3:35 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-10-23 12:3:35 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-10-23 12:3:35 CG: #iterations: 27, estimated error: 5.690015563e-06
+T00 ERR ... 2020-10-29 12:3:6 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
+T00 ERR ... 2020-10-29 12:3:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-10-29 12:3:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-10-29 12:3:6 Evaluating polar 0
+T00 ERR ... 2020-10-29 12:3:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-10-29 12:3:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:6 CG: #iterations: 27, estimated error: 5.486117021e-06
 T00 ERR ...   Total static energy [hrt]= -0.0009055590147
 T00 ERR ...   Total polar energy [hrt]= -0.03058901395
 T00 ERR ...  Total energy [hrt]= -0.03149457297
-T00 ERR ... 2020-10-23 12:3:35 Evaluating static 1
-T00 ERR ... 2020-10-23 12:3:35 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-10-29 12:3:6 Evaluating static 1
+T00 ERR ... 2020-10-29 12:3:6 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -913,18 +947,18 @@ T00 ERR ... Next job: ID = 2
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= 1
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-10-23 12:3:35 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
-T00 ERR ... 2020-10-23 12:3:35 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-10-23 12:3:35 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-10-23 12:3:35 Evaluating polar 0
-T00 ERR ... 2020-10-23 12:3:35 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-10-23 12:3:36 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-10-23 12:3:36 CG: #iterations: 7, estimated error: 3.581023691e-06
+T00 ERR ... 2020-10-29 12:3:6 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
+T00 ERR ... 2020-10-29 12:3:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-10-29 12:3:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-10-29 12:3:6 Evaluating polar 0
+T00 ERR ... 2020-10-29 12:3:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-10-29 12:3:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:6 CG: #iterations: 7, estimated error: 3.581023691e-06
 T00 ERR ...   Total static energy [hrt]= 0.001994038371
 T00 ERR ...   Total polar energy [hrt]= -0.02768723938
 T00 ERR ...  Total energy [hrt]= -0.02569320101
-T00 ERR ... 2020-10-23 12:3:36 Evaluating static 1
-T00 ERR ... 2020-10-23 12:3:36 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-10-29 12:3:6 Evaluating static 1
+T00 ERR ... 2020-10-29 12:3:6 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -932,18 +966,18 @@ T00 ERR ... Next job: ID = 3
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -7.632783294e-16
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-10-23 12:3:36 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
-T00 ERR ... 2020-10-23 12:3:36 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-10-23 12:3:36 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-10-23 12:3:36 Evaluating polar 0
-T00 ERR ... 2020-10-23 12:3:36 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-10-23 12:3:36 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-10-23 12:3:36 CG: #iterations: 7, estimated error: 5.171454294e-06
+T00 ERR ... 2020-10-29 12:3:6 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
+T00 ERR ... 2020-10-29 12:3:6 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-10-29 12:3:6 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-10-29 12:3:6 Evaluating polar 0
+T00 ERR ... 2020-10-29 12:3:6 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-10-29 12:3:6 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:6 CG: #iterations: 7, estimated error: 5.171454294e-06
 T00 ERR ...   Total static energy [hrt]= 0.0002401293715
 T00 ERR ...   Total polar energy [hrt]= -0.0004782854375
 T00 ERR ...  Total energy [hrt]= -0.000238156066
-T00 ERR ... 2020-10-23 12:3:36 Evaluating static 1
-T00 ERR ... 2020-10-23 12:3:36 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-10-29 12:3:6 Evaluating static 1
+T00 ERR ... 2020-10-29 12:3:6 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -959,9 +993,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... qmmm
@@ -993,8 +1027,8 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;$VOTCASHARE/xtp/xml/eanalyze.xml&quot; OPTIONFILES/
-!xtp_run -e eanalyze -o OPTIONFILES/eanalyze.xml -f state.hdf5
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/eanalyze.xml&quot;</span> OPTIONFILES/
+<span class="o">!</span>xtp_run -e eanalyze -o OPTIONFILES/eanalyze.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -1009,9 +1043,9 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_run, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... eanalyze
@@ -1041,7 +1075,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!ls eanalyze*
+<span></span><span class="o">!</span>ls eanalyze*
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1098,7 @@ eanalyze.sitecorr_s.out  eanalyze.sitehist_h.out
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;$VOTCASHARE/xtp/xml/eqm.xml&quot; OPTIONFILES/
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/eqm.xml&quot;</span> OPTIONFILES/
 </pre></div>
 </div>
 </div>
@@ -1074,15 +1108,15 @@ eanalyze.sitecorr_s.out  eanalyze.sitehist_h.out
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.ranges&quot;, &quot;full&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.mode&quot;, &quot;G0W0&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.qp_solver&quot;, &quot;fixedpoint&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.qp_grid_steps&quot;, &quot;100&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.qp_grid_spacing&quot;, &quot;0.01&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.exctotal&quot;, &quot;10&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;map_file&quot;, &quot;system.xml&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;basisset&quot;, &quot;3-21G&quot;)
-edit_calculator(&quot;eqm&quot;, &quot;auxbasisset&quot;, &quot;aux-def2-svp&quot;)
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.ranges&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.mode&quot;</span><span class="p">,</span> <span class="s2">&quot;G0W0&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_solver&quot;</span><span class="p">,</span> <span class="s2">&quot;fixedpoint&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_steps&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_spacing&quot;</span><span class="p">,</span> <span class="s2">&quot;0.01&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.exctotal&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;3-21G&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-def2-svp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1108,7 +1142,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>edit_calculator(&quot;eqm&quot;, &quot;gwbse_options.gwbse.tasks&quot;, &quot;gw,singlets&quot;)
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.tasks&quot;</span><span class="p">,</span> <span class="s2">&quot;gw,singlets&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1126,10 +1160,10 @@ The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/eqm.xml&
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -s 0 -j &quot;write&quot;
-!sed -i &quot;s/AVAILABLE/COMPLETE/g&quot; eqm.jobs
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; eqm.jobs
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; eqm.jobs
+<span></span><span class="o">!</span>xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -s <span class="m">0</span> -j <span class="s2">&quot;write&quot;</span>
+<span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> eqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> eqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> eqm.jobs
 
 </pre></div>
 </div>
@@ -1146,9 +1180,9 @@ The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/eqm.xml&
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... eqm
@@ -1171,7 +1205,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -p 2 -s 0 -j run -c 1
+<span></span><span class="o">!</span>xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -p <span class="m">2</span> -s <span class="m">0</span> -j run -c <span class="m">1</span>
 </pre></div>
 </div>
 </div>
@@ -1187,9 +1221,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... eqm
@@ -1208,37 +1242,37 @@ MST ERR Registered 1000 jobs.
 T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 0=&gt; [ 0%]
-T00 ERR ... 2020-10-23 12:3:48 Evaluating site 0
+T00 ERR ... 2020-10-29 12:3:20 Evaluating site 0
 T00 ERR ... Running DFT
 T00 ERR ... Running GWBSE
 T00 ERR ... Running ESPFIT
 T00 ERR ... ===== Running on 2 threads =====
-T00 ERR ... 2020-10-23 12:3:51 Calculated Densities at Numerical Grid, Number of electrons is 2.98574e-08
-T00 ERR ... 2020-10-23 12:3:51 Calculating ESP at CHELPG grid points
-T00 ERR ... 2020-10-23 12:3:52 Netcharge constrained to 0
-T00 ERR ...  Sum of fitted charges: -8.32667e-17
-T00 ERR ...  RMSE of fit:  0.0011578
-T00 ERR ...  RRMSE of fit: 0.0674757
+T00 ERR ... 2020-10-29 12:3:23 Calculated Densities at Numerical Grid, Number of electrons is -2.98723e-08
+T00 ERR ... 2020-10-29 12:3:23 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-10-29 12:3:24 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 2.77556e-17
+T00 ERR ...  RMSE of fit:  0.00115773
+T00 ERR ...  RRMSE of fit: 0.0674719
 T00 ERR ... El Dipole from fitted charges [e*bohr]:
-                 dx = -0.4971 dy = +0.5153 dz = -0.4035 |d|^2 = +0.6755
+                 dx = +0.4976 dy = -0.5150 dz = +0.4033 |d|^2 = +0.6755
 T00 ERR ... El Dipole from exact qm density [e*bohr]:
-                 dx = -0.5080 dy = +0.5276 dz = -0.4131 |d|^2 = +0.7070
+                 dx = +0.5085 dy = -0.5273 dz = +0.4128 |d|^2 = +0.7070
 T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_0_n2s1.mps
-T00 ERR ... 2020-10-23 12:3:52 Finished evaluating site 0
+T00 ERR ... 2020-10-29 12:3:24 Finished evaluating site 0
 T00 ERR ... Saving data to molecule_0.orb
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 1
-T00 ERR ... 2020-10-23 12:3:52 Evaluating site 1
+T00 ERR ... 2020-10-29 12:3:24 Evaluating site 1
 T00 ERR ... Running DFT
 T00 ERR ... Running GWBSE
 T00 ERR ... Running ESPFIT
 T00 ERR ... ===== Running on 2 threads =====
-T00 ERR ... 2020-10-23 12:3:54 Calculated Densities at Numerical Grid, Number of electrons is -2.26212e-08
-T00 ERR ... 2020-10-23 12:3:54 Calculating ESP at CHELPG grid points
-T00 ERR ... 2020-10-23 12:3:55 Netcharge constrained to 0
+T00 ERR ... 2020-10-29 12:3:27 Calculated Densities at Numerical Grid, Number of electrons is -2.26214e-08
+T00 ERR ... 2020-10-29 12:3:27 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-10-29 12:3:28 Netcharge constrained to 0
 T00 ERR ...  Sum of fitted charges: 1.66533e-16
 T00 ERR ...  RMSE of fit:  0.00113805
 T00 ERR ...  RRMSE of fit: 0.0638628
@@ -1247,7 +1281,7 @@ T00 ERR ... El Dipole from fitted charges [e*bohr]:
 T00 ERR ... El Dipole from exact qm density [e*bohr]:
                  dx = +0.5741 dy = +0.1916 dz = +0.6260 |d|^2 = +0.7582
 T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_1_n2s1.mps
-T00 ERR ... 2020-10-23 12:3:55 Finished evaluating site 1
+T00 ERR ... 2020-10-29 12:3:28 Finished evaluating site 1
 T00 ERR ... Saving data to molecule_1.orb
 T00 ERR ... Reporting job results
 
@@ -1268,7 +1302,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;$VOTCASHARE/xtp/xml/iqm.xml&quot; OPTIONFILES/
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/iqm.xml&quot;</span> OPTIONFILES/
 </pre></div>
 </div>
 </div>
@@ -1278,17 +1312,17 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>edit_calculator(&quot;iqm&quot;, &quot;states&quot;, &quot;1&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;map_file&quot;, &quot;system.xml&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.ranges&quot;, &quot;full&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.tasks&quot;, &quot;gw&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.qp_solver&quot;, &quot;fixedpoint&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.qp_grid_steps&quot;, &quot;100&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.qp_grid_spacing&quot;, &quot;0.01&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;gwbse_options.gwbse.exctotal&quot;, &quot;10&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;bsecoupling.spin&quot;, &quot;singlet&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;basisset&quot;, &quot;3-21G&quot;)
-edit_calculator(&quot;iqm&quot;, &quot;auxbasisset&quot;, &quot;aux-def2-svp&quot;)
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.ranges&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.tasks&quot;</span><span class="p">,</span> <span class="s2">&quot;gw&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_solver&quot;</span><span class="p">,</span> <span class="s2">&quot;fixedpoint&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_steps&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_spacing&quot;</span><span class="p">,</span> <span class="s2">&quot;0.01&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.exctotal&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;bsecoupling.spin&quot;</span><span class="p">,</span> <span class="s2">&quot;singlet&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;3-21G&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-def2-svp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1316,14 +1350,14 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>readjobfile = &quot;&quot;&quot;
-&lt;readjobfile help=&quot;which states to read into the jobfile for each segment type&quot;&gt;
-     &lt;singlet&gt;Methane:s1&lt;/singlet&gt;
-     &lt;triplet&gt;Methane:t1&lt;/triplet&gt;
-     &lt;electron&gt;Methane:e1&lt;/electron&gt;
-     &lt;hole&gt;Methane:h1&lt;/hole&gt;
-&lt;/readjobfile&gt;
-&quot;&quot;&quot;
+<span></span><span class="n">readjobfile</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;readjobfile help=&quot;which states to read into the jobfile for each segment type&quot;&gt;</span>
+<span class="s2">     &lt;singlet&gt;Methane:s1&lt;/singlet&gt;</span>
+<span class="s2">     &lt;triplet&gt;Methane:t1&lt;/triplet&gt;</span>
+<span class="s2">     &lt;electron&gt;Methane:e1&lt;/electron&gt;</span>
+<span class="s2">     &lt;hole&gt;Methane:h1&lt;/hole&gt;</span>
+<span class="s2">&lt;/readjobfile&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1333,7 +1367,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>add_section(&quot;iqm&quot;, readjobfile)
+<span></span><span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="n">readjobfile</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1343,7 +1377,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -s 0 -j &quot;write&quot;
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -s <span class="m">0</span> -j <span class="s2">&quot;write&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1359,9 +1393,9 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... iqm
@@ -1385,8 +1419,8 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!sed -i &quot;s/AVAILABLE/COMPLETE/g&quot; iqm.jobs
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; iqm.jobs
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> iqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> iqm.jobs
 </pre></div>
 </div>
 </div>
@@ -1396,7 +1430,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -p 2 -s 0 -j run -c 1
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -p <span class="m">2</span> -s <span class="m">0</span> -j run -c <span class="m">1</span>
 </pre></div>
 </div>
 </div>
@@ -1412,9 +1446,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... iqm
@@ -1439,7 +1473,7 @@ no element found: iostream error
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -j &quot;read&quot;
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -j <span class="s2">&quot;read&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1455,9 +1489,9 @@ no element found: iostream error
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... iqm
@@ -1483,7 +1517,7 @@ no element found: iostream error
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;${VOTCASHARE}/xtp/xml/iexcitoncl.xml&quot; OPTIONFILES
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VOTCASHARE</span><span class="si">}</span><span class="s2">/xtp/xml/iexcitoncl.xml&quot;</span> OPTIONFILES
 </pre></div>
 </div>
 </div>
@@ -1493,7 +1527,7 @@ no element found: iostream error
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>edit_calculator(&quot;iexcitoncl&quot;, &quot;map_file&quot;, &quot;system.xml&quot;)
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iexcitoncl&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1510,8 +1544,8 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/iexcitoncl.xml&#39; has b
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>state = &quot;&lt;states&gt;Methane:n2s1&lt;/states&gt;&quot;
-add_section(&quot;iexcitoncl&quot;, state)
+<span></span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;&lt;states&gt;Methane:n2s1&lt;/states&gt;&quot;</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;iexcitoncl&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1520,7 +1554,7 @@ add_section(&quot;iexcitoncl&quot;, state)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j &quot;write&quot;
+<span></span><span class="o">!</span>xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1536,9 +1570,9 @@ add_section(&quot;iexcitoncl&quot;, state)
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... iexcitoncl
@@ -1562,9 +1596,9 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!sed -i &quot;s/AVAILABLE/COMPLETE/g&quot; exciton.jobs
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; exciton.job
-!xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> exciton.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> exciton.job
+<span class="o">!</span>xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -1581,9 +1615,9 @@ sed: can&#39;t read exciton.job: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... iexcitoncl
@@ -1607,7 +1641,7 @@ no element found: iostream error
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#!xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j &quot;read&quot;
+<span></span><span class="ch">#!xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j &quot;read&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1620,9 +1654,9 @@ no element found: iostream error
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp &quot;${VOTCASHARE}/xtp/xml/ianalyze.xml&quot; OPTIONFILES
-edit_calculator(&quot;ianalyze&quot;, &quot;states&quot;, &quot;e,h,s&quot;)
-!xtp_run -e ianalyze -o OPTIONFILES/ianalyze.xml -f state.hdf5
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VOTCASHARE</span><span class="si">}</span><span class="s2">/xtp/xml/ianalyze.xml&quot;</span> OPTIONFILES
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;e,h,s&quot;</span><span class="p">)</span>
+<span class="o">!</span>xtp_run -e ianalyze -o OPTIONFILES/ianalyze.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -1638,9 +1672,9 @@ The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_run, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... ianalyze
@@ -1663,8 +1697,8 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp qmmm.xml OPTIONFILES/
-!xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j &quot;write&quot;
+<span></span><span class="o">!</span>cp qmmm.xml OPTIONFILES/
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1680,9 +1714,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... qmmm
@@ -1706,9 +1740,9 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!sed -i &quot;s/AVAILABLE/COMPLETE/g&quot; qmmm_jobs.xml
-!sed -i &#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39; qmmm_jobs.xml
-!xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -p 2 -f state.hdf5 -j run
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> qmmm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_jobs.xml
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -p <span class="m">2</span> -f state.hdf5 -j run
 </pre></div>
 </div>
 </div>
@@ -1724,9 +1758,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_parallel, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing calculator
 ... qmmm
@@ -1746,28 +1780,28 @@ T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 0=&gt; [ 0%]
 T00 ERR ...  Regions created
-T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.80213e+14
+T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.8099e+14
 T00 ERR ... Id: 1 type: polar size: 92 charge[e]= -5.09315e-15
 T00 ERR ... Id: 2 type: static size: 178 charge[e]= -9.86711e-15
-T00 ERR ... 2020-10-23 12:4:17 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
-T00 ERR ... 2020-10-23 12:4:17 --Inter Region SCF Iteration 1 of 50
-T00 ERR ... 2020-10-23 12:4:17 Evaluating qm 0
-T00 ERR ... 2020-10-23 12:4:17 Evaluating interaction between qm 0 and polar 1
-T00 ERR ... 2020-10-23 12:4:17 Evaluating interaction between qm 0 and static 2
+T00 ERR ... 2020-10-29 12:3:49 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-10-29 12:3:49 --Inter Region SCF Iteration 1 of 50
+T00 ERR ... 2020-10-29 12:3:49 Evaluating qm 0
+T00 ERR ... 2020-10-29 12:3:49 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-10-29 12:3:49 Evaluating interaction between qm 0 and static 2
 T00 ERR ... Running DFT calculation
-T00 ERR ... 2020-10-23 12:4:17 Using 2 threads
-T00 ERR ... 2020-10-23 12:4:17 Using native Eigen implementation, no BLAS overload
+T00 ERR ... 2020-10-29 12:3:49 Using 2 threads
+T00 ERR ... 2020-10-29 12:3:49 Using native Eigen implementation, no BLAS overload
 T00 ERR ...  Molecule Coordinates [A]
 T00 ERR ...   C   +30.3000 +1.2704 +5.5205
 T00 ERR ...   H   +31.2392 +1.4802 +6.0301
 T00 ERR ...   H   +30.4910 +0.6554 +4.6433
 T00 ERR ...   H   +29.8500 +2.2100 +5.2100
 T00 ERR ...   H   +29.6200 +0.7500 +6.2000
-T00 ERR ... 2020-10-23 12:4:17 Loaded DFT Basis Set def2-svp with 34 functions
-T00 ERR ... 2020-10-23 12:4:17 Total number of electrons: 10
-T00 ERR ... 2020-10-23 12:4:17 Smallest value of AOOverlap matrix is 0.013882
-T00 ERR ... 2020-10-23 12:4:17 Removed 0 basisfunction from inverse overlap matrix
-T00 ERR ... 2020-10-23 12:4:17 Convergence Options:
+T00 ERR ... 2020-10-29 12:3:49 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-10-29 12:3:49 Total number of electrons: 10
+T00 ERR ... 2020-10-29 12:3:49 Smallest value of AOOverlap matrix is 0.013882
+T00 ERR ... 2020-10-29 12:3:49 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-10-29 12:3:49 Convergence Options:
 T00 ERR ...              Delta E [Ha]: 1e-07
 T00 ERR ...              DIIS max error: 1e-07
 T00 ERR ...              DIIS histlength: 20
@@ -1777,77 +1811,77 @@ T00 ERR ...              Deleting oldest element from DIIS hist
 T00 ERR ...              Levelshift[Ha]: 0
 T00 ERR ...              Levelshift end: 0.2
 T00 ERR ...              Mixing Parameter alpha: 0.7
-T00 ERR ... 2020-10-23 12:4:17 Calculated 4c integrals.
-T00 ERR ... 2020-10-23 12:4:17 Constructed independent particle hamiltonian
-T00 ERR ... 2020-10-23 12:4:17 Nuclear Repulsion Energy is 13.4434088
-T00 ERR ... 2020-10-23 12:4:17 Using hybrid functional with alpha=0.25
-T00 ERR ... 2020-10-23 12:4:17 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
-T00 ERR ... 2020-10-23 12:4:17 Setup Initial Guess using: atom
-T00 ERR ... 2020-10-23 12:4:17 Calculating atom density for C
-T00 ERR ... 2020-10-23 12:4:18 Calculating atom density for H
-T00 ERR ... 2020-10-23 12:4:19 STARTING SCF cycle
+T00 ERR ... 2020-10-29 12:3:49 Calculated 4c integrals.
+T00 ERR ... 2020-10-29 12:3:49 Constructed independent particle hamiltonian
+T00 ERR ... 2020-10-29 12:3:49 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-10-29 12:3:49 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-10-29 12:3:49 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-10-29 12:3:49 Setup Initial Guess using: atom
+T00 ERR ... 2020-10-29 12:3:49 Calculating atom density for C
+T00 ERR ... 2020-10-29 12:3:51 Calculating atom density for H
+T00 ERR ... 2020-10-29 12:3:51 STARTING SCF cycle
 T00 ERR ...  --------------------------------------------------------------------------
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 1 of 100
-T00 ERR ... 2020-10-23 12:4:19 Total Energy -40.344440459
-T00 ERR ... 2020-10-23 12:4:19 DIIs error 0.161078844776
-T00 ERR ... 2020-10-23 12:4:19 Delta Etot 0
+T00 ERR ... 2020-10-29 12:3:51 Iteration 1 of 100
+T00 ERR ... 2020-10-29 12:3:51 Total Energy -40.344440459
+T00 ERR ... 2020-10-29 12:3:51 DIIs error 0.161078844776
+T00 ERR ... 2020-10-29 12:3:51 Delta Etot 0
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 2 of 100
-T00 ERR ... 2020-10-23 12:4:19 Total Energy -40.3799331307
-T00 ERR ... 2020-10-23 12:4:19 DIIs error 0.0618694513311
-T00 ERR ... 2020-10-23 12:4:19 Delta Etot -0.035492671705
+T00 ERR ... 2020-10-29 12:3:51 Iteration 2 of 100
+T00 ERR ... 2020-10-29 12:3:51 Total Energy -40.3799331307
+T00 ERR ... 2020-10-29 12:3:51 DIIs error 0.0618694513311
+T00 ERR ... 2020-10-29 12:3:51 Delta Etot -0.0354926717051
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 3 of 100
-T00 ERR ... 2020-10-23 12:4:19 Total Energy -40.395969467
-T00 ERR ... 2020-10-23 12:4:19 DIIs error 0.0239125252283
-T00 ERR ... 2020-10-23 12:4:19 Delta Etot -0.0160363363123
+T00 ERR ... 2020-10-29 12:3:51 Iteration 3 of 100
+T00 ERR ... 2020-10-29 12:3:51 Total Energy -40.395969467
+T00 ERR ... 2020-10-29 12:3:51 DIIs error 0.0239125252283
+T00 ERR ... 2020-10-29 12:3:51 Delta Etot -0.0160363363123
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 4 of 100
-T00 ERR ... 2020-10-23 12:4:19 Total Energy -40.4262761988
-T00 ERR ... 2020-10-23 12:4:19 DIIs error 0.0243989837755
-T00 ERR ... 2020-10-23 12:4:19 Delta Etot -0.0303067317825
+T00 ERR ... 2020-10-29 12:3:51 Iteration 4 of 100
+T00 ERR ... 2020-10-29 12:3:51 Total Energy -40.4262761988
+T00 ERR ... 2020-10-29 12:3:51 DIIs error 0.0243989837755
+T00 ERR ... 2020-10-29 12:3:51 Delta Etot -0.0303067317824
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 5 of 100
-T00 ERR ... 2020-10-23 12:4:19 Total Energy -40.4259898961
-T00 ERR ... 2020-10-23 12:4:19 DIIs error 0.0265688432792
-T00 ERR ... 2020-10-23 12:4:19 Delta Etot 0.000286302630059
+T00 ERR ... 2020-10-29 12:3:51 Iteration 5 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4259898961
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 0.0265688432792
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot 0.000286302630016
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:19 Iteration 6 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283326229
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 0.000808691942203
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -0.00234272673616
+T00 ERR ... 2020-10-29 12:3:52 Iteration 6 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283326229
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 0.00080869194211
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -0.00234272673617
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:20 Iteration 7 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283348713
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 3.47305003563e-05
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -2.24841539875e-06
+T00 ERR ... 2020-10-29 12:3:52 Iteration 7 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283348713
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 3.47305004464e-05
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -2.24841549823e-06
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:20 Iteration 8 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283348714
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 2.35348248354e-05
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -5.63957769373e-11
+T00 ERR ... 2020-10-29 12:3:52 Iteration 8 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283348714
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 2.35348248943e-05
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -5.62465629628e-11
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:20 Iteration 9 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283348718
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 2.05539048518e-05
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -4.15276701915e-10
+T00 ERR ... 2020-10-29 12:3:52 Iteration 9 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283348718
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 2.05539049338e-05
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -4.15333545334e-10
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:20 Iteration 10 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283348732
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 2.70100285154e-06
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -1.46574308246e-09
+T00 ERR ... 2020-10-29 12:3:52 Iteration 10 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283348732
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 2.70100286007e-06
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -1.46568623904e-09
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:20 Iteration 11 of 100
-T00 ERR ... 2020-10-23 12:4:20 Total Energy -40.4283348733
-T00 ERR ... 2020-10-23 12:4:20 DIIs error 5.53892307168e-08
-T00 ERR ... 2020-10-23 12:4:20 Delta Etot -2.00870431399e-11
-T00 ERR ... 2020-10-23 12:4:20 Total Energy has converged to -2.00870431e-11[Ha] after 11 iterations. DIIS error is converged up to 5.53892307e-08
-T00 ERR ... 2020-10-23 12:4:20 Final Single Point Energy -40.4283348733 Ha
-T00 ERR ... 2020-10-23 12:4:20 Final Local Exc contribution -5.19288292759 Ha
-T00 ERR ... 2020-10-23 12:4:20 Final Non Local Ex contribution -1.64346675991 Ha
-T00 ERR ... 2020-10-23 12:4:20 EXX energy -6.57386703458 Ha
-T00 ERR ... 2020-10-23 12:4:20 Final EXX Total energy -40.1658522216 Ha
+T00 ERR ... 2020-10-29 12:3:52 Iteration 11 of 100
+T00 ERR ... 2020-10-29 12:3:52 Total Energy -40.4283348733
+T00 ERR ... 2020-10-29 12:3:52 DIIs error 5.53888713856e-08
+T00 ERR ... 2020-10-29 12:3:52 Delta Etot -2.01580974135e-11
+T00 ERR ... 2020-10-29 12:3:52 Total Energy has converged to -2.01580974e-11[Ha] after 11 iterations. DIIS error is converged up to 5.53888714e-08
+T00 ERR ... 2020-10-29 12:3:52 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-10-29 12:3:52 Final Local Exc contribution -5.19288292759 Ha
+T00 ERR ... 2020-10-29 12:3:52 Final Non Local Ex contribution -1.64346675991 Ha
+T00 ERR ... 2020-10-29 12:3:52 EXX energy -6.57386703458 Ha
+T00 ERR ... 2020-10-29 12:3:52 Final EXX Total energy -40.1658522216 Ha
 T00 ERR ...   Orbital energies:
 T00 ERR ...   index occupation energy(Hartree)
 T00 ERR ...      0      2   -10.2155439733
@@ -1884,43 +1918,43 @@ T00 ERR ...     30      0   +2.6358795712
 T00 ERR ...     31      0   +2.9321001988
 T00 ERR ...     32      0   +2.9387290750
 T00 ERR ...     33      0   +2.9434070973
-T00 ERR ... 2020-10-23 12:4:20 Electric Dipole is[e*bohr]:
-                 dx=0.000671710255213
-                 dy=0.0031988412208
+T00 ERR ... 2020-10-29 12:3:52 Electric Dipole is[e*bohr]:
+                 dx=0.000671710255203
+                 dy=0.00319884122079
                  dz=-0.00105485982958
 T00 ERR ... Writing result to votca.orb
 T00 ERR ... QM energy[Hrt]: -40.42833487
-T00 ERR ... 2020-10-23 12:4:20 Evaluating polar 1
-T00 ERR ... 2020-10-23 12:4:20 Evaluating interaction between polar 1 and qm 0
-T00 ERR ... 2020-10-23 12:4:21 Evaluating interaction between polar 1 and static 2
-T00 ERR ... 2020-10-23 12:4:21 Starting Solving for classical polarization with 1380 degrees of freedom.
-T00 ERR ... 2020-10-23 12:4:21 CG: #iterations: 7, estimated error: 5.51883554117e-06
+T00 ERR ... 2020-10-29 12:3:52 Evaluating polar 1
+T00 ERR ... 2020-10-29 12:3:52 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-10-29 12:3:53 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-10-29 12:3:53 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:53 CG: #iterations: 7, estimated error: 5.51883554117e-06
 T00 ERR ...   Total static energy [hrt]= 0.0009102654542
 T00 ERR ...   Total polar energy [hrt]= -0.0006230373469
 T00 ERR ...  Total energy [hrt]= 0.0002872281073
-T00 ERR ... 2020-10-23 12:4:21 Evaluating static 2
-T00 ERR ... 2020-10-23 12:4:21 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-10-29 12:3:53 Evaluating static 2
+T00 ERR ... 2020-10-29 12:3:53 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ...  Region:qm 0 is not converged deltaE=-40.42833487 RMS Dmat=0.08134922647 MaxDmat=2.078065548
-T00 ERR ... 2020-10-23 12:4:21 Region:polar 1 is not converged deltaE=0.0002872281073
-T00 ERR ... 2020-10-23 12:4:21 --Total Energy all regions -40.42804765
-T00 ERR ... 2020-10-23 12:4:21 --Inter Region SCF Iteration 2 of 50
-T00 ERR ... 2020-10-23 12:4:21 Evaluating qm 0
-T00 ERR ... 2020-10-23 12:4:21 Evaluating interaction between qm 0 and polar 1
-T00 ERR ... 2020-10-23 12:4:21 Evaluating interaction between qm 0 and static 2
+T00 ERR ... 2020-10-29 12:3:53 Region:polar 1 is not converged deltaE=0.0002872281073
+T00 ERR ... 2020-10-29 12:3:53 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-10-29 12:3:53 --Inter Region SCF Iteration 2 of 50
+T00 ERR ... 2020-10-29 12:3:53 Evaluating qm 0
+T00 ERR ... 2020-10-29 12:3:53 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-10-29 12:3:53 Evaluating interaction between qm 0 and static 2
 T00 ERR ... Running DFT calculation
-T00 ERR ... 2020-10-23 12:4:21 Using 2 threads
-T00 ERR ... 2020-10-23 12:4:21 Using native Eigen implementation, no BLAS overload
+T00 ERR ... 2020-10-29 12:3:53 Using 2 threads
+T00 ERR ... 2020-10-29 12:3:53 Using native Eigen implementation, no BLAS overload
 T00 ERR ...  Molecule Coordinates [A]
 T00 ERR ...   C   +30.3000 +1.2704 +5.5205
 T00 ERR ...   H   +31.2392 +1.4802 +6.0301
 T00 ERR ...   H   +30.4910 +0.6554 +4.6433
 T00 ERR ...   H   +29.8500 +2.2100 +5.2100
 T00 ERR ...   H   +29.6200 +0.7500 +6.2000
-T00 ERR ... 2020-10-23 12:4:21 Loaded DFT Basis Set def2-svp with 34 functions
-T00 ERR ... 2020-10-23 12:4:21 Total number of electrons: 10
-T00 ERR ... 2020-10-23 12:4:21 Smallest value of AOOverlap matrix is 0.01388201597
-T00 ERR ... 2020-10-23 12:4:21 Removed 0 basisfunction from inverse overlap matrix
-T00 ERR ... 2020-10-23 12:4:21 Convergence Options:
+T00 ERR ... 2020-10-29 12:3:53 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-10-29 12:3:53 Total number of electrons: 10
+T00 ERR ... 2020-10-29 12:3:53 Smallest value of AOOverlap matrix is 0.01388201597
+T00 ERR ... 2020-10-29 12:3:53 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-10-29 12:3:53 Convergence Options:
 T00 ERR ...              Delta E [Ha]: 1e-07
 T00 ERR ...              DIIS max error: 1e-07
 T00 ERR ...              DIIS histlength: 20
@@ -1930,77 +1964,77 @@ T00 ERR ...              Deleting oldest element from DIIS hist
 T00 ERR ...              Levelshift[Ha]: 0
 T00 ERR ...              Levelshift end: 0.2
 T00 ERR ...              Mixing Parameter alpha: 0.7
-T00 ERR ... 2020-10-23 12:4:21 Calculated 4c integrals.
-T00 ERR ... 2020-10-23 12:4:21 Constructed independent particle hamiltonian
-T00 ERR ... 2020-10-23 12:4:21 Nuclear Repulsion Energy is 13.4434088
-T00 ERR ... 2020-10-23 12:4:21 Using hybrid functional with alpha=0.25
-T00 ERR ... 2020-10-23 12:4:21 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
-T00 ERR ... 2020-10-23 12:4:21 Setup Initial Guess using: atom
-T00 ERR ... 2020-10-23 12:4:21 Calculating atom density for C
-T00 ERR ... 2020-10-23 12:4:23 Calculating atom density for H
-T00 ERR ... 2020-10-23 12:4:23 STARTING SCF cycle
+T00 ERR ... 2020-10-29 12:3:53 Calculated 4c integrals.
+T00 ERR ... 2020-10-29 12:3:53 Constructed independent particle hamiltonian
+T00 ERR ... 2020-10-29 12:3:53 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-10-29 12:3:53 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-10-29 12:3:53 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-10-29 12:3:53 Setup Initial Guess using: atom
+T00 ERR ... 2020-10-29 12:3:53 Calculating atom density for C
+T00 ERR ... 2020-10-29 12:3:55 Calculating atom density for H
+T00 ERR ... 2020-10-29 12:3:55 STARTING SCF cycle
 T00 ERR ...  --------------------------------------------------------------------------
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 1 of 100
-T00 ERR ... 2020-10-23 12:4:23 Total Energy -40.344440459
-T00 ERR ... 2020-10-23 12:4:23 DIIs error 0.161078844776
-T00 ERR ... 2020-10-23 12:4:23 Delta Etot 0
+T00 ERR ... 2020-10-29 12:3:55 Iteration 1 of 100
+T00 ERR ... 2020-10-29 12:3:55 Total Energy -40.344440459
+T00 ERR ... 2020-10-29 12:3:55 DIIs error 0.161078844776
+T00 ERR ... 2020-10-29 12:3:55 Delta Etot 0
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 2 of 100
-T00 ERR ... 2020-10-23 12:4:23 Total Energy -40.3799331307
-T00 ERR ... 2020-10-23 12:4:23 DIIs error 0.0618694513311
-T00 ERR ... 2020-10-23 12:4:23 Delta Etot -0.035492671705
+T00 ERR ... 2020-10-29 12:3:55 Iteration 2 of 100
+T00 ERR ... 2020-10-29 12:3:55 Total Energy -40.3799331307
+T00 ERR ... 2020-10-29 12:3:55 DIIs error 0.0618694513311
+T00 ERR ... 2020-10-29 12:3:55 Delta Etot -0.0354926717051
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 3 of 100
-T00 ERR ... 2020-10-23 12:4:23 Total Energy -40.395969467
-T00 ERR ... 2020-10-23 12:4:23 DIIs error 0.0239125252283
-T00 ERR ... 2020-10-23 12:4:23 Delta Etot -0.0160363363123
+T00 ERR ... 2020-10-29 12:3:55 Iteration 3 of 100
+T00 ERR ... 2020-10-29 12:3:55 Total Energy -40.395969467
+T00 ERR ... 2020-10-29 12:3:55 DIIs error 0.0239125252283
+T00 ERR ... 2020-10-29 12:3:55 Delta Etot -0.0160363363123
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 4 of 100
-T00 ERR ... 2020-10-23 12:4:23 Total Energy -40.4262761988
-T00 ERR ... 2020-10-23 12:4:23 DIIs error 0.0243989837755
-T00 ERR ... 2020-10-23 12:4:23 Delta Etot -0.0303067317825
+T00 ERR ... 2020-10-29 12:3:55 Iteration 4 of 100
+T00 ERR ... 2020-10-29 12:3:55 Total Energy -40.4262761988
+T00 ERR ... 2020-10-29 12:3:55 DIIs error 0.0243989837755
+T00 ERR ... 2020-10-29 12:3:55 Delta Etot -0.0303067317824
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 5 of 100
-T00 ERR ... 2020-10-23 12:4:23 Total Energy -40.4259898961
-T00 ERR ... 2020-10-23 12:4:23 DIIs error 0.0265688432792
-T00 ERR ... 2020-10-23 12:4:23 Delta Etot 0.000286302630059
+T00 ERR ... 2020-10-29 12:3:55 Iteration 5 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4259898961
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 0.0265688432792
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot 0.000286302630016
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:23 Iteration 6 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283326229
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 0.000808691942203
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -0.00234272673616
+T00 ERR ... 2020-10-29 12:3:56 Iteration 6 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283326229
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 0.00080869194211
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot -0.00234272673617
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:24 Iteration 7 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283348713
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 3.47305003563e-05
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -2.24841539875e-06
+T00 ERR ... 2020-10-29 12:3:56 Iteration 7 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283348713
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 3.47305004464e-05
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot -2.24841549823e-06
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:24 Iteration 8 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283348714
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 2.35348248354e-05
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -5.63957769373e-11
+T00 ERR ... 2020-10-29 12:3:56 Iteration 8 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283348714
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 2.35348248943e-05
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot -5.62465629628e-11
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:24 Iteration 9 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283348718
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 2.05539048518e-05
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -4.15276701915e-10
+T00 ERR ... 2020-10-29 12:3:56 Iteration 9 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283348718
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 2.05539049338e-05
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot -4.15333545334e-10
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:24 Iteration 10 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283348732
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 2.70100285154e-06
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -1.46574308246e-09
+T00 ERR ... 2020-10-29 12:3:56 Iteration 10 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283348732
+T00 ERR ... 2020-10-29 12:3:56 DIIs error 2.70100286007e-06
+T00 ERR ... 2020-10-29 12:3:56 Delta Etot -1.46568623904e-09
 T00 ERR ...
-T00 ERR ... 2020-10-23 12:4:24 Iteration 11 of 100
-T00 ERR ... 2020-10-23 12:4:24 Total Energy -40.4283348733
-T00 ERR ... 2020-10-23 12:4:24 DIIs error 5.53892307168e-08
-T00 ERR ... 2020-10-23 12:4:24 Delta Etot -2.00870431399e-11
-T00 ERR ... 2020-10-23 12:4:24 Total Energy has converged to -2.00870431e-11[Ha] after 11 iterations. DIIS error is converged up to 5.53892307e-08
-T00 ERR ... 2020-10-23 12:4:24 Final Single Point Energy -40.4283348733 Ha
-T00 ERR ... 2020-10-23 12:4:24 Final Local Exc contribution -5.19288292759 Ha
-T00 ERR ... 2020-10-23 12:4:24 Final Non Local Ex contribution -1.64346675991 Ha
-T00 ERR ... 2020-10-23 12:4:24 EXX energy -6.57386703458 Ha
-T00 ERR ... 2020-10-23 12:4:24 Final EXX Total energy -40.1658522216 Ha
+T00 ERR ... 2020-10-29 12:3:56 Iteration 11 of 100
+T00 ERR ... 2020-10-29 12:3:56 Total Energy -40.4283348733
+T00 ERR ... 2020-10-29 12:3:57 DIIs error 5.53888713856e-08
+T00 ERR ... 2020-10-29 12:3:57 Delta Etot -2.01580974135e-11
+T00 ERR ... 2020-10-29 12:3:57 Total Energy has converged to -2.01580974e-11[Ha] after 11 iterations. DIIS error is converged up to 5.53888714e-08
+T00 ERR ... 2020-10-29 12:3:57 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-10-29 12:3:57 Final Local Exc contribution -5.19288292759 Ha
+T00 ERR ... 2020-10-29 12:3:57 Final Non Local Ex contribution -1.64346675991 Ha
+T00 ERR ... 2020-10-29 12:3:57 EXX energy -6.57386703458 Ha
+T00 ERR ... 2020-10-29 12:3:57 Final EXX Total energy -40.1658522216 Ha
 T00 ERR ...   Orbital energies:
 T00 ERR ...   index occupation energy(Hartree)
 T00 ERR ...      0      2   -10.2155439733
@@ -2037,26 +2071,26 @@ T00 ERR ...     30      0   +2.6358795712
 T00 ERR ...     31      0   +2.9321001988
 T00 ERR ...     32      0   +2.9387290750
 T00 ERR ...     33      0   +2.9434070973
-T00 ERR ... 2020-10-23 12:4:24 Electric Dipole is[e*bohr]:
-                 dx=0.000671710255213
-                 dy=0.0031988412208
+T00 ERR ... 2020-10-29 12:3:57 Electric Dipole is[e*bohr]:
+                 dx=0.000671710255203
+                 dy=0.00319884122079
                  dz=-0.00105485982958
 T00 ERR ... Writing result to votca.orb
 T00 ERR ... QM energy[Hrt]: -40.42833487
-T00 ERR ... 2020-10-23 12:4:24 Evaluating polar 1
-T00 ERR ... 2020-10-23 12:4:24 Evaluating interaction between polar 1 and qm 0
-T00 ERR ... 2020-10-23 12:4:25 Evaluating interaction between polar 1 and static 2
-T00 ERR ... 2020-10-23 12:4:25 Starting Solving for classical polarization with 1380 degrees of freedom.
-T00 ERR ... 2020-10-23 12:4:25 CG: #iterations: 0, estimated error: 5.51883554115e-06
+T00 ERR ... 2020-10-29 12:3:57 Evaluating polar 1
+T00 ERR ... 2020-10-29 12:3:57 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-10-29 12:3:57 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-10-29 12:3:57 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-10-29 12:3:57 CG: #iterations: 0, estimated error: 5.51883554116e-06
 T00 ERR ...   Total static energy [hrt]= 0.0009102654542
 T00 ERR ...   Total polar energy [hrt]= -0.0006230373469
 T00 ERR ...  Total energy [hrt]= 0.0002872281073
-T00 ERR ... 2020-10-23 12:4:25 Evaluating static 2
-T00 ERR ... 2020-10-23 12:4:25 Writing checkpoint to checkpoint_iter_2.hdf5
+T00 ERR ... 2020-10-29 12:3:57 Evaluating static 2
+T00 ERR ... 2020-10-29 12:3:57 Writing checkpoint to checkpoint_iter_2.hdf5
 T00 ERR ...  Region:qm 0 is converged deltaE=0 RMS Dmat=0 MaxDmat=0
-T00 ERR ... 2020-10-23 12:4:25 Region:polar 1 is converged deltaE=0
-T00 ERR ... 2020-10-23 12:4:25 --Total Energy all regions -40.42804765
-T00 ERR ... 2020-10-23 12:4:25 Job converged after 2 iterations.
+T00 ERR ... 2020-10-29 12:3:57 Region:polar 1 is converged deltaE=0
+T00 ERR ... 2020-10-29 12:3:57 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-10-29 12:3:57 Job converged after 2 iterations.
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -2073,7 +2107,7 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>#!xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j &quot;read&quot;
+<span></span><span class="ch">#!xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j &quot;read&quot;</span>
 </pre></div>
 </div>
 </div>

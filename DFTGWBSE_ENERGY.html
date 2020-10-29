@@ -21,10 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -105,7 +106,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-with-the-default-options">Running a calculation with the default options</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Note">Note</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Note</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Partial-Charges">Partial Charges</a></li>
@@ -203,16 +204,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -221,13 +222,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -235,92 +236,104 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
+div.nbinput.container div.prompt pre {
     color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
+div.nboutput.container div.prompt pre {
     color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 5ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
-    padding: 0.4em;
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
+div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
     background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
 /* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput div.math p {
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -364,6 +377,27 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -401,13 +435,13 @@ div.rendered_html tbody tr:hover {
 /* CSS overrides for sphinx_rtd_theme */
 
 /* 24px margin */
-.nbinput.nblast,
-.nboutput.nblast {
+.nbinput.nblast.container,
+.nboutput.nblast.container {
     margin-bottom: 19px;  /* padding has already 5px */
 }
 
 /* ... except between code cells! */
-.nblast + .nbinput {
+.nblast.container + .nbinput.container {
     margin-top: -19px;
 }
 
@@ -441,7 +475,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools --help
+<span></span><span class="o">!</span>xtp_tools --help
 </pre></div>
 </div>
 </div>
@@ -456,9 +490,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Runs excitation/charge transport tools
 
@@ -498,7 +532,7 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools -n methane -t 2 -e dftgwbse &gt; dftgwbse.log
+<span></span><span class="o">!</span>xtp_tools -n methane -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
 </pre></div>
 </div>
 </div>
@@ -512,8 +546,8 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!mkdir -p OPTIONFILES
-!cp $VOTCASHARE/xtp/xml/dftgwbse.xml OPTIONFILES
+<span></span><span class="o">!</span>mkdir -p OPTIONFILES
+<span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/dftgwbse.xml OPTIONFILES
 </pre></div>
 </div>
 </div>
@@ -523,7 +557,7 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!head -n 10 OPTIONFILES/dftgwbse.xml
+<span></span><span class="o">!</span>head -n <span class="m">10</span> OPTIONFILES/dftgwbse.xml
 </pre></div>
 </div>
 </div>
@@ -550,9 +584,9 @@ Tools:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from xml_editor import edit_calculator
-edit_calculator(&quot;dftgwbse&quot;, &quot;basisset&quot;, &quot;ubecppol&quot;)
-edit_calculator(&quot;dftgwbse&quot;, &quot;auxbasisset&quot;, &quot;aux-ubecppol&quot;)
+<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">edit_calculator</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;dftgwbse&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;ubecppol&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;dftgwbse&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-ubecppol&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -571,12 +605,12 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools -n methane -t 2 -e dftgwbse -o OPTIONFILES/dftgwbse.xml &gt; dftgwbse.log
+<span></span><span class="o">!</span>xtp_tools -n methane -t <span class="m">2</span> -e dftgwbse -o OPTIONFILES/dftgwbse.xml &gt; dftgwbse.log
 </pre></div>
 </div>
 </div>
-<div class="section" id="Note">
-<h3>Note<a class="headerlink" href="#Note" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Note<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively you could have create an empty <code class="docutils literal notranslate"><span class="pre">dftgwbse.xml</span></code> file and add the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and the <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code> by hand, as follows,</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;options&gt;</span>
 
@@ -599,7 +633,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools -n methane -e partialcharges
+<span></span><span class="o">!</span>xtp_tools -n methane -e partialcharges
 </pre></div>
 </div>
 </div>
@@ -614,25 +648,25 @@ Registered partialcharges==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2020-10-23 12:7:47 Calculated Densities at Numerical Grid, Number of electrons is 2.37485e-08
-... ... 2020-10-23 12:7:47 Calculating ESP at CHELPG grid points
-... ... 2020-10-23 12:7:50 Netcharge constrained to 0
-... ...  Sum of fitted charges: -2.42306e-14
-... ...  RMSE of fit:  0.00221586
-... ...  RRMSE of fit: 0.107179
+... ... 2020-10-29 12:7:6 Calculated Densities at Numerical Grid, Number of electrons is -2.37486e-08
+... ... 2020-10-29 12:7:6 Calculating ESP at CHELPG grid points
+... ... 2020-10-29 12:7:9 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41022e-14
+... ...  RMSE of fit:  0.00221585
+... ...  RRMSE of fit: 0.10718
 ... ... El Dipole from fitted charges [e*bohr]:
-                 dx = -0.7279 dy = +0.4713 dz = -0.4705 |d|^2 = +0.9733
+                 dx = +0.7279 dy = -0.4713 dz = +0.4705 |d|^2 = +0.9733
 ... ... El Dipole from exact qm density [e*bohr]:
-                 dx = -0.7621 dy = +0.4940 dz = -0.4932 |d|^2 = +1.0681
+                 dx = +0.7621 dy = -0.4940 dz = +0.4932 |d|^2 = +1.0681
 ... ... Written charges to methane.mps
 </pre></div></div>
 </div>
@@ -645,10 +679,10 @@ Initializing tool
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!cp $VOTCASHARE/xtp/xml/spectrum.xml OPTIONFILES
-edit_calculator(&quot;spectrum&quot;, &quot;lower&quot;, &quot;9&quot;)
-edit_calculator(&quot;spectrum&quot;, &quot;upper&quot;, &quot;25&quot;)
-edit_calculator(&quot;spectrum&quot;, &quot;points&quot;, &quot;1000&quot;)
+<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/spectrum.xml OPTIONFILES
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="s2">&quot;25&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -668,7 +702,7 @@ The option &#39;points&#39; on file &#39;OPTIONFILES/spectrum.xml&#39; has been 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!xtp_tools -n methane -e spectrum -o OPTIONFILES/spectrum.xml
+<span></span><span class="o">!</span>xtp_tools -n methane -e spectrum -o OPTIONFILES/spectrum.xml
 </pre></div>
 </div>
 </div>
@@ -683,9 +717,9 @@ Registered spectrum==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:47:29)
-votca_csg, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:28)
-votca_tools, version 2021-dev gitid: 2123915 (compiled Oct 23 2020, 11:45:16)
+xtp_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:54:04)
+votca_csg, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:39:29)
+votca_tools, version 2021-dev gitid: 4f9cdd8 (compiled Oct 29 2020, 11:36:43)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -706,7 +740,7 @@ Initializing tool
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>!pip install seaborn --user
+<span></span><span class="o">!</span>pip install seaborn --user
 </pre></div>
 </div>
 </div>
@@ -715,17 +749,19 @@ Initializing tool
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Requirement already satisfied: seaborn in /usr/lib/python3.8/site-packages (0.9.0)
-Requirement already satisfied: numpy&gt;=1.9.3 in /usr/lib64/python3.8/site-packages (from seaborn) (1.18.4)
-Requirement already satisfied: scipy&gt;=0.14.0 in /usr/lib64/python3.8/site-packages (from seaborn) (1.4.1)
-Requirement already satisfied: pandas&gt;=0.15.2 in /usr/lib64/python3.8/site-packages (from seaborn) (0.25.3)
-Requirement already satisfied: matplotlib&gt;=1.4.3 in /usr/lib64/python3.8/site-packages (from seaborn) (3.2.2)
-Requirement already satisfied: python-dateutil&gt;=2.6.1 in /usr/lib/python3.8/site-packages (from pandas&gt;=0.15.2-&gt;seaborn) (2.8.0)
-Requirement already satisfied: pytz&gt;=2017.2 in /usr/lib/python3.8/site-packages (from pandas&gt;=0.15.2-&gt;seaborn) (2020.1)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.8/site-packages (from matplotlib&gt;=1.4.3-&gt;seaborn) (0.10.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.8/site-packages (from matplotlib&gt;=1.4.3-&gt;seaborn) (1.2.0)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/lib/python3.8/site-packages (from matplotlib&gt;=1.4.3-&gt;seaborn) (2.4.7)
-Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.8/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.15.2-&gt;seaborn) (1.14.0)
+Requirement already satisfied: seaborn in /usr/lib/python3.9/site-packages (0.10.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /usr/lib64/python3.9/site-packages (from seaborn) (1.19.2)
+Requirement already satisfied: scipy&gt;=1.0.1 in /usr/lib64/python3.9/site-packages (from seaborn) (1.5.2)
+Requirement already satisfied: pandas&gt;=0.22.0 in /usr/lib64/python3.9/site-packages (from seaborn) (1.0.5)
+Requirement already satisfied: matplotlib&gt;=2.1.2 in /usr/lib64/python3.9/site-packages (from seaborn) (3.3.2)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.22.0-&gt;seaborn) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.22.0-&gt;seaborn) (2020.1)
+Requirement already satisfied: certifi&gt;=2020.06.20 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (2020.6.20)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (1.2.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (7.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (2.4.7)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.22.0-&gt;seaborn) (1.15.0)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -733,13 +769,13 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.8/site-packages (
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-columns = [&quot;E(eV)&quot;, &quot;epsGaussian&quot;,&quot;IM(eps)Gaussian&quot;,  &quot;epsLorentz&quot;,  &quot;Im(esp)Lorentz&quot;]
-df = pd.read_table(&quot;methane_spectrum.dat&quot;, comment=&quot;#&quot;, sep=&#39;\s+&#39;,names=columns)
-sns.relplot(x=&quot;E(eV)&quot;, y=&quot;epsGaussian&quot;, ci=None, kind=&quot;line&quot;, data=df)
-plt.plot()
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;epsGaussian&quot;</span><span class="p">,</span><span class="s2">&quot;IM(eps)Gaussian&quot;</span><span class="p">,</span>  <span class="s2">&quot;epsLorentz&quot;</span><span class="p">,</span>  <span class="s2">&quot;Im(esp)Lorentz&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;methane_spectrum.dat&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;epsGaussian&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -747,10 +783,10 @@ plt.plot()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[]
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
