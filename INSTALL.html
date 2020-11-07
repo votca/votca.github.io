@@ -88,11 +88,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#ubuntu">Ubuntu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fedora">Fedora</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resolving-the-not-found-dependency-errors">Resolving the ‘not found’ dependency errors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-cmake-flags">Common CMake Flags</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#other-cmake-flags">Other CMake Flags</a></li>
@@ -245,28 +241,10 @@ cmake --build builddir --target install
 </div>
 <div class="section" id="dependency-installation">
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="ubuntu">
-<h4>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h4>
-<p>Dependencies for core functionality</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">make</span> <span class="n">cmake</span> <span class="n">git</span> <span class="n">g</span><span class="o">++</span> <span class="n">libexpat</span><span class="o">-</span><span class="n">dev</span> <span class="n">libfftw3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libboost</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">dev</span> <span class="n">txt2tags</span> <span class="n">gnuplot</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span> <span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span> <span class="n">graphviz</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">psmisc</span> <span class="n">libeigen3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxc</span><span class="o">-</span><span class="n">dev</span> <span class="n">libgromacs</span><span class="o">-</span><span class="n">dev</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">openmpi</span>
-</pre></div>
-</div>
-<p>Dependencies for Manual</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ghostscript</span> <span class="n">texlive</span> <span class="n">inkscape</span> <span class="n">transfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">extra</span> <span class="n">texlive</span><span class="o">-</span><span class="n">pstricks</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="fedora">
-<h4>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h4>
-<p>Dependencies for core functionality</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">make</span> <span class="n">cmake</span> <span class="n">git</span> <span class="n">gcc</span><span class="o">-</span><span class="n">c</span><span class="o">++</span> <span class="n">expat</span><span class="o">-</span><span class="n">devel</span> <span class="n">fftw</span><span class="o">-</span><span class="n">devel</span> <span class="n">gsl</span><span class="o">-</span><span class="n">devel</span> <span class="n">boost</span><span class="o">-</span><span class="n">devel</span> <span class="n">txt2tags</span> <span class="n">procps</span><span class="o">-</span><span class="n">ng</span> <span class="n">gnuplot</span> <span class="n">psmisc</span> <span class="n">hdf5</span><span class="o">-</span><span class="n">devel</span> <span class="n">lammps</span> <span class="n">eigen3</span><span class="o">-</span><span class="n">devel</span> <span class="n">libxc</span><span class="o">-</span><span class="n">devel</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">devel</span> <span class="n">gromacs</span> <span class="n">gromacs</span><span class="o">-</span><span class="n">openmpi</span>
-</pre></div>
-</div>
-<p>Dependencies for Manual</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">ghostscript</span> <span class="n">texlive</span> <span class="n">doxygen</span> <span class="n">texlive</span><span class="o">-</span><span class="n">appendix</span> <span class="n">texlive</span><span class="o">-</span><span class="n">wrapfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">a4wide</span> <span class="n">texlive</span><span class="o">-</span><span class="n">xstring</span> <span class="n">inkscape</span> <span class="n">transfig</span> <span class="n">texlive</span><span class="o">-</span><span class="n">units</span> <span class="n">texlive</span><span class="o">-</span><span class="n">sidecap</span> <span class="n">texlive</span><span class="o">-</span><span class="n">bclogo</span> <span class="n">texlive</span><span class="o">-</span><span class="n">mdframed</span> <span class="n">texlive</span><span class="o">-</span><span class="n">braket</span> <span class="n">graphviz</span> <span class="n">ImageMagick</span> <span class="n">ghostscript</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">dvipdf</span>
-</pre></div>
-</div>
-</div>
+<p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/ubuntu#L10-L13">Ubuntu</a></p>
+<p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/fedora#L10-L15">Fedora</a></p>
+<p>If you have an older version of a distribution cmake can automatically install the correct Gromacs and libint version by
+adding <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_GROMACS_OWN_GROMACS=ON</span></code> or <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_GROMACS_OWN_LIBINT=ON</span></code> to your cmake command.</p>
 </div>
 <div class="section" id="resolving-the-not-found-dependency-errors">
 <h3>Resolving the ‘not found’ dependency errors<a class="headerlink" href="#resolving-the-not-found-dependency-errors" title="Permalink to this headline">¶</a></h3>
