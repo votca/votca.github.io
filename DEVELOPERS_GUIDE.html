@@ -105,6 +105,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA continuous integration (Github actions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-coding-rules">CPP Coding Rules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#files">Files</a></li>
@@ -134,6 +135,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-comment-guide">CPP Comment Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updating-git-submodules">Updating Git Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updates-from-stable">Updates from stable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#failed-release-builds">Failed Release Builds</a></li>
 </ul>
 </li>
@@ -237,16 +239,15 @@
 implementing code consistent with the VOTCA and cpp style and standard.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#reporting-bugs">Reporting Bugs</a></p></li>
+<li><p><a class="reference external" href="#making-a-release">Making a release</a></p></li>
 <li><p><a class="reference external" href="#cpp-resources">CPP Resoures</a></p></li>
 <li><p><a class="reference external" href="#CPP-Coding-Rules">CPP Coding Rules</a></p></li>
 <li><p><a class="reference external" href="#testing">Testing</a></p></li>
-<li><p><a class="reference external" href="#failed-travis-builds">Failed Travis Builds</a></p></li>
-<li><p><a class="reference external" href="#cpp-codeing-style-guide">CPP Coding Style Guide</a></p></li>
+<li><p><a class="reference external" href="#cpp-coding-style-guide">CPP Coding Style Guide</a></p></li>
 <li><p><a class="reference external" href="#cpp-comment-guide">CPP Comment Guide</a></p></li>
 <li><p><a class="reference external" href="#updating-git-submodules">Updating Git Submodules</a></p></li>
-<li><p><a class="reference external" href="#merging-with-stable">Merging With Stable</a></p></li>
+<li><p><a class="reference external" href="#updates-from-stable">Updates from stable</a></p></li>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
-<li><p><a class="reference external" href="#gitlab-server">Setting Up A GitLab Runner Server</a></p></li>
 </ul>
 <div class="section" id="reporting-bugs">
 <h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
@@ -295,6 +296,13 @@ VOTCA first builds and then runs a <a class="reference external" href="https://w
 <p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires, but not any VOTCA code. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
 On top of these containers the actual containers for running the test builds are build, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
 <p>For more information also look at the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
+</div>
+<div class="section" id="making-a-release">
+<h2>Making a release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
+<p>Releases are done by Github actions as well. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
+To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">here</a>. The release can only be made from the
+<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but one can test making a release on any other branch as well. To make a release, trigger the action from
+<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files need to contain a section with that tag already, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag in all involved submodules (plus pull requests for stable to master branch, see <a class="reference external" href="#updates-from-stable">below</a>).</p>
 </div>
 <div class="section" id="cpp-resources">
 <h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
@@ -672,9 +680,10 @@ merged into the master votca branch!</p>
 <p>Votca with all of its repos can be build by using the parent <a class="reference external" href="https://github.com/votca/votca">votca
 repo</a>. All the other necessary repos
 appear as submodules in the parent repo. It is worth noting that the
-submodules are not automatically updated whenever changes are made to
+submodules are automatically updated through a pull request whenever changes are made to
 their respective master branches. In essence a submodule refers to a
-specific commit of the repo it represents. If a new commit is merged
+specific commit of the repo it represents.</p>
+<p>Normally it is not necessary, but from time to time a new commit is need to be manually merged
 into the master branch of a repository the submodule state in the parent
 repo has to be updated for the commit to propagate to the parent votca
 repository.</p>
@@ -685,6 +694,18 @@ repository.</p>
 <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;update all submodules&quot;</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="updates-from-stable">
+<h2>Updates from stable<a class="headerlink" href="#updates-from-stable" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch contains the last release plus all bug fixes made since the release.
+Only in very limited circumstances new features should be merged into the stable branch.
+Developer can add bug fixes by making a pull request with the stable branch as target.
+Once this pull request is merged, another pull request from stable to master is created in the submodule automatically.
+And as for the master branch (see previous section) and pull request in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> is opened automatically to
+update the submodules in the stable branch as well.
+So ultimately there will 4 automatically created pull requests, (a) in the submodule from stable to master, (b) in the main repository
+to update the stable submodules, (c) to update the master submodules in the main repository once (a) is merged and (d) an update from stable to master in the main repository once (b) is merged. From time to time (a) will need some manual intervention to resolve conflicts. To minimize the manual work on (d), it is usually best to merge the pull requests in the order (a), (c), (b).
+The background is that when (d) gets created by merging (b) and the submodules in master are already up to date from merging (c) there will not be any merge conflicts.</p>
 </div>
 <div class="section" id="failed-release-builds">
 <h2>Failed Release Builds<a class="headerlink" href="#failed-release-builds" title="Permalink to this headline">¶</a></h2>
