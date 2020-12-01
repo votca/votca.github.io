@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; VOTCA 2021-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Theoretical background" href="theory.html" />
+    <link rel="prev" title="CSG Manual" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSG Manual</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theoretical background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input_files.html">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparing.html">Preparing coarse-grained runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CSG Manual</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/csg-manual/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Versatile Object-oriented Toolkit for Coarse-graining Applications, or
+votca, is a package which helps to systematically coarse-grain various
+systems <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id1"><span>[Ruehle:2009.a]</span></a>. This includes deriving the
+coarse-grained potentials, assessing their quality, preparing input
+files required for coarse-grained simulations, and analyzing the latter.</p>
+<p>A typical coarse-graining workflow includes <em>sampling</em> of the system of
+interest, <em>analysis</em> of the trajectory using a specific <em>mapping</em> and a
+coarse-graining <em>method</em> to derive coarse-grained potentials and, in
+case of iterative methods, running coarse-grained simulations and
+iteratively <em>refining</em> the coarse-grained potentials.</p>
+<p>In most cases, coarse-graining requires canonical sampling of a
+reference (high resolution) system. In addition, iterative methods
+require canonical sampling of the coarse-grained system. The sampling
+can be done using either molecular dynamics (MD), stochastic dynamics
+(SD), or Monte Carlo (MC) techniques. The latter are implemented in many
+standard simulation packages. Rather than implementing its own MD/SD/MC
+modules, votcaallows swift and flexible integration of existing programs
+in such a way that sampling is performed by the program of choice. At
+the moment, an interface to GROMACS <a class="reference internal" href="bibliography.html#gromacs4" id="id2"><span>[gromacs4]</span></a>
+simulation package is provided. The rest of the analysis needed for
+systematic coarse-graining is done using the package tools.</p>
+<div class="figure align-center" id="id5">
+<img alt="../_images/propane.png" src="../_images/propane.png" />
+<p class="caption"><span class="caption-text">Three-bead coarse-grained model of propane.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>The workflow can be exemplified on coarse-graining of a propane liquid.
+A single molecule of propane contains three carbon and eight hydrogen
+atoms. A united atom coarse-grained representation of a propane molecule
+has three beads and two bead types, A and B, with three and two
+hydrogens combined with the corresponding atom, as shown in
+the figure above. This representation defines the , as well as
+the bonded coarse-grained degrees of freedom, such as the bond <span class="math notranslate nohighlight">\(b\)</span>
+and the bond angle <span class="math notranslate nohighlight">\(\theta\)</span>. Apart from the bonded interactions,
+<span class="math notranslate nohighlight">\(u_b\)</span> and <span class="math notranslate nohighlight">\(u_\theta\)</span>, beads belonging to different molecules
+have non-bonded interactions, <span class="math notranslate nohighlight">\(u_\text{AA}\)</span>, <span class="math notranslate nohighlight">\(u_\text{AB}\)</span>,
+<span class="math notranslate nohighlight">\(u_\text{BB}\)</span>. The task of coarse-graining is then to derive a
+potential energy surface <span class="math notranslate nohighlight">\(u\)</span> which is a function of all
+coarse-grained degrees of freedom. Note that, while the atomistic bond
+and angle potentials are often chosen to be simple harmonic functions,
+the coarse-grained potentials cannot be expressed in terms of simple
+analytic functions. Instead, tabulated functions are normally used.</p>
+<p>The coarse-graining <em>method</em> defines criteria according to which the
+potential energy surface is constructed. For example, for the bond
+<span class="math notranslate nohighlight">\(b\)</span> and the angle <span class="math notranslate nohighlight">\(\theta\)</span> can be used. In this case a
+coarse-grained potential will be a potential of mean force. For the
+non-bonded degrees of freedom, the package provides or methods. In this
+case the radial distribution functions of the coarse-grained model will
+match those of the atomistic model. Alternatively, (or multiscale
+coarse-graining) can be used, in which case the coarse-grained potential
+will approximate the many-body potential of mean force. The choice of a
+particular method is system-specific and requires a thorough consistency
+check. It is important to keep in mind that coarse-graining should be
+used with understanding and caution, methods should be crossed-checked
+with each other as well as with respect to the reference system.</p>
+<p>The package consists of two parts: a C++ kernel and a scripting engine.
+The kernel is capable of processing atomistic topologies and
+trajectories and offers a flexible framework for reading, manipulating
+and analyzing topologies and generated by MD/SD/MC sampling
+trajectories. It is modular: new file formats can be integrated without
+changing the existing code. Currently, an interface for
+GROMACS <a class="reference internal" href="bibliography.html#gromacs4" id="id3"><span>[gromacs4]</span></a> topologies and trajectories is
+provided. The kernel also includes various coarse-graining tools, for
+example calculations of probability distributions of bonded and
+non-bonded interactions, correlation and autocorrelation functions, and
+updates for the coarse-grained pair potential.</p>
+<p>The scripting engine is used to steer the iterative procedures. Here the
+analysis tools of the package used for sampling (e.g. GROMACStools) can
+be integrated into the coarse-graining workflow, if needed. The
+coarse-graining workflow itself is controlled by several Extensible
+Markup Language (XML) input files, which contain mapping and other
+options required for the workflow control. In what follows, these input
+files are described.</p>
+<p>Before using the package, do not forget to initalize the variables in
+the bash or csh (tcsh)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> &lt;csg-installation&gt;/bin/VOTCARC.bash
+<span class="nb">source</span> &lt;csg-installation&gt;/bin/VOTCARC.csh
+</pre></div>
+</div>
+<p>More details as well as several examples can be found in
+ref. <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id4"><span>[Ruehle:2009.a]</span></a>. Please cite this paper if you
+are using the package. Tutorials can be found on the votcahomepage .</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="theory.html" class="btn btn-neutral float-right" title="Theoretical background" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="CSG Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

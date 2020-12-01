@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Theoretical background &mdash; VOTCA 2021-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input files" href="input_files.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSG Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Theoretical background</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mapping">Mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boltzmann-inversion">Boltzmann inversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom">Separation of bonded and non-bonded degrees of freedom</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iterative-methods">Iterative methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iterative-boltzmann-inversion">Iterative Boltzmann Inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inverse-monte-carlo">Inverse Monte Carlo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regularization-of-inverse-monte-carlo">Regularization of Inverse Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#force-matching">Force Matching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relative-entropy">Relative Entropy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input_files.html">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparing.html">Preparing coarse-grained runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CSG Manual</a> &raquo;</li>
+        
+      <li>Theoretical background</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/csg-manual/theory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="theoretical-background">
+<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mapping">
+<h2>Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h2>
+<p>The mapping is an operator that establishes a link between the atomistic
+and coarse-grained representations of the system. An atomistic system is
+described by specifying the values of the Cartesian coordinates and
+momenta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathbf r^n &amp;= \{\mathbf r_1,\dots,\mathbf r_n\}, \\
+\mathbf p^n &amp;= \{\mathbf p_1,\dots,\mathbf p_n\}.
+\end{aligned}\end{split}\]</div>
+<p>of the <span class="math notranslate nohighlight">\(n\)</span> atoms in the system. <a class="footnote-reference brackets" href="#id5" id="id1">1</a> On a coarse-grained level,
+the coordinates and momenta are specified by the positions and momenta
+of CG sites</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\mathbf R^N = \{\mathbf R_1,\dots,\mathbf R_N\}, \\
+\mathbf P^N = \{\mathbf P_1,\dots,\mathbf P_N\}.
+\end{aligned}\end{split}\]</div>
+<p>Note that capitalized symbols are used for the CG sites while lower
+case letters are used for the atomistic system.</p>
+<p>The mapping operator <span class="math notranslate nohighlight">\({\mathbf c}_I\)</span> is defined by a matrix for each
+bead <span class="math notranslate nohighlight">\(I\)</span> and links the two descriptions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+ {\mathbf R}_I &amp;= \sum_{i=1}^{n}c_{Ii}\mathbf r_i, \\
+ {\mathbf P}_I &amp;=
+    M_I \dot{{\mathbf R}}_I =
+    M_I \sum_{i=1}^{n}c_{Ii} \dot{{\mathbf r}}_i =
+    M_I \sum_{i=1}^{n} \frac{ c_{Ii}} {m_i} {\mathbf p}_i .
+\end{aligned}
+\label{eq:mapping_scheme}\end{split}\]</div>
+<p>for all <span class="math notranslate nohighlight">\(I = 1,\dots,N\)</span>.</p>
+<p>If an atomistic system is translated by a constant vector, the
+corresponding coarse-grained system is also translated by the same
+vector. This implies that, for all <span class="math notranslate nohighlight">\(I\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n}c_{Ii}=1.\]</div>
+<p>In some cases it is useful to define the CG mapping in such a way that
+certain atoms belong to several CG beads at the same
+time <a class="reference internal" href="bibliography.html#fritz-2009" id="id2"><span>[Fritz:2009]</span></a>. Following
+ref. <a class="reference internal" href="bibliography.html#noid-2008-1" id="id3"><span>[Noid:2008.1]</span></a>, we define two sets of atoms for
+each of the <span class="math notranslate nohighlight">\(N\)</span> CG beads. For each site <span class="math notranslate nohighlight">\(I\)</span>, a set of
+<em>involved</em> atoms is defined as</p>
+<div class="math notranslate nohighlight">
+\[{\cal I}_I=\{i|c_{Ii}\ne0\}.\]</div>
+<p>An atom <span class="math notranslate nohighlight">\(i\)</span> in the atomistic model is involved in a CG site, <em>I</em>,
+if and only if this atom provides a nonzero contribution to the sum in
+eq. [eq:mapping_scheme].</p>
+<p>A set of <em>specific</em> atoms is defined as</p>
+<div class="math notranslate nohighlight">
+\[{\cal S}_I=\{i|c_{Ii}\ne0 \text{ and } c_{Ji}=0 \text{ for all } J \ne I\}.\]</div>
+<p>In other words, atom <span class="math notranslate nohighlight">\(i\)</span> is specific to site <span class="math notranslate nohighlight">\(I\)</span> if and
+only if this atom is involved in site <span class="math notranslate nohighlight">\(I\)</span> and is not involved in
+the definition of any other site.</p>
+<p>The CG model will generate an equilibrium distribution of momenta that
+is consistent with an underlying atomistic model if all the atoms are
+<em>specific</em> and if the mass of the <span class="math notranslate nohighlight">\(I^\text{th}\)</span> CG site is given
+by <a class="reference internal" href="bibliography.html#noid-2008-1" id="id4"><span>[Noid:2008.1]</span></a></p>
+<div class="math notranslate nohighlight">
+\[M_I= \left( \sum_{i \in {\cal I}_I}\frac{c_{Ii}^2}{m_i} \right)^{-1}.
+\label{eq:cg_mass}\]</div>
+<p>If all atoms are specific and the center of mass of a bead is used for
+mapping, then <span class="math notranslate nohighlight">\(c_{Ii} = \frac{m_i}{M_I}\)</span>, and the
+condition [eq:cg_mass] is automatically satisfied.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>In what follows we adopt notations of ref. <a class="reference internal" href="bibliography.html#noid-2008-1" id="id6"><span>[Noid:2008.1]</span></a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="boltzmann-inversion">
+<h2>Boltzmann inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this headline">¶</a></h2>
+<p>Boltzmann inversion is mostly used for <em>bonded</em> potentials, such as
+bonds, angles, and torsions <a class="reference internal" href="bibliography.html#tschoep-1998" id="id7"><span>[Tschoep:1998]</span></a>. Boltzmann
+inversion is structure-based and only requires positions of atoms.</p>
+<p>The idea of Boltzmann inversion stems from the fact that in a canonical
+ensemble <em>independent</em> degrees of freedom <span class="math notranslate nohighlight">\(q\)</span> obey the Boltzmann
+distribution, i. e.</p>
+<div class="math notranslate nohighlight">
+\[P(q) = Z^{-1} \exp\left[ - \beta U(q) \right]~,
+\label{eq:boltzmann}\]</div>
+<p>where is a partition function, . Once <span class="math notranslate nohighlight">\(P(q)\)</span> is known, one can
+obtain the coarse-grained potential, which in this case is a potential
+of mean force, by inverting the probability distribution <span class="math notranslate nohighlight">\(P(q)\)</span> of
+a variable <span class="math notranslate nohighlight">\(q\)</span>, which is either a bond length, bond angle, or
+torsion angle</p>
+<div class="math notranslate nohighlight">
+\[U(q) = - k_\text{B} T \ln  P(q) ~.
+\label{eq:inv_boltzmann}\]</div>
+<p>The normalization factor <span class="math notranslate nohighlight">\(Z\)</span> is not important since it would only
+enter the coarse-grained potential <span class="math notranslate nohighlight">\(U(q)\)</span> as an irrelevant
+additive constant.</p>
+<p>Note that the histograms for the bonds <span class="math notranslate nohighlight">\(H_r(r)\)</span>, angles
+<span class="math notranslate nohighlight">\(H_\theta(\theta)\)</span>, and torsion angles <span class="math notranslate nohighlight">\(H_\varphi(\varphi)\)</span>
+have to be rescaled in order to obtain the volume normalized
+distribution functions <span class="math notranslate nohighlight">\(P_r(r)\)</span>, <span class="math notranslate nohighlight">\(P_\theta(\theta)\)</span>, and
+<span class="math notranslate nohighlight">\(P_\varphi(\varphi)\)</span>, respectively,</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+P_r(r) = \frac{H_r(r)}{4\pi r^2}~,\;
+P_\theta(\theta) = \frac{H_\theta(\theta)}{\sin \theta}~,\;
+P_\varphi(\varphi) = H_\varphi (\varphi)~,
+\end{aligned}
+\label{eq:boltzmann_norm}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the bond length <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span> is the
+bond angle, and <span class="math notranslate nohighlight">\(\varphi\)</span> is the torsion angle. The bonded
+coarse-grained potential can then be written as a sum of distribution
+functions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \label{eq:boltzmann_pmf}
+    U({r}, \theta, \varphi) &amp;= U_r({r}) + U_{\theta}(\theta) + U_{\varphi}(\varphi)~, \\
+    U_q({q}) &amp;= - k_\text{B} T \ln P_q( q ),\; q=r, \theta, \varphi~.
+    \nonumber\end{aligned}\end{split}\]</div>
+<p>On the technical side, the implementation of the Boltzmann inversion
+method requires <em>smoothing</em> of <span class="math notranslate nohighlight">\(U(q)\)</span> to provide a continuous
+force. Splines can be used for this purpose. Poorly and unsampled
+regions, that is regions with high <span class="math notranslate nohighlight">\(U(q)\)</span>, shall be
+<em>extrapolated</em>. Since the contribution of these regions to the canonical
+density of states is small, the exact shape of the extrapolation is less
+important.</p>
+<p>Another crucial issue is the cross-correlation of the coarse-grained
+degrees of freedom. Independence of the coarse-grained degrees of
+freedom is the main assumption that allows factorization of the
+probability distribution and the potential, eq. [eq:boltzmann_pmf].
+Hence, one has to carefully check whether this assumption holds in
+practice. This can be done by performing coarse-grained simulations and
+comparing cross-correlations for all pairs of degrees of freedom in
+atomistic and coarse-grained resolution, e. g. using a two-dimensional
+histogram, analogous to a Ramachandran plot.  <a class="footnote-reference brackets" href="#id9" id="id8">2</a></p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
+<dd><p>Checking the linear correlation coefficient does not guarantee
+statistical independence of variables, for example
+<span class="math notranslate nohighlight">\(c(x, x^2)=0\)</span> if <span class="math notranslate nohighlight">\(x\)</span> has a symmetric probability density
+<span class="math notranslate nohighlight">\(P(x) = P(-x)\)</span>. This case is often encountered in systems used
+for coarse-graining.</p>
+</dd>
+</dl>
+<div class="section" id="separation-of-bonded-and-non-bonded-degrees-of-freedom">
+<h3>Separation of bonded and non-bonded degrees of freedom<a class="headerlink" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom" title="Permalink to this headline">¶</a></h3>
+<p>When coarse-graining polymeric systems, it is convenient to treat bonded
+and non-bonded interactions separately <a class="reference internal" href="bibliography.html#tschoep-1998" id="id10"><span>[Tschoep:1998]</span></a>.
+In this case, sampling of the atomistic system shall be performed on a
+special system where non-bonded interactions are artificially removed,
+so that the non-bonded interactions in the reference system do not
+contribute to the bonded interactions of the coarse-grained model.</p>
+<p>This can be done by employing exclusion lists using with the option
+<code class="docutils literal notranslate"><span class="pre">—excl</span></code>. This is described in detail in sec. [sec:exclusions].</p>
+<div class="figure align-center" id="id26">
+<img alt="../_images/excl.png" src="../_images/excl.png" />
+<p class="caption"><span class="caption-text">Example of excluded interactions.</span><a class="headerlink" href="#id26" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="iterative-methods">
+<h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id27">
+<img alt="../_images/iteration-scheme-simple.png" src="../_images/iteration-scheme-simple.png" />
+<p class="caption"><span class="caption-text">Block-scheme of an iterative method.</span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
+</div>
+<p>Iterative workflow control is essential for the IBIand IMCmethods. The
+general idea of iterative workflow is sketched in
+fig. [fig:iterative_methods]. A run starts with an initial guess during
+the global initialization phase. This guess is used for the first
+sampling step, followed by an update of the potential. The update itself
+often requires additional postprocessing such as smoothing,
+interpolation, extrapolation or fitting. Different methods are available
+to update the potential, for instance Iterative Boltzmann Inversion (see
+next section [sec:ibi]) or Inverse Monte Carlo (see section [sec:imc]).
+The whole procedure is then iterated until a convergence criterion is
+satisfied.</p>
+</div>
+<div class="section" id="iterative-boltzmann-inversion">
+<h2>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this headline">¶</a></h2>
+<p>Iterative Boltzmann inversion (IBI) is a natural extension of the
+Boltzmann inversion method. Since the goal of the coarse-grained model
+is to reproduce the distribution functions of the reference system as
+accurately as possible, one can also iteratively refine the
+coarse-grained potentials using some numerical scheme.</p>
+<p>In IBIthe potential update <span class="math notranslate nohighlight">\(\Delta U\)</span> is given
+by <a class="reference internal" href="bibliography.html#reith-2003" id="id11"><span>[Reith:2003]</span></a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+U^{(n+1)} &amp;= U^{(n)} + \lambda \Delta U^{(n)}~, \\
+\Delta U^{(n)} &amp;=  k_\text{B} T \ln  \frac{P^{(n)}}{P_{\rm ref}}
+=  U_\text{PMF}^\text{ref} - U_\text{PMF}^{(n)}~.
+\end{aligned}
+\label{eq:iter_boltzmann}\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\lambda \in (0,1]\)</span> is a numerical factor which helps to
+stabilize the scheme.</p>
+<p>The convergence is reached as soon as the distribution function
+<span class="math notranslate nohighlight">\(P^{(n)}\)</span> matches the reference distribution function
+<span class="math notranslate nohighlight">\(P_{\rm ref}\)</span>, or, in other words, the potential of mean force,
+<span class="math notranslate nohighlight">\(U_\text{PMF}^{(n)}\)</span>, converges to the reference potential of mean
+force.</p>
+<p>IBIcan be used to refine both bonded and non-bonded potentials. It is
+primarily used for simple fluids with the aim to reproduce the radial
+distribution function of the reference system in order to obtain
+non-bonded interactions. On the implementation side, IBIhas the same
+issues as the inverse Boltzmann method, i. e. smoothing and
+extrapolation of the potential must be used.</p>
+</div>
+<div class="section" id="inverse-monte-carlo">
+<h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<p>Inverse Monte Carlo (IMC) is an iterative scheme which additionally
+includes cross correlations of distributions. A detailed derivation of
+the IMCmethod can be found in ref. <a class="reference internal" href="bibliography.html#lyubartsev-1995" id="id12"><span>[Lyubartsev:1995]</span></a>.</p>
+<p>The potential update <span class="math notranslate nohighlight">\(\Delta U\)</span> of the IMCmethod is calculated by
+solving a set of linear equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \left&lt;S_{\alpha}\right&gt; - S_{\alpha}^{\text{ref}}= A_{\alpha \gamma} \Delta U_{\gamma}~,
+  \label{eq:imc}\end{aligned}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+  \label{eq:covariance}
+  A_{\alpha \gamma} = \frac{\partial \left&lt; S_{\alpha} \right&gt; }{\partial U_{\gamma}}  =
+  \beta \left( \left&lt;S_{\alpha} \right&gt;\left&lt;S_{\gamma} \right&gt; - \left&lt;S_{\alpha} S_{\gamma} \right&gt;  \right)~,
+  \nonumber\end{aligned}\]</div>
+<p>and <span class="math notranslate nohighlight">\(S\)</span> the histogram of a coarse-grained variable of interest.
+For example, in case of coarse-graining of the non-bonded interactions
+which depend only on the distance <span class="math notranslate nohighlight">\(r_{ij}\)</span> between particles
+<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> and assuming that the interaction potential is
+short-ranged, i.e. <span class="math notranslate nohighlight">\(U(r_{ij})=0\)</span> if
+<span class="math notranslate nohighlight">\(r_{ij} \ge r_{\text{cut} }\)</span>, the average value of
+<span class="math notranslate nohighlight">\(S_{\alpha}\)</span> is related to the radial distribution function
+<span class="math notranslate nohighlight">\(g(r_{\alpha})\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\left&lt; S_{\alpha} \right&gt; =  \frac{N(N-1)}{2} \frac{4 \pi r_{\alpha}^2 \Delta r} {V}g(r_{\alpha})~,
+  \label{eq:s_mean}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of atoms in the system
+(<span class="math notranslate nohighlight">\(\frac{1}{2} N(N-1)\)</span> is then the number of all pairs),
+<span class="math notranslate nohighlight">\(\Delta r\)</span> is the grid spacing, <span class="math notranslate nohighlight">\(r_{\text{cut}}/M\)</span>,
+<span class="math notranslate nohighlight">\(V\)</span> is the total volume of the system. In other words, in this
+particular case the physical meaning of <span class="math notranslate nohighlight">\(S_{\alpha}\)</span> is the number
+of particle pairs with interparticle distances
+<span class="math notranslate nohighlight">\(r_{ij} = r_{\alpha}\)</span> which correspond to the tabulated value of
+the potential <span class="math notranslate nohighlight">\(U_{\alpha}\)</span>.</p>
+<div class="section" id="regularization-of-inverse-monte-carlo">
+<h3>Regularization of Inverse Monte Carlo<a class="headerlink" href="#regularization-of-inverse-monte-carlo" title="Permalink to this headline">¶</a></h3>
+<p>To get a well defined cross correlation matrix,
+<span class="math notranslate nohighlight">\(A_{\alpha \gamma}\)</span>, enough sampling is needed. If there is not
+enough smapling or the initial potential guess is far from the real
+solution of the inverse problem, the algorithm might not converge to a
+stable solution. To overcome this instability problem one could
+reformulate equation [eq:covariance] by addition of a penalty term. In
+this case the potential update is computed as
+follows:<a class="reference internal" href="bibliography.html#murtola-2007" id="id13"><span>[Murtola:2007]</span></a></p>
+<div class="math notranslate nohighlight">
+\[\label{eq:regularization}
+\Delta U_\gamma = \arg \min \| A_{\alpha \gamma} \Delta U_\gamma - \left(\left&lt;S_{\alpha}\right&gt; - S_{\alpha}^{\text{ref}}\right) \|^2 + \lambda \| R \Delta U_{\gamma} \|^{2}\]</div>
+<p>Equation [eq:regularization] is known as Tikhonov regularization, where
+<span class="math notranslate nohighlight">\(R\)</span> is the regularization operator, which here is the identity
+matrix and <span class="math notranslate nohighlight">\(\lambda &gt;0 \)</span>lambda` can only be determined if the exact
+solution of the inverse problem is known, which in practice is not the
+case. To get a good initial guess on the magnitude of the regularization
+parameter a singular value decomposition of the matrix
+<span class="math notranslate nohighlight">\(A_{\alpha \gamma}\)</span> might help. A good <span class="math notranslate nohighlight">\(\lambda\)</span> parameter
+should dominate the smallest singular values (squared) but is itself
+small compared to the larger ones.[Rosenberger:2016]_</p>
+</div>
+</div>
+<div class="section" id="force-matching">
+<h2>Force Matching<a class="headerlink" href="#force-matching" title="Permalink to this headline">¶</a></h2>
+<p>Force matching (FM) is another approach to evaluate corse-grained
+potentials [Ercolessi:1994,Izvekov:2005,Noid:2007]_. In
+contrast to the structure-based approaches, its aim is not to reproduce
+various distribution functions, but instead to match the multibody
+potential of mean force as close as possible with a given set of
+coarse-grained interactions.</p>
+<p>The method works as follows. We first assume that the coarse-grained
+force-field (and hence the forces) depends on <span class="math notranslate nohighlight">\(M\)</span> parameters
+<span class="math notranslate nohighlight">\(g_1,...,g_M\)</span>. These parameters can be prefactors of analytical
+functions, tabulated values of the interaction potentials, or
+coefficients of splines used to describe these potentials.</p>
+<p>In order to determine these parameters, the reference forces on
+coarse-grained beads are calculated by summing up the forces on the
+atoms</p>
+<div class="math notranslate nohighlight">
+\[{{{{\mathbf F}}}}_I^\text{ref} = \sum_{j \in {\cal S_I}} \frac{d_{Ii}}{c_{Ii}} {{{{\mathbf f}}}}_j({{{{\mathbf r}}}^n}),
+  \label{eq:force_mapping}\]</div>
+<p>where the sum is over all atoms of the CG site <em>I</em> (see.
+sec. [sec:mapping_operator]). The <span class="math notranslate nohighlight">\(d_{Ij}\)</span> coefficients can, in
+principle, be chosen arbitrarily, provided that the condition
+:math:` sum_{i=1}^{n}d_{Ii}=1` is
+satisfied <a class="reference internal" href="bibliography.html#noid-2008-1" id="id14"><span>[Noid:2008.1]</span></a>. If mapping coefficients for
+the forces are not provided, it is assumed that <span class="math notranslate nohighlight">\(d_{Ij} = c_{Ij}\)</span>
+(see also sec. [sec:inputfiles]).</p>
+<p>By calculating the reference forces for <span class="math notranslate nohighlight">\(L\)</span> snapshots we can write
+down <span class="math notranslate nohighlight">\(N \times L\)</span> equations</p>
+<div class="math notranslate nohighlight">
+\[{{{{\mathbf F}}}}_{Il}^\text{cg}(g_1, \dots ,g_M)={{{\mathbf F}}}_{il}^\text{ref},\;
+  I=1,\dots,N,\; l=1,\dots,L~.
+  \label{eq:fmatch1}\]</div>
+<p>Here <span class="math notranslate nohighlight">\({{{{\mathbf F}}}}_{Il}^\text{ref}\)</span> is the force on
+the bead <span class="math notranslate nohighlight">\(I\)</span> and <span class="math notranslate nohighlight">\({{{{\mathbf F}}}}_{Il}^\text{cg} \)</span>
+enumerates snapshots picked for coarse-graining. By running the
+simulations long enough one can always ensure that
+<span class="math notranslate nohighlight">\(M &lt; N \times L\)</span>. In this case the set of equations [eq:fmatch1]
+is overdetermined and can be solved in a least-squares manner.</p>
+<p><span class="math notranslate nohighlight">\({\mathbf F}_{il}^\text{cg}\)</span> is, in principle, a non-linear function
+of its parameters <span class="math notranslate nohighlight">\(\{g_i\}\)</span>. Therefore, it is useful to represent
+the coarse-grained force-field in such a way that
+equations ([eq:fmatch1]) become linear functions of <span class="math notranslate nohighlight">\(\{g_i\}\)</span>.
+This can be done using splines to describe the functional form of the
+forces <a class="reference internal" href="bibliography.html#izvekov-2005" id="id15"><span>[Izvekov:2005]</span></a>. Implementation details are
+discussed in ref. <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id16"><span>[Ruehle:2009.a]</span></a>.</p>
+<p>Note that an adequate sampling of the system requires a large number of
+snapshots <span class="math notranslate nohighlight">\(L\)</span>. Hence, the applicability of the method is often
+constrained by the amount of memory available. To remedy the situation,
+one can split the trajectory into blocks, find the coarse-grained
+potential for each block and then perform averaging over all blocks.</p>
+</div>
+<div class="section" id="relative-entropy">
+<h2>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this headline">¶</a></h2>
+<p>Relative entropy is a method which quantifies the extent of the
+configurational phase-space overlap between two molecular
+ensembles <a class="reference internal" href="bibliography.html#wu2005" id="id17"><span>[Wu2005]</span></a>. It can be used as a measure of the
+discrepancies between various properties of the CG system’s and the
+target all-atom (AA) ensemble. It has been shown by Shell
+S. <a class="reference internal" href="bibliography.html#shell2008" id="id18"><span>[Shell2008]</span></a> that one can minimize the relative
+entropy metric between the model CG system and the target AA system to
+optimize CG potential parameters such that the CG ensemble would mimic
+the target AA ensemble.</p>
+<p>Relative entropy, <span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span>, is defined as
+<a class="reference internal" href="bibliography.html#shell2008" id="id19"><span>[Shell2008]</span></a></p>
+<div class="math notranslate nohighlight">
+\[\label{eq:srel}
+S_{\text{rel}} = \sum_{i}p_{\text{AA}}(r_i) \ln\left(
+  \frac{p_{\text{AA}}(r_i)}{p_{\text{CG}}\left(M(r_i)\right)}\right) +
+\langle S_{\text{map}} \rangle_{\text{AA}},\]</div>
+<p>where the sum is over all the configurations of the reference AA
+system, <span class="math notranslate nohighlight">\(r=\{r_i\} (i=1,2,...)\)</span>, <span class="math notranslate nohighlight">\(M\)</span> is the mapping
+operation to generate a corresponding CG configuration, <span class="math notranslate nohighlight">\(R_I\)</span>,
+from a AA configuration, <span class="math notranslate nohighlight">\(r_i\)</span>, i.e., <span class="math notranslate nohighlight">\(R_I = M(r_i)\)</span>,
+<span class="math notranslate nohighlight">\(p_\text{AA}\)</span> and <span class="math notranslate nohighlight">\(p_\text{CG}\)</span> are the configurational
+probabilities based on the AA and CG potentials, respectively, and
+:math:` langle
+S_{text{map}}rangle_{text{AA}}` is the mapping entropy due to the
+average degeneracy of AA configurations mapping to the same CG
+configuration, given by</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:smap}
+S_{\text{map}}(R_I)=\ln\sum_{i}\delta_{R_I,M(r_i)} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the Kronecker delta function. Physically,
+<span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span> can be interpreted as the likelihood that one
+test configuration of the model CG ensemble is representative of the
+target AA ensemble, and when the likelihood is a maximum,
+<span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span> is at a minimum. Hence, the numerical
+minimization of <span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span> with respect to the parameters of
+the CG model can be used to optimize the CG model.</p>
+<p>In a canonical ensemble, substituting canonical configurational
+probabilities into eq. [eq:srel], the relative entropy simplifies to</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:srelcan}
+S_{\text{rel}}=\beta\langle U_{\text{CG}} - U_{\text{AA}}\rangle_{\text{AA}}
+- \beta\left( A_{\text{CG}} - A_{\text{AA}}\right)
++ \langle S_{\text{map}}\rangle_{\text{AA}} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta={1}/{k_{\text{B}}T}\)</span>, <span class="math notranslate nohighlight">\(k_{\text{B}}\)</span> is the
+Boltzmann constant, <span class="math notranslate nohighlight">\(T\)</span> is the temperature, <span class="math notranslate nohighlight">\(U_\text{CG}\)</span>
+and <span class="math notranslate nohighlight">\(U_\text{AA}\)</span> are the total potential energies from the CG and
+AA potentials, respectively, <span class="math notranslate nohighlight">\(A_\text{CG}\)</span> and <span class="math notranslate nohighlight">\(A_\text{AA}\)</span>
+are the configurational part of the Helmholtz free energies from the CG
+and AA potentials, respectively, and all the averages are computed in
+the reference AA ensemble.</p>
+<p>Consider a model CG system defined by the CG potentials between various
+CG sites such that the CG potentials depend on the parameters
+<span class="math notranslate nohighlight">\(\boldsymbol\lambda=\{\lambda_1,\lambda_2,...\lambda_n\}\)</span>. Then
+<span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span> are optimized by the relative entropy
+minimization. We use the Newton-Raphson strategy for the relative
+entropy minimization described in
+ref. <a class="reference internal" href="bibliography.html#chaimovich2011" id="id20"><span>[Chaimovich2011]</span></a>. In this strategy, the CG
+potential parameters, <span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span>, are refined
+iteratively as</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:newtraph}
+\boldsymbol{\lambda} ^{k+1} = \boldsymbol{\lambda} ^{k} -
+\chi \mathbf{H} ^{-1}\cdot
+\nabla_{\lambda} S_{\text{rel}} ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the iteration index, <span class="math notranslate nohighlight">\(\chi\in(0...1)\)</span> is the
+scaling parameter that can be adjusted to ensure convergence,
+<span class="math notranslate nohighlight">\(\nabla_{\lambda}S_{\text{rel}}\)</span> is the vector of the first
+derivatives of <span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span> with respect to
+<span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span>, which can be computed from eq. [eq:srelcan]
+as</p>
+<div class="math notranslate nohighlight">
+\[\label{eq:dsrel}
+\nabla_{\lambda}S_{\text{rel}} = \beta \left\langle \frac{\partial
+  U_{\text{CG}}}{\partial\lambda}\right\rangle_{\text{AA}} - \beta\left\langle
+\frac{\partial U_{\text{CG}}}{\partial\lambda}\right\rangle_{\text{CG}} ,\]</div>
+<p>and <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> is the Hessian matrix of <span class="math notranslate nohighlight">\(S_{\text{rel}}\)</span>
+given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\label{eq:Hsrel}
+\mathbf{H}_{ij}&amp;=&amp;\beta \left\langle \frac{\partial^2
+  U_{\text{CG}}}{\partial\lambda_i\partial\lambda_j}\right \rangle_{\text{AA}} -
+\beta \left\langle \frac{\partial^2
+  U_{\text{CG}}}{\partial\lambda_i\partial\lambda_j}\right \rangle_{\text{CG}}
+\nonumber\\ &amp;&amp;+ \beta^2 \left\langle \frac{\partial
+  U_{\text{CG}}}{\partial\lambda_i} \frac{\partial
+  U_{\text{CG}}}{\partial\lambda_j}\right\rangle_{\text{CG}} \nonumber\\ &amp;&amp;-
+\beta^2 \left\langle \frac{\partial
+  U_{\text{CG}}}{\partial\lambda_i}\right\rangle_{\text{CG}} \left\langle
+\frac{\partial U_{\text{CG}}}{\partial\lambda_j}\right\rangle_{\text{CG}}.\end{aligned}\end{split}\]</div>
+<p>To compute <span class="math notranslate nohighlight">\(\nabla_{\lambda}S_{\text{rel}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>
+from eq. [eq:dsrel] and [eq:Hsrel], we need average CG energy
+derivatives in the AA and CG ensembles. For two-body CG pair potentials,
+<span class="math notranslate nohighlight">\(u_{\text{CG}}\)</span>, between CG sites, the ensemble averages of the CG
+energy derivatives can be computed as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\left\langle\left(\frac{\partial^a U_{\text{CG}}}{\partial \lambda^a}\right)^b
+\right\rangle_{\text{AA}}&amp; =
+&amp;\left\langle\left(\sum_{i&lt;j}\frac{\partial^{a}u_{\text{CG}}(r_{ij})}
+{\partial \lambda^a}\right)^b\right\rangle_{\text{AA}}\nonumber \\
+\left\langle\left(\frac{\partial^a U_{\text{CG}}}{\partial \lambda^a}\right)^b
+\right\rangle_{\text{CG}}&amp; =
+&amp;\left\langle\left(\sum_{i&lt;j}\frac{\partial^{a}u_{\text{CG}}(r_{ij})}
+{\partial \lambda^a}\right)^b\right\rangle_{\text{CG}}  ,\end{aligned}\end{split}\]</div>
+<p>where the sum is performed over all the CG site pairs <span class="math notranslate nohighlight">\((i,j)\)</span>,
+<span class="math notranslate nohighlight">\(a\)</span> stands for the 1<span class="math notranslate nohighlight">\(^{\text{st}}\)</span>,
+2<span class="math notranslate nohighlight">\(^{\text{nd}}\)</span>,… derivatives and <span class="math notranslate nohighlight">\(b\)</span> stands for the
+different powers, i.e., <span class="math notranslate nohighlight">\(b=1,2,...\)</span>. For the averages in the AA
+ensemble, first a single AA system simulation can be performed and RDFs
+between the CG sites in the AA ensemble can be saved, then the average
+CG energy derivatives in AA ensemble can be computed by processing the
+CG RDFs in the AA ensemble using the CG potentials at each iteration.
+For the averages in the CG ensemble, since the CG ensemble changes with
+the CG parameters, <span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span>, a short CG simulation is
+performed at each iteration to generate corresponding CG configurations.</p>
+<p>Comparisons between relative entropy and other coarse-graining methods
+are made in ref. <a class="reference internal" href="bibliography.html#rudzinski-coarse-graining-2011" id="id21"><span>[rudzinski_coarse-graining_2011]</span></a>
+and <a class="reference internal" href="bibliography.html#chaimovich2011" id="id22"><span>[Chaimovich2011]</span></a>. Chaimovich and
+Shell <a class="reference internal" href="bibliography.html#chaimovich2011" id="id23"><span>[Chaimovich2011]</span></a> have shown that for certain CG
+models relative entropy minimization produces the same CG potentials as
+other methods, e.g., it is equivalent to the IBI when CG interactions
+are modeled using finely tabulated pair additive potentials, and to the
+FM when a CG model is based on <span class="math notranslate nohighlight">\(N-\)</span>body interactions, where
+<span class="math notranslate nohighlight">\(N\)</span> is the number of degrees of freedom in the CG model. However,
+there are some advantages of using relative entropy based
+coarse-graining. Relative entropy method allows to use analytical
+function forms for CG potentials, which are desired in theoretical
+treatments, such as parametric study of CG potentials, whereas, methods,
+like IBI, use tabulated potentials. Recently Lyubartsev et.
+al <a class="reference internal" href="bibliography.html#lyubartsev2010systematic" id="id24"><span>[lyubartsev2010systematic]</span></a> have shows how to use
+IMC with an analytical function form, too. BI, IBI, and IMC methods are
+based on pair correlations and hence, they are only useful to optimize
+2-body CG potentials, whereas, relative entropy uses more generic metric
+which offers more flexibility in modeling CG interactions and not only
+2-body, but also 3-body (for example see
+ref. <a class="reference internal" href="bibliography.html#lu-coarse-graining-2014" id="id25"><span>[lu_coarse-graining_2014]</span></a>) and N-body CG
+potentials can be optimized. In addition to the CG potential
+optimization, the relative entropy metric can also be used to optimize
+an AA to CG mapping operator.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="input_files.html" class="btn btn-neutral float-right" title="Input files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

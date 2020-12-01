@@ -26,6 +26,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,9 +38,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="DFT + GWBSE Optimization Using CO" href="DFTGWBSE_OPTIMIZATION.html" />
-    <link rel="prev" title="XTP Tutorials" href="XTP-TUTORIAL.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,43 +90,16 @@
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg-manual/index.html">CSG Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">DFT + GWBSE Energy Calculation Using CH4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-with-the-default-options">Running a calculation with the default options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Partial-Charges">Partial Charges</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Spectrum-Calculation">Spectrum Calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">Votca Tutorial Guide</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
@@ -177,8 +150,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
         
       <li>DFT + GWBSE Energy Calculation Using CH4</li>
     
@@ -490,9 +461,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Runs excitation/charge transport tools
 
@@ -648,25 +619,25 @@ Registered partialcharges==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2020-11-30 3:28:54 Calculated Densities at Numerical Grid, Number of electrons is -4.36788e-08
-... ... 2020-11-30 3:28:54 Calculating ESP at CHELPG grid points
-... ... 2020-11-30 3:28:57 Netcharge constrained to 0
-... ...  Sum of fitted charges: 2.17742e-14
-... ...  RMSE of fit:  0.00273951
-... ...  RRMSE of fit: 0.130702
+... ... 2020-12-1 21:14:41 Calculated Densities at Numerical Grid, Number of electrons is -4.3679e-08
+... ... 2020-12-1 21:14:41 Calculating ESP at CHELPG grid points
+... ... 2020-12-1 21:14:43 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.18367e-14
+... ...  RMSE of fit:  0.00273952
+... ...  RRMSE of fit: 0.130703
 ... ... El Dipole from fitted charges [e*bohr]:
-                 dx = +0.7003 dy = -0.5168 dz = +0.4871 |d|^2 = +0.9949
+                 dx = +0.7004 dy = -0.5168 dz = +0.4871 |d|^2 = +0.9949
 ... ... El Dipole from exact qm density [e*bohr]:
-                 dx = +0.7566 dy = -0.5593 dz = +0.5272 |d|^2 = +1.1632
+                 dx = +0.7566 dy = -0.5592 dz = +0.5272 |d|^2 = +1.1632
 ... ... Written charges to methane.mps
 </pre></div></div>
 </div>
@@ -717,16 +688,16 @@ Registered spectrum==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing tool
 ... spectrum Evaluating tool
 ... spectrum  Using 1 threads
 ... ... Calculating absorption spectrum plot methane.orb
 ... ...  Loading QM data from methane.orb
-... ...  Considering 5 excitation with max energy 6.9598 eV / min wave length 179.923 nm
+... ...  Considering 5 excitation with max energy 6.9598 eV / min wave length 179.922 nm
 ... ...  Spectrum in energy range from  9 to 25 eV and with broadening of FWHM 0.2 eV written to file  methane_spectrum.dat
 </pre></div></div>
 </div>
@@ -802,15 +773,6 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="DFTGWBSE_OPTIMIZATION.html" class="btn btn-neutral float-right" title="DFT + GWBSE Optimization Using CO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="XTP-TUTORIAL.html" class="btn btn-neutral float-left" title="XTP Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

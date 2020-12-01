@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced topics &mdash; VOTCA 2021-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="reference.html" />
+    <link rel="prev" title="Methods" href="methods.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSG Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theoretical background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input_files.html">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preparing.html">Preparing coarse-grained runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#used-external-packages">Used external packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gromacs">GroMaCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#espresso">ESPResSo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dl-poly">DL_POLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gnuplot">Gnuplot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lammps">LAMMPS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dl-poly-interface">DL_POLY interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CSG Manual</a> &raquo;</li>
+        
+      <li>Advanced topics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/csg-manual/advanced_topics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="advanced-topics">
+<h1>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>Each sub-step of an iteration and all direct calls can be adjusted to
+the user needs. The internal part of the iterative framework is
+organized as follows: all scripts are called using two keywords</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call key1 key2
+</pre></div>
+</div>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">update</span> <span class="pre">imc</span></code> calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> script for the
+inverse Monte Carlo procedure. The corresponding keywords are listed in
+sec. [sec:csg_table] or can be output directly by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list
+</pre></div>
+</div>
+<p>It is advised not to change already implemented scripts. To customize a
+script or add a new one, copy the script to your own directory (set by )
+and redirect its call by creating your own <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> file in this
+directory which looks like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>key1 key2 script1 options
+key3 key4 script2
+</pre></div>
+</div>
+<p>If the local keys are already in use, the existing call will be
+overloaded.</p>
+<p>As an example, we will illustrate how to overload the script which calls
+the sampling package. The script runs from the GROMACSpackage only on
+one cpu. Our task will be to change the script so that GROMACSuses 8
+cpus, which is basically the same as adding mpirun options in .</p>
+<p>First we find out which script calls :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list <span class="p">|</span> grep gromacs
+</pre></div>
+</div>
+<p>The output should look as follows</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>init gromacs initalize_gromacs.sh
+prepare gromacs prepare_gromacs.sh
+run gromacs run_gromacs.sh
+pressure gromacs calc_pressure_gromacs.sh
+rdf gromacs calc_rdf_gromacs.sh
+imc_stat gromacs imc_stat_generic.sh
+convert_potential gromacs potential_to_gromacs.sh
+</pre></div>
+</div>
+<p>the third line indicates the script we need. If the output of is not
+clear, one can try to find the right script in sec. [sec:csg_table].
+Alternatively, check the folder</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;csg-installation&gt;/share/scripts/inverse
+</pre></div>
+</div>
+<p>for all available scripts.</p>
+<p>Analyzing the output of</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --cat run gromacs
+</pre></div>
+</div>
+<p>we can conclude that this is indeed the script we need as the content
+(in shorted form is):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical mdrun
+</pre></div>
+</div>
+<p>Now we can create our own <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code>, add a new script there, make it
+executable and overload the call of the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p SCRIPTDIR
+cp <span class="sb">`</span>csg_call --quiet --show run gromacs<span class="sb">`</span> SCRIPTDIR/my_run_gromacs.sh
+chmod <span class="m">755</span> SCRIPTDIR/my_run_gromacs.sh
+<span class="nb">echo</span> <span class="s2">&quot;run gromacs my_run_gromacs.sh&quot;</span> &gt;&gt; SCRIPTDIR/csg_table
+</pre></div>
+</div>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">my_run_gromacs.sh</span></code> is the name of the script and
+<code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> is the custom script directory, which can be a global or a
+local path. Now we change the last line of <code class="docutils literal notranslate"><span class="pre">my_run_gromacs.sh</span></code> to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical mpirun -np <span class="m">8</span> mdrun
+</pre></div>
+</div>
+<p>This completes the customization. Do not forget to add <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> to
+in the setting XMLfile (see sec. [sec:ref_options]).</p>
+<p>You can check the new script by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --scriptdir SCRIPTDIR --list
+csg_call --scriptdir SCRIPTDIR --run run gromacs
+</pre></div>
+</div>
+<p>Finally, do not forget to remove the license infomation and change the
+version number of the script.</p>
+</div>
+<div class="section" id="used-external-packages">
+<h2>Used external packages<a class="headerlink" href="#used-external-packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gromacs">
+<h3>GroMaCS<a class="headerlink" href="#gromacs" title="Permalink to this headline">¶</a></h3>
+<p>Get it from</p>
+<ul class="simple">
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="section" id="espresso">
+<h3>ESPResSo<a class="headerlink" href="#espresso" title="Permalink to this headline">¶</a></h3>
+<p>Get it from</p>
+</div>
+<div class="section" id="dl-poly">
+<h3>DL_POLY<a class="headerlink" href="#dl-poly" title="Permalink to this headline">¶</a></h3>
+<p>Get it from</p>
+</div>
+<div class="section" id="gnuplot">
+<h3>Gnuplot<a class="headerlink" href="#gnuplot" title="Permalink to this headline">¶</a></h3>
+<p>Get it from</p>
+</div>
+<div class="section" id="lammps">
+<h3>LAMMPS<a class="headerlink" href="#lammps" title="Permalink to this headline">¶</a></h3>
+<p>Get it from</p>
+</div>
+</div>
+<div class="section" id="dl-poly-interface">
+<h2>DL_POLY interface<a class="headerlink" href="#dl-poly-interface" title="Permalink to this headline">¶</a></h2>
+<p><strong>WARNING: The DL_POLYinterface is still experimental (in development)
+but it does support the Iterative Boltzmann Inversion and Inverse Monte
+Carlo schemes. The Force Matching might work as well, although it has
+not been tested thoroughly.</strong></p>
+<p>The DL_POLYinterface fully supports coarse-grain mapping of a full-atom
+system previuosly simulated with any version of DL_POLY, including
+DL_POLY-Classic. However, the full optimization of the effective
+potentials with the aid of iterative methods will only become possible
+when the new release of DL_POLY-4(4.06) is made public; the reason
+being the incapability of earlier DL_POLYversions of using
+user-specified tabulated force-fields for intramolecular, aka “bonded”,
+interactions: bonds, angles, dihedral angles (torsions). Below the
+coarse-graining and CG force-field optimization with the aid of the
+latest DL_POLY-4version (4.06+) are outlined.</p>
+<p>Running votcawith DL_POLY-4as MD simulation engine is very similar to
+doing so with GROMACS. The three types of required input files in the
+case of DL_POLYare: CONTROL – containing the simulation directives and
+parameters (instead of <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file for GROMACS), FIELD – the topology
+and force-field specifications (instead of <code class="docutils literal notranslate"><span class="pre">.top</span></code> and <code class="docutils literal notranslate"><span class="pre">.tpr</span></code> files),
+and CONFIG (instead of <code class="docutils literal notranslate"><span class="pre">.gro</span></code> file) – the initial configuration file,
+containing the MD cell matrix and particle coordinates (it can also
+include initial velocities and/or forces); for details see
+DL_POLY-4manual. Most of the votcatools and scripts described above in
+the case of using GROMACSwill work in the same manner, with the
+following conventional substitutions for the (default) file names used
+in options for votcascripts, as necessary:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dlpf = the topology read from FIELD or written to FIELD_CGV
+.dlpc = the configuration read from CONFIG or written to CONFIG_CGV
+.dlph = the trajectory read from HISTORY or written to HISTORY_CGV
+</pre></div>
+</div>
+<p>It is also possible to specify file names different from the standard
+DL_POLYconvention, in which case the user has to use the corresponding
+dot-preceded extension(s); for example: FA-FIELD.dlpf instead of FIELD
+or CG-HISTORY.dlph instead of HISTORY_CGV (see section
+[sec:ref_programs], as well as the man pages or output of
+votcacommands, with option <code class="docutils literal notranslate"><span class="pre">—help</span></code>).</p>
+<p>votcafollows the DL_POLYconventions for file names and formats. Thus,
+<code class="docutils literal notranslate"><span class="pre">csg_dlptopol</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_map</span></code> produce the CG topology (FIELD_CGV by
+default), configuration (CONFIG_CGV), and/or trajectory (HISTORY_CGV)
+files fully compatible with and usable by DL_POLY. <strong>Note that the
+ability of these tools to read and write a plethora of different file
+formats provides means to convert input and output files between the
+simulation packages supported by votca, e.g. GROMACS– DL_POLYor vice
+versa. The user is, however, strongly advised to check the resulting
+files for consistency before using them).</strong></p>
+<p>Similarly, the distribution analysis and potential/force generation
+utilities, such as <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> and votcascripts, will read and write
+DL_POLY-formatted files; in particular, the tabulated force-field files
+containing the potential and force/virial data: TABLE – for short-range
+(VdW) “non-bonded” interactions, TABBND, TABANG and TABDIH – for
+“bonded” interations: bonds, bending angles and dihedrals,
+correspondingly (for the format details see DL_POLY-4manual). Note,
+however, that the latter three files can only be used by
+DL_POLY-4(4.06+).</p>
+<p>The user is advised to search for “dlpoly” through the
+<code class="docutils literal notranslate"><span class="pre">csg_defaults.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> files and in scripts located in
+<code class="docutils literal notranslate"><span class="pre">share/votca/scripts/inverse/</span></code> in order to find out about the xml-tags
+and options specific for DL_POLY; see also sections [sec:ref_options]
+and [sec:csg_table].</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reference.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="methods.html" class="btn btn-neutral float-left" title="Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

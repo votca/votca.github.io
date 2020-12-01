@@ -26,6 +26,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,9 +38,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Developer and Contributor Guide" href="DEVELOPERS_GUIDE.html" />
-    <link rel="prev" title="QMMM workflow using LAMMPS and VOTCA-XTP" href="QMMM_LAMMPS.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,40 +90,16 @@
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg-manual/index.html">CSG Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Kinect Monte Carlo Simulations Using LAMMPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Setting-the-environment">Setting the environment</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Notes">Notes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-energies">Plotting the energies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Couplings-histrogram">Couplings histrogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-coupling-histogram">Plotting the coupling histogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">KMC simulations of multiple holes or electrons in periodic boundary conditions</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">Votca Tutorial Guide</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
@@ -174,8 +150,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
         
       <li>Kinect Monte Carlo Simulations Using LAMMPS</li>
     
@@ -564,9 +538,9 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... mapchecker
@@ -611,9 +585,9 @@ The option &#39;resolution_sites&#39; on file &#39;OPTIONFILES/eanalyze.xml&#39;
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... eanalyze
@@ -720,9 +694,9 @@ The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... ianalyze
@@ -803,9 +777,9 @@ The option &#39;carriertype&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; h
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... kmcmultiple
@@ -886,15 +860,6 @@ Changes have not been written to state file.
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="QMMM_LAMMPS.html" class="btn btn-neutral float-left" title="QMMM workflow using LAMMPS and VOTCA-XTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

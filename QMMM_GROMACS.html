@@ -26,6 +26,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,9 +38,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="QMMM workflow using LAMMPS and VOTCA-XTP" href="QMMM_LAMMPS.html" />
-    <link rel="prev" title="DFT + GWBSE Optimization Using CO" href="DFTGWBSE_OPTIMIZATION.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,47 +90,16 @@
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg-manual/index.html">CSG Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">QMMM workflow using GROMACS and VOTCA-XTP</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Coupling">Coupling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Coupling-analysis">Coupling analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#QMMM-calculations">QMMM calculations</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">Votca Tutorial Guide</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
@@ -181,8 +150,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
         
       <li>QMMM workflow using GROMACS and VOTCA-XTP</li>
     
@@ -495,9 +462,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Runs excitation/charge transport tools
 
@@ -586,9 +553,9 @@ Tools:
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_map, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_map, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Reading file MD_FILES/topol.tpr, VERSION 5.1.1 (single precision)
 Note: file tpx version 103, software tpx version 116
@@ -651,9 +618,9 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... mapchecker
@@ -730,9 +697,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... neighborlist an error occurred:
@@ -764,9 +731,9 @@ property not found: segmentname
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... einternal
@@ -809,9 +776,9 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... qmmm
@@ -885,9 +852,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... qmmm
@@ -909,18 +876,18 @@ T00 ERR ... Next job: ID = 0=&gt; [ 0%]
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -9.29812e-16
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.4086e-14
-T00 ERR ... 2020-11-30 3:23:22 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
-T00 ERR ... 2020-11-30 3:23:22 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-11-30 3:23:22 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-11-30 3:23:22 Evaluating polar 0
-T00 ERR ... 2020-11-30 3:23:22 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-11-30 3:23:22 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-11-30 3:23:22 CG: #iterations: 7, estimated error: 4.15528e-06
+T00 ERR ... 2020-12-1 21:10:26 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-12-1 21:10:26 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-1 21:10:26 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-1 21:10:26 Evaluating polar 0
+T00 ERR ... 2020-12-1 21:10:26 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-1 21:10:26 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-1 21:10:26 CG: #iterations: 7, estimated error: 4.15528e-06
 T00 ERR ...   Total static energy [hrt]= 8.121948104e-05
 T00 ERR ...   Total polar energy [hrt]= -0.0001235439304
 T00 ERR ...  Total energy [hrt]= -4.232444937e-05
-T00 ERR ... 2020-11-30 3:23:22 Evaluating static 1
-T00 ERR ... 2020-11-30 3:23:22 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-12-1 21:10:26 Evaluating static 1
+T00 ERR ... 2020-12-1 21:10:26 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -928,18 +895,18 @@ T00 ERR ... Next job: ID = 1
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -1
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-11-30 3:23:23 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
-T00 ERR ... 2020-11-30 3:23:23 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-11-30 3:23:23 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-11-30 3:23:23 Evaluating polar 0
-T00 ERR ... 2020-11-30 3:23:23 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-11-30 3:23:23 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-11-30 3:23:23 CG: #iterations: 27, estimated error: 8.348870892e-06
+T00 ERR ... 2020-12-1 21:10:26 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
+T00 ERR ... 2020-12-1 21:10:26 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-1 21:10:26 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-1 21:10:26 Evaluating polar 0
+T00 ERR ... 2020-12-1 21:10:26 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-1 21:10:26 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-1 21:10:26 CG: #iterations: 27, estimated error: 7.550807462e-06
 T00 ERR ...   Total static energy [hrt]= -0.0009055590147
 T00 ERR ...   Total polar energy [hrt]= -0.03058901395
 T00 ERR ...  Total energy [hrt]= -0.03149457296
-T00 ERR ... 2020-11-30 3:23:23 Evaluating static 1
-T00 ERR ... 2020-11-30 3:23:23 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-12-1 21:10:26 Evaluating static 1
+T00 ERR ... 2020-12-1 21:10:26 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -947,18 +914,18 @@ T00 ERR ... Next job: ID = 2
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= 1
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-11-30 3:23:23 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
-T00 ERR ... 2020-11-30 3:23:23 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-11-30 3:23:23 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-11-30 3:23:23 Evaluating polar 0
-T00 ERR ... 2020-11-30 3:23:23 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-11-30 3:23:23 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-11-30 3:23:23 CG: #iterations: 7, estimated error: 3.581023691e-06
+T00 ERR ... 2020-12-1 21:10:26 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
+T00 ERR ... 2020-12-1 21:10:26 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-1 21:10:26 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-1 21:10:26 Evaluating polar 0
+T00 ERR ... 2020-12-1 21:10:26 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-1 21:10:26 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-1 21:10:26 CG: #iterations: 7, estimated error: 3.581023691e-06
 T00 ERR ...   Total static energy [hrt]= 0.001994038371
 T00 ERR ...   Total polar energy [hrt]= -0.02768723938
 T00 ERR ...  Total energy [hrt]= -0.02569320101
-T00 ERR ... 2020-11-30 3:23:23 Evaluating static 1
-T00 ERR ... 2020-11-30 3:23:23 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-12-1 21:10:26 Evaluating static 1
+T00 ERR ... 2020-12-1 21:10:26 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -966,18 +933,18 @@ T00 ERR ... Next job: ID = 3
 T00 ERR ...  Regions created
 T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -7.632783294e-16
 T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
-T00 ERR ... 2020-11-30 3:23:23 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
-T00 ERR ... 2020-11-30 3:23:23 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
-T00 ERR ... 2020-11-30 3:23:23 --Inter Region SCF Iteration 1 of 1
-T00 ERR ... 2020-11-30 3:23:23 Evaluating polar 0
-T00 ERR ... 2020-11-30 3:23:23 Evaluating interaction between polar 0 and static 1
-T00 ERR ... 2020-11-30 3:23:23 Starting Solving for classical polarization with 255 degrees of freedom.
-T00 ERR ... 2020-11-30 3:23:23 CG: #iterations: 7, estimated error: 5.171454294e-06
+T00 ERR ... 2020-12-1 21:10:26 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
+T00 ERR ... 2020-12-1 21:10:26 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-1 21:10:26 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-1 21:10:26 Evaluating polar 0
+T00 ERR ... 2020-12-1 21:10:26 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-1 21:10:26 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-1 21:10:26 CG: #iterations: 7, estimated error: 5.171454294e-06
 T00 ERR ...   Total static energy [hrt]= 0.0002401293715
 T00 ERR ...   Total polar energy [hrt]= -0.0004782854375
 T00 ERR ...  Total energy [hrt]= -0.000238156066
-T00 ERR ... 2020-11-30 3:23:23 Evaluating static 1
-T00 ERR ... 2020-11-30 3:23:23 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-12-1 21:10:26 Evaluating static 1
+T00 ERR ... 2020-12-1 21:10:26 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -993,9 +960,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... qmmm
@@ -1043,9 +1010,9 @@ Wrote MD topology (step = 0, time = 0) to state.hdf5
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... eanalyze
@@ -1180,9 +1147,9 @@ The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/eqm.xml&
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... eqm
@@ -1221,9 +1188,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... eqm
@@ -1242,46 +1209,46 @@ MST ERR Registered 1000 jobs.
 T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 0=&gt; [ 0%]
-T00 ERR ... 2020-11-30 3:23:38 Evaluating site 0
+T00 ERR ... 2020-12-1 21:10:39 Evaluating site 0
 T00 ERR ... Running DFT
 T00 ERR ... Running GWBSE
 T00 ERR ... Running ESPFIT
 T00 ERR ... ===== Running on 2 threads =====
-T00 ERR ... 2020-11-30 3:23:41 Calculated Densities at Numerical Grid, Number of electrons is -2.96149e-08
-T00 ERR ... 2020-11-30 3:23:41 Calculating ESP at CHELPG grid points
-T00 ERR ... 2020-11-30 3:23:42 Netcharge constrained to 0
-T00 ERR ...  Sum of fitted charges: 5.55112e-17
-T00 ERR ...  RMSE of fit:  0.0012396
-T00 ERR ...  RRMSE of fit: 0.0750892
+T00 ERR ... 2020-12-1 21:10:41 Calculated Densities at Numerical Grid, Number of electrons is -2.96112e-08
+T00 ERR ... 2020-12-1 21:10:41 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-12-1 21:10:42 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 1.38778e-17
+T00 ERR ...  RMSE of fit:  0.00123961
+T00 ERR ...  RRMSE of fit: 0.0750903
 T00 ERR ... El Dipole from fitted charges [e*bohr]:
-                 dx = +0.4859 dy = -0.5005 dz = +0.3715 |d|^2 = +0.6246
+                 dx = +0.4857 dy = -0.5005 dz = +0.3716 |d|^2 = +0.6246
 T00 ERR ... El Dipole from exact qm density [e*bohr]:
-                 dx = +0.4981 dy = -0.5142 dz = +0.3816 |d|^2 = +0.6581
+                 dx = +0.4980 dy = -0.5142 dz = +0.3817 |d|^2 = +0.6581
 T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_0_n2s1.mps
-T00 ERR ... 2020-11-30 3:23:42 Finished evaluating site 0
+T00 ERR ... 2020-12-1 21:10:42 Finished evaluating site 0
 T00 ERR ... Saving data to molecule_0.orb
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 1
-T00 ERR ... 2020-11-30 3:23:42 Evaluating site 1
+T00 ERR ... 2020-12-1 21:10:42 Evaluating site 1
 T00 ERR ... Running DFT
 T00 ERR ... Running GWBSE
 T00 ERR ... Running ESPFIT
 T00 ERR ... ===== Running on 2 threads =====
-T00 ERR ... 2020-11-30 3:23:44 Calculated Densities at Numerical Grid, Number of electrons is -2.40906e-08
-T00 ERR ... 2020-11-30 3:23:44 Calculating ESP at CHELPG grid points
-T00 ERR ... 2020-11-30 3:23:46 Netcharge constrained to 0
-T00 ERR ...  Sum of fitted charges: 2.22045e-16
-T00 ERR ...  RMSE of fit:  0.00122211
-T00 ERR ...  RRMSE of fit: 0.0717657
+T00 ERR ... 2020-12-1 21:10:44 Calculated Densities at Numerical Grid, Number of electrons is -2.4092e-08
+T00 ERR ... 2020-12-1 21:10:44 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-12-1 21:10:45 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 1.66533e-16
+T00 ERR ...  RMSE of fit:  0.00122209
+T00 ERR ...  RRMSE of fit: 0.071764
 T00 ERR ... El Dipole from fitted charges [e*bohr]:
                  dx = +0.5647 dy = +0.1846 dz = +0.5549 |d|^2 = +0.6609
 T00 ERR ... El Dipole from exact qm density [e*bohr]:
                  dx = +0.5797 dy = +0.1893 dz = +0.5696 |d|^2 = +0.6962
 T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_1_n2s1.mps
-T00 ERR ... 2020-11-30 3:23:46 Finished evaluating site 1
+T00 ERR ... 2020-12-1 21:10:45 Finished evaluating site 1
 T00 ERR ... Saving data to molecule_1.orb
 T00 ERR ... Reporting job results
 
@@ -1393,9 +1360,9 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... iqm
@@ -1446,9 +1413,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... iqm
@@ -1489,9 +1456,9 @@ no element found: iostream error
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... iqm
@@ -1570,9 +1537,9 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/iexcitoncl.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... iexcitoncl
@@ -1615,9 +1582,9 @@ sed: can&#39;t read exciton.job: No such file or directory
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... iexcitoncl
@@ -1672,9 +1639,9 @@ The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_run, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... ianalyze
@@ -1714,9 +1681,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... qmmm
@@ -1758,9 +1725,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_parallel, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:17:04)
-votca_csg, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:10:15)
-votca_tools, version 2021-dev gitid: adc7fb3 (compiled Nov 30 2020, 03:09:17)
+xtp_parallel, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 21:02:31)
+votca_csg, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:49:04)
+votca_tools, version 2021-dev gitid: 2c64f2f (compiled Dec  1 2020, 20:46:46)
 
 Initializing calculator
 ... qmmm
@@ -1780,28 +1747,28 @@ T00 ERR ... Requesting next job
 T00 ERR ... Assign jobs from stack
 T00 ERR ... Next job: ID = 0=&gt; [ 0%]
 T00 ERR ...  Regions created
-T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.80089e+14
+T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.80327e+14
 T00 ERR ... Id: 1 type: polar size: 92 charge[e]= -5.09315e-15
 T00 ERR ... Id: 2 type: static size: 178 charge[e]= -9.86711e-15
-T00 ERR ... 2020-11-30 3:24:9 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
-T00 ERR ... 2020-11-30 3:24:9 --Inter Region SCF Iteration 1 of 50
-T00 ERR ... 2020-11-30 3:24:9 Evaluating qm 0
-T00 ERR ... 2020-11-30 3:24:9 Evaluating interaction between qm 0 and polar 1
-T00 ERR ... 2020-11-30 3:24:9 Evaluating interaction between qm 0 and static 2
+T00 ERR ... 2020-12-1 21:11:5 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-12-1 21:11:5 --Inter Region SCF Iteration 1 of 50
+T00 ERR ... 2020-12-1 21:11:5 Evaluating qm 0
+T00 ERR ... 2020-12-1 21:11:5 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-12-1 21:11:5 Evaluating interaction between qm 0 and static 2
 T00 ERR ... Running DFT calculation
-T00 ERR ... 2020-11-30 3:24:9 Using 2 threads
-T00 ERR ... 2020-11-30 3:24:9 Using native Eigen implementation, no BLAS overload
+T00 ERR ... 2020-12-1 21:11:5 Using 2 threads
+T00 ERR ... 2020-12-1 21:11:5 Using native Eigen implementation, no BLAS overload
 T00 ERR ...  Molecule Coordinates [A]
 T00 ERR ...   C   +30.3000 +1.2704 +5.5205
 T00 ERR ...   H   +31.2392 +1.4802 +6.0301
 T00 ERR ...   H   +30.4910 +0.6554 +4.6433
 T00 ERR ...   H   +29.8500 +2.2100 +5.2100
 T00 ERR ...   H   +29.6200 +0.7500 +6.2000
-T00 ERR ... 2020-11-30 3:24:9 Loaded DFT Basis Set def2-svp with 34 functions
-T00 ERR ... 2020-11-30 3:24:9 Total number of electrons: 10
-T00 ERR ... 2020-11-30 3:24:9 Smallest value of AOOverlap matrix is 0.013882
-T00 ERR ... 2020-11-30 3:24:9 Removed 0 basisfunction from inverse overlap matrix
-T00 ERR ... 2020-11-30 3:24:9 Convergence Options:
+T00 ERR ... 2020-12-1 21:11:5 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-12-1 21:11:5 Total number of electrons: 10
+T00 ERR ... 2020-12-1 21:11:5 Smallest value of AOOverlap matrix is 0.013882
+T00 ERR ... 2020-12-1 21:11:5 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-12-1 21:11:5 Convergence Options:
 T00 ERR ...              Delta E [Ha]: 1e-07
 T00 ERR ...              DIIS max error: 1e-07
 T00 ERR ...              DIIS histlength: 20
@@ -1811,69 +1778,69 @@ T00 ERR ...              Deleting oldest element from DIIS hist
 T00 ERR ...              Levelshift[Ha]: 0
 T00 ERR ...              Levelshift end: 0.2
 T00 ERR ...              Mixing Parameter alpha: 0.7
-T00 ERR ... 2020-11-30 3:24:9 Constructed independent particle hamiltonian
-T00 ERR ... 2020-11-30 3:24:9 Nuclear Repulsion Energy is 13.4434088
-T00 ERR ... 2020-11-30 3:24:9 Using hybrid functional with alpha=0.25
-T00 ERR ... 2020-11-30 3:24:9 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
-T00 ERR ... 2020-11-30 3:24:9 Setup Initial Guess using: atom
-T00 ERR ... 2020-11-30 3:24:9 Calculating atom density for C
-T00 ERR ... 2020-11-30 3:24:11 Calculating atom density for H
-T00 ERR ... 2020-11-30 3:24:11 STARTING SCF cycle
+T00 ERR ... 2020-12-1 21:11:5 Constructed independent particle hamiltonian
+T00 ERR ... 2020-12-1 21:11:5 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-12-1 21:11:5 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-12-1 21:11:5 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-12-1 21:11:5 Setup Initial Guess using: atom
+T00 ERR ... 2020-12-1 21:11:5 Calculating atom density for C
+T00 ERR ... 2020-12-1 21:11:7 Calculating atom density for H
+T00 ERR ... 2020-12-1 21:11:7 STARTING SCF cycle
 T00 ERR ...  --------------------------------------------------------------------------
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:11 Iteration 1 of 100
-T00 ERR ... 2020-11-30 3:24:12 Total Energy -40.3149037911
-T00 ERR ... 2020-11-30 3:24:12 DIIs error 0.223821707784
-T00 ERR ... 2020-11-30 3:24:12 Delta Etot 0
+T00 ERR ... 2020-12-1 21:11:7 Iteration 1 of 100
+T00 ERR ... 2020-12-1 21:11:7 Total Energy -40.3149037911
+T00 ERR ... 2020-12-1 21:11:7 DIIs error 0.223821707784
+T00 ERR ... 2020-12-1 21:11:7 Delta Etot 0
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:12 Iteration 2 of 100
-T00 ERR ... 2020-11-30 3:24:12 Total Energy -40.3620818026
-T00 ERR ... 2020-11-30 3:24:12 DIIs error 0.133955475023
-T00 ERR ... 2020-11-30 3:24:12 Delta Etot -0.047178011511
+T00 ERR ... 2020-12-1 21:11:7 Iteration 2 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.3620818026
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 0.133955475023
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot -0.047178011511
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:12 Iteration 3 of 100
-T00 ERR ... 2020-11-30 3:24:12 Total Energy -40.3839052883
-T00 ERR ... 2020-11-30 3:24:12 DIIs error 0.0840229566757
-T00 ERR ... 2020-11-30 3:24:12 Delta Etot -0.0218234857187
+T00 ERR ... 2020-12-1 21:11:8 Iteration 3 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.3839052883
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 0.0840229566758
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot -0.0218234857187
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:12 Iteration 4 of 100
-T00 ERR ... 2020-11-30 3:24:12 Total Energy -40.4256757375
-T00 ERR ... 2020-11-30 3:24:12 DIIs error 0.0278206441013
-T00 ERR ... 2020-11-30 3:24:12 Delta Etot -0.0417704491869
+T00 ERR ... 2020-12-1 21:11:8 Iteration 4 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.4256757375
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 0.0278206441013
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot -0.0417704491869
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:12 Iteration 5 of 100
-T00 ERR ... 2020-11-30 3:24:12 Total Energy -40.4253640879
-T00 ERR ... 2020-11-30 3:24:12 DIIs error 0.0299204781054
-T00 ERR ... 2020-11-30 3:24:12 Delta Etot 0.00031164956475
+T00 ERR ... 2020-12-1 21:11:8 Iteration 5 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.4253640879
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 0.0299204781054
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot 0.000311649564821
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:12 Iteration 6 of 100
-T00 ERR ... 2020-11-30 3:24:13 Total Energy -40.4283324906
-T00 ERR ... 2020-11-30 3:24:13 DIIs error 0.000900002012838
-T00 ERR ... 2020-11-30 3:24:13 Delta Etot -0.00296840261804
+T00 ERR ... 2020-12-1 21:11:8 Iteration 6 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.4283324906
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 0.000900002013063
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot -0.00296840261815
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:13 Iteration 7 of 100
-T00 ERR ... 2020-11-30 3:24:13 Total Energy -40.4283348496
-T00 ERR ... 2020-11-30 3:24:13 DIIs error 6.35520023019e-05
-T00 ERR ... 2020-11-30 3:24:13 Delta Etot -2.35906504997e-06
+T00 ERR ... 2020-12-1 21:11:8 Iteration 7 of 100
+T00 ERR ... 2020-12-1 21:11:8 Total Energy -40.4283348496
+T00 ERR ... 2020-12-1 21:11:8 DIIs error 6.3552002304e-05
+T00 ERR ... 2020-12-1 21:11:8 Delta Etot -2.35906497181e-06
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:13 Iteration 8 of 100
-T00 ERR ... 2020-11-30 3:24:13 Total Energy -40.4283348731
-T00 ERR ... 2020-11-30 3:24:13 DIIs error 6.32308005167e-06
-T00 ERR ... 2020-11-30 3:24:13 Delta Etot -2.34681536426e-08
+T00 ERR ... 2020-12-1 21:11:8 Iteration 8 of 100
+T00 ERR ... 2020-12-1 21:11:9 Total Energy -40.4283348731
+T00 ERR ... 2020-12-1 21:11:9 DIIs error 6.32308004393e-06
+T00 ERR ... 2020-12-1 21:11:9 Delta Etot -2.3468309962e-08
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:13 Iteration 9 of 100
-T00 ERR ... 2020-11-30 3:24:13 Total Energy -40.4283348733
-T00 ERR ... 2020-11-30 3:24:13 DIIs error 6.99118311868e-07
-T00 ERR ... 2020-11-30 3:24:13 Delta Etot -1.50059520365e-10
+T00 ERR ... 2020-12-1 21:11:9 Iteration 9 of 100
+T00 ERR ... 2020-12-1 21:11:9 Total Energy -40.4283348733
+T00 ERR ... 2020-12-1 21:11:9 DIIs error 6.99118307988e-07
+T00 ERR ... 2020-12-1 21:11:9 Delta Etot -1.499387281e-10
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:13 Iteration 10 of 100
-T00 ERR ... 2020-11-30 3:24:13 Total Energy -40.4283348733
-T00 ERR ... 2020-11-30 3:24:13 DIIs error 6.36389787462e-08
-T00 ERR ... 2020-11-30 3:24:13 Delta Etot -1.4921397451e-12
-T00 ERR ... 2020-11-30 3:24:13 Total Energy has converged to -1.49213975e-12[Ha] after 10 iterations. DIIS error is converged up to 6.36389787e-08
-T00 ERR ... 2020-11-30 3:24:13 Final Single Point Energy -40.4283348733 Ha
-T00 ERR ... 2020-11-30 3:24:13 Final Local Exc contribution -5.19288298396 Ha
-T00 ERR ... 2020-11-30 3:24:13 Final Non Local Ex contribution -1.64346677797 Ha
+T00 ERR ... 2020-12-1 21:11:9 Iteration 10 of 100
+T00 ERR ... 2020-12-1 21:11:9 Total Energy -40.4283348733
+T00 ERR ... 2020-12-1 21:11:9 DIIs error 6.36389835613e-08
+T00 ERR ... 2020-12-1 21:11:9 Delta Etot -1.44950718095e-12
+T00 ERR ... 2020-12-1 21:11:9 Total Energy has converged to -1.44950718e-12[Ha] after 10 iterations. DIIS error is converged up to 6.36389836e-08
+T00 ERR ... 2020-12-1 21:11:9 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-12-1 21:11:9 Final Local Exc contribution -5.19288298396 Ha
+T00 ERR ... 2020-12-1 21:11:9 Final Non Local Ex contribution -1.64346677797 Ha
 T00 ERR ...   Orbital energies:
 T00 ERR ...   index occupation energy(Hartree)
 T00 ERR ...      0      2   -10.2155440076
@@ -1910,43 +1877,43 @@ T00 ERR ...     30      0   +2.6358795913
 T00 ERR ...     31      0   +2.9321002159
 T00 ERR ...     32      0   +2.9387290892
 T00 ERR ...     33      0   +2.9434071080
-T00 ERR ... 2020-11-30 3:24:13 Electric Dipole is[e*bohr]:
-                 dx=0.000671699250935
-                 dy=0.00319877917034
+T00 ERR ... 2020-12-1 21:11:9 Electric Dipole is[e*bohr]:
+                 dx=0.000671699250942
+                 dy=0.00319877917032
                  dz=-0.00105485803806
 T00 ERR ... Writing result to votca.orb
 T00 ERR ... QM energy[Hrt]: -40.42833487
-T00 ERR ... 2020-11-30 3:24:13 Evaluating polar 1
-T00 ERR ... 2020-11-30 3:24:13 Evaluating interaction between polar 1 and qm 0
-T00 ERR ... 2020-11-30 3:24:14 Evaluating interaction between polar 1 and static 2
-T00 ERR ... 2020-11-30 3:24:14 Starting Solving for classical polarization with 1380 degrees of freedom.
-T00 ERR ... 2020-11-30 3:24:14 CG: #iterations: 7, estimated error: 5.51883558246e-06
+T00 ERR ... 2020-12-1 21:11:9 Evaluating polar 1
+T00 ERR ... 2020-12-1 21:11:9 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-12-1 21:11:9 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-12-1 21:11:9 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-12-1 21:11:9 CG: #iterations: 7, estimated error: 5.51883558246e-06
 T00 ERR ...   Total static energy [hrt]= 0.0009102654542
 T00 ERR ...   Total polar energy [hrt]= -0.000623037336
 T00 ERR ...  Total energy [hrt]= 0.0002872281182
-T00 ERR ... 2020-11-30 3:24:14 Evaluating static 2
-T00 ERR ... 2020-11-30 3:24:14 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... 2020-12-1 21:11:9 Evaluating static 2
+T00 ERR ... 2020-12-1 21:11:9 Writing checkpoint to checkpoint_iter_1.hdf5
 T00 ERR ...  Region:qm 0 is not converged deltaE=-40.42833487 RMS Dmat=0.0813492263 MaxDmat=2.07806555
-T00 ERR ... 2020-11-30 3:24:14 Region:polar 1 is not converged deltaE=0.0002872281182
-T00 ERR ... 2020-11-30 3:24:14 --Total Energy all regions -40.42804765
-T00 ERR ... 2020-11-30 3:24:14 --Inter Region SCF Iteration 2 of 50
-T00 ERR ... 2020-11-30 3:24:14 Evaluating qm 0
-T00 ERR ... 2020-11-30 3:24:14 Evaluating interaction between qm 0 and polar 1
-T00 ERR ... 2020-11-30 3:24:14 Evaluating interaction between qm 0 and static 2
+T00 ERR ... 2020-12-1 21:11:10 Region:polar 1 is not converged deltaE=0.0002872281182
+T00 ERR ... 2020-12-1 21:11:10 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-12-1 21:11:10 --Inter Region SCF Iteration 2 of 50
+T00 ERR ... 2020-12-1 21:11:10 Evaluating qm 0
+T00 ERR ... 2020-12-1 21:11:10 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-12-1 21:11:10 Evaluating interaction between qm 0 and static 2
 T00 ERR ... Running DFT calculation
-T00 ERR ... 2020-11-30 3:24:14 Using 2 threads
-T00 ERR ... 2020-11-30 3:24:14 Using native Eigen implementation, no BLAS overload
+T00 ERR ... 2020-12-1 21:11:10 Using 2 threads
+T00 ERR ... 2020-12-1 21:11:10 Using native Eigen implementation, no BLAS overload
 T00 ERR ...  Molecule Coordinates [A]
 T00 ERR ...   C   +30.3000 +1.2704 +5.5205
 T00 ERR ...   H   +31.2392 +1.4802 +6.0301
 T00 ERR ...   H   +30.4910 +0.6554 +4.6433
 T00 ERR ...   H   +29.8500 +2.2100 +5.2100
 T00 ERR ...   H   +29.6200 +0.7500 +6.2000
-T00 ERR ... 2020-11-30 3:24:14 Loaded DFT Basis Set def2-svp with 34 functions
-T00 ERR ... 2020-11-30 3:24:14 Total number of electrons: 10
-T00 ERR ... 2020-11-30 3:24:14 Smallest value of AOOverlap matrix is 0.01388201597
-T00 ERR ... 2020-11-30 3:24:14 Removed 0 basisfunction from inverse overlap matrix
-T00 ERR ... 2020-11-30 3:24:14 Convergence Options:
+T00 ERR ... 2020-12-1 21:11:10 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-12-1 21:11:10 Total number of electrons: 10
+T00 ERR ... 2020-12-1 21:11:10 Smallest value of AOOverlap matrix is 0.01388201597
+T00 ERR ... 2020-12-1 21:11:10 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-12-1 21:11:10 Convergence Options:
 T00 ERR ...              Delta E [Ha]: 1e-07
 T00 ERR ...              DIIS max error: 1e-07
 T00 ERR ...              DIIS histlength: 20
@@ -1956,69 +1923,69 @@ T00 ERR ...              Deleting oldest element from DIIS hist
 T00 ERR ...              Levelshift[Ha]: 0
 T00 ERR ...              Levelshift end: 0.2
 T00 ERR ...              Mixing Parameter alpha: 0.7
-T00 ERR ... 2020-11-30 3:24:14 Constructed independent particle hamiltonian
-T00 ERR ... 2020-11-30 3:24:14 Nuclear Repulsion Energy is 13.4434088
-T00 ERR ... 2020-11-30 3:24:14 Using hybrid functional with alpha=0.25
-T00 ERR ... 2020-11-30 3:24:14 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
-T00 ERR ... 2020-11-30 3:24:14 Setup Initial Guess using: atom
-T00 ERR ... 2020-11-30 3:24:14 Calculating atom density for C
-T00 ERR ... 2020-11-30 3:24:17 Calculating atom density for H
-T00 ERR ... 2020-11-30 3:24:17 STARTING SCF cycle
+T00 ERR ... 2020-12-1 21:11:10 Constructed independent particle hamiltonian
+T00 ERR ... 2020-12-1 21:11:10 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-12-1 21:11:10 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-12-1 21:11:10 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-12-1 21:11:10 Setup Initial Guess using: atom
+T00 ERR ... 2020-12-1 21:11:10 Calculating atom density for C
+T00 ERR ... 2020-12-1 21:11:12 Calculating atom density for H
+T00 ERR ... 2020-12-1 21:11:12 STARTING SCF cycle
 T00 ERR ...  --------------------------------------------------------------------------
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:17 Iteration 1 of 100
-T00 ERR ... 2020-11-30 3:24:17 Total Energy -40.3149037911
-T00 ERR ... 2020-11-30 3:24:17 DIIs error 0.223821707784
-T00 ERR ... 2020-11-30 3:24:17 Delta Etot 0
+T00 ERR ... 2020-12-1 21:11:12 Iteration 1 of 100
+T00 ERR ... 2020-12-1 21:11:12 Total Energy -40.3149037911
+T00 ERR ... 2020-12-1 21:11:12 DIIs error 0.223821707784
+T00 ERR ... 2020-12-1 21:11:12 Delta Etot 0
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:17 Iteration 2 of 100
-T00 ERR ... 2020-11-30 3:24:17 Total Energy -40.3620818026
-T00 ERR ... 2020-11-30 3:24:17 DIIs error 0.133955475023
-T00 ERR ... 2020-11-30 3:24:17 Delta Etot -0.047178011511
+T00 ERR ... 2020-12-1 21:11:12 Iteration 2 of 100
+T00 ERR ... 2020-12-1 21:11:12 Total Energy -40.3620818026
+T00 ERR ... 2020-12-1 21:11:12 DIIs error 0.133955475023
+T00 ERR ... 2020-12-1 21:11:12 Delta Etot -0.047178011511
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:17 Iteration 3 of 100
-T00 ERR ... 2020-11-30 3:24:17 Total Energy -40.3839052883
-T00 ERR ... 2020-11-30 3:24:17 DIIs error 0.0840229566758
-T00 ERR ... 2020-11-30 3:24:17 Delta Etot -0.0218234857188
+T00 ERR ... 2020-12-1 21:11:12 Iteration 3 of 100
+T00 ERR ... 2020-12-1 21:11:12 Total Energy -40.3839052883
+T00 ERR ... 2020-12-1 21:11:12 DIIs error 0.0840229566758
+T00 ERR ... 2020-12-1 21:11:12 Delta Etot -0.0218234857187
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:17 Iteration 4 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4256757375
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 0.0278206441013
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot -0.0417704491869
+T00 ERR ... 2020-12-1 21:11:12 Iteration 4 of 100
+T00 ERR ... 2020-12-1 21:11:12 Total Energy -40.4256757375
+T00 ERR ... 2020-12-1 21:11:12 DIIs error 0.0278206441013
+T00 ERR ... 2020-12-1 21:11:12 Delta Etot -0.0417704491869
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 5 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4253640879
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 0.0299204781054
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot 0.000311649564743
+T00 ERR ... 2020-12-1 21:11:12 Iteration 5 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4253640879
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 0.0299204781054
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot 0.000311649564829
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 6 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4283324906
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 0.000900002013011
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot -0.00296840261804
+T00 ERR ... 2020-12-1 21:11:13 Iteration 6 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4283324906
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 0.000900002012989
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot -0.00296840261815
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 7 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4283348496
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 6.35520023032e-05
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot -2.35906507839e-06
+T00 ERR ... 2020-12-1 21:11:13 Iteration 7 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4283348496
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 6.3552002305e-05
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot -2.35906497892e-06
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 8 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4283348731
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 6.32308004922e-06
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot -2.34682033806e-08
+T00 ERR ... 2020-12-1 21:11:13 Iteration 8 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4283348731
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 6.32308004231e-06
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot -2.34682318023e-08
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 9 of 100
-T00 ERR ... 2020-11-30 3:24:18 Total Energy -40.4283348733
-T00 ERR ... 2020-11-30 3:24:18 DIIs error 6.99118320639e-07
-T00 ERR ... 2020-11-30 3:24:18 Delta Etot -1.49952938955e-10
+T00 ERR ... 2020-12-1 21:11:13 Iteration 9 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4283348733
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 6.99118313185e-07
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot -1.50023993228e-10
 T00 ERR ...
-T00 ERR ... 2020-11-30 3:24:18 Iteration 10 of 100
-T00 ERR ... 2020-11-30 3:24:19 Total Energy -40.4283348733
-T00 ERR ... 2020-11-30 3:24:19 DIIs error 6.3638979692e-08
-T00 ERR ... 2020-11-30 3:24:19 Delta Etot -1.50635059981e-12
-T00 ERR ... 2020-11-30 3:24:19 Total Energy has converged to -1.5063506e-12[Ha] after 10 iterations. DIIS error is converged up to 6.36389797e-08
-T00 ERR ... 2020-11-30 3:24:19 Final Single Point Energy -40.4283348733 Ha
-T00 ERR ... 2020-11-30 3:24:19 Final Local Exc contribution -5.19288298396 Ha
-T00 ERR ... 2020-11-30 3:24:19 Final Non Local Ex contribution -1.64346677797 Ha
+T00 ERR ... 2020-12-1 21:11:13 Iteration 10 of 100
+T00 ERR ... 2020-12-1 21:11:13 Total Energy -40.4283348733
+T00 ERR ... 2020-12-1 21:11:13 DIIs error 6.36389753269e-08
+T00 ERR ... 2020-12-1 21:11:13 Delta Etot -1.37845290737e-12
+T00 ERR ... 2020-12-1 21:11:13 Total Energy has converged to -1.37845291e-12[Ha] after 10 iterations. DIIS error is converged up to 6.36389753e-08
+T00 ERR ... 2020-12-1 21:11:13 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-12-1 21:11:13 Final Local Exc contribution -5.19288298396 Ha
+T00 ERR ... 2020-12-1 21:11:13 Final Non Local Ex contribution -1.64346677797 Ha
 T00 ERR ...   Orbital energies:
 T00 ERR ...   index occupation energy(Hartree)
 T00 ERR ...      0      2   -10.2155440076
@@ -2055,26 +2022,26 @@ T00 ERR ...     30      0   +2.6358795913
 T00 ERR ...     31      0   +2.9321002159
 T00 ERR ...     32      0   +2.9387290892
 T00 ERR ...     33      0   +2.9434071080
-T00 ERR ... 2020-11-30 3:24:19 Electric Dipole is[e*bohr]:
-                 dx=0.000671699250936
-                 dy=0.00319877917033
+T00 ERR ... 2020-12-1 21:11:13 Electric Dipole is[e*bohr]:
+                 dx=0.000671699250927
+                 dy=0.00319877917031
                  dz=-0.00105485803806
 T00 ERR ... Writing result to votca.orb
 T00 ERR ... QM energy[Hrt]: -40.42833487
-T00 ERR ... 2020-11-30 3:24:19 Evaluating polar 1
-T00 ERR ... 2020-11-30 3:24:19 Evaluating interaction between polar 1 and qm 0
-T00 ERR ... 2020-11-30 3:24:19 Evaluating interaction between polar 1 and static 2
-T00 ERR ... 2020-11-30 3:24:19 Starting Solving for classical polarization with 1380 degrees of freedom.
-T00 ERR ... 2020-11-30 3:24:19 CG: #iterations: 0, estimated error: 5.51883557555e-06
+T00 ERR ... 2020-12-1 21:11:13 Evaluating polar 1
+T00 ERR ... 2020-12-1 21:11:13 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-12-1 21:11:14 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-12-1 21:11:14 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-12-1 21:11:14 CG: #iterations: 0, estimated error: 5.51883558844e-06
 T00 ERR ...   Total static energy [hrt]= 0.0009102654542
 T00 ERR ...   Total polar energy [hrt]= -0.000623037336
 T00 ERR ...  Total energy [hrt]= 0.0002872281182
-T00 ERR ... 2020-11-30 3:24:19 Evaluating static 2
-T00 ERR ... 2020-11-30 3:24:19 Writing checkpoint to checkpoint_iter_2.hdf5
-T00 ERR ...  Region:qm 0 is converged deltaE=0 RMS Dmat=8.79338216e-15 MaxDmat=9.421630143e-14
-T00 ERR ... 2020-11-30 3:24:19 Region:polar 1 is converged deltaE=0
-T00 ERR ... 2020-11-30 3:24:19 --Total Energy all regions -40.42804765
-T00 ERR ... 2020-11-30 3:24:19 Job converged after 2 iterations.
+T00 ERR ... 2020-12-1 21:11:14 Evaluating static 2
+T00 ERR ... 2020-12-1 21:11:14 Writing checkpoint to checkpoint_iter_2.hdf5
+T00 ERR ...  Region:qm 0 is converged deltaE=7.105427358e-14 RMS Dmat=7.623559378e-15 MaxDmat=9.195422201e-14
+T00 ERR ... 2020-12-1 21:11:14 Region:polar 1 is converged deltaE=0
+T00 ERR ... 2020-12-1 21:11:14 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-12-1 21:11:14 Job converged after 2 iterations.
 T00 ERR ... Reporting job results
 
 T00 ERR ... Requesting next job
@@ -2103,15 +2070,6 @@ Changes have not been written to state file.
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="QMMM_LAMMPS.html" class="btn btn-neutral float-right" title="QMMM workflow using LAMMPS and VOTCA-XTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="DFTGWBSE_OPTIMIZATION.html" class="btn btn-neutral float-left" title="DFT + GWBSE Optimization Using CO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

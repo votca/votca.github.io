@@ -26,6 +26,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,9 +38,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="QM Packages" href="qmpackages.html" />
-    <link rel="prev" title="partialcharges" href="partialcharges.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,42 +89,17 @@
 <li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="CSG-MANUAL.html">CSG Manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map.html">xtp_map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel.html">xtp_parallel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run.html">xtp_run</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_tools.html">xtp_tools</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="apdft.html">apdft</a></li>
-<li class="toctree-l4"><a class="reference internal" href="coupling.html">coupling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="densityanalysis.html">densityanalysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="dftgwbse.html">dftgwbse</a></li>
-<li class="toctree-l4"><a class="reference internal" href="excitoncoupling.html">excitoncoupling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gencube.html">gencube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="log2mps.html">log2mps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="molpol.html">molpol</a></li>
-<li class="toctree-l4"><a class="reference internal" href="partialcharges.html">partialcharges</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">spectrum</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-manual/index.html">CSG Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="CSG-TUTORIAL.html">CSG Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">Votca Tutorial Guide</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
@@ -175,12 +150,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="XTP-MANUAL.html">XTP Manual</a> &raquo;</li>
-        
-          <li><a href="workflows_and_calculators.html">Workflow and Calculator Structure</a> &raquo;</li>
-        
-          <li><a href="xtp_tools.html">xtp_tools</a> &raquo;</li>
         
       <li>spectrum</li>
     
@@ -301,15 +270,6 @@ The following table contains the defaults input options for the calculator,</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qmpackages.html" class="btn btn-neutral float-right" title="QM Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="partialcharges.html" class="btn btn-neutral float-left" title="partialcharges" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
