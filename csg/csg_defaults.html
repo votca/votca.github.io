@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reference &mdash; VOTCA 2021-dev documentation</title>
+  <title>&lt;no title&gt; &mdash; VOTCA 2021-dev documentation</title>
   
 
   
@@ -38,9 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="bibliography.html" />
-    <link rel="prev" title="Advanced topics" href="advanced_topics.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,28 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSG Manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theoretical background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="input_files.html">Input files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preparing.html">Preparing coarse-grained runs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Reference</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mapping-file">Mapping file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#topology-file">Topology file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#settings-file">Settings file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#scripts">Scripts</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#citations">Citations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#development">Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#copyright">Copyright</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-manual/index.html">CSG Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -173,15 +151,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">CSG Manual</a> &raquo;</li>
-        
-      <li>Reference</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/csg-manual/reference.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/csg/csg_defaults.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -218,324 +194,6 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="reference">
-<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="programs">
-<h2>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="mapping-file">
-<h2>Mapping file<a class="headerlink" href="#mapping-file" title="Permalink to this headline">¶</a></h2>
-<p>The root node always has to be cg_molecule. It can contain the
-following keywords:</p>
-<p>The following table contains the input options for CSG,</p>
-<table class="docutils align-center">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Default Value</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>ident</p></td>
-<td><p>Molecule name in reference topology.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology</p></td>
-<td><p>Section defining coarse grained beads of molecule.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_beads</p></td>
-<td><p>Section defining coarse grained beads of molecule.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_beads.cg_bead</p></td>
-<td><p>Definition of a coarse grained bead.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_beads.cg_bead.name</p></td>
-<td><p>Name of coarse grained bead.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_beads.cg_bead.type</p></td>
-<td><p>Type of coarse grained bead.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_beads.cg_bead.mapping</p></td>
-<td><div class="line-block">
-<div class="line">Mapping scheme to be used for this bead (specified in</div>
-<div class="line">section mapping) to map from reference system.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_beads.cg_bead.beads</p></td>
-<td><div class="line-block">
-<div class="line">The beads section lists all atoms of the reference system</div>
-<div class="line">that are mapped to this particular coarse grained bead.</div>
-<div class="line">The syntax is RESID:RESNAME:ATOMNAME, the beads are separated</div>
-<div class="line">by spaces.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_bonded</p></td>
-<td><div class="line-block">
-<div class="line">The cg_bonded section contains all bonded interaction</div>
-<div class="line">of the molecule. Those can be bond, angle or dihedral.</div>
-<div class="line">An entry for each group of bonded interaction can be specified,</div>
-<div class="line">e.g. several groups (types) of bonds can be specified.</div>
-<div class="line">A specific bonded interaction can be later on addressed</div>
-<div class="line">by MOLECULE:NAME:NUMBER, where MOLECULE is the molecule</div>
-<div class="line">ID in the whole topology, NAME the name of the interaction</div>
-<div class="line">group and NUMBER addresses the interaction in the group.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_bonded.bond</p></td>
-<td><p>Definition of a group of bonds.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_bonded.bond.name</p></td>
-<td><p>Name of the bond.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_bonded.bond.beads</p></td>
-<td><div class="line-block">
-<div class="line">List of pair of beads that define a bond. Names specified</div>
-<div class="line">in cg_beads</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_bonded.angle</p></td>
-<td><p>Definition of a group of angles.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_bonded.angle.name</p></td>
-<td><p>Name of the angle</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_bonded.angle.beads</p></td>
-<td><div class="line-block">
-<div class="line">List of triples of beads that define a bond. Names specified</div>
-<div class="line">in cg_beads</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_bonded.dihedral</p></td>
-<td><div class="line-block">
-<div class="line">Definition of a group of dihedrals. Since the exact functional</div>
-<div class="line">form does not matter, this combines proper as well as</div>
-<div class="line">improper dihedrals.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>topology.cg_bonded.dihedral.name</p></td>
-<td><p>Name of the dihedral</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>topology.cg_bonded.dihedral.beads</p></td>
-<td><div class="line-block">
-<div class="line">List of quadruples of beads that define a bond. Names</div>
-<div class="line">specified in cg_beads</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>maps</p></td>
-<td><p>Section containing definitions of mapping schemes.</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>maps.map</p></td>
-<td><p>Section for a mapping for 1 bead.</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>maps.map.name</p></td>
-<td><p>Name of the mapping</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>maps.map.weights</p></td>
-<td><div class="line-block">
-<div class="line">Weights of the mapping matrix. Entries are normalized</div>
-<div class="line">to 1, number of entries must match the number of reference</div>
-<div class="line">beads in a coarse-grained bead.</div>
-</div>
-</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="topology-file">
-<h2>Topology file<a class="headerlink" href="#topology-file" title="Permalink to this headline">¶</a></h2>
-<p>The XMLtopology file</p>
-<p>The XML topology root element, the base for the topology can be defined by the “name” attribute
-The following table contains the input options for CSG,</p>
-<table class="docutils align-center">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Default Value</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>h5md_particle_group</p></td>
-<td><div class="line-block">
-<div class="line">Attribute name holds the name of particles group in H5MD</div>
-<div class="line">file</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>molecules</p></td>
-<td><div class="line-block">
-<div class="line">The the molecules in the trajectory or other operation</div>
-<div class="line">on the molecules.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>molecules.molecule</p></td>
-<td><div class="line-block">
-<div class="line">Definition of the molecule, with attributes: name, nmols</div>
-<div class="line">and nbeads. The name defines residue name, nmols tells</div>
-<div class="line">how many times this molecule has to be replicated to match</div>
-<div class="line">with trajectory file and nbeads defines number of beads</div>
-<div class="line">in every molecule.</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>molecules.molecule.bead</p></td>
-<td><div class="line-block">
-<div class="line">Define the bead in the molecule. Attributes are: name</div>
-<div class="line">- the name of bead, type - the type of bead, mass - the</div>
-<div class="line">mass of bead, q - the value of charge and resid - the</div>
-<div class="line">id of the residue the bead belongs to (&gt;=1).</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>molecules.clear</p></td>
-<td><p>Clear the information about the molecules</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>molecules.rename</p></td>
-<td><div class="line-block">
-<div class="line">Rename the molecules; attributes: “name” - the new name,</div>
-<div class="line">“range” - the range where the new name will be set in</div>
-<div class="line">the format start_range:end_range</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>molecules.define</p></td>
-<td><div class="line-block">
-<div class="line">Define the molecules; attributes: “name” - the name of</div>
-<div class="line">molecule, “first” - the id of first molecule, “nbeads”</div>
-<div class="line">- the number of beads in the molecule, “nmols” - the number</div>
-<div class="line">of molecules</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded</p></td>
-<td><div class="line-block">
-<div class="line">This section defines the topology of the molecules, it</div>
-<div class="line">is used to generate proper exclusions for calculating</div>
-<div class="line">rdfs</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bonded.bond</p></td>
-<td><p>Describes the bond</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded.bond.name</p></td>
-<td><p>The name of the bond</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bonded.bond.beads</p></td>
-<td><div class="line-block">
-<div class="line">The pair of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded.angle</p></td>
-<td><p>Describes the angle</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bonded.angle.name</p></td>
-<td><p>The name of the angle</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded.angle.beads</p></td>
-<td><div class="line-block">
-<div class="line">The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bonded.dihedral</p></td>
-<td><p>Describes the dihedrals</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded.dihedral.name</p></td>
-<td><p>The name of the dihedral</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bonded.dihedral.beads</p></td>
-<td><div class="line-block">
-<div class="line">The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>beadtypes</p></td>
-<td><p>Allows defining bead types</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>beadtypes.rename</p></td>
-<td><div class="line-block">
-<div class="line">Rename the bead type; attributes: “name” - the old name,</div>
-<div class="line">“newname” - the new name</div>
-</div>
-</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>beadtypes.mass</p></td>
-<td><div class="line-block">
-<div class="line">Define the mass of the bead type; attributes: “name” -</div>
-<div class="line">the bead type name, “value” - the new mass</div>
-</div>
-</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="settings-file">
-<h2>Settings file<a class="headerlink" href="#settings-file" title="Permalink to this headline">¶</a></h2>
-<p>All options for the iterative script are stored in an xml file.
-[sec:ref_options]</p>
 <p>Section containing the all coarse-graining options
 The following table contains the input options for CSG,</p>
 <table class="docutils align-center">
@@ -2154,30 +1812,12 @@ The following table contains the input options for CSG,</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="scripts">
-<h2>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h2>
-<p>Scripts are used by and . The script table commonly used (compare
-<code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">–list</span></code>):</p>
-<p>Script calls can be overwritten by adding a line with the 3rd column
-changed to <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> in directory.</p>
-</div>
-</div>
 
 
            </div>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="bibliography.html" class="btn btn-neutral float-right" title="Bibliography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="advanced_topics.html" class="btn btn-neutral float-left" title="Advanced topics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
