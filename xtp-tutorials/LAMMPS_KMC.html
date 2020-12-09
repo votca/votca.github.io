@@ -1,0 +1,937 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kinect Monte Carlo Simulations Using LAMMPS &mdash; VOTCA 2021-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer and Contributor Guide" href="../DEVELOPERS_GUIDE.html" />
+    <link rel="prev" title="QMMM workflow using LAMMPS and VOTCA-XTP" href="QMMM_LAMMPS.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-manual/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kinect Monte Carlo Simulations Using LAMMPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Setting-the-environment">Setting the environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Check-the-mapping">Check the mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-energies">Plotting the energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Couplings-histrogram">Couplings histrogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-coupling-histogram">Plotting the coupling histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">KMC simulations of multiple holes or electrons in periodic boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
+        
+      <li>Kinect Monte Carlo Simulations Using LAMMPS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/xtp-tutorials/LAMMPS_KMC.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Kinect-Monte-Carlo-Simulations-Using-LAMMPS">
+<h1>Kinect Monte Carlo Simulations Using LAMMPS<a class="headerlink" href="#Kinect-Monte-Carlo-Simulations-Using-LAMMPS" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>You will need to install <strong>VOTCA</strong> using the instructions described <a class="reference external" href="https://github.com/votca/votca/blob/master/share/doc/INSTALL.rst">here</a></p></li>
+<li><p>Once the installation is completed you need to activate the VOTCA enviroment by running the <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> script that has been installed at the <code class="docutils literal notranslate"><span class="pre">bin</span></code> subfolder for the path that you have provided for the installation step above</p></li>
+</ul>
+</div>
+<div class="section" id="Setting-the-environment">
+<h2>Setting the environment<a class="headerlink" href="#Setting-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>Create a folder to store the input <code class="docutils literal notranslate"><span class="pre">Options</span></code> for XTP</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mkdir -p OPTIONFILES
+</pre></div>
+</div>
+</div>
+<p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries for plotting. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>pip install seaborn --user
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: seaborn in /usr/lib/python3.9/site-packages (0.10.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /usr/lib64/python3.9/site-packages (from seaborn) (1.19.4)
+Requirement already satisfied: scipy&gt;=1.0.1 in /usr/lib64/python3.9/site-packages (from seaborn) (1.5.2)
+Requirement already satisfied: pandas&gt;=0.22.0 in /usr/lib64/python3.9/site-packages (from seaborn) (1.0.5)
+Requirement already satisfied: matplotlib&gt;=2.1.2 in /usr/lib64/python3.9/site-packages (from seaborn) (3.3.3)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.22.0-&gt;seaborn) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.22.0-&gt;seaborn) (2020.4)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (1.3.1)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (7.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.1.2-&gt;seaborn) (2.4.7)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.22.0-&gt;seaborn) (1.15.0)
+</pre></div></div>
+</div>
+<div class="section" id="Notes">
+<h3>Notes<a class="headerlink" href="#Notes" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">${VOTCASHARE}</span></code> environmental variable is set to the path that you provided during the VOTCA installation, by the default is set to <code class="docutils literal notranslate"><span class="pre">/usr/local/votca</span></code>.</p></li>
+<li><p>In Jupyter the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol means: <em>run the following command as a standard unix command</em></p></li>
+<li><p>In Jupyter the command <code class="docutils literal notranslate"><span class="pre">%env</span></code> set an environmental variable</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="Check-the-mapping">
+<h2>Check the mapping<a class="headerlink" href="#Check-the-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping. We will need to copy the input from the <code class="docutils literal notranslate"><span class="pre">VOTCA</span></code> installation path to our local copy.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/mapchecker.xml&quot;</span> OPTIONFILES/
+</pre></div>
+</div>
+</div>
+<p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options with the file containing the definition of the system. For doing, so we will use the python module <code class="docutils literal notranslate"><span class="pre">xml_editor</span></code> that we have imported above. The first argument is the name of the calculator (i.e. <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code>), the seconds argument is the name of the option to change and the third one, the value to use.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">edit_calculator</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;mapchecker&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has been set to &#39;system.xml&#39;
+</pre></div></div>
+</div>
+<p>Now we can run the checker as follows,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_run -e mapchecker -o OPTIONFILES/mapchecker.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... mapchecker
+1 frames in statefile, Ids are: 10000
+Starting at frame 10000
+Evaluating frame 10000
+Import MD Topology (i.e. frame 10000) from state.hdf5
+....
+... mapchecker  Using 1 threads
+Writing segments to md_segments_step_10000.pdb
+Writing qmmolecules to qm_segments_n_step_10000.pdb
+Writing polarsegments to mp_segments_e_step_10000.pdb
+Writing polarsegments to mp_segments_h_step_10000.pdb
+
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Site-energies-and-pair-energy-differences">
+<h2>Site energies and pair energy differences<a class="headerlink" href="#Site-energies-and-pair-energy-differences" title="Permalink to this headline">¶</a></h2>
+<p>We will compute the histrogram using <code class="docutils literal notranslate"><span class="pre">resolution_sites</span></code> of 0.03 eV. See <a class="reference external" href="https://votca.github.io/eanalyze.html">eanalize options and defaults</a> for more information.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/eanalyze.xml OPTIONFILES/
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eanalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution_sites&quot;</span><span class="p">,</span> <span class="s2">&quot;0.03&quot;</span><span class="p">)</span>
+<span class="o">!</span>xtp_run -e eanalyze -o OPTIONFILES/eanalyze.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;resolution_sites&#39; on file &#39;OPTIONFILES/eanalyze.xml&#39; has been set to &#39;0.03&#39;
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... eanalyze
+1 frames in statefile, Ids are: 10000
+Starting at frame 10000
+Evaluating frame 10000
+Import MD Topology (i.e. frame 10000) from state.hdf5
+....
+... eanalyze  Using 1 threads
+... ... Short-listed 1000 segments (pattern=&#39;*&#39;)
+... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only.
+... ... ...      Statistics of site-energy differences operate on the full list.
+... ... excited state e
+... ... excited state h
+... ... excited state s
+... ... excited state t
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>In the current work directoy you can see the resulting files,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>ls eanalyze*
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+eanalyze.pairhist_e.out  eanalyze.pairlist_s.out  eanalyze.sitehist_e.out
+eanalyze.pairhist_h.out  eanalyze.pairlist_t.out  eanalyze.sitehist_h.out
+eanalyze.pairhist_s.out  eanalyze.sitecorr_e.out  eanalyze.sitehist_s.out
+eanalyze.pairhist_t.out  eanalyze.sitecorr_h.out  eanalyze.sitehist_t.out
+eanalyze.pairlist_e.out  eanalyze.sitecorr_s.out
+eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Plotting-the-energies">
+<h2>Plotting the energies<a class="headerlink" href="#Plotting-the-energies" title="Permalink to this headline">¶</a></h2>
+<p>We will the previously installed <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library to plot the electron histrogram computed in the previous step,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;eanalyze.pairhist_e.out&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_18_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_18_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Couplings-histrogram">
+<h2>Couplings histrogram<a class="headerlink" href="#Couplings-histrogram" title="Permalink to this headline">¶</a></h2>
+<p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator. First, we will make a copy of the calculators defaults in our local folder then we will edit them and finally run the calculation,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/ianalyze.xml OPTIONFILES/
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution_logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;e, h&quot;</span><span class="p">)</span>
+<span class="o">!</span>xtp_run -e ianalyze -o OPTIONFILES/ianalyze.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;resolution_logJ2&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been set to &#39;0.1&#39;
+The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been set to &#39;e, h&#39;
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... ianalyze
+1 frames in statefile, Ids are: 10000
+Starting at frame 10000
+Evaluating frame 10000
+Import MD Topology (i.e. frame 10000) from state.hdf5
+....
+... ianalyze  Using 1 threads
+Calculating for state e now.
+Calculating for state h now.
+
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Plotting-the-coupling-histogram">
+<h2>Plotting the coupling histogram<a class="headerlink" href="#Plotting-the-coupling-histogram" title="Permalink to this headline">¶</a></h2>
+<p>We can now plot the logarithm of the squared coupling for the hole,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;ianalyze.ihist_h.out&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_22_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_22_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
+<h2>KMC simulations of multiple holes or electrons in periodic boundary conditions<a class="headerlink" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Finally, let get a copy of the <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> options and let do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/kmcmultiple.xml OPTIONFILES/
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;runtime&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;outputtime&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;field&quot;</span><span class="p">,</span> <span class="s2">&quot;10 0 0&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;carriertype&quot;</span><span class="p">,</span> <span class="s2">&quot;electron&quot;</span><span class="p">)</span>
+<span class="o">!</span>xtp_run -e kmcmultiple -o OPTIONFILES/kmcmultiple.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;runtime&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;1000&#39;
+The option &#39;outputtime&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;10&#39;
+The option &#39;field&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;10 0 0&#39;
+The option &#39;carriertype&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;electron&#39;
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... kmcmultiple
+1 frames in statefile, Ids are: 10000
+Starting at frame 10000
+Evaluating frame 10000
+Import MD Topology (i.e. frame 10000) from state.hdf5
+....
+... kmcmultiple  Using 1 threads
+ ...
+-----------------------------------
+      KMC FOR MULTIPLE CHARGES
+-----------------------------------
+
+ ...
+Calculating initial rates.
+ ... Rate engine initialized:
+ Ratetype:marcus
+ Temperature T[k] = 300
+ Electric field[V/nm](x,y,z) =1e-08 0 0 ||F|| 1e-08
+
+ ...
+ ...     carriertype: electron
+ ...     Rates for 1000 sites are computed.
+ ...
+Rates are written to rates.dat
+ ... Nblist has 10151 pairs. Nodes contain 20302 jump events
+with avg=20.302 std=2.07913 max=28 min=14 jumps per site
+Minimum jumpdistance =0.366063 nm Maximum distance =1.10167 nm
+
+ ... spatial carrier density: 0.00729374 nm^-3
+ ...
+Algorithm: VSSM for Multiple Charges
+ ... number of carriers: 1
+ ... number of nodes: 1000
+ ... stop condition: 1000 steps.
+ ... output frequency: every 10 steps.
+ ... (If you specify runtimes larger than 100 kmcmultiple assumes that you are specifying the number of steps for both runtime and outputtime.)
+ ... Writing trajectory to trajectory.csv.
+ ... looking for injectable nodes...
+ ... starting position for charge 0: segment 697
+ ...
+Occupations are written to occupation.dat
+ ...
+finished KMC simulation after 1000 steps.
+simulated time 5.92255e-09 seconds.
+
+ ...     carrier 1: 1.205058e+08 5.671523e+07 1.959596e+07
+ ...   Overall average velocity (nm/s): 1.205058e+08 5.671523e+07 1.959596e+07
+ ...
+Distances travelled (nm):
+ ...     carrier 1: 7.137019e-01 3.358990e-01 1.160581e-01
+ ...
+Mobilities (nm^2/Vs):
+ ...     carrier 1: mu=1.205058e+16
+ ...   Overall average mobility in field direction &lt;mu&gt;=1.205058e+16 nm^2/Vs
+ ...
+Eigenvalues:
+
+ ... Eigenvalue: 2.670560e-09
+ ... Eigenvector: 1.317081e-01   6.198754e-02   -9.893485e-01
+
+ ... Eigenvalue: 2.670560e-09
+ ... Eigenvector: 4.258378e-01   -9.047995e-01   0.000000e+00
+
+ ... Eigenvalue: 5.366503e+07
+ ... Eigenvector: -8.951621e-01   -4.213020e-01   -1.455661e-01
+
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>You can find both the <em>occupation data</em> and the <em>rates</em> for the electron at 300 K, on files <code class="docutils literal notranslate"><span class="pre">occupation.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">rates.dat</span></code>, respectively.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="QMMM_LAMMPS.html" class="btn btn-neutral float-left" title="QMMM workflow using LAMMPS and VOTCA-XTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

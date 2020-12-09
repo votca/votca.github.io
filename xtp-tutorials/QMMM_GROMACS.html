@@ -1,0 +1,2154 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QMMM workflow using GROMACS and VOTCA-XTP &mdash; VOTCA 2021-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QMMM workflow using LAMMPS and VOTCA-XTP" href="QMMM_LAMMPS.html" />
+    <link rel="prev" title="DFT + GWBSE Optimization Using CO" href="DFTGWBSE_OPTIMIZATION.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-manual/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QMMM workflow using GROMACS and VOTCA-XTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#What-is-this-tutorial-about">What is this tutorial about</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Note">Note</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Setting-the-environment">Setting the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Check-the-mapping">Check the mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Neighborlist-Calculation">Neighborlist Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Read-reorganization-energies">Read reorganization energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Compute-site-energy">Compute site energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QM-energy-calculation">QM energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QM-calculation-for-pairs">QM calculation for pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Coupling">Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Coupling-analysis">Coupling analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#QMMM-calculations">QMMM calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
+        
+      <li>QMMM workflow using GROMACS and VOTCA-XTP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/xtp-tutorials/QMMM_GROMACS.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="QMMM-workflow-using-GROMACS-and-VOTCA-XTP">
+<h1>QMMM workflow using GROMACS and VOTCA-XTP<a class="headerlink" href="#QMMM-workflow-using-GROMACS-and-VOTCA-XTP" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="What-is-this-tutorial-about">
+<h2>What is this tutorial about<a class="headerlink" href="#What-is-this-tutorial-about" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will learn how to set and perform excited state calculation using the Votca XTP library. We will use methane as our QM region.</p>
+</div>
+<div class="section" id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>You will need to install <strong>VOTCA</strong> using the instructions described <a class="reference external" href="https://github.com/votca/votca/blob/master/share/doc/INSTALL.rst">here</a></p></li>
+<li><p>Once the installation is completed you need to activate the VOTCA enviroment by running the <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> script that has been installed at the bin subfolder for the path that you have provided for the installation step above</p></li>
+</ul>
+</div>
+<div class="section" id="Interacting-with-the-XTP-command-line-interface">
+<h2>Interacting with the XTP command line interface<a class="headerlink" href="#Interacting-with-the-XTP-command-line-interface" title="Permalink to this headline">¶</a></h2>
+<p>The XTP package offers the following command line interface that the user can interact with: * <a class="reference external" href="https://votca.github.io/xtp_map.html">xtp_map</a> * <a class="reference external" href="https://votca.github.io/xtp_parallel.html">xtp_parallel</a> * <a class="reference external" href="https://votca.github.io/xtp_run.html">xtp_run</a> * <a class="reference external" href="https://votca.github.io/xtp_tools.html">xtp_tools</a></p>
+<p>Run the following command to view the help message of <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_tools -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Runs excitation/charge transport tools
+
+
+
+Allowed options:
+  -h [ --help ]                 display this help and exit
+  --verbose                     be loud and noisy
+  --verbose1                    be very loud and noisy
+  -v [ --verbose2 ]             be extremly loud and noisy
+  -o [ --options ] arg          calculator options
+  -t [ --nthreads ] arg (=1)    number of threads to create
+
+Tools:
+  -e [ --execute ] arg        name of the tool to run
+  -l [ --list ]               Lists all available tools
+  -d [ --description ] arg    Short description of a tool
+  -n [ --name ] arg           Name of the job to run
+
+</pre></div></div>
+</div>
+<div class="section" id="Note">
+<h3>Note<a class="headerlink" href="#Note" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>In Jupyter the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol means: <em>run the following command as a standard unix command</em></p></li>
+<li><p>In Jupyter the command <code class="docutils literal notranslate"><span class="pre">%env</span></code> set an environmental variable</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="Setting-the-environment">
+<h2>Setting the environment<a class="headerlink" href="#Setting-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>Create a folder to store the input <code class="docutils literal notranslate"><span class="pre">Options</span></code> for XTP</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mkdir -p OPTIONFILES
+</pre></div>
+</div>
+</div>
+<p>Remove previous hdf5 file</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>rm -f state.hdf5
+</pre></div>
+</div>
+</div>
+<p>Import an small python module to edit xml files</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">add_section</span><span class="p">,</span> <span class="n">edit_calculator</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Generate-the-topology-from-the-Gromacs-file">
+<h2>Generate the topology from the Gromacs file<a class="headerlink" href="#Generate-the-topology-from-the-Gromacs-file" title="Permalink to this headline">¶</a></h2>
+<p>runs the mapping from MD coordinates to segments and creates an <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">hdf5 file</a>. You can explore the generated <code class="docutils literal notranslate"><span class="pre">state.hdf5</span></code> file with e.g. hdf5itebrowser. In Python, you can use the <a class="reference external" href="https://www.h5py.org/">h5py library</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_map -t MD_FILES/topol.tpr -c MD_FILES/conf.gro -s system.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_map, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Reading file MD_FILES/topol.tpr, VERSION 5.1.1 (single precision)
+Note: file tpx version 103, software tpx version 116
+Creating statefile state.hdf5
+Frame with id 0 was not in statefile state.hdf5 ,adding it now.
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Check-the-mapping">
+<h2>Check the mapping<a class="headerlink" href="#Check-the-mapping" title="Permalink to this headline">¶</a></h2>
+<p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping. We will need to copy the input from the <code class="docutils literal notranslate"><span class="pre">VOTCA</span></code> installation path to our local copy.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/mapchecker.xml&quot;</span> OPTIONFILES/
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">${VOTCASHARE}</span></code> environmental variable is set to the path that you provided during the <code class="docutils literal notranslate"><span class="pre">VOTCA</span></code> <a class="reference external" href="https://github.com/votca/votca/blob/master/share/doc/INSTALL.rst">installation</a>, by the default is set to <code class="docutils literal notranslate"><span class="pre">/usr/local/votca</span></code>.</p>
+<p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options with the file containing the definition of the system. For doing, so we will use the python module <code class="docutils literal notranslate"><span class="pre">xml_editor</span></code> that we have imported above. The first argument is the name of the calculator (i.e. <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code>), the seconds argument is the name of the option to change and the third one, the value to use.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;mapchecker&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has been set to &#39;system.xml&#39;
+</pre></div></div>
+</div>
+<p>In the <a class="reference external" href="https://votca.github.io/mapchecker.html">mapchecker section of the manual</a> you can find a table with the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> input variables and their corresponding defaults. Finally, the following command run the check</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_run -e mapchecker -o OPTIONFILES/mapchecker.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... mapchecker
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... mapchecker  Using 1 threads
+Writing segments to md_segments_step_0.pdb
+Writing qmmolecules to qm_segments_n_step_0.pdb
+Writing polarsegments to mp_segments_e_step_0.pdb
+Writing polarsegments to mp_segments_h_step_0.pdb
+
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Neighborlist-Calculation">
+<h2>Neighborlist Calculation<a class="headerlink" href="#Neighborlist-Calculation" title="Permalink to this headline">¶</a></h2>
+<p>The following step is to determine the neighbouring pairs for exciton transport. We will need first to get a copy of the input</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cp</span> <span class="s2">&quot;$VOTCASHARE/xtp/xml/neighborlist.xml&quot;</span> <span class="n">OPTIONFILES</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<p>Then we will use <code class="docutils literal notranslate"><span class="pre">segmentname</span></code> method to select the cutoff and set the <em>exciton_cutoff</em> for the pairs to 0.5 nanometers. See the <a class="reference external" href="https://votca.github.io/neighborlist.html">neighborlist options</a> for further information.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">exciton_cutoff</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;exciton_cutoff&gt;0.5&lt;/exciton_cutoff&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;segments&gt;</span>
+<span class="s2">  &lt;type&gt;DCV5T_ME3 DCV5T_ME3&lt;/type&gt;</span>
+<span class="s2">  &lt;cutoff&gt;3&lt;/cutoff&gt;</span>
+<span class="s2">&lt;/segments&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">constant</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;constant help=&quot;cutoff for all other types of pairs&quot;&gt;0.6&lt;/constant&gt;&quot;&quot;&quot;</span>
+<span class="n">cutoff_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;cutoff_type&gt;segmentname&lt;/cutoff_type&gt;&quot;&quot;&quot;</span>
+
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">cutoff_type</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">exciton_cutoff</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">segments</span><span class="p">)</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, we can run the calculation using 4 threads</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_run -e neighborlist -o OPTIONFILES/neighborlist.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... neighborlist an error occurred:
+property not found: segmentname
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Read-reorganization-energies">
+<h2>Read reorganization energies<a class="headerlink" href="#Read-reorganization-energies" title="Permalink to this headline">¶</a></h2>
+<p>In this step we will read the in site reorganization energies and store them in the <code class="docutils literal notranslate"><span class="pre">state.hdf5</span></code> file. We just need to copy the input file and execute the calculation</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/einternal.xml&quot;</span> OPTIONFILES/
+<span class="o">!</span>xtp_run -e einternal -o OPTIONFILES/einternal.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... einternal
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... einternal  Using 1 threads
+... ... Site, reorg. energies from system.xml.
+
+... ... Read in site, reorg. energies for 1000 segments.
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Compute-site-energy">
+<h2>Compute site energy<a class="headerlink" href="#Compute-site-energy" title="Permalink to this headline">¶</a></h2>
+<p>In this step we will perform some <em>QMMM</em> calculations to compute the site energies. The <code class="docutils literal notranslate"><span class="pre">qmmm_mm.xml</span></code> file contains some predefined settings to perform the <em>MM</em> calculations. Let us first copy these settings into the state file,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp qmmm_mm.xml OPTIONFILES
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... qmmm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+... ... Writing job file qmmm_mm_jobs.xml
+... ... In total 4001 jobs
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>The previous command generates a <code class="docutils literal notranslate"><span class="pre">qmmm_mm_jobs.xml</span></code> containing 4000 <em>MM</em> jobs to compute, if you examine that file, it should look something like</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;jobs&gt;</span>
+  <span class="nt">&lt;job&gt;</span>
+    <span class="nt">&lt;id&gt;</span>0<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;tag&gt;</span>Methane_0:n<span class="nt">&lt;/tag&gt;</span>
+    <span class="nt">&lt;input&gt;</span>
+      <span class="nt">&lt;site_energies&gt;</span>0:n<span class="nt">&lt;/site_energies&gt;</span>
+      <span class="nt">&lt;regions&gt;</span>
+        <span class="nt">&lt;region&gt;</span>
+          <span class="nt">&lt;id&gt;</span>0<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;segments&gt;</span>0:n<span class="nt">&lt;/segments&gt;</span>
+        <span class="nt">&lt;/region&gt;</span>
+      <span class="nt">&lt;/regions&gt;</span>
+    <span class="nt">&lt;/input&gt;</span>
+    <span class="nt">&lt;status&gt;</span>AVAILABLE<span class="nt">&lt;/status&gt;</span>
+  <span class="nt">&lt;/job&gt;</span>
+...
+</pre></div>
+</div>
+<p>Let us run just the first 4 jobs by settings all jobs <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">COMPLETE</span></code> except for the first four. This can be easily done with <a class="reference external" href="https://www.gnu.org/software/sed/manual/sed.html">sed</a> as follows,</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_mm_jobs.xml
+</pre></div>
+</div>
+</div>
+<p>Now we can run the jobs and save the results in the state file</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -p <span class="m">2</span> -j <span class="s2">&quot;run&quot;</span>
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm_mm.xml -f state.hdf5 -j <span class="s2">&quot;read&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... qmmm
+... ... Initialized with 1 threads.
+
+... ... Using 2 openmp threads for 1x2=2 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+MST ERR Job file = &#39;qmmm_mm_jobs.xml&#39;, cache size =  8
+MST ERR Initialize jobs from qmmm_mm_jobs.xml
+MST ERR Registered 4000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -9.29812e-16
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.4086e-14
+T00 ERR ... 2020-12-9 3:23:13 Writing jobtopology to MMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-12-9 3:23:13 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-9 3:23:13 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-9 3:23:13 Evaluating polar 0
+T00 ERR ... 2020-12-9 3:23:13 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-9 3:23:13 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:13 CG: #iterations: 7, estimated error: 4.15528e-06
+T00 ERR ...   Total static energy [hrt]= 8.121948104e-05
+T00 ERR ...   Total polar energy [hrt]= -0.0001235439304
+T00 ERR ...  Total energy [hrt]= -4.232444937e-05
+T00 ERR ... 2020-12-9 3:23:13 Evaluating static 1
+T00 ERR ... 2020-12-9 3:23:13 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 1
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -1
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-12-9 3:23:13 Writing jobtopology to MMMM/frame_0/job_1_Methane_0:e/regions.pdb
+T00 ERR ... 2020-12-9 3:23:13 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-9 3:23:13 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-9 3:23:13 Evaluating polar 0
+T00 ERR ... 2020-12-9 3:23:13 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-9 3:23:13 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:13 CG: #iterations: 27, estimated error: 7.466925487e-06
+T00 ERR ...   Total static energy [hrt]= -0.0009055590147
+T00 ERR ...   Total polar energy [hrt]= -0.03058901395
+T00 ERR ...  Total energy [hrt]= -0.03149457296
+T00 ERR ... 2020-12-9 3:23:13 Evaluating static 1
+T00 ERR ... 2020-12-9 3:23:13 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 2
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= 1
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-12-9 3:23:13 Writing jobtopology to MMMM/frame_0/job_2_Methane_0:h/regions.pdb
+T00 ERR ... 2020-12-9 3:23:13 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-9 3:23:13 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-9 3:23:13 Evaluating polar 0
+T00 ERR ... 2020-12-9 3:23:13 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-9 3:23:13 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:13 CG: #iterations: 7, estimated error: 3.581023691e-06
+T00 ERR ...   Total static energy [hrt]= 0.001994038371
+T00 ERR ...   Total polar energy [hrt]= -0.02768723938
+T00 ERR ...  Total energy [hrt]= -0.02569320101
+T00 ERR ... 2020-12-9 3:23:13 Evaluating static 1
+T00 ERR ... 2020-12-9 3:23:13 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Next job: ID = 3
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: polar size: 17 charge[e]= -7.632783294e-16
+T00 ERR ... Id: 1 type: static size: 254 charge[e]= -1.408595462e-14
+T00 ERR ... 2020-12-9 3:23:14 Writing jobtopology to MMMM/frame_0/job_3_Methane_0:s1/regions.pdb
+T00 ERR ... 2020-12-9 3:23:14 Only 1 scf region is used. The remaining regions are static. So no inter regions scf is required.
+T00 ERR ... 2020-12-9 3:23:14 --Inter Region SCF Iteration 1 of 1
+T00 ERR ... 2020-12-9 3:23:14 Evaluating polar 0
+T00 ERR ... 2020-12-9 3:23:14 Evaluating interaction between polar 0 and static 1
+T00 ERR ... 2020-12-9 3:23:14 Starting Solving for classical polarization with 255 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:14 CG: #iterations: 7, estimated error: 5.171454294e-06
+T00 ERR ...   Total static energy [hrt]= 0.0002401293715
+T00 ERR ...   Total polar energy [hrt]= -0.0004782854375
+T00 ERR ...  Total energy [hrt]= -0.000238156066
+T00 ERR ... 2020-12-9 3:23:14 Evaluating static 1
+T00 ERR ... 2020-12-9 3:23:14 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... qmmm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+Found 1 states of type e
+Found 1 states of type h
+Found 1 states of type s
+Found 1 states of type n
+3996 incomplete jobs found.
+
+Wrote MD topology (step = 0, time = 0) to state.hdf5
+... .
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Site-energy-and-pair-energy-analysis">
+<h2>Site energy and pair energy analysis<a class="headerlink" href="#Site-energy-and-pair-energy-analysis" title="Permalink to this headline">¶</a></h2>
+<p>In this step we generate an histogram and compute the correlation function of site energies and pair energy differences.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/eanalyze.xml&quot;</span> OPTIONFILES/
+<span class="o">!</span>xtp_run -e eanalyze -o OPTIONFILES/eanalyze.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... eanalyze
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eanalyze  Using 1 threads
+... ... Short-listed 1000 segments (pattern=&#39;*&#39;)
+... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only.
+... ... ...      Statistics of site-energy differences operate on the full list.
+... ... excited state e
+... ... ... No pairs in topology. Skip ...
+... ... excited state h
+... ... ... No pairs in topology. Skip ...
+... ... excited state s
+... ... ... No pairs in topology. Skip ...
+... ... excited state t
+... ... ... No pairs in topology. Skip ...
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>You should now see a set of files prefixed with <code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> containing the histrogram and correlation functions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>ls eanalyze*
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+eanalyze.sitecorr_e.out  eanalyze.sitecorr_t.out  eanalyze.sitehist_s.out
+eanalyze.sitecorr_h.out  eanalyze.sitehist_e.out  eanalyze.sitehist_t.out
+eanalyze.sitecorr_s.out  eanalyze.sitehist_h.out
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="QM-energy-calculation">
+<h2>QM energy calculation<a class="headerlink" href="#QM-energy-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Our next task is to perform the qm calculations for each segment that we have stored in the hdf5 file. The calculations take place in 3 stages: write the jobs to a file, perform the computation and finally save the results to the state file. We will first copy the input into our local folder</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/eqm.xml&quot;</span> OPTIONFILES/
+</pre></div>
+</div>
+</div>
+<p>Now we set the GWBSE mode to <code class="docutils literal notranslate"><span class="pre">G0W0</span></code>, the <code class="docutils literal notranslate"><span class="pre">ranges</span></code> to <code class="docutils literal notranslate"><span class="pre">full</span></code> and the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code> to <code class="docutils literal notranslate"><span class="pre">3-21G</span></code> and <code class="docutils literal notranslate"><span class="pre">aux-def2-svp</span></code>. For more information, check the <a class="reference external" href="https://votca.github.io/eqm.html">eqm calculator options</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.ranges&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.mode&quot;</span><span class="p">,</span> <span class="s2">&quot;G0W0&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_solver&quot;</span><span class="p">,</span> <span class="s2">&quot;fixedpoint&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_steps&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_spacing&quot;</span><span class="p">,</span> <span class="s2">&quot;0.01&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.exctotal&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;3-21G&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-def2-svp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;gwbse_options.gwbse.ranges&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;full&#39;
+The option &#39;gwbse_options.gwbse.mode&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;G0W0&#39;
+The option &#39;gwbse_options.gwbse.qp_solver&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;fixedpoint&#39;
+The option &#39;gwbse_options.gwbse.qp_grid_steps&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;100&#39;
+The option &#39;gwbse_options.gwbse.qp_grid_spacing&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;0.01&#39;
+The option &#39;gwbse_options.gwbse.exctotal&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;10&#39;
+The option &#39;map_file&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;system.xml&#39;
+The option &#39;basisset&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;3-21G&#39;
+The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;aux-def2-svp&#39;
+</pre></div></div>
+</div>
+<p>For the sake of computational time let just compute the <code class="docutils literal notranslate"><span class="pre">gw</span></code> approximation and the <code class="docutils literal notranslate"><span class="pre">singlet</span></code>. You can also request the <code class="docutils literal notranslate"><span class="pre">triplet</span></code> or <code class="docutils literal notranslate"><span class="pre">all</span></code>, see the <a class="reference external" href="https://votca.github.io/eqm.html">gwbse sectionfor the eqm calculator</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.tasks&quot;</span><span class="p">,</span> <span class="s2">&quot;gw,singlets&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/eqm.xml&#39; has been set to &#39;gw,singlets&#39;
+</pre></div></div>
+</div>
+<p>First we will write the job in a file and enable only the first 2,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -s <span class="m">0</span> -j <span class="s2">&quot;write&quot;</span>
+<span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> eqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> eqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> eqm.jobs
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... eqm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eqm
+... ... Writing job file: eqm.jobs1000 jobs
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>Now, let run these 2 jobs</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e eqm -o OPTIONFILES/eqm.xml -f state.hdf5 -p <span class="m">2</span> -s <span class="m">0</span> -j run -c <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... eqm
+... ... Initialized with 1 threads.
+
+... ... Using 2 openmp threads for 1x2=2 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... eqm
+MST ERR Job file = &#39;eqm.jobs&#39;, cache size =  1
+MST ERR Initialize jobs from eqm.jobs
+MST ERR Registered 1000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ... 2020-12-9 3:23:26 Evaluating site 0
+T00 ERR ... Running DFT
+T00 ERR ... Running GWBSE
+T00 ERR ... Running ESPFIT
+T00 ERR ... ===== Running on 2 threads =====
+T00 ERR ... 2020-12-9 3:23:28 Calculated Densities at Numerical Grid, Number of electrons is -2.96134e-08
+T00 ERR ... 2020-12-9 3:23:28 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-12-9 3:23:29 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 5.55112e-17
+T00 ERR ...  RMSE of fit:  0.00123957
+T00 ERR ...  RRMSE of fit: 0.0750873
+T00 ERR ... El Dipole from fitted charges [e*bohr]:
+                 dx = +0.4858 dy = -0.5006 dz = +0.3715 |d|^2 = +0.6246
+T00 ERR ... El Dipole from exact qm density [e*bohr]:
+                 dx = +0.4980 dy = -0.5143 dz = +0.3816 |d|^2 = +0.6581
+T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_0_n2s1.mps
+T00 ERR ... 2020-12-9 3:23:29 Finished evaluating site 0
+T00 ERR ... Saving data to molecule_0.orb
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 1
+T00 ERR ... 2020-12-9 3:23:29 Evaluating site 1
+T00 ERR ... Running DFT
+T00 ERR ... Running GWBSE
+T00 ERR ... Running ESPFIT
+T00 ERR ... ===== Running on 2 threads =====
+T00 ERR ... 2020-12-9 3:23:30 Calculated Densities at Numerical Grid, Number of electrons is -2.40834e-08
+T00 ERR ... 2020-12-9 3:23:30 Calculating ESP at CHELPG grid points
+T00 ERR ... 2020-12-9 3:23:31 Netcharge constrained to 0
+T00 ERR ...  Sum of fitted charges: 2.22045e-16
+T00 ERR ...  RMSE of fit:  0.00122212
+T00 ERR ...  RRMSE of fit: 0.0717652
+T00 ERR ... El Dipole from fitted charges [e*bohr]:
+                 dx = +0.5648 dy = +0.1845 dz = +0.5549 |d|^2 = +0.6609
+T00 ERR ... El Dipole from exact qm density [e*bohr]:
+                 dx = +0.5797 dy = +0.1891 dz = +0.5696 |d|^2 = +0.6963
+T00 ERR ... Written charges to MP_FILES/frame_0/n2s1/Methane_1_n2s1.mps
+T00 ERR ... 2020-12-9 3:23:31 Finished evaluating site 1
+T00 ERR ... Saving data to molecule_1.orb
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="QM-calculation-for-pairs">
+<h2>QM calculation for pairs<a class="headerlink" href="#QM-calculation-for-pairs" title="Permalink to this headline">¶</a></h2>
+<p>In the following step we will run QM calculations for each pair in the hdf5 file. As the calculations on the previous step, we will first write the jobs in a file, then run them and finally store the results in the state file. First, we need to copy the input to our local folder</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/iqm.xml&quot;</span> OPTIONFILES/
+</pre></div>
+</div>
+</div>
+<p>As in the previous section, we set the GWBSE mode to <code class="docutils literal notranslate"><span class="pre">G0W0</span></code>, the <code class="docutils literal notranslate"><span class="pre">ranges</span></code> to <code class="docutils literal notranslate"><span class="pre">full</span></code> and the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code> to <code class="docutils literal notranslate"><span class="pre">3-21G</span></code> and <code class="docutils literal notranslate"><span class="pre">aux-def2-svp</span></code>. But we compute only the <code class="docutils literal notranslate"><span class="pre">gw</span></code> approximation. We are also going to compute a single excited state. For more information, check the <a class="reference external" href="https://votca.github.io/iqm.html">iqm calculator options</a>. We also want to compute the <code class="docutils literal notranslate"><span class="pre">singlet</span></code> couplings.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.ranges&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.tasks&quot;</span><span class="p">,</span> <span class="s2">&quot;gw&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_solver&quot;</span><span class="p">,</span> <span class="s2">&quot;fixedpoint&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_steps&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.qp_grid_spacing&quot;</span><span class="p">,</span> <span class="s2">&quot;0.01&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;gwbse_options.gwbse.exctotal&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;bsecoupling.spin&quot;</span><span class="p">,</span> <span class="s2">&quot;singlet&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;3-21G&quot;</span><span class="p">)</span>
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-def2-svp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;states&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;1&#39;
+The option &#39;map_file&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;system.xml&#39;
+The option &#39;gwbse_options.gwbse.ranges&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;full&#39;
+The option &#39;gwbse_options.gwbse.tasks&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;gw&#39;
+The option &#39;gwbse_options.gwbse.qp_solver&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;fixedpoint&#39;
+The option &#39;gwbse_options.gwbse.qp_grid_steps&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;100&#39;
+The option &#39;gwbse_options.gwbse.qp_grid_spacing&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;0.01&#39;
+The option &#39;gwbse_options.gwbse.exctotal&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;10&#39;
+The option &#39;bsecoupling.spin&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;singlet&#39;
+The option &#39;basisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;3-21G&#39;
+The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/iqm.xml&#39; has been set to &#39;aux-def2-svp&#39;
+</pre></div></div>
+</div>
+<p>Before running the calculations, we need to specify in the <code class="docutils literal notranslate"><span class="pre">iqm</span></code> input which states to read into the jobfile for each segment type. The following <em>XML</em> snippet needs to be added</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">readjobfile</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;readjobfile help=&quot;which states to read into the jobfile for each segment type&quot;&gt;</span>
+<span class="s2">     &lt;singlet&gt;Methane:s1&lt;/singlet&gt;</span>
+<span class="s2">     &lt;triplet&gt;Methane:t1&lt;/triplet&gt;</span>
+<span class="s2">     &lt;electron&gt;Methane:e1&lt;/electron&gt;</span>
+<span class="s2">     &lt;hole&gt;Methane:h1&lt;/hole&gt;</span>
+<span class="s2">&lt;/readjobfile&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>The following code add the <code class="docutils literal notranslate"><span class="pre">readjobfile</span></code> section,</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;iqm&quot;</span><span class="p">,</span> <span class="n">readjobfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now, let’s write the jobs to the file</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -s <span class="m">0</span> -j <span class="s2">&quot;write&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... iqm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm
+... ... Writing job file iqm.jobs
+... ... No pairs in neighbor list, skip.
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>From the jobs that we just write down, let’s make available only the first job</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> iqm.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> iqm.jobs
+</pre></div>
+</div>
+</div>
+<p>Now we can run and store the jobs results</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -p <span class="m">2</span> -s <span class="m">0</span> -j run -c <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... iqm
+... ... Initialized with 1 threads.
+
+... ... Using 2 openmp threads for 1x2=2 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm
+MST ERR Job file = &#39;iqm.jobs&#39;, cache size =  1
+MST ERR Initialize jobs from iqm.jobsan error occurred:
+iqm.jobs: Parse error at line 2
+no element found: iostream error
+</pre></div></div>
+</div>
+<p>Finally, we read the results into the state</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e iqm -o OPTIONFILES/iqm.xml -f state.hdf5 -j <span class="s2">&quot;read&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... iqm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iqm an error occurred:
+iqm.jobs: Parse error at line 2
+no element found: iostream error
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Coupling">
+<h2>Coupling<a class="headerlink" href="#Coupling" title="Permalink to this headline">¶</a></h2>
+<p>We can now compute the classical coupling of transition in the aformentioned three stages,</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VOTCASHARE</span><span class="si">}</span><span class="s2">/xtp/xml/iexcitoncl.xml&quot;</span> OPTIONFILES
+</pre></div>
+</div>
+</div>
+<p>We need to change in the <code class="docutils literal notranslate"><span class="pre">iexcitoncl</span></code> input the name <code class="docutils literal notranslate"><span class="pre">map_file</span></code> option and add the state. check all the available of the <a class="reference external" href="https://votca.github.io/iexcitoncl.html">iexcitoncl calculator</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;iexcitoncl&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;map_file&#39; on file &#39;OPTIONFILES/iexcitoncl.xml&#39; has been set to &#39;system.xml&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;&lt;states&gt;Methane:n2s1&lt;/states&gt;&quot;</span>
+<span class="n">add_section</span><span class="p">(</span><span class="s2">&quot;iexcitoncl&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... iexcitoncl
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iexcitoncl
+... ... Writing job file exciton.jobs
+... ... No pairs in neighbor list, skip.
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>Now we can run and save the jobs. For demo purposes we will run only the first job</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> exciton.jobs
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> exciton.job
+<span class="o">!</span>xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+sed: can&#39;t read exciton.job: No such file or directory
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... iexcitoncl
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... iexcitoncl
+MST ERR Job file = &#39;exciton.jobs&#39;, cache size =  8
+MST ERR Initialize jobs from exciton.jobsan error occurred:
+exciton.jobs: Parse error at line 2
+no element found: iostream error
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="ch">#!xtp_parallel -e iexcitoncl -o OPTIONFILES/iexcitoncl.xml -f state.hdf5 -j &quot;read&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Coupling-analysis">
+<h2>Coupling analysis<a class="headerlink" href="#Coupling-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Using the coupling computed in the previous steps, we will generate an histogram for the squared couplings in logarithmic scale,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VOTCASHARE</span><span class="si">}</span><span class="s2">/xtp/xml/ianalyze.xml&quot;</span> OPTIONFILES
+<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;e,h,s&quot;</span><span class="p">)</span>
+<span class="o">!</span>xtp_run -e ianalyze -o OPTIONFILES/ianalyze.xml -f state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been set to &#39;e,h,s&#39;
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_run, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... ianalyze
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... ianalyze  Using 1 threads
+
+... ... No pairs in topology. Skip...
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="QMMM-calculations">
+<h2>QMMM calculations<a class="headerlink" href="#QMMM-calculations" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>cp qmmm.xml OPTIONFILES/
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j <span class="s2">&quot;write&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... qmmm
+... ... Initialized with 1 threads.
+
+... ... Using 1 openmp threads for 1x1=1 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+... ... Writing job file qmmm_jobs.xml
+... ... In total 3001 jobs
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>Lets run just the first job</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>sed -i <span class="s2">&quot;s/AVAILABLE/COMPLETE/g&quot;</span> qmmm_jobs.xml
+<span class="o">!</span>sed -i <span class="s1">&#39;0,/COMPLETE/s/COMPLETE/AVAILABLE/&#39;</span> qmmm_jobs.xml
+<span class="o">!</span>xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -p <span class="m">2</span> -f state.hdf5 -j run
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ This is a XTP app
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/xtp/issues
+
+xtp_parallel, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:38)
+votca_csg, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:24)
+votca_tools, version 2021-dev gitid: 2653475 (compiled Dec  9 2020, 03:20:21)
+
+Initializing calculator
+... qmmm
+... ... Initialized with 1 threads.
+
+... ... Using 2 openmp threads for 1x2=2 total threads.
+1 frames in statefile, Ids are: 0
+Starting at frame 0
+Evaluating frame 0
+Import MD Topology (i.e. frame 0) from state.hdf5
+....
+... qmmm
+MST ERR Job file = &#39;qmmm_jobs.xml&#39;, cache size =  8
+MST ERR Initialize jobs from qmmm_jobs.xml
+MST ERR Registered 3000 jobs.
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Next job: ID = 0=&gt; [ 0%]
+T00 ERR ...  Regions created
+T00 ERR ... Id: 0 type: qm size: 1 charge[e]= -2.79976e+14
+T00 ERR ... Id: 1 type: polar size: 92 charge[e]= -5.09315e-15
+T00 ERR ... Id: 2 type: static size: 178 charge[e]= -9.86711e-15
+T00 ERR ... 2020-12-9 3:23:50 Writing jobtopology to QMMM/frame_0/job_0_Methane_0:n/regions.pdb
+T00 ERR ... 2020-12-9 3:23:50 --Inter Region SCF Iteration 1 of 50
+T00 ERR ... 2020-12-9 3:23:50 Evaluating qm 0
+T00 ERR ... 2020-12-9 3:23:50 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-12-9 3:23:50 Evaluating interaction between qm 0 and static 2
+T00 ERR ... Running DFT calculation
+T00 ERR ... 2020-12-9 3:23:50 Using 2 threads
+T00 ERR ... 2020-12-9 3:23:50 Using native Eigen implementation, no BLAS overload
+T00 ERR ...  Molecule Coordinates [A]
+T00 ERR ...   C   +30.3000 +1.2704 +5.5205
+T00 ERR ...   H   +31.2392 +1.4802 +6.0301
+T00 ERR ...   H   +30.4910 +0.6554 +4.6433
+T00 ERR ...   H   +29.8500 +2.2100 +5.2100
+T00 ERR ...   H   +29.6200 +0.7500 +6.2000
+T00 ERR ... 2020-12-9 3:23:50 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-12-9 3:23:50 Total number of electrons: 10
+T00 ERR ... 2020-12-9 3:23:50 Smallest value of AOOverlap matrix is 0.013882
+T00 ERR ... 2020-12-9 3:23:50 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-12-9 3:23:50 Convergence Options:
+T00 ERR ...              Delta E [Ha]: 1e-07
+T00 ERR ...              DIIS max error: 1e-07
+T00 ERR ...              DIIS histlength: 20
+T00 ERR ...              ADIIS start: 0.8
+T00 ERR ...              DIIS start: 0.002
+T00 ERR ...              Deleting oldest element from DIIS hist
+T00 ERR ...              Levelshift[Ha]: 0
+T00 ERR ...              Levelshift end: 0.2
+T00 ERR ...              Mixing Parameter alpha: 0.7
+T00 ERR ... 2020-12-9 3:23:50 Constructed independent particle hamiltonian
+T00 ERR ... 2020-12-9 3:23:50 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-12-9 3:23:50 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-12-9 3:23:50 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-12-9 3:23:50 Setup Initial Guess using: atom
+T00 ERR ... 2020-12-9 3:23:50 Calculating atom density for C
+T00 ERR ... 2020-12-9 3:23:52 Calculating atom density for H
+T00 ERR ... 2020-12-9 3:23:52 STARTING SCF cycle
+T00 ERR ...  --------------------------------------------------------------------------
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:52 Iteration 1 of 100
+T00 ERR ... 2020-12-9 3:23:52 Total Energy -40.3149037911
+T00 ERR ... 2020-12-9 3:23:52 DIIs error 0.223821707784
+T00 ERR ... 2020-12-9 3:23:52 Delta Etot 0
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:52 Iteration 2 of 100
+T00 ERR ... 2020-12-9 3:23:52 Total Energy -40.3620818026
+T00 ERR ... 2020-12-9 3:23:52 DIIs error 0.133955475023
+T00 ERR ... 2020-12-9 3:23:52 Delta Etot -0.047178011511
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:52 Iteration 3 of 100
+T00 ERR ... 2020-12-9 3:23:52 Total Energy -40.3839052883
+T00 ERR ... 2020-12-9 3:23:52 DIIs error 0.0840229566758
+T00 ERR ... 2020-12-9 3:23:52 Delta Etot -0.0218234857188
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:52 Iteration 4 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4256757375
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 0.0278206441013
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -0.0417704491869
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 5 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4253640879
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 0.0299204781054
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot 0.000311649564821
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 6 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4283324906
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 0.00090000201297
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -0.0029684026181
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 7 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4283348496
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 6.35520023033e-05
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -2.35906502155e-06
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 8 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4283348731
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 6.32308005464e-06
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -2.3468210486e-08
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 9 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4283348733
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 6.9911831422e-07
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -1.49995571519e-10
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:53 Iteration 10 of 100
+T00 ERR ... 2020-12-9 3:23:53 Total Energy -40.4283348733
+T00 ERR ... 2020-12-9 3:23:53 DIIs error 6.36389759686e-08
+T00 ERR ... 2020-12-9 3:23:53 Delta Etot -1.50635059981e-12
+T00 ERR ... 2020-12-9 3:23:53 Total Energy has converged to -1.5063506e-12[Ha] after 10 iterations. DIIS error is converged up to 6.3638976e-08
+T00 ERR ... 2020-12-9 3:23:53 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-12-9 3:23:53 Final Local Exc contribution -5.19288298396 Ha
+T00 ERR ... 2020-12-9 3:23:53 Final Non Local Ex contribution -1.64346677797 Ha
+T00 ERR ...   Orbital energies:
+T00 ERR ...   index occupation energy(Hartree)
+T00 ERR ...      0      2   -10.2155440076
+T00 ERR ...      1      2   -0.7051474356
+T00 ERR ...      2      2   -0.4018530561
+T00 ERR ...      3      2   -0.4013030380
+T00 ERR ...      4      2   -0.4005167122
+T00 ERR ...      5      0   +0.0873160912
+T00 ERR ...      6      0   +0.1580405287
+T00 ERR ...      7      0   +0.1586955711
+T00 ERR ...      8      0   +0.1589281582
+T00 ERR ...      9      0   +0.4330256154
+T00 ERR ...     10      0   +0.4342802256
+T00 ERR ...     11      0   +0.4352482760
+T00 ERR ...     12      0   +0.6747491162
+T00 ERR ...     13      0   +0.7038048385
+T00 ERR ...     14      0   +0.7052280349
+T00 ERR ...     15      0   +0.7057532040
+T00 ERR ...     16      0   +0.8002909333
+T00 ERR ...     17      0   +1.0999417545
+T00 ERR ...     18      0   +1.1004097021
+T00 ERR ...     19      0   +1.5445777345
+T00 ERR ...     20      0   +1.5470371293
+T00 ERR ...     21      0   +1.5494748553
+T00 ERR ...     22      0   +1.7740441778
+T00 ERR ...     23      0   +1.7790714934
+T00 ERR ...     24      0   +1.7829840272
+T00 ERR ...     25      0   +2.1478692319
+T00 ERR ...     26      0   +2.1543523600
+T00 ERR ...     27      0   +2.1593032995
+T00 ERR ...     28      0   +2.5457716092
+T00 ERR ...     29      0   +2.5462268035
+T00 ERR ...     30      0   +2.6358795913
+T00 ERR ...     31      0   +2.9321002159
+T00 ERR ...     32      0   +2.9387290892
+T00 ERR ...     33      0   +2.9434071080
+T00 ERR ... 2020-12-9 3:23:53 Electric Dipole is[e*bohr]:
+                 dx=0.000671699250915
+                 dy=0.00319877917033
+                 dz=-0.00105485803807
+T00 ERR ... Writing result to votca.orb
+T00 ERR ... QM energy[Hrt]: -40.42833487
+T00 ERR ... 2020-12-9 3:23:53 Evaluating polar 1
+T00 ERR ... 2020-12-9 3:23:53 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-12-9 3:23:54 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-12-9 3:23:54 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:54 CG: #iterations: 7, estimated error: 5.51883558246e-06
+T00 ERR ...   Total static energy [hrt]= 0.0009102654542
+T00 ERR ...   Total polar energy [hrt]= -0.000623037336
+T00 ERR ...  Total energy [hrt]= 0.0002872281182
+T00 ERR ... 2020-12-9 3:23:54 Evaluating static 2
+T00 ERR ... 2020-12-9 3:23:54 Writing checkpoint to checkpoint_iter_1.hdf5
+T00 ERR ...  Region:qm 0 is not converged deltaE=-40.42833487 RMS Dmat=0.0813492263 MaxDmat=2.07806555
+T00 ERR ... 2020-12-9 3:23:54 Region:polar 1 is not converged deltaE=0.0002872281182
+T00 ERR ... 2020-12-9 3:23:54 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-12-9 3:23:54 --Inter Region SCF Iteration 2 of 50
+T00 ERR ... 2020-12-9 3:23:54 Evaluating qm 0
+T00 ERR ... 2020-12-9 3:23:54 Evaluating interaction between qm 0 and polar 1
+T00 ERR ... 2020-12-9 3:23:54 Evaluating interaction between qm 0 and static 2
+T00 ERR ... Running DFT calculation
+T00 ERR ... 2020-12-9 3:23:54 Using 2 threads
+T00 ERR ... 2020-12-9 3:23:54 Using native Eigen implementation, no BLAS overload
+T00 ERR ...  Molecule Coordinates [A]
+T00 ERR ...   C   +30.3000 +1.2704 +5.5205
+T00 ERR ...   H   +31.2392 +1.4802 +6.0301
+T00 ERR ...   H   +30.4910 +0.6554 +4.6433
+T00 ERR ...   H   +29.8500 +2.2100 +5.2100
+T00 ERR ...   H   +29.6200 +0.7500 +6.2000
+T00 ERR ... 2020-12-9 3:23:54 Loaded DFT Basis Set def2-svp with 34 functions
+T00 ERR ... 2020-12-9 3:23:54 Total number of electrons: 10
+T00 ERR ... 2020-12-9 3:23:54 Smallest value of AOOverlap matrix is 0.01388201597
+T00 ERR ... 2020-12-9 3:23:54 Removed 0 basisfunction from inverse overlap matrix
+T00 ERR ... 2020-12-9 3:23:54 Convergence Options:
+T00 ERR ...              Delta E [Ha]: 1e-07
+T00 ERR ...              DIIS max error: 1e-07
+T00 ERR ...              DIIS histlength: 20
+T00 ERR ...              ADIIS start: 0.8
+T00 ERR ...              DIIS start: 0.002
+T00 ERR ...              Deleting oldest element from DIIS hist
+T00 ERR ...              Levelshift[Ha]: 0
+T00 ERR ...              Levelshift end: 0.2
+T00 ERR ...              Mixing Parameter alpha: 0.7
+T00 ERR ... 2020-12-9 3:23:54 Constructed independent particle hamiltonian
+T00 ERR ... 2020-12-9 3:23:54 Nuclear Repulsion Energy is 13.4434088
+T00 ERR ... 2020-12-9 3:23:54 Using hybrid functional with alpha=0.25
+T00 ERR ... 2020-12-9 3:23:54 Setup numerical integration grid medium for vxc functional XC_HYB_GGA_XC_PBEH
+T00 ERR ... 2020-12-9 3:23:54 Setup Initial Guess using: atom
+T00 ERR ... 2020-12-9 3:23:54 Calculating atom density for C
+T00 ERR ... 2020-12-9 3:23:56 Calculating atom density for H
+T00 ERR ... 2020-12-9 3:23:56 STARTING SCF cycle
+T00 ERR ...  --------------------------------------------------------------------------
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:56 Iteration 1 of 100
+T00 ERR ... 2020-12-9 3:23:56 Total Energy -40.3149037911
+T00 ERR ... 2020-12-9 3:23:56 DIIs error 0.223821707784
+T00 ERR ... 2020-12-9 3:23:56 Delta Etot 0
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:56 Iteration 2 of 100
+T00 ERR ... 2020-12-9 3:23:56 Total Energy -40.3620818026
+T00 ERR ... 2020-12-9 3:23:56 DIIs error 0.133955475023
+T00 ERR ... 2020-12-9 3:23:56 Delta Etot -0.047178011511
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:56 Iteration 3 of 100
+T00 ERR ... 2020-12-9 3:23:56 Total Energy -40.3839052883
+T00 ERR ... 2020-12-9 3:23:56 DIIs error 0.0840229566757
+T00 ERR ... 2020-12-9 3:23:56 Delta Etot -0.0218234857187
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:56 Iteration 4 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4256757375
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 0.0278206441012
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -0.0417704491869
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 5 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4253640879
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 0.0299204781054
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot 0.000311649564765
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 6 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4283324906
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 0.000900002012941
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -0.00296840261809
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 7 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4283348496
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 6.35520023037e-05
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -2.35906502866e-06
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 8 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4283348731
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 6.32308004798e-06
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -2.34682460132e-08
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 9 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4283348733
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 6.99118313354e-07
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -1.50009782374e-10
+T00 ERR ...
+T00 ERR ... 2020-12-9 3:23:57 Iteration 10 of 100
+T00 ERR ... 2020-12-9 3:23:57 Total Energy -40.4283348733
+T00 ERR ... 2020-12-9 3:23:57 DIIs error 6.36389758193e-08
+T00 ERR ... 2020-12-9 3:23:57 Delta Etot -1.43529632624e-12
+T00 ERR ... 2020-12-9 3:23:57 Total Energy has converged to -1.43529633e-12[Ha] after 10 iterations. DIIS error is converged up to 6.36389758e-08
+T00 ERR ... 2020-12-9 3:23:57 Final Single Point Energy -40.4283348733 Ha
+T00 ERR ... 2020-12-9 3:23:57 Final Local Exc contribution -5.19288298396 Ha
+T00 ERR ... 2020-12-9 3:23:57 Final Non Local Ex contribution -1.64346677797 Ha
+T00 ERR ...   Orbital energies:
+T00 ERR ...   index occupation energy(Hartree)
+T00 ERR ...      0      2   -10.2155440076
+T00 ERR ...      1      2   -0.7051474356
+T00 ERR ...      2      2   -0.4018530561
+T00 ERR ...      3      2   -0.4013030380
+T00 ERR ...      4      2   -0.4005167122
+T00 ERR ...      5      0   +0.0873160912
+T00 ERR ...      6      0   +0.1580405287
+T00 ERR ...      7      0   +0.1586955711
+T00 ERR ...      8      0   +0.1589281582
+T00 ERR ...      9      0   +0.4330256154
+T00 ERR ...     10      0   +0.4342802256
+T00 ERR ...     11      0   +0.4352482760
+T00 ERR ...     12      0   +0.6747491162
+T00 ERR ...     13      0   +0.7038048385
+T00 ERR ...     14      0   +0.7052280349
+T00 ERR ...     15      0   +0.7057532040
+T00 ERR ...     16      0   +0.8002909333
+T00 ERR ...     17      0   +1.0999417545
+T00 ERR ...     18      0   +1.1004097021
+T00 ERR ...     19      0   +1.5445777345
+T00 ERR ...     20      0   +1.5470371293
+T00 ERR ...     21      0   +1.5494748553
+T00 ERR ...     22      0   +1.7740441778
+T00 ERR ...     23      0   +1.7790714934
+T00 ERR ...     24      0   +1.7829840272
+T00 ERR ...     25      0   +2.1478692319
+T00 ERR ...     26      0   +2.1543523600
+T00 ERR ...     27      0   +2.1593032995
+T00 ERR ...     28      0   +2.5457716092
+T00 ERR ...     29      0   +2.5462268035
+T00 ERR ...     30      0   +2.6358795913
+T00 ERR ...     31      0   +2.9321002159
+T00 ERR ...     32      0   +2.9387290892
+T00 ERR ...     33      0   +2.9434071080
+T00 ERR ... 2020-12-9 3:23:57 Electric Dipole is[e*bohr]:
+                 dx=0.000671699250933
+                 dy=0.00319877917035
+                 dz=-0.00105485803807
+T00 ERR ... Writing result to votca.orb
+T00 ERR ... QM energy[Hrt]: -40.42833487
+T00 ERR ... 2020-12-9 3:23:57 Evaluating polar 1
+T00 ERR ... 2020-12-9 3:23:57 Evaluating interaction between polar 1 and qm 0
+T00 ERR ... 2020-12-9 3:23:58 Evaluating interaction between polar 1 and static 2
+T00 ERR ... 2020-12-9 3:23:58 Starting Solving for classical polarization with 1380 degrees of freedom.
+T00 ERR ... 2020-12-9 3:23:58 CG: #iterations: 0, estimated error: 5.51883560331e-06
+T00 ERR ...   Total static energy [hrt]= 0.0009102654542
+T00 ERR ...   Total polar energy [hrt]= -0.000623037336
+T00 ERR ...  Total energy [hrt]= 0.0002872281182
+T00 ERR ... 2020-12-9 3:23:58 Evaluating static 2
+T00 ERR ... 2020-12-9 3:23:58 Writing checkpoint to checkpoint_iter_2.hdf5
+T00 ERR ...  Region:qm 0 is converged deltaE=1.421085472e-14 RMS Dmat=9.57606529e-15 MaxDmat=1.231792446e-13
+T00 ERR ... 2020-12-9 3:23:58 Region:polar 1 is converged deltaE=0
+T00 ERR ... 2020-12-9 3:23:58 --Total Energy all regions -40.42804765
+T00 ERR ... 2020-12-9 3:23:58 Job converged after 2 iterations.
+T00 ERR ... Reporting job results
+
+T00 ERR ... Requesting next job
+T00 ERR ... Assign jobs from stack
+T00 ERR ... Sync did not yield any new jobs.
+T00 ERR ... Next job: ID = - (none available)
+MST ERR Assign jobs from stack
+Changes have not been written to state file.
+</pre></div></div>
+</div>
+<p>Finally, save the results</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="ch">#!xtp_parallel -e qmmm -o OPTIONFILES/qmmm.xml -f state.hdf5 -j &quot;read&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="QMMM_LAMMPS.html" class="btn btn-neutral float-right" title="QMMM workflow using LAMMPS and VOTCA-XTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DFTGWBSE_OPTIMIZATION.html" class="btn btn-neutral float-left" title="DFT + GWBSE Optimization Using CO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

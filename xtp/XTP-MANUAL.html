@@ -38,7 +38,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="xtp_introduction.html" />
+    <link rel="prev" title="Bibliography" href="../csg-manual/bibliography.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,12 +91,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../csg-manual/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">XTP Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
@@ -106,6 +116,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
 </ul>
 
             
@@ -206,13 +217,35 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="xtp_map.html">xtp_map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_parallel.html">xtp_parallel</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="xtp_parallel.html">xtp_parallel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eqm.html">eqm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iexcitoncl.html">iexcitoncl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iqm.html">iqm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qmmm.html">qmmm</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_run.html">xtp_run</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="xtp_run.html">xtp_run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eanalyze.html">eanalyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="einternal.html">einternal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ianalyze.html">ianalyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kmclifetime.html">kmclifetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kmcmultiple.html">kmcmultiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapchecker.html">mapchecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="neighborlist.html">neighborlist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vaverage.html">vaverage</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_tools.html">xtp_tools</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="xtp_tools.html">xtp_tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apdft.html">apdft</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coupling.html">coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="densityanalysis.html">densityanalysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dftgwbse.html">dftgwbse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="excitoncoupling.html">excitoncoupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gencube.html">gencube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log2mps.html">log2mps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molpol.html">molpol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partialcharges.html">partialcharges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spectrum.html">spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -227,6 +260,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xtp_introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../csg-manual/bibliography.html" class="btn btn-neutral float-left" title="Bibliography" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
