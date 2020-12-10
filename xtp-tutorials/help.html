@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>qmsandbox &mdash; VOTCA 2021-dev documentation</title>
+  <title>Support &mdash; VOTCA 2021-dev documentation</title>
   
 
   
@@ -38,7 +38,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DFT + GWBSE Energy Calculation Using CH4" href="DFTGWBSE_ENERGY.html" />
+    <link rel="prev" title="XTP Tutorials" href="XTP-TUTORIAL.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,12 +93,23 @@
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../csg-manual/index.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">Votca Tutorial Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html">DFT + GWBSE Optimization Using CO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_OPTIMIZATION.html#Preparing-the-input">Preparing the input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
@@ -154,13 +167,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>qmsandbox</li>
+          <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
+        
+      <li>Support</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/xtp/qmsandbox.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/xtp-tutorials/help.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -197,36 +212,12 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="qmsandbox">
-<h1>qmsandbox<a class="headerlink" href="#qmsandbox" title="Permalink to this headline">¶</a></h1>
-<p>Sandbox to test xtp classes
-The following table contains the defaults input options for the calculator,</p>
-<table class="colwidths-given docutils align-center">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 25%" />
-<col style="width: 19%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Default Value</p></th>
-<th class="head"><p>Valid Input</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>option1</p></td>
-<td><p>some property</p></td>
-<td><p>3.14</p></td>
-<td><p>float+</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>qmsandbox</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/qmsandbox.xml</cite></p>
-</div>
+<div class="section" id="support">
+<h1>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
+<p>If you find bugs, weird behaviour or just incomprehensible instructions,
+please open an issue
+<a class="reference external" href="https://github.com/votca/xtp-tutorials/issues">here</a></p>
+<p>We will try to fix it as fast as possible.</p>
 </div>
 
 
@@ -234,6 +225,15 @@ The following table contains the defaults input options for the calculator,</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DFTGWBSE_ENERGY.html" class="btn btn-neutral float-right" title="DFT + GWBSE Energy Calculation Using CH4" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XTP-TUTORIAL.html" class="btn btn-neutral float-left" title="XTP Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
