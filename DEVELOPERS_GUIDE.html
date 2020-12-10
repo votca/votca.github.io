@@ -92,7 +92,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="csg-manual/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg/index.html">CSG Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="xtp/XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
@@ -267,7 +267,6 @@ Please be sure to provide as much information as possible such as:</p>
 <li><p><a class="reference external" href="https://github.com/votca/tools/issues">tools</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/csg/issues">csg</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/csgapps/issues">csgapps</a></p></li>
-<li><p><a class="reference external" href="https://github.com/votca/csg-manual/issues">csg-manual</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/csg-tutorials/issues">csg-tutorials</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/xtp/issues">xtp</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/votca/issues">votca</a></p></li>
@@ -291,7 +290,7 @@ automate this.</p>
 </div>
 <div class="section" id="votca-continuous-integration-github-actions">
 <h2>VOTCA Continuous Integration (Github Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
-<p>Each pull request to master in the tools, csg, csgapps, csg-tutorials, csg-manual, xtp, xtp-tutorials or votca repository
+<p>Each pull request to master in the tools, csg, csgapps, csg-tutorials, xtp, xtp-tutorials or votca repository
 is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> (There is still some Gitlab for the GPU builds).</p>
 <p>VOTCA can build on various linux distributions, which are not all natively supported by Github actions. For non natively supported distributions,
 instead of using the default virtual machines, VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of votca (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
