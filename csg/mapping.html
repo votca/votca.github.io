@@ -212,91 +212,133 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>ident</p></td>
-<td></td>
+<td><p>Molecule name in reference topology.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology</p></td>
-<td></td>
+<td><p>Section defining coarse grained beads of molecule.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads</p></td>
-<td></td>
+<td><p>Section defining coarse grained beads of molecule.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead</p></td>
-<td></td>
+<td><p>Definition of a coarse grained bead.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads.cg_bead.name</p></td>
-<td></td>
+<td><p>Name of coarse grained bead.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead.type</p></td>
-<td></td>
+<td><p>Type of coarse grained bead.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads.cg_bead.mapping</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Mapping scheme to be used for this bead (specified in</div>
+<div class="line">section mapping) to map from reference system.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The beads section lists all atoms of the reference system</div>
+<div class="line">that are mapped to this particular coarse grained bead.</div>
+<div class="line">The syntax is RESID:RESNAME:ATOMNAME, the beads are separated</div>
+<div class="line">by spaces.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The cg_bonded section contains all bonded interaction</div>
+<div class="line">of the molecule. Those can be bond, angle or dihedral.</div>
+<div class="line">An entry for each group of bonded interaction can be specified,</div>
+<div class="line">e.g. several groups (types) of bonds can be specified.</div>
+<div class="line">A specific bonded interaction can be later on addressed</div>
+<div class="line">by MOLECULE:NAME:NUMBER, where MOLECULE is the molecule</div>
+<div class="line">ID in the whole topology, NAME the name of the interaction</div>
+<div class="line">group and NUMBER addresses the interaction in the group.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.bond</p></td>
-<td></td>
+<td><p>Definition of a group of bonds.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.bond.name</p></td>
-<td></td>
+<td><p>Name of the bond.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.bond.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">List of pair of beads that define a bond. Names specified</div>
+<div class="line">in cg_beads</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.angle</p></td>
-<td></td>
+<td><p>Definition of a group of angles.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.angle.name</p></td>
-<td></td>
+<td><p>Name of the angle</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.angle.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">List of triples of beads that define a bond. Names specified</div>
+<div class="line">in cg_beads</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.dihedral</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Definition of a group of dihedrals. Since the exact functional</div>
+<div class="line">form does not matter, this combines proper as well as</div>
+<div class="line">improper dihedrals.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.dihedral.name</p></td>
-<td></td>
+<td><p>Name of the dihedral</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.dihedral.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">List of quadruples of beads that define a bond. Names</div>
+<div class="line">specified in cg_beads</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>maps</p></td>
-<td></td>
+<td><p>Section containing definitions of mapping schemes.</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>maps.map</p></td>
-<td></td>
+<td><p>Section for a mapping for 1 bead.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>maps.map.name</p></td>
-<td></td>
+<td><p>Name of the mapping</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>maps.map.weights</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Weights of the mapping matrix. Entries are normalized</div>
+<div class="line">to 1, number of entries must match the number of reference</div>
+<div class="line">beads in a coarse-grained bead.</div>
+</div>
+</td>
 <td></td>
 </tr>
 </tbody>

@@ -197,7 +197,8 @@
     text-align: unset;
 }
 </style>
-<p>The following table contains the input options for CSG,</p>
+<p>The XML topology root element, the base for the topology can be defined by the “name” attribute
+The following table contains the input options for CSG,</p>
 <table class="docutils align-center">
 <colgroup>
 <col style="width: 33%" />
@@ -212,83 +213,140 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>h5md_particle_group</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Attribute name holds the name of particles group in H5MD</div>
+<div class="line">file</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>molecules</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The the molecules in the trajectory or other operation</div>
+<div class="line">on the molecules.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.molecule</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Definition of the molecule, with attributes: name, nmols</div>
+<div class="line">and nbeads. The name defines residue name, nmols tells</div>
+<div class="line">how many times this molecule has to be replicated to match</div>
+<div class="line">with trajectory file and nbeads defines number of beads</div>
+<div class="line">in every molecule.</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>molecules.molecule.bead</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Define the bead in the molecule. Attributes are: name</div>
+<div class="line">- the name of bead, type - the type of bead, mass - the</div>
+<div class="line">mass of bead, q - the value of charge and resid - the</div>
+<div class="line">id of the residue the bead belongs to (&gt;=1).</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.clear</p></td>
-<td></td>
+<td><p>Clear the information about the molecules</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>molecules.rename</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Rename the molecules; attributes: “name” - the new name,</div>
+<div class="line">“range” - the range where the new name will be set in</div>
+<div class="line">the format start_range:end_range</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.define</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Define the molecules; attributes: “name” - the name of</div>
+<div class="line">molecule, “first” - the id of first molecule, “nbeads”</div>
+<div class="line">- the number of beads in the molecule, “nmols” - the number</div>
+<div class="line">of molecules</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">This section defines the topology of the molecules, it</div>
+<div class="line">is used to generate proper exclusions for calculating</div>
+<div class="line">rdfs</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.bond</p></td>
-<td></td>
+<td><p>Describes the bond</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.bond.name</p></td>
-<td></td>
+<td><p>The name of the bond</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.bond.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The pair of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
+<div class="line"><br /></div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.angle</p></td>
-<td></td>
+<td><p>Describes the angle</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.angle.name</p></td>
-<td></td>
+<td><p>The name of the angle</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.angle.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
+<div class="line"><br /></div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.dihedral</p></td>
-<td></td>
+<td><p>Describes the dihedrals</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.dihedral.name</p></td>
-<td></td>
+<td><p>The name of the dihedral</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.dihedral.beads</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
+<div class="line"><br /></div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>beadtypes</p></td>
-<td></td>
+<td><p>Allows defining bead types</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>beadtypes.rename</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Rename the bead type; attributes: “name” - the old name,</div>
+<div class="line">“newname” - the new name</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>beadtypes.mass</p></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Define the mass of the bead type; attributes: “name” -</div>
+<div class="line">the bead type name, “value” - the new mass</div>
+</div>
+</td>
 <td></td>
 </tr>
 </tbody>
