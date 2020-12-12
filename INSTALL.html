@@ -238,7 +238,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
 version=master # or &#39;stable&#39; or &#39;v1.4.1&#39;
 git clone -b ${version} --recursive https://github.com/votca/votca.git
-cmake -Bbuilddir -DBUILD_CSGAPPS=ON -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
+cmake -Bbuilddir -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
 cmake --build builddir --parallel &lt;number of cores&gt;
 cmake --build builddir --target install
 </pre></div>
@@ -264,7 +264,7 @@ for resolving dependency issues. In particular, an appropriate extra
 will have to rerun the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s)
 added. For example, in the case of a locally installed version of
 Gromacs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DBUILD_CSGAPPS=ON -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
 </pre></div>
 </div>
 <p>Be careful to use exactly the option suggested in the error message! You
@@ -291,7 +291,7 @@ related tweaks when setting <code class="docutils literal notranslate"><span cla
 <div class="section" id="common-cmake-flags">
 <h3>Common CMake Flags<a class="headerlink" href="#common-cmake-flags" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSGAPPS</span></code> - Build the extra csg applications repo (ON/OFF,
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSGAPPS</span></code> - Install the extra csg applications repo (ON/OFF,
 Default OFF)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_XTP</span></code> - Build the xtp repo (ON/OFF, Default OFF)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> - where to install the votca executables
