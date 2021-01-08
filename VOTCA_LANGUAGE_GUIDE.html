@@ -206,7 +206,7 @@
 </style>
 <div class="section" id="votca-internal-contributor-language-guide">
 <h1>VOTCA Internal Contributor Language Guide<a class="headerlink" href="#votca-internal-contributor-language-guide" title="Permalink to this headline">¶</a></h1>
-<p>This language guide has been created to establish rules to keep VOTCAs
+<p>This language guide has been created to establish rules to keep VOTCA’s
 code consistent between repositories. In the past, there has been
 difficulty in translating functionality between repositories and within
 the same repositories because different properties have been used to
@@ -214,11 +214,11 @@ describe the same object attribute. For general programming guidelines
 look at the <a class="reference external" href="share/doc/DEVELOPERS_GUIDE.rst">Developers Guide</a></p>
 <div class="section" id="types-and-ids">
 <h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this headline">¶</a></h2>
-<p>As an example consider the csg bead object which had at one time
+<p>As an example, consider the csg bead object which had at one time
 contained the name, type and id attribute. The name of a bead is ill
 defined and could be unique but was not guaranteed to be so.</p>
 <p>If a bead were named C5 it was not clear if this was an arbitrary bead
-name, or if it was the 5th carbon atom in the system. Any any case the
+name, or if it was the 5th carbon atom in the system. In any case the
 name attribute is not needed because if a unique id is needed the id of
 the bead could be used whereas if the type of the bead was needed the
 type attribute could be used. As such, the name method and attribute has
@@ -239,8 +239,8 @@ indicated with a type method and attribute.</p>
 <div class="section" id="units-in-votca">
 <h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this headline">¶</a></h2>
 <p>VOTCA tried as much as possible to standarize units across both CSG and
-XTP. Externally we parse in the units of the respective file format,
-e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstroem</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally we convert all
+XTP. Externally, we parse in the units of the respective file format,
+e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstrom</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally, we convert all
 parsed units to:</p>
 <ul class="simple">
 <li><p>CSG: length <code class="docutils literal notranslate"><span class="pre">nm</span></code>, energy <code class="docutils literal notranslate"><span class="pre">kJ/mol</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
@@ -251,7 +251,7 @@ parsed units to:</p>
 <h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this headline">¶</a></h2>
 <p>All indeces in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
 start at index 0.</p>
-<p>Apart from special cases all indeces and integers in votca should be
+<p>Apart from special cases all indices and integers in votca should be
 <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>. <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
 methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be
 cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>. i.e: <code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>

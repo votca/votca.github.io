@@ -237,7 +237,7 @@
 </style>
 <div class="section" id="developer-and-contributor-guide">
 <h1>Developer and Contributor Guide<a class="headerlink" href="#developer-and-contributor-guide" title="Permalink to this headline">¶</a></h1>
-<p>The page is designed to give new developers general guidelines for
+<p>This page is designed to give new developers general guidelines for
 implementing code consistent with the VOTCA and cpp style and standard.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#reporting-bugs">Reporting Bugs</a></p></li>
@@ -291,18 +291,18 @@ automate this.</p>
 <h2>VOTCA Continuous Integration (Github Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
 <p>Each pull request to master in the tools, csg, csg-tutorials, xtp, xtp-tutorials or votca repository
 is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> (There is still some Gitlab for the GPU builds).</p>
-<p>VOTCA can build on various linux distributions, which are not all natively supported by Github actions. For non natively supported distributions,
-instead of using the default virtual machines, VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of votca (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
-<p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires, but not any VOTCA code. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
-On top of these containers, the actual containers for running the test builds are built, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
-<p>For more information also look at the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
+<p>VOTCA can be built on various linux distributions, which are not all natively supported by Github actions. For non natively supported distributions,
+instead of using the default virtual machines, VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of VOTCA (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
+<p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires; VOTCA code itself is not included. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
+The actual containers used for running the test builds are built on top of the <strong>votca/buildenv</strong> containers, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
+<p>More information can be found in the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
 </div>
 <div class="section" id="making-a-release">
 <h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
-<p>Releases are done by Github actions as well. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
+<p>Similar to the VOTCA containers, releases are also handled by Github actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">here</a>. The release can only be made from the
-<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but one can test making a release on any other branch as well. To make a release, trigger the action from
-<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag in all involved submodules (plus pull requests for the stable to master branch, see <a class="reference external" href="#updates-from-stable">below</a>).</p>
+<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
+<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag in all involved submodules (plus pull requests for the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> to <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, see <a class="reference external" href="#updates-from-stable">below</a>).</p>
 </div>
 <div class="section" id="cpp-resources">
 <h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
@@ -322,8 +322,8 @@ Practices2</a></p></li>
 <div class="section" id="files">
 <h3>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>each class goes into a separate file</p></li>
-<li><p>filename is name of class in lowercase</p></li>
+<li><p>Each class goes into a separate file.</p></li>
+<li><p>Each filename should be the the name of the class it contains written in lowercase.</p></li>
 </ul>
 </div>
 <div class="section" id="includes">
@@ -345,9 +345,9 @@ use the anglular brackets i.e.</p>
 <h3>Header Files<a class="headerlink" href="#header-files" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>One class, one header.</p></li>
-<li><p>When creating header guards use the following form, where
-“VOTCA-REPO-NAME” is replaced by whichever repo the header is in
-tools/csg/xtp, and where “CLASS-NAME” is replaced by the name of the
+<li><p>When creating header guards use the template: VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H. Where
+“VOTCA-REPO-NAME” is replaced by whichever repo the header file is in, this could be
+tools, csg or xtp. The “CLASS-NAME” component should also be replaced, but by the name of the
 class described in the header file:</p>
 <p>#ifndef VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H #define
 VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H : Code : #endif //
@@ -361,50 +361,49 @@ class instead.</p></li>
 <div class="section" id="auto">
 <h3>Auto<a class="headerlink" href="#auto" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>avoid using auto unless the type is very long, the reason being auto
+<li><p>Avoid using auto unless the type is very long, the reason being auto
 obscures the underlying type and can make it difficult to discern
-what a variable is meant to be used for</p></li>
+what a variable is meant to be used for.</p></li>
 </ul>
 </div>
 <div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>normally begin in upper case</p></li>
-<li><p>order in class definition:</p></li>
-<li><p>first <code class="docutils literal notranslate"><span class="pre">public</span></code> all functions</p></li>
-<li><p>then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> all member variables</p></li>
-<li><p>then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> member functions</p></li>
-<li><p>no rule where to define a <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">typedef</span></code> in the class</p></li>
-<li><p>all member variables are <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">public</span></code></p></li>
-<li><p>maximum one-line-function implementation in class declaration,
-everything else moves to separate file or inline at end of header.</p></li>
+<li><p>Normally class names in upper case.</p></li>
+<li><p>Order of access modifiers in class definitions should be as follows:
+-  first <code class="docutils literal notranslate"><span class="pre">public</span></code> all functions
+-  then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> all member variables
+-  then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> member functions</p></li>
+<li><p>There is no rule as to where to define a <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">typedef</span></code> in the class.</p></li>
+<li><p>All member variables are <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">public</span></code>.</p></li>
+<li><p>The body of class methods should be placed in a source file or inlined at the end of the header if it exceeds a single line.</p></li>
 </ul>
 </div>
 <div class="section" id="naming-in-classes">
 <h3>Naming in Classes<a class="headerlink" href="#naming-in-classes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>all member variables are in lower case and end with <code class="docutils literal notranslate"><span class="pre">_</span></code></p></li>
-<li><p>all functions start with upper case, no <code class="docutils literal notranslate"><span class="pre">_</span></code> in names</p></li>
-<li><p>exception: <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> functions</p></li>
-<li><p>for consistency all Ids should start at 0 not 1</p></li>
+<li><p>All member variables should be in lower case and end with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p></li>
+<li><p>All functions should start with upper case, no <code class="docutils literal notranslate"><span class="pre">_</span></code> should exist in their names.</p></li>
+<li><p>Only <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> methods can begin with lower case letters.</p></li>
+<li><p>For consistency all Ids should start at 0 not 1.</p></li>
 </ul>
 </div>
 <div class="section" id="get-set-functions">
 <h3>get/set Functions<a class="headerlink" href="#get-set-functions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>get/set functions start with a lowercase set/get (these are only
-functions which directly set/get a private member variable)</p></li>
-<li><p>get must return a constant reference and keep the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">const</span></code>:
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> functions should start with a lowercase <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> (these are the only
+functions which should directly <code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">get</span></code> a private member variable)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get</span></code> must return a constant reference and keep the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">const</span></code>:
 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">int</span> <span class="pre">&amp;getId()</span> <span class="pre">const;</span></code></p></li>
-<li><p>set only sets the member, e.g.
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code> only sets the member, e.g.
 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setId(const</span> <span class="pre">int</span> <span class="pre">&amp;id)</span> <span class="pre">{</span> <span class="pre">_id</span> <span class="pre">=</span> <span class="pre">id;</span> <span class="pre">}</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Make functions short.</p></li>
-<li><p>Functions should not have more than one use. So use boolean arguments
+<li><p>Functions should remain short.</p></li>
+<li><p>Functions should not have more than one use, so use boolean arguments
 sparingly.</p></li>
 </ul>
 </div>
@@ -415,9 +414,9 @@ sparingly.</p></li>
 copy does not change performance. Use references if you want to avoid copies.</p></li>
 <li><p>If your pointer owns an object (i.e. it has to delete it later) use a
 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> to it, so you do not have to call <code class="docutils literal notranslate"><span class="pre">delete</span></code> on it
-yourself</p></li>
+yourself.</p></li>
 <li><p>If multiple objects own an object and the last object alive should
-delete it, use a <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code></p></li>
+delete it, use a <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code>.</p></li>
 <li><p>If your object does not have ownership but just wants to visit, you
 can use a raw pointer, but if you can a reference is better.</p></li>
 <li><p>If you ever have to explicitly call <code class="docutils literal notranslate"><span class="pre">delete</span></code>, you did something
@@ -433,7 +432,7 @@ very wrong.</p></li>
 <li><p>Functions should have no more than 3 arguments. Otherwise create a
 class.</p></li>
 <li><p>XYZ positions should be <code class="docutils literal notranslate"><span class="pre">Eigen::Vector3d</span></code> from the eigen library.</p></li>
-<li><p>Readability is more important the elegant design.</p></li>
+<li><p>Readability is more important than elegant design.</p></li>
 <li><p>Leave the code better than you found it.</p></li>
 <li><p>Use pointers sparingly and especially try not to pass them around
 objects. Prefer references.</p></li>
@@ -465,14 +464,14 @@ link</a></p></li>
 </ul>
 <p>We will outline the general workflow here using the vec object in
 votca::tools. This object only has a header file it is in:
-tools/include/votca/tools/vec.h</p>
-<p>Determine if a tests folder has already been created or not in /src if
-it has not take a look at what was done in the votca-tools repo.</p>
+tools/include/votca/tools/vec.h.</p>
+<p>Determine if a tests folder has already been created or not in /src. If
+it has not, take a look at what was done in the votca-tools repo.</p>
 <ol class="arabic">
 <li><p>Create a test file in
 <a class="reference external" href="https://github.com/votca/tools/tree/master/src/tests">tools/src/tests/</a>test_vec.cc
 must have the same name as what appears in the foreach in the
-CMakeLists.txt file. And place the following contents</p>
+CMakeLists.txt file. And place the following contents:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define BOOST_TEST_MAIN</span>
 
 <span class="c1">#define BOOST_TEST_MODULE vec_test</span>
@@ -517,11 +516,11 @@ following commands:</p>
 </div>
 </li>
 </ol>
-<p>Ensure you have an up to date version of cmake or use cmake3</p>
+<p>Ensure you have an up to date version of cmake or use cmake3.</p>
 </div>
 <div class="section" id="testing-across-repos">
 <h3>Testing Across Repos<a class="headerlink" href="#testing-across-repos" title="Permalink to this headline">¶</a></h3>
-<p>There may come a case where changes have to be committed across more
+<p>There may come a time where changes have to be committed across more
 than one repo at the same time. Attempting to merge one repo at a time
 will cause the continuous integration to fail as changes in the other
 repos will not be pulled in. To do this correctly the following steps
@@ -545,12 +544,12 @@ should be taken.</p>
 </div>
 </li>
 <li><p>The submodules are updated to be sure they have incorporated the
-latest changes in your local repository</p>
+latest changes in your local repository.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span>
 </pre></div>
 </div>
 </li>
-<li><p>Create a branch with a descriptive name</p>
+<li><p>Create a branch with a descriptive name.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">some_descriptive_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -562,47 +561,47 @@ the submodules.</p>
 </div>
 </li>
 <li><p>‘-C’ changes directory to the submodule directory and then checks out
-the appropriate commit</p>
+the appropriate commit.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module1_to_test</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="o">-</span><span class="n">C</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">sha_or_branch_of_module2_to_test</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
-<li><p>The changes are then added and commited</p>
+<li><p>The changes are then added and commited.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">module1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">module2</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;test &lt;module1&gt; with &lt;module2&gt;&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Finally, they are pushed to the remote branch</p>
+<li><p>Finally, they are pushed to the remote branch.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">some_descriptive_branch_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
 </ol>
 <p>A pull request is then made for the votca/votca repo using the branch
-name. Once the branch passes all tests it can be merged. Pull requests
-for each of repos changed can then be made. They will now compile
-against the updated votca/votca repo. Once they pass their tests they
-can be merged. If a pull request was already made the travis tests may
+name. Once the branch passes all tests, it can be merged. Pull requests
+for each of the repos changed can then be made. They will now compile
+against the updated votca/votca repo. Once they pass their tests, they
+can be merged. If a pull request was already made, the travis tests may
 simply need to be restarted.</p>
 </div>
 </div>
 <div class="section" id="cpp-coding-style-guide">
 <h2>CPP Coding Style Guide<a class="headerlink" href="#cpp-coding-style-guide" title="Permalink to this headline">¶</a></h2>
-<p>VOTCA uses a few auto formatting tools to help enforce the rules</p>
+<p>VOTCA uses a few auto formatting tools to help enforce the rules.</p>
 <div class="section" id="clang-format">
 <h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Permalink to this headline">¶</a></h3>
-<p>Automatically ensure consistent formatting for .cc and .h files. The
+<p>Automatically ensures consistent formatting for .cc and .h files. The
 style follows the google style fomatting rules. Have a look at the
 <code class="docutils literal notranslate"><span class="pre">.clang-format</span> <span class="pre">file</span></code> in the <a class="reference external" href="https://github.com/votca/votca/blob/master/.clang-format">main votca
 repository</a>
 for details.</p>
-<p>To run the clang-format function on file.cc</p>
+<p>To run the clang-format function on file.cc.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">style</span><span class="o">=</span><span class="n">file</span> <span class="n">file</span><span class="o">.</span><span class="n">cc</span>
 </pre></div>
 </div>
-<p>‘-i’ ensures it will make change to file.cc, omitting the ‘-i’ will
+<p>‘-i’ ensures it will make changes to file.cc, omitting the ‘-i’ will
 display the changes without implementing them. ‘-style=file’ ensures the
 format is read from the .clang-format file otherwise it will use a
 default style guide.</p>
@@ -611,7 +610,7 @@ is preferable that spaces be used instead.</p>
 </div>
 <div class="section" id="autopep8">
 <h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Permalink to this headline">¶</a></h3>
-<p>Automatically formats python .py files. We are use the default format
+<p>Automatically formats python .py files. We are useing the default format
 rules of autopep8. To run on file.py and update the file run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autopep8</span> <span class="o">-</span><span class="n">i</span> <span class="n">file</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
@@ -660,20 +659,20 @@ description.</p>
 </li>
 </ol>
 <p>Doxygen commenting will help future developers maintain the code, in
-its fully compiled state. It may be found at: <a class="reference external" href="http://doc.votca.org">http://doc.votca.org</a></p>
+its fully compiled state. It may be found at: <a class="reference external" href="http://doc.votca.org">http://doc.votca.org</a>.</p>
 <p>NOTE: Compilation of the doxygen documentation is automated when code is
 merged into the <code class="code docutils literal notranslate"><span class="pre">master</span></code> votca branch!</p>
 </div>
 <div class="section" id="updating-git-submodules">
 <h2>Updating Git Submodules<a class="headerlink" href="#updating-git-submodules" title="Permalink to this headline">¶</a></h2>
-<p>Votca with all of its repos can be build by using the parent <a class="reference external" href="https://github.com/votca/votca">votca
+<p>VOTCA with all of its repos can be build by using the parent <a class="reference external" href="https://github.com/votca/votca">votca
 repo</a>. All the other necessary repos
-appear as submodules in the parent repo. It is worth noting that the
+appear as submodules in the parent repo. It is worth noting, the
 submodules are automatically updated through a pull request whenever changes are made to
 their respective <code class="code docutils literal notranslate"><span class="pre">master</span></code> branches. In essence, a submodule refers to a
 specific commit of the repo it represents.</p>
-<p>Normally it is not necessary, but occassionally a new commit must be manually
-merged into the <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch of a child repository. If this occurs the
+<p>Normally, it is not necessary, but occassionally a new commit must be manually
+merged into the <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch of a child repository. If this occurs, the
 submodule state in the parent repo also has to be updated to reflect the latest
 commit of the child repo.</p>
 <p>To update the state of a submodule the following commands can be used:</p>
