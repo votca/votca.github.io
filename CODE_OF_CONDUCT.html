@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>VOTCA Internal Contributor Language Guide &mdash; VOTCA 2022-dev documentation</title>
+  <title>Code of Conduct &mdash; VOTCA 2022-dev documentation</title>
   
 
   
@@ -39,8 +39,7 @@
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Code of Conduct" href="CODE_OF_CONDUCT.html" />
-    <link rel="prev" title="Developer and Contributor Guide" href="DEVELOPERS_GUIDE.html" /> 
+    <link rel="prev" title="VOTCA Internal Contributor Language Guide" href="VOTCA_LANGUAGE_GUIDE.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -103,13 +102,16 @@
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">VOTCA Internal Contributor Language Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#types-and-ids">Types and Ids</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#units-in-votca">Units in VOTCA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#indexing-in-votca">Indexing in VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code of Conduct</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#our-pledge">Our Pledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#our-standards">Our Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#our-responsibilities">Our Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scope">Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enforcement">Enforcement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attribution">Attribution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
 <ul>
@@ -161,13 +163,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>VOTCA Internal Contributor Language Guide</li>
+      <li>Code of Conduct</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/VOTCA_LANGUAGE_GUIDE.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/CODE_OF_CONDUCT.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -204,57 +206,80 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="votca-internal-contributor-language-guide">
-<h1>VOTCA Internal Contributor Language Guide<a class="headerlink" href="#votca-internal-contributor-language-guide" title="Permalink to this headline">¶</a></h1>
-<p>This language guide has been created to establish rules to keep VOTCA’s
-code consistent between repositories. In the past, there has been
-difficulty in translating functionality between repositories and within
-the same repositories because different properties have been used to
-describe the same object attribute. For general programming guidelines
-look at the <a class="reference external" href="share/doc/DEVELOPERS_GUIDE.rst">Developers Guide</a></p>
-<div class="section" id="types-and-ids">
-<h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this headline">¶</a></h2>
-<p>As an example, consider the csg bead object which had at one time
-contained the name, type and id attribute. The name of a bead is ill
-defined and could be unique but was not guaranteed to be so.</p>
-<p>If a bead were named C5 it was not clear if this was an arbitrary bead
-name, or if it was the 5th carbon atom in the system. In any case the
-name attribute is not needed because if a unique id is needed the id of
-the bead could be used whereas if the type of the bead was needed the
-type attribute could be used. As such, the name method and attribute has
-been removed from the object.</p>
-<p>As a general rule, objects should not have a name method or attribute
-rather, any attribute that is not unique to an object should be
-indicated with a type method and attribute.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getBeadType</span><span class="p">();</span>
-<span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">getResidueType</span><span class="p">();</span>
-</pre></div>
+<div class="section" id="code-of-conduct">
+<h1>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="our-pledge">
+<h2>Our Pledge<a class="headerlink" href="#our-pledge" title="Permalink to this headline">¶</a></h2>
+<p>In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to make participation in our
+project and our community a harassment-free experience for everyone,
+regardless of age, body size, disability, ethnicity, gender identity and
+expression, level of experience, nationality, personal appearance, race,
+religion, or sexual identity and orientation.</p>
 </div>
-<p>To indicate a unique attribute an id should be used.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">getBeadId</span><span class="p">();</span>
-<span class="nb">int</span> <span class="n">getMoleculeId</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="units-in-votca">
-<h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>VOTCA tried as much as possible to standarize units across both CSG and
-XTP. Externally, we parse in the units of the respective file format,
-e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstrom</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally, we convert all
-parsed units to:</p>
+<div class="section" id="our-standards">
+<h2>Our Standards<a class="headerlink" href="#our-standards" title="Permalink to this headline">¶</a></h2>
+<p>Examples of behavior that contributes to creating a positive environment
+include:</p>
 <ul class="simple">
-<li><p>CSG: length <code class="docutils literal notranslate"><span class="pre">nm</span></code>, energy <code class="docutils literal notranslate"><span class="pre">kJ/mol</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
-<li><p>XTP: length <code class="docutils literal notranslate"><span class="pre">bohr</span></code>, energy <code class="docutils literal notranslate"><span class="pre">Hartree</span></code> and time <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
+<li><p>Using welcoming and inclusive language</p></li>
+<li><p>Being respectful of differing viewpoints and experiences</p></li>
+<li><p>Gracefully accepting constructive criticism</p></li>
+<li><p>Focusing on what is best for the community</p></li>
+<li><p>Showing empathy towards other community members</p></li>
+</ul>
+<p>Examples of unacceptable behavior by participants include:</p>
+<ul class="simple">
+<li><p>The use of sexualized language or imagery and unwelcome sexual
+attention or advances</p></li>
+<li><p>Trolling, insulting/derogatory comments, and personal or political
+attacks</p></li>
+<li><p>Public or private harassment</p></li>
+<li><p>Publishing others’ private information, such as a physical or
+electronic address, without explicit permission</p></li>
+<li><p>Other conduct which could reasonably be considered inappropriate in a
+professional setting</p></li>
 </ul>
 </div>
-<div class="section" id="indexing-in-votca">
-<h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>All indeces in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
-start at index 0.</p>
-<p>Apart from special cases all indices and integers in votca should be
-<code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>. <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
-methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be
-cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>. i.e: <code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>
+<div class="section" id="our-responsibilities">
+<h2>Our Responsibilities<a class="headerlink" href="#our-responsibilities" title="Permalink to this headline">¶</a></h2>
+<p>Project maintainers are responsible for clarifying the standards of
+acceptable behavior and are expected to take appropriate and fair
+corrective action in response to any instances of unacceptable behavior.</p>
+<p>Project maintainers have the right and responsibility to remove, edit,
+or reject comments, commits, code, wiki edits, issues, and other
+contributions that are not aligned to this Code of Conduct, or to ban
+temporarily or permanently any contributor for other behaviors that they
+deem inappropriate, threatening, offensive, or harmful.</p>
+</div>
+<div class="section" id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
+<p>This Code of Conduct applies both within project spaces and in public
+spaces when an individual is representing the project or its community.
+Examples of representing a project or community include using an
+official project e-mail address, posting via an official social media
+account, or acting as an appointed representative at an online or
+offline event. Representation of a project may be further defined and
+clarified by project maintainers.</p>
+</div>
+<div class="section" id="enforcement">
+<h2>Enforcement<a class="headerlink" href="#enforcement" title="Permalink to this headline">¶</a></h2>
+<p>Instances of abusive, harassing, or otherwise unacceptable behavior may
+be reported by contacting the project team at <a class="reference external" href="mailto:votca&#37;&#52;&#48;googlegroups&#46;com">votca<span>&#64;</span>googlegroups<span>&#46;</span>com</a>.
+The project team will review and investigate all complaints, and will
+respond in a way that it deems appropriate to the circumstances. The
+project team is obligated to maintain confidentiality with regard to the
+reporter of an incident. Further details of specific enforcement
+policies may be posted separately.</p>
+<p>Project maintainers who do not follow or enforce the Code of Conduct in
+good faith may face temporary or permanent repercussions as determined
+by other members of the project’s leadership.</p>
+</div>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+<p>This Code of Conduct is adapted from the <a class="reference external" href="http://contributor-covenant.org">Contributor
+Covenant</a>, version 1.4, available at
+<a class="reference external" href="http://contributor-covenant.org/version/1/4/">http://contributor-covenant.org/version/1/4</a></p>
 </div>
 </div>
 
@@ -266,10 +291,8 @@ cast to <code class="docutils literal notranslate"><span class="pre">votca::Inde
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="CODE_OF_CONDUCT.html" class="btn btn-neutral float-right" title="Code of Conduct" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="DEVELOPERS_GUIDE.html" class="btn btn-neutral float-left" title="Developer and Contributor Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="VOTCA_LANGUAGE_GUIDE.html" class="btn btn-neutral float-left" title="VOTCA Internal Contributor Language Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
