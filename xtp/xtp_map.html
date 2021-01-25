@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>xtp_map &mdash; VOTCA 2022-dev documentation</title>
+  <title>NAME &mdash; VOTCA 2022-dev documentation</title>
   
 
   
@@ -38,9 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="xtp_parallel" href="xtp_parallel.html" />
-    <link rel="prev" title="Workflow and Calculator Structure" href="workflows_and_calculators.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,21 +89,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Manuals</span></p>
-<ul class="current">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">xtp_map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel.html">xtp_parallel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run.html">xtp_run</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools.html">xtp_tools</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -168,11 +155,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="XTP-MANUAL.html">XTP Manual</a> &raquo;</li>
-        
-          <li><a href="workflows_and_calculators.html">Workflow and Calculator Structure</a> &raquo;</li>
-        
-      <li>xtp_map</li>
+      <li>NAME</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -215,8 +198,53 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="xtp-map">
-<h1>xtp_map<a class="headerlink" href="#xtp-map" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="name">
+<h1>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h1>
+<p><strong>xtp_map</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="synopsis">
+<h1>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h1>
+<p><strong>xtp_map</strong> [OPTIONS]</p>
+<p><strong>xtp_map</strong> [–help]</p>
+</div>
+<div class="section" id="description">
+<h1>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
+<p>Generates QM|MD topology</p>
+</div>
+<div class="section" id="options">
+<h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                    <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                        <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                       <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">t</span> <span class="p">[</span> <span class="o">--</span><span class="n">topology</span> <span class="p">]</span> <span class="n">arg</span>            <span class="n">topology</span>
+  <span class="o">-</span><span class="n">c</span> <span class="p">[</span> <span class="o">--</span><span class="n">coordinates</span> <span class="p">]</span> <span class="n">arg</span>         <span class="n">coordinates</span> <span class="ow">or</span> <span class="n">trajectory</span>
+  <span class="o">-</span><span class="n">s</span> <span class="p">[</span> <span class="o">--</span><span class="n">segments</span> <span class="p">]</span> <span class="n">arg</span>            <span class="n">definition</span> <span class="n">of</span> <span class="n">segments</span> <span class="ow">and</span> <span class="n">fragments</span>
+  <span class="o">-</span><span class="n">m</span> <span class="p">[</span> <span class="o">--</span><span class="n">makesegments</span> <span class="p">]</span>            <span class="n">write</span> <span class="n">out</span> <span class="n">a</span> <span class="n">skeleton</span> <span class="n">segments</span> <span class="n">file</span>
+  <span class="o">-</span><span class="n">f</span> <span class="p">[</span> <span class="o">--</span><span class="n">file</span> <span class="p">]</span> <span class="n">arg</span>                <span class="n">state</span> <span class="n">file</span>
+  <span class="o">-</span><span class="n">i</span> <span class="p">[</span> <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="kn">from</span> <span class="nn">this</span> <span class="n">frame</span>
+  <span class="o">-</span><span class="n">b</span> <span class="p">[</span> <span class="o">--</span><span class="n">begin</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">start</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">simulation</span>
+  <span class="o">-</span><span class="n">n</span> <span class="p">[</span> <span class="o">--</span><span class="n">nframes</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span> <span class="n">to</span> <span class="n">process</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authors">
+<h1>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h1>
+<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
+</div>
+<div class="section" id="copyright">
+<h1>COPYRIGHT<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h1>
+<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
+except in compliance with the License.  You may obtain a copy of the License at</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div></blockquote>
+<p>Unless  required by applicable law or agreed to in writing, software distributed under the
+License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
+either  express  or  implied.   See  the  License  for  the  specific  language  governing
+permissions and limitations under the License.</p>
 </div>
 
 
@@ -224,15 +252,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="xtp_parallel.html" class="btn btn-neutral float-right" title="xtp_parallel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="workflows_and_calculators.html" class="btn btn-neutral float-left" title="Workflow and Calculator Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

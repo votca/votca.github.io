@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>xtp_run &mdash; VOTCA 2022-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="eanalyze" href="eanalyze.html" />
+    <link rel="prev" title="qmmm" href="qmmm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">xtp_parallel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">xtp_run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copyright">COPYRIGHT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_xtp">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="XTP-MANUAL.html">XTP Manual</a> &raquo;</li>
+        
+          <li><a href="workflows_and_calculators.html">Workflow and Calculator Structure</a> &raquo;</li>
+        
+      <li>xtp_run</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/xtp/xtp_run_overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="xtp-run">
+<h1>xtp_run<a class="headerlink" href="#xtp-run" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="name">
+<h2>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+<p><strong>xtp_run</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p><strong>xtp_run</strong> [OPTIONS]</p>
+<p><strong>xtp_run</strong> [–help]</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Runs excitation/charge transport calculators</p>
+</div>
+<div class="section" id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                    <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                        <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                       <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">o</span> <span class="p">[</span> <span class="o">--</span><span class="n">options</span> <span class="p">]</span> <span class="n">arg</span>             <span class="n">calculator</span> <span class="n">options</span>
+  <span class="o">-</span><span class="n">f</span> <span class="p">[</span> <span class="o">--</span><span class="n">file</span> <span class="p">]</span> <span class="n">arg</span>                <span class="n">hdf5</span> <span class="n">state</span> <span class="n">file</span><span class="p">,</span> <span class="o">*.</span><span class="n">hdf5</span>
+  <span class="o">-</span><span class="n">i</span> <span class="p">[</span> <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="kn">from</span> <span class="nn">this</span> <span class="n">frame</span>
+  <span class="o">-</span><span class="n">n</span> <span class="p">[</span> <span class="o">--</span><span class="n">nframes</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span> <span class="n">to</span> <span class="n">process</span>
+  <span class="o">-</span><span class="n">t</span> <span class="p">[</span> <span class="o">--</span><span class="n">nthreads</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>       <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">to</span> <span class="n">create</span>
+  <span class="o">-</span><span class="n">s</span> <span class="p">[</span> <span class="o">--</span><span class="n">save</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>           <span class="n">whether</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">save</span> <span class="n">changes</span> <span class="n">to</span> <span class="n">state</span> <span class="n">file</span>
+<span class="n">Calculator</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">e</span> <span class="p">[</span> <span class="o">--</span><span class="n">execute</span> <span class="p">]</span> <span class="n">arg</span>           <span class="n">Name</span> <span class="n">of</span> <span class="n">calculator</span> <span class="n">to</span> <span class="n">run</span>
+  <span class="o">-</span><span class="n">l</span> <span class="p">[</span> <span class="o">--</span><span class="nb">list</span> <span class="p">]</span>                  <span class="n">Lists</span> <span class="nb">all</span> <span class="n">available</span> <span class="n">calculators</span>
+  <span class="o">-</span><span class="n">d</span> <span class="p">[</span> <span class="o">--</span><span class="n">description</span> <span class="p">]</span> <span class="n">arg</span>       <span class="n">Short</span> <span class="n">description</span> <span class="n">of</span> <span class="n">a</span> <span class="n">calculator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authors">
+<h2>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
+</div>
+<div class="section" id="copyright">
+<h2>COPYRIGHT<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
+<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
+except in compliance with the License.  You may obtain a copy of the License at</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div></blockquote>
+<p>Unless  required by applicable law or agreed to in writing, software distributed under the
+License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
+either  express  or  implied.   See  the  License  for  the  specific  language  governing
+permissions and limitations under the License.</p>
+<p>The following calculators are available:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eanalyze.html">eanalyze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="einternal.html">einternal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ianalyze.html">ianalyze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmclifetime.html">kmclifetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmcmultiple.html">kmcmultiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapchecker.html">mapchecker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neighborlist.html">neighborlist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vaverage.html">vaverage</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eanalyze.html" class="btn btn-neutral float-right" title="eanalyze" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qmmm.html" class="btn btn-neutral float-left" title="qmmm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,9 +1,62 @@
-xtp_parallel
-############
 
-.. toctree::
-   eqm
-   iexcitoncl
-   iqm
-   qmmm
-   
+NAME
+****
+**xtp_parallel** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**xtp_parallel** [OPTIONS]
+
+**xtp_parallel** [--help]
+
+
+DESCRIPTION
+***********
+Runs job-based heavy-duty calculators
+
+OPTIONS
+*******
+::
+
+  Allowed options:
+    -h [ --help ]                    display this help and exit
+    --verbose                        be loud and noisy
+    --verbose1                       be very loud and noisy
+    -v [ --verbose2 ]                be extremly loud and noisy
+    -o [ --options ] arg             calculator options
+    -f [ --file ] arg                hdf5 state file, *.hdf5
+    -i [ --first-frame ] arg (=0)    start from this frame
+    -n [ --nframes ] arg (=1)        number of frames to process
+    -t [ --nthreads ] arg (=1)       number of threads to create
+    -p [ --ompthreads ] arg (=1)     number of openmp threads to create in each 
+                                   thread
+    -s [ --save ] arg (=1)           whether or not to save changes to state file
+    -r [ --restart ] arg             restart pattern: 'host(pc1:234) 
+                                   stat(FAILED)'
+    -c [ --cache ] arg (=8)          assigns jobs in blocks of this size
+    -j [ --jobs ] arg (=run)         task(s) to perform: write, run, read
+    -m [ --maxjobs ] arg (=-1)       maximum number of jobs to process (-1 = inf)
+  Calculator:
+    -e [ --execute ] arg           Name of calculator to run
+    -l [ --list ]                  Lists all available calculators
+    -d [ --description ] arg       Short description of a calculator
+
+AUTHORS
+*******
+Written and maintained by the VOTCA Development Team <devs@votca.org>
+
+COPYRIGHT
+*********
+
+Copyright 2009\-2021 The VOTCA Development Team (http://www.votca.org)
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this  file
+except in compliance with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless  required by applicable law or agreed to in writing, software distributed under the
+License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
+either  express  or  implied.   See  the  License  for  the  specific  language  governing
+permissions and limitations under the License.
+
