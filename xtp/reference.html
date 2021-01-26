@@ -101,36 +101,11 @@
 <li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#copyright">COPYRIGHT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">COPYRIGHT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">COPYRIGHT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18">COPYRIGHT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id20">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id21">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id23">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id24">COPYRIGHT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-autogen-mapping">xtp_autogen_mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-basisset">xtp_basisset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-makeauxbasis">xtp_makeauxbasis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-parallel">xtp_parallel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-update-mapfile">xtp_update_mapfile</a></li>
 </ul>
 </li>
 </ul>
@@ -248,228 +223,182 @@
 <h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="programs">
 <h2>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="xtp-autogen-mapping">
+<h3>xtp_autogen_mapping<a class="headerlink" href="#xtp-autogen-mapping" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="name">
-<h3>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
+<h4>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_autogen_mapping</strong> - Part of the VOTCA package</p>
 </div>
 <div class="section" id="synopsis">
-<h3>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
+<h4>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_autogen_mapping</strong> [OPTIONS]</p>
 <p><strong>xtp_autogen_mapping</strong> [–help]</p>
 </div>
 <div class="section" id="description">
-<h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<h4>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h4>
+<p>Automatically generate a mapping file</p>
 </div>
 <div class="section" id="options">
-<h3>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<h4>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">pdb</span> <span class="n">PDBFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">pdbfile</span> <span class="n">PDBFILE</span>
+                      <span class="n">PDB</span> <span class="n">coordinate</span> <span class="n">file</span>
+<span class="o">-</span><span class="n">opt</span><span class="p">,</span> <span class="o">--</span><span class="n">optimize</span>      <span class="n">optimization</span> <span class="n">of</span> <span class="n">XYZ</span> <span class="ow">and</span> <span class="n">MPS</span> <span class="n">files</span>
+<span class="o">-</span><span class="n">s</span> <span class="p">{</span><span class="n">n</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="p">}</span> <span class="p">[{</span><span class="n">n</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="p">}</span> <span class="o">...</span><span class="p">],</span> <span class="o">--</span><span class="n">states</span> <span class="p">{</span><span class="n">n</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="p">}</span> <span class="p">[{</span><span class="n">n</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="p">}</span> <span class="o">...</span><span class="p">]</span>
+                      <span class="n">which</span> <span class="n">states</span> <span class="n">to</span> <span class="n">optimize</span>
+<span class="o">-</span><span class="n">orca</span> <span class="n">ORCA</span><span class="p">,</span> <span class="o">--</span><span class="n">orca</span> <span class="n">ORCA</span>
+                      <span class="n">full</span> <span class="n">path</span> <span class="n">to</span> <span class="n">orca</span> <span class="n">executable</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">FUNCTIONAL</span><span class="p">,</span> <span class="o">--</span><span class="n">functional</span> <span class="n">FUNCTIONAL</span>
+                      <span class="n">DFT</span> <span class="n">functional</span>
+<span class="o">-</span><span class="n">b</span> <span class="n">BASIS</span><span class="p">,</span> <span class="o">--</span><span class="n">basis</span> <span class="n">BASIS</span>
+                      <span class="n">basis</span> <span class="nb">set</span>
+<span class="o">--</span><span class="n">nori</span>                <span class="n">Do</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">use</span> <span class="n">the</span> <span class="n">Resolution</span> <span class="n">of</span> <span class="n">Identity</span> <span class="n">approximation</span>
+<span class="o">-</span><span class="n">m</span> <span class="n">MDNAME</span><span class="p">,</span> <span class="o">--</span><span class="n">mdname</span> <span class="n">MDNAME</span>
+                      <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">MD</span> <span class="n">topology</span>
+<span class="o">--</span><span class="n">version</span>             <span class="n">show</span> <span class="n">program</span><span class="s1">&#39;s version number and exit</span>
+</pre></div>
 </div>
-<div class="section" id="authors">
-<h3>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
 </div>
-<div class="section" id="copyright">
-<h3>COPYRIGHT<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h3>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
 </div>
+<div class="section" id="xtp-basisset">
+<h3>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id1">
-<h3>NAME<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h4>NAME<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_basisset</strong> - Part of the VOTCA package</p>
 </div>
 <div class="section" id="id2">
-<h3>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_basisset</strong> [OPTIONS]</p>
 <p><strong>xtp_basisset</strong> [–help]</p>
 </div>
 <div class="section" id="id3">
-<h3>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>Creates votca xml basissetfiles from NWCHEM basissetfiles</p>
 </div>
 <div class="section" id="id4">
-<h3>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                                     <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span>
-                                                 <span class="n">exit</span>
-  <span class="o">-</span><span class="n">f</span> <span class="n">INPUT</span><span class="p">,</span> <span class="o">--</span><span class="nb">input</span> <span class="n">INPUT</span>                        <span class="n">NWchem</span> <span class="n">file</span> <span class="n">containing</span> <span class="n">the</span>
-                                                 <span class="n">basisset</span> <span class="ow">or</span> <span class="n">Turbomole</span> <span class="n">folder</span>
-                                                 <span class="k">with</span> <span class="n">element</span> <span class="n">names</span><span class="o">.</span>
-  <span class="o">-</span><span class="n">o</span> <span class="n">OUTPUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outputvotca</span> <span class="n">OUTPUTFILE</span>        <span class="n">Path</span> <span class="n">of</span> <span class="n">votca</span> <span class="n">outputfile</span>
-  <span class="o">-</span><span class="n">t</span> <span class="n">TURBOBASIS</span><span class="p">,</span> <span class="o">--</span><span class="n">turbomolebasisset</span> <span class="n">TURBOBASIS</span>  <span class="n">For</span> <span class="n">turbomole</span> <span class="n">specify</span> <span class="n">the</span>
-                                                 <span class="n">basisset</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">supposed</span> <span class="n">to</span>
-                                                 <span class="n">be</span> <span class="n">extracted</span> <span class="kn">from</span> <span class="nn">Files</span><span class="p">,</span> <span class="k">for</span>
-                                                 <span class="n">auxbasis</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">basisset</span>
-                                                 <span class="n">the</span> <span class="n">aux</span> <span class="n">basisset</span> <span class="ow">is</span> <span class="n">supposed</span>
-                                                 <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span><span class="o">.</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                                     <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span>
+                                               <span class="n">exit</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">INPUT</span><span class="p">,</span> <span class="o">--</span><span class="nb">input</span> <span class="n">INPUT</span>                        <span class="n">NWchem</span> <span class="n">file</span> <span class="n">containing</span> <span class="n">the</span>
+                                               <span class="n">basisset</span> <span class="ow">or</span> <span class="n">Turbomole</span> <span class="n">folder</span>
+                                               <span class="k">with</span> <span class="n">element</span> <span class="n">names</span><span class="o">.</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTPUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outputvotca</span> <span class="n">OUTPUTFILE</span>        <span class="n">Path</span> <span class="n">of</span> <span class="n">votca</span> <span class="n">outputfile</span>
+<span class="o">-</span><span class="n">t</span> <span class="n">TURBOBASIS</span><span class="p">,</span> <span class="o">--</span><span class="n">turbomolebasisset</span> <span class="n">TURBOBASIS</span>  <span class="n">For</span> <span class="n">turbomole</span> <span class="n">specify</span> <span class="n">the</span>
+                                               <span class="n">basisset</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">supposed</span> <span class="n">to</span>
+                                               <span class="n">be</span> <span class="n">extracted</span> <span class="kn">from</span> <span class="nn">Files</span><span class="p">,</span> <span class="k">for</span>
+                                               <span class="n">auxbasis</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">basisset</span>
+                                               <span class="n">the</span> <span class="n">aux</span> <span class="n">basisset</span> <span class="ow">is</span> <span class="n">supposed</span>
+                                               <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="xtp-makeauxbasis">
+<h3>xtp_makeauxbasis<a class="headerlink" href="#xtp-makeauxbasis" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id5">
-<h3>AUTHORS<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
-</div>
-<div class="section" id="id6">
-<h3>COPYRIGHT<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
-</div>
-<div class="section" id="id7">
-<h3>NAME<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h4>NAME<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_makeauxbasis</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id8">
-<h3>SYNOPSIS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_makeauxbasis</strong> [OPTIONS]</p>
 <p><strong>xtp_makeauxbasis</strong> [–help]</p>
 </div>
-<div class="section" id="id9">
-<h3>DESCRIPTION<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p>Creates votca xml aux-basissetfiles from votca basissetfiles</p>
 </div>
-<div class="section" id="id10">
-<h3>OPTIONS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">-</span><span class="n">f</span> <span class="n">BASISFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">basisfile</span> <span class="n">BASISFILE</span>  <span class="n">xtp</span> <span class="n">basissetfile</span>
-  <span class="o">-</span><span class="n">o</span> <span class="n">OUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">OUTFILE</span>        <span class="n">optional</span> <span class="n">file</span> <span class="n">to</span> <span class="n">write</span> <span class="n">basisset</span> <span class="n">to</span>
-  <span class="o">-</span><span class="n">g</span> <span class="n">GROUPING</span><span class="p">,</span> <span class="o">--</span><span class="n">grouping</span> <span class="n">GROUPING</span>     <span class="n">Cutoff</span> <span class="n">at</span> <span class="n">which</span> <span class="n">basisfunctions</span> <span class="n">are</span>
-                                       <span class="n">grouped</span> <span class="n">together</span> <span class="ow">in</span> <span class="n">deviation</span> <span class="kn">from</span> <span class="nn">the</span>
-                                       <span class="n">arithmetic</span> <span class="n">mean</span><span class="p">;</span> <span class="n">Default</span> <span class="mf">0.1</span>
-  <span class="o">-</span><span class="n">c</span> <span class="n">CUTOFF</span><span class="p">,</span> <span class="o">--</span><span class="n">cutoff</span> <span class="n">CUTOFF</span>           <span class="n">Cutoff</span> <span class="k">for</span> <span class="n">very</span> <span class="n">localised</span>
-                                       <span class="n">basisfunctions</span><span class="p">;</span> <span class="n">Default</span> <span class="mi">60</span>
-  <span class="o">-</span><span class="n">e</span> <span class="n">ELEMENT</span><span class="p">,</span> <span class="o">--</span><span class="n">element</span> <span class="n">ELEMENT</span>        <span class="n">Print</span> <span class="n">out</span> <span class="n">only</span> <span class="n">the</span> <span class="n">element</span> <span class="n">specified</span>
-  <span class="o">-</span><span class="n">l</span> <span class="n">LMAX</span><span class="p">,</span> <span class="o">--</span><span class="n">lmax</span> <span class="n">LMAX</span>                 <span class="n">maximum</span> <span class="n">angular</span> <span class="n">momentum</span> <span class="ow">in</span> <span class="n">aux</span>
-                                       <span class="n">basisset</span><span class="p">:</span> <span class="n">Default</span><span class="p">:</span><span class="mi">4</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">BASISFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">basisfile</span> <span class="n">BASISFILE</span>  <span class="n">xtp</span> <span class="n">basissetfile</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">OUTFILE</span>        <span class="n">optional</span> <span class="n">file</span> <span class="n">to</span> <span class="n">write</span> <span class="n">basisset</span> <span class="n">to</span>
+<span class="o">-</span><span class="n">g</span> <span class="n">GROUPING</span><span class="p">,</span> <span class="o">--</span><span class="n">grouping</span> <span class="n">GROUPING</span>     <span class="n">Cutoff</span> <span class="n">at</span> <span class="n">which</span> <span class="n">basisfunctions</span> <span class="n">are</span>
+                                     <span class="n">grouped</span> <span class="n">together</span> <span class="ow">in</span> <span class="n">deviation</span> <span class="kn">from</span> <span class="nn">the</span>
+                                     <span class="n">arithmetic</span> <span class="n">mean</span><span class="p">;</span> <span class="n">Default</span> <span class="mf">0.1</span>
+<span class="o">-</span><span class="n">c</span> <span class="n">CUTOFF</span><span class="p">,</span> <span class="o">--</span><span class="n">cutoff</span> <span class="n">CUTOFF</span>           <span class="n">Cutoff</span> <span class="k">for</span> <span class="n">very</span> <span class="n">localised</span>
+                                     <span class="n">basisfunctions</span><span class="p">;</span> <span class="n">Default</span> <span class="mi">60</span>
+<span class="o">-</span><span class="n">e</span> <span class="n">ELEMENT</span><span class="p">,</span> <span class="o">--</span><span class="n">element</span> <span class="n">ELEMENT</span>        <span class="n">Print</span> <span class="n">out</span> <span class="n">only</span> <span class="n">the</span> <span class="n">element</span> <span class="n">specified</span>
+<span class="o">-</span><span class="n">l</span> <span class="n">LMAX</span><span class="p">,</span> <span class="o">--</span><span class="n">lmax</span> <span class="n">LMAX</span>                 <span class="n">maximum</span> <span class="n">angular</span> <span class="n">momentum</span> <span class="ow">in</span> <span class="n">aux</span>
+                                     <span class="n">basisset</span><span class="p">:</span> <span class="n">Default</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id11">
-<h3>AUTHORS<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
 </div>
-<div class="section" id="id12">
-<h3>COPYRIGHT<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
-</div>
-<div class="section" id="id13">
-<h3>NAME<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="xtp-parallel">
+<h3>xtp_parallel<a class="headerlink" href="#xtp-parallel" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_parallel</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id14">
-<h3>SYNOPSIS<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_parallel</strong> [OPTIONS]</p>
 <p><strong>xtp_parallel</strong> [–help]</p>
 </div>
-<div class="section" id="id15">
-<h3>DESCRIPTION<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>Runs job-based heavy-duty calculators</p>
 </div>
-<div class="section" id="id16">
-<h3>OPTIONS<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                    <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">verbose</span>                        <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">verbose1</span>                       <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">o</span> <span class="p">[</span> <span class="o">--</span><span class="n">options</span> <span class="p">]</span> <span class="n">arg</span>             <span class="n">calculator</span> <span class="n">options</span>
-  <span class="o">-</span><span class="n">f</span> <span class="p">[</span> <span class="o">--</span><span class="n">file</span> <span class="p">]</span> <span class="n">arg</span>                <span class="n">hdf5</span> <span class="n">state</span> <span class="n">file</span><span class="p">,</span> <span class="o">*.</span><span class="n">hdf5</span>
-  <span class="o">-</span><span class="n">i</span> <span class="p">[</span> <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="kn">from</span> <span class="nn">this</span> <span class="n">frame</span>
-  <span class="o">-</span><span class="n">n</span> <span class="p">[</span> <span class="o">--</span><span class="n">nframes</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span> <span class="n">to</span> <span class="n">process</span>
-  <span class="o">-</span><span class="n">t</span> <span class="p">[</span> <span class="o">--</span><span class="n">nthreads</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>       <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">to</span> <span class="n">create</span>
-  <span class="o">-</span><span class="n">p</span> <span class="p">[</span> <span class="o">--</span><span class="n">ompthreads</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>     <span class="n">number</span> <span class="n">of</span> <span class="n">openmp</span> <span class="n">threads</span> <span class="n">to</span> <span class="n">create</span> <span class="ow">in</span> <span class="n">each</span>
-                                 <span class="n">thread</span>
-  <span class="o">-</span><span class="n">s</span> <span class="p">[</span> <span class="o">--</span><span class="n">save</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>           <span class="n">whether</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">save</span> <span class="n">changes</span> <span class="n">to</span> <span class="n">state</span> <span class="n">file</span>
-  <span class="o">-</span><span class="n">r</span> <span class="p">[</span> <span class="o">--</span><span class="n">restart</span> <span class="p">]</span> <span class="n">arg</span>             <span class="n">restart</span> <span class="n">pattern</span><span class="p">:</span> <span class="s1">&#39;host(pc1:234)</span>
-                                 <span class="n">stat</span><span class="p">(</span><span class="n">FAILED</span><span class="p">)</span><span class="s1">&#39;</span>
-  <span class="o">-</span><span class="n">c</span> <span class="p">[</span> <span class="o">--</span><span class="n">cache</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>          <span class="n">assigns</span> <span class="n">jobs</span> <span class="ow">in</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">this</span> <span class="n">size</span>
-  <span class="o">-</span><span class="n">j</span> <span class="p">[</span> <span class="o">--</span><span class="n">jobs</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">run</span><span class="p">)</span>         <span class="n">task</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">to</span> <span class="n">perform</span><span class="p">:</span> <span class="n">write</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">read</span>
-  <span class="o">-</span><span class="n">m</span> <span class="p">[</span> <span class="o">--</span><span class="n">maxjobs</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>       <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">jobs</span> <span class="n">to</span> <span class="n">process</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">=</span> <span class="n">inf</span><span class="p">)</span>
-<span class="n">Calculator</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">e</span> <span class="p">[</span> <span class="o">--</span><span class="n">execute</span> <span class="p">]</span> <span class="n">arg</span>           <span class="n">Name</span> <span class="n">of</span> <span class="n">calculator</span> <span class="n">to</span> <span class="n">run</span>
-  <span class="o">-</span><span class="n">l</span> <span class="p">[</span> <span class="o">--</span><span class="nb">list</span> <span class="p">]</span>                  <span class="n">Lists</span> <span class="nb">all</span> <span class="n">available</span> <span class="n">calculators</span>
-  <span class="o">-</span><span class="n">d</span> <span class="p">[</span> <span class="o">--</span><span class="n">description</span> <span class="p">]</span> <span class="n">arg</span>       <span class="n">Short</span> <span class="n">description</span> <span class="n">of</span> <span class="n">a</span> <span class="n">calculator</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id17">
-<h3>AUTHORS<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
-</div>
-<div class="section" id="id18">
-<h3>COPYRIGHT<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
+<div class="section" id="id12">
+<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<dl>
+<dt>Allowed options:</dt><dd><p>-h [ –help ]                    display this help and exit
+–verbose                        be loud and noisy
+–verbose1                       be very loud and noisy
+-v [ –verbose2 ]                be extremly loud and noisy
+-o [ –options ] arg             calculator options
+-f [ –file ] arg                hdf5 state file, <a href="#id13"><span class="problematic" id="id14">*</span></a>.hdf5
+-i [ –first-frame ] arg (=0)    start from this frame
+-n [ –nframes ] arg (=1)        number of frames to process
+-t [ –nthreads ] arg (=1)       number of threads to create
+-p [ –ompthreads ] arg (=1)     number of openmp threads to create in each</p>
 <blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<div><p>thread</p>
 </div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
+<p>-s [ –save ] arg (=1)           whether or not to save changes to state file
+-r [ –restart ] arg             restart pattern: ‘host(pc1:234)</p>
+<blockquote>
+<div><p>stat(FAILED)’</p>
+</div></blockquote>
+<p>-c [ –cache ] arg (=8)          assigns jobs in blocks of this size
+-j [ –jobs ] arg (=run)         task(s) to perform: write, run, read
+-m [ –maxjobs ] arg (=-1)       maximum number of jobs to process (-1 = inf)</p>
+</dd>
+<dt>Calculator:</dt><dd><p>-e [ –execute ] arg           Name of calculator to run
+-l [ –list ]                  Lists all available calculators
+-d [ –description ] arg       Short description of a calculator</p>
+</dd>
+</dl>
 </div>
-<div class="section" id="id19">
-<h3>NAME<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="xtp-update-mapfile">
+<h3>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h4>NAME<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id20">
-<h3>SYNOPSIS<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h4>SYNOPSIS<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> [OPTIONS]</p>
 <p><strong>xtp_update_mapfile</strong> [–help]</p>
 </div>
-<div class="section" id="id21">
-<h3>DESCRIPTION<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h4>DESCRIPTION<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
 <p>Updates the CTP mapping file to VOTCA XTP</p>
 </div>
-<div class="section" id="id22">
-<h3>OPTIONS<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h4>OPTIONS<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">-</span><span class="n">sin</span> <span class="n">S_INPUT</span><span class="p">,</span> <span class="o">--</span><span class="n">S_input</span> <span class="n">S_INPUT</span>      <span class="n">Mapping</span> <span class="n">file</span> <span class="n">to</span> <span class="n">update</span><span class="o">.</span>
-  <span class="o">-</span><span class="n">sout</span> <span class="n">S_OUTPUT</span><span class="p">,</span> <span class="o">--</span><span class="n">S_output</span> <span class="n">S_OUTPUT</span>  <span class="n">Filename</span> <span class="n">of</span> <span class="n">new</span> <span class="n">Mapping</span> <span class="n">file</span><span class="o">.</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">sin</span> <span class="n">S_INPUT</span><span class="p">,</span> <span class="o">--</span><span class="n">S_input</span> <span class="n">S_INPUT</span>      <span class="n">Mapping</span> <span class="n">file</span> <span class="n">to</span> <span class="n">update</span><span class="o">.</span>
+<span class="o">-</span><span class="n">sout</span> <span class="n">S_OUTPUT</span><span class="p">,</span> <span class="o">--</span><span class="n">S_output</span> <span class="n">S_OUTPUT</span>  <span class="n">Filename</span> <span class="n">of</span> <span class="n">new</span> <span class="n">Mapping</span> <span class="n">file</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id23">
-<h3>AUTHORS<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
-</div>
-<div class="section" id="id24">
-<h3>COPYRIGHT<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
 </div>
 </div>
 </div>

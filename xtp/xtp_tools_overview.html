@@ -102,12 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">xtp_parallel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">xtp_run</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">xtp_tools</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#options">OPTIONS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#authors">AUTHORS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#copyright">COPYRIGHT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#help">help</a></li>
 </ul>
 </li>
 </ul>
@@ -227,52 +222,37 @@
 </style>
 <div class="section" id="xtp-tools">
 <h1>xtp_tools<a class="headerlink" href="#xtp-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="help">
+<h2>help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="name">
-<h2>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+<h3>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
 <p><strong>xtp_tools</strong> - Part of the VOTCA package</p>
 </div>
 <div class="section" id="synopsis">
-<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<h3>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
 <p><strong>xtp_tools</strong> [OPTIONS]</p>
 <p><strong>xtp_tools</strong> [–help]</p>
 </div>
 <div class="section" id="description">
-<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
 <p>Runs excitation/charge transport tools</p>
 </div>
 <div class="section" id="options">
-<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                 <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">verbose</span>                     <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">verbose1</span>                    <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>             <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">o</span> <span class="p">[</span> <span class="o">--</span><span class="n">options</span> <span class="p">]</span> <span class="n">arg</span>          <span class="n">calculator</span> <span class="n">options</span>
-  <span class="o">-</span><span class="n">t</span> <span class="p">[</span> <span class="o">--</span><span class="n">nthreads</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>    <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">to</span> <span class="n">create</span>
-<span class="n">Tools</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">e</span> <span class="p">[</span> <span class="o">--</span><span class="n">execute</span> <span class="p">]</span> <span class="n">arg</span>        <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tool</span> <span class="n">to</span> <span class="n">run</span>
-  <span class="o">-</span><span class="n">l</span> <span class="p">[</span> <span class="o">--</span><span class="nb">list</span> <span class="p">]</span>               <span class="n">Lists</span> <span class="nb">all</span> <span class="n">available</span> <span class="n">tools</span>
-  <span class="o">-</span><span class="n">d</span> <span class="p">[</span> <span class="o">--</span><span class="n">description</span> <span class="p">]</span> <span class="n">arg</span>    <span class="n">Short</span> <span class="n">description</span> <span class="n">of</span> <span class="n">a</span> <span class="n">tool</span>
-  <span class="o">-</span><span class="n">n</span> <span class="p">[</span> <span class="o">--</span><span class="n">name</span> <span class="p">]</span> <span class="n">arg</span>           <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">job</span> <span class="n">to</span> <span class="n">run</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="authors">
-<h2>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
-</div>
-<div class="section" id="copyright">
-<h2>COPYRIGHT<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
+<h3>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<dl class="simple">
+<dt>Allowed options:</dt><dd><p>-h [ –help ]                 display this help and exit
+–verbose                     be loud and noisy
+–verbose1                    be very loud and noisy
+-v [ –verbose2 ]             be extremly loud and noisy
+-o [ –options ] arg          calculator options
+-t [ –nthreads ] arg (=1)    number of threads to create</p>
+</dd>
+<dt>Tools:</dt><dd><p>-e [ –execute ] arg        name of the tool to run
+-l [ –list ]               Lists all available tools
+-d [ –description ] arg    Short description of a tool
+-n [ –name ] arg           Name of the job to run</p>
+</dd>
+</dl>
 <p>The following calculators are available:</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -290,6 +270,7 @@ permissions and limitations under the License.</p>
 <li class="toctree-l1"><a class="reference internal" href="orb2mol.html">orb2mol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mol2orb.html">mol2orb</a></li>
 </ul>
+</div>
 </div>
 </div>
 </div>

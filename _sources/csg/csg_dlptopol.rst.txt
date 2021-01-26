@@ -15,15 +15,15 @@ DESCRIPTION
 Create a dlpoly topology template based on an existing (atomistic) topology and 
 a mapping xml-file. The created template file needs to be inspected and amended by the user!
 
-OPTIONS
-*******
-::
+Examples:
 
-  Examples:
   * csg_dlptopol --top .dlpf --out .dlpf --cg cg-map.xml
     convert FIELD to FIELD_CGV using cg-map.xml
   * csg_dlptopol --top FA-dlpoly.dlpf --out CG-dlpoly.dlpf --cg cg-map.xml
   * csg_dlptopol --top FA-gromacs.tpr --out FA-dlpoly.dlpf --no-map
+  
+  
+  
   Allowed options:
     -h [ --help ]            display this help and exit
     --verbose                be loud and noisy
@@ -31,28 +31,16 @@ OPTIONS
     -v [ --verbose2 ]        be extremly loud and noisy
     --top arg                atomistic topology file
     --out arg                output topology in dlpoly format
+  
   Mapping options:
     --cg arg                 coarse graining mapping and bond definitions 
                            (xml-file)
     --map-ignore arg         list of molecules to ignore separated by ;
     --no-map                 disable mapping and act on original trajectory
+  
 
-AUTHORS
+OPTIONS
 *******
-Written and maintained by the VOTCA Development Team <devs@votca.org>
+::
 
-COPYRIGHT
-*********
-
-Copyright 2009\-2021 The VOTCA Development Team (http://www.votca.org)
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.
-
+  

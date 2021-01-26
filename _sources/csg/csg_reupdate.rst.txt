@@ -14,54 +14,41 @@ DESCRIPTION
 ***********
 computes relative entropy update.
 
+
+
 OPTIONS
 *******
 ::
 
-  Allowed options:
-    -h [ --help ]                       display this help and exit
-    --verbose                           be loud and noisy
-    --verbose1                          be very loud and noisy
-    -v [ --verbose2 ]                   be extremly loud and noisy
-    --top arg                           atomistic topology file (only needed for 
-                                      RE update)
-  RE Specific options:
-    --options arg                       options file for coarse graining
-    --gentable arg (=0)                 only generate potential tables from given
-                                      parameters,   NO RE update!
-    --interaction arg                  [OPTIONAL] generate potential tables only 
-                                      for the specified interactions, 
-                                       only valid when 'gentable' is true
-    --param-in-ext arg (=param.cur)     Extension of the input parameter tables
-    --param-out-ext arg (=param.new)    Extension of the output parameter tables
-    --pot-out-ext arg (=pot.new)        Extension of the output potential tables
-    --hessian-check arg (=1)            Disable the hessian check (mostly for 
-                                      testing)
-  Threading options:
-    --nt arg (=1)                       number of threads
-  Trajectory options:
-    --trj arg                           atomistic trajectory file
-    --begin arg (=0)                    skip frames before this time (only works 
-                                      for Gromacs files)
-    --first-frame arg (=0)              start with this frame
-    --nframes arg                       process the given number of frames
+  
+Allowed options:
+  -h [ --help ]                       display this help and exit
+  --verbose                           be loud and noisy
+  --verbose1                          be very loud and noisy
+  -v [ --verbose2 ]                   be extremly loud and noisy
+  --top arg                           atomistic topology file (only needed for 
+                                    RE update)
 
-AUTHORS
-*******
-Written and maintained by the VOTCA Development Team <devs@votca.org>
+RE Specific options:
+  --options arg                       options file for coarse graining
+  --gentable arg (=0)                 only generate potential tables from given
+                                    parameters,   NO RE update!
+  --interaction arg                  [OPTIONAL] generate potential tables only 
+                                    for the specified interactions, 
+                                     only valid when 'gentable' is true
+  --param-in-ext arg (=param.cur)     Extension of the input parameter tables
+  --param-out-ext arg (=param.new)    Extension of the output parameter tables
+  --pot-out-ext arg (=pot.new)        Extension of the output potential tables
+  --hessian-check arg (=1)            Disable the hessian check (mostly for 
+                                    testing)
 
-COPYRIGHT
-*********
+Threading options:
+  --nt arg (=1)                       number of threads
 
-Copyright 2009\-2021 The VOTCA Development Team (http://www.votca.org)
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.
+Trajectory options:
+  --trj arg                           atomistic trajectory file
+  --begin arg (=0)                    skip frames before this time (only works 
+                                    for Gromacs files)
+  --first-frame arg (=0)              start with this frame
+  --nframes arg                       process the given number of frames
 

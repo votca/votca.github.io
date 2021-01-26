@@ -214,36 +214,19 @@
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">-</span><span class="n">f</span> <span class="n">BASISFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">basisfile</span> <span class="n">BASISFILE</span>  <span class="n">xtp</span> <span class="n">basissetfile</span>
-  <span class="o">-</span><span class="n">o</span> <span class="n">OUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">OUTFILE</span>        <span class="n">optional</span> <span class="n">file</span> <span class="n">to</span> <span class="n">write</span> <span class="n">basisset</span> <span class="n">to</span>
-  <span class="o">-</span><span class="n">g</span> <span class="n">GROUPING</span><span class="p">,</span> <span class="o">--</span><span class="n">grouping</span> <span class="n">GROUPING</span>     <span class="n">Cutoff</span> <span class="n">at</span> <span class="n">which</span> <span class="n">basisfunctions</span> <span class="n">are</span>
-                                       <span class="n">grouped</span> <span class="n">together</span> <span class="ow">in</span> <span class="n">deviation</span> <span class="kn">from</span> <span class="nn">the</span>
-                                       <span class="n">arithmetic</span> <span class="n">mean</span><span class="p">;</span> <span class="n">Default</span> <span class="mf">0.1</span>
-  <span class="o">-</span><span class="n">c</span> <span class="n">CUTOFF</span><span class="p">,</span> <span class="o">--</span><span class="n">cutoff</span> <span class="n">CUTOFF</span>           <span class="n">Cutoff</span> <span class="k">for</span> <span class="n">very</span> <span class="n">localised</span>
-                                       <span class="n">basisfunctions</span><span class="p">;</span> <span class="n">Default</span> <span class="mi">60</span>
-  <span class="o">-</span><span class="n">e</span> <span class="n">ELEMENT</span><span class="p">,</span> <span class="o">--</span><span class="n">element</span> <span class="n">ELEMENT</span>        <span class="n">Print</span> <span class="n">out</span> <span class="n">only</span> <span class="n">the</span> <span class="n">element</span> <span class="n">specified</span>
-  <span class="o">-</span><span class="n">l</span> <span class="n">LMAX</span><span class="p">,</span> <span class="o">--</span><span class="n">lmax</span> <span class="n">LMAX</span>                 <span class="n">maximum</span> <span class="n">angular</span> <span class="n">momentum</span> <span class="ow">in</span> <span class="n">aux</span>
-                                       <span class="n">basisset</span><span class="p">:</span> <span class="n">Default</span><span class="p">:</span><span class="mi">4</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                           <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">f</span> <span class="n">BASISFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">basisfile</span> <span class="n">BASISFILE</span>  <span class="n">xtp</span> <span class="n">basissetfile</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTFILE</span><span class="p">,</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">OUTFILE</span>        <span class="n">optional</span> <span class="n">file</span> <span class="n">to</span> <span class="n">write</span> <span class="n">basisset</span> <span class="n">to</span>
+<span class="o">-</span><span class="n">g</span> <span class="n">GROUPING</span><span class="p">,</span> <span class="o">--</span><span class="n">grouping</span> <span class="n">GROUPING</span>     <span class="n">Cutoff</span> <span class="n">at</span> <span class="n">which</span> <span class="n">basisfunctions</span> <span class="n">are</span>
+                                     <span class="n">grouped</span> <span class="n">together</span> <span class="ow">in</span> <span class="n">deviation</span> <span class="kn">from</span> <span class="nn">the</span>
+                                     <span class="n">arithmetic</span> <span class="n">mean</span><span class="p">;</span> <span class="n">Default</span> <span class="mf">0.1</span>
+<span class="o">-</span><span class="n">c</span> <span class="n">CUTOFF</span><span class="p">,</span> <span class="o">--</span><span class="n">cutoff</span> <span class="n">CUTOFF</span>           <span class="n">Cutoff</span> <span class="k">for</span> <span class="n">very</span> <span class="n">localised</span>
+                                     <span class="n">basisfunctions</span><span class="p">;</span> <span class="n">Default</span> <span class="mi">60</span>
+<span class="o">-</span><span class="n">e</span> <span class="n">ELEMENT</span><span class="p">,</span> <span class="o">--</span><span class="n">element</span> <span class="n">ELEMENT</span>        <span class="n">Print</span> <span class="n">out</span> <span class="n">only</span> <span class="n">the</span> <span class="n">element</span> <span class="n">specified</span>
+<span class="o">-</span><span class="n">l</span> <span class="n">LMAX</span><span class="p">,</span> <span class="o">--</span><span class="n">lmax</span> <span class="n">LMAX</span>                 <span class="n">maximum</span> <span class="n">angular</span> <span class="n">momentum</span> <span class="ow">in</span> <span class="n">aux</span>
+                                     <span class="n">basisset</span><span class="p">:</span> <span class="n">Default</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="authors">
-<h1>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h1>
-<p>Written and maintained by the VOTCA Development Team &lt;<a class="reference external" href="mailto:devs&#37;&#52;&#48;votca&#46;org">devs<span>&#64;</span>votca<span>&#46;</span>org</a>&gt;</p>
-</div>
-<div class="section" id="copyright">
-<h1>COPYRIGHT<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h1>
-<p>Copyright 2009-2021 The VOTCA Development Team (<a class="reference external" href="http://www.votca.org">http://www.votca.org</a>)</p>
-<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at</p>
-<blockquote>
-<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-</div></blockquote>
-<p>Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.</p>
 </div>
 
 

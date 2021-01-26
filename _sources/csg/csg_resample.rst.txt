@@ -17,44 +17,27 @@ Mainly called internally by inverse script, can also be
 used to manually prepare input files for coarse-grained
 simulations.
 
+
+
 OPTIONS
 *******
 ::
 
   Allowed options:
-    --help                produce this help message
-    --in arg              table to read
-    --out arg             table to write
-    --derivative arg      table to write
-    --grid arg            new grid spacing (min:step:max). If 'grid' is specified
-                          only, interpolation is performed.
-    --type arg (=akima)   [cubic|akima|linear]. If option is not specified, the 
-                          default type 'akima' is assumed.
-    --fitgrid arg         specify fit grid (min:step:max). If 'grid' and 
-                          'fitgrid' are specified, a fit is performed.
-    --nocut               Option for fitgrid: Normally, values out of fitgrid 
-                          boundaries are cut off. If they shouldn't, choose 
-                          --nocut.
-    --comment arg         store a comment in the output table
-    --boundaries arg      (natural|periodic|derivativezero) sets boundary 
-                          conditions
-
-AUTHORS
-*******
-Written and maintained by the VOTCA Development Team <devs@votca.org>
-
-COPYRIGHT
-*********
-
-Copyright 2009\-2021 The VOTCA Development Team (http://www.votca.org)
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this  file
-except in compliance with the License.  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless  required by applicable law or agreed to in writing, software distributed under the
-License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  KIND,
-either  express  or  implied.   See  the  License  for  the  specific  language  governing
-permissions and limitations under the License.
+  --help                produce this help message
+  --in arg              table to read
+  --out arg             table to write
+  --derivative arg      table to write
+  --grid arg            new grid spacing (min:step:max). If 'grid' is specified
+                        only, interpolation is performed.
+  --type arg (=akima)   [cubic|akima|linear]. If option is not specified, the 
+                        default type 'akima' is assumed.
+  --fitgrid arg         specify fit grid (min:step:max). If 'grid' and 
+                        'fitgrid' are specified, a fit is performed.
+  --nocut               Option for fitgrid: Normally, values out of fitgrid 
+                        boundaries are cut off. If they shouldn't, choose 
+                        --nocut.
+  --comment arg         store a comment in the output table
+  --boundaries arg      (natural|periodic|derivativezero) sets boundary 
+                        conditions
 
