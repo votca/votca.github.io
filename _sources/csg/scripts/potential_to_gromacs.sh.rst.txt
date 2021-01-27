@@ -1,0 +1,30 @@
+
+NAME
+****
+**csg_call convert_potential gromacs** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call convert_potential gromacs** [OPTIONS]
+
+**csg_call convert_potential gromacs** [--help]
+
+
+DESCRIPTION
+***********
+Usage: csg_call [OPTIONS] convert_potential gromacs [options] input output
+
+
+
+OPTIONS
+*******
+::
+
+  Allowed options:
+    --help       show this help
+    --clean      remove all intermediate temp files
+    --no-r2d     do not converts rad to degree (scale x axis with 180/3.1415)
+                 for angle and dihedral
+                 Note: VOTCA calcs in rad, but gromacs in degree
+    --no-shift   do not shift the potential
+    --step XXX   use XXX as step for the interaction

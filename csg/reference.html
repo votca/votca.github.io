@@ -121,7 +121,110 @@
 <li class="toctree-l3"><a class="reference internal" href="#mapping-file">Mapping file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#topology-file">Topology file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#settings-file">Settings file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#scripts">Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scripts">Scripts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-pot-pl">add_POT.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-pot-generic-sh">add_pot_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-density-generic-sh">calc_density_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-kbint-sh">calc_kbint.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-pressure-gromacs-sh">calc_pressure_gromacs.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-pressure-lammps-sh">calc_pressure_lammps.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-rdf-generic-sh">calc_rdf_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calc-target-rdf-generic-sh">calc_target_rdf_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clean-generic-sh">clean_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cma-processor-py">cma_processor.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#convergence-check-default-sh">convergence_check_default.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dist-adjust-pl">dist_adjust.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dist-boltzmann-invert-pl">dist_boltzmann_invert.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dummy-sh">dummy.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-common-sh">functions_common.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-dlpoly-sh">functions_dlpoly.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-genericsim-sh">functions_genericsim.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-gromacs-sh">functions_gromacs.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imc-stat-generic-sh">imc_stat_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-step-generic-sh">initialize_step_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-step-genericsim-sh">initialize_step_genericsim.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-step-optimizer-sh">initialize_step_optimizer.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-step-re-sh">initialize_step_re.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inverse-sh">inverse.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kbibi-ramp-correction-pl">kbibi_ramp_correction.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lj-126-pl">lj_126.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-tables-pl">merge_tables.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-parameters-to-potential-sh">optimizer_parameters_to_potential.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-prepare-state-sh">optimizer_prepare_state.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-state-to-mapping-sh">optimizer_state_to_mapping.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-state-to-potentials-sh">optimizer_state_to_potentials.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-target-density-sh">optimizer_target_density.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-target-pressure-sh">optimizer_target_pressure.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizer-target-rdf-sh">optimizer_target_rdf.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-add-sh">post_add.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-add-single-sh">post_add_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-update-generic-sh">post_update_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-update-generic-single-sh">post_update_generic_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-update-re-single-sh">post_update_re_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-acc-convergence-sh">postadd_acc_convergence.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-average-sh">postadd_average.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-compress-sh">postadd_compress.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-convergence-sh">postadd_convergence.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-copyback-sh">postadd_copyback.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-dummy-sh">postadd_dummy.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-overwrite-sh">postadd_overwrite.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-plot-sh">postadd_plot.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postadd-shift-sh">postadd_shift.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-addlj-sh">postupd_addlj.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-cibi-correction-sh">postupd_cibi_correction.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-extrapolate-sh">postupd_extrapolate.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-kbibi-correction-sh">postupd_kbibi_correction.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-pressure-sh">postupd_pressure.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-scale-sh">postupd_scale.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-smooth-sh">postupd_smooth.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postupd-splinesmooth-sh">postupd_splinesmooth.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-extrapolate-sh">potential_extrapolate.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-shift-pl">potential_shift.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-to-dlpoly-sh">potential_to_dlpoly.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-to-generic-sh">potential_to_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-to-gromacs-sh">potential_to_gromacs.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-to-lammps-sh">potential_to_lammps.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potentials-to-dlpoly-sh">potentials_to_dlpoly.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potentials-to-generic-sh">potentials_to_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-update-re-sh">pre_update_re.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-generic-sh">prepare_generic.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-generic-single-sh">prepare_generic_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-imc-sh">prepare_imc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-optimizer-sh">prepare_optimizer.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-optimizer-single-sh">prepare_optimizer_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-re-sh">prepare_re.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pressure-cor-simple-pl">pressure_cor_simple.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pressure-cor-wjk-pl">pressure_cor_wjk.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resample-target-sh">resample_target.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-genericsim-sh">run_genericsim.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-gromacs-sh">run_gromacs.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simplex-downhill-processor-pl">simplex_downhill_processor.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-average-sh">table_average.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-change-flag-sh">table_change_flag.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-combine-pl">table_combine.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-dummy-sh">table_dummy.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-extrapolate-pl">table_extrapolate.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-functional-sh">table_functional.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-get-value-pl">table_get_value.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-integrate-pl">table_integrate.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-linearop-pl">table_linearop.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-scale-pl">table_scale.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-smooth-pl">table_smooth.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-switch-border-pl">table_switch_border.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-to-tab-pl">table_to_tab.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#table-to-xvg-pl">table_to_xvg.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tables-jackknife-pl">tables_jackknife.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tag-file-sh">tag_file.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-ibi-sh">update_ibi.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-ibi-pot-pl">update_ibi_pot.pl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-ibi-single-sh">update_ibi_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-imc-sh">update_imc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-imc-single-sh">update_imc_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-optimizer-sh">update_optimizer.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-optimizer-single-sh">update_optimizer_single.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-re-sh">update_re.sh</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#csgapps">csgapps</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#csg-fluctuations">csg_fluctuations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-orientcorr">csg_orientcorr</a></li>
@@ -707,19 +810,39 @@ and a mapping file. File still needs to be modified by the user.</p>
 </div>
 <div class="section" id="id31">
 <h4>DESCRIPTION<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
-<p>Start the script (inverse.sh) to run IBM, IMC, etc.</p>
+<p>Start the script to run ibi, imc, etc. or clean out current dir</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>csg_inverse –options cg.xml</p></li>
+<li><p>csg_inverse -6 –options cg.xml</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="id32">
 <h4>OPTIONS<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_inverse</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_inverse</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span> <span class="p">[</span><span class="n">clean</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Allowed options:
--h, –help     Show this help</p>
-<dl class="simple">
-<dt>NOTE: this is a short help, please source VOTCARC.bash or VOTCARC.csh</dt><dd><p>or export VOTCASHARE to get the full help.</p>
+-h, –help                    show this help
+-N, –do-iterations N         only do N iterations (ignoring settings.xml)</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">--wall-time <var>SEK</var></span></kbd></dt>
+<dd><p>Set wall clock time</p>
+</dd>
+<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
+<dd><p>Specify the options xml file to use</p>
+</dd>
+<dt><kbd><span class="option">--debug</span></kbd></dt>
+<dd><p>enable debug mode with a lot of information</p>
+</dd>
+<dt><kbd><span class="option">--nocolor</span></kbd></dt>
+<dd><p>disable colors</p>
 </dd>
 </dl>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="csg-map">
@@ -2927,29 +3050,3082 @@ The following table contains the input options for CSG,</p>
 <h2>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h2>
 <p>Scripts are used by and . The script table commonly used (compare
 <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">–list</span></code>):</p>
-<p>Script calls can be overwritten by adding a line with the 3rd column
-changed to <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> in directory.</p>
+<p>Script calls can be overwritten by adding a similar line with the 3rd column
+changed from the original <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> in directory list in the
+<code class="docutils literal notranslate"><span class="pre">&lt;scriptdir&gt;</span></code> property of the settings xml file.</p>
+<p>List of the default scripts:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key1</p></th>
+<th class="head"><p>Key2</p></th>
+<th class="head"><p>Scriptname</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tag</p></td>
+<td><p>file</p></td>
+<td><p>tag_file.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>dummy</p></td>
+<td><p>dummy</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>functions</p></td>
+<td><p>common</p></td>
+<td><p>functions_common.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>csg</p></td>
+<td><p>master</p></td>
+<td><p>inverse.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>prepare</p></td>
+<td><p>ibi</p></td>
+<td><p>prepare_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>prepare</p></td>
+<td><p>imc</p></td>
+<td><p>prepare_imc.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>prepare</p></td>
+<td><p>generic</p></td>
+<td><p>prepare_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>prepare</p></td>
+<td><p>optimizer</p></td>
+<td><p>prepare_optimizer.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>prepare</p></td>
+<td><p>re</p></td>
+<td><p>prepare_re.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>prepare_single</p></td>
+<td><p>ibi</p></td>
+<td><p>prepare_generic_single.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>prepare_single</p></td>
+<td><p>imc</p></td>
+<td><p>prepare_generic_single.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>prepare_single</p></td>
+<td><p>optimizer</p></td>
+<td><p>prepare_optimizer_single.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>initstep</p></td>
+<td><p>ibi</p></td>
+<td><p>initialize_step_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>initstep</p></td>
+<td><p>imc</p></td>
+<td><p>initialize_step_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>initstep</p></td>
+<td><p>optimizer</p></td>
+<td><p>initialize_step_optimizer.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>initstep</p></td>
+<td><p>re</p></td>
+<td><p>initialize_step_re.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>add_pot</p></td>
+<td><p>ibi</p></td>
+<td><p>add_pot_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>add_pot</p></td>
+<td><p>imc</p></td>
+<td><p>add_pot_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>add_pot</p></td>
+<td><p>optimizer</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>add_pot</p></td>
+<td><p>re</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>pre_update</p></td>
+<td><p>ibi</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>pre_update</p></td>
+<td><p>imc</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>pre_update</p></td>
+<td><p>optimizer</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>pre_update</p></td>
+<td><p>re</p></td>
+<td><p>pre_update_re.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>post_update</p></td>
+<td><p>ibi</p></td>
+<td><p>post_update_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>post_update</p></td>
+<td><p>imc</p></td>
+<td><p>post_update_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>post_update</p></td>
+<td><p>optimizer</p></td>
+<td><p>dummy.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>post_update</p></td>
+<td><p>re</p></td>
+<td><p>post_update_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>post_update_single</p></td>
+<td><p>ibi</p></td>
+<td><p>post_update_generic_single.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>post_update_single</p></td>
+<td><p>imc</p></td>
+<td><p>post_update_generic_single.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>post_update_single</p></td>
+<td><p>re</p></td>
+<td><p>post_update_re_single.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>scale</p></td>
+<td><p>postupd_scale.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postupd</p></td>
+<td><p>pressure</p></td>
+<td><p>postupd_pressure.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>lj</p></td>
+<td><p>postupd_addlj.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postupd</p></td>
+<td><p>splinesmooth</p></td>
+<td><p>postupd_splinesmooth.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>smooth</p></td>
+<td><p>postupd_smooth.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postupd</p></td>
+<td><p>shift</p></td>
+<td><p>postadd_shift.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>dummy</p></td>
+<td><p>postadd_dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postupd</p></td>
+<td><p>tag</p></td>
+<td><p>tag_file.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>extrapolate</p></td>
+<td><p>postupd_extrapolate.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postupd</p></td>
+<td><p>kbibi</p></td>
+<td><p>postupd_kbibi_correction.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postupd</p></td>
+<td><p>cibi</p></td>
+<td><p>postupd_cibi_correction.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>post</p></td>
+<td><p>add</p></td>
+<td><p>post_add.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>post</p></td>
+<td><p>add_single</p></td>
+<td><p>post_add_single.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postadd</p></td>
+<td><p>tag</p></td>
+<td><p>tag_file.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postadd</p></td>
+<td><p>dummy</p></td>
+<td><p>postadd_dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postadd</p></td>
+<td><p>copyback</p></td>
+<td><p>postadd_copyback.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postadd</p></td>
+<td><p>compress</p></td>
+<td><p>postadd_compress.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postadd</p></td>
+<td><p>convergence</p></td>
+<td><p>postadd_convergence.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postadd</p></td>
+<td><p>acc_convergence</p></td>
+<td><p>postadd_acc_convergence.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postadd</p></td>
+<td><p>shift</p></td>
+<td><p>postadd_shift.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postadd</p></td>
+<td><p>overwrite</p></td>
+<td><p>postadd_overwrite.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>postadd</p></td>
+<td><p>plot</p></td>
+<td><p>postadd_plot.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>postadd</p></td>
+<td><p>average</p></td>
+<td><p>postadd_average.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convergence_check</p></td>
+<td><p>default</p></td>
+<td><p>convergence_check_default.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>resample</p></td>
+<td><p>target</p></td>
+<td><p>resample_target.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>update</p></td>
+<td><p>ibi</p></td>
+<td><p>update_ibi.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>update</p></td>
+<td><p>ibi_single</p></td>
+<td><p>update_ibi_single.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>update</p></td>
+<td><p>ibi_pot</p></td>
+<td><p>update_ibi_pot.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>update</p></td>
+<td><p>imc</p></td>
+<td><p>update_imc.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>update</p></td>
+<td><p>imc_single</p></td>
+<td><p>update_imc_single.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>optimizer</p></td>
+<td><p>prepare_state</p></td>
+<td><p>optimizer_prepare_state.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>optimizer</p></td>
+<td><p>parameters_to_potential</p></td>
+<td><p>optimizer_parameters_to_potential.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>optimizer</p></td>
+<td><p>state_to_potentials</p></td>
+<td><p>optimizer_state_to_potentials.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>optimizer</p></td>
+<td><p>state_to_mapping</p></td>
+<td><p>optimizer_state_to_mapping.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>update</p></td>
+<td><p>optimizer</p></td>
+<td><p>update_optimizer.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>update</p></td>
+<td><p>optimizer_single</p></td>
+<td><p>update_optimizer_single.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>optimizer_target</p></td>
+<td><p>rdf</p></td>
+<td><p>optimizer_target_rdf.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>optimizer_target</p></td>
+<td><p>density</p></td>
+<td><p>optimizer_target_density.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>optimizer_target</p></td>
+<td><p>pressure</p></td>
+<td><p>optimizer_target_pressure.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>simplex</p></td>
+<td><p>precede_state</p></td>
+<td><p>simplex_downhill_processor.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>cma</p></td>
+<td><p>precede_state</p></td>
+<td><p>cma_processor.py</p></td>
+</tr>
+<tr class="row-even"><td><p>update</p></td>
+<td><p>re</p></td>
+<td><p>update_re.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc</p></td>
+<td><p>target_rdf</p></td>
+<td><p>calc_target_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>pressure_cor</p></td>
+<td><p>simple</p></td>
+<td><p>pressure_cor_simple.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>pressure_cor</p></td>
+<td><p>wjk</p></td>
+<td><p>pressure_cor_wjk.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>compute_lj</p></td>
+<td><p>12_6</p></td>
+<td><p>lj_126.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>kbibi</p></td>
+<td><p>ramp_correction</p></td>
+<td><p>kbibi_ramp_correction.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>calc</p></td>
+<td><p>kbint</p></td>
+<td><p>calc_kbint.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>add</p></td>
+<td><p>add_POT.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>integrate</p></td>
+<td><p>table_integrate.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>extrapolate</p></td>
+<td><p>table_extrapolate.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>merge</p></td>
+<td><p>merge_tables.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>smooth</p></td>
+<td><p>table_smooth.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>linearop</p></td>
+<td><p>table_linearop.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>dummy</p></td>
+<td><p>table_dummy.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>get_value</p></td>
+<td><p>table_get_value.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>switch_border</p></td>
+<td><p>table_switch_border.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>compare</p></td>
+<td><p>table_combine.pl –die –op =</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>combine</p></td>
+<td><p>table_combine.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>average</p></td>
+<td><p>table_average.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>scale</p></td>
+<td><p>table_scale.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>table</p></td>
+<td><p>change_flag</p></td>
+<td><p>table_change_flag.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>table</p></td>
+<td><p>functional</p></td>
+<td><p>table_functional.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>potential</p></td>
+<td><p>extrapolate</p></td>
+<td><p>potential_extrapolate.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>potential</p></td>
+<td><p>shift</p></td>
+<td><p>potential_shift.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potential</p></td>
+<td><p>tab</p></td>
+<td><p>table_to_tab.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist</p></td>
+<td><p>adjust</p></td>
+<td><p>dist_adjust.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>dist</p></td>
+<td><p>invert</p></td>
+<td><p>dist_boltzmann_invert.pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>tables</p></td>
+<td><p>jackknife</p></td>
+<td><p>tables_jackknife.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>initstep</p></td>
+<td><p>gromacs</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>run</p></td>
+<td><p>gromacs</p></td>
+<td><p>run_gromacs.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>gromacs</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>presimulation</p></td>
+<td><p>gromacs</p></td>
+<td><p>run_gromacs.sh –pre</p></td>
+</tr>
+<tr class="row-even"><td><p>pressure</p></td>
+<td><p>gromacs</p></td>
+<td><p>calc_pressure_gromacs.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>pressure</p></td>
+<td><p>lammps</p></td>
+<td><p>calc_pressure_lammps.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>rdf</p></td>
+<td><p>gromacs</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>imc_stat</p></td>
+<td><p>gromacs</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>density</p></td>
+<td><p>gromacs</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>gromacs</p></td>
+<td><p>potential_to_gromacs.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potentials</p></td>
+<td><p>gromacs</p></td>
+<td><p>potentials_to_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>xvg</p></td>
+<td><p>table_to_xvg.pl</p></td>
+</tr>
+<tr class="row-even"><td><p>functions</p></td>
+<td><p>gromacs</p></td>
+<td><p>functions_gromacs.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>initstep</p></td>
+<td><p>espresso</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>run</p></td>
+<td><p>espresso</p></td>
+<td><p>run_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>clean</p></td>
+<td><p>espresso</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>rdf</p></td>
+<td><p>espresso</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>imc_stat</p></td>
+<td><p>espresso</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>density</p></td>
+<td><p>espresso</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>espresso</p></td>
+<td><p>potential_to_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potentials</p></td>
+<td><p>espresso</p></td>
+<td><p>potentials_to_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>functions</p></td>
+<td><p>espresso</p></td>
+<td><p>functions_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potential</p></td>
+<td><p>lammps</p></td>
+<td><p>potential_to_lammps.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potentials</p></td>
+<td><p>lammps</p></td>
+<td><p>potentials_to_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>initstep</p></td>
+<td><p>lammps</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>run</p></td>
+<td><p>lammps</p></td>
+<td><p>run_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>lammps</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>rdf</p></td>
+<td><p>lammps</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>imc_stat</p></td>
+<td><p>lammps</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>density</p></td>
+<td><p>lammps</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>functions</p></td>
+<td><p>lammps</p></td>
+<td><p>functions_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>espressopp</p></td>
+<td><p>potential_to_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potentials</p></td>
+<td><p>espressopp</p></td>
+<td><p>potentials_to_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>initstep</p></td>
+<td><p>espressopp</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>run</p></td>
+<td><p>espressopp</p></td>
+<td><p>run_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>clean</p></td>
+<td><p>espressopp</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>rdf</p></td>
+<td><p>espressopp</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>imc_stat</p></td>
+<td><p>espressopp</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>density</p></td>
+<td><p>espressopp</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>functions</p></td>
+<td><p>espressopp</p></td>
+<td><p>functions_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>initstep</p></td>
+<td><p>dlpoly</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>run</p></td>
+<td><p>dlpoly</p></td>
+<td><p>run_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>dlpoly</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>rdf</p></td>
+<td><p>dlpoly</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>imc_stat</p></td>
+<td><p>dlpoly</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>density</p></td>
+<td><p>dlpoly</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>functions</p></td>
+<td><p>dlpoly</p></td>
+<td><p>functions_dlpoly.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>dlpoly</p></td>
+<td><p>potential_to_dlpoly.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potentials</p></td>
+<td><p>dlpoly</p></td>
+<td><p>potentials_to_dlpoly.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>convert_potential</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>potential_to_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>convert_potentials</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>potentials_to_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>initstep</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>initialize_step_genericsim.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>run</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>run_genericsim.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>clean</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>clean_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>rdf</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>calc_rdf_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>imc_stat</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>imc_stat_generic.sh</p></td>
+</tr>
+<tr class="row-even"><td><p>density</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>calc_density_generic.sh</p></td>
+</tr>
+<tr class="row-odd"><td><p>functions</p></td>
+<td><p>hoomd-blue</p></td>
+<td><p>functions_genericsim.sh</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="add-pot-pl">
+<h3>add_POT.pl<a class="headerlink" href="#add-pot-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id53">
+<h4>NAME<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table add</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id54">
+<h4>SYNOPSIS<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table add</strong> [OPTIONS]</p>
+<p><strong>csg_call table add</strong> [–help]</p>
+</div>
+<div class="section" id="id55">
+<h4>DESCRIPTION<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table add infile1 infile2 outfile</p>
+</div>
+<div class="section" id="id56">
+<h4>OPTIONS<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="add-pot-generic-sh">
+<h3>add_pot_generic.sh<a class="headerlink" href="#add-pot-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id57">
+<h4>NAME<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call add_pot ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id58">
+<h4>SYNOPSIS<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call add_pot ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call add_pot ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id59">
+<h4>DESCRIPTION<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] add_pot ibi</p>
+</div>
+<div class="section" id="id60">
+<h4>OPTIONS<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="calc-density-generic-sh">
+<h3>calc_density_generic.sh<a class="headerlink" href="#calc-density-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id61">
+<h4>NAME<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call density gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id62">
+<h4>SYNOPSIS<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call density gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call density gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id63">
+<h4>DESCRIPTION<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] density gromacs outputfile csg_density_options</p>
+</div>
+<div class="section" id="id64">
+<h4>OPTIONS<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="calc-kbint-sh">
+<h3>calc_kbint.sh<a class="headerlink" href="#calc-kbint-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id65">
+<h4>NAME<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call calc kbint</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id66">
+<h4>SYNOPSIS<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call calc kbint</strong> [OPTIONS]</p>
+<p><strong>csg_call calc kbint</strong> [–help]</p>
+</div>
+<div class="section" id="id67">
+<h4>DESCRIPTION<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] calc kbint [options] infile outfile
+Allowed options:</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>show this help</p>
+</dd>
+<dt><kbd><span class="option">--clean</span></kbd></dt>
+<dd><p>remove all intermediate temp files</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id68">
+<h4>OPTIONS<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="calc-pressure-gromacs-sh">
+<h3>calc_pressure_gromacs.sh<a class="headerlink" href="#calc-pressure-gromacs-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id69">
+<h4>NAME<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id70">
+<h4>SYNOPSIS<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call pressure gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id71">
+<h4>DESCRIPTION<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] pressure gromacs outfile</p>
+</div>
+<div class="section" id="id72">
+<h4>OPTIONS<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gromacs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="calc-pressure-lammps-sh">
+<h3>calc_pressure_lammps.sh<a class="headerlink" href="#calc-pressure-lammps-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id73">
+<h4>NAME<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure lammps</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id74">
+<h4>SYNOPSIS<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure lammps</strong> [OPTIONS]</p>
+<p><strong>csg_call pressure lammps</strong> [–help]</p>
+</div>
+<div class="section" id="id75">
+<h4>DESCRIPTION<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] pressure lammps outfile</p>
+</div>
+<div class="section" id="id76">
+<h4>OPTIONS<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">lammps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="calc-rdf-generic-sh">
+<h3>calc_rdf_generic.sh<a class="headerlink" href="#calc-rdf-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id77">
+<h4>NAME<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call rdf gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id78">
+<h4>SYNOPSIS<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call rdf gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call rdf gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id79">
+<h4>DESCRIPTION<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] rdf gromacs</p>
+</div>
+<div class="section" id="id80">
+<h4>OPTIONS<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="calc-target-rdf-generic-sh">
+<h3>calc_target_rdf_generic.sh<a class="headerlink" href="#calc-target-rdf-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id81">
+<h4>NAME<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call calc target_rdf</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id82">
+<h4>SYNOPSIS<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call calc target_rdf</strong> [OPTIONS]</p>
+<p><strong>csg_call calc target_rdf</strong> [–help]</p>
+</div>
+<div class="section" id="id83">
+<h4>DESCRIPTION<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] calc target_rdf</p>
+</div>
+<div class="section" id="id84">
+<h4>OPTIONS<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="clean-generic-sh">
+<h3>clean_generic.sh<a class="headerlink" href="#clean-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id85">
+<h4>NAME<a class="headerlink" href="#id85" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call clean gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id86">
+<h4>SYNOPSIS<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call clean gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call clean gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id87">
+<h4>DESCRIPTION<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] clean gromacs</p>
+</div>
+<div class="section" id="id88">
+<h4>OPTIONS<a class="headerlink" href="#id88" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="cma-processor-py">
+<h3>cma_processor.py<a class="headerlink" href="#cma-processor-py" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id89">
+<h4>NAME<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call cma precede_state</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id90">
+<h4>SYNOPSIS<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call cma precede_state</strong> [OPTIONS]</p>
+<p><strong>csg_call cma precede_state</strong> [–help]</p>
+</div>
+<div class="section" id="id91">
+<h4>DESCRIPTION<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h4>
+<p>usage: %prog [options] statefile-in statefile-out</p>
+</div>
+<div class="section" id="id92">
+<h4>OPTIONS<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">--</span><span class="n">eps</span> <span class="n">EPS</span>   <span class="n">tolerance</span> <span class="k">for</span> <span class="n">initialization</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="convergence-check-default-sh">
+<h3>convergence_check_default.sh<a class="headerlink" href="#convergence-check-default-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id93">
+<h4>NAME<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convergence_check default</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id94">
+<h4>SYNOPSIS<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convergence_check default</strong> [OPTIONS]</p>
+<p><strong>csg_call convergence_check default</strong> [–help]</p>
+</div>
+<div class="section" id="id95">
+<h4>DESCRIPTION<a class="headerlink" href="#id95" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convergence_check default</p>
+</div>
+<div class="section" id="id96">
+<h4>OPTIONS<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="dist-adjust-pl">
+<h3>dist_adjust.pl<a class="headerlink" href="#dist-adjust-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id97">
+<h4>NAME<a class="headerlink" href="#id97" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dist adjust</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id98">
+<h4>SYNOPSIS<a class="headerlink" href="#id98" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dist adjust</strong> [OPTIONS]</p>
+<p><strong>csg_call dist adjust</strong> [–help]</p>
+</div>
+<div class="section" id="id99">
+<h4>DESCRIPTION<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] dist adjust [OPTIONS] &lt;in&gt; &lt;out&gt;</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>dist_adjust.pl CG-CG.dist.tmp CG-CG.dist.new</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id100">
+<h4>OPTIONS<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="dist-boltzmann-invert-pl">
+<h3>dist_boltzmann_invert.pl<a class="headerlink" href="#dist-boltzmann-invert-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id101">
+<h4>NAME<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dist invert</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id102">
+<h4>SYNOPSIS<a class="headerlink" href="#id102" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dist invert</strong> [OPTIONS]</p>
+<p><strong>csg_call dist invert</strong> [–help]</p>
+</div>
+<div class="section" id="id103">
+<h4>DESCRIPTION<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h4>
+<p>In addtion, it does some magic tricks:
+- do not crash when calc log(0)
+- choose the right normalization depending on the type of interaction
+- input dist should be unnormalized (like csg_stat calcs it)</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>dist_boltzmann_invert.pl –kbT 2.49435 –min 0.001 tmp.dist tmp.pot</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id104">
+<h4>OPTIONS<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">dist</span> <span class="n">invert</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl>
+<dt>Allowed options:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--kbT <var>NUMBER</var></span></kbd></dt>
+<dd><p>use NUMBER as ‘’$k_B*T$’’ for the entropic part</p>
+</dd>
+<dt><kbd><span class="option">--type <var>XXX</var></span></kbd></dt>
+<dd><p>change the type of interaction
+Default: non-bonded</p>
+</dd>
+<dt><kbd><span class="option">--min <var>XXX</var></span></kbd></dt>
+<dd><p>minimum value to consider
+Default: 1e-10</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+<p>Possible types: non-bonded, bond, angle, dihedral</p>
+</div>
+</div>
+<div class="section" id="dummy-sh">
+<h3>dummy.sh<a class="headerlink" href="#dummy-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id105">
+<h4>NAME<a class="headerlink" href="#id105" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dummy dummy</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id106">
+<h4>SYNOPSIS<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call dummy dummy</strong> [OPTIONS]</p>
+<p><strong>csg_call dummy dummy</strong> [–help]</p>
+</div>
+<div class="section" id="id107">
+<h4>DESCRIPTION<a class="headerlink" href="#id107" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] dummy dummy</p>
+</div>
+<div class="section" id="id108">
+<h4>OPTIONS<a class="headerlink" href="#id108" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="functions-common-sh">
+<h3>functions_common.sh<a class="headerlink" href="#functions-common-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id109">
+<h4>NAME<a class="headerlink" href="#id109" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions common</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id110">
+<h4>SYNOPSIS<a class="headerlink" href="#id110" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions common</strong> [OPTIONS]</p>
+<p><strong>csg_call functions common</strong> [–help]</p>
+</div>
+<div class="section" id="id111">
+<h4>DESCRIPTION<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h4>
+<p>This file defines some commonly used functions:
+* msg  – echos a msg on the screen and send it to the logfile if logging is enabled
+* show_callstack  – show the current callstack
+* die   – make the iterative frame work stopp
+* cat_external  – takes a two tags and shows content of the according script
+* do_external  – takes two tags, find the according script and excute it
+* critical  – executes arguments as command and calls die if not succesful
+* csg_get_interaction_property   – gets an interaction property from the xml file, should only be called from inside a for_all loop or with –all option
+* csg_get_property   – get an property from the xml file
+* trim_all  – make multiple lines into one and strip white space from beginning and the end, reads from stdin
+* mark_done   – mark a task (1st argument) as done in the restart file
+* is_done   – checks if something is already do in the restart file
+* is_int  – checks if all arguments are integers
+* to_int  – convert all given numbers to int using awk’s int function
+* is_part  – checks if 1st argument is part of the set given by other arguments
+* has_duplicate  – check if one of the arguments is double
+* remove_duplicate  – remove duplicates list of arguments
+* is_num  – checks if all arguments are numbers
+* get_stepname  – get the dir name of a certain step number (1st argument)
+* get_current_step_dir  – print the directory of the current step
+* get_last_step_dir  – print the directory of the last step
+* get_main_dir  – print the main directory
+* get_current_step_nr  – print the main directory
+* get_step_nr  – print the number of a certain step directory (1st argument)
+* cp_from_main_dir  – copy something from the main directory
+* cp_from_last_step  – copy something from the last step
+* get_time  – gives back current time in sec from 1970
+* get_number_tasks  – get the number of possible tasks from the xml file or determine it automatically under some systems
+* get_table_comment  – get comment lines from a table and add common information, which include the git id and other information
+* csg_inverse_clean  – clean out the main directory
+* check_path_variable  – check if a variable contains only valid paths
+* add_to_csgshare  – added an directory to the csg internal search directories
+* globalize_dir  – convert a local directory to a global one
+* globalize_file  – convert a local file name to a global one
+* source_function  – source an extra function file
+* csg_banner  – print a big banner
+* csg_calc  – simple calculator, a + b, …
+* show_csg_tables  – show all concatinated csg tables
+* get_command_from_csg_tables  – print the name of script belonging to certain tags (1st, 2nd argument)
+* source_wrapper  – print the full name of a script belonging to two tags (1st, 2nd argument)
+* find_in_csgshare  – find a script in csg script search path
+* enable_logging  – enables the logging to a certain file (1st argument) or the logfile taken from the xml file
+* get_restart_file  – print the name of the restart file to use
+* check_for_obsolete_xml_options  – check xml file for obsolete options
+* command_not_found_handle  – print and error message if a command or a function was not found</p>
+</div>
+<div class="section" id="id112">
+<h4>OPTIONS<a class="headerlink" href="#id112" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="functions-dlpoly-sh">
+<h3>functions_dlpoly.sh<a class="headerlink" href="#functions-dlpoly-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id113">
+<h4>NAME<a class="headerlink" href="#id113" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions dlpoly</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id114">
+<h4>SYNOPSIS<a class="headerlink" href="#id114" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions dlpoly</strong> [OPTIONS]</p>
+<p><strong>csg_call functions dlpoly</strong> [–help]</p>
+</div>
+<div class="section" id="id115">
+<h4>DESCRIPTION<a class="headerlink" href="#id115" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id116">
+<h4>OPTIONS<a class="headerlink" href="#id116" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="functions-genericsim-sh">
+<h3>functions_genericsim.sh<a class="headerlink" href="#functions-genericsim-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id117">
+<h4>NAME<a class="headerlink" href="#id117" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions espresso</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id118">
+<h4>SYNOPSIS<a class="headerlink" href="#id118" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions espresso</strong> [OPTIONS]</p>
+<p><strong>csg_call functions espresso</strong> [–help]</p>
+</div>
+<div class="section" id="id119">
+<h4>DESCRIPTION<a class="headerlink" href="#id119" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id120">
+<h4>OPTIONS<a class="headerlink" href="#id120" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="functions-gromacs-sh">
+<h3>functions_gromacs.sh<a class="headerlink" href="#functions-gromacs-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id121">
+<h4>NAME<a class="headerlink" href="#id121" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id122">
+<h4>SYNOPSIS<a class="headerlink" href="#id122" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call functions gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call functions gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id123">
+<h4>DESCRIPTION<a class="headerlink" href="#id123" title="Permalink to this headline">¶</a></h4>
+<p>Useful functions for gromacs:
+* get_simulation_setting    – gets a parameter (1st argument) from gromacs mdp file (default 2nd parameter)
+* check_temp    – compares k_B T in xml with temp in mpd file
+* simulation_finish    – checks if simulation is finished
+* checkpoint_exist    – check if a checkpoint exists
+* calc_begin_time    – return the max of dt*frames and eqtime
+* calc_end_time    – return dt * nsteps
+* gromacs_log    – redirect stdin to a separate gromacs log file, 1st argument can be the name of the command to echo if redirection takes place</p>
+</div>
+<div class="section" id="id124">
+<h4>OPTIONS<a class="headerlink" href="#id124" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gromacs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="imc-stat-generic-sh">
+<h3>imc_stat_generic.sh<a class="headerlink" href="#imc-stat-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id125">
+<h4>NAME<a class="headerlink" href="#id125" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call imc_stat gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id126">
+<h4>SYNOPSIS<a class="headerlink" href="#id126" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call imc_stat gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call imc_stat gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id127">
+<h4>DESCRIPTION<a class="headerlink" href="#id127" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] imc_stat gromacs</p>
+</div>
+<div class="section" id="id128">
+<h4>OPTIONS<a class="headerlink" href="#id128" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="initialize-step-generic-sh">
+<h3>initialize_step_generic.sh<a class="headerlink" href="#initialize-step-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id129">
+<h4>NAME<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id130">
+<h4>SYNOPSIS<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call initstep ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id131">
+<h4>DESCRIPTION<a class="headerlink" href="#id131" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] initstep ibi</p>
+</div>
+<div class="section" id="id132">
+<h4>OPTIONS<a class="headerlink" href="#id132" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="initialize-step-genericsim-sh">
+<h3>initialize_step_genericsim.sh<a class="headerlink" href="#initialize-step-genericsim-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id133">
+<h4>NAME<a class="headerlink" href="#id133" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id134">
+<h4>SYNOPSIS<a class="headerlink" href="#id134" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call initstep gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id135">
+<h4>DESCRIPTION<a class="headerlink" href="#id135" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] initstep gromacs</p>
+</div>
+<div class="section" id="id136">
+<h4>OPTIONS<a class="headerlink" href="#id136" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="initialize-step-optimizer-sh">
+<h3>initialize_step_optimizer.sh<a class="headerlink" href="#initialize-step-optimizer-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id137">
+<h4>NAME<a class="headerlink" href="#id137" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep optimizer</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id138">
+<h4>SYNOPSIS<a class="headerlink" href="#id138" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep optimizer</strong> [OPTIONS]</p>
+<p><strong>csg_call initstep optimizer</strong> [–help]</p>
+</div>
+<div class="section" id="id139">
+<h4>DESCRIPTION<a class="headerlink" href="#id139" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] initstep optimizer</p>
+</div>
+<div class="section" id="id140">
+<h4>OPTIONS<a class="headerlink" href="#id140" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="initialize-step-re-sh">
+<h3>initialize_step_re.sh<a class="headerlink" href="#initialize-step-re-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id141">
+<h4>NAME<a class="headerlink" href="#id141" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep re</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id142">
+<h4>SYNOPSIS<a class="headerlink" href="#id142" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call initstep re</strong> [OPTIONS]</p>
+<p><strong>csg_call initstep re</strong> [–help]</p>
+</div>
+<div class="section" id="id143">
+<h4>DESCRIPTION<a class="headerlink" href="#id143" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] initstep re</p>
+</div>
+<div class="section" id="id144">
+<h4>OPTIONS<a class="headerlink" href="#id144" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="inverse-sh">
+<h3>inverse.sh<a class="headerlink" href="#inverse-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id145">
+<h4>NAME<a class="headerlink" href="#id145" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call csg master</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id146">
+<h4>SYNOPSIS<a class="headerlink" href="#id146" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call csg master</strong> [OPTIONS]</p>
+<p><strong>csg_call csg master</strong> [–help]</p>
+</div>
+<div class="section" id="id147">
+<h4>DESCRIPTION<a class="headerlink" href="#id147" title="Permalink to this headline">¶</a></h4>
+<p>Start the script to run ibi, imc, etc. or clean out current dir</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>inverse.sh –options cg.xml</p></li>
+<li><p>inverse.sh -6 –options cg.xml</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id148">
+<h4>OPTIONS<a class="headerlink" href="#id148" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">csg</span> <span class="n">master</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span> <span class="p">[</span><span class="n">clean</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Allowed options:
+-h, –help                    show this help
+-N, –do-iterations N         only do N iterations (ignoring settings.xml)</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">--wall-time <var>SEK</var></span></kbd></dt>
+<dd><p>Set wall clock time</p>
+</dd>
+<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
+<dd><p>Specify the options xml file to use</p>
+</dd>
+<dt><kbd><span class="option">--debug</span></kbd></dt>
+<dd><p>enable debug mode with a lot of information</p>
+</dd>
+<dt><kbd><span class="option">--nocolor</span></kbd></dt>
+<dd><p>disable colors</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="kbibi-ramp-correction-pl">
+<h3>kbibi_ramp_correction.pl<a class="headerlink" href="#kbibi-ramp-correction-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id149">
+<h4>NAME<a class="headerlink" href="#id149" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call kbibi ramp_correction</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id150">
+<h4>SYNOPSIS<a class="headerlink" href="#id150" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call kbibi ramp_correction</strong> [OPTIONS]</p>
+<p><strong>csg_call kbibi ramp_correction</strong> [–help]</p>
+</div>
+<div class="section" id="id151">
+<h4>DESCRIPTION<a class="headerlink" href="#id151" title="Permalink to this headline">¶</a></h4>
+<p>This script calculates Kirkwood-Buff correction as described in:
+P. Ganguly, D. Mukherji, C. Junghans, N. F. A. van der Vegt,
+Kirkwood-Buff coarse-grained force fields for aqueous solutions,
+J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
+</div>
+<div class="section" id="id152">
+<h4>OPTIONS<a class="headerlink" href="#id152" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbibi</span> <span class="n">ramp_correction</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbint</span> <span class="n">target_kbint</span> <span class="n">outfile</span> <span class="n">kBT</span> <span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span> <span class="n">int_start</span><span class="p">:</span><span class="n">int_end</span> <span class="n">ramp_factor</span>
+</pre></div>
+</div>
+<p>Allowed options:
+-h, –help            Show this help message</p>
+</div>
+</div>
+<div class="section" id="lj-126-pl">
+<h3>lj_126.pl<a class="headerlink" href="#lj-126-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id153">
+<h4>NAME<a class="headerlink" href="#id153" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call compute_lj 12_6</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id154">
+<h4>SYNOPSIS<a class="headerlink" href="#id154" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call compute_lj 12_6</strong> [OPTIONS]</p>
+<p><strong>csg_call compute_lj 12_6</strong> [–help]</p>
+</div>
+<div class="section" id="id155">
+<h4>DESCRIPTION<a class="headerlink" href="#id155" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] compute_lj 12_6 outfile min:step:max C6 C12</p>
+</div>
+<div class="section" id="id156">
+<h4>OPTIONS<a class="headerlink" href="#id156" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="merge-tables-pl">
+<h3>merge_tables.pl<a class="headerlink" href="#merge-tables-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id157">
+<h4>NAME<a class="headerlink" href="#id157" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table merge</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id158">
+<h4>SYNOPSIS<a class="headerlink" href="#id158" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table merge</strong> [OPTIONS]</p>
+<p><strong>csg_call table merge</strong> [–help]</p>
+</div>
+<div class="section" id="id159">
+<h4>DESCRIPTION<a class="headerlink" href="#id159" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table merge [OPTIONS] &lt;source&gt; &lt;dest&gt; &lt;out&gt;</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>merge_tables.pl intable intable2 outtable</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id160">
+<h4>OPTIONS<a class="headerlink" href="#id160" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-v</span>, <span class="option">--version</span></kbd></dt>
+<dd><p>Print version</p>
+</dd>
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+<dt><kbd><span class="option">--withflag</span></kbd></dt>
+<dd><p>only change entries with specific flag in src</p>
+</dd>
+<dt><kbd><span class="option">--noflags</span></kbd></dt>
+<dd><p>don’t copy flags</p>
+</dd>
+<dt><kbd><span class="option">--novalues</span></kbd></dt>
+<dd><p>don’t copy values</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="optimizer-parameters-to-potential-sh">
+<h3>optimizer_parameters_to_potential.sh<a class="headerlink" href="#optimizer-parameters-to-potential-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id161">
+<h4>NAME<a class="headerlink" href="#id161" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer parameters_to_potential</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id162">
+<h4>SYNOPSIS<a class="headerlink" href="#id162" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer parameters_to_potential</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer parameters_to_potential</strong> [–help]</p>
+</div>
+<div class="section" id="id163">
+<h4>DESCRIPTION<a class="headerlink" href="#id163" title="Permalink to this headline">¶</a></h4>
+<p>This script generates a single potential (.pot.new) out a parameter value string (1st argument)</p>
+</div>
+<div class="section" id="id164">
+<h4>OPTIONS<a class="headerlink" href="#id164" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">optimizer</span> <span class="n">parameters_to_potential</span> <span class="n">parametervalues</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="optimizer-prepare-state-sh">
+<h3>optimizer_prepare_state.sh<a class="headerlink" href="#optimizer-prepare-state-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id165">
+<h4>NAME<a class="headerlink" href="#id165" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer prepare_state</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id166">
+<h4>SYNOPSIS<a class="headerlink" href="#id166" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer prepare_state</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer prepare_state</strong> [–help]</p>
+</div>
+<div class="section" id="id167">
+<h4>DESCRIPTION<a class="headerlink" href="#id167" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] optimizer prepare_state outputfile</p>
+</div>
+<div class="section" id="id168">
+<h4>OPTIONS<a class="headerlink" href="#id168" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="optimizer-state-to-mapping-sh">
+<h3>optimizer_state_to_mapping.sh<a class="headerlink" href="#optimizer-state-to-mapping-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id169">
+<h4>NAME<a class="headerlink" href="#id169" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer state_to_mapping</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id170">
+<h4>SYNOPSIS<a class="headerlink" href="#id170" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer state_to_mapping</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer state_to_mapping</strong> [–help]</p>
+</div>
+<div class="section" id="id171">
+<h4>DESCRIPTION<a class="headerlink" href="#id171" title="Permalink to this headline">¶</a></h4>
+<p>This script generates a mapping for the reference mapping from the parameters of the active in input state using the mapping template</p>
+</div>
+<div class="section" id="id172">
+<h4>OPTIONS<a class="headerlink" href="#id172" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">optimizer</span> <span class="n">state_to_mapping</span> <span class="nb">input</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="optimizer-state-to-potentials-sh">
+<h3>optimizer_state_to_potentials.sh<a class="headerlink" href="#optimizer-state-to-potentials-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id173">
+<h4>NAME<a class="headerlink" href="#id173" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer state_to_potentials</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id174">
+<h4>SYNOPSIS<a class="headerlink" href="#id174" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer state_to_potentials</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer state_to_potentials</strong> [–help]</p>
+</div>
+<div class="section" id="id175">
+<h4>DESCRIPTION<a class="headerlink" href="#id175" title="Permalink to this headline">¶</a></h4>
+<p>This script generates potential (.pot.new) for all interactions out the first pending line in the input state file and flags this line active in output state</p>
+</div>
+<div class="section" id="id176">
+<h4>OPTIONS<a class="headerlink" href="#id176" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">optimizer</span> <span class="n">state_to_potentials</span> <span class="nb">input</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="optimizer-target-density-sh">
+<h3>optimizer_target_density.sh<a class="headerlink" href="#optimizer-target-density-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id177">
+<h4>NAME<a class="headerlink" href="#id177" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target density</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id178">
+<h4>SYNOPSIS<a class="headerlink" href="#id178" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target density</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer_target density</strong> [–help]</p>
+</div>
+<div class="section" id="id179">
+<h4>DESCRIPTION<a class="headerlink" href="#id179" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] optimizer_target density</p>
+</div>
+<div class="section" id="id180">
+<h4>OPTIONS<a class="headerlink" href="#id180" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="optimizer-target-pressure-sh">
+<h3>optimizer_target_pressure.sh<a class="headerlink" href="#optimizer-target-pressure-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id181">
+<h4>NAME<a class="headerlink" href="#id181" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target pressure</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id182">
+<h4>SYNOPSIS<a class="headerlink" href="#id182" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target pressure</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer_target pressure</strong> [–help]</p>
+</div>
+<div class="section" id="id183">
+<h4>DESCRIPTION<a class="headerlink" href="#id183" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] optimizer_target pressure</p>
+</div>
+<div class="section" id="id184">
+<h4>OPTIONS<a class="headerlink" href="#id184" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="optimizer-target-rdf-sh">
+<h3>optimizer_target_rdf.sh<a class="headerlink" href="#optimizer-target-rdf-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id185">
+<h4>NAME<a class="headerlink" href="#id185" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target rdf</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id186">
+<h4>SYNOPSIS<a class="headerlink" href="#id186" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call optimizer_target rdf</strong> [OPTIONS]</p>
+<p><strong>csg_call optimizer_target rdf</strong> [–help]</p>
+</div>
+<div class="section" id="id187">
+<h4>DESCRIPTION<a class="headerlink" href="#id187" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] optimizer_target rdf</p>
+</div>
+<div class="section" id="id188">
+<h4>OPTIONS<a class="headerlink" href="#id188" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="post-add-sh">
+<h3>post_add.sh<a class="headerlink" href="#post-add-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id189">
+<h4>NAME<a class="headerlink" href="#id189" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post add</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id190">
+<h4>SYNOPSIS<a class="headerlink" href="#id190" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post add</strong> [OPTIONS]</p>
+<p><strong>csg_call post add</strong> [–help]</p>
+</div>
+<div class="section" id="id191">
+<h4>DESCRIPTION<a class="headerlink" href="#id191" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] post add</p>
+</div>
+<div class="section" id="id192">
+<h4>OPTIONS<a class="headerlink" href="#id192" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="post-add-single-sh">
+<h3>post_add_single.sh<a class="headerlink" href="#post-add-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id193">
+<h4>NAME<a class="headerlink" href="#id193" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post add_single</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id194">
+<h4>SYNOPSIS<a class="headerlink" href="#id194" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post add_single</strong> [OPTIONS]</p>
+<p><strong>csg_call post add_single</strong> [–help]</p>
+</div>
+<div class="section" id="id195">
+<h4>DESCRIPTION<a class="headerlink" href="#id195" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] post add_single</p>
+</div>
+<div class="section" id="id196">
+<h4>OPTIONS<a class="headerlink" href="#id196" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="post-update-generic-sh">
+<h3>post_update_generic.sh<a class="headerlink" href="#post-update-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id197">
+<h4>NAME<a class="headerlink" href="#id197" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id198">
+<h4>SYNOPSIS<a class="headerlink" href="#id198" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call post_update ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id199">
+<h4>DESCRIPTION<a class="headerlink" href="#id199" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] post_update ibi</p>
+</div>
+<div class="section" id="id200">
+<h4>OPTIONS<a class="headerlink" href="#id200" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="post-update-generic-single-sh">
+<h3>post_update_generic_single.sh<a class="headerlink" href="#post-update-generic-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id201">
+<h4>NAME<a class="headerlink" href="#id201" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update_single ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id202">
+<h4>SYNOPSIS<a class="headerlink" href="#id202" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update_single ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call post_update_single ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id203">
+<h4>DESCRIPTION<a class="headerlink" href="#id203" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] post_update_single ibi</p>
+</div>
+<div class="section" id="id204">
+<h4>OPTIONS<a class="headerlink" href="#id204" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="post-update-re-single-sh">
+<h3>post_update_re_single.sh<a class="headerlink" href="#post-update-re-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id205">
+<h4>NAME<a class="headerlink" href="#id205" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update_single re</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id206">
+<h4>SYNOPSIS<a class="headerlink" href="#id206" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call post_update_single re</strong> [OPTIONS]</p>
+<p><strong>csg_call post_update_single re</strong> [–help]</p>
+</div>
+<div class="section" id="id207">
+<h4>DESCRIPTION<a class="headerlink" href="#id207" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] post_update_single re</p>
+</div>
+<div class="section" id="id208">
+<h4>OPTIONS<a class="headerlink" href="#id208" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-acc-convergence-sh">
+<h3>postadd_acc_convergence.sh<a class="headerlink" href="#postadd-acc-convergence-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id209">
+<h4>NAME<a class="headerlink" href="#id209" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd acc_convergence</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id210">
+<h4>SYNOPSIS<a class="headerlink" href="#id210" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd acc_convergence</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd acc_convergence</strong> [–help]</p>
+</div>
+<div class="section" id="id211">
+<h4>DESCRIPTION<a class="headerlink" href="#id211" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postadd acc_convergence infile outfile</p>
+</div>
+<div class="section" id="id212">
+<h4>OPTIONS<a class="headerlink" href="#id212" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-average-sh">
+<h3>postadd_average.sh<a class="headerlink" href="#postadd-average-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id213">
+<h4>NAME<a class="headerlink" href="#id213" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd average</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id214">
+<h4>SYNOPSIS<a class="headerlink" href="#id214" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd average</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd average</strong> [–help]</p>
+</div>
+<div class="section" id="id215">
+<h4>DESCRIPTION<a class="headerlink" href="#id215" title="Permalink to this headline">¶</a></h4>
+<p>usage: postadd_average.sh</p>
+</div>
+<div class="section" id="id216">
+<h4>OPTIONS<a class="headerlink" href="#id216" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-compress-sh">
+<h3>postadd_compress.sh<a class="headerlink" href="#postadd-compress-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id217">
+<h4>NAME<a class="headerlink" href="#id217" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd compress</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id218">
+<h4>SYNOPSIS<a class="headerlink" href="#id218" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd compress</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd compress</strong> [–help]</p>
+</div>
+<div class="section" id="id219">
+<h4>DESCRIPTION<a class="headerlink" href="#id219" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postadd compress</p>
+</div>
+<div class="section" id="id220">
+<h4>OPTIONS<a class="headerlink" href="#id220" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-convergence-sh">
+<h3>postadd_convergence.sh<a class="headerlink" href="#postadd-convergence-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id221">
+<h4>NAME<a class="headerlink" href="#id221" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd convergence</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id222">
+<h4>SYNOPSIS<a class="headerlink" href="#id222" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd convergence</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd convergence</strong> [–help]</p>
+</div>
+<div class="section" id="id223">
+<h4>DESCRIPTION<a class="headerlink" href="#id223" title="Permalink to this headline">¶</a></h4>
+<p>usage: postadd_convergence.sh</p>
+</div>
+<div class="section" id="id224">
+<h4>OPTIONS<a class="headerlink" href="#id224" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-copyback-sh">
+<h3>postadd_copyback.sh<a class="headerlink" href="#postadd-copyback-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id225">
+<h4>NAME<a class="headerlink" href="#id225" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd copyback</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id226">
+<h4>SYNOPSIS<a class="headerlink" href="#id226" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd copyback</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd copyback</strong> [–help]</p>
+</div>
+<div class="section" id="id227">
+<h4>DESCRIPTION<a class="headerlink" href="#id227" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postadd copyback</p>
+</div>
+<div class="section" id="id228">
+<h4>OPTIONS<a class="headerlink" href="#id228" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-dummy-sh">
+<h3>postadd_dummy.sh<a class="headerlink" href="#postadd-dummy-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id229">
+<h4>NAME<a class="headerlink" href="#id229" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd dummy</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id230">
+<h4>SYNOPSIS<a class="headerlink" href="#id230" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd dummy</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd dummy</strong> [–help]</p>
+</div>
+<div class="section" id="id231">
+<h4>DESCRIPTION<a class="headerlink" href="#id231" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd dummy infile outfile</p>
+</div>
+<div class="section" id="id232">
+<h4>OPTIONS<a class="headerlink" href="#id232" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-overwrite-sh">
+<h3>postadd_overwrite.sh<a class="headerlink" href="#postadd-overwrite-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id233">
+<h4>NAME<a class="headerlink" href="#id233" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd overwrite</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id234">
+<h4>SYNOPSIS<a class="headerlink" href="#id234" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd overwrite</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd overwrite</strong> [–help]</p>
+</div>
+<div class="section" id="id235">
+<h4>DESCRIPTION<a class="headerlink" href="#id235" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postadd overwrite infile outfile</p>
+</div>
+<div class="section" id="id236">
+<h4>OPTIONS<a class="headerlink" href="#id236" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postadd-plot-sh">
+<h3>postadd_plot.sh<a class="headerlink" href="#postadd-plot-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id237">
+<h4>NAME<a class="headerlink" href="#id237" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd plot</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id238">
+<h4>SYNOPSIS<a class="headerlink" href="#id238" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postadd plot</strong> [OPTIONS]</p>
+<p><strong>csg_call postadd plot</strong> [–help]</p>
+</div>
+<div class="section" id="id239">
+<h4>DESCRIPTION<a class="headerlink" href="#id239" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postadd plot</p>
+</div>
+<div class="section" id="id240">
+<h4>OPTIONS<a class="headerlink" href="#id240" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gnuplot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="postadd-shift-sh">
+<h3>postadd_shift.sh<a class="headerlink" href="#postadd-shift-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id241">
+<h4>NAME<a class="headerlink" href="#id241" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd shift</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id242">
+<h4>SYNOPSIS<a class="headerlink" href="#id242" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd shift</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd shift</strong> [–help]</p>
+</div>
+<div class="section" id="id243">
+<h4>DESCRIPTION<a class="headerlink" href="#id243" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd shift infile outfile</p>
+</div>
+<div class="section" id="id244">
+<h4>OPTIONS<a class="headerlink" href="#id244" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-addlj-sh">
+<h3>postupd_addlj.sh<a class="headerlink" href="#postupd-addlj-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id245">
+<h4>NAME<a class="headerlink" href="#id245" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd lj</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id246">
+<h4>SYNOPSIS<a class="headerlink" href="#id246" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd lj</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd lj</strong> [–help]</p>
+</div>
+<div class="section" id="id247">
+<h4>DESCRIPTION<a class="headerlink" href="#id247" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd lj infile outfile</p>
+</div>
+<div class="section" id="id248">
+<h4>OPTIONS<a class="headerlink" href="#id248" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-cibi-correction-sh">
+<h3>postupd_cibi_correction.sh<a class="headerlink" href="#postupd-cibi-correction-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id249">
+<h4>NAME<a class="headerlink" href="#id249" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd cibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id250">
+<h4>SYNOPSIS<a class="headerlink" href="#id250" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd cibi</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd cibi</strong> [–help]</p>
+</div>
+<div class="section" id="id251">
+<h4>DESCRIPTION<a class="headerlink" href="#id251" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd cibi</p>
+</div>
+<div class="section" id="id252">
+<h4>OPTIONS<a class="headerlink" href="#id252" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-extrapolate-sh">
+<h3>postupd_extrapolate.sh<a class="headerlink" href="#postupd-extrapolate-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id253">
+<h4>NAME<a class="headerlink" href="#id253" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd extrapolate</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id254">
+<h4>SYNOPSIS<a class="headerlink" href="#id254" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd extrapolate</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd extrapolate</strong> [–help]</p>
+</div>
+<div class="section" id="id255">
+<h4>DESCRIPTION<a class="headerlink" href="#id255" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd extrapolate infile outfile</p>
+</div>
+<div class="section" id="id256">
+<h4>OPTIONS<a class="headerlink" href="#id256" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-kbibi-correction-sh">
+<h3>postupd_kbibi_correction.sh<a class="headerlink" href="#postupd-kbibi-correction-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id257">
+<h4>NAME<a class="headerlink" href="#id257" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd kbibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id258">
+<h4>SYNOPSIS<a class="headerlink" href="#id258" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd kbibi</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd kbibi</strong> [–help]</p>
+</div>
+<div class="section" id="id259">
+<h4>DESCRIPTION<a class="headerlink" href="#id259" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd kbibi</p>
+</div>
+<div class="section" id="id260">
+<h4>OPTIONS<a class="headerlink" href="#id260" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-pressure-sh">
+<h3>postupd_pressure.sh<a class="headerlink" href="#postupd-pressure-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id261">
+<h4>NAME<a class="headerlink" href="#id261" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd pressure</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id262">
+<h4>SYNOPSIS<a class="headerlink" href="#id262" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd pressure</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd pressure</strong> [–help]</p>
+</div>
+<div class="section" id="id263">
+<h4>DESCRIPTION<a class="headerlink" href="#id263" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd pressure infile outfile</p>
+</div>
+<div class="section" id="id264">
+<h4>OPTIONS<a class="headerlink" href="#id264" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-scale-sh">
+<h3>postupd_scale.sh<a class="headerlink" href="#postupd-scale-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id265">
+<h4>NAME<a class="headerlink" href="#id265" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd scale</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id266">
+<h4>SYNOPSIS<a class="headerlink" href="#id266" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd scale</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd scale</strong> [–help]</p>
+</div>
+<div class="section" id="id267">
+<h4>DESCRIPTION<a class="headerlink" href="#id267" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd scale infile outfile</p>
+</div>
+<div class="section" id="id268">
+<h4>OPTIONS<a class="headerlink" href="#id268" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-smooth-sh">
+<h3>postupd_smooth.sh<a class="headerlink" href="#postupd-smooth-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id269">
+<h4>NAME<a class="headerlink" href="#id269" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd smooth</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id270">
+<h4>SYNOPSIS<a class="headerlink" href="#id270" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd smooth</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd smooth</strong> [–help]</p>
+</div>
+<div class="section" id="id271">
+<h4>DESCRIPTION<a class="headerlink" href="#id271" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd smooth infile outfile</p>
+</div>
+<div class="section" id="id272">
+<h4>OPTIONS<a class="headerlink" href="#id272" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postupd-splinesmooth-sh">
+<h3>postupd_splinesmooth.sh<a class="headerlink" href="#postupd-splinesmooth-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id273">
+<h4>NAME<a class="headerlink" href="#id273" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd splinesmooth</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id274">
+<h4>SYNOPSIS<a class="headerlink" href="#id274" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call postupd splinesmooth</strong> [OPTIONS]</p>
+<p><strong>csg_call postupd splinesmooth</strong> [–help]</p>
+</div>
+<div class="section" id="id275">
+<h4>DESCRIPTION<a class="headerlink" href="#id275" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] postupd splinesmooth infile outfile</p>
+</div>
+<div class="section" id="id276">
+<h4>OPTIONS<a class="headerlink" href="#id276" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="potential-extrapolate-sh">
+<h3>potential_extrapolate.sh<a class="headerlink" href="#potential-extrapolate-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id277">
+<h4>NAME<a class="headerlink" href="#id277" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call potential extrapolate</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id278">
+<h4>SYNOPSIS<a class="headerlink" href="#id278" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call potential extrapolate</strong> [OPTIONS]</p>
+<p><strong>csg_call potential extrapolate</strong> [–help]</p>
+</div>
+<div class="section" id="id279">
+<h4>DESCRIPTION<a class="headerlink" href="#id279" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] potential extrapolate [options] input output</p>
+</div>
+<div class="section" id="id280">
+<h4>OPTIONS<a class="headerlink" href="#id280" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+  <span class="o">--</span><span class="n">clean</span>                   <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+  <span class="o">--</span><span class="nb">type</span> <span class="n">TYPE</span>               <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span>
+                            <span class="n">possible</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="n">bond</span> <span class="n">angle</span> <span class="n">dihedral</span>
+  <span class="o">--</span><span class="n">lfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">left</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                            <span class="n">possible</span><span class="p">:</span>
+                            <span class="n">default</span><span class="p">:</span> <span class="n">exponential</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">rfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">right</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                            <span class="n">possible</span><span class="p">:</span> <span class="n">constant</span> <span class="n">linear</span> <span class="n">quadratic</span> <span class="n">exponential</span> <span class="n">sasha</span>
+                            <span class="n">default</span><span class="p">:</span> <span class="n">constant</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">periodic</span><span class="p">(</span><span class="n">dihedral</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">avg</span><span class="o">-</span><span class="n">points</span> <span class="n">INT</span>          <span class="n">number</span> <span class="n">of</span> <span class="n">average</span> <span class="n">points</span>
+                            <span class="n">default</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="potential-shift-pl">
+<h3>potential_shift.pl<a class="headerlink" href="#potential-shift-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id281">
+<h4>NAME<a class="headerlink" href="#id281" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call potential shift</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id282">
+<h4>SYNOPSIS<a class="headerlink" href="#id282" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call potential shift</strong> [OPTIONS]</p>
+<p><strong>csg_call potential shift</strong> [–help]</p>
+</div>
+<div class="section" id="id283">
+<h4>DESCRIPTION<a class="headerlink" href="#id283" title="Permalink to this headline">¶</a></h4>
+<p>This script shifts the whole potential by minimum (bonded potentials) or last value (non-bonded potentials).</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>potential_shift.pl –type bond table.in table.out</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id284">
+<h4>OPTIONS<a class="headerlink" href="#id284" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">potential</span> <span class="n">shift</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Allowed options:
+-h, –help            show this help message
+–type XXX            change the type of potential</p>
+<blockquote>
+<div><p>Default: non-bonded</p>
+</div></blockquote>
+<p>Possible types: non-bonded, bond, angle, dihedral, bonded</p>
+</div>
+</div>
+<div class="section" id="potential-to-dlpoly-sh">
+<h3>potential_to_dlpoly.sh<a class="headerlink" href="#potential-to-dlpoly-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id285">
+<h4>NAME<a class="headerlink" href="#id285" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential dlpoly</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id286">
+<h4>SYNOPSIS<a class="headerlink" href="#id286" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential dlpoly</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential dlpoly</strong> [–help]</p>
+</div>
+<div class="section" id="id287">
+<h4>DESCRIPTION<a class="headerlink" href="#id287" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potential dlpoly</p>
+</div>
+<div class="section" id="id288">
+<h4>OPTIONS<a class="headerlink" href="#id288" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="potential-to-generic-sh">
+<h3>potential_to_generic.sh<a class="headerlink" href="#potential-to-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id289">
+<h4>NAME<a class="headerlink" href="#id289" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential espresso</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id290">
+<h4>SYNOPSIS<a class="headerlink" href="#id290" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential espresso</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential espresso</strong> [–help]</p>
+</div>
+<div class="section" id="id291">
+<h4>DESCRIPTION<a class="headerlink" href="#id291" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potential espresso</p>
+</div>
+<div class="section" id="id292">
+<h4>OPTIONS<a class="headerlink" href="#id292" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="potential-to-gromacs-sh">
+<h3>potential_to_gromacs.sh<a class="headerlink" href="#potential-to-gromacs-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id293">
+<h4>NAME<a class="headerlink" href="#id293" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id294">
+<h4>SYNOPSIS<a class="headerlink" href="#id294" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id295">
+<h4>DESCRIPTION<a class="headerlink" href="#id295" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potential gromacs [options] input output</p>
+</div>
+<div class="section" id="id296">
+<h4>OPTIONS<a class="headerlink" href="#id296" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">dihedral</span>
+               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">gromacs</span> <span class="ow">in</span> <span class="n">degree</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+  <span class="o">--</span><span class="n">step</span> <span class="n">XXX</span>   <span class="n">use</span> <span class="n">XXX</span> <span class="k">as</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">interaction</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="potential-to-lammps-sh">
+<h3>potential_to_lammps.sh<a class="headerlink" href="#potential-to-lammps-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id297">
+<h4>NAME<a class="headerlink" href="#id297" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential lammps</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id298">
+<h4>SYNOPSIS<a class="headerlink" href="#id298" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential lammps</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential lammps</strong> [–help]</p>
+</div>
+<div class="section" id="id299">
+<h4>DESCRIPTION<a class="headerlink" href="#id299" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potential lammps [options] input output</p>
+</div>
+<div class="section" id="id300">
+<h4>OPTIONS<a class="headerlink" href="#id300" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">angle</span> <span class="n">interactions</span>
+               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">lammps</span> <span class="n">uses</span> <span class="n">degrees</span> <span class="k">for</span> <span class="n">angle</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="potentials-to-dlpoly-sh">
+<h3>potentials_to_dlpoly.sh<a class="headerlink" href="#potentials-to-dlpoly-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id301">
+<h4>NAME<a class="headerlink" href="#id301" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potentials dlpoly</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id302">
+<h4>SYNOPSIS<a class="headerlink" href="#id302" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potentials dlpoly</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potentials dlpoly</strong> [–help]</p>
+</div>
+<div class="section" id="id303">
+<h4>DESCRIPTION<a class="headerlink" href="#id303" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potentials dlpoly</p>
+</div>
+<div class="section" id="id304">
+<h4>OPTIONS<a class="headerlink" href="#id304" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="potentials-to-generic-sh">
+<h3>potentials_to_generic.sh<a class="headerlink" href="#potentials-to-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id305">
+<h4>NAME<a class="headerlink" href="#id305" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potentials gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id306">
+<h4>SYNOPSIS<a class="headerlink" href="#id306" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potentials gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potentials gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id307">
+<h4>DESCRIPTION<a class="headerlink" href="#id307" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] convert_potentials gromacs</p>
+</div>
+<div class="section" id="id308">
+<h4>OPTIONS<a class="headerlink" href="#id308" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="pre-update-re-sh">
+<h3>pre_update_re.sh<a class="headerlink" href="#pre-update-re-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id309">
+<h4>NAME<a class="headerlink" href="#id309" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pre_update re</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id310">
+<h4>SYNOPSIS<a class="headerlink" href="#id310" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pre_update re</strong> [OPTIONS]</p>
+<p><strong>csg_call pre_update re</strong> [–help]</p>
+</div>
+<div class="section" id="id311">
+<h4>DESCRIPTION<a class="headerlink" href="#id311" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] pre_update re</p>
+</div>
+<div class="section" id="id312">
+<h4>OPTIONS<a class="headerlink" href="#id312" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="prepare-generic-sh">
+<h3>prepare_generic.sh<a class="headerlink" href="#prepare-generic-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id313">
+<h4>NAME<a class="headerlink" href="#id313" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id314">
+<h4>SYNOPSIS<a class="headerlink" href="#id314" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id315">
+<h4>DESCRIPTION<a class="headerlink" href="#id315" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] prepare ibi</p>
+</div>
+<div class="section" id="id316">
+<h4>OPTIONS<a class="headerlink" href="#id316" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="prepare-generic-single-sh">
+<h3>prepare_generic_single.sh<a class="headerlink" href="#prepare-generic-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id317">
+<h4>NAME<a class="headerlink" href="#id317" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare_single ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id318">
+<h4>SYNOPSIS<a class="headerlink" href="#id318" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare_single ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare_single ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id319">
+<h4>DESCRIPTION<a class="headerlink" href="#id319" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] prepare_single ibi</p>
+</div>
+<div class="section" id="id320">
+<h4>OPTIONS<a class="headerlink" href="#id320" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="prepare-imc-sh">
+<h3>prepare_imc.sh<a class="headerlink" href="#prepare-imc-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id321">
+<h4>NAME<a class="headerlink" href="#id321" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare imc</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id322">
+<h4>SYNOPSIS<a class="headerlink" href="#id322" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare imc</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare imc</strong> [–help]</p>
+</div>
+<div class="section" id="id323">
+<h4>DESCRIPTION<a class="headerlink" href="#id323" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] prepare imc</p>
+</div>
+<div class="section" id="id324">
+<h4>OPTIONS<a class="headerlink" href="#id324" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="prepare-optimizer-sh">
+<h3>prepare_optimizer.sh<a class="headerlink" href="#prepare-optimizer-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id325">
+<h4>NAME<a class="headerlink" href="#id325" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare optimizer</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id326">
+<h4>SYNOPSIS<a class="headerlink" href="#id326" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare optimizer</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare optimizer</strong> [–help]</p>
+</div>
+<div class="section" id="id327">
+<h4>DESCRIPTION<a class="headerlink" href="#id327" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] prepare optimizer</p>
+</div>
+<div class="section" id="id328">
+<h4>OPTIONS<a class="headerlink" href="#id328" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="prepare-optimizer-single-sh">
+<h3>prepare_optimizer_single.sh<a class="headerlink" href="#prepare-optimizer-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id329">
+<h4>NAME<a class="headerlink" href="#id329" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare_single optimizer</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id330">
+<h4>SYNOPSIS<a class="headerlink" href="#id330" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare_single optimizer</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare_single optimizer</strong> [–help]</p>
+</div>
+<div class="section" id="id331">
+<h4>DESCRIPTION<a class="headerlink" href="#id331" title="Permalink to this headline">¶</a></h4>
+<p>This script
+- reads sinple interaction optimizer infile
+- checks if the number of values are enough</p>
+</div>
+<div class="section" id="id332">
+<h4>OPTIONS<a class="headerlink" href="#id332" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">prepare_single</span> <span class="n">optimizer</span> <span class="n">N</span>
+</pre></div>
+</div>
+<p>where N is the total number of parameters</p>
+</div>
+</div>
+<div class="section" id="prepare-re-sh">
+<h3>prepare_re.sh<a class="headerlink" href="#prepare-re-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id333">
+<h4>NAME<a class="headerlink" href="#id333" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare re</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id334">
+<h4>SYNOPSIS<a class="headerlink" href="#id334" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call prepare re</strong> [OPTIONS]</p>
+<p><strong>csg_call prepare re</strong> [–help]</p>
+</div>
+<div class="section" id="id335">
+<h4>DESCRIPTION<a class="headerlink" href="#id335" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] prepare re</p>
+</div>
+<div class="section" id="id336">
+<h4>OPTIONS<a class="headerlink" href="#id336" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="pressure-cor-simple-pl">
+<h3>pressure_cor_simple.pl<a class="headerlink" href="#pressure-cor-simple-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id337">
+<h4>NAME<a class="headerlink" href="#id337" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure_cor simple</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id338">
+<h4>SYNOPSIS<a class="headerlink" href="#id338" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure_cor simple</strong> [OPTIONS]</p>
+<p><strong>csg_call pressure_cor simple</strong> [–help]</p>
+</div>
+<div class="section" id="id339">
+<h4>DESCRIPTION<a class="headerlink" href="#id339" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] pressure_cor simple p_cur outfile kBT min:step:max scale p_target</p>
+</div>
+<div class="section" id="id340">
+<h4>OPTIONS<a class="headerlink" href="#id340" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="pressure-cor-wjk-pl">
+<h3>pressure_cor_wjk.pl<a class="headerlink" href="#pressure-cor-wjk-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id341">
+<h4>NAME<a class="headerlink" href="#id341" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure_cor wjk</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id342">
+<h4>SYNOPSIS<a class="headerlink" href="#id342" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call pressure_cor wjk</strong> [OPTIONS]</p>
+<p><strong>csg_call pressure_cor wjk</strong> [–help]</p>
+</div>
+<div class="section" id="id343">
+<h4>DESCRIPTION<a class="headerlink" href="#id343" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] pressure_cor wjk p_cur outfile kBT min:step:max scale p_target particle_dens rdf_file</p>
+</div>
+<div class="section" id="id344">
+<h4>OPTIONS<a class="headerlink" href="#id344" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="resample-target-sh">
+<h3>resample_target.sh<a class="headerlink" href="#resample-target-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id345">
+<h4>NAME<a class="headerlink" href="#id345" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call resample target</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id346">
+<h4>SYNOPSIS<a class="headerlink" href="#id346" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call resample target</strong> [OPTIONS]</p>
+<p><strong>csg_call resample target</strong> [–help]</p>
+</div>
+<div class="section" id="id347">
+<h4>DESCRIPTION<a class="headerlink" href="#id347" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] resample target input output</p>
+</div>
+<div class="section" id="id348">
+<h4>OPTIONS<a class="headerlink" href="#id348" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="run-genericsim-sh">
+<h3>run_genericsim.sh<a class="headerlink" href="#run-genericsim-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id349">
+<h4>NAME<a class="headerlink" href="#id349" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call run espresso</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id350">
+<h4>SYNOPSIS<a class="headerlink" href="#id350" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call run espresso</strong> [OPTIONS]</p>
+<p><strong>csg_call run espresso</strong> [–help]</p>
+</div>
+<div class="section" id="id351">
+<h4>DESCRIPTION<a class="headerlink" href="#id351" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] run espresso</p>
+</div>
+<div class="section" id="id352">
+<h4>OPTIONS<a class="headerlink" href="#id352" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="run-gromacs-sh">
+<h3>run_gromacs.sh<a class="headerlink" href="#run-gromacs-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id353">
+<h4>NAME<a class="headerlink" href="#id353" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call run gromacs</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id354">
+<h4>SYNOPSIS<a class="headerlink" href="#id354" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call run gromacs</strong> [OPTIONS]</p>
+<p><strong>csg_call run gromacs</strong> [–help]</p>
+</div>
+<div class="section" id="id355">
+<h4>DESCRIPTION<a class="headerlink" href="#id355" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] run gromacs [–pre]</p>
+</div>
+<div class="section" id="id356">
+<h4>OPTIONS<a class="headerlink" href="#id356" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gromacs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simplex-downhill-processor-pl">
+<h3>simplex_downhill_processor.pl<a class="headerlink" href="#simplex-downhill-processor-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id357">
+<h4>NAME<a class="headerlink" href="#id357" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call simplex precede_state</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id358">
+<h4>SYNOPSIS<a class="headerlink" href="#id358" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call simplex precede_state</strong> [OPTIONS]</p>
+<p><strong>csg_call simplex precede_state</strong> [–help]</p>
+</div>
+<div class="section" id="id359">
+<h4>DESCRIPTION<a class="headerlink" href="#id359" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] simplex precede_state current_state new_state</p>
+</div>
+<div class="section" id="id360">
+<h4>OPTIONS<a class="headerlink" href="#id360" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-average-sh">
+<h3>table_average.sh<a class="headerlink" href="#table-average-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id361">
+<h4>NAME<a class="headerlink" href="#id361" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table average</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id362">
+<h4>SYNOPSIS<a class="headerlink" href="#id362" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table average</strong> [OPTIONS]</p>
+<p><strong>csg_call table average</strong> [–help]</p>
+</div>
+<div class="section" id="id363">
+<h4>DESCRIPTION<a class="headerlink" href="#id363" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table average [options] table1 table2 table3 ….</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_average.sh –output CG-CG.dist.new CG-CG*.dist.new</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id364">
+<h4>OPTIONS<a class="headerlink" href="#id364" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>show this help</p>
+</dd>
+<dt><kbd><span class="option">-o</span>, <span class="option">--output <var>NANE</var></span></kbd></dt>
+<dd><p>output file name
+–cols NUM                Number of columns per file</p>
+<blockquote>
+<div><p>Default: 3</p>
+</div></blockquote>
+<dl class="option-list">
+<dt><kbd><span class="option">--col-y <var>NUM</var></span></kbd></dt>
+<dd><p>y-data column
+Default: 2</p>
+</dd>
+<dt><kbd><span class="option">--col-x <var>NUM</var></span></kbd></dt>
+<dd><p>x-data column
+Default: 1</p>
+</dd>
+<dt><kbd><span class="option">--clean</span></kbd></dt>
+<dd><p>Clean intermediate files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-change-flag-sh">
+<h3>table_change_flag.sh<a class="headerlink" href="#table-change-flag-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id365">
+<h4>NAME<a class="headerlink" href="#id365" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table change_flag</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id366">
+<h4>SYNOPSIS<a class="headerlink" href="#id366" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table change_flag</strong> [OPTIONS]</p>
+<p><strong>csg_call table change_flag</strong> [–help]</p>
+</div>
+<div class="section" id="id367">
+<h4>DESCRIPTION<a class="headerlink" href="#id367" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table change_flag input outfile</p>
+</div>
+<div class="section" id="id368">
+<h4>OPTIONS<a class="headerlink" href="#id368" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-combine-pl">
+<h3>table_combine.pl<a class="headerlink" href="#table-combine-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id369">
+<h4>NAME<a class="headerlink" href="#id369" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table compare</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id370">
+<h4>SYNOPSIS<a class="headerlink" href="#id370" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table compare</strong> [OPTIONS]</p>
+<p><strong>csg_call table compare</strong> [–help]</p>
+</div>
+<div class="section" id="id371">
+<h4>DESCRIPTION<a class="headerlink" href="#id371" title="Permalink to this headline">¶</a></h4>
+<p>Usage: table_combine.pl [OPTIONS] &lt;in&gt; &lt;in2&gt; &lt;out&gt;</p>
+</div>
+<div class="section" id="id372">
+<h4>OPTIONS<a class="headerlink" href="#id372" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+  <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
+                    <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
+  <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
+                    <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="o">|</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="o">|</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=*</span> <span class="p">(</span><span class="n">to</span> <span class="n">avoid</span> <span class="n">shell</span> <span class="n">trouble</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
+  <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
+  <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
+                    <span class="n">Default</span> <span class="mi">1</span>
+  <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-dummy-sh">
+<h3>table_dummy.sh<a class="headerlink" href="#table-dummy-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id373">
+<h4>NAME<a class="headerlink" href="#id373" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table dummy</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id374">
+<h4>SYNOPSIS<a class="headerlink" href="#id374" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table dummy</strong> [OPTIONS]</p>
+<p><strong>csg_call table dummy</strong> [–help]</p>
+</div>
+<div class="section" id="id375">
+<h4>DESCRIPTION<a class="headerlink" href="#id375" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table dummy [options] min:step:max outfile
+Allowed options:</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">--y1</span></kbd></dt>
+<dd><p>X.X                 using X.X instead of 0 for the 1st y-value
+this creates a linear instead of a constant table</p>
+</dd>
+<dt><kbd><span class="option">--y2</span></kbd></dt>
+<dd><p>X.X                 using X.X instead of 0 for the 2nd y-value
+this creates a linear instead of a constant table</p>
+</dd>
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>show this help</p>
+</dd>
+<dt><kbd><span class="option">--clean</span></kbd></dt>
+<dd><p>remove all intermediate temp files</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id376">
+<h4>OPTIONS<a class="headerlink" href="#id376" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-extrapolate-pl">
+<h3>table_extrapolate.pl<a class="headerlink" href="#table-extrapolate-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id377">
+<h4>NAME<a class="headerlink" href="#id377" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table extrapolate</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id378">
+<h4>SYNOPSIS<a class="headerlink" href="#id378" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table extrapolate</strong> [OPTIONS]</p>
+<p><strong>csg_call table extrapolate</strong> [–help]</p>
+</div>
+<div class="section" id="id379">
+<h4>DESCRIPTION<a class="headerlink" href="#id379" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table extrapolate [OPTIONS] &lt;in&gt; &lt;out&gt;</p>
+</div>
+<div class="section" id="id380">
+<h4>OPTIONS<a class="headerlink" href="#id380" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">--avgpoints <var>A</var></span></kbd></dt>
+<dd><p>average over the given number of points to extrapolate: default is 3</p>
+</dd>
+<dt><kbd><span class="option">--function</span></kbd></dt>
+<dd><p>constant, linear, quadratic or exponential, sasha, periodic: default is quadratic</p>
+</dd>
+<dt><kbd><span class="option">--no-flagupdate</span></kbd></dt>
+<dd><p>do not update the flag of the extrapolated values</p>
+</dd>
+<dt><kbd><span class="option">--region</span></kbd></dt>
+<dd><p>left, right, or leftright: default is leftright</p>
+</dd>
+<dt><kbd><span class="option">--curvature <var>C</var></span></kbd></dt>
+<dd><p>curvature of the quadratic function: default is 10000,
+makes sense only for quadratic extrapolation, ignored for other cases</p>
+</dd>
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Extrapolation methods:</dt><dd><p>always ‘’$m = dy/dx= (y[i+A]-y[i])/(x[i+A]-x[i])$’’</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>constant:  ‘’$y = y0$’’</p></li>
+<li><p>linear:  ‘’$y = ax + b;;b = - m*x_0 + y_0;;a = m$’’</p></li>
+<li><p>sasha: ‘’$y = a*(x-b)^2;;b = (x0 - 2y_0/m);; a = m^2/(4*y_0)$’’</p></li>
+<li><p>exponential: ‘’$y = a*\exp(b*x);;a = y0*\exp(-m*x0/y0);;b = m/y_0$’’</p></li>
+<li><p>quadratic: ‘’$y = C*(x+a)^2 + b;;a = m/(2*C) - x0;; b = y_0 - m^2/(4*C)$’’</p></li>
+<li><p>periodic  same as linear, but extrapolates right side to end at first point of left side</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="table-functional-sh">
+<h3>table_functional.sh<a class="headerlink" href="#table-functional-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id381">
+<h4>NAME<a class="headerlink" href="#id381" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table functional</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id382">
+<h4>SYNOPSIS<a class="headerlink" href="#id382" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table functional</strong> [OPTIONS]</p>
+<p><strong>csg_call table functional</strong> [–help]</p>
+</div>
+<div class="section" id="id383">
+<h4>DESCRIPTION<a class="headerlink" href="#id383" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table functional [options] output</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_functional.sh –grid 0:0.1:1 –fct x**2 CG-CG.tab.new</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id384">
+<h4>OPTIONS<a class="headerlink" href="#id384" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>show this help
+–grid  XX:XX:XX          Output grid of the table
+–var X=Y                 Set a variable used in the function
+–fct FCT                 functional form of the table
+–headerfile XXX          Extra headerfile for the plot script</p>
+<blockquote>
+<div><p>(useful for complicated functions)</p>
+</div></blockquote>
+<dl class="option-list">
+<dt><kbd><span class="option">--gnuplot <var>CMD</var></span></kbd></dt>
+<dd><p>Gnuplot command to use
+Default: gnuplot</p>
+</dd>
+<dt><kbd><span class="option">--clean</span></kbd></dt>
+<dd><p>Clean intermediate files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Used external packages: gnuplot</p>
+</div>
+</div>
+<div class="section" id="table-get-value-pl">
+<h3>table_get_value.pl<a class="headerlink" href="#table-get-value-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id385">
+<h4>NAME<a class="headerlink" href="#id385" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table get_value</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id386">
+<h4>SYNOPSIS<a class="headerlink" href="#id386" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table get_value</strong> [OPTIONS]</p>
+<p><strong>csg_call table get_value</strong> [–help]</p>
+</div>
+<div class="section" id="id387">
+<h4>DESCRIPTION<a class="headerlink" href="#id387" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table get_value [OPTIONS] X infile</p>
+</div>
+<div class="section" id="id388">
+<h4>OPTIONS<a class="headerlink" href="#id388" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-integrate-pl">
+<h3>table_integrate.pl<a class="headerlink" href="#table-integrate-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id389">
+<h4>NAME<a class="headerlink" href="#id389" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table integrate</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id390">
+<h4>SYNOPSIS<a class="headerlink" href="#id390" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table integrate</strong> [OPTIONS]</p>
+<p><strong>csg_call table integrate</strong> [–help]</p>
+</div>
+<div class="section" id="id391">
+<h4>DESCRIPTION<a class="headerlink" href="#id391" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table integrate [OPTIONS] &lt;in&gt; &lt;out&gt;</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_integrate.pl –with-S –kbT 2.49435 tmp.force tmp.dpot</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id392">
+<h4>OPTIONS<a class="headerlink" href="#id392" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
+  --with-errors     calculate error
+  --with-S          Add entropic contribution to force &#39;&#39;$2k_B T/r$&#39;&#39;
+  --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+  --from            Integrate from left or right (to define the zero point)
+                    Default: right
+  --sphere          Add spherical volume term (&#39;&#39;$r^2$&#39;&#39;)
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-linearop-pl">
+<h3>table_linearop.pl<a class="headerlink" href="#table-linearop-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id393">
+<h4>NAME<a class="headerlink" href="#id393" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table linearop</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id394">
+<h4>SYNOPSIS<a class="headerlink" href="#id394" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table linearop</strong> [OPTIONS]</p>
+<p><strong>csg_call table linearop</strong> [–help]</p>
+</div>
+<div class="section" id="id395">
+<h4>DESCRIPTION<a class="headerlink" href="#id395" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table linearop [OPTIONS] &lt;in&gt; &lt;out&gt; &lt;a&gt; &lt;b&gt;</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_linearop.pl tmp.dpot.cur tmp.dpot.new 1.0 0.0</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id396">
+<h4>OPTIONS<a class="headerlink" href="#id396" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+</pre></div>
+</div>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>Show this help message
+–withflag  FL    only change entries with specific flag in src
+–with-errors     also read and calculate errors
+–on-x            work on x values instead of y values</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-scale-pl">
+<h3>table_scale.pl<a class="headerlink" href="#table-scale-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id397">
+<h4>NAME<a class="headerlink" href="#id397" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table scale</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id398">
+<h4>SYNOPSIS<a class="headerlink" href="#id398" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table scale</strong> [OPTIONS]</p>
+<p><strong>csg_call table scale</strong> [–help]</p>
+</div>
+<div class="section" id="id399">
+<h4>DESCRIPTION<a class="headerlink" href="#id399" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id400">
+<h4>OPTIONS<a class="headerlink" href="#id400" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-smooth-pl">
+<h3>table_smooth.pl<a class="headerlink" href="#table-smooth-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id401">
+<h4>NAME<a class="headerlink" href="#id401" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table smooth</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id402">
+<h4>SYNOPSIS<a class="headerlink" href="#id402" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table smooth</strong> [OPTIONS]</p>
+<p><strong>csg_call table smooth</strong> [–help]</p>
+</div>
+<div class="section" id="id403">
+<h4>DESCRIPTION<a class="headerlink" href="#id403" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table smooth infile outfile</p>
+</div>
+<div class="section" id="id404">
+<h4>OPTIONS<a class="headerlink" href="#id404" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-switch-border-pl">
+<h3>table_switch_border.pl<a class="headerlink" href="#table-switch-border-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id405">
+<h4>NAME<a class="headerlink" href="#id405" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table switch_border</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id406">
+<h4>SYNOPSIS<a class="headerlink" href="#id406" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call table switch_border</strong> [OPTIONS]</p>
+<p><strong>csg_call table switch_border</strong> [–help]</p>
+</div>
+<div class="section" id="id407">
+<h4>DESCRIPTION<a class="headerlink" href="#id407" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] table switch_border infile outfile &lt;x_switch&gt;</p>
+</div>
+<div class="section" id="id408">
+<h4>OPTIONS<a class="headerlink" href="#id408" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="table-to-tab-pl">
+<h3>table_to_tab.pl<a class="headerlink" href="#table-to-tab-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id409">
+<h4>NAME<a class="headerlink" href="#id409" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential tab</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id410">
+<h4>SYNOPSIS<a class="headerlink" href="#id410" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential tab</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential tab</strong> [–help]</p>
+</div>
+<div class="section" id="id411">
+<h4>DESCRIPTION<a class="headerlink" href="#id411" title="Permalink to this headline">¶</a></h4>
+<p>In addition, it does some magic tricks:
+- shift the potential, so that it is zero at the cutoff</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_to_tab.pl –type non-bonded table.in table_b0.xvg</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id412">
+<h4>OPTIONS<a class="headerlink" href="#id412" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">tab</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">derivatives_in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Allowed options:
+-h, –help            show this help message
+–type XXX            change the type of xvg table</p>
+<blockquote>
+<div><p>Default: non-bonded</p>
+</div></blockquote>
+<dl class="option-list">
+<dt><kbd><span class="option">--header <var>XXX</var></span></kbd></dt>
+<dd><p>Write a special simulation programm header</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="table-to-xvg-pl">
+<h3>table_to_xvg.pl<a class="headerlink" href="#table-to-xvg-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id413">
+<h4>NAME<a class="headerlink" href="#id413" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential xvg</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id414">
+<h4>SYNOPSIS<a class="headerlink" href="#id414" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call convert_potential xvg</strong> [OPTIONS]</p>
+<p><strong>csg_call convert_potential xvg</strong> [–help]</p>
+</div>
+<div class="section" id="id415">
+<h4>DESCRIPTION<a class="headerlink" href="#id415" title="Permalink to this headline">¶</a></h4>
+<p>This script converts csg potential files to the xvg format.</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>table_to_xvg.pl –type bond table.in table_b0.xvg</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id416">
+<h4>OPTIONS<a class="headerlink" href="#id416" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">xvg</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Allowed options:
+-h, –help            show this help message
+–type XXX            change the type of xvg table</p>
+<blockquote>
+<div><p>Default: non-bonded</p>
+</div></blockquote>
+<dl class="option-list">
+<dt><kbd><span class="option">--max <var>MAX</var></span></kbd></dt>
+<dd><p>Replace all pot value bigger MAX by MAX</p>
+</dd>
+</dl>
+<p>Possible types: non-bonded (=C12), bond, C12, C6, CB, angle, dihedral</p>
+</div>
+</div>
+<div class="section" id="tables-jackknife-pl">
+<h3>tables_jackknife.pl<a class="headerlink" href="#tables-jackknife-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id417">
+<h4>NAME<a class="headerlink" href="#id417" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call tables jackknife</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id418">
+<h4>SYNOPSIS<a class="headerlink" href="#id418" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call tables jackknife</strong> [OPTIONS]</p>
+<p><strong>csg_call tables jackknife</strong> [–help]</p>
+</div>
+<div class="section" id="id419">
+<h4>DESCRIPTION<a class="headerlink" href="#id419" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] tables jackknife out full block1 block2 …</p>
+</div>
+<div class="section" id="id420">
+<h4>OPTIONS<a class="headerlink" href="#id420" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="tag-file-sh">
+<h3>tag_file.sh<a class="headerlink" href="#tag-file-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id421">
+<h4>NAME<a class="headerlink" href="#id421" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call tag file</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id422">
+<h4>SYNOPSIS<a class="headerlink" href="#id422" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call tag file</strong> [OPTIONS]</p>
+<p><strong>csg_call tag file</strong> [–help]</p>
+</div>
+<div class="section" id="id423">
+<h4>DESCRIPTION<a class="headerlink" href="#id423" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] tag file input output</p>
+</div>
+<div class="section" id="id424">
+<h4>OPTIONS<a class="headerlink" href="#id424" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-ibi-sh">
+<h3>update_ibi.sh<a class="headerlink" href="#update-ibi-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id425">
+<h4>NAME<a class="headerlink" href="#id425" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id426">
+<h4>SYNOPSIS<a class="headerlink" href="#id426" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi</strong> [OPTIONS]</p>
+<p><strong>csg_call update ibi</strong> [–help]</p>
+</div>
+<div class="section" id="id427">
+<h4>DESCRIPTION<a class="headerlink" href="#id427" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update ibi</p>
+</div>
+<div class="section" id="id428">
+<h4>OPTIONS<a class="headerlink" href="#id428" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-ibi-pot-pl">
+<h3>update_ibi_pot.pl<a class="headerlink" href="#update-ibi-pot-pl" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id429">
+<h4>NAME<a class="headerlink" href="#id429" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi_pot</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id430">
+<h4>SYNOPSIS<a class="headerlink" href="#id430" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi_pot</strong> [OPTIONS]</p>
+<p><strong>csg_call update ibi_pot</strong> [–help]</p>
+</div>
+<div class="section" id="id431">
+<h4>DESCRIPTION<a class="headerlink" href="#id431" title="Permalink to this headline">¶</a></h4>
+<p>In addition, it does some magic tricks:
+- do not update if one of the two rdf is undefined</p>
+</div>
+<div class="section" id="id432">
+<h4>OPTIONS<a class="headerlink" href="#id432" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">update</span> <span class="n">ibi_pot</span> <span class="n">target_rdf</span> <span class="n">new_rdf</span> <span class="n">cur_pot</span> <span class="n">outfile</span> <span class="n">kBT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="update-ibi-single-sh">
+<h3>update_ibi_single.sh<a class="headerlink" href="#update-ibi-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id433">
+<h4>NAME<a class="headerlink" href="#id433" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi_single</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id434">
+<h4>SYNOPSIS<a class="headerlink" href="#id434" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update ibi_single</strong> [OPTIONS]</p>
+<p><strong>csg_call update ibi_single</strong> [–help]</p>
+</div>
+<div class="section" id="id435">
+<h4>DESCRIPTION<a class="headerlink" href="#id435" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update ibi_single</p>
+</div>
+<div class="section" id="id436">
+<h4>OPTIONS<a class="headerlink" href="#id436" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-imc-sh">
+<h3>update_imc.sh<a class="headerlink" href="#update-imc-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id437">
+<h4>NAME<a class="headerlink" href="#id437" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update imc</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id438">
+<h4>SYNOPSIS<a class="headerlink" href="#id438" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update imc</strong> [OPTIONS]</p>
+<p><strong>csg_call update imc</strong> [–help]</p>
+</div>
+<div class="section" id="id439">
+<h4>DESCRIPTION<a class="headerlink" href="#id439" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update imc</p>
+</div>
+<div class="section" id="id440">
+<h4>OPTIONS<a class="headerlink" href="#id440" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-imc-single-sh">
+<h3>update_imc_single.sh<a class="headerlink" href="#update-imc-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id441">
+<h4>NAME<a class="headerlink" href="#id441" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update imc_single</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id442">
+<h4>SYNOPSIS<a class="headerlink" href="#id442" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update imc_single</strong> [OPTIONS]</p>
+<p><strong>csg_call update imc_single</strong> [–help]</p>
+</div>
+<div class="section" id="id443">
+<h4>DESCRIPTION<a class="headerlink" href="#id443" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update imc_single</p>
+</div>
+<div class="section" id="id444">
+<h4>OPTIONS<a class="headerlink" href="#id444" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-optimizer-sh">
+<h3>update_optimizer.sh<a class="headerlink" href="#update-optimizer-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id445">
+<h4>NAME<a class="headerlink" href="#id445" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update optimizer</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id446">
+<h4>SYNOPSIS<a class="headerlink" href="#id446" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update optimizer</strong> [OPTIONS]</p>
+<p><strong>csg_call update optimizer</strong> [–help]</p>
+</div>
+<div class="section" id="id447">
+<h4>DESCRIPTION<a class="headerlink" href="#id447" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update optimizer</p>
+</div>
+<div class="section" id="id448">
+<h4>OPTIONS<a class="headerlink" href="#id448" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-optimizer-single-sh">
+<h3>update_optimizer_single.sh<a class="headerlink" href="#update-optimizer-single-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id449">
+<h4>NAME<a class="headerlink" href="#id449" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update optimizer_single</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id450">
+<h4>SYNOPSIS<a class="headerlink" href="#id450" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update optimizer_single</strong> [OPTIONS]</p>
+<p><strong>csg_call update optimizer_single</strong> [–help]</p>
+</div>
+<div class="section" id="id451">
+<h4>DESCRIPTION<a class="headerlink" href="#id451" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update optimizer_single</p>
+</div>
+<div class="section" id="id452">
+<h4>OPTIONS<a class="headerlink" href="#id452" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="update-re-sh">
+<h3>update_re.sh<a class="headerlink" href="#update-re-sh" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id453">
+<h4>NAME<a class="headerlink" href="#id453" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update re</strong> - Part of the VOTCA package</p>
+</div>
+<div class="section" id="id454">
+<h4>SYNOPSIS<a class="headerlink" href="#id454" title="Permalink to this headline">¶</a></h4>
+<p><strong>csg_call update re</strong> [OPTIONS]</p>
+<p><strong>csg_call update re</strong> [–help]</p>
+</div>
+<div class="section" id="id455">
+<h4>DESCRIPTION<a class="headerlink" href="#id455" title="Permalink to this headline">¶</a></h4>
+<p>Usage: csg_call [OPTIONS] update re</p>
+</div>
+<div class="section" id="id456">
+<h4>OPTIONS<a class="headerlink" href="#id456" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
 </div>
 <div class="section" id="csgapps">
 <h2>csgapps<a class="headerlink" href="#csgapps" title="Permalink to this headline">¶</a></h2>
 <p>Extra user-contibuted applications based on the csg application class, that aren’t needed for the normal workflows. Installable with <code class="docutils literal notranslate"><span class="pre">-DBUILD_CSGAPPS=ON</span></code>.</p>
 <div class="section" id="csg-fluctuations">
 <h3>csg_fluctuations<a class="headerlink" href="#csg-fluctuations" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id53">
-<h4>NAME<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id457">
+<h4>NAME<a class="headerlink" href="#id457" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_fluctuations</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id54">
-<h4>SYNOPSIS<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id458">
+<h4>SYNOPSIS<a class="headerlink" href="#id458" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_fluctuations</strong> [OPTIONS]</p>
 <p><strong>csg_fluctuations</strong> [–help]</p>
 </div>
-<div class="section" id="id55">
-<h4>DESCRIPTION<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id459">
+<h4>DESCRIPTION<a class="headerlink" href="#id459" title="Permalink to this headline">¶</a></h4>
 <p>calculate density fluctuations in subvolumes of the simulation box.Subolumes can be either cubic slabs in dimensions (x|y|z) or sphericalslabs with respect to either the center of box or a reference molecule</p>
 </div>
-<div class="section" id="id56">
-<h4>OPTIONS<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id460">
+<h4>OPTIONS<a class="headerlink" href="#id460" title="Permalink to this headline">¶</a></h4>
 <dl>
 <dt>Allowed options:</dt><dd><p>-h [ –help ]                        display this help and exit
 –verbose                            be loud and noisy
@@ -3000,17 +6176,17 @@ trajectory</p>
 </div>
 <div class="section" id="csg-orientcorr">
 <h3>csg_orientcorr<a class="headerlink" href="#csg-orientcorr" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id57">
-<h4>NAME<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id461">
+<h4>NAME<a class="headerlink" href="#id461" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_orientcorr</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id58">
-<h4>SYNOPSIS<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id462">
+<h4>SYNOPSIS<a class="headerlink" href="#id462" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_orientcorr</strong> [OPTIONS]</p>
 <p><strong>csg_orientcorr</strong> [–help]</p>
 </div>
-<div class="section" id="id59">
-<h4>DESCRIPTION<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id463">
+<h4>DESCRIPTION<a class="headerlink" href="#id463" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>Calculates the orientational correlation function</dt><dd><p>&lt;3/2*u(0)*u(r) - 1/2&gt;</p>
 </dd>
@@ -3018,8 +6194,8 @@ trajectory</p>
 <p>for a polymer melt, where u is the vector pointing along a bond and
 r the distance between bond segments (centered on middle of bond).</p>
 </div>
-<div class="section" id="id60">
-<h4>OPTIONS<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id464">
+<h4>OPTIONS<a class="headerlink" href="#id464" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">output</span> <span class="ow">is</span> <span class="n">correlation</span><span class="o">.</span><span class="n">dat</span> <span class="p">(</span><span class="k">with</span> <span class="n">intra</span><span class="o">-</span><span class="n">molecular</span> <span class="n">contributions</span><span class="p">)</span> <span class="ow">and</span>
 </pre></div>
 </div>
@@ -3054,23 +6230,23 @@ r the distance between bond segments (centered on middle of bond).</p>
 </div>
 <div class="section" id="csg-part-dist">
 <h3>csg_part_dist<a class="headerlink" href="#csg-part-dist" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id61">
-<h4>NAME<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id465">
+<h4>NAME<a class="headerlink" href="#id465" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_part_dist</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id62">
-<h4>SYNOPSIS<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id466">
+<h4>SYNOPSIS<a class="headerlink" href="#id466" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_part_dist</strong> [OPTIONS]</p>
 <p><strong>csg_part_dist</strong> [–help]</p>
 </div>
-<div class="section" id="id63">
-<h4>DESCRIPTION<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id467">
+<h4>DESCRIPTION<a class="headerlink" href="#id467" title="Permalink to this headline">¶</a></h4>
 <p>This program reads a topology and (set of) trajectory(ies). For every
 binned value of a chosen coordinate, it outputs the time-averaged number of
 particles, listed by particle types.</p>
 </div>
-<div class="section" id="id64">
-<h4>OPTIONS<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id468">
+<h4>OPTIONS<a class="headerlink" href="#id468" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
 <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>             <span class="n">topology</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>             <span class="n">trajectory</span> <span class="n">file</span>
@@ -3091,21 +6267,21 @@ particles, listed by particle types.</p>
 </div>
 <div class="section" id="csg-partial-rdf">
 <h3>csg_partial_rdf<a class="headerlink" href="#csg-partial-rdf" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id65">
-<h4>NAME<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id469">
+<h4>NAME<a class="headerlink" href="#id469" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id66">
-<h4>SYNOPSIS<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id470">
+<h4>SYNOPSIS<a class="headerlink" href="#id470" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> [OPTIONS]</p>
 <p><strong>csg_partial_rdf</strong> [–help]</p>
 </div>
-<div class="section" id="id67">
-<h4>DESCRIPTION<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id471">
+<h4>DESCRIPTION<a class="headerlink" href="#id471" title="Permalink to this headline">¶</a></h4>
 <p>Calculate spatially confined rdfs</p>
 </div>
-<div class="section" id="id68">
-<h4>OPTIONS<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id472">
+<h4>OPTIONS<a class="headerlink" href="#id472" title="Permalink to this headline">¶</a></h4>
 <dl>
 <dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
 –verbose                 be loud and noisy
@@ -3168,21 +6344,21 @@ cleared after every output</p>
 </div>
 <div class="section" id="csg-radii">
 <h3>csg_radii<a class="headerlink" href="#csg-radii" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id69">
-<h4>NAME<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id473">
+<h4>NAME<a class="headerlink" href="#id473" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_radii</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id70">
-<h4>SYNOPSIS<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id474">
+<h4>SYNOPSIS<a class="headerlink" href="#id474" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_radii</strong> [OPTIONS]</p>
 <p><strong>csg_radii</strong> [–help]</p>
 </div>
-<div class="section" id="id71">
-<h4>DESCRIPTION<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id475">
+<h4>DESCRIPTION<a class="headerlink" href="#id475" title="Permalink to this headline">¶</a></h4>
 <p>calculate gyration- and hydrodynamic radius for a specific molecule or molecule type</p>
 </div>
-<div class="section" id="id72">
-<h4>OPTIONS<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id476">
+<h4>OPTIONS<a class="headerlink" href="#id476" title="Permalink to this headline">¶</a></h4>
 <dl>
 <dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
 –verbose                 be loud and noisy
@@ -3214,24 +6390,24 @@ cleared after every output</p>
 </div>
 <div class="section" id="csg-sphericalorder">
 <h3>csg_sphericalorder<a class="headerlink" href="#csg-sphericalorder" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id73">
-<h4>NAME<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id477">
+<h4>NAME<a class="headerlink" href="#id477" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id74">
-<h4>SYNOPSIS<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id478">
+<h4>SYNOPSIS<a class="headerlink" href="#id478" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> [OPTIONS]</p>
 <p><strong>csg_sphericalorder</strong> [–help]</p>
 </div>
-<div class="section" id="id75">
-<h4>DESCRIPTION<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id479">
+<h4>DESCRIPTION<a class="headerlink" href="#id479" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>!! EXPERIMENTAL !! Calculate spherical order parameter.</dt><dd><p>Needs non-spherical beads in mapping.</p>
 </dd>
 </dl>
 </div>
-<div class="section" id="id76">
-<h4>OPTIONS<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id480">
+<h4>OPTIONS<a class="headerlink" href="#id480" title="Permalink to this headline">¶</a></h4>
 <dl>
 <dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
 –verbose                 be loud and noisy
@@ -3284,21 +6460,21 @@ cleared after every output</p>
 </div>
 <div class="section" id="csg-traj-force">
 <h3>csg_traj_force<a class="headerlink" href="#csg-traj-force" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id77">
-<h4>NAME<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id481">
+<h4>NAME<a class="headerlink" href="#id481" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_traj_force</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id78">
-<h4>SYNOPSIS<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id482">
+<h4>SYNOPSIS<a class="headerlink" href="#id482" title="Permalink to this headline">¶</a></h4>
 <p><strong>csg_traj_force</strong> [OPTIONS]</p>
 <p><strong>csg_traj_force</strong> [–help]</p>
 </div>
-<div class="section" id="id79">
-<h4>DESCRIPTION<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id483">
+<h4>DESCRIPTION<a class="headerlink" href="#id483" title="Permalink to this headline">¶</a></h4>
 <p>Adds/subtracts forces from given atomistic trajectories</p>
 </div>
-<div class="section" id="id80">
-<h4>OPTIONS<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id484">
+<h4>OPTIONS<a class="headerlink" href="#id484" title="Permalink to this headline">¶</a></h4>
 <dl>
 <dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
 –verbose                 be loud and noisy

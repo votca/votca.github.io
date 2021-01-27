@@ -1,0 +1,33 @@
+
+NAME
+****
+**csg_call convert_potential tab** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call convert_potential tab** [OPTIONS]
+
+**csg_call convert_potential tab** [--help]
+
+
+DESCRIPTION
+***********
+In addition, it does some magic tricks:
+- shift the potential, so that it is zero at the cutoff
+
+Examples:
+
+  * table_to_tab.pl --type non-bonded table.in table_b0.xvg
+
+OPTIONS
+*******
+::
+
+  Usage: csg_call [OPTIONS] convert_potential tab [OPTIONS] <in> <derivatives_in> <out>
+
+Allowed options:
+-h, --help            show this help message
+--type XXX            change the type of xvg table
+                      Default: non-bonded
+--header XXX          Write a special simulation programm header
+

@@ -1,0 +1,33 @@
+
+NAME
+****
+**csg_call potential shift** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call potential shift** [OPTIONS]
+
+**csg_call potential shift** [--help]
+
+
+DESCRIPTION
+***********
+This script shifts the whole potential by minimum (bonded potentials) or last value (non-bonded potentials).
+
+Examples:
+
+  * potential_shift.pl --type bond table.in table.out
+
+OPTIONS
+*******
+::
+
+  Usage: csg_call [OPTIONS] potential shift [OPTIONS] <in> <out>
+
+Allowed options:
+-h, --help            show this help message
+--type XXX            change the type of potential
+                      Default: non-bonded
+
+Possible types: non-bonded, bond, angle, dihedral, bonded
+

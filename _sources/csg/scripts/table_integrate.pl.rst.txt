@@ -1,0 +1,33 @@
+
+NAME
+****
+**csg_call table integrate** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call table integrate** [OPTIONS]
+
+**csg_call table integrate** [--help]
+
+
+DESCRIPTION
+***********
+Usage: csg_call [OPTIONS] table integrate [OPTIONS] <in> <out>
+
+Examples:
+
+  * table_integrate.pl --with-S --kbT 2.49435 tmp.force tmp.dpot
+
+OPTIONS
+*******
+::
+
+  Allowed options:
+    --with-errors     calculate error
+    --with-S          Add entropic contribution to force ''$2k_B T/r$''
+    --kbT NUMBER      use NUMBER as ''$k_B*T$'' for the entropic part
+    --from            Integrate from left or right (to define the zero point)
+                      Default: right
+    --sphere          Add spherical volume term (''$r^2$'')		   
+-h, --help            Show this help message
+

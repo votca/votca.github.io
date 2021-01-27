@@ -1,0 +1,35 @@
+
+NAME
+****
+**csg_call csg master** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call csg master** [OPTIONS]
+
+**csg_call csg master** [--help]
+
+
+DESCRIPTION
+***********
+Start the script to run ibi, imc, etc. or clean out current dir
+
+Examples:
+
+  * inverse.sh --options cg.xml
+  * inverse.sh -6 --options cg.xml
+
+OPTIONS
+*******
+::
+
+  Usage: csg_call [OPTIONS] csg master [OPTIONS] --options settings.xml [clean]
+
+Allowed options:
+-h, --help                    show this help
+-N, --do-iterations N         only do N iterations (ignoring settings.xml)
+    --wall-time SEK           Set wall clock time
+    --options FILE            Specify the options xml file to use
+    --debug                   enable debug mode with a lot of information
+    --nocolor                 disable colors
+

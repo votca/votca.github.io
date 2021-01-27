@@ -12,18 +12,24 @@ SYNOPSIS
 
 DESCRIPTION
 ***********
-Start the script (inverse.sh) to run IBM, IMC, etc.
+Start the script to run ibi, imc, etc. or clean out current dir
 
+Examples:
 
+  * csg_inverse --options cg.xml
+  * csg_inverse -6 --options cg.xml
 
 OPTIONS
 *******
 ::
 
-  Usage: csg_inverse [OPTIONS] --options settings.xml
+  Usage: csg_inverse [OPTIONS] --options settings.xml [clean]
 
 Allowed options:
--h, --help     Show this help
+-h, --help                    show this help
+-N, --do-iterations N         only do N iterations (ignoring settings.xml)
+    --wall-time SEK           Set wall clock time
+    --options FILE            Specify the options xml file to use
+    --debug                   enable debug mode with a lot of information
+    --nocolor                 disable colors
 
-NOTE: this is a short help, please source VOTCARC.bash or VOTCARC.csh
-      or export VOTCASHARE to get the full help.

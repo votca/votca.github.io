@@ -1,0 +1,39 @@
+
+NAME
+****
+**csg_call dist invert** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call dist invert** [OPTIONS]
+
+**csg_call dist invert** [--help]
+
+
+DESCRIPTION
+***********
+In addtion, it does some magic tricks:
+- do not crash when calc log(0)
+- choose the right normalization depending on the type of interaction
+- input dist should be unnormalized (like csg_stat calcs it)
+
+Examples:
+
+  * dist_boltzmann_invert.pl --kbT 2.49435 --min 0.001 tmp.dist tmp.pot
+
+OPTIONS
+*******
+::
+
+  Usage: csg_call [OPTIONS] dist invert [OPTIONS] <in> <out>
+
+Allowed options:
+    --kbT NUMBER      use NUMBER as ''$k_B*T$'' for the entropic part
+    --type XXX        change the type of interaction
+                      Default: non-bonded
+    --min XXX         minimum value to consider
+                      Default: 1e-10
+-h, --help            Show this help message
+
+Possible types: non-bonded, bond, angle, dihedral
+

@@ -1,0 +1,37 @@
+
+NAME
+****
+**csg_call table functional** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call table functional** [OPTIONS]
+
+**csg_call table functional** [--help]
+
+
+DESCRIPTION
+***********
+Usage: csg_call [OPTIONS] table functional [options] output
+
+Examples:
+
+  * table_functional.sh --grid 0:0.1:1 --fct x**2 CG-CG.tab.new
+
+OPTIONS
+*******
+::
+
+  Allowed options:
+-h, --help                    show this help
+    --grid  XX:XX:XX          Output grid of the table
+    --var X=Y                 Set a variable used in the function
+    --fct FCT                 functional form of the table
+    --headerfile XXX          Extra headerfile for the plot script
+                              (useful for complicated functions)
+    --gnuplot CMD             Gnuplot command to use
+                              Default: gnuplot
+    --clean		      Clean intermediate files
+
+Used external packages: gnuplot
+

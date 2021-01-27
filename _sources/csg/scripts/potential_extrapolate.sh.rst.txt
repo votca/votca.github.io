@@ -1,0 +1,36 @@
+
+NAME
+****
+**csg_call potential extrapolate** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**csg_call potential extrapolate** [OPTIONS]
+
+**csg_call potential extrapolate** [--help]
+
+
+DESCRIPTION
+***********
+Usage: csg_call [OPTIONS] potential extrapolate [options] input output
+
+
+
+OPTIONS
+*******
+::
+
+  Allowed options:
+    --help                    show this help
+    --clean                   remove all intermediate temp files
+    --type TYPE               type of the potential
+                              possible: non-bonded bond angle dihedral
+    --lfct FCT                type of the left extrapolation function
+                              possible: 
+                              default: exponential(non-bonded), linear (bonded)
+    --rfct FCT                type of the right extrapolation function
+                              possible: constant linear quadratic exponential sasha
+                              default: constant(non-bonded), periodic(dihedral), linear (bonded)
+    --avg-points INT          number of average points
+                              default: 3
+
