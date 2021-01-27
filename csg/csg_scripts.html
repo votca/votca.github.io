@@ -404,8 +404,9 @@ Allowed options:</p>
 <div class="section" id="id36">
 <h2>OPTIONS<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-<span class="o">--</span><span class="n">eps</span> <span class="n">EPS</span>   <span class="n">tolerance</span> <span class="k">for</span> <span class="n">initialization</span>
+
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">eps</span> <span class="n">EPS</span>   <span class="n">tolerance</span> <span class="k">for</span> <span class="n">initialization</span>
 </pre></div>
 </div>
 </div>
@@ -453,13 +454,10 @@ Allowed options:</p>
 <div class="section" id="id44">
 <h2>OPTIONS<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="dist-boltzmann-invert-pl">
@@ -488,31 +486,20 @@ Allowed options:</p>
 </div>
 <div class="section" id="id48">
 <h2>OPTIONS<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">dist</span> <span class="n">invert</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Usage: csg_call [OPTIONS] dist invert [OPTIONS] &lt;in&gt; &lt;out&gt;
+
+Allowed options:
+
+    --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+    --type XXX        change the type of interaction
+                      Default: non-bonded
+    --min XXX         minimum value to consider
+                      Default: 1e-10
+-h, --help            Show this help message
+
+Possible types: non-bonded, bond, angle, dihedral
 </pre></div>
 </div>
-<dl>
-<dt>Allowed options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--kbT <var>NUMBER</var></span></kbd></dt>
-<dd><p>use NUMBER as ‘’$k_B*T$’’ for the entropic part</p>
-</dd>
-<dt><kbd><span class="option">--type <var>XXX</var></span></kbd></dt>
-<dd><p>change the type of interaction
-Default: non-bonded</p>
-</dd>
-<dt><kbd><span class="option">--min <var>XXX</var></span></kbd></dt>
-<dd><p>minimum value to consider
-Default: 1e-10</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
-<p>Possible types: non-bonded, bond, angle, dihedral</p>
 </div>
 </div>
 <div class="section" id="dummy-sh">
@@ -782,27 +769,17 @@ Default: 1e-10</p>
 <div class="section" id="id92">
 <h2>OPTIONS<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">csg</span> <span class="n">master</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span> <span class="p">[</span><span class="n">clean</span><span class="p">]</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+<span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">iterations</span> <span class="n">N</span>         <span class="n">only</span> <span class="n">do</span> <span class="n">N</span> <span class="n">iterations</span> <span class="p">(</span><span class="n">ignoring</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">wall</span><span class="o">-</span><span class="n">time</span> <span class="n">SEK</span>           <span class="n">Set</span> <span class="n">wall</span> <span class="n">clock</span> <span class="n">time</span>
+    <span class="o">--</span><span class="n">options</span> <span class="n">FILE</span>            <span class="n">Specify</span> <span class="n">the</span> <span class="n">options</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">debug</span>                   <span class="n">enable</span> <span class="n">debug</span> <span class="n">mode</span> <span class="k">with</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">information</span>
+    <span class="o">--</span><span class="n">nocolor</span>                 <span class="n">disable</span> <span class="n">colors</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help                    show this help
--N, –do-iterations N         only do N iterations (ignoring settings.xml)</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">--wall-time <var>SEK</var></span></kbd></dt>
-<dd><p>Set wall clock time</p>
-</dd>
-<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
-<dd><p>Specify the options xml file to use</p>
-</dd>
-<dt><kbd><span class="option">--debug</span></kbd></dt>
-<dd><p>enable debug mode with a lot of information</p>
-</dd>
-<dt><kbd><span class="option">--nocolor</span></kbd></dt>
-<dd><p>disable colors</p>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="kbibi-ramp-correction-pl">
@@ -826,10 +803,12 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id96">
 <h2>OPTIONS<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbibi</span> <span class="n">ramp_correction</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbint</span> <span class="n">target_kbint</span> <span class="n">outfile</span> <span class="n">kBT</span> <span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span> <span class="n">int_start</span><span class="p">:</span><span class="n">int_end</span> <span class="n">ramp_factor</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            Show this help message</p>
 </div>
 </div>
 <div class="section" id="lj-126-pl">
@@ -875,25 +854,14 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id104">
 <h2>OPTIONS<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>         <span class="n">Print</span> <span class="n">version</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="n">withflag</span>            <span class="n">only</span> <span class="n">change</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+<span class="o">--</span><span class="n">noflags</span>             <span class="n">don</span><span class="s1">&#39;t copy flags</span>
+<span class="o">--</span><span class="n">novalues</span>            <span class="n">don</span><span class="s1">&#39;t copy values</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-v</span>, <span class="option">--version</span></kbd></dt>
-<dd><p>Print version</p>
-</dd>
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-<dt><kbd><span class="option">--withflag</span></kbd></dt>
-<dd><p>only change entries with specific flag in src</p>
-</dd>
-<dt><kbd><span class="option">--noflags</span></kbd></dt>
-<dd><p>don’t copy flags</p>
-</dd>
-<dt><kbd><span class="option">--novalues</span></kbd></dt>
-<dd><p>don’t copy values</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="optimizer-parameters-to-potential-sh">
@@ -1477,18 +1445,19 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id224">
 <h2>OPTIONS<a class="headerlink" href="#id224" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>                   <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="nb">type</span> <span class="n">TYPE</span>               <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span>
-                            <span class="n">possible</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="n">bond</span> <span class="n">angle</span> <span class="n">dihedral</span>
-  <span class="o">--</span><span class="n">lfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">left</span> <span class="n">extrapolation</span> <span class="n">function</span>
-                            <span class="n">possible</span><span class="p">:</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="n">exponential</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">rfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">right</span> <span class="n">extrapolation</span> <span class="n">function</span>
-                            <span class="n">possible</span><span class="p">:</span> <span class="n">constant</span> <span class="n">linear</span> <span class="n">quadratic</span> <span class="n">exponential</span> <span class="n">sasha</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="n">constant</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">periodic</span><span class="p">(</span><span class="n">dihedral</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">avg</span><span class="o">-</span><span class="n">points</span> <span class="n">INT</span>          <span class="n">number</span> <span class="n">of</span> <span class="n">average</span> <span class="n">points</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="mi">3</span>
+
+    <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>                   <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="nb">type</span> <span class="n">TYPE</span>               <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span>
+                              <span class="n">possible</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="n">bond</span> <span class="n">angle</span> <span class="n">dihedral</span>
+    <span class="o">--</span><span class="n">lfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">left</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                              <span class="n">possible</span><span class="p">:</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="n">exponential</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">rfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">right</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                              <span class="n">possible</span><span class="p">:</span> <span class="n">constant</span> <span class="n">linear</span> <span class="n">quadratic</span> <span class="n">exponential</span> <span class="n">sasha</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="n">constant</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">periodic</span><span class="p">(</span><span class="n">dihedral</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">avg</span><span class="o">-</span><span class="n">points</span> <span class="n">INT</span>          <span class="n">number</span> <span class="n">of</span> <span class="n">average</span> <span class="n">points</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -1517,15 +1486,16 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id228">
 <h2>OPTIONS<a class="headerlink" href="#id228" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">potential</span> <span class="n">shift</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">potential</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+
+<span class="n">Possible</span> <span class="n">types</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">,</span> <span class="n">bond</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dihedral</span><span class="p">,</span> <span class="n">bonded</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of potential</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<p>Possible types: non-bonded, bond, angle, dihedral, bonded</p>
 </div>
 </div>
 <div class="section" id="potential-to-dlpoly-sh">
@@ -1584,13 +1554,14 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id240">
 <h2>OPTIONS<a class="headerlink" href="#id240" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
-               <span class="k">for</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">dihedral</span>
-               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">gromacs</span> <span class="ow">in</span> <span class="n">degree</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
-  <span class="o">--</span><span class="n">step</span> <span class="n">XXX</span>   <span class="n">use</span> <span class="n">XXX</span> <span class="k">as</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">interaction</span>
+
+    <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">dihedral</span>
+                 <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">gromacs</span> <span class="ow">in</span> <span class="n">degree</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+    <span class="o">--</span><span class="n">step</span> <span class="n">XXX</span>   <span class="n">use</span> <span class="n">XXX</span> <span class="k">as</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">interaction</span>
 </pre></div>
 </div>
 </div>
@@ -1613,12 +1584,13 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id244">
 <h2>OPTIONS<a class="headerlink" href="#id244" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
-               <span class="k">for</span> <span class="n">angle</span> <span class="n">interactions</span>
-               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">lammps</span> <span class="n">uses</span> <span class="n">degrees</span> <span class="k">for</span> <span class="n">angle</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+
+    <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">angle</span> <span class="n">interactions</span>
+                 <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">lammps</span> <span class="n">uses</span> <span class="n">degrees</span> <span class="k">for</span> <span class="n">angle</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
 </pre></div>
 </div>
 </div>
@@ -1776,9 +1748,10 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id276">
 <h2>OPTIONS<a class="headerlink" href="#id276" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">prepare_single</span> <span class="n">optimizer</span> <span class="n">N</span>
+
+<span class="n">where</span> <span class="n">N</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">parameters</span>
 </pre></div>
 </div>
-<p>where N is the total number of parameters</p>
 </div>
 </div>
 <div class="section" id="prepare-re-sh">
@@ -1941,33 +1914,18 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id308">
 <h2>OPTIONS<a class="headerlink" href="#id308" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+<span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">output</span> <span class="n">NANE</span>             <span class="n">output</span> <span class="n">file</span> <span class="n">name</span>
+    <span class="o">--</span><span class="n">cols</span> <span class="n">NUM</span>                <span class="n">Number</span> <span class="n">of</span> <span class="n">columns</span> <span class="n">per</span> <span class="n">file</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="o">--</span><span class="n">col</span><span class="o">-</span><span class="n">y</span> <span class="n">NUM</span>               <span class="n">y</span><span class="o">-</span><span class="n">data</span> <span class="n">column</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="o">--</span><span class="n">col</span><span class="o">-</span><span class="n">x</span> <span class="n">NUM</span>               <span class="n">x</span><span class="o">-</span><span class="n">data</span> <span class="n">column</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="o">--</span><span class="n">clean</span>                 <span class="n">Clean</span> <span class="n">intermediate</span> <span class="n">files</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>show this help</p>
-</dd>
-<dt><kbd><span class="option">-o</span>, <span class="option">--output <var>NANE</var></span></kbd></dt>
-<dd><p>output file name
-–cols NUM                Number of columns per file</p>
-<blockquote>
-<div><p>Default: 3</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--col-y <var>NUM</var></span></kbd></dt>
-<dd><p>y-data column
-Default: 2</p>
-</dd>
-<dt><kbd><span class="option">--col-x <var>NUM</var></span></kbd></dt>
-<dd><p>x-data column
-Default: 1</p>
-</dd>
-<dt><kbd><span class="option">--clean</span></kbd></dt>
-<dd><p>Clean intermediate files</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-change-flag-sh">
@@ -2007,24 +1965,21 @@ Default: 1</p>
 <div class="section" id="id316">
 <h2>OPTIONS<a class="headerlink" href="#id316" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
-                    <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
-  <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
-                    <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
+
+    <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
+    <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
+                      <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
                     <span class="n">d</span> <span class="o">=</span> <span class="o">|</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="o">|</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=*</span> <span class="p">(</span><span class="n">to</span> <span class="n">avoid</span> <span class="n">shell</span> <span class="n">trouble</span><span class="p">)</span>
-  <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
-  <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
-  <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
-                    <span class="n">Default</span> <span class="mi">1</span>
-  <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+    <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
+    <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
+                      <span class="n">Default</span> <span class="mi">1</span>
+    <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-dummy-sh">
@@ -2082,42 +2037,29 @@ this creates a linear instead of a constant table</p>
 </div>
 <div class="section" id="id324">
 <h2>OPTIONS<a class="headerlink" href="#id324" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+--avgpoints A         average over the given number of points to extrapolate: default is 3
+--function            constant, linear, quadratic or exponential, sasha, periodic: default is quadratic
+--no-flagupdate       do not update the flag of the extrapolated values
+--region              left, right, or leftright: default is leftright
+--curvature C         curvature of the quadratic function: default is 10000,
+                      makes sense only for quadratic extrapolation, ignored for other cases
+-h, --help            Show this help message
+
+
+Extrapolation methods:
+
+ always &#39;&#39;$m = dy/dx= (y[i+A]-y[i])/(x[i+A]-x[i])$&#39;&#39;
+
+- constant:  &#39;&#39;$y = y0$&#39;&#39;
+- linear:  &#39;&#39;$y = ax + b\;\;b = - m*x_0 + y_0;;a = m$&#39;&#39;
+- sasha: &#39;&#39;$y = a*(x-b)^2\;\;b = (x0 - 2y_0/m)\;\; a = m^2/(4*y_0)$&#39;&#39;
+- exponential: &#39;&#39;$y = a*\\exp(b*x)\;\;a = y0*\\exp(-m*x0/y0)\;\;b = m/y_0$&#39;&#39;
+- quadratic: &#39;&#39;$y = C*(x+a)^2 + b\;\;a = m/(2*C) - x0\;\; b = y_0 - m^2/(4*C)$&#39;&#39;
+- periodic  same as linear, but extrapolates right side to end at first point of left side
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">--avgpoints <var>A</var></span></kbd></dt>
-<dd><p>average over the given number of points to extrapolate: default is 3</p>
-</dd>
-<dt><kbd><span class="option">--function</span></kbd></dt>
-<dd><p>constant, linear, quadratic or exponential, sasha, periodic: default is quadratic</p>
-</dd>
-<dt><kbd><span class="option">--no-flagupdate</span></kbd></dt>
-<dd><p>do not update the flag of the extrapolated values</p>
-</dd>
-<dt><kbd><span class="option">--region</span></kbd></dt>
-<dd><p>left, right, or leftright: default is leftright</p>
-</dd>
-<dt><kbd><span class="option">--curvature <var>C</var></span></kbd></dt>
-<dd><p>curvature of the quadratic function: default is 10000,
-makes sense only for quadratic extrapolation, ignored for other cases</p>
-</dd>
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Extrapolation methods:</dt><dd><p>always ‘’$m = dy/dx= (y[i+A]-y[i])/(x[i+A]-x[i])$’’</p>
-</dd>
-</dl>
-<ul class="simple">
-<li><p>constant:  ‘’$y = y0$’’</p></li>
-<li><p>linear:  ‘’$y = ax + b;;b = - m*x_0 + y_0;;a = m$’’</p></li>
-<li><p>sasha: ‘’$y = a*(x-b)^2;;b = (x0 - 2y_0/m);; a = m^2/(4*y_0)$’’</p></li>
-<li><p>exponential: ‘’$y = a*\exp(b*x);;a = y0*\exp(-m*x0/y0);;b = m/y_0$’’</p></li>
-<li><p>quadratic: ‘’$y = C*(x+a)^2 + b;;a = m/(2*C) - x0;; b = y_0 - m^2/(4*C)$’’</p></li>
-<li><p>periodic  same as linear, but extrapolates right side to end at first point of left side</p></li>
-</ul>
 </div>
 </div>
 <div class="section" id="table-functional-sh">
@@ -2144,30 +2086,20 @@ makes sense only for quadratic extrapolation, ignored for other cases</p>
 <div class="section" id="id328">
 <h2>OPTIONS<a class="headerlink" href="#id328" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">grid</span>  <span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span>          <span class="n">Output</span> <span class="n">grid</span> <span class="n">of</span> <span class="n">the</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">var</span> <span class="n">X</span><span class="o">=</span><span class="n">Y</span>                 <span class="n">Set</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span>
+    <span class="o">--</span><span class="n">fct</span> <span class="n">FCT</span>                 <span class="n">functional</span> <span class="n">form</span> <span class="n">of</span> <span class="n">the</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">headerfile</span> <span class="n">XXX</span>          <span class="n">Extra</span> <span class="n">headerfile</span> <span class="k">for</span> <span class="n">the</span> <span class="n">plot</span> <span class="n">script</span>
+                              <span class="p">(</span><span class="n">useful</span> <span class="k">for</span> <span class="n">complicated</span> <span class="n">functions</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">gnuplot</span> <span class="n">CMD</span>             <span class="n">Gnuplot</span> <span class="n">command</span> <span class="n">to</span> <span class="n">use</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="n">gnuplot</span>
+    <span class="o">--</span><span class="n">clean</span>                 <span class="n">Clean</span> <span class="n">intermediate</span> <span class="n">files</span>
+
+<span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gnuplot</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>show this help
-–grid  XX:XX:XX          Output grid of the table
-–var X=Y                 Set a variable used in the function
-–fct FCT                 functional form of the table
-–headerfile XXX          Extra headerfile for the plot script</p>
-<blockquote>
-<div><p>(useful for complicated functions)</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--gnuplot <var>CMD</var></span></kbd></dt>
-<dd><p>Gnuplot command to use
-Default: gnuplot</p>
-</dd>
-<dt><kbd><span class="option">--clean</span></kbd></dt>
-<dd><p>Clean intermediate files</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>Used external packages: gnuplot</p>
 </div>
 </div>
 <div class="section" id="table-get-value-pl">
@@ -2188,13 +2120,10 @@ Default: gnuplot</p>
 <div class="section" id="id332">
 <h2>OPTIONS<a class="headerlink" href="#id332" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-integrate-pl">
@@ -2221,19 +2150,16 @@ Default: gnuplot</p>
 <div class="section" id="id336">
 <h2>OPTIONS<a class="headerlink" href="#id336" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
-  --with-errors     calculate error
-  --with-S          Add entropic contribution to force &#39;&#39;$2k_B T/r$&#39;&#39;
-  --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
-  --from            Integrate from left or right (to define the zero point)
-                    Default: right
-  --sphere          Add spherical volume term (&#39;&#39;$r^2$&#39;&#39;)
+
+    --with-errors     calculate error
+    --with-S          Add entropic contribution to force &#39;&#39;$2k_B T/r$&#39;&#39;
+    --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+    --from            Integrate from left or right (to define the zero point)
+                      Default: right
+    --sphere          Add spherical volume term (&#39;&#39;$r^2$&#39;&#39;)
+-h, --help            Show this help message
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-linearop-pl">
@@ -2260,16 +2186,13 @@ Default: gnuplot</p>
 <div class="section" id="id340">
 <h2>OPTIONS<a class="headerlink" href="#id340" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+    <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">change</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+    <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">errors</span>     <span class="n">also</span> <span class="n">read</span> <span class="ow">and</span> <span class="n">calculate</span> <span class="n">errors</span>
+    <span class="o">--</span><span class="n">on</span><span class="o">-</span><span class="n">x</span>            <span class="n">work</span> <span class="n">on</span> <span class="n">x</span> <span class="n">values</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">y</span> <span class="n">values</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message
-–withflag  FL    only change entries with specific flag in src
-–with-errors     also read and calculate errors
-–on-x            work on x values instead of y values</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-scale-pl">
@@ -2353,19 +2276,15 @@ Default: gnuplot</p>
 <div class="section" id="id356">
 <h2>OPTIONS<a class="headerlink" href="#id356" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">tab</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">derivatives_in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">xvg</span> <span class="n">table</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+<span class="o">--</span><span class="n">header</span> <span class="n">XXX</span>          <span class="n">Write</span> <span class="n">a</span> <span class="n">special</span> <span class="n">simulation</span> <span class="n">programm</span> <span class="n">header</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of xvg table</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--header <var>XXX</var></span></kbd></dt>
-<dd><p>Write a special simulation programm header</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-to-xvg-pl">
@@ -2392,20 +2311,18 @@ Default: gnuplot</p>
 <div class="section" id="id360">
 <h2>OPTIONS<a class="headerlink" href="#id360" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">xvg</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">xvg</span> <span class="n">table</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+<span class="o">--</span><span class="nb">max</span> <span class="n">MAX</span>             <span class="n">Replace</span> <span class="nb">all</span> <span class="n">pot</span> <span class="n">value</span> <span class="n">bigger</span> <span class="n">MAX</span> <span class="n">by</span> <span class="n">MAX</span>
+
+
+<span class="n">Possible</span> <span class="n">types</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="p">(</span><span class="o">=</span><span class="n">C12</span><span class="p">),</span> <span class="n">bond</span><span class="p">,</span> <span class="n">C12</span><span class="p">,</span> <span class="n">C6</span><span class="p">,</span> <span class="n">CB</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dihedral</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of xvg table</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--max <var>MAX</var></span></kbd></dt>
-<dd><p>Replace all pot value bigger MAX by MAX</p>
-</dd>
-</dl>
-<p>Possible types: non-bonded (=C12), bond, C12, C6, CB, angle, dihedral</p>
 </div>
 </div>
 <div class="section" id="tables-jackknife-pl">

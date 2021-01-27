@@ -222,31 +222,20 @@
 </div>
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">dist</span> <span class="n">invert</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Usage: csg_call [OPTIONS] dist invert [OPTIONS] &lt;in&gt; &lt;out&gt;
+
+Allowed options:
+
+    --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+    --type XXX        change the type of interaction
+                      Default: non-bonded
+    --min XXX         minimum value to consider
+                      Default: 1e-10
+-h, --help            Show this help message
+
+Possible types: non-bonded, bond, angle, dihedral
 </pre></div>
 </div>
-<dl>
-<dt>Allowed options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--kbT <var>NUMBER</var></span></kbd></dt>
-<dd><p>use NUMBER as ‘’$k_B*T$’’ for the entropic part</p>
-</dd>
-<dt><kbd><span class="option">--type <var>XXX</var></span></kbd></dt>
-<dd><p>change the type of interaction
-Default: non-bonded</p>
-</dd>
-<dt><kbd><span class="option">--min <var>XXX</var></span></kbd></dt>
-<dd><p>minimum value to consider
-Default: 1e-10</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
-<p>Possible types: non-bonded, bond, angle, dihedral</p>
 </div>
 
 

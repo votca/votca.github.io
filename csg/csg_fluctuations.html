@@ -213,52 +213,43 @@
 </div>
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]                        display this help and exit
-–verbose                            be loud and noisy
-–verbose1                           be very loud and noisy
--v [ –verbose2 ]                    be extremly loud and noisy
-–top arg                            atomistic topology file</p>
-</dd>
-<dt>Fluctuation options:</dt><dd><p>–filter arg (=*)                  filter molecule names
-–rmax arg                         maximal distance to be considered
-–rmin arg (=0)                    minimal distance to be considered
-–refmol arg                       Reference molecule
-–nbin arg (=100)                  Number of bins
-–geometry arg                     (sphere|x|y|z) Take radial or x, y, z</p>
-<blockquote>
-<div><p>slabs from rmin to rmax</p>
-</div></blockquote>
-<p>–outfile arg (=fluctuations.dat)  Output file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond
-definitions (xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by
-;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original
-trajectory</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)                     skip frames before this time (only works</dt><dd><p>for Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)               start with this frame
-–nframes arg                        process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                        <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                            <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                           <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                    <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                            <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Fluctuation</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>                  <span class="nb">filter</span> <span class="n">molecule</span> <span class="n">names</span>
+  <span class="o">--</span><span class="n">rmax</span> <span class="n">arg</span>                         <span class="n">maximal</span> <span class="n">distance</span> <span class="n">to</span> <span class="n">be</span> <span class="n">considered</span>
+  <span class="o">--</span><span class="n">rmin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                    <span class="n">minimal</span> <span class="n">distance</span> <span class="n">to</span> <span class="n">be</span> <span class="n">considered</span>
+  <span class="o">--</span><span class="n">refmol</span> <span class="n">arg</span>                       <span class="n">Reference</span> <span class="n">molecule</span>
+  <span class="o">--</span><span class="n">nbin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>                  <span class="n">Number</span> <span class="n">of</span> <span class="n">bins</span>
+  <span class="o">--</span><span class="n">geometry</span> <span class="n">arg</span>                     <span class="p">(</span><span class="n">sphere</span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="n">y</span><span class="o">|</span><span class="n">z</span><span class="p">)</span> <span class="n">Take</span> <span class="n">radial</span> <span class="ow">or</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+                                     <span class="n">slabs</span> <span class="kn">from</span> <span class="nn">rmin</span> <span class="n">to</span> <span class="n">rmax</span>
+  <span class="o">--</span><span class="n">outfile</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">fluctuations</span><span class="o">.</span><span class="n">dat</span><span class="p">)</span>  <span class="n">Output</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                             <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                                     <span class="n">definitions</span> <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>                     <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span>
+                                     <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                             <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span>
+                                     <span class="n">trajectory</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                            <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                     <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span>
+                                     <span class="k">for</span> <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>               <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>                        <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 
 

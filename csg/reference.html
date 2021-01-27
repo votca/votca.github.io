@@ -373,45 +373,34 @@ inversion in an interactive environment.</p>
 </div>
 <div class="section" id="options">
 <h4>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond definitions
-(xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by ;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original trajectory</p>
-</dd>
-</dl>
-</dd>
-<dt>Special options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--excl <var>arg</var></span></kbd></dt>
-<dd><p>write atomistic exclusion list to file</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
+                          <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                  <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
+
+<span class="n">Special</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">excl</span> <span class="n">arg</span>              <span class="n">write</span> <span class="n">atomistic</span> <span class="n">exclusion</span> <span class="nb">list</span> <span class="n">to</span> <span class="n">file</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-call">
@@ -440,55 +429,27 @@ Function can be executed or shows if key1=’function’.</p>
 <div class="section" id="id4">
 <h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">key1</span> <span class="n">key2</span> <span class="p">[</span><span class="n">SCRIPT</span> <span class="n">OPTIONS</span><span class="p">]</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">l</span><span class="p">,</span> <span class="o">--</span><span class="nb">list</span>           <span class="n">Show</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">script</span>
+    <span class="o">--</span><span class="n">cat</span>            <span class="n">Show</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">the</span> <span class="n">script</span>
+    <span class="o">--</span><span class="n">show</span>           <span class="n">Show</span> <span class="n">the</span> <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">script</span>
+    <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">share</span>     <span class="n">Shows</span> <span class="n">the</span> <span class="n">used</span> <span class="n">VOTCASHARE</span> <span class="nb">dir</span> <span class="ow">and</span> <span class="n">exits</span>
+    <span class="o">--</span><span class="n">scriptdir</span> <span class="n">DIR</span>  <span class="n">Set</span> <span class="n">the</span> <span class="n">user</span> <span class="n">script</span> <span class="nb">dir</span>
+                     <span class="p">(</span><span class="n">Used</span> <span class="k">if</span> <span class="n">no</span> <span class="n">options</span> <span class="n">xml</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">given</span><span class="p">)</span>
+                     <span class="n">Default</span><span class="p">:</span> <span class="n">empty</span>
+    <span class="o">--</span><span class="n">options</span> <span class="n">FILE</span>   <span class="n">Specify</span> <span class="n">the</span> <span class="n">options</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">log</span> <span class="n">FILE</span>       <span class="n">Specify</span> <span class="n">the</span> <span class="n">log</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+                     <span class="n">Default</span><span class="p">:</span> <span class="n">stdout</span>
+    <span class="o">--</span><span class="n">ia</span><span class="o">-</span><span class="nb">type</span> <span class="nb">type</span>   <span class="n">Specify</span> <span class="n">the</span> <span class="n">interaction</span> <span class="nb">type</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">ia</span><span class="o">-</span><span class="n">name</span> <span class="n">name</span>   <span class="n">Specify</span> <span class="n">the</span> <span class="n">interaction</span> <span class="n">name</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">nocolor</span>        <span class="n">Disable</span> <span class="n">colors</span>
+    <span class="o">--</span><span class="n">sloppy</span><span class="o">-</span><span class="n">tables</span>  <span class="n">Allow</span> <span class="n">tables</span> <span class="n">without</span> <span class="n">flags</span>
+    <span class="o">--</span><span class="n">debug</span>          <span class="n">Enable</span> <span class="n">debug</span> <span class="n">mode</span> <span class="k">with</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">information</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>           <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span>
 </pre></div>
 </div>
-<p>Allowed options:
--l, –list           Show list of all script</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">--cat</span></kbd></dt>
-<dd><p>Show the content of the script</p>
-</dd>
-<dt><kbd><span class="option">--show</span></kbd></dt>
-<dd><p>Show the path to the script</p>
-</dd>
-<dt><kbd><span class="option">--show-share</span></kbd></dt>
-<dd><p>Shows the used VOTCASHARE dir and exits</p>
-</dd>
-<dt><kbd><span class="option">--scriptdir <var>DIR</var></span></kbd></dt>
-<dd><p>Set the user script dir
-(Used if no options xml file is given)
-Default: empty</p>
-</dd>
-<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
-<dd><p>Specify the options xml file to use</p>
-</dd>
-<dt><kbd><span class="option">--log <var>FILE</var></span></kbd></dt>
-<dd><p>Specify the log file to use
-Default: stdout</p>
-</dd>
-<dt><kbd><span class="option">--ia-type <var>type</var></span></kbd></dt>
-<dd><p>Specify the interaction type to use</p>
-</dd>
-<dt><kbd><span class="option">--ia-name <var>name</var></span></kbd></dt>
-<dd><p>Specify the interaction name to use</p>
-</dd>
-<dt><kbd><span class="option">--nocolor</span></kbd></dt>
-<dd><p>Disable colors</p>
-</dd>
-<dt><kbd><span class="option">--sloppy-tables</span></kbd></dt>
-<dd><p>Allow tables without flags</p>
-</dd>
-<dt><kbd><span class="option">--debug</span></kbd></dt>
-<dd><p>Enable debug mode with a lot of information</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="csg-density">
@@ -508,62 +469,47 @@ Default: stdout</p>
 </div>
 <div class="section" id="id8">
 <h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>[OPTIONAL] coarse graining mapping and bond
-definitions</p>
-<blockquote>
-<div><p>(xml-file). If no file is given, program acts on</p>
-</div></blockquote>
-<p>original trajectory</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore if mapping is done
-separated by ;</p>
-</dd>
-</dl>
-</dd>
-<dt>Specific options::</dt><dd><p>–type arg (=mass)      density type: mass or number
-–axis arg (=r)         [x|y|z|r] density axis (r=spherical)
-–step arg (=0.01)      spacing of density
-–block-length arg        write blocks of this length, the averages are</p>
-<blockquote>
-<div><p>cleared after every write</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--out <var>arg</var></span></kbd></dt>
-<dd><p>Output file</p>
-</dd>
-<dt><kbd><span class="option">--rmax <var>arg</var></span></kbd></dt>
-<dd><p>rmax (default for [r] =min of all box vectors/2, else
-l )</p>
-</dd>
-</dl>
-<p>–scale arg (=1)        scale factor for the density
-–molname arg (=*)      molname
-–filter arg (=*)       filter bead names
-–ref arg               reference zero point</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="p">[</span><span class="n">OPTIONAL</span><span class="p">]</span> <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                          <span class="n">definitions</span>
+                            <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="n">no</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">program</span> <span class="n">acts</span> <span class="n">on</span>
+                          <span class="n">original</span> <span class="n">trajectory</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="n">done</span>
+                          <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+
+<span class="n">Specific</span> <span class="n">options</span><span class="p">::</span>
+
+  <span class="o">--</span><span class="nb">type</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">mass</span><span class="p">)</span>      <span class="n">density</span> <span class="nb">type</span><span class="p">:</span> <span class="n">mass</span> <span class="ow">or</span> <span class="n">number</span>
+  <span class="o">--</span><span class="n">axis</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>         <span class="p">[</span><span class="n">x</span><span class="o">|</span><span class="n">y</span><span class="o">|</span><span class="n">z</span><span class="o">|</span><span class="n">r</span><span class="p">]</span> <span class="n">density</span> <span class="n">axis</span> <span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">spherical</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">step</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>      <span class="n">spacing</span> <span class="n">of</span> <span class="n">density</span>
+  <span class="o">--</span><span class="n">block</span><span class="o">-</span><span class="n">length</span> <span class="n">arg</span>        <span class="n">write</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">this</span> <span class="n">length</span><span class="p">,</span> <span class="n">the</span> <span class="n">averages</span> <span class="n">are</span>
+                          <span class="n">cleared</span> <span class="n">after</span> <span class="n">every</span> <span class="n">write</span>
+  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>               <span class="n">Output</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">rmax</span> <span class="n">arg</span>              <span class="n">rmax</span> <span class="p">(</span><span class="n">default</span> <span class="k">for</span> <span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span><span class="nb">min</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">box</span> <span class="n">vectors</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="k">else</span>
+                          <span class="n">l</span> <span class="p">)</span>
+  <span class="o">--</span><span class="n">scale</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        <span class="n">scale</span> <span class="n">factor</span> <span class="k">for</span> <span class="n">the</span> <span class="n">density</span>
+  <span class="o">--</span><span class="n">molname</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>      <span class="n">molname</span>
+  <span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>       <span class="nb">filter</span> <span class="n">bead</span> <span class="n">names</span>
+  <span class="o">--</span><span class="n">ref</span> <span class="n">arg</span>               <span class="n">reference</span> <span class="n">zero</span> <span class="n">point</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-dlptopol">
@@ -634,35 +580,28 @@ convert FIELD to FIELD_CGV using cg-map.xml</p></li>
 </div>
 <div class="section" id="id16">
 <h4>OPTIONS<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]            display this help and exit
-–verbose                be loud and noisy
-–verbose1               be very loud and noisy
--v [ –verbose2 ]        be extremly loud and noisy
-–top arg                atomistic topology file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>[OPTIONAL] coarse graining mapping and bond
-definitions</p>
-<blockquote>
-<div><p>(xml-file). If no file is given, program acts on</p>
-</div></blockquote>
-<p>original trajectory</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore if mapping is done
-separated by ;</p>
-</dd>
-</dl>
-</dd>
-<dt>Specific options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--excl</span></kbd></dt>
-<dd><p>display exclusion list instead of molecule list</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>            <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>               <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>        <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                 <span class="p">[</span><span class="n">OPTIONAL</span><span class="p">]</span> <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                         <span class="n">definitions</span>
+                           <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="n">no</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">program</span> <span class="n">acts</span> <span class="n">on</span>
+                         <span class="n">original</span> <span class="n">trajectory</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>         <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="n">done</span>
+                         <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+
+<span class="n">Specific</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">excl</span>                   <span class="n">display</span> <span class="n">exclusion</span> <span class="nb">list</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">molecule</span> <span class="nb">list</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-fmatch">
@@ -682,44 +621,33 @@ separated by ;</p>
 </div>
 <div class="section" id="id20">
 <h4>OPTIONS<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file
-–options arg             options file for coarse graining
-–trj-force arg           coarse-grained trajectory containing forces of</p>
-<blockquote>
-<div><p>already known interactions</p>
-</div></blockquote>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond definitions
-(xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by ;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original trajectory</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">options</span> <span class="n">arg</span>             <span class="n">options</span> <span class="n">file</span> <span class="k">for</span> <span class="n">coarse</span> <span class="n">graining</span>
+  <span class="o">--</span><span class="n">trj</span><span class="o">-</span><span class="n">force</span> <span class="n">arg</span>           <span class="n">coarse</span><span class="o">-</span><span class="n">grained</span> <span class="n">trajectory</span> <span class="n">containing</span> <span class="n">forces</span> <span class="n">of</span>
+                          <span class="n">already</span> <span class="n">known</span> <span class="n">interactions</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
+                          <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                  <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-gmxtopol">
@@ -740,31 +668,24 @@ and a mapping file. File still needs to be modified by the user.</p>
 </div>
 <div class="section" id="id24">
 <h4>OPTIONS<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]            display this help and exit
-–verbose                be loud and noisy
-–verbose1               be very loud and noisy
--v [ –verbose2 ]        be extremly loud and noisy
-–top arg                atomistic topology file
-–out arg              output topology (will create .top and in future also</p>
-<blockquote>
-<div><p>.itp)</p>
-</div></blockquote>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond definitions
-(xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by ;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original trajectory</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>            <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>               <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>        <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>              <span class="n">output</span> <span class="n">topology</span> <span class="p">(</span><span class="n">will</span> <span class="n">create</span> <span class="o">.</span><span class="n">top</span> <span class="ow">and</span> <span class="ow">in</span> <span class="n">future</span> <span class="n">also</span>
+                         <span class="o">.</span><span class="n">itp</span><span class="p">)</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                 <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
+                         <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>         <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                 <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-imc-solve">
@@ -784,17 +705,18 @@ and a mapping file. File still needs to be modified by the user.</p>
 </div>
 <div class="section" id="id28">
 <h4>OPTIONS<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
-<dl class="simple">
-<dt>Allowed options:</dt><dd><p>-h [ –help ]                       display this help and exit
-–verbose                           be loud and noisy
-–verbose1                          be very loud and noisy
--v [ –verbose2 ]                   be extremly loud and noisy
--r [ –regularization ] arg (=0)  regularization factor
--i [ –imcfile ] arg              imc statefile
--g [ –gmcfile ] arg              gmc statefile
--n [ –idxfile ] arg              idx statefile</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                       <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                           <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                          <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                   <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">r</span> <span class="p">[</span> <span class="o">--</span><span class="n">regularization</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="n">regularization</span> <span class="n">factor</span>
+  <span class="o">-</span><span class="n">i</span> <span class="p">[</span> <span class="o">--</span><span class="n">imcfile</span> <span class="p">]</span> <span class="n">arg</span>              <span class="n">imc</span> <span class="n">statefile</span>
+  <span class="o">-</span><span class="n">g</span> <span class="p">[</span> <span class="o">--</span><span class="n">gmcfile</span> <span class="p">]</span> <span class="n">arg</span>              <span class="n">gmc</span> <span class="n">statefile</span>
+  <span class="o">-</span><span class="n">n</span> <span class="p">[</span> <span class="o">--</span><span class="n">idxfile</span> <span class="p">]</span> <span class="n">arg</span>              <span class="n">idx</span> <span class="n">statefile</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-inverse">
@@ -822,27 +744,17 @@ and a mapping file. File still needs to be modified by the user.</p>
 <div class="section" id="id32">
 <h4>OPTIONS<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_inverse</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span> <span class="p">[</span><span class="n">clean</span><span class="p">]</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+<span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">iterations</span> <span class="n">N</span>         <span class="n">only</span> <span class="n">do</span> <span class="n">N</span> <span class="n">iterations</span> <span class="p">(</span><span class="n">ignoring</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">wall</span><span class="o">-</span><span class="n">time</span> <span class="n">SEK</span>           <span class="n">Set</span> <span class="n">wall</span> <span class="n">clock</span> <span class="n">time</span>
+    <span class="o">--</span><span class="n">options</span> <span class="n">FILE</span>            <span class="n">Specify</span> <span class="n">the</span> <span class="n">options</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">debug</span>                   <span class="n">enable</span> <span class="n">debug</span> <span class="n">mode</span> <span class="k">with</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">information</span>
+    <span class="o">--</span><span class="n">nocolor</span>                 <span class="n">disable</span> <span class="n">colors</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help                    show this help
--N, –do-iterations N         only do N iterations (ignoring settings.xml)</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">--wall-time <var>SEK</var></span></kbd></dt>
-<dd><p>Set wall clock time</p>
-</dd>
-<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
-<dd><p>Specify the options xml file to use</p>
-</dd>
-<dt><kbd><span class="option">--debug</span></kbd></dt>
-<dd><p>enable debug mode with a lot of information</p>
-</dd>
-<dt><kbd><span class="option">--nocolor</span></kbd></dt>
-<dd><p>disable colors</p>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="csg-map">
@@ -875,27 +787,30 @@ or a selected set of frames only (see options).</p>
 <div class="section" id="id36">
 <h4>OPTIONS<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
-  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>                 <span class="n">output</span> <span class="n">file</span> <span class="k">for</span> <span class="n">coarse</span><span class="o">-</span><span class="n">grained</span> <span class="n">trajectory</span>
-  <span class="o">--</span><span class="n">vel</span>                     <span class="n">Write</span> <span class="n">mapped</span> <span class="n">velocities</span> <span class="p">(</span><span class="k">if</span> <span class="n">available</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">force</span>                   <span class="n">Write</span> <span class="n">mapped</span> <span class="n">forces</span> <span class="p">(</span><span class="k">if</span> <span class="n">available</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">hybrid</span>                  <span class="n">Create</span> <span class="n">hybrid</span> <span class="n">trajectory</span> <span class="n">containing</span> <span class="n">both</span> <span class="n">atomistic</span>
-                          <span class="ow">and</span> <span class="n">coarse</span><span class="o">-</span><span class="n">grained</span>
-<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
-                          <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
-  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                  <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
-<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
-  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
-                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
-  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+
+    <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+    <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+    <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+    <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+    <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+    <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>                 <span class="n">output</span> <span class="n">file</span> <span class="k">for</span> <span class="n">coarse</span><span class="o">-</span><span class="n">grained</span> <span class="n">trajectory</span>
+    <span class="o">--</span><span class="n">vel</span>                     <span class="n">Write</span> <span class="n">mapped</span> <span class="n">velocities</span> <span class="p">(</span><span class="k">if</span> <span class="n">available</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">force</span>                   <span class="n">Write</span> <span class="n">mapped</span> <span class="n">forces</span> <span class="p">(</span><span class="k">if</span> <span class="n">available</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">hybrid</span>                  <span class="n">Create</span> <span class="n">hybrid</span> <span class="n">trajectory</span> <span class="n">containing</span> <span class="n">both</span> <span class="n">atomistic</span>
+                            <span class="ow">and</span> <span class="n">coarse</span><span class="o">-</span><span class="n">grained</span>
+  <span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+    <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
+                            <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+    <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                  <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
+  <span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+    <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+    <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                            <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+    <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
 </pre></div>
 </div>
 </div>
@@ -918,13 +833,14 @@ or a selected set of frames only (see options).</p>
 <div class="section" id="id40">
 <h4>OPTIONS<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-<span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
-<span class="o">--</span><span class="n">path</span> <span class="n">arg</span>            <span class="n">path</span> <span class="n">to</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="nb">print</span>
-<span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">option</span> <span class="n">values</span> <span class="n">that</span> <span class="n">match</span> <span class="n">given</span> <span class="n">criteria</span>
-<span class="o">--</span><span class="nb">print</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=.</span><span class="p">)</span>      <span class="n">specifies</span> <span class="n">which</span> <span class="n">children</span> <span class="ow">or</span> <span class="n">root</span> <span class="n">to</span> <span class="nb">print</span>
-<span class="o">--</span><span class="n">file</span> <span class="n">arg</span>            <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">parse</span>
-<span class="o">--</span><span class="n">short</span>               <span class="n">short</span> <span class="n">version</span> <span class="n">of</span> <span class="n">output</span>
-<span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">path</span>           <span class="n">include</span> <span class="n">path</span> <span class="n">of</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">output</span>
+
+  <span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+  <span class="o">--</span><span class="n">path</span> <span class="n">arg</span>            <span class="n">path</span> <span class="n">to</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="nb">print</span>
+  <span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">option</span> <span class="n">values</span> <span class="n">that</span> <span class="n">match</span> <span class="n">given</span> <span class="n">criteria</span>
+  <span class="o">--</span><span class="nb">print</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=.</span><span class="p">)</span>      <span class="n">specifies</span> <span class="n">which</span> <span class="n">children</span> <span class="ow">or</span> <span class="n">root</span> <span class="n">to</span> <span class="nb">print</span>
+  <span class="o">--</span><span class="n">file</span> <span class="n">arg</span>            <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">parse</span>
+  <span class="o">--</span><span class="n">short</span>               <span class="n">short</span> <span class="n">version</span> <span class="n">of</span> <span class="n">output</span>
+  <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">path</span>           <span class="n">include</span> <span class="n">path</span> <span class="n">of</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">output</span>
 </pre></div>
 </div>
 </div>
@@ -950,22 +866,23 @@ simulations.</p>
 <div class="section" id="id44">
 <h4>OPTIONS<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-<span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
-<span class="o">--</span><span class="ow">in</span> <span class="n">arg</span>              <span class="n">table</span> <span class="n">to</span> <span class="n">read</span>
-<span class="o">--</span><span class="n">out</span> <span class="n">arg</span>             <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
-<span class="o">--</span><span class="n">derivative</span> <span class="n">arg</span>      <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
-<span class="o">--</span><span class="n">grid</span> <span class="n">arg</span>            <span class="n">new</span> <span class="n">grid</span> <span class="n">spacing</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">is</span> <span class="n">specified</span>
-                      <span class="n">only</span><span class="p">,</span> <span class="n">interpolation</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
-<span class="o">--</span><span class="nb">type</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">akima</span><span class="p">)</span>   <span class="p">[</span><span class="n">cubic</span><span class="o">|</span><span class="n">akima</span><span class="o">|</span><span class="n">linear</span><span class="p">]</span><span class="o">.</span> <span class="n">If</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">specified</span><span class="p">,</span> <span class="n">the</span>
-                      <span class="n">default</span> <span class="nb">type</span> <span class="s1">&#39;akima&#39;</span> <span class="ow">is</span> <span class="n">assumed</span><span class="o">.</span>
-<span class="o">--</span><span class="n">fitgrid</span> <span class="n">arg</span>         <span class="n">specify</span> <span class="n">fit</span> <span class="n">grid</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">and</span>
-                      <span class="s1">&#39;fitgrid&#39;</span> <span class="n">are</span> <span class="n">specified</span><span class="p">,</span> <span class="n">a</span> <span class="n">fit</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
-<span class="o">--</span><span class="n">nocut</span>               <span class="n">Option</span> <span class="k">for</span> <span class="n">fitgrid</span><span class="p">:</span> <span class="n">Normally</span><span class="p">,</span> <span class="n">values</span> <span class="n">out</span> <span class="n">of</span> <span class="n">fitgrid</span>
-                      <span class="n">boundaries</span> <span class="n">are</span> <span class="n">cut</span> <span class="n">off</span><span class="o">.</span> <span class="n">If</span> <span class="n">they</span> <span class="n">shouldn</span><span class="s1">&#39;t, choose</span>
-                      <span class="o">--</span><span class="n">nocut</span><span class="o">.</span>
-<span class="o">--</span><span class="n">comment</span> <span class="n">arg</span>         <span class="n">store</span> <span class="n">a</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">table</span>
-<span class="o">--</span><span class="n">boundaries</span> <span class="n">arg</span>      <span class="p">(</span><span class="n">natural</span><span class="o">|</span><span class="n">periodic</span><span class="o">|</span><span class="n">derivativezero</span><span class="p">)</span> <span class="n">sets</span> <span class="n">boundary</span>
-                      <span class="n">conditions</span>
+
+  <span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+  <span class="o">--</span><span class="ow">in</span> <span class="n">arg</span>              <span class="n">table</span> <span class="n">to</span> <span class="n">read</span>
+  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>             <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
+  <span class="o">--</span><span class="n">derivative</span> <span class="n">arg</span>      <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
+  <span class="o">--</span><span class="n">grid</span> <span class="n">arg</span>            <span class="n">new</span> <span class="n">grid</span> <span class="n">spacing</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">is</span> <span class="n">specified</span>
+                        <span class="n">only</span><span class="p">,</span> <span class="n">interpolation</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
+  <span class="o">--</span><span class="nb">type</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">akima</span><span class="p">)</span>   <span class="p">[</span><span class="n">cubic</span><span class="o">|</span><span class="n">akima</span><span class="o">|</span><span class="n">linear</span><span class="p">]</span><span class="o">.</span> <span class="n">If</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">specified</span><span class="p">,</span> <span class="n">the</span>
+                        <span class="n">default</span> <span class="nb">type</span> <span class="s1">&#39;akima&#39;</span> <span class="ow">is</span> <span class="n">assumed</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">fitgrid</span> <span class="n">arg</span>         <span class="n">specify</span> <span class="n">fit</span> <span class="n">grid</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">and</span>
+                        <span class="s1">&#39;fitgrid&#39;</span> <span class="n">are</span> <span class="n">specified</span><span class="p">,</span> <span class="n">a</span> <span class="n">fit</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">nocut</span>               <span class="n">Option</span> <span class="k">for</span> <span class="n">fitgrid</span><span class="p">:</span> <span class="n">Normally</span><span class="p">,</span> <span class="n">values</span> <span class="n">out</span> <span class="n">of</span> <span class="n">fitgrid</span>
+                        <span class="n">boundaries</span> <span class="n">are</span> <span class="n">cut</span> <span class="n">off</span><span class="o">.</span> <span class="n">If</span> <span class="n">they</span> <span class="n">shouldn</span><span class="s1">&#39;t, choose</span>
+                        <span class="o">--</span><span class="n">nocut</span><span class="o">.</span>
+  <span class="o">--</span><span class="n">comment</span> <span class="n">arg</span>         <span class="n">store</span> <span class="n">a</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">table</span>
+  <span class="o">--</span><span class="n">boundaries</span> <span class="n">arg</span>      <span class="p">(</span><span class="n">natural</span><span class="o">|</span><span class="n">periodic</span><span class="o">|</span><span class="n">derivativezero</span><span class="p">)</span> <span class="n">sets</span> <span class="n">boundary</span>
+                        <span class="n">conditions</span>
 </pre></div>
 </div>
 </div>
@@ -987,57 +904,42 @@ simulations.</p>
 </div>
 <div class="section" id="id48">
 <h4>OPTIONS<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]                       display this help and exit
-–verbose                           be loud and noisy
-–verbose1                          be very loud and noisy
--v [ –verbose2 ]                   be extremly loud and noisy
-–top arg                           atomistic topology file (only needed for</p>
-<blockquote>
-<div><p>RE update)</p>
-</div></blockquote>
-</dd>
-<dt>RE Specific options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--options <var>arg</var></span></kbd></dt>
-<dd><p>options file for coarse graining</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–gentable arg (=0)                 only generate potential tables from given</dt><dd><p>parameters,   NO RE update!</p>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">--interaction <var>arg</var></span></kbd></dt>
-<dd><p>[OPTIONAL] generate potential tables only
-for the specified interactions,</p>
-<blockquote>
-<div><p>only valid when ‘gentable’ is true</p>
-</div></blockquote>
-</dd>
-</dl>
-<p>–param-in-ext arg (=param.cur)     Extension of the input parameter tables
-–param-out-ext arg (=param.new)    Extension of the output parameter tables
-–pot-out-ext arg (=pot.new)        Extension of the output potential tables
-–hessian-check arg (=1)            Disable the hessian check (mostly for</p>
-<blockquote>
-<div><p>testing)</p>
-</div></blockquote>
-</dd>
-<dt>Threading options:</dt><dd><p>–nt arg (=1)                       number of threads</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)                    skip frames before this time (only works</dt><dd><p>for Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)              start with this frame
-–nframes arg                       process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+  -h [ --help ]                       display this help and exit
+  --verbose                           be loud and noisy
+  --verbose1                          be very loud and noisy
+  -v [ --verbose2 ]                   be extremly loud and noisy
+  --top arg                           atomistic topology file (only needed for
+                                    RE update)
+
+RE Specific options:
+
+  --options arg                       options file for coarse graining
+  --gentable arg (=0)                 only generate potential tables from given
+                                    parameters,   NO RE update!
+  --interaction arg                  [OPTIONAL] generate potential tables only
+                                    for the specified interactions,
+                                     only valid when &#39;gentable&#39; is true
+  --param-in-ext arg (=param.cur)     Extension of the input parameter tables
+  --param-out-ext arg (=param.new)    Extension of the output parameter tables
+  --pot-out-ext arg (=pot.new)        Extension of the output potential tables
+  --hessian-check arg (=1)            Disable the hessian check (mostly for
+                                    testing)
+
+Threading options:
+
+  --nt arg (=1)                       number of threads
+
+Trajectory options:
+
+  --trj arg                           atomistic trajectory file
+  --begin arg (=0)                    skip frames before this time (only works
+                                    for Gromacs files)
+  --first-frame arg (=0)              start with this frame
+  --nframes arg                       process the given number of frames
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-stat">
@@ -1060,57 +962,44 @@ can be treated as well as non-bonded interactions can be evaluated.</p>
 </div>
 <div class="section" id="id52">
 <h4>OPTIONS<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>[OPTIONAL] coarse graining mapping and bond
-definitions</p>
-<blockquote>
-<div><p>(xml-file). If no file is given, program acts on</p>
-</div></blockquote>
-<p>original trajectory</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore if mapping is done
-separated by ;</p>
-</dd>
-</dl>
-</dd>
-<dt>Specific options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--options <var>arg</var></span></kbd></dt>
-<dd><p>options file for coarse graining</p>
-</dd>
-<dt><kbd><span class="option">--do-imc</span></kbd></dt>
-<dd><p>write out additional Inverse Monte Carlo data</p>
-</dd>
-<dt><kbd><span class="option">--block-length <var>arg</var></span></kbd></dt>
-<dd><p>write blocks of this length, the averages are
-cleared after every write</p>
-</dd>
-</dl>
-<p>–ext arg (=dist.new)   Extension of the output</p>
-</dd>
-<dt>Threading options:</dt><dd><p>–nt arg (=1)             number of threads</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="p">[</span><span class="n">OPTIONAL</span><span class="p">]</span> <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                          <span class="n">definitions</span>
+                            <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="n">no</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">program</span> <span class="n">acts</span> <span class="n">on</span>
+                          <span class="n">original</span> <span class="n">trajectory</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="n">done</span>
+                          <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+
+<span class="n">Specific</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">options</span> <span class="n">arg</span>             <span class="n">options</span> <span class="n">file</span> <span class="k">for</span> <span class="n">coarse</span> <span class="n">graining</span>
+  <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">imc</span>                  <span class="n">write</span> <span class="n">out</span> <span class="n">additional</span> <span class="n">Inverse</span> <span class="n">Monte</span> <span class="n">Carlo</span> <span class="n">data</span>
+  <span class="o">--</span><span class="n">block</span><span class="o">-</span><span class="n">length</span> <span class="n">arg</span>        <span class="n">write</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">this</span> <span class="n">length</span><span class="p">,</span> <span class="n">the</span> <span class="n">averages</span> <span class="n">are</span>
+                          <span class="n">cleared</span> <span class="n">after</span> <span class="n">every</span> <span class="n">write</span>
+  <span class="o">--</span><span class="n">ext</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">dist</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>   <span class="n">Extension</span> <span class="n">of</span> <span class="n">the</span> <span class="n">output</span>
+
+<span class="n">Threading</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">nt</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -3907,8 +3796,9 @@ Allowed options:</p>
 <div class="section" id="id92">
 <h4>OPTIONS<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-<span class="o">--</span><span class="n">eps</span> <span class="n">EPS</span>   <span class="n">tolerance</span> <span class="k">for</span> <span class="n">initialization</span>
+
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">eps</span> <span class="n">EPS</span>   <span class="n">tolerance</span> <span class="k">for</span> <span class="n">initialization</span>
 </pre></div>
 </div>
 </div>
@@ -3956,13 +3846,10 @@ Allowed options:</p>
 <div class="section" id="id100">
 <h4>OPTIONS<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="dist-boltzmann-invert-pl">
@@ -3991,31 +3878,20 @@ Allowed options:</p>
 </div>
 <div class="section" id="id104">
 <h4>OPTIONS<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">dist</span> <span class="n">invert</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Usage: csg_call [OPTIONS] dist invert [OPTIONS] &lt;in&gt; &lt;out&gt;
+
+Allowed options:
+
+    --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+    --type XXX        change the type of interaction
+                      Default: non-bonded
+    --min XXX         minimum value to consider
+                      Default: 1e-10
+-h, --help            Show this help message
+
+Possible types: non-bonded, bond, angle, dihedral
 </pre></div>
 </div>
-<dl>
-<dt>Allowed options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--kbT <var>NUMBER</var></span></kbd></dt>
-<dd><p>use NUMBER as ‘’$k_B*T$’’ for the entropic part</p>
-</dd>
-<dt><kbd><span class="option">--type <var>XXX</var></span></kbd></dt>
-<dd><p>change the type of interaction
-Default: non-bonded</p>
-</dd>
-<dt><kbd><span class="option">--min <var>XXX</var></span></kbd></dt>
-<dd><p>minimum value to consider
-Default: 1e-10</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
-<p>Possible types: non-bonded, bond, angle, dihedral</p>
 </div>
 </div>
 <div class="section" id="dummy-sh">
@@ -4285,27 +4161,17 @@ Default: 1e-10</p>
 <div class="section" id="id148">
 <h4>OPTIONS<a class="headerlink" href="#id148" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">csg</span> <span class="n">master</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">options</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span> <span class="p">[</span><span class="n">clean</span><span class="p">]</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+<span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">iterations</span> <span class="n">N</span>         <span class="n">only</span> <span class="n">do</span> <span class="n">N</span> <span class="n">iterations</span> <span class="p">(</span><span class="n">ignoring</span> <span class="n">settings</span><span class="o">.</span><span class="n">xml</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">wall</span><span class="o">-</span><span class="n">time</span> <span class="n">SEK</span>           <span class="n">Set</span> <span class="n">wall</span> <span class="n">clock</span> <span class="n">time</span>
+    <span class="o">--</span><span class="n">options</span> <span class="n">FILE</span>            <span class="n">Specify</span> <span class="n">the</span> <span class="n">options</span> <span class="n">xml</span> <span class="n">file</span> <span class="n">to</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">debug</span>                   <span class="n">enable</span> <span class="n">debug</span> <span class="n">mode</span> <span class="k">with</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">information</span>
+    <span class="o">--</span><span class="n">nocolor</span>                 <span class="n">disable</span> <span class="n">colors</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help                    show this help
--N, –do-iterations N         only do N iterations (ignoring settings.xml)</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">--wall-time <var>SEK</var></span></kbd></dt>
-<dd><p>Set wall clock time</p>
-</dd>
-<dt><kbd><span class="option">--options <var>FILE</var></span></kbd></dt>
-<dd><p>Specify the options xml file to use</p>
-</dd>
-<dt><kbd><span class="option">--debug</span></kbd></dt>
-<dd><p>enable debug mode with a lot of information</p>
-</dd>
-<dt><kbd><span class="option">--nocolor</span></kbd></dt>
-<dd><p>disable colors</p>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="kbibi-ramp-correction-pl">
@@ -4329,10 +4195,12 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id152">
 <h4>OPTIONS<a class="headerlink" href="#id152" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbibi</span> <span class="n">ramp_correction</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">kbint</span> <span class="n">target_kbint</span> <span class="n">outfile</span> <span class="n">kBT</span> <span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span> <span class="n">int_start</span><span class="p">:</span><span class="n">int_end</span> <span class="n">ramp_factor</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            Show this help message</p>
 </div>
 </div>
 <div class="section" id="lj-126-pl">
@@ -4378,25 +4246,14 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id160">
 <h4>OPTIONS<a class="headerlink" href="#id160" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">version</span>         <span class="n">Print</span> <span class="n">version</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="n">withflag</span>            <span class="n">only</span> <span class="n">change</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+<span class="o">--</span><span class="n">noflags</span>             <span class="n">don</span><span class="s1">&#39;t copy flags</span>
+<span class="o">--</span><span class="n">novalues</span>            <span class="n">don</span><span class="s1">&#39;t copy values</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-v</span>, <span class="option">--version</span></kbd></dt>
-<dd><p>Print version</p>
-</dd>
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-<dt><kbd><span class="option">--withflag</span></kbd></dt>
-<dd><p>only change entries with specific flag in src</p>
-</dd>
-<dt><kbd><span class="option">--noflags</span></kbd></dt>
-<dd><p>don’t copy flags</p>
-</dd>
-<dt><kbd><span class="option">--novalues</span></kbd></dt>
-<dd><p>don’t copy values</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="optimizer-parameters-to-potential-sh">
@@ -4980,18 +4837,19 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id280">
 <h4>OPTIONS<a class="headerlink" href="#id280" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>                   <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="nb">type</span> <span class="n">TYPE</span>               <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span>
-                            <span class="n">possible</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="n">bond</span> <span class="n">angle</span> <span class="n">dihedral</span>
-  <span class="o">--</span><span class="n">lfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">left</span> <span class="n">extrapolation</span> <span class="n">function</span>
-                            <span class="n">possible</span><span class="p">:</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="n">exponential</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">rfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">right</span> <span class="n">extrapolation</span> <span class="n">function</span>
-                            <span class="n">possible</span><span class="p">:</span> <span class="n">constant</span> <span class="n">linear</span> <span class="n">quadratic</span> <span class="n">exponential</span> <span class="n">sasha</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="n">constant</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">periodic</span><span class="p">(</span><span class="n">dihedral</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">avg</span><span class="o">-</span><span class="n">points</span> <span class="n">INT</span>          <span class="n">number</span> <span class="n">of</span> <span class="n">average</span> <span class="n">points</span>
-                            <span class="n">default</span><span class="p">:</span> <span class="mi">3</span>
+
+    <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>                   <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="nb">type</span> <span class="n">TYPE</span>               <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span>
+                              <span class="n">possible</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="n">bond</span> <span class="n">angle</span> <span class="n">dihedral</span>
+    <span class="o">--</span><span class="n">lfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">left</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                              <span class="n">possible</span><span class="p">:</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="n">exponential</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">rfct</span> <span class="n">FCT</span>                <span class="nb">type</span> <span class="n">of</span> <span class="n">the</span> <span class="n">right</span> <span class="n">extrapolation</span> <span class="n">function</span>
+                              <span class="n">possible</span><span class="p">:</span> <span class="n">constant</span> <span class="n">linear</span> <span class="n">quadratic</span> <span class="n">exponential</span> <span class="n">sasha</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="n">constant</span><span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">),</span> <span class="n">periodic</span><span class="p">(</span><span class="n">dihedral</span><span class="p">),</span> <span class="n">linear</span> <span class="p">(</span><span class="n">bonded</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">avg</span><span class="o">-</span><span class="n">points</span> <span class="n">INT</span>          <span class="n">number</span> <span class="n">of</span> <span class="n">average</span> <span class="n">points</span>
+                              <span class="n">default</span><span class="p">:</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -5020,15 +4878,16 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id284">
 <h4>OPTIONS<a class="headerlink" href="#id284" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">potential</span> <span class="n">shift</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">potential</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+
+<span class="n">Possible</span> <span class="n">types</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span><span class="p">,</span> <span class="n">bond</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dihedral</span><span class="p">,</span> <span class="n">bonded</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of potential</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<p>Possible types: non-bonded, bond, angle, dihedral, bonded</p>
 </div>
 </div>
 <div class="section" id="potential-to-dlpoly-sh">
@@ -5087,13 +4946,14 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id296">
 <h4>OPTIONS<a class="headerlink" href="#id296" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
-               <span class="k">for</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">dihedral</span>
-               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">gromacs</span> <span class="ow">in</span> <span class="n">degree</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
-  <span class="o">--</span><span class="n">step</span> <span class="n">XXX</span>   <span class="n">use</span> <span class="n">XXX</span> <span class="k">as</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">interaction</span>
+
+    <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">angle</span> <span class="ow">and</span> <span class="n">dihedral</span>
+                 <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">gromacs</span> <span class="ow">in</span> <span class="n">degree</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+    <span class="o">--</span><span class="n">step</span> <span class="n">XXX</span>   <span class="n">use</span> <span class="n">XXX</span> <span class="k">as</span> <span class="n">step</span> <span class="k">for</span> <span class="n">the</span> <span class="n">interaction</span>
 </pre></div>
 </div>
 </div>
@@ -5116,12 +4976,13 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id300">
 <h4>OPTIONS<a class="headerlink" href="#id300" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
-  <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
-               <span class="k">for</span> <span class="n">angle</span> <span class="n">interactions</span>
-               <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">lammps</span> <span class="n">uses</span> <span class="n">degrees</span> <span class="k">for</span> <span class="n">angle</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
+
+    <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">clean</span>      <span class="n">remove</span> <span class="nb">all</span> <span class="n">intermediate</span> <span class="n">temp</span> <span class="n">files</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">r2d</span>     <span class="n">do</span> <span class="ow">not</span> <span class="n">converts</span> <span class="n">rad</span> <span class="n">to</span> <span class="n">degree</span> <span class="p">(</span><span class="n">scale</span> <span class="n">x</span> <span class="n">axis</span> <span class="k">with</span> <span class="mi">180</span><span class="o">/</span><span class="mf">3.1415</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">angle</span> <span class="n">interactions</span>
+                 <span class="n">Note</span><span class="p">:</span> <span class="n">VOTCA</span> <span class="n">calcs</span> <span class="ow">in</span> <span class="n">rad</span><span class="p">,</span> <span class="n">but</span> <span class="n">lammps</span> <span class="n">uses</span> <span class="n">degrees</span> <span class="k">for</span> <span class="n">angle</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">shift</span>   <span class="n">do</span> <span class="ow">not</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">potential</span>
 </pre></div>
 </div>
 </div>
@@ -5279,9 +5140,10 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id332">
 <h4>OPTIONS<a class="headerlink" href="#id332" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">prepare_single</span> <span class="n">optimizer</span> <span class="n">N</span>
+
+<span class="n">where</span> <span class="n">N</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">parameters</span>
 </pre></div>
 </div>
-<p>where N is the total number of parameters</p>
 </div>
 </div>
 <div class="section" id="prepare-re-sh">
@@ -5444,33 +5306,18 @@ J. Chem. Theo. Comp., 8, 1802 (2012), doi:10.1021/ct3000958</p>
 <div class="section" id="id364">
 <h4>OPTIONS<a class="headerlink" href="#id364" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+<span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">output</span> <span class="n">NANE</span>             <span class="n">output</span> <span class="n">file</span> <span class="n">name</span>
+    <span class="o">--</span><span class="n">cols</span> <span class="n">NUM</span>                <span class="n">Number</span> <span class="n">of</span> <span class="n">columns</span> <span class="n">per</span> <span class="n">file</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="o">--</span><span class="n">col</span><span class="o">-</span><span class="n">y</span> <span class="n">NUM</span>               <span class="n">y</span><span class="o">-</span><span class="n">data</span> <span class="n">column</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="o">--</span><span class="n">col</span><span class="o">-</span><span class="n">x</span> <span class="n">NUM</span>               <span class="n">x</span><span class="o">-</span><span class="n">data</span> <span class="n">column</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="o">--</span><span class="n">clean</span>                 <span class="n">Clean</span> <span class="n">intermediate</span> <span class="n">files</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>show this help</p>
-</dd>
-<dt><kbd><span class="option">-o</span>, <span class="option">--output <var>NANE</var></span></kbd></dt>
-<dd><p>output file name
-–cols NUM                Number of columns per file</p>
-<blockquote>
-<div><p>Default: 3</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--col-y <var>NUM</var></span></kbd></dt>
-<dd><p>y-data column
-Default: 2</p>
-</dd>
-<dt><kbd><span class="option">--col-x <var>NUM</var></span></kbd></dt>
-<dd><p>x-data column
-Default: 1</p>
-</dd>
-<dt><kbd><span class="option">--clean</span></kbd></dt>
-<dd><p>Clean intermediate files</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-change-flag-sh">
@@ -5510,24 +5357,21 @@ Default: 1</p>
 <div class="section" id="id372">
 <h4>OPTIONS<a class="headerlink" href="#id372" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
-                    <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
-  <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
-                    <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
+
+    <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
+    <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
+                      <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
                     <span class="n">d</span> <span class="o">=</span> <span class="o">|</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="o">|</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=*</span> <span class="p">(</span><span class="n">to</span> <span class="n">avoid</span> <span class="n">shell</span> <span class="n">trouble</span><span class="p">)</span>
-  <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
-  <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
-  <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
-                    <span class="n">Default</span> <span class="mi">1</span>
-  <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+    <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
+    <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
+                      <span class="n">Default</span> <span class="mi">1</span>
+    <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-dummy-sh">
@@ -5585,42 +5429,29 @@ this creates a linear instead of a constant table</p>
 </div>
 <div class="section" id="id380">
 <h4>OPTIONS<a class="headerlink" href="#id380" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+--avgpoints A         average over the given number of points to extrapolate: default is 3
+--function            constant, linear, quadratic or exponential, sasha, periodic: default is quadratic
+--no-flagupdate       do not update the flag of the extrapolated values
+--region              left, right, or leftright: default is leftright
+--curvature C         curvature of the quadratic function: default is 10000,
+                      makes sense only for quadratic extrapolation, ignored for other cases
+-h, --help            Show this help message
+
+
+Extrapolation methods:
+
+ always &#39;&#39;$m = dy/dx= (y[i+A]-y[i])/(x[i+A]-x[i])$&#39;&#39;
+
+- constant:  &#39;&#39;$y = y0$&#39;&#39;
+- linear:  &#39;&#39;$y = ax + b\;\;b = - m*x_0 + y_0;;a = m$&#39;&#39;
+- sasha: &#39;&#39;$y = a*(x-b)^2\;\;b = (x0 - 2y_0/m)\;\; a = m^2/(4*y_0)$&#39;&#39;
+- exponential: &#39;&#39;$y = a*\\exp(b*x)\;\;a = y0*\\exp(-m*x0/y0)\;\;b = m/y_0$&#39;&#39;
+- quadratic: &#39;&#39;$y = C*(x+a)^2 + b\;\;a = m/(2*C) - x0\;\; b = y_0 - m^2/(4*C)$&#39;&#39;
+- periodic  same as linear, but extrapolates right side to end at first point of left side
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">--avgpoints <var>A</var></span></kbd></dt>
-<dd><p>average over the given number of points to extrapolate: default is 3</p>
-</dd>
-<dt><kbd><span class="option">--function</span></kbd></dt>
-<dd><p>constant, linear, quadratic or exponential, sasha, periodic: default is quadratic</p>
-</dd>
-<dt><kbd><span class="option">--no-flagupdate</span></kbd></dt>
-<dd><p>do not update the flag of the extrapolated values</p>
-</dd>
-<dt><kbd><span class="option">--region</span></kbd></dt>
-<dd><p>left, right, or leftright: default is leftright</p>
-</dd>
-<dt><kbd><span class="option">--curvature <var>C</var></span></kbd></dt>
-<dd><p>curvature of the quadratic function: default is 10000,
-makes sense only for quadratic extrapolation, ignored for other cases</p>
-</dd>
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Extrapolation methods:</dt><dd><p>always ‘’$m = dy/dx= (y[i+A]-y[i])/(x[i+A]-x[i])$’’</p>
-</dd>
-</dl>
-<ul class="simple">
-<li><p>constant:  ‘’$y = y0$’’</p></li>
-<li><p>linear:  ‘’$y = ax + b;;b = - m*x_0 + y_0;;a = m$’’</p></li>
-<li><p>sasha: ‘’$y = a*(x-b)^2;;b = (x0 - 2y_0/m);; a = m^2/(4*y_0)$’’</p></li>
-<li><p>exponential: ‘’$y = a*\exp(b*x);;a = y0*\exp(-m*x0/y0);;b = m/y_0$’’</p></li>
-<li><p>quadratic: ‘’$y = C*(x+a)^2 + b;;a = m/(2*C) - x0;; b = y_0 - m^2/(4*C)$’’</p></li>
-<li><p>periodic  same as linear, but extrapolates right side to end at first point of left side</p></li>
-</ul>
 </div>
 </div>
 <div class="section" id="table-functional-sh">
@@ -5647,30 +5478,20 @@ makes sense only for quadratic extrapolation, ignored for other cases</p>
 <div class="section" id="id384">
 <h4>OPTIONS<a class="headerlink" href="#id384" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>                    <span class="n">show</span> <span class="n">this</span> <span class="n">help</span>
+    <span class="o">--</span><span class="n">grid</span>  <span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span>          <span class="n">Output</span> <span class="n">grid</span> <span class="n">of</span> <span class="n">the</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">var</span> <span class="n">X</span><span class="o">=</span><span class="n">Y</span>                 <span class="n">Set</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span>
+    <span class="o">--</span><span class="n">fct</span> <span class="n">FCT</span>                 <span class="n">functional</span> <span class="n">form</span> <span class="n">of</span> <span class="n">the</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">headerfile</span> <span class="n">XXX</span>          <span class="n">Extra</span> <span class="n">headerfile</span> <span class="k">for</span> <span class="n">the</span> <span class="n">plot</span> <span class="n">script</span>
+                              <span class="p">(</span><span class="n">useful</span> <span class="k">for</span> <span class="n">complicated</span> <span class="n">functions</span><span class="p">)</span>
+    <span class="o">--</span><span class="n">gnuplot</span> <span class="n">CMD</span>             <span class="n">Gnuplot</span> <span class="n">command</span> <span class="n">to</span> <span class="n">use</span>
+                              <span class="n">Default</span><span class="p">:</span> <span class="n">gnuplot</span>
+    <span class="o">--</span><span class="n">clean</span>                 <span class="n">Clean</span> <span class="n">intermediate</span> <span class="n">files</span>
+
+<span class="n">Used</span> <span class="n">external</span> <span class="n">packages</span><span class="p">:</span> <span class="n">gnuplot</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>show this help
-–grid  XX:XX:XX          Output grid of the table
-–var X=Y                 Set a variable used in the function
-–fct FCT                 functional form of the table
-–headerfile XXX          Extra headerfile for the plot script</p>
-<blockquote>
-<div><p>(useful for complicated functions)</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--gnuplot <var>CMD</var></span></kbd></dt>
-<dd><p>Gnuplot command to use
-Default: gnuplot</p>
-</dd>
-<dt><kbd><span class="option">--clean</span></kbd></dt>
-<dd><p>Clean intermediate files</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>Used external packages: gnuplot</p>
 </div>
 </div>
 <div class="section" id="table-get-value-pl">
@@ -5691,13 +5512,10 @@ Default: gnuplot</p>
 <div class="section" id="id388">
 <h4>OPTIONS<a class="headerlink" href="#id388" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-integrate-pl">
@@ -5724,19 +5542,16 @@ Default: gnuplot</p>
 <div class="section" id="id392">
 <h4>OPTIONS<a class="headerlink" href="#id392" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Allowed options:
-  --with-errors     calculate error
-  --with-S          Add entropic contribution to force &#39;&#39;$2k_B T/r$&#39;&#39;
-  --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
-  --from            Integrate from left or right (to define the zero point)
-                    Default: right
-  --sphere          Add spherical volume term (&#39;&#39;$r^2$&#39;&#39;)
+
+    --with-errors     calculate error
+    --with-S          Add entropic contribution to force &#39;&#39;$2k_B T/r$&#39;&#39;
+    --kbT NUMBER      use NUMBER as &#39;&#39;$k_B*T$&#39;&#39; for the entropic part
+    --from            Integrate from left or right (to define the zero point)
+                      Default: right
+    --sphere          Add spherical volume term (&#39;&#39;$r^2$&#39;&#39;)
+-h, --help            Show this help message
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-linearop-pl">
@@ -5763,16 +5578,13 @@ Default: gnuplot</p>
 <div class="section" id="id396">
 <h4>OPTIONS<a class="headerlink" href="#id396" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+    <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">change</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+    <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">errors</span>     <span class="n">also</span> <span class="n">read</span> <span class="ow">and</span> <span class="n">calculate</span> <span class="n">errors</span>
+    <span class="o">--</span><span class="n">on</span><span class="o">-</span><span class="n">x</span>            <span class="n">work</span> <span class="n">on</span> <span class="n">x</span> <span class="n">values</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">y</span> <span class="n">values</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message
-–withflag  FL    only change entries with specific flag in src
-–with-errors     also read and calculate errors
-–on-x            work on x values instead of y values</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-scale-pl">
@@ -5856,19 +5668,15 @@ Default: gnuplot</p>
 <div class="section" id="id412">
 <h4>OPTIONS<a class="headerlink" href="#id412" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">tab</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">derivatives_in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">xvg</span> <span class="n">table</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+<span class="o">--</span><span class="n">header</span> <span class="n">XXX</span>          <span class="n">Write</span> <span class="n">a</span> <span class="n">special</span> <span class="n">simulation</span> <span class="n">programm</span> <span class="n">header</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of xvg table</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--header <var>XXX</var></span></kbd></dt>
-<dd><p>Write a special simulation programm header</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="table-to-xvg-pl">
@@ -5895,20 +5703,18 @@ Default: gnuplot</p>
 <div class="section" id="id416">
 <h4>OPTIONS<a class="headerlink" href="#id416" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">csg_call</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">convert_potential</span> <span class="n">xvg</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">&lt;</span><span class="ow">in</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">out</span><span class="o">&gt;</span>
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+<span class="o">--</span><span class="nb">type</span> <span class="n">XXX</span>            <span class="n">change</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">xvg</span> <span class="n">table</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span>
+<span class="o">--</span><span class="nb">max</span> <span class="n">MAX</span>             <span class="n">Replace</span> <span class="nb">all</span> <span class="n">pot</span> <span class="n">value</span> <span class="n">bigger</span> <span class="n">MAX</span> <span class="n">by</span> <span class="n">MAX</span>
+
+
+<span class="n">Possible</span> <span class="n">types</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">bonded</span> <span class="p">(</span><span class="o">=</span><span class="n">C12</span><span class="p">),</span> <span class="n">bond</span><span class="p">,</span> <span class="n">C12</span><span class="p">,</span> <span class="n">C6</span><span class="p">,</span> <span class="n">CB</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dihedral</span>
 </pre></div>
 </div>
-<p>Allowed options:
--h, –help            show this help message
-–type XXX            change the type of xvg table</p>
-<blockquote>
-<div><p>Default: non-bonded</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--max <var>MAX</var></span></kbd></dt>
-<dd><p>Replace all pot value bigger MAX by MAX</p>
-</dd>
-</dl>
-<p>Possible types: non-bonded (=C12), bond, C12, C6, CB, angle, dihedral</p>
 </div>
 </div>
 <div class="section" id="tables-jackknife-pl">
@@ -6126,52 +5932,43 @@ Default: gnuplot</p>
 </div>
 <div class="section" id="id460">
 <h4>OPTIONS<a class="headerlink" href="#id460" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]                        display this help and exit
-–verbose                            be loud and noisy
-–verbose1                           be very loud and noisy
--v [ –verbose2 ]                    be extremly loud and noisy
-–top arg                            atomistic topology file</p>
-</dd>
-<dt>Fluctuation options:</dt><dd><p>–filter arg (=*)                  filter molecule names
-–rmax arg                         maximal distance to be considered
-–rmin arg (=0)                    minimal distance to be considered
-–refmol arg                       Reference molecule
-–nbin arg (=100)                  Number of bins
-–geometry arg                     (sphere|x|y|z) Take radial or x, y, z</p>
-<blockquote>
-<div><p>slabs from rmin to rmax</p>
-</div></blockquote>
-<p>–outfile arg (=fluctuations.dat)  Output file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond
-definitions (xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by
-;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original
-trajectory</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)                     skip frames before this time (only works</dt><dd><p>for Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)               start with this frame
-–nframes arg                        process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>                        <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                            <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                           <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>                    <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                            <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Fluctuation</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>                  <span class="nb">filter</span> <span class="n">molecule</span> <span class="n">names</span>
+  <span class="o">--</span><span class="n">rmax</span> <span class="n">arg</span>                         <span class="n">maximal</span> <span class="n">distance</span> <span class="n">to</span> <span class="n">be</span> <span class="n">considered</span>
+  <span class="o">--</span><span class="n">rmin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                    <span class="n">minimal</span> <span class="n">distance</span> <span class="n">to</span> <span class="n">be</span> <span class="n">considered</span>
+  <span class="o">--</span><span class="n">refmol</span> <span class="n">arg</span>                       <span class="n">Reference</span> <span class="n">molecule</span>
+  <span class="o">--</span><span class="n">nbin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>                  <span class="n">Number</span> <span class="n">of</span> <span class="n">bins</span>
+  <span class="o">--</span><span class="n">geometry</span> <span class="n">arg</span>                     <span class="p">(</span><span class="n">sphere</span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="n">y</span><span class="o">|</span><span class="n">z</span><span class="p">)</span> <span class="n">Take</span> <span class="n">radial</span> <span class="ow">or</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+                                     <span class="n">slabs</span> <span class="kn">from</span> <span class="nn">rmin</span> <span class="n">to</span> <span class="n">rmax</span>
+  <span class="o">--</span><span class="n">outfile</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">fluctuations</span><span class="o">.</span><span class="n">dat</span><span class="p">)</span>  <span class="n">Output</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                             <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                                     <span class="n">definitions</span> <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>                     <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span>
+                                     <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                             <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span>
+                                     <span class="n">trajectory</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                            <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>                     <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span>
+                                     <span class="k">for</span> <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>               <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>                        <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-orientcorr">
@@ -6197,35 +5994,36 @@ r the distance between bond segments (centered on middle of bond).</p>
 <div class="section" id="id464">
 <h4>OPTIONS<a class="headerlink" href="#id464" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">output</span> <span class="ow">is</span> <span class="n">correlation</span><span class="o">.</span><span class="n">dat</span> <span class="p">(</span><span class="k">with</span> <span class="n">intra</span><span class="o">-</span><span class="n">molecular</span> <span class="n">contributions</span><span class="p">)</span> <span class="ow">and</span>
+<span class="n">correlation_excl</span><span class="o">.</span><span class="n">dat</span><span class="p">,</span> <span class="n">where</span> <span class="n">inter</span><span class="o">-</span><span class="n">molecular</span> <span class="n">contributions</span> <span class="n">are</span> <span class="n">excluded</span><span class="o">.</span>
+
+
+<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>               <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                   <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                  <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>           <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                   <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Neighbor</span> <span class="n">search</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">c</span> <span class="p">[</span> <span class="o">--</span><span class="n">cutoff</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="n">cutoff</span> <span class="k">for</span> <span class="n">the</span> <span class="n">neighbor</span> <span class="n">search</span>
+  <span class="o">--</span><span class="n">nbins</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>         <span class="n">number</span> <span class="n">of</span> <span class="n">bins</span> <span class="k">for</span> <span class="n">the</span> <span class="n">grid</span>
+  <span class="o">--</span><span class="n">nbmethod</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>    <span class="n">neighbor</span> <span class="n">search</span> <span class="n">algorithm</span> <span class="p">(</span><span class="n">simple</span> <span class="ow">or</span> <span class="n">grid</span><span class="p">)</span>
+
+<span class="n">Threading</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">nt</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>               <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                   <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>            <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                            <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>      <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>               <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
 </pre></div>
 </div>
-<p>correlation_excl.dat, where inter-molecular contributions are excluded.</p>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]               display this help and exit
-–verbose                   be loud and noisy
-–verbose1                  be very loud and noisy
--v [ –verbose2 ]           be extremly loud and noisy
-–top arg                   atomistic topology file</p>
-</dd>
-<dt>Neighbor search options:</dt><dd><p>-c [ –cutoff ] arg (=1)  cutoff for the neighbor search
-–nbins arg (=40)         number of bins for the grid
-–nbmethod arg (=grid)    neighbor search algorithm (simple or grid)</p>
-</dd>
-<dt>Threading options:</dt><dd><p>–nt arg (=1)               number of threads</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)            skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)      start with this frame
-–nframes arg               process the given number of frames</p>
-</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="csg-part-dist">
@@ -6248,19 +6046,20 @@ particles, listed by particle types.</p>
 <div class="section" id="id468">
 <h4>OPTIONS<a class="headerlink" href="#id468" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-<span class="o">--</span><span class="n">top</span> <span class="n">arg</span>             <span class="n">topology</span> <span class="n">file</span>
-<span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>             <span class="n">trajectory</span> <span class="n">file</span>
-<span class="o">--</span><span class="n">grid</span> <span class="n">arg</span>            <span class="n">output</span> <span class="n">grid</span> <span class="n">spacing</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span>
-<span class="o">--</span><span class="n">out</span> <span class="n">arg</span>             <span class="n">output</span> <span class="n">particle</span> <span class="n">distribution</span> <span class="n">table</span>
-<span class="o">--</span><span class="n">ptypes</span> <span class="n">arg</span>          <span class="n">particle</span> <span class="n">types</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">analysis</span>
-                       <span class="n">arg</span><span class="p">:</span> <span class="n">file</span> <span class="o">-</span> <span class="n">particle</span> <span class="n">types</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">space</span>
-                       <span class="n">default</span><span class="p">:</span> <span class="nb">all</span> <span class="n">particle</span> <span class="n">types</span>
-<span class="o">--</span><span class="n">first_frame</span> <span class="n">arg</span>     <span class="n">first</span> <span class="n">frame</span> <span class="n">considered</span> <span class="k">for</span> <span class="n">analysis</span>
-<span class="o">--</span><span class="n">last_frame</span> <span class="n">arg</span>      <span class="n">last</span> <span class="n">frame</span> <span class="n">considered</span> <span class="k">for</span> <span class="n">analysis</span>
-<span class="o">--</span><span class="n">coord</span> <span class="n">arg</span>           <span class="n">coordinate</span> <span class="n">analyzed</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;z&#39;</span> <span class="p">(</span><span class="n">default</span><span class="p">))</span>
-<span class="o">--</span><span class="n">shift_com</span>           <span class="n">shift</span> <span class="n">center</span> <span class="n">of</span> <span class="n">mass</span> <span class="n">to</span> <span class="n">zero</span>
-<span class="o">--</span><span class="n">comment</span> <span class="n">arg</span>         <span class="n">store</span> <span class="n">a</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">table</span>
-<span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
+
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>             <span class="n">topology</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>             <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">grid</span> <span class="n">arg</span>            <span class="n">output</span> <span class="n">grid</span> <span class="n">spacing</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>             <span class="n">output</span> <span class="n">particle</span> <span class="n">distribution</span> <span class="n">table</span>
+  <span class="o">--</span><span class="n">ptypes</span> <span class="n">arg</span>          <span class="n">particle</span> <span class="n">types</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">analysis</span>
+                         <span class="n">arg</span><span class="p">:</span> <span class="n">file</span> <span class="o">-</span> <span class="n">particle</span> <span class="n">types</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">space</span>
+                         <span class="n">default</span><span class="p">:</span> <span class="nb">all</span> <span class="n">particle</span> <span class="n">types</span>
+  <span class="o">--</span><span class="n">first_frame</span> <span class="n">arg</span>     <span class="n">first</span> <span class="n">frame</span> <span class="n">considered</span> <span class="k">for</span> <span class="n">analysis</span>
+  <span class="o">--</span><span class="n">last_frame</span> <span class="n">arg</span>      <span class="n">last</span> <span class="n">frame</span> <span class="n">considered</span> <span class="k">for</span> <span class="n">analysis</span>
+  <span class="o">--</span><span class="n">coord</span> <span class="n">arg</span>           <span class="n">coordinate</span> <span class="n">analyzed</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;z&#39;</span> <span class="p">(</span><span class="n">default</span><span class="p">))</span>
+  <span class="o">--</span><span class="n">shift_com</span>           <span class="n">shift</span> <span class="n">center</span> <span class="n">of</span> <span class="n">mass</span> <span class="n">to</span> <span class="n">zero</span>
+  <span class="o">--</span><span class="n">comment</span> <span class="n">arg</span>         <span class="n">store</span> <span class="n">a</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">table</span>
+  <span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
 </div>
@@ -6282,64 +6081,47 @@ particles, listed by particle types.</p>
 </div>
 <div class="section" id="id472">
 <h4>OPTIONS<a class="headerlink" href="#id472" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>[OPTIONAL] coarse graining mapping and bond
-definitions</p>
-<blockquote>
-<div><p>(xml-file). If no file is given, program acts on</p>
-</div></blockquote>
-<p>original trajectory</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore if mapping is done
-separated by ;</p>
-</dd>
-</dl>
-</dd>
-<dt>Specific options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--options <var>arg</var></span></kbd></dt>
-<dd><p>options file defining the rdfs</p>
-</dd>
-<dt><kbd><span class="option">--subvolume_radius <var>arg</var></span></kbd></dt>
-<dd><p>Rdf calc. in spherical subvolume of this radius (from
-center of box)</p>
-</dd>
-<dt><kbd><span class="option">--do-vol-corr</span></kbd></dt>
-<dd><p>Correct for subvolume truncation in rdf</p>
-</dd>
-<dt><kbd><span class="option">--write-every <var>arg</var></span></kbd></dt>
-<dd><p>(UNIMPLEMENTED) write after every block of this
-length, if –blocking   is set, the averages are
-cleared after every output</p>
-</dd>
-<dt><kbd><span class="option">--do-blocks</span></kbd></dt>
-<dd><p>write output for blocking analysis</p>
-</dd>
-</dl>
-</dd>
-<dt>Threading options:</dt><dd><p>–nt arg (=1)             number of threads</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="p">[</span><span class="n">OPTIONAL</span><span class="p">]</span> <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span>
+                          <span class="n">definitions</span>
+                            <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="n">no</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">program</span> <span class="n">acts</span> <span class="n">on</span>
+                          <span class="n">original</span> <span class="n">trajectory</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="k">if</span> <span class="n">mapping</span> <span class="ow">is</span> <span class="n">done</span>
+                          <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+
+<span class="n">Specific</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">options</span> <span class="n">arg</span>             <span class="n">options</span> <span class="n">file</span> <span class="n">defining</span> <span class="n">the</span> <span class="n">rdfs</span>
+  <span class="o">--</span><span class="n">subvolume_radius</span> <span class="n">arg</span>  <span class="n">Rdf</span> <span class="n">calc</span><span class="o">.</span> <span class="ow">in</span> <span class="n">spherical</span> <span class="n">subvolume</span> <span class="n">of</span> <span class="n">this</span> <span class="n">radius</span> <span class="p">(</span><span class="kn">from</span>
+                          <span class="nn">center</span> <span class="n">of</span> <span class="n">box</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">vol</span><span class="o">-</span><span class="n">corr</span>           <span class="n">Correct</span> <span class="k">for</span> <span class="n">subvolume</span> <span class="n">truncation</span> <span class="ow">in</span> <span class="n">rdf</span>
+  <span class="o">--</span><span class="n">write</span><span class="o">-</span><span class="n">every</span> <span class="n">arg</span>        <span class="p">(</span><span class="n">UNIMPLEMENTED</span><span class="p">)</span> <span class="n">write</span> <span class="n">after</span> <span class="n">every</span> <span class="n">block</span> <span class="n">of</span> <span class="n">this</span>
+                          <span class="n">length</span><span class="p">,</span> <span class="k">if</span> <span class="o">--</span><span class="n">blocking</span>   <span class="ow">is</span> <span class="nb">set</span><span class="p">,</span> <span class="n">the</span> <span class="n">averages</span> <span class="n">are</span>
+                          <span class="n">cleared</span> <span class="n">after</span> <span class="n">every</span> <span class="n">output</span>
+  <span class="o">--</span><span class="n">do</span><span class="o">-</span><span class="n">blocks</span>               <span class="n">write</span> <span class="n">output</span> <span class="k">for</span> <span class="n">blocking</span> <span class="n">analysis</span>
+
+<span class="n">Threading</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">nt</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>             <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-radii">
@@ -6359,33 +6141,28 @@ cleared after every output</p>
 </div>
 <div class="section" id="id476">
 <h4>OPTIONS<a class="headerlink" href="#id476" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file</p>
-</dd>
-<dt>Molecule filter options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--mol <var>arg</var></span></kbd></dt>
-<dd><p>molecule number</p>
-</dd>
-</dl>
-<p>–molname arg (=*)      pattern for molecule name</p>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+
+<span class="n">Molecule</span> <span class="nb">filter</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">mol</span> <span class="n">arg</span>               <span class="n">molecule</span> <span class="n">number</span>
+  <span class="o">--</span><span class="n">molname</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>      <span class="n">pattern</span> <span class="k">for</span> <span class="n">molecule</span> <span class="n">name</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-sphericalorder">
@@ -6408,54 +6185,37 @@ cleared after every output</p>
 </div>
 <div class="section" id="id480">
 <h4>OPTIONS<a class="headerlink" href="#id480" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file
-–filter arg (=*)       filter molecule names
-–radialcut arg (=0)    radial cutoff: distance from center where bead is</p>
-<blockquote>
-<div><p>considered</p>
-</div></blockquote>
-<dl class="simple">
-<dt>–minrad arg (=0)       minimal distance a parcle has to be apart from center</dt><dd><p>to be considerd</p>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">--refmol <var>arg</var></span></kbd></dt>
-<dd><p>Reference molecule</p>
-</dd>
-</dl>
-<p>–rbinw arg (=0)        Do multiple r_bins multiple histograms</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond definitions
-(xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by ;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original trajectory</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+  <span class="o">--</span><span class="nb">filter</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=*</span><span class="p">)</span>       <span class="nb">filter</span> <span class="n">molecule</span> <span class="n">names</span>
+  <span class="o">--</span><span class="n">radialcut</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">radial</span> <span class="n">cutoff</span><span class="p">:</span> <span class="n">distance</span> <span class="kn">from</span> <span class="nn">center</span> <span class="n">where</span> <span class="n">bead</span> <span class="ow">is</span>
+                          <span class="n">considered</span>
+  <span class="o">--</span><span class="n">minrad</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>       <span class="n">minimal</span> <span class="n">distance</span> <span class="n">a</span> <span class="n">parcle</span> <span class="n">has</span> <span class="n">to</span> <span class="n">be</span> <span class="n">apart</span> <span class="kn">from</span> <span class="nn">center</span>
+                          <span class="n">to</span> <span class="n">be</span> <span class="n">considerd</span>
+  <span class="o">--</span><span class="n">refmol</span> <span class="n">arg</span>            <span class="n">Reference</span> <span class="n">molecule</span>
+  <span class="o">--</span><span class="n">rbinw</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        <span class="n">Do</span> <span class="n">multiple</span> <span class="n">r_bins</span> <span class="n">multiple</span> <span class="n">histograms</span>
+
+<span class="n">Mapping</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">cg</span> <span class="n">arg</span>                  <span class="n">coarse</span> <span class="n">graining</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">bond</span> <span class="n">definitions</span>
+                          <span class="p">(</span><span class="n">xml</span><span class="o">-</span><span class="n">file</span><span class="p">)</span>
+  <span class="o">--</span><span class="nb">map</span><span class="o">-</span><span class="n">ignore</span> <span class="n">arg</span>          <span class="nb">list</span> <span class="n">of</span> <span class="n">molecules</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">separated</span> <span class="n">by</span> <span class="p">;</span>
+  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="nb">map</span>                  <span class="n">disable</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">act</span> <span class="n">on</span> <span class="n">original</span> <span class="n">trajectory</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="csg-traj-force">
@@ -6475,36 +6235,27 @@ cleared after every output</p>
 </div>
 <div class="section" id="id484">
 <h4>OPTIONS<a class="headerlink" href="#id484" title="Permalink to this headline">¶</a></h4>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]             display this help and exit
-–verbose                 be loud and noisy
-–verbose1                be very loud and noisy
--v [ –verbose2 ]         be extremly loud and noisy
-–top arg                 atomistic topology file
-–scale arg (=-1)         scaling factor for trajectory forces
-–trj-force arg           atomistic reference trajectory containing forces to</p>
-<blockquote>
-<div><p>add/subtract</p>
-</div></blockquote>
-<dl class="option-list">
-<dt><kbd><span class="option">--out <var>arg</var></span></kbd></dt>
-<dd><p>output trajectory file with resultant forces</p>
-</dd>
-</dl>
-</dd>
-<dt>Trajectory options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--trj <var>arg</var></span></kbd></dt>
-<dd><p>atomistic trajectory file</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>–begin arg (=0)          skip frames before this time (only works for</dt><dd><p>Gromacs files)</p>
-</dd>
-</dl>
-<p>–first-frame arg (=0)    start with this frame
-–nframes arg             process the given number of frames</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>             <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">verbose</span>                 <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">verbose1</span>                <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>         <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
+  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">scale</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>         <span class="n">scaling</span> <span class="n">factor</span> <span class="k">for</span> <span class="n">trajectory</span> <span class="n">forces</span>
+  <span class="o">--</span><span class="n">trj</span><span class="o">-</span><span class="n">force</span> <span class="n">arg</span>           <span class="n">atomistic</span> <span class="n">reference</span> <span class="n">trajectory</span> <span class="n">containing</span> <span class="n">forces</span> <span class="n">to</span>
+                          <span class="n">add</span><span class="o">/</span><span class="n">subtract</span>
+  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>                 <span class="n">output</span> <span class="n">trajectory</span> <span class="n">file</span> <span class="k">with</span> <span class="n">resultant</span> <span class="n">forces</span>
+
+<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
+
+  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                 <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
+  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>          <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
+                          <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
+  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>             <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

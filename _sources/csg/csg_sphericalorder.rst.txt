@@ -22,32 +22,34 @@ OPTIONS
 ::
 
   
-
-
-Allowed options:
-  -h [ --help ]             display this help and exit
-  --verbose                 be loud and noisy
-  --verbose1                be very loud and noisy
-  -v [ --verbose2 ]         be extremly loud and noisy
-  --top arg                 atomistic topology file
-  --filter arg (=*)       filter molecule names
-  --radialcut arg (=0)    radial cutoff: distance from center where bead is 
-                          considered
-  --minrad arg (=0)       minimal distance a parcle has to be apart from center
-                          to be considerd
-  --refmol arg            Reference molecule
-  --rbinw arg (=0)        Do multiple r_bins multiple histograms
-
-Mapping options:
-  --cg arg                  coarse graining mapping and bond definitions 
-                          (xml-file)
-  --map-ignore arg          list of molecules to ignore separated by ;
-  --no-map                  disable mapping and act on original trajectory
-
-Trajectory options:
-  --trj arg                 atomistic trajectory file
-  --begin arg (=0)          skip frames before this time (only works for 
-                          Gromacs files)
-  --first-frame arg (=0)    start with this frame
-  --nframes arg             process the given number of frames
-
+  
+  
+  Allowed options:
+  
+    -h [ --help ]             display this help and exit
+    --verbose                 be loud and noisy
+    --verbose1                be very loud and noisy
+    -v [ --verbose2 ]         be extremly loud and noisy
+    --top arg                 atomistic topology file
+    --filter arg (=*)       filter molecule names
+    --radialcut arg (=0)    radial cutoff: distance from center where bead is 
+                            considered
+    --minrad arg (=0)       minimal distance a parcle has to be apart from center
+                            to be considerd
+    --refmol arg            Reference molecule
+    --rbinw arg (=0)        Do multiple r_bins multiple histograms
+  
+  Mapping options:
+  
+    --cg arg                  coarse graining mapping and bond definitions 
+                            (xml-file)
+    --map-ignore arg          list of molecules to ignore separated by ;
+    --no-map                  disable mapping and act on original trajectory
+  
+  Trajectory options:
+  
+    --trj arg                 atomistic trajectory file
+    --begin arg (=0)          skip frames before this time (only works for 
+                            Gromacs files)
+    --first-frame arg (=0)    start with this frame
+    --nframes arg             process the given number of frames

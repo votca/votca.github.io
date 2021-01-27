@@ -214,24 +214,21 @@
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
-  <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
-                    <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
-  <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
-                    <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
+
+    <span class="o">--</span><span class="n">error</span>  <span class="n">ERR</span>      <span class="n">Relative</span> <span class="n">error</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mf">1e-05</span>
+    <span class="o">--</span><span class="n">op</span> <span class="n">OP</span>           <span class="n">Operation</span> <span class="n">to</span> <span class="n">perform</span>
+                      <span class="n">Possible</span><span class="p">:</span> <span class="o">=</span><span class="p">,</span><span class="o">+</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">/</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">x</span>
                     <span class="n">d</span> <span class="o">=</span> <span class="o">|</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="o">|</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=*</span> <span class="p">(</span><span class="n">to</span> <span class="n">avoid</span> <span class="n">shell</span> <span class="n">trouble</span><span class="p">)</span>
-  <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
-  <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
-  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
-  <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
-                    <span class="n">Default</span> <span class="mi">1</span>
-  <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+    <span class="o">--</span><span class="nb">sum</span>             <span class="n">Output</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">table</span>
+    <span class="o">--</span><span class="n">die</span>             <span class="n">Die</span> <span class="k">if</span> <span class="n">op</span> <span class="s1">&#39;=&#39;</span> <span class="n">fails</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">flags</span>        <span class="n">Do</span> <span class="ow">not</span> <span class="n">check</span> <span class="k">for</span> <span class="n">the</span> <span class="n">flags</span>
+    <span class="o">--</span><span class="n">scale</span> <span class="n">XXX</span>       <span class="n">Scale</span> <span class="n">output</span><span class="o">/</span><span class="nb">sum</span> <span class="k">with</span> <span class="n">this</span> <span class="n">number</span>
+                      <span class="n">Default</span> <span class="mi">1</span>
+    <span class="o">--</span><span class="n">withflag</span>  <span class="n">FL</span>    <span class="n">only</span> <span class="n">operate</span> <span class="n">on</span> <span class="n">entries</span> <span class="k">with</span> <span class="n">specific</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">src</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
-<dd><p>Show this help message</p>
-</dd>
-</dl>
 </div>
 
 

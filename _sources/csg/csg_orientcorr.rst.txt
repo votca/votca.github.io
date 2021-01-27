@@ -24,28 +24,31 @@ OPTIONS
 ::
 
   The output is correlation.dat (with intra-molecular contributions) and
-correlation_excl.dat, where inter-molecular contributions are excluded.
-
-
-Allowed options:
-  -h [ --help ]               display this help and exit
-  --verbose                   be loud and noisy
-  --verbose1                  be very loud and noisy
-  -v [ --verbose2 ]           be extremly loud and noisy
-  --top arg                   atomistic topology file
-
-Neighbor search options:
-  -c [ --cutoff ] arg (=1)  cutoff for the neighbor search
-  --nbins arg (=40)         number of bins for the grid
-  --nbmethod arg (=grid)    neighbor search algorithm (simple or grid)
-
-Threading options:
-  --nt arg (=1)               number of threads
-
-Trajectory options:
-  --trj arg                   atomistic trajectory file
-  --begin arg (=0)            skip frames before this time (only works for 
-                            Gromacs files)
-  --first-frame arg (=0)      start with this frame
-  --nframes arg               process the given number of frames
-
+  correlation_excl.dat, where inter-molecular contributions are excluded.
+  
+  
+  Allowed options:
+  
+    -h [ --help ]               display this help and exit
+    --verbose                   be loud and noisy
+    --verbose1                  be very loud and noisy
+    -v [ --verbose2 ]           be extremly loud and noisy
+    --top arg                   atomistic topology file
+  
+  Neighbor search options:
+  
+    -c [ --cutoff ] arg (=1)  cutoff for the neighbor search
+    --nbins arg (=40)         number of bins for the grid
+    --nbmethod arg (=grid)    neighbor search algorithm (simple or grid)
+  
+  Threading options:
+  
+    --nt arg (=1)               number of threads
+  
+  Trajectory options:
+  
+    --trj arg                   atomistic trajectory file
+    --begin arg (=0)            skip frames before this time (only works for 
+                              Gromacs files)
+    --first-frame arg (=0)      start with this frame
+    --nframes arg               process the given number of frames

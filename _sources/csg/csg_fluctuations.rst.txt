@@ -21,35 +21,38 @@ OPTIONS
 ::
 
   
-Allowed options:
-  -h [ --help ]                        display this help and exit
-  --verbose                            be loud and noisy
-  --verbose1                           be very loud and noisy
-  -v [ --verbose2 ]                    be extremly loud and noisy
-  --top arg                            atomistic topology file
-
-Fluctuation options:
-  --filter arg (=*)                  filter molecule names
-  --rmax arg                         maximal distance to be considered
-  --rmin arg (=0)                    minimal distance to be considered
-  --refmol arg                       Reference molecule
-  --nbin arg (=100)                  Number of bins
-  --geometry arg                     (sphere|x|y|z) Take radial or x, y, z 
-                                     slabs from rmin to rmax
-  --outfile arg (=fluctuations.dat)  Output file
-
-Mapping options:
-  --cg arg                             coarse graining mapping and bond 
-                                     definitions (xml-file)
-  --map-ignore arg                     list of molecules to ignore separated by
-                                     ;
-  --no-map                             disable mapping and act on original 
-                                     trajectory
-
-Trajectory options:
-  --trj arg                            atomistic trajectory file
-  --begin arg (=0)                     skip frames before this time (only works
-                                     for Gromacs files)
-  --first-frame arg (=0)               start with this frame
-  --nframes arg                        process the given number of frames
-
+  Allowed options:
+  
+    -h [ --help ]                        display this help and exit
+    --verbose                            be loud and noisy
+    --verbose1                           be very loud and noisy
+    -v [ --verbose2 ]                    be extremly loud and noisy
+    --top arg                            atomistic topology file
+  
+  Fluctuation options:
+  
+    --filter arg (=*)                  filter molecule names
+    --rmax arg                         maximal distance to be considered
+    --rmin arg (=0)                    minimal distance to be considered
+    --refmol arg                       Reference molecule
+    --nbin arg (=100)                  Number of bins
+    --geometry arg                     (sphere|x|y|z) Take radial or x, y, z 
+                                       slabs from rmin to rmax
+    --outfile arg (=fluctuations.dat)  Output file
+  
+  Mapping options:
+  
+    --cg arg                             coarse graining mapping and bond 
+                                       definitions (xml-file)
+    --map-ignore arg                     list of molecules to ignore separated by
+                                       ;
+    --no-map                             disable mapping and act on original 
+                                       trajectory
+  
+  Trajectory options:
+  
+    --trj arg                            atomistic trajectory file
+    --begin arg (=0)                     skip frames before this time (only works
+                                       for Gromacs files)
+    --first-frame arg (=0)               start with this frame
+    --nframes arg                        process the given number of frames

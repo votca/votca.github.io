@@ -21,38 +21,42 @@ OPTIONS
 ::
 
   
-Allowed options:
-  -h [ --help ]             display this help and exit
-  --verbose                 be loud and noisy
-  --verbose1                be very loud and noisy
-  -v [ --verbose2 ]         be extremly loud and noisy
-  --top arg                 atomistic topology file
-
-Mapping options:
-  --cg arg                  [OPTIONAL] coarse graining mapping and bond 
-                          definitions
-                            (xml-file). If no file is given, program acts on 
-                          original trajectory
-  --map-ignore arg          list of molecules to ignore if mapping is done 
-                          separated by ;
-
-Specific options:
-  --options arg             options file defining the rdfs
-  --subvolume_radius arg  Rdf calc. in spherical subvolume of this radius (from
-                          center of box)
-  --do-vol-corr           Correct for subvolume truncation in rdf
-  --write-every arg        (UNIMPLEMENTED) write after every block of this 
-                          length, if --blocking   is set, the averages are 
-                          cleared after every output
-  --do-blocks               write output for blocking analysis
-
-Threading options:
-  --nt arg (=1)             number of threads
-
-Trajectory options:
-  --trj arg                 atomistic trajectory file
-  --begin arg (=0)          skip frames before this time (only works for 
-                          Gromacs files)
-  --first-frame arg (=0)    start with this frame
-  --nframes arg             process the given number of frames
-
+  Allowed options:
+  
+    -h [ --help ]             display this help and exit
+    --verbose                 be loud and noisy
+    --verbose1                be very loud and noisy
+    -v [ --verbose2 ]         be extremly loud and noisy
+    --top arg                 atomistic topology file
+  
+  Mapping options:
+  
+    --cg arg                  [OPTIONAL] coarse graining mapping and bond 
+                            definitions
+                              (xml-file). If no file is given, program acts on 
+                            original trajectory
+    --map-ignore arg          list of molecules to ignore if mapping is done 
+                            separated by ;
+  
+  Specific options:
+  
+    --options arg             options file defining the rdfs
+    --subvolume_radius arg  Rdf calc. in spherical subvolume of this radius (from
+                            center of box)
+    --do-vol-corr           Correct for subvolume truncation in rdf
+    --write-every arg        (UNIMPLEMENTED) write after every block of this 
+                            length, if --blocking   is set, the averages are 
+                            cleared after every output
+    --do-blocks               write output for blocking analysis
+  
+  Threading options:
+  
+    --nt arg (=1)             number of threads
+  
+  Trajectory options:
+  
+    --trj arg                 atomistic trajectory file
+    --begin arg (=0)          skip frames before this time (only works for 
+                            Gromacs files)
+    --first-frame arg (=0)    start with this frame
+    --nframes arg             process the given number of frames
