@@ -219,32 +219,26 @@ convert FIELD to FIELD_CGV using cg-map.xml</p></li>
 <li><p>csg_dlptopol –top FA-dlpoly.dlpf –out CG-dlpoly.dlpf –cg cg-map.xml</p></li>
 <li><p>csg_dlptopol –top FA-gromacs.tpr –out FA-dlpoly.dlpf –no-map</p></li>
 </ul>
-<dl>
-<dt>Allowed options:</dt><dd><p>-h [ –help ]            display this help and exit
-–verbose                be loud and noisy
-–verbose1               be very loud and noisy
--v [ –verbose2 ]        be extremly loud and noisy
-–top arg                atomistic topology file
-–out arg                output topology in dlpoly format</p>
-</dd>
-<dt>Mapping options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">--cg <var>arg</var></span></kbd></dt>
-<dd><p>coarse graining mapping and bond definitions
-(xml-file)</p>
-</dd>
-<dt><kbd><span class="option">--map-ignore <var>arg</var></span></kbd></dt>
-<dd><p>list of molecules to ignore separated by ;</p>
-</dd>
-<dt><kbd><span class="option">--no-map</span></kbd></dt>
-<dd><p>disable mapping and act on original trajectory</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </div></blockquote>
 </div>
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+    -h [ --help ]            display this help and exit
+    --verbose                be loud and noisy
+    --verbose1               be very loud and noisy
+    -v [ --verbose2 ]        be extremly loud and noisy
+    --top arg                atomistic topology file
+    --out arg                output topology in dlpoly format
+  Mapping options:
+
+    --cg arg                 coarse graining mapping and bond definitions
+                           (xml-file)
+    --map-ignore arg         list of molecules to ignore separated by ;
+    --no-map                 disable mapping and act on original trajectory
+</pre></div>
+</div>
 </div>
 
 

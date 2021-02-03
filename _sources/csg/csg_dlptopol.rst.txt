@@ -15,6 +15,7 @@ DESCRIPTION
 Create a dlpoly topology template based on an existing (atomistic) topology and 
 a mapping xml-file. The created template file needs to be inspected and amended by the user!
 
+
 Examples:
 
   * csg_dlptopol --top .dlpf --out .dlpf --cg cg-map.xml
@@ -24,23 +25,24 @@ Examples:
   
   
   
-  Allowed options:
-    -h [ --help ]            display this help and exit
-    --verbose                be loud and noisy
-    --verbose1               be very loud and noisy
-    -v [ --verbose2 ]        be extremly loud and noisy
-    --top arg                atomistic topology file
-    --out arg                output topology in dlpoly format
-  
-  Mapping options:
-    --cg arg                 coarse graining mapping and bond definitions 
-                           (xml-file)
-    --map-ignore arg         list of molecules to ignore separated by ;
-    --no-map                 disable mapping and act on original trajectory
-  
+
 
 OPTIONS
 *******
+.. highlight:: none
 ::
 
-
+  Allowed options:
+  
+      -h [ --help ]            display this help and exit
+      --verbose                be loud and noisy
+      --verbose1               be very loud and noisy
+      -v [ --verbose2 ]        be extremly loud and noisy
+      --top arg                atomistic topology file
+      --out arg                output topology in dlpoly format
+    Mapping options:
+  
+      --cg arg                 coarse graining mapping and bond definitions 
+                             (xml-file)
+      --map-ignore arg         list of molecules to ignore separated by ;
+      --no-map                 disable mapping and act on original trajectory

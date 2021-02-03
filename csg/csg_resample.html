@@ -216,24 +216,24 @@ simulations.</p>
 </div>
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
-  <span class="o">--</span><span class="n">help</span>                <span class="n">produce</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span>
-  <span class="o">--</span><span class="ow">in</span> <span class="n">arg</span>              <span class="n">table</span> <span class="n">to</span> <span class="n">read</span>
-  <span class="o">--</span><span class="n">out</span> <span class="n">arg</span>             <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
-  <span class="o">--</span><span class="n">derivative</span> <span class="n">arg</span>      <span class="n">table</span> <span class="n">to</span> <span class="n">write</span>
-  <span class="o">--</span><span class="n">grid</span> <span class="n">arg</span>            <span class="n">new</span> <span class="n">grid</span> <span class="n">spacing</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">is</span> <span class="n">specified</span>
-                        <span class="n">only</span><span class="p">,</span> <span class="n">interpolation</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
-  <span class="o">--</span><span class="nb">type</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">akima</span><span class="p">)</span>   <span class="p">[</span><span class="n">cubic</span><span class="o">|</span><span class="n">akima</span><span class="o">|</span><span class="n">linear</span><span class="p">]</span><span class="o">.</span> <span class="n">If</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">specified</span><span class="p">,</span> <span class="n">the</span>
-                        <span class="n">default</span> <span class="nb">type</span> <span class="s1">&#39;akima&#39;</span> <span class="ow">is</span> <span class="n">assumed</span><span class="o">.</span>
-  <span class="o">--</span><span class="n">fitgrid</span> <span class="n">arg</span>         <span class="n">specify</span> <span class="n">fit</span> <span class="n">grid</span> <span class="p">(</span><span class="nb">min</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="s1">&#39;grid&#39;</span> <span class="ow">and</span>
-                        <span class="s1">&#39;fitgrid&#39;</span> <span class="n">are</span> <span class="n">specified</span><span class="p">,</span> <span class="n">a</span> <span class="n">fit</span> <span class="ow">is</span> <span class="n">performed</span><span class="o">.</span>
-  <span class="o">--</span><span class="n">nocut</span>               <span class="n">Option</span> <span class="k">for</span> <span class="n">fitgrid</span><span class="p">:</span> <span class="n">Normally</span><span class="p">,</span> <span class="n">values</span> <span class="n">out</span> <span class="n">of</span> <span class="n">fitgrid</span>
-                        <span class="n">boundaries</span> <span class="n">are</span> <span class="n">cut</span> <span class="n">off</span><span class="o">.</span> <span class="n">If</span> <span class="n">they</span> <span class="n">shouldn</span><span class="s1">&#39;t, choose</span>
-                        <span class="o">--</span><span class="n">nocut</span><span class="o">.</span>
-  <span class="o">--</span><span class="n">comment</span> <span class="n">arg</span>         <span class="n">store</span> <span class="n">a</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">table</span>
-  <span class="o">--</span><span class="n">boundaries</span> <span class="n">arg</span>      <span class="p">(</span><span class="n">natural</span><span class="o">|</span><span class="n">periodic</span><span class="o">|</span><span class="n">derivativezero</span><span class="p">)</span> <span class="n">sets</span> <span class="n">boundary</span>
-                        <span class="n">conditions</span>
+  --help                produce this help message
+  --in arg              table to read
+  --out arg             table to write
+  --derivative arg      table to write
+  --grid arg            new grid spacing (min:step:max). If &#39;grid&#39; is specified
+                        only, interpolation is performed.
+  --type arg (=akima)   [cubic|akima|linear]. If option is not specified, the
+                        default type &#39;akima&#39; is assumed.
+  --fitgrid arg         specify fit grid (min:step:max). If &#39;grid&#39; and
+                        &#39;fitgrid&#39; are specified, a fit is performed.
+  --nocut               Option for fitgrid: Normally, values out of fitgrid
+                        boundaries are cut off. If they shouldn&#39;t, choose
+                        --nocut.
+  --comment arg         store a comment in the output table
+  --boundaries arg      (natural|periodic|derivativezero) sets boundary
+                        conditions
 </pre></div>
 </div>
 </div>

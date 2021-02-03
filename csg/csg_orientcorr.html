@@ -215,38 +215,36 @@
 </dl>
 <p>for a polymer melt, where u is the vector pointing along a bond and
 r the distance between bond segments (centered on middle of bond).</p>
+<p>The output is correlation.dat (with intra-molecular contributions) and
+correlation_excl.dat, where inter-molecular contributions are excluded.</p>
 </div>
 <div class="section" id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">output</span> <span class="ow">is</span> <span class="n">correlation</span><span class="o">.</span><span class="n">dat</span> <span class="p">(</span><span class="k">with</span> <span class="n">intra</span><span class="o">-</span><span class="n">molecular</span> <span class="n">contributions</span><span class="p">)</span> <span class="ow">and</span>
-<span class="n">correlation_excl</span><span class="o">.</span><span class="n">dat</span><span class="p">,</span> <span class="n">where</span> <span class="n">inter</span><span class="o">-</span><span class="n">molecular</span> <span class="n">contributions</span> <span class="n">are</span> <span class="n">excluded</span><span class="o">.</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
+  -h [ --help ]               display this help and exit
+  --verbose                   be loud and noisy
+  --verbose1                  be very loud and noisy
+  -v [ --verbose2 ]           be extremly loud and noisy
+  --top arg                   atomistic topology file
 
-<span class="n">Allowed</span> <span class="n">options</span><span class="p">:</span>
+Neighbor search options:
 
-  <span class="o">-</span><span class="n">h</span> <span class="p">[</span> <span class="o">--</span><span class="n">help</span> <span class="p">]</span>               <span class="n">display</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">verbose</span>                   <span class="n">be</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">verbose1</span>                  <span class="n">be</span> <span class="n">very</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">-</span><span class="n">v</span> <span class="p">[</span> <span class="o">--</span><span class="n">verbose2</span> <span class="p">]</span>           <span class="n">be</span> <span class="n">extremly</span> <span class="n">loud</span> <span class="ow">and</span> <span class="n">noisy</span>
-  <span class="o">--</span><span class="n">top</span> <span class="n">arg</span>                   <span class="n">atomistic</span> <span class="n">topology</span> <span class="n">file</span>
+  -c [ --cutoff ] arg (=1)  cutoff for the neighbor search
+  --nbins arg (=40)         number of bins for the grid
+  --nbmethod arg (=grid)    neighbor search algorithm (simple or grid)
 
-<span class="n">Neighbor</span> <span class="n">search</span> <span class="n">options</span><span class="p">:</span>
+Threading options:
 
-  <span class="o">-</span><span class="n">c</span> <span class="p">[</span> <span class="o">--</span><span class="n">cutoff</span> <span class="p">]</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="n">cutoff</span> <span class="k">for</span> <span class="n">the</span> <span class="n">neighbor</span> <span class="n">search</span>
-  <span class="o">--</span><span class="n">nbins</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>         <span class="n">number</span> <span class="n">of</span> <span class="n">bins</span> <span class="k">for</span> <span class="n">the</span> <span class="n">grid</span>
-  <span class="o">--</span><span class="n">nbmethod</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>    <span class="n">neighbor</span> <span class="n">search</span> <span class="n">algorithm</span> <span class="p">(</span><span class="n">simple</span> <span class="ow">or</span> <span class="n">grid</span><span class="p">)</span>
+  --nt arg (=1)               number of threads
 
-<span class="n">Threading</span> <span class="n">options</span><span class="p">:</span>
+Trajectory options:
 
-  <span class="o">--</span><span class="n">nt</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>               <span class="n">number</span> <span class="n">of</span> <span class="n">threads</span>
-
-<span class="n">Trajectory</span> <span class="n">options</span><span class="p">:</span>
-
-  <span class="o">--</span><span class="n">trj</span> <span class="n">arg</span>                   <span class="n">atomistic</span> <span class="n">trajectory</span> <span class="n">file</span>
-  <span class="o">--</span><span class="n">begin</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>            <span class="n">skip</span> <span class="n">frames</span> <span class="n">before</span> <span class="n">this</span> <span class="n">time</span> <span class="p">(</span><span class="n">only</span> <span class="n">works</span> <span class="k">for</span>
-                            <span class="n">Gromacs</span> <span class="n">files</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">first</span><span class="o">-</span><span class="n">frame</span> <span class="n">arg</span> <span class="p">(</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>      <span class="n">start</span> <span class="k">with</span> <span class="n">this</span> <span class="n">frame</span>
-  <span class="o">--</span><span class="n">nframes</span> <span class="n">arg</span>               <span class="n">process</span> <span class="n">the</span> <span class="n">given</span> <span class="n">number</span> <span class="n">of</span> <span class="n">frames</span>
+  --trj arg                   atomistic trajectory file
+  --begin arg (=0)            skip frames before this time (only works for
+                            Gromacs files)
+  --first-frame arg (=0)      start with this frame
+  --nframes arg               process the given number of frames
 </pre></div>
 </div>
 </div>

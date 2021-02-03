@@ -17,16 +17,19 @@ In addtion, it does some magic tricks:
 - choose the right normalization depending on the type of interaction
 - input dist should be unnormalized (like csg_stat calcs it)
 
+Usage: csg_call [OPTIONS] dist invert [OPTIONS] <in> <out>
+
+
 Examples:
 
   * dist_boltzmann_invert.pl --kbT 2.49435 --min 0.001 tmp.dist tmp.pot
 
+
 OPTIONS
 *******
+.. highlight:: none
 ::
 
-  Usage: csg_call [OPTIONS] dist invert [OPTIONS] <in> <out>
-  
   Allowed options:
   
       --kbT NUMBER      use NUMBER as ''$k_B*T$'' for the entropic part
