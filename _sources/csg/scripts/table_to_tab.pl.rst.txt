@@ -9,23 +9,33 @@ SYNOPSIS
 
 **csg_call convert_potential tab** [--help]
 
-
-DESCRIPTION
-***********
-In addition, it does some magic tricks:
-- shift the potential, so that it is zero at the cutoff
-
 Usage: csg_call [OPTIONS] convert_potential tab [OPTIONS] <in> <derivatives_in> <out>
 
 
-Examples:
+DESCRIPTION
+***********
+This script converts csg potential files to the tab format
+(as read by espresso or lammps or dlpoly).
 
-  * table_to_tab.pl --type non-bonded table.in table_b0.xvg
+In addition, it does some magic tricks:
+- shift the potential, so that it is zero at the cutoff
+
+
+
+
+EXAMPLES
+********
+.. highlight:: none
+
+::
+
+    * table_to_tab.pl --type non-bonded table.in table_b0.xvg
 
 
 OPTIONS
 *******
 .. highlight:: none
+
 ::
 
   Allowed options:

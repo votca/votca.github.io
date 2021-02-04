@@ -206,10 +206,15 @@
 <h1>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h1>
 <p><strong>csg_call table add</strong> [OPTIONS]</p>
 <p><strong>csg_call table add</strong> [–help]</p>
+<p>Usage: csg_call [OPTIONS] table add infile1 infile2 outfile</p>
 </div>
 <div class="section" id="description">
 <h1>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
-<p>Usage: csg_call [OPTIONS] table add infile1 infile2 outfile</p>
+<p>This script adds up two potentials
+In addition, it does some magic tricks:
++ order of infiles MATTERS !!!!
++ if infile2 contains an undefined value, it uses the value from infile1
++ if value for infile1 and infile2 are both invalid, the result is also invalid</p>
 </div>
 
 

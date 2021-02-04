@@ -206,10 +206,12 @@
 <h1>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h1>
 <p><strong>csg_call pressure_cor simple</strong> [OPTIONS]</p>
 <p><strong>csg_call pressure_cor simple</strong> [–help]</p>
+<p>Usage: csg_call [OPTIONS] pressure_cor simple p_cur outfile kBT min:step:max scale p_target</p>
 </div>
 <div class="section" id="description">
 <h1>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
-<p>Usage: csg_call [OPTIONS] pressure_cor simple p_cur outfile kBT min:step:max scale p_target</p>
+<p>This script calls the pressure corrections ‘’$dU=A*(1-r/r_c)$’’, where
+‘’$A=-0.1k_B T * \max(1,|p_cur-p_target|*scale) * \sign(p_cur-p_target)$’’</p>
 </div>
 
 

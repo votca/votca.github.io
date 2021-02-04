@@ -525,12 +525,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.dodavidson</p></td>
-<td><p>use davidson solver</p></td>
-<td><p>true</p></td>
-<td><p>bool</p></td>
-</tr>
-<tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_correction</p></td>
+<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_correction</p></td>
 <td><p>Davidson correction method</p></td>
 <td><p>DPR</p></td>
 <td><div class="line-block">
@@ -539,17 +534,18 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_tolerance</p></td>
+<tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_tolerance</p></td>
 <td><p>Numerical tolerance</p></td>
 <td><p>normal</p></td>
 <td><div class="line-block">
 <div class="line">loose</div>
 <div class="line">normal</div>
 <div class="line">strict</div>
+<div class="line">lapack</div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_ortho</p></td>
+<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_ortho</p></td>
 <td><p>orthogonalisation routine: GramSchmidt or QR</p></td>
 <td><p>GS</p></td>
 <td><div class="line-block">
@@ -558,7 +554,7 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_update</p></td>
+<tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_update</p></td>
 <td><p>how large the search space</p></td>
 <td><p>safe</p></td>
 <td><div class="line-block">
@@ -568,19 +564,10 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_maxiter</p></td>
+<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_maxiter</p></td>
 <td><p>max iterations</p></td>
 <td><p>50</p></td>
 <td><p>int+</p></td>
-</tr>
-<tr class="row-even"><td><p>gwbse_engine.gwbse_options.gwbse.eigensolver.domatrixfree</p></td>
-<td><div class="line-block">
-<div class="line">solve without explicitly setting up BSE matrix, (slower</div>
-<div class="line">but a lot less memory required</div>
-</div>
-</td>
-<td><p>true</p></td>
-<td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_engine.gwbse_options.gwbse.gw_sc_max_iterations</p></td>
 <td><p>Maximum number of iterations in eVGW</p></td>

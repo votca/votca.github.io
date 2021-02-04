@@ -9,10 +9,17 @@ SYNOPSIS
 
 **csg_call pressure_cor wjk** [--help]
 
+Usage: csg_call [OPTIONS] pressure_cor wjk p_cur outfile kBT min:step:max scale p_target particle_dens rdf_file
 
 DESCRIPTION
 ***********
-Usage: csg_call [OPTIONS] pressure_cor wjk p_cur outfile kBT min:step:max scale p_target particle_dens rdf_file
+This script calls the pressure corrections  like in
+Wan, Junghans & Kremer, Euro. Phys. J. E 28, 221 (2009)
+Basically dU=A*(1-r/r_c) with A= -max(0.1k_B T, Int ) * sign(p_cur-p_target)
+and Int is the integral from Eq. 7 in the paper.
+
+
+
 
 
 

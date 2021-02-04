@@ -192,10 +192,6 @@ The following table contains the defaults input options for the calculator,
        | GW
        | BSE
        | no
-   * - gwbse_engine.gwbse_options.gwbse.eigensolver.dodavidson
-     - use davidson solver
-     - true
-     - bool
    * - gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_correction
      - Davidson correction method
      - DPR
@@ -207,6 +203,7 @@ The following table contains the defaults input options for the calculator,
      - | loose
        | normal
        | strict
+       | lapack
    * - gwbse_engine.gwbse_options.gwbse.eigensolver.davidson_ortho
      - orthogonalisation routine: GramSchmidt or QR
      - GS
@@ -222,11 +219,6 @@ The following table contains the defaults input options for the calculator,
      - max iterations
      - 50
      - int+
-   * - gwbse_engine.gwbse_options.gwbse.eigensolver.domatrixfree
-     - | solve without explicitly setting up BSE matrix, (slower
-       | but a lot less memory required
-     - true
-     - bool
    * - gwbse_engine.gwbse_options.gwbse.gw_sc_max_iterations
      - Maximum number of iterations in eVGW
      - 50

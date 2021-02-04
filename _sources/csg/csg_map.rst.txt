@@ -10,27 +10,35 @@ SYNOPSIS
 **csg_map** [--help]
 
 
+
 DESCRIPTION
 ***********
+
 Convert a reference atomistic trajectory or configuration into a coarse-grained one 
 based on a mapping xml-file. The mapping can be applied to either an entire trajectory 
 or a selected set of frames only (see options).
 
-Examples:
 
-  * csg_map --top FA-topol.tpr --trj FA-traj.trr --out CG-traj.xtc --cg cg-map.xml
-  * csg_map --top FA-topol.tpr --trj FA-conf.gro --out CG-conf.gro --cg cg-map.xml
-  * csg_map --top FA-topol.tpr --trj FA-traj.xtc --out FA-history.dlph --no-map
-  * csg_map --top FA-field.dlpf --trj FA-history.dlph --out CG-history.dlph --cg cg-map.xml
-  * csg_map --top .dlpf --trj .dlph --out .dlph --cg cg-map.xml  convert HISTORY to HISTORY_CGV
-  
-  
-  
+EXAMPLES
+********
+.. highlight:: none
+
+::
+
+    * csg_map --top FA-topol.tpr --trj FA-traj.trr --out CG-traj.xtc --cg cg-map.xml
+    * csg_map --top FA-topol.tpr --trj FA-conf.gro --out CG-conf.gro --cg cg-map.xml
+    * csg_map --top FA-topol.tpr --trj FA-traj.xtc --out FA-history.dlph --no-map
+    * csg_map --top FA-field.dlpf --trj FA-history.dlph --out CG-history.dlph --cg cg-map.xml
+    * csg_map --top .dlpf --trj .dlph --out .dlph --cg cg-map.xml  convert HISTORY to HISTORY_CGV
+    
+    
+    
 
 
 OPTIONS
 *******
 .. highlight:: none
+
 ::
 
   Allowed options:

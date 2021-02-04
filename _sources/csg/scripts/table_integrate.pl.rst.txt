@@ -9,20 +9,29 @@ SYNOPSIS
 
 **csg_call table integrate** [--help]
 
-
-DESCRIPTION
-***********
 Usage: csg_call [OPTIONS] table integrate [OPTIONS] <in> <out>
 
 
-Examples:
+DESCRIPTION
+***********
+This script calculates the integral of a table. Please note the force is the NEGATIVE integral of the potential (use 'table linearop' and multiply the table with -1)
 
-  * table_integrate.pl --with-S --kbT 2.49435 tmp.force tmp.dpot
+
+
+
+EXAMPLES
+********
+.. highlight:: none
+
+::
+
+    * table_integrate.pl --with-S --kbT 2.49435 tmp.force tmp.dpot
 
 
 OPTIONS
 *******
 .. highlight:: none
+
 ::
 
   Allowed options:

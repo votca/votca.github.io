@@ -9,10 +9,18 @@ SYNOPSIS
 
 **csg_call table add** [--help]
 
+Usage: csg_call [OPTIONS] table add infile1 infile2 outfile
 
 DESCRIPTION
 ***********
-Usage: csg_call [OPTIONS] table add infile1 infile2 outfile
+This script adds up two potentials
+In addition, it does some magic tricks:
++ order of infiles MATTERS !!!!
++ if infile2 contains an undefined value, it uses the value from infile1
++ if value for infile1 and infile2 are both invalid, the result is also invalid
+
+
+
 
 
 
