@@ -7,12 +7,13 @@ The following table contains the input options for CSG,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
    * - fmatch
-     - Force matching options
      - 
+     - Force matching options
    * - fmatch.constrainedLS
+     - 
      - | boolean variable: false - simple least squares, true -
        | constrained least squares. For details see the VOTCA paper.
        | Practically, both algorithms give the same results, but
@@ -20,604 +21,604 @@ The following table contains the input options for CSG,
        | and you think that a spline can only then be called a
        | spline if it has continuous first and second derivatives,
        | use constrained least squares.
-     - 
    * - fmatch.dist
+     - 1e-5
      - | Accuracy for evaluating the difference in bead positions.
        | Default is 1e-5
-     - 1e-5
    * - fmatch.frames_per_block
+     - 
      - | number of frames, being used for block averaging. Atomistic
        | trajectory, specified with --trj option, is divided into
        | blocks and the force matching equations are solved separately
        | for each block. Coarse-grained force-field, which one
        | gets on the output is averaged over those blocks.
-     - 
    * - inverse
+     - 
      - general options for inverse script
-     - 
    * - inverse.cleanlist
-     -  these files are removed after each iteration
      - 
+     -  these files are removed after each iteration
    * - inverse.convergence_check
      - 
      - 
    * - inverse.convergence_check.limit
-     - lower convergency limit to stop
      - 0
+     - lower convergency limit to stop
    * - inverse.convergence_check.type
-     - type of convergence check to do
      - none
+     - type of convergence check to do
    * - inverse.dlpoly
-     -  general dlpoly specific options 
      - 
+     -  general dlpoly specific options 
    * - inverse.dlpoly.command
+     - DLPOLY.Z
      - | command to run dlpoly (name or absolute path or 'mpirun
        | dlpoly' or such)
-     - DLPOLY.Z
    * - inverse.dlpoly.topol
-     -  Name of dlpoly topology file
      - .dlpf
+     -  Name of dlpoly topology file
    * - inverse.dlpoly.traj
-     -  Name of the output dlpoly trajectory file
      - .dlph
+     -  Name of the output dlpoly trajectory file
    * - inverse.dlpoly.checkpoint
-     -  Names of the  dlpoly checkpoint files
      - REVIVE REVCON
+     -  Names of the  dlpoly checkpoint files
    * - inverse.dlpoly.table_end
+     - 
      - | dlpoly internal grid end point for tabulated non-bonded
        | potentials (applied to all non-bonded)
-     - 
    * - inverse.dlpoly.table_grid
+     - 
      - | dlpoly internal grid number for tabulated non-bonded potentials
        | (applied to all non-bonded)
-     - 
    * - inverse.dlpoly.bonds
+     - 
      - | dlpoly specs for tabulated bonded potentials (applied
        | to all bonds)
-     - 
    * - inverse.dlpoly.bonds.table_end
+     - 
      - dlpoly internal grid end point for tabulated potentials
-     - 
    * - inverse.dlpoly.bonds.table_grid
-     - dlpoly internal grid number for tabulated potentials
      - 
+     - dlpoly internal grid number for tabulated potentials
    * - inverse.dlpoly.angles
+     - 
      - | dlpoly specs for tabulated bonded potentials (applied
        | to all angles)
-     - 
    * - inverse.dlpoly.angles.table_grid
-     - dlpoly internal grid number for tabulated potentials
      - 
+     - dlpoly internal grid number for tabulated potentials
    * - inverse.dlpoly.dihedrals
+     - 
      - | dlpoly specs for tabulated bonded potentials (applied
        | to all dihedrals)
-     - 
    * - inverse.dlpoly.dihedrals.table_grid
-     - dlpoly internal grid number for tabulated potentials
      - 
+     - dlpoly internal grid number for tabulated potentials
    * - inverse.espresso
      - 
      - 
    * - inverse.espresso.command
+     - python3
      - | Command to run espresso (name or absolute path or mpirun
        | espresso..)
-     - python3
    * - inverse.espresso.opts
+     - ${script}
      - | option to be given to espresso program, use ${script}
        | in there
-     - ${script}
    * - inverse.espresso.first_frame
+     - 0
      - | trash the given number of frames at the beginning of trajectory
        | 
-     - 0
    * - inverse.espresso.table_bins
+     - 
      - espresso internal grid for tabulated potentials
-     - 
    * - inverse.espresso.traj
-     -  Name of the output Espresso trajectory file
      - 
+     -  Name of the output Espresso trajectory file
    * - inverse.espressopp
      - 
      - 
    * - inverse.espressopp.command
+     - python2
      - | Command to run espresso (name or absolute path or mpirun
        | espresso..)
-     - python2
    * - inverse.espressopp.opts
+     - ${script}
      - | option to be given to espresso program, use ${script}
        | in there
-     - ${script}
    * - inverse.espressopp.first_frame
+     - 0
      - | trash the given number of frames at the beginning of trajectory
        | 
-     - 0
    * - inverse.filelist
-     - these files are copied to each iteration step
      - 
+     - these files are copied to each iteration step
    * - inverse.gnuplot
      - 
      - 
    * - inverse.gnuplot.bin
-     - gnuplot binary to use
      - gnuplot
+     - gnuplot binary to use
    * - inverse.gromacs
-     - gromacs specific options 
      - 
+     - gromacs specific options 
    * - inverse.gromacs.conf
-     - Name of the coordinate file read by grompp
      - conf.gro
+     - Name of the coordinate file read by grompp
    * - inverse.gromacs.conf_out
-     - Name of the original outcome coordinate written by mdrun
      - confout.gro
+     - Name of the original outcome coordinate written by mdrun
    * - inverse.gromacs.density
      - 
      - 
    * - inverse.gromacs.density.block_length
-     - Length of the block for the error analysis
      - 
+     - Length of the block for the error analysis
    * - inverse.gromacs.density.with_errors
-     - calculate error on the density: yes/no
      - no
+     - calculate error on the density: yes/no
    * - inverse.gromacs.equi_time
+     - 0
      - | begin analysis after this time when using gromacs (max
        | of this and first_frame is used)
-     - 0
    * - inverse.gromacs.first_frame
+     - 0
      - | trash the given number of frames at the beginning of trajectory
        | (max of this and first_frame is used)
-     - 0
    * - inverse.gromacs.g_energy
      - 
      - 
    * - inverse.gromacs.g_energy.bin
-     -  Name (or absolute path) of the g_energy binary
      - /usr/bin/gmx_d energy
+     -  Name (or absolute path) of the g_energy binary
    * - inverse.gromacs.g_energy.opts
+     - 
      -  Additional options to Gromacs g_energy (e.g. -P 1)
-     - 
    * - inverse.gromacs.g_energy.pressure
+     - 
      -  options for pressure calculation using g_energy
-     - 
    * - inverse.gromacs.g_energy.pressure.allow_nan
-     -  is nan an allowed result: yes/no
      - no
+     -  is nan an allowed result: yes/no
    * - inverse.gromacs.g_energy.topol
+     - 
      -  Gromacs binary topol (tpr) file to use by g_energy 
-     - 
    * - inverse.gromacs.gmxrc
-     - GMXRC to source at the startup
      - 
+     - GMXRC to source at the startup
    * - inverse.gromacs.grompp
      - 
      - 
    * - inverse.gromacs.grompp.bin
-     -  Name (or absolute path) of the grompp binary
      - /usr/bin/gmx_d grompp
+     -  Name (or absolute path) of the grompp binary
    * - inverse.gromacs.grompp.opts
-     -  Additional options to Gromacs grompp (e.g. -maxwarn 1)
      - 
+     -  Additional options to Gromacs grompp (e.g. -maxwarn 1)
    * - inverse.gromacs.index
-     -  Gromacs grompp index file to used by grompp
      - index.ndx
+     -  Gromacs grompp index file to used by grompp
    * - inverse.gromacs.log
+     - 
      - | Separate log file for gromacs programs (useful with mdrun
        | -v)
-     - 
    * - inverse.gromacs.mdp
-     -  Gromacs mdp file to be used by grompp
      - grompp.mdp
+     -  Gromacs mdp file to be used by grompp
    * - inverse.gromacs.mdrun
      - 
      - 
    * - inverse.gromacs.mdrun.checkpoint
-     - Name of the checkpint to use in case of restarted simulation
      - state.cpt
+     - Name of the checkpint to use in case of restarted simulation
    * - inverse.gromacs.mdrun.command
+     - /usr/bin/gmx_d mdrun
      - | Command to run mdrun (name or absolute path or mpirun
        | mdrun..)
-     - /usr/bin/gmx_d mdrun
    * - inverse.gromacs.mdrun.multidir
+     - 
      -  List of directories for multidir simulations
-     - 
    * - inverse.gromacs.mdrun.opts
-     -  Additional options to Gromacs mdrun (e.g. -nosum)
      - 
+     -  Additional options to Gromacs mdrun (e.g. -nosum)
    * - inverse.gromacs.pot_max
-     -  cut the potential at this value (gromacs bug) 
      - 1000000
+     -  cut the potential at this value (gromacs bug) 
    * - inverse.gromacs.pre_simulation
+     - no
      - | A pre simulation (e.g. minimization / equilibration )
        | is a simulation with a different mdp/topol/index
-     - no
    * - inverse.gromacs.pre_simulation.index
+     - 
      - | Gromacs grompp index file to used by grompp in the pre
        | simulation
-     - 
    * - inverse.gromacs.pre_simulation.mdp
-     -  Gromacs mdp file to be used by grompp in the pre simulation
      - 
+     -  Gromacs mdp file to be used by grompp in the pre simulation
    * - inverse.gromacs.pre_simulation.topol_in
+     - 
      - | Gromacs text topol (top) file to use by grompp in the
        | pre simulation
-     - 
    * - inverse.gromacs.ref
+     - 
      - | Options for the case that calculation of reference system
        | is needed
-     - 
    * - inverse.gromacs.ref.equi_time
+     - 0
      - | begin analysis after this time when using gromacs (max
        | of this and first_frame is used)
-     - 0
    * - inverse.gromacs.ref.first_frame
+     - 0
      - | trash the given number of frames at the beginning of trajectory
        | (max of this and first_frame is used)
-     - 0
    * - inverse.gromacs.ref.mapping
+     - 
      - | Mapping to apply on the coarse-grained topology, use autogenerated
        | ones (cg.inverse.optimizer.mapping.output) and given ones
        | (map other components)
-     - 
    * - inverse.gromacs.ref.rdf
+     - 
      - Contains options for Reference rdf calculation
-     - 
    * - inverse.gromacs.ref.rdf.opts
+     - 
      - Extra options to give to csg_stat (e.g. --nframes 100)
-     - 
    * - inverse.gromacs.ref.topol
+     - 
      - Reference binary topology(global or local path)
-     - 
    * - inverse.gromacs.ref.traj
-     - Reference trajectory(global or local path)
      - 
+     - Reference trajectory(global or local path)
    * - inverse.gromacs.rdf
      - 
      - 
    * - inverse.gromacs.rdf.block_length
-     - Length of the block for the error analysis
      - 
+     - Length of the block for the error analysis
    * - inverse.gromacs.rdf.map
+     - 
      - | Space separated list of special mapping file(s) for rdf
        | calculations needed for bonded interactions
-     - 
    * - inverse.gromacs.rdf.with_errors
-     - calculate error on the rdf: yes/no
      - no
+     - calculate error on the rdf: yes/no
    * - inverse.gromacs.table_bins
-     -  grid for gromacs xvg table
      - 0.002
+     -  grid for gromacs xvg table
    * - inverse.gromacs.table_end
-     - extend the gromacs xvg tables to this value
      - 
+     - extend the gromacs xvg tables to this value
    * - inverse.gromacs.temp_check
-     - check kBT against t_ref in mdp file: yes/no
      - yes
+     - check kBT against t_ref in mdp file: yes/no
    * - inverse.gromacs.topol_in
-     -  Gromacs text topology (top) file read by grompp
      - topol.top
+     -  Gromacs text topology (top) file read by grompp
    * - inverse.gromacs.topol
+     - topol.tpr
      - | Gromacs binary topology (tpr) file to be written by grompp
        | and used for the simlation
-     - topol.tpr
    * - inverse.gromacs.traj
-     -  Gromacs trajectory file to use
      - traj.xtc
+     -  Gromacs trajectory file to use
    * - inverse.gromacs.trjcat
      - 
      - 
    * - inverse.gromacs.trjcat.bin
-     -  Name (or absolute path) of the trjcat binary 
      - /usr/bin/gmx_d trjcat
+     -  Name (or absolute path) of the trjcat binary 
    * - inverse.hoomd-blue
      - 
      - 
    * - inverse.hoomd-blue.command
+     - hoomd
      - | Command to run hoomd-blue (name or absolute path or mpirun
        | ..)
-     - hoomd
    * - inverse.hoomd-blue.opts
+     - ${script}
      - | option to be given to hoomd-blue program, use ${script}
        | in there
-     - ${script}
    * - inverse.imc
-     -  general imc specific options 
      - 
+     -  general imc specific options 
    * - inverse.imc.default_reg
+     - 0
      - | default magnitude for regularization parameter if not
        | given for the group explicitly, default =0
-     - 0
    * - inverse.lammps
-     -  general lammps specific options 
      - 
+     -  general lammps specific options 
    * - inverse.lammps.command
+     - /usr/bin/lmp
      - | command to run lammps (name or absolute path or mpirun
        | lammps..)
-     - /usr/bin/lmp
    * - inverse.lammps.script
-     -  lammps script to run 
      - 
+     -  lammps script to run 
    * - inverse.lammps.opts
+     - -in ${script}
      - | option to be given to lammps program, use ${script} in
        | there
-     - -in ${script}
    * - inverse.lammps.traj
+     - 
      - | trajectory file to be created by lammps, use a format
        | like xyz, which can be read by csg_stat
-     - 
    * - inverse.lammps.pressure_file
+     - 
      - | pressure file generated by lammps, use "fix print" in
        | lammps input (e.g., "fix pressure all print 50 "${mypress}"
        | file lammps.pressure screen no title "LAMMPS_PRESSURE"
        | " ; pressure_file would be lammps.pressure in this example).
        | The title can be anything as VOTCA skips over this line
        | as a header when parsing
-     - 
    * - inverse.sim_prog
-     -  options, which apply to all simulation programs
      - 
+     -  options, which apply to all simulation programs
    * - inverse.sim_prog.command
+     - 
      - | Command to run for the simulation (name or absolute path
        | or mpirun XXX ..)
-     - 
    * - inverse.sim_prog.conf
+     - 
      - | Name of the coordinate file read by the simulation program
        | (if needed)
-     - 
    * - inverse.sim_prog.conf_out
+     - 
      - | Name of the original outcome coordinate written by simulation
        | program (if any)
-     - 
    * - inverse.sim_prog.equi_time
+     - 0
      - | begin analysis after this time (max of this and first_frame
        | is used)
-     - 0
    * - inverse.sim_prog.density
      - 
      - 
    * - inverse.sim_prog.density.block_length
-     - Length of the block for the error analysis
      - 
+     - Length of the block for the error analysis
    * - inverse.sim_prog.density.with_errors
-     - calculate error on the density: yes/no
      - no
+     - calculate error on the density: yes/no
    * - inverse.sim_prog.first_frame
+     - 0
      - | trash the given number of frames at the beginning of trajectory
        | (max of this and first_frame is used)
-     - 0
    * - inverse.sim_prog.imc
      - 
      - 
    * - inverse.sim_prog.imc.topol
+     - 
      - Special topology file to be used for csg_stat used in imc
-     - 
    * - inverse.sim_prog.imc.traj
-     - Special trajectory file to be used for csg_stat used in imc
      - 
+     - Special trajectory file to be used for csg_stat used in imc
    * - inverse.sim_prog.re
      - 
      - 
    * - inverse.sim_prog.re.topol
+     - 
      - Special topology file to be used for csg_reupdate
-     - 
    * - inverse.sim_prog.re.traj
-     - Special trajectory file to be used for csg_reupdate
      - 
+     - Special trajectory file to be used for csg_reupdate
    * - inverse.sim_prog.rdf
      - 
      - 
    * - inverse.sim_prog.rdf.block_length
-     - Length of the block for the error analysis
      - 
+     - Length of the block for the error analysis
    * - inverse.sim_prog.rdf.map
+     - 
      - | Space separated list of special mapping file(s) for rdf
        | calculations needed for bonded interactions
-     - 
    * - inverse.sim_prog.rdf.topol
+     - 
      -  Special topology file to be used for csg_stat
-     - 
    * - inverse.sim_prog.rdf.traj
-     - Special trajectory file to be used for csg_stat
      - 
+     - Special trajectory file to be used for csg_stat
    * - inverse.sim_prog.rdf.with_errors
-     - calculate error on the rdf: yes/no
      - n
+     - calculate error on the rdf: yes/no
    * - inverse.sim_prog.topol
+     - 
      - | General topology file to be use if no special one is specified
        | 
-     - 
    * - inverse.sim_prog.traj
+     - 
      -  trajectory file to be created by the simulation program
-     - 
    * - inverse.sim_prog.script
-     -  simulation script to run (if any)
      - 
+     -  simulation script to run (if any)
    * - inverse.sim_prog.opts
+     - 
      - | option to be given to simulation program, use ${script}
        | in there
-     - 
    * - inverse.re
-     - general options for realtive entropy method
      - 
+     - general options for realtive entropy method
    * - inverse.re.csg_reupdate
      - 
      - 
    * - inverse.re.csg_reupdate.opts
-     - options for the csg_reupdate command
      - 
+     - options for the csg_reupdate command
    * - inverse.average
      - 
      - 
    * - inverse.average.steps
+     - 1
      - | number of steps to be used for average computation. For
        | relative entropy method, these many last iteration steps
        | are used to compute average CG potentials or parameters
        | or both.
-     - 1
    * - inverse.initial_configuration
+     - maindir
      - | what initial configuration to use in every step: maindir/laststep/nowhere.
        | 
-     - maindir
    * - inverse.iterations_max
+     - 
      - do the given number of iterations (0=inf)
-     - 
    * - inverse.kBT
-     -  kBT in KJ/mol (i.e. XXX K * 0.00831451)
      - 
+     -  kBT in KJ/mol (i.e. XXX K * 0.00831451)
    * - inverse.log_file
-     - name of the log file
      - inverse.log
+     - name of the log file
    * - inverse.map
+     - 
      - | Special mapping file(s) for rdf calculations needed for
        | bonded interactions
-     - 
    * - inverse.method
-     - method to be performed: ibi/imc/ft/optimizer
      - 
+     - method to be performed: ibi/imc/ft/optimizer
    * - inverse.optimizer
      - 
      - 
    * - inverse.optimizer.cma
+     - 
      - general options for the cma optimizer
-     - 
    * - inverse.optimizer.cma.eps
+     - 
      - standard epsilon, in which the best solution is searched
-     - 
    * - inverse.optimizer.type
-     - Type of optimizer to be used
      - 
+     - Type of optimizer to be used
    * - inverse.program
-     - simulation package to be used (gromacs/espresso/lammps)
      - gromacs
+     - simulation package to be used (gromacs/espresso/lammps)
    * - inverse.restart_file
-     - Name of the restart file in case a step has to be resumed
      - restart_points.log
+     - Name of the restart file in case a step has to be resumed
    * - inverse.dist_min
+     - 1e-10
      - | minimal value for the rdf to consider for initial guess
        | of the potential)
-     - 1e-10
    * - inverse.scriptpath
+     - 
      - | list of directories for user scripts (e.g. $PWD) separated
        | by a colon (like PATH)
-     - 
    * - inverse.simulation
-     - simulation options 
      - 
+     - simulation options 
    * - inverse.simulation.background
-     - tells csg_inverse that simulation was send to the backgroud
      - no
+     - tells csg_inverse that simulation was send to the backgroud
    * - inverse.simulation.tasks
-     - number of threads to use for csg_stat
      - auto
+     - number of threads to use for csg_stat
    * - nbsearch
-     - Grid search algorithm, simple (N square search) or grid
      - grid
+     - Grid search algorithm, simple (N square search) or grid
    * - bonded
+     - 
      - | Interaction specific option for bonded interactions, see
        | the cg.non-bonded section for all options
-     - 
    * - bonded.dlpoly
      - 
      - 
    * - bonded.dlpoly.header
+     - 
      - | Header of the interaction in dlpoly TABBND or TABANG file.
        | The header should be a unique set of the interaction-site
        | names, and these should match the corresponding names
        | specified in the mapping file.
-     - 
    * - bonded.name
+     - 
      - | Name of the bonded interaction. The name can be arbitrary
        | but should be unique. For bonded interactions, this should
        | match the name specified in the mapping file.
-     - 
    * - bonded.periodic
+     - 0
      - | set to 1 when calculating bond dihedral potentials with
        | csg_fmatch -> enforces periodicity of potential. (default
        | is 0)
-     - 0
    * - non-bonded
-     - Interaction specific option for non-bonded interactions
      - 
+     - Interaction specific option for non-bonded interactions
    * - non-bonded.dlpoly
      - 
      - 
    * - non-bonded.dlpoly.header
+     - 
      - | Header of the interaction in dlpoly TABLE file. The header
        | should be a unique pair of the interaction-site names,
        | and these should match the corresponding names specified
        | in the mapping file.
-     - 
    * - non-bonded.name
+     - 
      - | Name of the interaction. The name can be arbitrary but
        | should be unique. For bonded interactions, this should
        | match the name specified in the mapping file.
-     - 
    * - non-bonded.type1
+     - 
      - **Bead** type 1 of non-bonded interaction.
-     - 
    * - non-bonded.type2
-     - **Bead** type 2 of non-bonded interaction.
      - 
+     - **Bead** type 2 of non-bonded interaction.
    * - non-bonded.bondtype
+     - 
      - | Internal alias for "non-bonded" or "bonded", set automatically
        | 
-     - 
    * - non-bonded.min
+     - 
      - | Lower bound of interval for potential table in which calculations
        | are performed. Should be set based on reference distributions.
-     - 
    * - non-bonded.max
+     - 
      - | Upper bound of interval for potential table in which calculations
        | are performed. Should be set based on reference distributions.
-     - 
    * - non-bonded.step
+     - 
      - | Step size of interval for potential table in which calculations
        | are performed. If step site is too small, lots of statistics
        | is needed ( long runs ). If it's too big, features in
        | the distribtuion/potentials might get lost.
-     - 
    * - non-bonded.fmatch
-     - Force matching options
      - 
+     - Force matching options
    * - non-bonded.fmatch.min
+     - 
      - | Minimum value of interval for distribution sampled in
        | atomistic MD simulation. One can get this number by looking
        | at the distribution function for this interaction. For
        | non-bonded interactions it's the distance to the rdf start.
        | For CG bonds and angles the variable has the similar meaning
        | ( note, that for angles it is specified in radians ).
-     - 
    * - non-bonded.fmatch.max
+     - 
      - | Maximum value of interval for distribution sampled in
        | atomistic MD simulation. One can get this number by looking
        | at the distribution function for this interaction. For
        | non-bonded interactions it's the cut-off of the interaction.
-     - 
    * - non-bonded.fmatch.step
+     - 
      - | grid spacing for the spline, which represents the interaction.
        | This parameter should not be too big, otherwise you might
        | lose some features of the interaction potential, and not
        | too small either, otherwise you will have unsampled bins
        | which result in an ill-defined equation system and NaNs
        | in the output.
-     - 
    * - non-bonded.fmatch.out_step
+     - 
      - | Grid spacing for the output grid. Normally, one wants
        | to have this parameter smaller than fmatch.step, to have
        | a smooth curve, without additional spline interpolation.
        | As a rule of thumb we normally use fmatch.out_step which
        | is approximately 5 times smaller than fmatch.step.
-     - 
    * - non-bonded.re
-     - Relative entropy options
      - 
+     - Relative entropy options
    * - non-bonded.re.function
+     - 
      - | Functional form for the potential. Available functional
        | forms: lj126 (Lennard-Jones 12-6), ljg (Lennard-Jones
        | 12-6 plus Gaussian), and cbspl (uniform cubic B-splines).
-     - 
    * - non-bonded.re.cbspl
-     - options specific to cbspl function form
      - 
+     - options specific to cbspl function form
    * - non-bonded.re.cbspl.nknots
+     - 
      - | Number of knot values to be used for the cbspl functional
        | form. Uniform grid size of the CBSPL depends on this parameter;
        | for fixed potential range more the nknots smaller the
@@ -626,382 +627,381 @@ The following table contains the input options for CSG,
        | the bins at distance greater than the minimum distance
        | are sampled sufficiently otherwise ill-defined system
        | of equation would give NaNs in the output.
-     - 
    * - non-bonded.inverse
-     - Contains all information relevant to iterative process
      - 
+     - Contains all information relevant to iterative process
    * - non-bonded.inverse.target
+     - 
      - | target distribution (e.g. rdf) which is tried to match
        | during iterations to match
-     - 
    * - non-bonded.inverse.p_target
-     - pressure contribution of this interaction
      - 
+     - pressure contribution of this interaction
    * - non-bonded.inverse.particle_dens
+     - 
      - | particle density of this species (for wjk pressure correction)
        | 
-     - 
    * - non-bonded.inverse.do_potential
+     - 1
      - | Update cycle for the potential update. 1 means update,
        | 0 don't update. 1 1 0 means update 2 iterations, then
        | don't one iteration update, then repeat.
-     - 1
    * - non-bonded.inverse.espresso
-     - Espresso specific options for this interations
      - 
+     - Espresso specific options for this interations
    * - non-bonded.inverse.espresso.table
+     - 
      - | Name of file for tabulated potential of this interaction.
        | This fill will be created from the internal tabulated
        | potential format in every step. Note, though, that the
        | original espresso script needs to contain the name of
        | that table as the tabulated interaction (see tutorial
        | methanol ibi_espresso for details).
-     - 
    * - non-bonded.inverse.gromacs
-     - Gromacs specific options for this interations
      - 
+     - Gromacs specific options for this interations
    * - non-bonded.inverse.gromacs.table
+     - 
      - | Name of file for tabulated potential of this interaction.
        | This fill will be created from the internal tabulated
        | potential format in every step.
-     - 
    * - non-bonded.inverse.sim_prog
+     - 
      - | interaction specific options, which apply to all simulation
        | programs
-     - 
    * - non-bonded.inverse.sim_prog.table
+     - 
      - | Name of file for tabulated potential of this interaction.
        | This fill will be created from the internal tabulated
        | potential format in every step. Note, though, that the
        | original simulation script needs to contain the name of
        | that table as the tabulated interaction (see tutorial
        | methanol ibi_espresso for details).
-     - 
    * - non-bonded.inverse.sim_prog.table_begin
+     - 
      - | Start of the tabulated potential of this interaction.
        | (Automatic for gromacs)
-     - 
    * - non-bonded.inverse.sim_prog.table_end
+     - 
      - | End of the tabulated potential of this interaction. (Automatic
        | for gromacs)
-     - 
    * - non-bonded.inverse.sim_prog.table_left_extrapolation
+     - 
      - | Extrapolation function to use on the left. Default: exponential(non-bonded),
        | linear (bonded), Options: constant linear quadratic exponential
        | sasha
-     - 
    * - non-bonded.inverse.sim_prog.table_right_extrapolation
+     - 
      - | Extrapolation function to use on the right. Default: constant(non-bonded),
        | linear (bonded), Options: constant linear quadratic exponential
        | sasha
-     - 
    * - non-bonded.inverse.sim_prog.table_bins
+     - 
      - | Binszie of the tabulated potential of this interaction.
        | (gromacs uses a non interaction specific option)
-     - 
    * - non-bonded.inverse.imc
-     - ection containing inverse monte carlo specific options.
      - 
+     - ection containing inverse monte carlo specific options.
    * - non-bonded.inverse.imc.group
+     - 
      - | Group of interaction. Cross-correlations of all members
        | of a group are taken into account for calculating the
        | update. If no cross correlations should be calculated,
        | interactions have to be put into different groups.
-     - 
    * - non-bonded.inverse.lammps
-     - lammps specific options for this interations
      - 
+     - lammps specific options for this interations
    * - non-bonded.inverse.lammps.scale
+     - 1
      - | x-axis scaling factor for the potential output, can be
        | used to convert VOTCA units, nm, to other units, e.g.
        | angstroms
-     - 1
    * - non-bonded.inverse.lammps.table
+     - 
      - | Name of file for tabulated potential of this interaction.
        | This fill will be created from the internal tabulated
        | potential format in every step. Note, though, that the
        | lammps script needs to contain the name of that table
        | as the tabulated interaction and the interaction is stored
        | in the VOTCA section of the file..
-     - 
    * - non-bonded.inverse.lammps.y_scale
+     - 1
      - | y-axis scaling factor for the potential output, can be
        | used to convert VOTCA units, kJ/mol, to other units, e.g.
        | kcal/mol
-     - 1
    * - non-bonded.inverse.post_add
+     - 
      - | Additional post processing of U after dU added to potential.
        | This is a list of scripts separated by spaces which are
        | called. See section on iterative framework for details.
-     - 
    * - non-bonded.inverse.post_add_options
+     - 
      - Contains all options of post add scripts
-     - 
    * - non-bonded.inverse.post_add_options.compress
+     - 
      - Contains all options of the postadd compress sripts
-     - 
    * - non-bonded.inverse.post_add_options.compress.filelist
-     - Files to be compressed
      - 
+     - Files to be compressed
    * - non-bonded.inverse.post_add_options.compress.program_opts
-     - Option to give to the compression command
      - -9
+     - Option to give to the compression command
    * - non-bonded.inverse.post_add_options.compress.program
-     - Compression command to run
      - gzip
+     - Compression command to run
    * - non-bonded.inverse.post_add_options.convergence
      - 
      - 
    * - non-bonded.inverse.post_add_options.convergence.weight
+     - 1
      - | weight factors for the convergence of this interaction,
        | should be a list of same length as inverse.post_add_options.convergence.what
-     - 1
    * - non-bonded.inverse.post_add_options.convergence.what
-     - list from what to calc the convergence: dist pot, ..
      - dist
+     - list from what to calc the convergence: dist pot, ..
    * - non-bonded.inverse.post_add_options.convergence.base
+     - tgt
      - | what base values to be used to compute convergene error:
        | tgt, cur, ..
-     - tgt
    * - non-bonded.inverse.post_add_options.convergence.norm
+     - 1
      - | which norm to use to compute error: 1 first norm, 2 second
        | norm
-     - 1
    * - non-bonded.inverse.post_add_options.copyback
+     - 
      - Contains all options of the postadd copyback sripts
-     - 
    * - non-bonded.inverse.post_add_options.copyback.filelist
+     - 
      - File to be copied to back to maindir
-     - 
    * - non-bonded.inverse.post_add_options.overwrite
-     - Contains all options of the overwrite postadd scripts
      - 
+     - Contains all options of the overwrite postadd scripts
    * - non-bonded.inverse.post_add_options.overwrite.do
+     - 1
      - | Cycle for overwrite postadd script (1 do, 0 do not) like
        | do_potential.
-     - 1
    * - non-bonded.inverse.post_add_options.plot
-     - Contains all options of the plot postadd scripts
      - 
+     - Contains all options of the plot postadd scripts
    * - non-bonded.inverse.post_add_options.plot.fd
+     - 8
      - | file descriptor to use, make it unique if you want to
        | plot multiple things
-     - 8
    * - non-bonded.inverse.post_add_options.plot.gnuplot_opts
+     - 
      - | extra options to give to gnuplot_bin like -persist or
        | -geometry
-     - 
    * - non-bonded.inverse.post_add_options.plot.kill
+     - 
      - | kill all processes with that name before ploting (e.g.
        | gnuplot_x11), this is more reliable than using named pipes
-     - 
    * - non-bonded.inverse.post_add_options.plot.script
-     - plot script to give to gnuplot
      - 
+     - plot script to give to gnuplot
    * - non-bonded.inverse.post_add_options.average
      - 
      - 
    * - non-bonded.inverse.post_add_options.average.what
+     - 
      - | list for which averages of last few steps are to computed:
        | param, pot, ... For relative entropy method, specify param
        | before pot.
-     - 
    * - non-bonded.inverse.post_update
+     - 
      - | Additional post-processing of dU before added to potential.
        | This is a list of scripts separated by spaces which are
        | called. See section on iterative framework for details.
-     - 
    * - non-bonded.inverse.post_update_options
-     - Contains all options of post update scripts
      - 
+     - Contains all options of post update scripts
    * - non-bonded.inverse.post_update_options.cibi
+     - 
      - | Contains all options of the Kirkwood-Buff integral corrections
        | scripts
-     - 
    * - non-bonded.inverse.post_update_options.cibi.do
+     - 1
      - | Update cycle for the Kirkwood-Buff integral correction
        | (1 do, 0 do not). To do the correction every third step
        | specify "0 0 1", similar to do_potential
-     - 1
    * - non-bonded.inverse.post_update_options.cibi.kbint_with_errors
-     - calculate errors on the Kirkwood-Buff integral: yes/no
      - no
+     - calculate errors on the Kirkwood-Buff integral: yes/no
    * - non-bonded.inverse.post_update_options.extrapolate
      - 
      - 
    * - non-bonded.inverse.post_update_options.extrapolate.points
+     - 5
      - | Number of point to calculate the average from for the
        | extrapolation
-     - 5
    * - non-bonded.inverse.post_update_options.kbibi
+     - 
      - | Contains all options of the Kirkwood-Buff ramp corrections
        | scripts
-     - 
    * - non-bonded.inverse.post_update_options.kbibi.do
+     - 1
      - | Update cycle for the Kirkwood-Buff ramp correction (1
        | do, 0 do not). To do the correction every third step specify
        | "0 0 1", similar to do_potential
-     - 1
    * - non-bonded.inverse.post_update_options.kbibi.factor
+     - 
      - scaling factor for the ramp correction
-     - 
    * - non-bonded.inverse.post_update_options.kbibi.kbint_with_errors
-     - calculate errors on the Kirkwood-Buff integral: yes/no
      - no
+     - calculate errors on the Kirkwood-Buff integral: yes/no
    * - non-bonded.inverse.post_update_options.kbibi.r_ramp
-     - cutoff of the ramp
      - 
+     - cutoff of the ramp
    * - non-bonded.inverse.post_update_options.kbibi.start
+     - 
      - | Where to start averaging the Kirkwood-Buff integral for
        | the ramp
-     - 
    * - non-bonded.inverse.post_update_options.kbibi.stop
+     - 
      - | Where to stop averaging the Kirkwood-Buff integral for
        | the ramp
-     - 
    * - non-bonded.inverse.post_update_options.lj
+     - 
      - Contains all options of the Lennard-Jones potential update
-     - 
    * - non-bonded.inverse.post_update_options.lj.c6
+     - 
      - The c6 value for the extra LJ potential
-     - 
    * - non-bonded.inverse.post_update_options.lj.c12
+     - 
      - The c12 value for the extra LJ potential
-     - 
    * - non-bonded.inverse.post_update_options.pressure
-     - Contains all options of the pressure correction scripts
      - 
+     - Contains all options of the pressure correction scripts
    * - non-bonded.inverse.post_update_options.pressure.do
+     - 1
      - | Update cycle for the pressure correction (1 do, 0 do not).
        | To do pressure correction every third step specify "0
        | 0 1", similar to do_potential
-     - 1
    * - non-bonded.inverse.post_update_options.pressure.simple
+     - 
      - Contains all options of the simple pressure correction
-     - 
    * - non-bonded.inverse.post_update_options.pressure.simple.max_A
-     - maximum prefactor in units of kBT
      - 0.1
+     - maximum prefactor in units of kBT
    * - non-bonded.inverse.post_update_options.pressure.simple.scale
+     - 
      - slope of the simple pressure correction
-     - 
    * - non-bonded.inverse.post_update_options.pressure.ptype
+     - 
      - Generic Pressure correction options
-     - 
    * - non-bonded.inverse.post_update_options.pressure.ptype.max_A
-     - maximum prefactor in units of kBT
      - 
+     - maximum prefactor in units of kBT
    * - non-bonded.inverse.post_update_options.pressure.ptype.scale
+     - 
      - slope of the pressure correction
-     - 
    * - non-bonded.inverse.post_update_options.pressure.type
-     - Pressure correction type, can be simple or wjk
      - simple
+     - Pressure correction type, can be simple or wjk
    * - non-bonded.inverse.post_update_options.pressure.wjk
+     - 
      - Contains all options of the wjk pressure correction
-     - 
    * - non-bonded.inverse.post_update_options.pressure.wjk.max_A
-     - maximum prefactor in units of kBT
      - 0.1
+     - maximum prefactor in units of kBT
    * - non-bonded.inverse.post_update_options.pressure.wjk.scale
+     - 1.0
      - extra scaling factor of pressure wjk correction
-     - 1.0
    * - non-bonded.inverse.post_update_options.scale
-     - scale factor for the update
      - 1.0
+     - scale factor for the update
    * - non-bonded.inverse.post_update_options.smooth
+     - 
      - Contains all options of the post_update smooth script
-     - 
    * - non-bonded.inverse.post_update_options.smooth.iterations
-     - number of triangular smooth to be performed
      - 1
+     - number of triangular smooth to be performed
    * - non-bonded.inverse.post_update_options.splinesmooth
+     - 
      - Contains all options of the post_update spline smooth script
-     - 
    * - non-bonded.inverse.post_update_options.splinesmooth.step
-     - grid spacing for spline fit when doing spline smoothing
      - 
+     - grid spacing for spline fit when doing spline smoothing
    * - non-bonded.inverse.optimizer
      - 
      - 
    * - non-bonded.inverse.optimizer.density
+     - 
      - | Contains all options for the density calculation of the
        | optimizer
-     - 
    * - non-bonded.inverse.optimizer.density.axis
-     - Axis along which the density is calculated
      - x
+     - Axis along which the density is calculated
    * - non-bonded.inverse.optimizer.density.min
+     - 
      - | Lower bound of interval in which density calculation is
        | performed.
-     - 
    * - non-bonded.inverse.optimizer.density.max
+     - 
      - | Upper bound of interval in which density calculation is
        | performed.
-     - 
    * - non-bonded.inverse.optimizer.density.step
+     - 
      - | Step size of interval in which density calculation is
        | performed.
-     - 
    * - non-bonded.inverse.optimizer.density.scale
-     - Scaling factor for density
      - 1.0
+     - Scaling factor for density
    * - non-bonded.inverse.optimizer.density.molname
-     - The molname of this interaction
      - *
+     - The molname of this interaction
    * - non-bonded.inverse.optimizer.density.target
+     - 
      - Filename of the target denstiy distribution in the maindir
-     - 
    * - non-bonded.inverse.optimizer.function
-     - Functional form of the interaction, using parameters in here
      - 
+     - Functional form of the interaction, using parameters in here
    * - non-bonded.inverse.optimizer.functionfile
+     - 
      - | If the function is very complicated it can be defined
        | in this files, which is used as an header
-     - 
    * - non-bonded.inverse.optimizer.mapping
+     - 
      - option related to mapping changes
-     - 
    * - non-bonded.inverse.optimizer.mapping.change
+     - no
      - Does the mapping change in optimization: yes/no
-     - no
    * - non-bonded.inverse.optimizer.mapping.output
-     - Output file name for mapping
      - no
+     - Output file name for mapping
    * - non-bonded.inverse.optimizer.mapping.template
-     - template for the mapping optimization
      - 
+     - template for the mapping optimization
    * - non-bonded.inverse.optimizer.parameters
+     - 
      - | Parameters to be fitted by the optimizer for this interaction.
        | Note that the parameter names are global
-     - 
    * - non-bonded.inverse.optimizer.pressure
+     - 
      - | Contains all options for the pressure calculation of the
        | optimizer
-     - 
    * - non-bonded.inverse.optimizer.pressure.undef
+     - 
      - | Pressure to use if pressure from the simulation was nan
        | (use a big number)
-     - 
    * - non-bonded.inverse.optimizer.rdf
+     - 
      - | Contains all options for the rdf calculation of the optimizer
        | 
-     - 
    * - non-bonded.inverse.optimizer.rdf.target
-     - Filename of the target rdf in the maindir
      - 
+     - Filename of the target rdf in the maindir
    * - non-bonded.inverse.optimizer.rdf.weight
+     - 
      - | Weighting function for calculating the convergency of
        | the rdf
-     - 
    * - non-bonded.inverse.optimizer.rdf.weightfile
+     - 
      - | File with the weighting function definition calculating
        | the rdf
-     - 
    * - non-bonded.inverse.optimizer.targets
-     - Targets to be fitted by the optimizer
      - rdf
+     - Targets to be fitted by the optimizer
    * - non-bonded.inverse.optimizer.target_weights
+     - 1
      - | Weight of the targets, amount has to be the same as of
        | targets
-     - 1

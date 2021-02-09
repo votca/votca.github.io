@@ -10,72 +10,72 @@ The following table contains the defaults input options for the calculator,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - lifetimefile
-     - File from which lifetimes are read in.
      - lifetimes.xml
+     - File from which lifetimes are read in.
      - 
    * - ratefile
-     - File containing the rates
      - rates.dat
+     - File containing the rates
      - 
    * - trajectoryfile
-     - Name of the trajectory file
      - trajectory.csv
+     - Name of the trajectory file
      - 
    * - numberofinsertions
      - 
      - 
      - 
    * - seed
-     - Integer to initialise the random number generator
      - 23
+     - Integer to initialise the random number generator
      - int+
    * - numberofcarriers
-     - Number of electrons/holes in the simulation box
      - 1
+     - Number of electrons/holes in the simulation box
      - int+
    * - injectionpattern
+     - *
      - | Name pattern that specifies on which sites injection is
        | possible. Use the wildcard '*' to inject on any site.
-     - *
      - 
    * - injectionmethod
+     - random
      - | random: injection sites are selected randomly (generally
        | the recommended option); equilibrated: sites are chosen
        | such that the expected energy per carrier is matched,
        | possibly speeding up convergence
      - random
-     - random
    * - temperature
-     - Temperature in Kelvin.
      - 300
+     - Temperature in Kelvin.
      - int+
    * - occfile
-     - File with the occupations
      - occupation.dat
+     - File with the occupations
      - 
    * - maxrealtime
-     - Maximum clocktime allow to the calculation
      - 1E10
+     - Maximum clocktime allow to the calculation
      - float+
    * - carrierenergy.run
-     - Switch on/off
      - false
+     - Switch on/off
      - bool
    * - carrierenergy.outputfile
-     - File to write energies to
      - energies.csv
+     - File to write energies to
      - 
    * - carrierenergy.alpha
-     - Smoothing energy profile
      - 0.05
+     - Smoothing energy profile
      - float+
    * - carrierenergy.outputsteps
-     - Write to file every x steps
      - 10
+     - Write to file every x steps
      - int+
 .. note::
    An *xml* file containing the defaults for the `kmclifetime` calculator can be found at `$VOTCASHARE/xtp/xml/kmclifetime.xml`

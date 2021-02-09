@@ -7,86 +7,86 @@ The following table contains the input options for CSG,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
    * - h5md_particle_group
+     - 
      - | Attribute name holds the name of particles group in H5MD
        | file
-     - 
    * - molecules
+     - 
      - | The the molecules in the trajectory or other operation
        | on the molecules.
-     - 
    * - molecules.molecule
+     - 
      - | Definition of the molecule, with attributes: name, nmols
        | and nbeads. The name defines residue name, nmols tells
        | how many times this molecule has to be replicated to match
        | with trajectory file and nbeads defines number of beads
        | in every molecule.
-     - 
    * - molecules.molecule.bead
+     - 
      - | Define the bead in the molecule. Attributes are: name
        | - the name of bead, type - the type of bead, mass - the
        | mass of bead, q - the value of charge and resid - the
        | id of the residue the bead belongs to (>=1).
-     - 
    * - molecules.clear
-     - Clear the information about the molecules
      - 
+     - Clear the information about the molecules
    * - molecules.rename
+     - 
      - | Rename the molecules; attributes: "name" - the new name,
        | "range" - the range where the new name will be set in
        | the format start_range:end_range
-     - 
    * - molecules.define
+     - 
      - | Define the molecules; attributes: "name" - the name of
        | molecule, "first" - the id of first molecule, "nbeads"
        | - the number of beads in the molecule, "nmols" - the number
        | of molecules
-     - 
    * - bonded
+     - 
      - | This section defines the topology of the molecules, it
        | is used to generate proper exclusions for calculating
        | rdfs
-     - 
    * - bonded.bond
+     - 
      - Describes the bond
-     - 
    * - bonded.bond.name
-     - The name of the bond
      - 
+     - The name of the bond
    * - bonded.bond.beads
+     - 
      - | The pair of the beads in the format MOLECULE_NAME:BEAD_NAME
        | 
-     - 
    * - bonded.angle
+     - 
      - Describes the angle
-     - 
    * - bonded.angle.name
-     - The name of the angle
      - 
+     - The name of the angle
    * - bonded.angle.beads
+     - 
      - | The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME
        | 
-     - 
    * - bonded.dihedral
+     - 
      - Describes the dihedrals
-     - 
    * - bonded.dihedral.name
-     - The name of the dihedral
      - 
+     - The name of the dihedral
    * - bonded.dihedral.beads
+     - 
      - | The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME
        | 
-     - 
    * - beadtypes
-     - Allows defining bead types
      - 
+     - Allows defining bead types
    * - beadtypes.rename
+     - 
      - | Rename the bead type; attributes: "name" - the old name,
        | "newname" - the new name
-     - 
    * - beadtypes.mass
+     - 
      - | Define the mass of the bead type; attributes: "name" -
        | the bead type name, "value" - the new mass
-     - 

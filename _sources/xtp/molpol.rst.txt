@@ -10,54 +10,54 @@ The following table contains the defaults input options for the calculator,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - options_polar.polar
      - 
      - 
      - 
    * - options_polar.tolerance_energy
-     - Energy change as convergence criterion
      - 1e-5
+     - Energy change as convergence criterion
      - 
    * - options_polar.tolerance_dipole
-     - Field change as convergence criterion
      - 1e-5
+     - Field change as convergence criterion
      - 
    * - options_polar.max_iter
-     - Maximum number of iterations
      - 500
+     - Maximum number of iterations
      - 
    * - options_polar.exp_damp
-     - Thole sharpness parameter
      - 0.39
+     - Thole sharpness parameter
      - 
    * - mode
-     - Read the polar target from a file or a qmpackage logfile
      - 
+     - Read the polar target from a file or a qmpackage logfile
      - | file
        | qmpackage
    * - target_polarisability
+     - 
      - should have this format: pxx pxy pxz pyy pyz pzz
      - 
-     - 
    * - qmpackage
+     - orca
      - qmpackage name if mode is qmpackage
      - orca
-     - orca
    * - logfile
+     - system.log
      - | logfile of DFTpackage to read Target polarisability from
        | if mode is qmpackage
-     - system.log
      - 
    * - tolerance
-     - convergence tolerance
      - 1e-4
+     - convergence tolerance
      - float+
    * - iterations
-     - maximum number of iterations
      - 100
+     - maximum number of iterations
      - int+
 .. note::
    An *xml* file containing the defaults for the `molpol` calculator can be found at `$VOTCASHARE/xtp/xml/molpol.xml`

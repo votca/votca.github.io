@@ -10,71 +10,71 @@ The following table contains the defaults input options for the calculator,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - use_classical
+     - false
      - | Calculate Couplings from classical charges instead of
        | ab-initio
-     - false
      - bool
    * - mpsA
+     - 
      - classical transition charges for segment A
      - 
-     - 
    * - mpsB
+     - 
      - classical transition charges for segment B
      - 
-     - 
    * - output
-     - Output file
      - votca_excitoncoupling.xml
+     - Output file
      - 
    * - bsecoupling_options.spin
-     - Spin type for couplings
      - all
+     - Spin type for couplings
      - | singlet
        | triplet
        | all
    * - bsecoupling_options.degeneracy
-     - Criterium for the degeneracy of two levels
      - 0
+     - Criterium for the degeneracy of two levels
      - float
    * - bsecoupling_options.moleculeA.states
-     - Number of excitons considered
      - 5
+     - Number of excitons considered
      - int+
    * - bsecoupling_options.moleculeA.occLevels
-     - occupied levels for CTstates
      - 5
+     - occupied levels for CTstates
      - int+
    * - bsecoupling_options.moleculeA.unoccLevels
-     - unoccupied levels for CTstates
      - 5
+     - unoccupied levels for CTstates
      - int+
    * - bsecoupling_options.moleculeB.states
-     - Number of excitons considered
      - 5
+     - Number of excitons considered
      - int+
    * - bsecoupling_options.moleculeB.occLevels
-     - occupied levels for CTstates
      - 5
+     - occupied levels for CTstates
      - int+
    * - bsecoupling_options.moleculeB.unoccLevels
-     - unoccupied levels for CTstates
      - 5
+     - unoccupied levels for CTstates
      - int+
    * - orbitalsA
-     - Serialized orbitals file
      - A.orb
+     - Serialized orbitals file
      - 
    * - orbitalsB
-     - Serialized orbitals file
      - B.orb
+     - Serialized orbitals file
      - 
    * - orbitalsAB
-     - Serialized orbitals file
      - AB.orb
+     - Serialized orbitals file
      - 
 .. note::
    An *xml* file containing the defaults for the `excitoncoupling` calculator can be found at `$VOTCASHARE/xtp/xml/excitoncoupling.xml`

@@ -235,15 +235,15 @@ The following table contains the defaults input options for the calculator,</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
 <th class="head"><p>Valid Input</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>tasks</p></td>
-<td><p>tasks to perform during calculation</p></td>
 <td><p>input,dft,parse,gwbse,esp</p></td>
+<td><p>tasks to perform during calculation</p></td>
 <td><div class="line-block">
 <div class="line">[input</div>
 <div class="line">dft</div>
@@ -254,37 +254,37 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>job_file</p></td>
-<td><p>name of jobfile to which jobs are written</p></td>
 <td><p>eqm.jobs</p></td>
+<td><p>name of jobfile to which jobs are written</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>map_file</p></td>
-<td><p>xml file with segment definition</p></td>
 <td><p>votca_map.xml</p></td>
+<td><p>xml file with segment definition</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>basisset</p></td>
-<td><p>Basis set for MOs</p></td>
 <td><p>def2-tzvp</p></td>
+<td><p>Basis set for MOs</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>auxbasisset</p></td>
-<td><p>Auxiliary basis set for RI</p></td>
 <td><p>aux-def2-tzvp</p></td>
+<td><p>Auxiliary basis set for RI</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>functional</p></td>
-<td><p>Functional name(s) according to LIBXC</p></td>
 <td><p>XC_HYB_GGA_XC_PBEH</p></td>
+<td><p>Functional name(s) according to LIBXC</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.ranges</p></td>
+<td><p>default</p></td>
 <td><div class="line-block">
 <div class="line">default: all levels in RPA, 1:2*HOMO in QP and all in</div>
 <div class="line">BSE; other options: factor,explicit</div>
 </div>
 </td>
-<td><p>default</p></td>
 <td><div class="line-block">
 <div class="line">default</div>
 <div class="line">factor</div>
@@ -294,53 +294,53 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.rpamax</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">only needed, if ranges is factor or explicit, number of</div>
 <div class="line">levels in rpa</div>
 </div>
 </td>
 <td></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.qpmin</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">only needed, if ranges is factor or explicit, lowest MO</div>
 <div class="line">to be used in GW</div>
 </div>
 </td>
 <td></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.qpmax</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">only needed, if ranges is factor or explicit, highest</div>
 <div class="line">MO to be used in GW</div>
 </div>
 </td>
 <td></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.bsemin</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">only needed, if ranges is factor or explicit, lowest MO</div>
 <div class="line">to be used in BSE</div>
 </div>
 </td>
 <td></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.bsemax</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">only needed, if ranges is factor or explicit, highest</div>
 <div class="line">MO to be used in BSE</div>
 </div>
 </td>
 <td></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.vxc.grid</p></td>
-<td><p>grid quality</p></td>
 <td><p>medium</p></td>
+<td><p>grid quality</p></td>
 <td><div class="line-block">
 <div class="line">xcoarse</div>
 <div class="line">coarse</div>
@@ -351,13 +351,13 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.scissor_shift</p></td>
-<td><p>preshift unoccupied MOs by a constant for GW calculation</p></td>
 <td><p>0.0</p></td>
+<td><p>preshift unoccupied MOs by a constant for GW calculation</p></td>
 <td><p>float</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.mode</p></td>
-<td><p>use single short (G0W0) or self-consistent GW (evGW)</p></td>
 <td><p>evGW</p></td>
+<td><p>use single short (G0W0) or self-consistent GW (evGW)</p></td>
 <td><div class="line-block">
 <div class="line">evGW</div>
 <div class="line">G0W0</div>
@@ -365,8 +365,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.tasks</p></td>
-<td><p>tasks to do</p></td>
 <td><p>all</p></td>
+<td><p>tasks to do</p></td>
 <td><div class="line-block">
 <div class="line">[gw</div>
 <div class="line">singlets</div>
@@ -376,8 +376,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.sigma_integrator</p></td>
-<td><p>self-energy correlation integration method</p></td>
 <td><p>ppm</p></td>
+<td><p>self-energy correlation integration method</p></td>
 <td><div class="line-block">
 <div class="line">ppm</div>
 <div class="line-block">
@@ -388,26 +388,26 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.eta</p></td>
-<td><p>small parameter eta of the Green’s function</p></td>
 <td><p>1e-3</p></td>
+<td><p>small parameter eta of the Green’s function</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.alpha</p></td>
+<td><p>1e-3</p></td>
 <td><div class="line-block">
 <div class="line">parameter to smooth residue and integral calculation for</div>
 <div class="line">the contour deformation technique</div>
 </div>
 </td>
-<td><p>1e-3</p></td>
 <td><p>float</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.quadrature_scheme</p></td>
+<td><p>legendre</p></td>
 <td><div class="line-block">
 <div class="line">If CDA is used for sigma integration this set the quadrature</div>
 <div class="line">scheme to use</div>
 </div>
 </td>
-<td><p>legendre</p></td>
 <td><div class="line-block">
 <div class="line">hermite</div>
 <div class="line">laguerre</div>
@@ -416,8 +416,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.quadrature_order</p></td>
-<td><p>Quadrature order if CDA is used for sigma integration</p></td>
 <td><p>12</p></td>
+<td><p>Quadrature order if CDA is used for sigma integration</p></td>
 <td><div class="line-block">
 <div class="line">8</div>
 <div class="line">10</div>
@@ -432,8 +432,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.qp_solver</p></td>
-<td><p>QP equation solve method</p></td>
 <td><p>grid</p></td>
+<td><p>QP equation solve method</p></td>
 <td><div class="line-block">
 <div class="line">fixedpoint</div>
 <div class="line">grid</div>
@@ -441,50 +441,50 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.qp_grid_steps</p></td>
-<td><p>number of QP grid points</p></td>
 <td><p>1001</p></td>
+<td><p>number of QP grid points</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.qp_grid_spacing</p></td>
-<td><p>spacing of QP grid points</p></td>
 <td><p>0.001</p></td>
+<td><p>spacing of QP grid points</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.exctotal</p></td>
-<td><p>maximum number of BSE states to calculate</p></td>
 <td><p>30</p></td>
+<td><p>maximum number of BSE states to calculate</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.useTDA</p></td>
-<td><p>use TDA for BSE</p></td>
 <td><p>false</p></td>
+<td><p>use TDA for BSE</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.dynamical_screening_max_iterations</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for perturbative dynamical</div>
 <div class="line">screening in BSE</div>
 </div>
 </td>
-<td><p>0</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.dynamical_screening_tolerance</p></td>
+<td><p>1e-5</p></td>
 <td><div class="line-block">
 <div class="line">convergence tolerance for perturbative dynamical screening</div>
 <div class="line">in BSE</div>
 </div>
 </td>
-<td><p>1e-5</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
+<td><p>no</p></td>
 <td><div class="line-block">
 <div class="line">exclude core MO level from calculation on RPA,GW or BSE</div>
 <div class="line">level</div>
 </div>
 </td>
-<td><p>no</p></td>
 <td><div class="line-block">
 <div class="line">RPA</div>
 <div class="line">GW</div>
@@ -494,8 +494,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_correction</p></td>
-<td><p>Davidson correction method</p></td>
 <td><p>DPR</p></td>
+<td><p>Davidson correction method</p></td>
 <td><div class="line-block">
 <div class="line">DPR</div>
 <div class="line">OHLSEN</div>
@@ -503,8 +503,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_tolerance</p></td>
-<td><p>Numerical tolerance</p></td>
 <td><p>normal</p></td>
+<td><p>Numerical tolerance</p></td>
 <td><div class="line-block">
 <div class="line">loose</div>
 <div class="line">normal</div>
@@ -514,8 +514,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_ortho</p></td>
-<td><p>orthogonalisation routine: GramSchmidt or QR</p></td>
 <td><p>GS</p></td>
+<td><p>orthogonalisation routine: GramSchmidt or QR</p></td>
 <td><div class="line-block">
 <div class="line">GS</div>
 <div class="line">QR</div>
@@ -523,8 +523,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.eigensolver.davidson_update</p></td>
-<td><p>how large the search space</p></td>
 <td><p>safe</p></td>
+<td><p>how large the search space</p></td>
 <td><div class="line-block">
 <div class="line">min</div>
 <div class="line">safe</div>
@@ -533,95 +533,95 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.eigensolver.davidson_maxiter</p></td>
-<td><p>max iterations</p></td>
 <td><p>50</p></td>
+<td><p>max iterations</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.gw_sc_max_iterations</p></td>
-<td><p>Maximum number of iterations in eVGW</p></td>
 <td><p>50</p></td>
+<td><p>Maximum number of iterations in eVGW</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.gw_mixing_order</p></td>
+<td><p>20</p></td>
 <td><div class="line-block">
 <div class="line">Mixing of QP energies in evGW - 0: plain, 1: linear, &gt;1:</div>
 <div class="line">Anderson</div>
 </div>
 </td>
-<td><p>20</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.gw_sc_limit</p></td>
-<td><p>evGW convergence criteria</p></td>
 <td><p>1e-5</p></td>
+<td><p>evGW convergence criteria</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.gw_mixing_alpha</p></td>
-<td><p>mixing alpha, also linear mixing</p></td>
 <td><p>0.7</p></td>
+<td><p>mixing alpha, also linear mixing</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.g_sc_max_iterations</p></td>
+<td><p>100</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for quasiparticle equation</div>
 <div class="line">solution</div>
 </div>
 </td>
-<td><p>100</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.g_sc_limit</p></td>
-<td><p>quasiparticle equation solver convergence</p></td>
 <td><p>1e-5</p></td>
+<td><p>quasiparticle equation solver convergence</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.use_Hqp_offdiag</p></td>
+<td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Using symmetrized off-diagonal elements of QP Hamiltonian</div>
 <div class="line">in BSE</div>
 </div>
 </td>
-<td><p>false</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_states</p></td>
-<td><p>plot sigma(omega) for the following states, e.g 1 3 5</p></td>
 <td></td>
+<td><p>plot sigma(omega) for the following states, e.g 1 3 5</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_steps</p></td>
-<td><p>points to plot</p></td>
 <td><p>201</p></td>
+<td><p>points to plot</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.sigma_plot_spacing</p></td>
-<td><p>spacing of points units</p></td>
 <td><p>1e-2</p></td>
+<td><p>spacing of points units</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.sigma_plot_filename</p></td>
-<td></td>
 <td><p>QPenergies_sigma.dat</p></td>
+<td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.bse_print_weight</p></td>
-<td><p>print exciton WF composition weight larger than minimum</p></td>
 <td><p>0.5</p></td>
+<td><p>print exciton WF composition weight larger than minimum</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.rebuild_threecenter_freq</p></td>
-<td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
 <td><p>5</p></td>
+<td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse_options.gwbse.exctotal</p></td>
-<td><p>number of eigenvectors to calculate</p></td>
 <td><p>5</p></td>
+<td><p>number of eigenvectors to calculate</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse_options.gwbse.ignore_corelevels</p></td>
-<td></td>
 <td><p>none</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">none</div>
 <div class="line">RPA</div>
@@ -631,8 +631,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>dftpackage.package.name</p></td>
-<td><p>Name of the DFT package</p></td>
 <td><p>xtp</p></td>
+<td><p>Name of the DFT package</p></td>
 <td><div class="line-block">
 <div class="line">xtp</div>
 <div class="line">orca</div>
@@ -640,13 +640,13 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>dftpackage.package.use_auxbasisset</p></td>
-<td><p>use an auxiliar basisset</p></td>
 <td><p>true</p></td>
+<td><p>use an auxiliar basisset</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>esp_options.esp2multipole.state</p></td>
-<td><p>ground-,excited or transitionstate</p></td>
 <td><p>n2s1</p></td>
+<td><p>ground-,excited or transitionstate</p></td>
 <td><div class="line-block">
 <div class="line">groundstate</div>
 <div class="line">singlet</div>
@@ -655,8 +655,8 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>esp_options.esp2multipole.method</p></td>
-<td><p>Method to use derive partial charges</p></td>
 <td><p>CHELPG</p></td>
+<td><p>Method to use derive partial charges</p></td>
 <td><div class="line-block">
 <div class="line">CHELPG</div>
 <div class="line">Mulliken</div>
@@ -664,12 +664,12 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>esp_options.esp2multipole.gridsize</p></td>
+<td><p>fine</p></td>
 <td><div class="line-block">
 <div class="line">Grid accuracy for numerical integration within CHELPG</div>
 <div class="line">and GDMA</div>
 </div>
 </td>
-<td><p>fine</p></td>
 <td><div class="line-block">
 <div class="line">coarse</div>
 <div class="line">medium</div>

@@ -1008,44 +1008,45 @@ following keywords:</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>ident</p></td>
-<td><p>Molecule name in reference topology.</p></td>
 <td></td>
+<td><p>Molecule name in reference topology.</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology</p></td>
-<td><p>Section defining coarse grained beads of molecule.</p></td>
 <td></td>
+<td><p>Section defining coarse grained beads of molecule.</p></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads</p></td>
-<td><p>Section defining coarse grained beads of molecule.</p></td>
 <td></td>
+<td><p>Section defining coarse grained beads of molecule.</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead</p></td>
-<td><p>Definition of a coarse grained bead.</p></td>
 <td></td>
+<td><p>Definition of a coarse grained bead.</p></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads.cg_bead.name</p></td>
-<td><p>Name of coarse grained bead.</p></td>
 <td></td>
+<td><p>Name of coarse grained bead.</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead.type</p></td>
-<td><p>Type of coarse grained bead.</p></td>
 <td></td>
+<td><p>Type of coarse grained bead.</p></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_beads.cg_bead.mapping</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Mapping scheme to be used for this bead (specified in</div>
 <div class="line">section mapping) to map from reference system.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_beads.cg_bead.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The beads section lists all atoms of the reference system</div>
 <div class="line">that are mapped to this particular coarse grained bead.</div>
@@ -1053,9 +1054,9 @@ following keywords:</p>
 <div class="line">by spaces.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The cg_bonded section contains all bonded interaction</div>
 <div class="line">of the molecule. Those can be bond, angle or dihedral.</div>
@@ -1067,81 +1068,80 @@ following keywords:</p>
 <div class="line">group and NUMBER addresses the interaction in the group.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.bond</p></td>
-<td><p>Definition of a group of bonds.</p></td>
 <td></td>
+<td><p>Definition of a group of bonds.</p></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.bond.name</p></td>
-<td><p>Name of the bond.</p></td>
 <td></td>
+<td><p>Name of the bond.</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.bond.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">List of pair of beads that define a bond. Names specified</div>
 <div class="line">in cg_beads</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.angle</p></td>
-<td><p>Definition of a group of angles.</p></td>
 <td></td>
+<td><p>Definition of a group of angles.</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.angle.name</p></td>
-<td><p>Name of the angle</p></td>
 <td></td>
+<td><p>Name of the angle</p></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.angle.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">List of triples of beads that define a bond. Names specified</div>
 <div class="line">in cg_beads</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.dihedral</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Definition of a group of dihedrals. Since the exact functional</div>
 <div class="line">form does not matter, this combines proper as well as</div>
 <div class="line">improper dihedrals.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>topology.cg_bonded.dihedral.name</p></td>
-<td><p>Name of the dihedral</p></td>
 <td></td>
+<td><p>Name of the dihedral</p></td>
 </tr>
 <tr class="row-odd"><td><p>topology.cg_bonded.dihedral.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">List of quadruples of beads that define a bond. Names</div>
 <div class="line">specified in cg_beads</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>maps</p></td>
-<td><p>Section containing definitions of mapping schemes.</p></td>
 <td></td>
+<td><p>Section containing definitions of mapping schemes.</p></td>
 </tr>
 <tr class="row-odd"><td><p>maps.map</p></td>
-<td><p>Section for a mapping for 1 bead.</p></td>
 <td></td>
+<td><p>Section for a mapping for 1 bead.</p></td>
 </tr>
 <tr class="row-even"><td><p>maps.map.name</p></td>
-<td><p>Name of the mapping</p></td>
 <td></td>
+<td><p>Name of the mapping</p></td>
 </tr>
 <tr class="row-odd"><td><p>maps.map.weights</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Weights of the mapping matrix. Entries are normalized</div>
 <div class="line">to 1, number of entries must match the number of reference</div>
 <div class="line">beads in a coarse-grained bead.</div>
 </div>
 </td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -1159,28 +1159,29 @@ The following table contains the input options for CSG,</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>h5md_particle_group</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Attribute name holds the name of particles group in H5MD</div>
 <div class="line">file</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>molecules</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The the molecules in the trajectory or other operation</div>
 <div class="line">on the molecules.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.molecule</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Definition of the molecule, with attributes: name, nmols</div>
 <div class="line">and nbeads. The name defines residue name, nmols tells</div>
@@ -1189,9 +1190,9 @@ The following table contains the input options for CSG,</p>
 <div class="line">in every molecule.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>molecules.molecule.bead</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Define the bead in the molecule. Attributes are: name</div>
 <div class="line">- the name of bead, type - the type of bead, mass - the</div>
@@ -1199,22 +1200,22 @@ The following table contains the input options for CSG,</p>
 <div class="line">id of the residue the bead belongs to (&gt;=1).</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.clear</p></td>
-<td><p>Clear the information about the molecules</p></td>
 <td></td>
+<td><p>Clear the information about the molecules</p></td>
 </tr>
 <tr class="row-odd"><td><p>molecules.rename</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Rename the molecules; attributes: “name” - the new name,</div>
 <div class="line">“range” - the range where the new name will be set in</div>
 <div class="line">the format start_range:end_range</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>molecules.define</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Define the molecules; attributes: “name” - the name of</div>
 <div class="line">molecule, “first” - the id of first molecule, “nbeads”</div>
@@ -1222,84 +1223,83 @@ The following table contains the input options for CSG,</p>
 <div class="line">of molecules</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">This section defines the topology of the molecules, it</div>
 <div class="line">is used to generate proper exclusions for calculating</div>
 <div class="line">rdfs</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.bond</p></td>
-<td><p>Describes the bond</p></td>
 <td></td>
+<td><p>Describes the bond</p></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.bond.name</p></td>
-<td><p>The name of the bond</p></td>
 <td></td>
+<td><p>The name of the bond</p></td>
 </tr>
 <tr class="row-even"><td><p>bonded.bond.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The pair of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.angle</p></td>
-<td><p>Describes the angle</p></td>
 <td></td>
+<td><p>Describes the angle</p></td>
 </tr>
 <tr class="row-even"><td><p>bonded.angle.name</p></td>
-<td><p>The name of the angle</p></td>
 <td></td>
+<td><p>The name of the angle</p></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.angle.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.dihedral</p></td>
-<td><p>Describes the dihedrals</p></td>
 <td></td>
+<td><p>Describes the dihedrals</p></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.dihedral.name</p></td>
-<td><p>The name of the dihedral</p></td>
 <td></td>
+<td><p>The name of the dihedral</p></td>
 </tr>
 <tr class="row-even"><td><p>bonded.dihedral.beads</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>beadtypes</p></td>
-<td><p>Allows defining bead types</p></td>
 <td></td>
+<td><p>Allows defining bead types</p></td>
 </tr>
 <tr class="row-even"><td><p>beadtypes.rename</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Rename the bead type; attributes: “name” - the old name,</div>
 <div class="line">“newname” - the new name</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>beadtypes.mass</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Define the mass of the bead type; attributes: “name” -</div>
 <div class="line">the bead type name, “value” - the new mass</div>
 </div>
 </td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -1318,16 +1318,17 @@ The following table contains the input options for CSG,</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>fmatch</p></td>
-<td><p>Force matching options</p></td>
 <td></td>
+<td><p>Force matching options</p></td>
 </tr>
 <tr class="row-odd"><td><p>fmatch.constrainedLS</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">boolean variable: false - simple least squares, true -</div>
 <div class="line">constrained least squares. For details see the VOTCA paper.</div>
@@ -1338,17 +1339,17 @@ The following table contains the input options for CSG,</p>
 <div class="line">use constrained least squares.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>fmatch.dist</p></td>
+<td><p>1e-5</p></td>
 <td><div class="line-block">
 <div class="line">Accuracy for evaluating the difference in bead positions.</div>
 <div class="line">Default is 1e-5</div>
 </div>
 </td>
-<td><p>1e-5</p></td>
 </tr>
 <tr class="row-odd"><td><p>fmatch.frames_per_block</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">number of frames, being used for block averaging. Atomistic</div>
 <div class="line">trajectory, specified with –trj option, is divided into</div>
@@ -1357,506 +1358,506 @@ The following table contains the input options for CSG,</p>
 <div class="line">gets on the output is averaged over those blocks.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse</p></td>
-<td><p>general options for inverse script</p></td>
 <td></td>
+<td><p>general options for inverse script</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.cleanlist</p></td>
-<td><p>these files are removed after each iteration</p></td>
 <td></td>
+<td><p>these files are removed after each iteration</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.convergence_check</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.convergence_check.limit</p></td>
-<td><p>lower convergency limit to stop</p></td>
 <td><p>0</p></td>
+<td><p>lower convergency limit to stop</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.convergence_check.type</p></td>
-<td><p>type of convergence check to do</p></td>
 <td><p>none</p></td>
+<td><p>type of convergence check to do</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly</p></td>
-<td><p>general dlpoly specific options</p></td>
 <td></td>
+<td><p>general dlpoly specific options</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.command</p></td>
+<td><p>DLPOLY.Z</p></td>
 <td><div class="line-block">
 <div class="line">command to run dlpoly (name or absolute path or ‘mpirun</div>
 <div class="line">dlpoly’ or such)</div>
 </div>
 </td>
-<td><p>DLPOLY.Z</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.topol</p></td>
-<td><p>Name of dlpoly topology file</p></td>
 <td><p>.dlpf</p></td>
+<td><p>Name of dlpoly topology file</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.traj</p></td>
-<td><p>Name of the output dlpoly trajectory file</p></td>
 <td><p>.dlph</p></td>
+<td><p>Name of the output dlpoly trajectory file</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.checkpoint</p></td>
-<td><p>Names of the  dlpoly checkpoint files</p></td>
 <td><p>REVIVE REVCON</p></td>
+<td><p>Names of the  dlpoly checkpoint files</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.table_end</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">dlpoly internal grid end point for tabulated non-bonded</div>
 <div class="line">potentials (applied to all non-bonded)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.table_grid</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">dlpoly internal grid number for tabulated non-bonded potentials</div>
 <div class="line">(applied to all non-bonded)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.bonds</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">dlpoly specs for tabulated bonded potentials (applied</div>
 <div class="line">to all bonds)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.bonds.table_end</p></td>
-<td><p>dlpoly internal grid end point for tabulated potentials</p></td>
 <td></td>
+<td><p>dlpoly internal grid end point for tabulated potentials</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.bonds.table_grid</p></td>
-<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 <td></td>
+<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.angles</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">dlpoly specs for tabulated bonded potentials (applied</div>
 <div class="line">to all angles)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.angles.table_grid</p></td>
-<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 <td></td>
+<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.dlpoly.dihedrals</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">dlpoly specs for tabulated bonded potentials (applied</div>
 <div class="line">to all dihedrals)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dlpoly.dihedrals.table_grid</p></td>
-<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 <td></td>
+<td><p>dlpoly internal grid number for tabulated potentials</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.espresso</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.espresso.command</p></td>
+<td><p>python3</p></td>
 <td><div class="line-block">
 <div class="line">Command to run espresso (name or absolute path or mpirun</div>
 <div class="line">espresso..)</div>
 </div>
 </td>
-<td><p>python3</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.espresso.opts</p></td>
+<td><p>${script}</p></td>
 <td><div class="line-block">
 <div class="line">option to be given to espresso program, use ${script}</div>
 <div class="line">in there</div>
 </div>
 </td>
-<td><p>${script}</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.espresso.first_frame</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">trash the given number of frames at the beginning of trajectory</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.espresso.table_bins</p></td>
-<td><p>espresso internal grid for tabulated potentials</p></td>
 <td></td>
+<td><p>espresso internal grid for tabulated potentials</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.espresso.traj</p></td>
-<td><p>Name of the output Espresso trajectory file</p></td>
 <td></td>
+<td><p>Name of the output Espresso trajectory file</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.espressopp</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.espressopp.command</p></td>
+<td><p>python2</p></td>
 <td><div class="line-block">
 <div class="line">Command to run espresso (name or absolute path or mpirun</div>
 <div class="line">espresso..)</div>
 </div>
 </td>
-<td><p>python2</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.espressopp.opts</p></td>
+<td><p>${script}</p></td>
 <td><div class="line-block">
 <div class="line">option to be given to espresso program, use ${script}</div>
 <div class="line">in there</div>
 </div>
 </td>
-<td><p>${script}</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.espressopp.first_frame</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">trash the given number of frames at the beginning of trajectory</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.filelist</p></td>
-<td><p>these files are copied to each iteration step</p></td>
 <td></td>
+<td><p>these files are copied to each iteration step</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gnuplot</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gnuplot.bin</p></td>
-<td><p>gnuplot binary to use</p></td>
 <td><p>gnuplot</p></td>
+<td><p>gnuplot binary to use</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs</p></td>
-<td><p>gromacs specific options</p></td>
 <td></td>
+<td><p>gromacs specific options</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.conf</p></td>
-<td><p>Name of the coordinate file read by grompp</p></td>
 <td><p>conf.gro</p></td>
+<td><p>Name of the coordinate file read by grompp</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.conf_out</p></td>
-<td><p>Name of the original outcome coordinate written by mdrun</p></td>
 <td><p>confout.gro</p></td>
+<td><p>Name of the original outcome coordinate written by mdrun</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.density</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.density.block_length</p></td>
-<td><p>Length of the block for the error analysis</p></td>
 <td></td>
+<td><p>Length of the block for the error analysis</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.density.with_errors</p></td>
-<td><p>calculate error on the density: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>calculate error on the density: yes/no</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.equi_time</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">begin analysis after this time when using gromacs (max</div>
 <div class="line">of this and first_frame is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.first_frame</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">trash the given number of frames at the beginning of trajectory</div>
 <div class="line">(max of this and first_frame is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.g_energy</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.g_energy.bin</p></td>
-<td><p>Name (or absolute path) of the g_energy binary</p></td>
 <td><p>/usr/bin/gmx_d energy</p></td>
+<td><p>Name (or absolute path) of the g_energy binary</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.g_energy.opts</p></td>
-<td><p>Additional options to Gromacs g_energy (e.g. -P 1)</p></td>
 <td></td>
+<td><p>Additional options to Gromacs g_energy (e.g. -P 1)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.g_energy.pressure</p></td>
-<td><p>options for pressure calculation using g_energy</p></td>
 <td></td>
+<td><p>options for pressure calculation using g_energy</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.g_energy.pressure.allow_nan</p></td>
-<td><p>is nan an allowed result: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>is nan an allowed result: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.g_energy.topol</p></td>
-<td><p>Gromacs binary topol (tpr) file to use by g_energy</p></td>
 <td></td>
+<td><p>Gromacs binary topol (tpr) file to use by g_energy</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.gmxrc</p></td>
-<td><p>GMXRC to source at the startup</p></td>
 <td></td>
+<td><p>GMXRC to source at the startup</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.grompp</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.grompp.bin</p></td>
-<td><p>Name (or absolute path) of the grompp binary</p></td>
 <td><p>/usr/bin/gmx_d grompp</p></td>
+<td><p>Name (or absolute path) of the grompp binary</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.grompp.opts</p></td>
-<td><p>Additional options to Gromacs grompp (e.g. -maxwarn 1)</p></td>
 <td></td>
+<td><p>Additional options to Gromacs grompp (e.g. -maxwarn 1)</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.index</p></td>
-<td><p>Gromacs grompp index file to used by grompp</p></td>
 <td><p>index.ndx</p></td>
+<td><p>Gromacs grompp index file to used by grompp</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.log</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Separate log file for gromacs programs (useful with mdrun</div>
 <div class="line">-v)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.mdp</p></td>
-<td><p>Gromacs mdp file to be used by grompp</p></td>
 <td><p>grompp.mdp</p></td>
+<td><p>Gromacs mdp file to be used by grompp</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.mdrun</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.mdrun.checkpoint</p></td>
-<td><p>Name of the checkpint to use in case of restarted simulation</p></td>
 <td><p>state.cpt</p></td>
+<td><p>Name of the checkpint to use in case of restarted simulation</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.mdrun.command</p></td>
+<td><p>/usr/bin/gmx_d mdrun</p></td>
 <td><div class="line-block">
 <div class="line">Command to run mdrun (name or absolute path or mpirun</div>
 <div class="line">mdrun..)</div>
 </div>
 </td>
-<td><p>/usr/bin/gmx_d mdrun</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.mdrun.multidir</p></td>
-<td><p>List of directories for multidir simulations</p></td>
 <td></td>
+<td><p>List of directories for multidir simulations</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.mdrun.opts</p></td>
-<td><p>Additional options to Gromacs mdrun (e.g. -nosum)</p></td>
 <td></td>
+<td><p>Additional options to Gromacs mdrun (e.g. -nosum)</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.pot_max</p></td>
-<td><p>cut the potential at this value (gromacs bug)</p></td>
 <td><p>1000000</p></td>
+<td><p>cut the potential at this value (gromacs bug)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.pre_simulation</p></td>
+<td><p>no</p></td>
 <td><div class="line-block">
 <div class="line">A pre simulation (e.g. minimization / equilibration )</div>
 <div class="line">is a simulation with a different mdp/topol/index</div>
 </div>
 </td>
-<td><p>no</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.pre_simulation.index</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Gromacs grompp index file to used by grompp in the pre</div>
 <div class="line">simulation</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.pre_simulation.mdp</p></td>
-<td><p>Gromacs mdp file to be used by grompp in the pre simulation</p></td>
 <td></td>
+<td><p>Gromacs mdp file to be used by grompp in the pre simulation</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.pre_simulation.topol_in</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Gromacs text topol (top) file to use by grompp in the</div>
 <div class="line">pre simulation</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.ref</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Options for the case that calculation of reference system</div>
 <div class="line">is needed</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.ref.equi_time</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">begin analysis after this time when using gromacs (max</div>
 <div class="line">of this and first_frame is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.ref.first_frame</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">trash the given number of frames at the beginning of trajectory</div>
 <div class="line">(max of this and first_frame is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.ref.mapping</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Mapping to apply on the coarse-grained topology, use autogenerated</div>
 <div class="line">ones (cg.inverse.optimizer.mapping.output) and given ones</div>
 <div class="line">(map other components)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.ref.rdf</p></td>
-<td><p>Contains options for Reference rdf calculation</p></td>
 <td></td>
+<td><p>Contains options for Reference rdf calculation</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.ref.rdf.opts</p></td>
-<td><p>Extra options to give to csg_stat (e.g. –nframes 100)</p></td>
 <td></td>
+<td><p>Extra options to give to csg_stat (e.g. –nframes 100)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.ref.topol</p></td>
-<td><p>Reference binary topology(global or local path)</p></td>
 <td></td>
+<td><p>Reference binary topology(global or local path)</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.ref.traj</p></td>
-<td><p>Reference trajectory(global or local path)</p></td>
 <td></td>
+<td><p>Reference trajectory(global or local path)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.rdf</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.rdf.block_length</p></td>
-<td><p>Length of the block for the error analysis</p></td>
 <td></td>
+<td><p>Length of the block for the error analysis</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.rdf.map</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Space separated list of special mapping file(s) for rdf</div>
 <div class="line">calculations needed for bonded interactions</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.rdf.with_errors</p></td>
-<td><p>calculate error on the rdf: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>calculate error on the rdf: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.table_bins</p></td>
-<td><p>grid for gromacs xvg table</p></td>
 <td><p>0.002</p></td>
+<td><p>grid for gromacs xvg table</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.table_end</p></td>
-<td><p>extend the gromacs xvg tables to this value</p></td>
 <td></td>
+<td><p>extend the gromacs xvg tables to this value</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.temp_check</p></td>
-<td><p>check kBT against t_ref in mdp file: yes/no</p></td>
 <td><p>yes</p></td>
+<td><p>check kBT against t_ref in mdp file: yes/no</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.topol_in</p></td>
-<td><p>Gromacs text topology (top) file read by grompp</p></td>
 <td><p>topol.top</p></td>
+<td><p>Gromacs text topology (top) file read by grompp</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.topol</p></td>
+<td><p>topol.tpr</p></td>
 <td><div class="line-block">
 <div class="line">Gromacs binary topology (tpr) file to be written by grompp</div>
 <div class="line">and used for the simlation</div>
 </div>
 </td>
-<td><p>topol.tpr</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.traj</p></td>
-<td><p>Gromacs trajectory file to use</p></td>
 <td><p>traj.xtc</p></td>
+<td><p>Gromacs trajectory file to use</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.gromacs.trjcat</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.gromacs.trjcat.bin</p></td>
-<td><p>Name (or absolute path) of the trjcat binary</p></td>
 <td><p>/usr/bin/gmx_d trjcat</p></td>
+<td><p>Name (or absolute path) of the trjcat binary</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.hoomd-blue</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.hoomd-blue.command</p></td>
+<td><p>hoomd</p></td>
 <td><div class="line-block">
 <div class="line">Command to run hoomd-blue (name or absolute path or mpirun</div>
 <div class="line">..)</div>
 </div>
 </td>
-<td><p>hoomd</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.hoomd-blue.opts</p></td>
+<td><p>${script}</p></td>
 <td><div class="line-block">
 <div class="line">option to be given to hoomd-blue program, use ${script}</div>
 <div class="line">in there</div>
 </div>
 </td>
-<td><p>${script}</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.imc</p></td>
-<td><p>general imc specific options</p></td>
 <td></td>
+<td><p>general imc specific options</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.imc.default_reg</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">default magnitude for regularization parameter if not</div>
 <div class="line">given for the group explicitly, default =0</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.lammps</p></td>
-<td><p>general lammps specific options</p></td>
 <td></td>
+<td><p>general lammps specific options</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.lammps.command</p></td>
+<td><p>/usr/bin/lmp</p></td>
 <td><div class="line-block">
 <div class="line">command to run lammps (name or absolute path or mpirun</div>
 <div class="line">lammps..)</div>
 </div>
 </td>
-<td><p>/usr/bin/lmp</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.lammps.script</p></td>
-<td><p>lammps script to run</p></td>
 <td></td>
+<td><p>lammps script to run</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.lammps.opts</p></td>
+<td><p>-in ${script}</p></td>
 <td><div class="line-block">
 <div class="line">option to be given to lammps program, use ${script} in</div>
 <div class="line">there</div>
 </div>
 </td>
-<td><p>-in ${script}</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.lammps.traj</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">trajectory file to be created by lammps, use a format</div>
 <div class="line">like xyz, which can be read by csg_stat</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.lammps.pressure_file</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">pressure file generated by lammps, use “fix print” in</div>
 <div class="line">lammps input (e.g., “fix pressure all print 50 “${mypress}”</div>
@@ -1866,157 +1867,157 @@ The following table contains the input options for CSG,</p>
 <div class="line">as a header when parsing</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog</p></td>
-<td><p>options, which apply to all simulation programs</p></td>
 <td></td>
+<td><p>options, which apply to all simulation programs</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.command</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Command to run for the simulation (name or absolute path</div>
 <div class="line">or mpirun XXX ..)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.conf</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of the coordinate file read by the simulation program</div>
 <div class="line">(if needed)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.conf_out</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of the original outcome coordinate written by simulation</div>
 <div class="line">program (if any)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.equi_time</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">begin analysis after this time (max of this and first_frame</div>
 <div class="line">is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.density</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.density.block_length</p></td>
-<td><p>Length of the block for the error analysis</p></td>
 <td></td>
+<td><p>Length of the block for the error analysis</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.density.with_errors</p></td>
-<td><p>calculate error on the density: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>calculate error on the density: yes/no</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.first_frame</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">trash the given number of frames at the beginning of trajectory</div>
 <div class="line">(max of this and first_frame is used)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.imc</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.imc.topol</p></td>
-<td><p>Special topology file to be used for csg_stat used in imc</p></td>
 <td></td>
+<td><p>Special topology file to be used for csg_stat used in imc</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.imc.traj</p></td>
-<td><p>Special trajectory file to be used for csg_stat used in imc</p></td>
 <td></td>
+<td><p>Special trajectory file to be used for csg_stat used in imc</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.re</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.re.topol</p></td>
-<td><p>Special topology file to be used for csg_reupdate</p></td>
 <td></td>
+<td><p>Special topology file to be used for csg_reupdate</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.re.traj</p></td>
-<td><p>Special trajectory file to be used for csg_reupdate</p></td>
 <td></td>
+<td><p>Special trajectory file to be used for csg_reupdate</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.rdf</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.rdf.block_length</p></td>
-<td><p>Length of the block for the error analysis</p></td>
 <td></td>
+<td><p>Length of the block for the error analysis</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.rdf.map</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Space separated list of special mapping file(s) for rdf</div>
 <div class="line">calculations needed for bonded interactions</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.rdf.topol</p></td>
-<td><p>Special topology file to be used for csg_stat</p></td>
 <td></td>
+<td><p>Special topology file to be used for csg_stat</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.rdf.traj</p></td>
-<td><p>Special trajectory file to be used for csg_stat</p></td>
 <td></td>
+<td><p>Special trajectory file to be used for csg_stat</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.rdf.with_errors</p></td>
-<td><p>calculate error on the rdf: yes/no</p></td>
 <td><p>n</p></td>
+<td><p>calculate error on the rdf: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.topol</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">General topology file to be use if no special one is specified</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.traj</p></td>
-<td><p>trajectory file to be created by the simulation program</p></td>
 <td></td>
+<td><p>trajectory file to be created by the simulation program</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.sim_prog.script</p></td>
-<td><p>simulation script to run (if any)</p></td>
 <td></td>
+<td><p>simulation script to run (if any)</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.sim_prog.opts</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">option to be given to simulation program, use ${script}</div>
 <div class="line">in there</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.re</p></td>
-<td><p>general options for realtive entropy method</p></td>
 <td></td>
+<td><p>general options for realtive entropy method</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.re.csg_reupdate</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.re.csg_reupdate.opts</p></td>
-<td><p>options for the csg_reupdate command</p></td>
 <td></td>
+<td><p>options for the csg_reupdate command</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.average</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.average.steps</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">number of steps to be used for average computation. For</div>
 <div class="line">relative entropy method, these many last iteration steps</div>
@@ -2024,109 +2025,109 @@ The following table contains the input options for CSG,</p>
 <div class="line">or both.</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.initial_configuration</p></td>
+<td><p>maindir</p></td>
 <td><div class="line-block">
 <div class="line">what initial configuration to use in every step: maindir/laststep/nowhere.</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td><p>maindir</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.iterations_max</p></td>
-<td><p>do the given number of iterations (0=inf)</p></td>
 <td></td>
+<td><p>do the given number of iterations (0=inf)</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.kBT</p></td>
-<td><p>kBT in KJ/mol (i.e. XXX K * 0.00831451)</p></td>
 <td></td>
+<td><p>kBT in KJ/mol (i.e. XXX K * 0.00831451)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.log_file</p></td>
-<td><p>name of the log file</p></td>
 <td><p>inverse.log</p></td>
+<td><p>name of the log file</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.map</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Special mapping file(s) for rdf calculations needed for</div>
 <div class="line">bonded interactions</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.method</p></td>
-<td><p>method to be performed: ibi/imc/ft/optimizer</p></td>
 <td></td>
+<td><p>method to be performed: ibi/imc/ft/optimizer</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.optimizer</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.optimizer.cma</p></td>
-<td><p>general options for the cma optimizer</p></td>
 <td></td>
+<td><p>general options for the cma optimizer</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.optimizer.cma.eps</p></td>
-<td><p>standard epsilon, in which the best solution is searched</p></td>
 <td></td>
+<td><p>standard epsilon, in which the best solution is searched</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.optimizer.type</p></td>
-<td><p>Type of optimizer to be used</p></td>
 <td></td>
+<td><p>Type of optimizer to be used</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.program</p></td>
-<td><p>simulation package to be used (gromacs/espresso/lammps)</p></td>
 <td><p>gromacs</p></td>
+<td><p>simulation package to be used (gromacs/espresso/lammps)</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.restart_file</p></td>
-<td><p>Name of the restart file in case a step has to be resumed</p></td>
 <td><p>restart_points.log</p></td>
+<td><p>Name of the restart file in case a step has to be resumed</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.dist_min</p></td>
+<td><p>1e-10</p></td>
 <td><div class="line-block">
 <div class="line">minimal value for the rdf to consider for initial guess</div>
 <div class="line">of the potential)</div>
 </div>
 </td>
-<td><p>1e-10</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.scriptpath</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">list of directories for user scripts (e.g. $PWD) separated</div>
 <div class="line">by a colon (like PATH)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>inverse.simulation</p></td>
-<td><p>simulation options</p></td>
 <td></td>
+<td><p>simulation options</p></td>
 </tr>
 <tr class="row-odd"><td><p>inverse.simulation.background</p></td>
-<td><p>tells csg_inverse that simulation was send to the backgroud</p></td>
 <td><p>no</p></td>
+<td><p>tells csg_inverse that simulation was send to the backgroud</p></td>
 </tr>
 <tr class="row-even"><td><p>inverse.simulation.tasks</p></td>
-<td><p>number of threads to use for csg_stat</p></td>
 <td><p>auto</p></td>
+<td><p>number of threads to use for csg_stat</p></td>
 </tr>
 <tr class="row-odd"><td><p>nbsearch</p></td>
-<td><p>Grid search algorithm, simple (N square search) or grid</p></td>
 <td><p>grid</p></td>
+<td><p>Grid search algorithm, simple (N square search) or grid</p></td>
 </tr>
 <tr class="row-even"><td><p>bonded</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Interaction specific option for bonded interactions, see</div>
 <div class="line">the cg.non-bonded section for all options</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.dlpoly</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.dlpoly.header</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Header of the interaction in dlpoly TABBND or TABANG file.</div>
 <div class="line">The header should be a unique set of the interaction-site</div>
@@ -2134,35 +2135,35 @@ The following table contains the input options for CSG,</p>
 <div class="line">specified in the mapping file.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>bonded.name</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of the bonded interaction. The name can be arbitrary</div>
 <div class="line">but should be unique. For bonded interactions, this should</div>
 <div class="line">match the name specified in the mapping file.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>bonded.periodic</p></td>
+<td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">set to 1 when calculating bond dihedral potentials with</div>
 <div class="line">csg_fmatch -&gt; enforces periodicity of potential. (default</div>
 <div class="line">is 0)</div>
 </div>
 </td>
-<td><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded</p></td>
-<td><p>Interaction specific option for non-bonded interactions</p></td>
 <td></td>
+<td><p>Interaction specific option for non-bonded interactions</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.dlpoly</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.dlpoly.header</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Header of the interaction in dlpoly TABLE file. The header</div>
 <div class="line">should be a unique pair of the interaction-site names,</div>
@@ -2170,50 +2171,50 @@ The following table contains the input options for CSG,</p>
 <div class="line">in the mapping file.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.name</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of the interaction. The name can be arbitrary but</div>
 <div class="line">should be unique. For bonded interactions, this should</div>
 <div class="line">match the name specified in the mapping file.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.type1</p></td>
-<td><p><strong>Bead</strong> type 1 of non-bonded interaction.</p></td>
 <td></td>
+<td><p><strong>Bead</strong> type 1 of non-bonded interaction.</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.type2</p></td>
-<td><p><strong>Bead</strong> type 2 of non-bonded interaction.</p></td>
 <td></td>
+<td><p><strong>Bead</strong> type 2 of non-bonded interaction.</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.bondtype</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Internal alias for “non-bonded” or “bonded”, set automatically</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.min</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Lower bound of interval for potential table in which calculations</div>
 <div class="line">are performed. Should be set based on reference distributions.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.max</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Upper bound of interval for potential table in which calculations</div>
 <div class="line">are performed. Should be set based on reference distributions.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.step</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Step size of interval for potential table in which calculations</div>
 <div class="line">are performed. If step site is too small, lots of statistics</div>
@@ -2221,13 +2222,13 @@ The following table contains the input options for CSG,</p>
 <div class="line">the distribtuion/potentials might get lost.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.fmatch</p></td>
-<td><p>Force matching options</p></td>
 <td></td>
+<td><p>Force matching options</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.fmatch.min</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Minimum value of interval for distribution sampled in</div>
 <div class="line">atomistic MD simulation. One can get this number by looking</div>
@@ -2237,9 +2238,9 @@ The following table contains the input options for CSG,</p>
 <div class="line">( note, that for angles it is specified in radians ).</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.fmatch.max</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Maximum value of interval for distribution sampled in</div>
 <div class="line">atomistic MD simulation. One can get this number by looking</div>
@@ -2247,9 +2248,9 @@ The following table contains the input options for CSG,</p>
 <div class="line">non-bonded interactions it’s the cut-off of the interaction.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.fmatch.step</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">grid spacing for the spline, which represents the interaction.</div>
 <div class="line">This parameter should not be too big, otherwise you might</div>
@@ -2259,9 +2260,9 @@ The following table contains the input options for CSG,</p>
 <div class="line">in the output.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.fmatch.out_step</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Grid spacing for the output grid. Normally, one wants</div>
 <div class="line">to have this parameter smaller than fmatch.step, to have</div>
@@ -2270,26 +2271,26 @@ The following table contains the input options for CSG,</p>
 <div class="line">is approximately 5 times smaller than fmatch.step.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.re</p></td>
-<td><p>Relative entropy options</p></td>
 <td></td>
+<td><p>Relative entropy options</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.re.function</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Functional form for the potential. Available functional</div>
 <div class="line">forms: lj126 (Lennard-Jones 12-6), ljg (Lennard-Jones</div>
 <div class="line">12-6 plus Gaussian), and cbspl (uniform cubic B-splines).</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.re.cbspl</p></td>
-<td><p>options specific to cbspl function form</p></td>
 <td></td>
+<td><p>options specific to cbspl function form</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.re.cbspl.nknots</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Number of knot values to be used for the cbspl functional</div>
 <div class="line">form. Uniform grid size of the CBSPL depends on this parameter;</div>
@@ -2301,46 +2302,46 @@ The following table contains the input options for CSG,</p>
 <div class="line">of equation would give NaNs in the output.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse</p></td>
-<td><p>Contains all information relevant to iterative process</p></td>
 <td></td>
+<td><p>Contains all information relevant to iterative process</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.target</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">target distribution (e.g. rdf) which is tried to match</div>
 <div class="line">during iterations to match</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.p_target</p></td>
-<td><p>pressure contribution of this interaction</p></td>
 <td></td>
+<td><p>pressure contribution of this interaction</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.particle_dens</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">particle density of this species (for wjk pressure correction)</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.do_potential</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the potential update. 1 means update,</div>
 <div class="line">0 don’t update. 1 1 0 means update 2 iterations, then</div>
 <div class="line">don’t one iteration update, then repeat.</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.espresso</p></td>
-<td><p>Espresso specific options for this interations</p></td>
 <td></td>
+<td><p>Espresso specific options for this interations</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.espresso.table</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
 <div class="line">This fill will be created from the internal tabulated</div>
@@ -2350,30 +2351,30 @@ The following table contains the input options for CSG,</p>
 <div class="line">methanol ibi_espresso for details).</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.gromacs</p></td>
-<td><p>Gromacs specific options for this interations</p></td>
 <td></td>
+<td><p>Gromacs specific options for this interations</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.gromacs.table</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
 <div class="line">This fill will be created from the internal tabulated</div>
 <div class="line">potential format in every step.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.sim_prog</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">interaction specific options, which apply to all simulation</div>
 <div class="line">programs</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
 <div class="line">This fill will be created from the internal tabulated</div>
@@ -2383,55 +2384,55 @@ The following table contains the input options for CSG,</p>
 <div class="line">methanol ibi_espresso for details).</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_begin</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Start of the tabulated potential of this interaction.</div>
 <div class="line">(Automatic for gromacs)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_end</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">End of the tabulated potential of this interaction. (Automatic</div>
 <div class="line">for gromacs)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_left_extrapolation</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Extrapolation function to use on the left. Default: exponential(non-bonded),</div>
 <div class="line">linear (bonded), Options: constant linear quadratic exponential</div>
 <div class="line">sasha</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_right_extrapolation</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Extrapolation function to use on the right. Default: constant(non-bonded),</div>
 <div class="line">linear (bonded), Options: constant linear quadratic exponential</div>
 <div class="line">sasha</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_bins</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Binszie of the tabulated potential of this interaction.</div>
 <div class="line">(gromacs uses a non interaction specific option)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.imc</p></td>
-<td><p>ection containing inverse monte carlo specific options.</p></td>
 <td></td>
+<td><p>ection containing inverse monte carlo specific options.</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.imc.group</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Group of interaction. Cross-correlations of all members</div>
 <div class="line">of a group are taken into account for calculating the</div>
@@ -2439,22 +2440,22 @@ The following table contains the input options for CSG,</p>
 <div class="line">interactions have to be put into different groups.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.lammps</p></td>
-<td><p>lammps specific options for this interations</p></td>
 <td></td>
+<td><p>lammps specific options for this interations</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.lammps.scale</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">x-axis scaling factor for the potential output, can be</div>
 <div class="line">used to convert VOTCA units, nm, to other units, e.g.</div>
 <div class="line">angstroms</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.lammps.table</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
 <div class="line">This fill will be created from the internal tabulated</div>
@@ -2464,465 +2465,464 @@ The following table contains the input options for CSG,</p>
 <div class="line">in the VOTCA section of the file..</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.lammps.y_scale</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">y-axis scaling factor for the potential output, can be</div>
 <div class="line">used to convert VOTCA units, kJ/mol, to other units, e.g.</div>
 <div class="line">kcal/mol</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Additional post processing of U after dU added to potential.</div>
 <div class="line">This is a list of scripts separated by spaces which are</div>
 <div class="line">called. See section on iterative framework for details.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options</p></td>
-<td><p>Contains all options of post add scripts</p></td>
 <td></td>
+<td><p>Contains all options of post add scripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress</p></td>
-<td><p>Contains all options of the postadd compress sripts</p></td>
 <td></td>
+<td><p>Contains all options of the postadd compress sripts</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress.filelist</p></td>
-<td><p>Files to be compressed</p></td>
 <td></td>
+<td><p>Files to be compressed</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress.program_opts</p></td>
-<td><p>Option to give to the compression command</p></td>
 <td><p>-9</p></td>
+<td><p>Option to give to the compression command</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress.program</p></td>
-<td><p>Compression command to run</p></td>
 <td><p>gzip</p></td>
+<td><p>Compression command to run</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.weight</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">weight factors for the convergence of this interaction,</div>
 <div class="line">should be a list of same length as inverse.post_add_options.convergence.what</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.what</p></td>
-<td><p>list from what to calc the convergence: dist pot, ..</p></td>
 <td><p>dist</p></td>
+<td><p>list from what to calc the convergence: dist pot, ..</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.base</p></td>
+<td><p>tgt</p></td>
 <td><div class="line-block">
 <div class="line">what base values to be used to compute convergene error:</div>
 <div class="line">tgt, cur, ..</div>
 </div>
 </td>
-<td><p>tgt</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.norm</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">which norm to use to compute error: 1 first norm, 2 second</div>
 <div class="line">norm</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.copyback</p></td>
-<td><p>Contains all options of the postadd copyback sripts</p></td>
 <td></td>
+<td><p>Contains all options of the postadd copyback sripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.copyback.filelist</p></td>
-<td><p>File to be copied to back to maindir</p></td>
 <td></td>
+<td><p>File to be copied to back to maindir</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.overwrite</p></td>
-<td><p>Contains all options of the overwrite postadd scripts</p></td>
 <td></td>
+<td><p>Contains all options of the overwrite postadd scripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.overwrite.do</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Cycle for overwrite postadd script (1 do, 0 do not) like</div>
 <div class="line">do_potential.</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot</p></td>
-<td><p>Contains all options of the plot postadd scripts</p></td>
 <td></td>
+<td><p>Contains all options of the plot postadd scripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.fd</p></td>
+<td><p>8</p></td>
 <td><div class="line-block">
 <div class="line">file descriptor to use, make it unique if you want to</div>
 <div class="line">plot multiple things</div>
 </div>
 </td>
-<td><p>8</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.gnuplot_opts</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">extra options to give to gnuplot_bin like -persist or</div>
 <div class="line">-geometry</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.kill</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">kill all processes with that name before ploting (e.g.</div>
 <div class="line">gnuplot_x11), this is more reliable than using named pipes</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.script</p></td>
-<td><p>plot script to give to gnuplot</p></td>
 <td></td>
+<td><p>plot script to give to gnuplot</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_add_options.average</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.average.what</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">list for which averages of last few steps are to computed:</div>
 <div class="line">param, pot, … For relative entropy method, specify param</div>
 <div class="line">before pot.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Additional post-processing of dU before added to potential.</div>
 <div class="line">This is a list of scripts separated by spaces which are</div>
 <div class="line">called. See section on iterative framework for details.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options</p></td>
-<td><p>Contains all options of post update scripts</p></td>
 <td></td>
+<td><p>Contains all options of post update scripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.cibi</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Contains all options of the Kirkwood-Buff integral corrections</div>
 <div class="line">scripts</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.cibi.do</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the Kirkwood-Buff integral correction</div>
 <div class="line">(1 do, 0 do not). To do the correction every third step</div>
 <div class="line">specify “0 0 1”, similar to do_potential</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.cibi.kbint_with_errors</p></td>
-<td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.extrapolate</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.extrapolate.points</p></td>
+<td><p>5</p></td>
 <td><div class="line-block">
 <div class="line">Number of point to calculate the average from for the</div>
 <div class="line">extrapolation</div>
 </div>
 </td>
-<td><p>5</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Contains all options of the Kirkwood-Buff ramp corrections</div>
 <div class="line">scripts</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.do</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the Kirkwood-Buff ramp correction (1</div>
 <div class="line">do, 0 do not). To do the correction every third step specify</div>
 <div class="line">“0 0 1”, similar to do_potential</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.factor</p></td>
-<td><p>scaling factor for the ramp correction</p></td>
 <td></td>
+<td><p>scaling factor for the ramp correction</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.kbint_with_errors</p></td>
-<td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.r_ramp</p></td>
-<td><p>cutoff of the ramp</p></td>
 <td></td>
+<td><p>cutoff of the ramp</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.start</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Where to start averaging the Kirkwood-Buff integral for</div>
 <div class="line">the ramp</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.stop</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Where to stop averaging the Kirkwood-Buff integral for</div>
 <div class="line">the ramp</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.lj</p></td>
-<td><p>Contains all options of the Lennard-Jones potential update</p></td>
 <td></td>
+<td><p>Contains all options of the Lennard-Jones potential update</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.lj.c6</p></td>
-<td><p>The c6 value for the extra LJ potential</p></td>
 <td></td>
+<td><p>The c6 value for the extra LJ potential</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.lj.c12</p></td>
-<td><p>The c12 value for the extra LJ potential</p></td>
 <td></td>
+<td><p>The c12 value for the extra LJ potential</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure</p></td>
-<td><p>Contains all options of the pressure correction scripts</p></td>
 <td></td>
+<td><p>Contains all options of the pressure correction scripts</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.do</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the pressure correction (1 do, 0 do not).</div>
 <div class="line">To do pressure correction every third step specify “0</div>
 <div class="line">0 1”, similar to do_potential</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.simple</p></td>
-<td><p>Contains all options of the simple pressure correction</p></td>
 <td></td>
+<td><p>Contains all options of the simple pressure correction</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.simple.max_A</p></td>
-<td><p>maximum prefactor in units of kBT</p></td>
 <td><p>0.1</p></td>
+<td><p>maximum prefactor in units of kBT</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.simple.scale</p></td>
-<td><p>slope of the simple pressure correction</p></td>
 <td></td>
+<td><p>slope of the simple pressure correction</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.ptype</p></td>
-<td><p>Generic Pressure correction options</p></td>
 <td></td>
+<td><p>Generic Pressure correction options</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.max_A</p></td>
-<td><p>maximum prefactor in units of kBT</p></td>
 <td></td>
+<td><p>maximum prefactor in units of kBT</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.scale</p></td>
-<td><p>slope of the pressure correction</p></td>
 <td></td>
+<td><p>slope of the pressure correction</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.type</p></td>
-<td><p>Pressure correction type, can be simple or wjk</p></td>
 <td><p>simple</p></td>
+<td><p>Pressure correction type, can be simple or wjk</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.wjk</p></td>
-<td><p>Contains all options of the wjk pressure correction</p></td>
 <td></td>
+<td><p>Contains all options of the wjk pressure correction</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.max_A</p></td>
-<td><p>maximum prefactor in units of kBT</p></td>
 <td><p>0.1</p></td>
+<td><p>maximum prefactor in units of kBT</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.scale</p></td>
-<td><p>extra scaling factor of pressure wjk correction</p></td>
 <td><p>1.0</p></td>
+<td><p>extra scaling factor of pressure wjk correction</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.scale</p></td>
-<td><p>scale factor for the update</p></td>
 <td><p>1.0</p></td>
+<td><p>scale factor for the update</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.smooth</p></td>
-<td><p>Contains all options of the post_update smooth script</p></td>
 <td></td>
+<td><p>Contains all options of the post_update smooth script</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.smooth.iterations</p></td>
-<td><p>number of triangular smooth to be performed</p></td>
 <td><p>1</p></td>
+<td><p>number of triangular smooth to be performed</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.post_update_options.splinesmooth</p></td>
-<td><p>Contains all options of the post_update spline smooth script</p></td>
 <td></td>
+<td><p>Contains all options of the post_update spline smooth script</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.splinesmooth.step</p></td>
-<td><p>grid spacing for spline fit when doing spline smoothing</p></td>
 <td></td>
+<td><p>grid spacing for spline fit when doing spline smoothing</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer</p></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the density calculation of the</div>
 <div class="line">optimizer</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.axis</p></td>
-<td><p>Axis along which the density is calculated</p></td>
 <td><p>x</p></td>
+<td><p>Axis along which the density is calculated</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.min</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Lower bound of interval in which density calculation is</div>
 <div class="line">performed.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.max</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Upper bound of interval in which density calculation is</div>
 <div class="line">performed.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.step</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Step size of interval in which density calculation is</div>
 <div class="line">performed.</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.scale</p></td>
-<td><p>Scaling factor for density</p></td>
 <td><p>1.0</p></td>
+<td><p>Scaling factor for density</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.molname</p></td>
-<td><p>The molname of this interaction</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
+<td><p>The molname of this interaction</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.target</p></td>
-<td><p>Filename of the target denstiy distribution in the maindir</p></td>
 <td></td>
+<td><p>Filename of the target denstiy distribution in the maindir</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.function</p></td>
-<td><p>Functional form of the interaction, using parameters in here</p></td>
 <td></td>
+<td><p>Functional form of the interaction, using parameters in here</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.functionfile</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">If the function is very complicated it can be defined</div>
 <div class="line">in this files, which is used as an header</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping</p></td>
-<td><p>option related to mapping changes</p></td>
 <td></td>
+<td><p>option related to mapping changes</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping.change</p></td>
-<td><p>Does the mapping change in optimization: yes/no</p></td>
 <td><p>no</p></td>
+<td><p>Does the mapping change in optimization: yes/no</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping.output</p></td>
-<td><p>Output file name for mapping</p></td>
 <td><p>no</p></td>
+<td><p>Output file name for mapping</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping.template</p></td>
-<td><p>template for the mapping optimization</p></td>
 <td></td>
+<td><p>template for the mapping optimization</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.parameters</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Parameters to be fitted by the optimizer for this interaction.</div>
 <div class="line">Note that the parameter names are global</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.pressure</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the pressure calculation of the</div>
 <div class="line">optimizer</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.pressure.undef</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Pressure to use if pressure from the simulation was nan</div>
 <div class="line">(use a big number)</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the rdf calculation of the optimizer</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf.target</p></td>
-<td><p>Filename of the target rdf in the maindir</p></td>
 <td></td>
+<td><p>Filename of the target rdf in the maindir</p></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf.weight</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">Weighting function for calculating the convergency of</div>
 <div class="line">the rdf</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf.weightfile</p></td>
+<td></td>
 <td><div class="line-block">
 <div class="line">File with the weighting function definition calculating</div>
 <div class="line">the rdf</div>
 </div>
 </td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>non-bonded.inverse.optimizer.targets</p></td>
-<td><p>Targets to be fitted by the optimizer</p></td>
 <td><p>rdf</p></td>
+<td><p>Targets to be fitted by the optimizer</p></td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.inverse.optimizer.target_weights</p></td>
+<td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Weight of the targets, amount has to be the same as of</div>
 <div class="line">targets</div>
 </div>
 </td>
-<td><p>1</p></td>
 </tr>
 </tbody>
 </table>

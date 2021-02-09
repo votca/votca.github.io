@@ -10,71 +10,71 @@ The following table contains the defaults input options for the calculator,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - runtime
+     - 1e-4
      - | Simulated time in seconds (if a number smaller than 100
        | is given) or number of KMC steps (if a number larger than
        | 100 is given)
-     - 1e-4
      - float+
    * - outputtime
+     - 1E-8
      - | Time difference between outputs into the trajectory file.
        | Set to 0 if you wish to have no trajectory written out.
-     - 1E-8
      - float+
    * - trajectoryfile
-     - Name of the trajectory file
      - trajectory.csv
+     - Name of the trajectory file
      - 
    * - ratefile
-     - File to write rates
      - rates.dat
+     - File to write rates
      - 
    * - occfile
-     - File to write occupation
      - occupation.dat
+     - File to write occupation
      - 
    * - seed
-     - Integer to initialise the random number generator
      - 123
+     - Integer to initialise the random number generator
      - int+
    * - injectionpattern
+     - *
      - | Name pattern that specifies on which sites injection is
        | possible. Use the wildcard '*' to inject on any site.
-     - *
      - 
    * - injectionmethod
+     - random
      - | random: injection sites are selected randomly (generally
        | the recommended option); equilibrated: sites are chosen
        | such that the expected energy per carrier is matched,
        | possibly speeding up convergence
      - random
-     - random
    * - numberofcarriers
-     - Number of electrons/holes in the simulation box
      - 1
+     - Number of electrons/holes in the simulation box
      - int+
    * - field
-     - external electric field
      - 0.0 0.0 0.0
+     - external electric field
      - 
    * - carriertype
+     - electron
      - | Specifies the carrier type of the transport under consideration.
        | 
-     - electron
      - | electron
        | hole
        | singlet
        | triplet
    * - temperature
-     - Temperature in Kelvin.
      - 300
+     - Temperature in Kelvin.
      - float+
    * - maxrealtime
-     - Maximum clocktime allow to the calculation(Seconds)
      - 1E10
+     - Maximum clocktime allow to the calculation(Seconds)
      - float+
 .. note::
    An *xml* file containing the defaults for the `kmcmultiple` calculator can be found at `$VOTCASHARE/xtp/xml/kmcmultiple.xml`

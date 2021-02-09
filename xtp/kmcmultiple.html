@@ -235,64 +235,65 @@ The following table contains the defaults input options for the calculator,</p>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
-<th class="head"><p>Description</p></th>
 <th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
 <th class="head"><p>Valid Input</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>runtime</p></td>
+<td><p>1e-4</p></td>
 <td><div class="line-block">
 <div class="line">Simulated time in seconds (if a number smaller than 100</div>
 <div class="line">is given) or number of KMC steps (if a number larger than</div>
 <div class="line">100 is given)</div>
 </div>
 </td>
-<td><p>1e-4</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>outputtime</p></td>
+<td><p>1E-8</p></td>
 <td><div class="line-block">
 <div class="line">Time difference between outputs into the trajectory file.</div>
 <div class="line">Set to 0 if you wish to have no trajectory written out.</div>
 </div>
 </td>
-<td><p>1E-8</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>trajectoryfile</p></td>
-<td><p>Name of the trajectory file</p></td>
 <td><p>trajectory.csv</p></td>
+<td><p>Name of the trajectory file</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>ratefile</p></td>
-<td><p>File to write rates</p></td>
 <td><p>rates.dat</p></td>
+<td><p>File to write rates</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>occfile</p></td>
-<td><p>File to write occupation</p></td>
 <td><p>occupation.dat</p></td>
+<td><p>File to write occupation</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>seed</p></td>
-<td><p>Integer to initialise the random number generator</p></td>
 <td><p>123</p></td>
+<td><p>Integer to initialise the random number generator</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>injectionpattern</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
 <td><div class="line-block">
 <div class="line">Name pattern that specifies on which sites injection is</div>
 <div class="line">possible. Use the wildcard ‘*’ to inject on any site.</div>
 </div>
 </td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>injectionmethod</p></td>
+<td><p>random</p></td>
 <td><div class="line-block">
 <div class="line">random: injection sites are selected randomly (generally</div>
 <div class="line">the recommended option); equilibrated: sites are chosen</div>
@@ -301,25 +302,24 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 <td><p>random</p></td>
-<td><p>random</p></td>
 </tr>
 <tr class="row-even"><td><p>numberofcarriers</p></td>
-<td><p>Number of electrons/holes in the simulation box</p></td>
 <td><p>1</p></td>
+<td><p>Number of electrons/holes in the simulation box</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>field</p></td>
-<td><p>external electric field</p></td>
 <td><p>0.0 0.0 0.0</p></td>
+<td><p>external electric field</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>carriertype</p></td>
+<td><p>electron</p></td>
 <td><div class="line-block">
 <div class="line">Specifies the carrier type of the transport under consideration.</div>
 <div class="line"><br /></div>
 </div>
 </td>
-<td><p>electron</p></td>
 <td><div class="line-block">
 <div class="line">electron</div>
 <div class="line">hole</div>
@@ -329,13 +329,13 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>temperature</p></td>
-<td><p>Temperature in Kelvin.</p></td>
 <td><p>300</p></td>
+<td><p>Temperature in Kelvin.</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>maxrealtime</p></td>
-<td><p>Maximum clocktime allow to the calculation(Seconds)</p></td>
 <td><p>1E10</p></td>
+<td><p>Maximum clocktime allow to the calculation(Seconds)</p></td>
 <td><p>float+</p></td>
 </tr>
 </tbody>

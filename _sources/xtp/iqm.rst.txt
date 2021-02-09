@@ -10,16 +10,16 @@ The following table contains the defaults input options for the calculator,
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - job_file
-     - name of jobfile to which jobs are written
      - iqm.jobs
+     - name of jobfile to which jobs are written
      - 
    * - tasks
-     - tasks to perform during calculation
      - input,dft,parse,dftcoupling,gwbse,bsecoupling
+     - tasks to perform during calculation
      - | [input
        | dft
        | parse
@@ -27,110 +27,110 @@ The following table contains the defaults input options for the calculator,
        | gwbse
        | bsecoupling]
    * - store
+     - none
      - | store results in hdf5 file, can require a lot of disk
        | space in large systems
-     - none
      - | none
        | gw
        | dft
    * - map_file
-     - xml file with segment definition
      - votca_map.xml
+     - xml file with segment definition
      - 
    * - basisset
-     - Basis set for MOs
      - def2-tzvp
+     - Basis set for MOs
      - 
    * - auxbasisset
-     - Auxiliary basis set for RI
      - aux-def2-tzvp
+     - Auxiliary basis set for RI
      - 
    * - functional
-     - Functional name(s) according to LIBXC
      - XC_HYB_GGA_XC_PBEH
+     - Functional name(s) according to LIBXC
      - 
    * - gwbse_options.gwbse.ranges
+     - default
      - | default: all levels in RPA, 1:2*HOMO in QP and all in
        | BSE; other options: factor,explicit
-     - default
      - | default
        | factor
        | explicit
        | full
    * - gwbse_options.gwbse.rpamax
+     - 
      - | only needed, if ranges is factor or explicit, number of
        | levels in rpa
      - 
-     - 
    * - gwbse_options.gwbse.qpmin
+     - 
      - | only needed, if ranges is factor or explicit, lowest MO
        | to be used in GW
      - 
-     - 
    * - gwbse_options.gwbse.qpmax
+     - 
      - | only needed, if ranges is factor or explicit, highest
        | MO to be used in GW
      - 
-     - 
    * - gwbse_options.gwbse.bsemin
+     - 
      - | only needed, if ranges is factor or explicit, lowest MO
        | to be used in BSE
      - 
-     - 
    * - gwbse_options.gwbse.bsemax
+     - 
      - | only needed, if ranges is factor or explicit, highest
        | MO to be used in BSE
      - 
-     - 
    * - gwbse_options.gwbse.vxc.grid
-     - grid quality
      - medium
+     - grid quality
      - | xcoarse
        | coarse
        | medium
        | fine
        | xfine
    * - gwbse_options.gwbse.scissor_shift
-     - preshift unoccupied MOs by a constant for GW calculation
      - 0.0
+     - preshift unoccupied MOs by a constant for GW calculation
      - float
    * - gwbse_options.gwbse.mode
-     - use single short (G0W0) or self-consistent GW (evGW)
      - evGW
+     - use single short (G0W0) or self-consistent GW (evGW)
      - | evGW
        | G0W0
    * - gwbse_options.gwbse.tasks
-     - tasks to do
      - all
+     - tasks to do
      - | [gw
        | singlets
        | triplets
        | all]
    * - gwbse_options.gwbse.sigma_integrator
-     - self-energy correlation integration method
      - ppm
+     - self-energy correlation integration method
      - | ppm
        |  exact
        |  cda
    * - gwbse_options.gwbse.eta
-     - small parameter eta of the Green's function
      - 1e-3
+     - small parameter eta of the Green's function
      - float+
    * - gwbse_options.gwbse.alpha
+     - 1e-3
      - | parameter to smooth residue and integral calculation for
        | the contour deformation technique
-     - 1e-3
      - float
    * - gwbse_options.gwbse.quadrature_scheme
+     - legendre
      - | If CDA is used for sigma integration this set the quadrature
        | scheme to use
-     - legendre
      - | hermite
        | laguerre
        | legendre
    * - gwbse_options.gwbse.quadrature_order
-     - Quadrature order if CDA is used for sigma integration
      - 12
+     - Quadrature order if CDA is used for sigma integration
      - | 8
        | 10
        | 12
@@ -141,197 +141,197 @@ The following table contains the defaults input options for the calculator,
        | 40
        | 100
    * - gwbse_options.gwbse.qp_solver
-     - QP equation solve method
      - grid
+     - QP equation solve method
      - | fixedpoint
        | grid
    * - gwbse_options.gwbse.qp_grid_steps
-     - number of QP grid points
      - 1001
+     - number of QP grid points
      - int+
    * - gwbse_options.gwbse.qp_grid_spacing
-     - spacing of QP grid points
      - 0.001
+     - spacing of QP grid points
      - float+
    * - gwbse_options.gwbse.exctotal
-     - maximum number of BSE states to calculate
      - 30
+     - maximum number of BSE states to calculate
      - int+
    * - gwbse_options.gwbse.useTDA
-     - use TDA for BSE
      - false
+     - use TDA for BSE
      - bool
    * - gwbse_options.gwbse.dynamical_screening_max_iterations
+     - 0
      - | maximum number of iterations for perturbative dynamical
        | screening in BSE
-     - 0
      - int+
    * - gwbse_options.gwbse.dynamical_screening_tolerance
+     - 1e-5
      - | convergence tolerance for perturbative dynamical screening
        | in BSE
-     - 1e-5
      - float+
    * - gwbse_options.gwbse.ignore_corelevels
+     - no
      - | exclude core MO level from calculation on RPA,GW or BSE
        | level
-     - no
      - | RPA
        | GW
        | BSE
        | no
    * - gwbse_options.gwbse.eigensolver.davidson_correction
-     - Davidson correction method
      - DPR
+     - Davidson correction method
      - | DPR
        | OHLSEN
    * - gwbse_options.gwbse.eigensolver.davidson_tolerance
-     - Numerical tolerance
      - normal
+     - Numerical tolerance
      - | loose
        | normal
        | strict
        | lapack
    * - gwbse_options.gwbse.eigensolver.davidson_ortho
-     - orthogonalisation routine: GramSchmidt or QR
      - GS
+     - orthogonalisation routine: GramSchmidt or QR
      - | GS
        | QR
    * - gwbse_options.gwbse.eigensolver.davidson_update
-     -  how large the search space
      - safe
+     -  how large the search space
      - | min
        | safe
        | max
    * - gwbse_options.gwbse.eigensolver.davidson_maxiter
-     - max iterations
      - 50
+     - max iterations
      - int+
    * - gwbse_options.gwbse.gw_sc_max_iterations
-     - Maximum number of iterations in eVGW
      - 50
+     - Maximum number of iterations in eVGW
      - int+
    * - gwbse_options.gwbse.gw_mixing_order
+     - 20
      - | Mixing of QP energies in evGW - 0: plain, 1: linear, >1:
        | Anderson
-     - 20
      - int+
    * - gwbse_options.gwbse.gw_sc_limit
-     - evGW convergence criteria
      - 1e-5
+     - evGW convergence criteria
      - float+
    * - gwbse_options.gwbse.gw_mixing_alpha
-     - mixing alpha, also linear mixing
      - 0.7
+     - mixing alpha, also linear mixing
      - float+
    * - gwbse_options.gwbse.g_sc_max_iterations
+     - 100
      - | maximum number of iterations for quasiparticle equation
        | solution
-     - 100
      - int+
    * - gwbse_options.gwbse.g_sc_limit
-     - quasiparticle equation solver convergence
      - 1e-5
+     - quasiparticle equation solver convergence
      - float+
    * - gwbse_options.gwbse.use_Hqp_offdiag
+     - false
      - | Using symmetrized off-diagonal elements of QP Hamiltonian
        | in BSE
-     - false
      - bool
    * - gwbse_options.gwbse.sigma_plot_states
+     - 
      - plot sigma(omega) for the following states, e.g 1 3 5
      - 
-     - 
    * - gwbse_options.gwbse.sigma_plot_steps
-     - points to plot
      - 201
+     - points to plot
      - int+
    * - gwbse_options.gwbse.sigma_plot_spacing
-     - spacing of points units
      - 1e-2
+     - spacing of points units
      - float+
    * - gwbse_options.gwbse.sigma_plot_filename
-     - 
      - QPenergies_sigma.dat
      - 
+     - 
    * - gwbse_options.gwbse.bse_print_weight
-     - print exciton WF composition weight larger than minimum
      - 0.5
+     - print exciton WF composition weight larger than minimum
      - float+
    * - gwbse_options.gwbse.rebuild_threecenter_freq
-     - how often the 3c integrals in iterate should be rebuilt
      - 5
+     - how often the 3c integrals in iterate should be rebuilt
      - int+
    * - gwbse_options.gwbse.exctotal
-     - number of eigenvectors to calculate
      - 5
+     - number of eigenvectors to calculate
      - int+
    * - gwbse_options.gwbse.ignore_corelevels
-     - 
      - none
+     - 
      - | none
        | RPA
        | BSE
        | GW
    * - bsecoupling.spin
-     - Spin type for couplings
      - all
+     - Spin type for couplings
      - | singlet
        | triplet
        | all
    * - bsecoupling.degeneracy
-     - Criterium for the degeneracy of two levels
      - 0
+     - Criterium for the degeneracy of two levels
      - float
    * - bsecoupling.moleculeA.states
-     - Number of excitons considered
      - 5
+     - Number of excitons considered
      - int+
    * - bsecoupling.moleculeA.occLevels
-     - occupied levels for CTstates
      - 5
+     - occupied levels for CTstates
      - int+
    * - bsecoupling.moleculeA.unoccLevels
-     - unoccupied levels for CTstates
      - 5
+     - unoccupied levels for CTstates
      - int+
    * - bsecoupling.moleculeB.states
-     - Number of excitons considered
      - 5
+     - Number of excitons considered
      - int+
    * - bsecoupling.moleculeB.occLevels
-     - occupied levels for CTstates
      - 5
+     - occupied levels for CTstates
      - int+
    * - bsecoupling.moleculeB.unoccLevels
-     - unoccupied levels for CTstates
      - 5
+     - unoccupied levels for CTstates
      - int+
    * - dftcoupling_options.degeneracy
-     - Criterium for the degeneracy of two levels
      - 0
+     - Criterium for the degeneracy of two levels
      - float+
    * - dftcoupling_options.levA
+     - 1
      - | Output HOMO, ..., HOMO-levels; LUMO, ..., LUMO+levels,
        | molecule A
-     - 1
      - 
    * - dftcoupling_options.levB
+     - 1
      - | Output HOMO, ..., HOMO-levels; LUMO, ..., LUMO+levels,
        | molecule B
-     - 1
      - 
    * - dftpackage.package.name
-     - Name of the DFT package
      - xtp
+     - Name of the DFT package
      - | orca
        | xtp
    * - dftpackage.package.read_guess
-     - Read wave function guess
      - true
+     - Read wave function guess
      - bool
    * - dftpackage.package.use_auxbasisset
-     - use an auxiliar basisset
      - true
+     - use an auxiliar basisset
      - bool
 .. note::
    An *xml* file containing the defaults for the `iqm` calculator can be found at `$VOTCASHARE/xtp/xml/iqm.xml`

@@ -5,49 +5,49 @@
    :align: center
 
    * - Property Name
-     - Description
      - Default Value
+     - Description
      - Valid Input
    * - name
-     - QM package to use
      - xtp
+     - QM package to use
      - | xtp
        | orca
    * - charge
-     - Molecular charge
      - 0
+     - Molecular charge
      - int
    * - spin
-     - Molecular multiplicity
      - 1
+     - Molecular multiplicity
      - int+
    * - basisset
-     - Basis set for MOs
      - def2-tzvp
+     - Basis set for MOs
      - 
    * - use_auxbasisset
-     - use an auxiliar basisset
      - true
+     - use an auxiliar basisset
      - bool
    * - auxbasisset
-     - Auxiliary basis set for RI
      - aux-def2-tzvp
+     - Auxiliary basis set for RI
      - 
    * - use_ecp
-     - use an Effective Core Potentials for DFT Calculations
      - false
+     - use an Effective Core Potentials for DFT Calculations
      - bool
    * - optimize
-     - Perform a molecular geometry optimization
      - false
+     - Perform a molecular geometry optimization
      - bool
    * - functional
-     - 
      - XC_HYB_GGA_XC_PBEH
      - 
+     - 
    * - scratch
-     - path to the scratch folder
      - /tmp/qmpackage
+     - path to the scratch folder
      - 
    * - polarization
      - 
@@ -58,105 +58,105 @@
      - 
      - 
    * - read_guess
-     - Read wave function guess
      - false
+     - Read wave function guess
      - bool
    * - write_charges
-     - Print atomic charges
      - false
+     - Print atomic charges
      - bool
    * - convergence_tightness
-     - 
      - tight
+     - 
      - | low
        | normal
        | tight
        | verytight
    * - cleanup
+     - 
      - files to remove after the calculation is done
      - 
-     - 
    * - orca.method
+     - 
      - This is automatically fill with the functional and basis set
      - 
-     - 
    * - xtpdft.with_screening
-     - screening
      - true
+     - screening
      - bool
    * - xtpdft.use_external_field
-     - whether or not to use an external field
      - false
+     - whether or not to use an external field
      - bool
    * - xtpdft.use_external_density
-     - whether or not to use a precomputed external density
      - false
+     - whether or not to use a precomputed external density
      - bool
    * - xtpdft.screening_eps
-     - screening eps
      - 1e-9
+     - screening eps
      - float+
    * - xtpdft.four_center_method
-     - method to compute the four-center integrals
      - cache
+     - method to compute the four-center integrals
      - | cache
        | direct
        | RI
    * - xtpdft.convergence.energy
-     - DeltaE at which calculation is converged
      - 1E-7
+     - DeltaE at which calculation is converged
      - float+
    * - xtpdft.convergence.method
-     - Main method to use for convergence accelertation
      - DIIS
+     - Main method to use for convergence accelertation
      - | DIIS
        | mixing
    * - xtpdft.convergence.DIIS_start
-     - DIIS error at which DIIS takes over
      - 0.002
+     - DIIS error at which DIIS takes over
      - float+
    * - xtpdft.convergence.ADIIS_start
-     - DIIS error at which ADIIS takes over
      - 0.8
+     - DIIS error at which ADIIS takes over
      - float+
    * - xtpdft.convergence.DIIS_length
-     - old hamiltonians to keep in history
      - 20
+     - old hamiltonians to keep in history
      - int+
    * - xtpdft.convergence.DIIS_maxout
+     - false
      - | if true remove the maximum element in the history if DIIS_length
        | is exceeded.Otherwise, the oldest element is removed.
-     - false
      - bool
    * - xtpdft.convergence.levelshift
-     - levelshift to apply to hamiltonian 
      - 0.0
+     - levelshift to apply to hamiltonian 
      - float+
    * - xtpdft.convergence.levelshift_end
-     - DIIS error at levelshifting is disabled
      - 0.2
+     - DIIS error at levelshifting is disabled
      - float+
    * - xtpdft.convergence.max_iterations
-     - max iterations to use
      - 100
+     - max iterations to use
      - int+
    * - xtpdft.convergence.error
-     - convergence error
      - 1e-7
+     - convergence error
      - float+
    * - xtpdft.convergence.mixing
-     - mixing parameter for linear mixing of density matrices
      - 0.7
+     - mixing parameter for linear mixing of density matrices
      - float+
    * - xtpdft.initial_guess
+     - atom
      - | Method to use to make initial guess, independent(electrons)
        | or atom(densities)
-     - atom
      - | independent
        | atom
    * - xtpdft.integration_grid
-     - vxc grid quality
      - medium
+     - vxc grid quality
      - | xcoarse
        | coarse
        | medium
