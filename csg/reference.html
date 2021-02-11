@@ -3898,51 +3898,53 @@ Possible types: non-bonded, bond, angle, dihedral
 </div>
 <div class="section" id="id106">
 <h4>DESCRIPTION<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h4>
-<p>This file defines some commonly used functions:
-* msg  – echos a msg on the screen and send it to the logfile if logging is enabled
-* show_callstack  – show the current callstack
-* die   – make the iterative frame work stopp
-* cat_external  – takes a two tags and shows content of the according script
-* do_external  – takes two tags, find the according script and excute it
-* critical  – executes arguments as command and calls die if not succesful
-* csg_get_interaction_property   – gets an interaction property from the xml file, should only be called from inside a for_all loop or with –all option
-* csg_get_property   – get an property from the xml file
-* trim_all  – make multiple lines into one and strip white space from beginning and the end, reads from stdin
-* mark_done   – mark a task (1st argument) as done in the restart file
-* is_done   – checks if something is already do in the restart file
-* is_int  – checks if all arguments are integers
-* to_int  – convert all given numbers to int using awk’s int function
-* is_part  – checks if 1st argument is part of the set given by other arguments
-* has_duplicate  – check if one of the arguments is double
-* remove_duplicate  – remove duplicates list of arguments
-* is_num  – checks if all arguments are numbers
-* get_stepname  – get the dir name of a certain step number (1st argument)
-* get_current_step_dir  – print the directory of the current step
-* get_last_step_dir  – print the directory of the last step
-* get_main_dir  – print the main directory
-* get_current_step_nr  – print the main directory
-* get_step_nr  – print the number of a certain step directory (1st argument)
-* cp_from_main_dir  – copy something from the main directory
-* cp_from_last_step  – copy something from the last step
-* get_time  – gives back current time in sec from 1970
-* get_number_tasks  – get the number of possible tasks from the xml file or determine it automatically under some systems
-* get_table_comment  – get comment lines from a table and add common information, which include the git id and other information
-* csg_inverse_clean  – clean out the main directory
-* check_path_variable  – check if a variable contains only valid paths
-* add_to_csgshare  – added an directory to the csg internal search directories
-* globalize_dir  – convert a local directory to a global one
-* globalize_file  – convert a local file name to a global one
-* source_function  – source an extra function file
-* csg_banner  – print a big banner
-* csg_calc  – simple calculator, a + b, …
-* show_csg_tables  – show all concatinated csg tables
-* get_command_from_csg_tables  – print the name of script belonging to certain tags (1st, 2nd argument)
-* source_wrapper  – print the full name of a script belonging to two tags (1st, 2nd argument)
-* find_in_csgshare  – find a script in csg script search path
-* enable_logging  – enables the logging to a certain file (1st argument) or the logfile taken from the xml file
-* get_restart_file  – print the name of the restart file to use
-* check_for_obsolete_xml_options  – check xml file for obsolete options
-* command_not_found_handle  – print and error message if a command or a function was not found</p>
+<p>This file defines some commonly used functions:</p>
+<ul class="simple">
+<li><p>msg  – echos a msg on the screen and send it to the logfile if logging is enabled</p></li>
+<li><p>show_callstack  – show the current callstack</p></li>
+<li><p>die   – make the iterative frame work stopp</p></li>
+<li><p>cat_external  – takes a two tags and shows content of the according script</p></li>
+<li><p>do_external  – takes two tags, find the according script and excute it</p></li>
+<li><p>critical  – executes arguments as command and calls die if not succesful</p></li>
+<li><p>csg_get_interaction_property   – gets an interaction property from the xml file, should only be called from inside a for_all loop or with –all option</p></li>
+<li><p>csg_get_property   – get an property from the xml file</p></li>
+<li><p>trim_all  – make multiple lines into one and strip white space from beginning and the end, reads from stdin</p></li>
+<li><p>mark_done   – mark a task (1st argument) as done in the restart file</p></li>
+<li><p>is_done   – checks if something is already do in the restart file</p></li>
+<li><p>is_int  – checks if all arguments are integers</p></li>
+<li><p>to_int  – convert all given numbers to int using awk’s int function</p></li>
+<li><p>is_part  – checks if 1st argument is part of the set given by other arguments</p></li>
+<li><p>has_duplicate  – check if one of the arguments is double</p></li>
+<li><p>remove_duplicate  – remove duplicates list of arguments</p></li>
+<li><p>is_num  – checks if all arguments are numbers</p></li>
+<li><p>get_stepname  – get the dir name of a certain step number (1st argument)</p></li>
+<li><p>get_current_step_dir  – print the directory of the current step</p></li>
+<li><p>get_last_step_dir  – print the directory of the last step</p></li>
+<li><p>get_main_dir  – print the main directory</p></li>
+<li><p>get_current_step_nr  – print the main directory</p></li>
+<li><p>get_step_nr  – print the number of a certain step directory (1st argument)</p></li>
+<li><p>cp_from_main_dir  – copy something from the main directory</p></li>
+<li><p>cp_from_last_step  – copy something from the last step</p></li>
+<li><p>get_time  – gives back current time in sec from 1970</p></li>
+<li><p>get_number_tasks  – get the number of possible tasks from the xml file or determine it automatically under some systems</p></li>
+<li><p>get_table_comment  – get comment lines from a table and add common information, which include the git id and other information</p></li>
+<li><p>csg_inverse_clean  – clean out the main directory</p></li>
+<li><p>check_path_variable  – check if a variable contains only valid paths</p></li>
+<li><p>add_to_csgshare  – added an directory to the csg internal search directories</p></li>
+<li><p>globalize_dir  – convert a local directory to a global one</p></li>
+<li><p>globalize_file  – convert a local file name to a global one</p></li>
+<li><p>source_function  – source an extra function file</p></li>
+<li><p>csg_banner  – print a big banner</p></li>
+<li><p>csg_calc  – simple calculator, a + b, …</p></li>
+<li><p>show_csg_tables  – show all concatinated csg tables</p></li>
+<li><p>get_command_from_csg_tables  – print the name of script belonging to certain tags (1st, 2nd argument)</p></li>
+<li><p>source_wrapper  – print the full name of a script belonging to two tags (1st, 2nd argument)</p></li>
+<li><p>find_in_csgshare  – find a script in csg script search path</p></li>
+<li><p>enable_logging  – enables the logging to a certain file (1st argument) or the logfile taken from the xml file</p></li>
+<li><p>get_restart_file  – print the name of the restart file to use</p></li>
+<li><p>check_for_obsolete_xml_options  – check xml file for obsolete options</p></li>
+<li><p>command_not_found_handle  – print and error message if a command or a function was not found</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="functions-dlpoly-sh">
