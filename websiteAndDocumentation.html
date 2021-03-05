@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Website and Documentation &mdash; VOTCA 2022-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Code of Conduct" href="CODE_OF_CONDUCT.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/customLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Website and Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-documentation-and-website-locally">Building the documentation and website locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rebuilding-the-website-after-changes">Rebuilding the website after changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editing-existing-pages">Editing existing pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-a-new-page">Writing a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-theme">Changing the theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-your-changes">Publishing your changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-advanced-stuff">More Advanced Stuff</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VOTCA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Website and Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/websiteAndDocumentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="website-and-documentation">
+<h1>Website and Documentation<a class="headerlink" href="#website-and-documentation" title="Permalink to this headline">¶</a></h1>
+<p>On this page you will find all the information you need to contribute to VOTCA’s
+website and documentation.</p>
+<p>The website is build with Sphinx and uses a slightly modified version of the
+Read the Docs theme. Parts of the documentation is automatically generated
+based on the source code of VOTCA and jupyter notebooks, other parts are written
+by hand. The markup language of Sphinx is reStructuredText, think of it as
+Markdown on steroids.</p>
+<p>To start working on the website and documentation you will first need to be able
+to build it, this is discussed first. Next, a brief overview of how to edit
+existing pages and adding new ones is given. Finally, we discuss how to change the theme and publish the changes.</p>
+<div class="section" id="building-the-documentation-and-website-locally">
+<h2>Building the documentation and website locally<a class="headerlink" href="#building-the-documentation-and-website-locally" title="Permalink to this headline">¶</a></h2>
+<p>To be able to see and test changes you make to the website, you will need to
+build it locally. You will first need to install and build VOTCA. Once you have
+installed VOTCA, navigate to its build folder (if you followed the install
+instructions, it will be called <code class="docutils literal notranslate"><span class="pre">builddir</span></code>). In the build folder, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make doc
+</pre></div>
+</div>
+<p>This will probably output errors on the first few tries, read them carefully
+since they will almost always be missing python packages. Find which
+package/module is missing in the error message and simply install it with <code class="docutils literal notranslate"><span class="pre">pip3</span>
+<span class="pre">install</span> <span class="pre">&lt;packagename&gt;</span></code>.</p>
+<p>A short list of packages you probably need to install manually:</p>
+<ul class="simple">
+<li><p>cma</p></li>
+<li><p>recommonmark</p></li>
+<li><p>nbsphinx</p></li>
+<li><p>sphinx_rtd_theme</p></li>
+</ul>
+<p>Once the errors are gone, the documentation is build and a static html website is
+generated in the <code class="docutils literal notranslate"><span class="pre">sphinx.html</span></code> folder within the build folder. You can view
+and test the website in any browser simply by navigating to the index.html file
+within the <code class="docutils literal notranslate"><span class="pre">sphinx.html</span></code> folder.</p>
+</div>
+<div class="section" id="rebuilding-the-website-after-changes">
+<h2>Rebuilding the website after changes<a class="headerlink" href="#rebuilding-the-website-after-changes" title="Permalink to this headline">¶</a></h2>
+<p>After you updated files you will need to rebuild the website to see your changes.</p>
+<p>If you simply changed the contents of a .rst file you can rerun <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doc</span></code> to propagate the changes. If you refresh the browser, the changes will have taken
+effect.</p>
+<p>If you, however, changed the theme or added (deleted) a file to the website you
+will need to reconfigure the website build. To make sure you start with a clean
+slate, remove the two sphinx folders in the build folder (i.e. <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sphinx.html</span></code>), next rerun the cmake configuration of votca and rerun <code class="docutils literal notranslate"><span class="pre">make</span>
+<span class="pre">doc</span></code>.</p>
+</div>
+<div class="section" id="editing-existing-pages">
+<h2>Editing existing pages<a class="headerlink" href="#editing-existing-pages" title="Permalink to this headline">¶</a></h2>
+<p>To edit existing pages, you only need limited knowledge of the reStructuredText
+markup. You can find quick introductions <a class="reference external" href="https://docutils.sourceforge.io/docs/user/rst/quickstart.html">here</a> and <a class="reference external" href="https://docutils.sourceforge.io/docs/user/rst/quickref.html">here</a>. All pages are stored as
+.rst files in the <code class="docutils literal notranslate"><span class="pre">share/doc</span></code> folder of the corresponding repo.</p>
+</div>
+<div class="section" id="writing-a-new-page">
+<h2>Writing a new page<a class="headerlink" href="#writing-a-new-page" title="Permalink to this headline">¶</a></h2>
+<p>To add a new page to the website, you will first need to decide where it belongs,
+in the xtp, csg or votca repo. Once you have decided that, navigate to the
+<code class="docutils literal notranslate"><span class="pre">share/doc</span></code> folder within that repo. There will be either an <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>
+file or something like <code class="docutils literal notranslate"><span class="pre">XTP-MANUAL.rst</span></code>. This file is the main page of that repo on the website. If you look at the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">votca</span></code> repo you will
+find all the subpages listed here, you need to make sure that your new page
+can be found starting from this file.</p>
+<p>As an example, suppose we want to add a test page, called <code class="docutils literal notranslate"><span class="pre">text.rst</span></code> to the
+developers section of the website. In <code class="docutils literal notranslate"><span class="pre">votca/share/doc</span></code>, we would create the
+new file. Next, we would update the file <code class="docutils literal notranslate"><span class="pre">votca/share/doc/index.rst</span></code>, we need
+to add our file to the table of contents of the site. Look for the table of
+contents of the development section and add the test page. It will look
+something like this</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. toctree::
+ :maxdepth: 2
+ :hidden:
+ :caption: Development
+
+ DEVELOPERS_GUIDE.rst
+ VOTCA_LANGUAGE_GUIDE.rst
+ CODE_OF_CONDUCT.rst
+ WEBSITE_AND_DOCUMENTATION.rst
+ test.rst
+</pre></div>
+</div>
+<p>After you have added content to the <code class="docutils literal notranslate"><span class="pre">test.rst</span></code> file, rebuild VOTCA and run
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doc</span></code> to rebuild the website.</p>
+</div>
+<div class="section" id="changing-the-theme">
+<h2>Changing the theme<a class="headerlink" href="#changing-the-theme" title="Permalink to this headline">¶</a></h2>
+<p>To change the theme, navigate to <code class="docutils literal notranslate"><span class="pre">votca/share/doc/_static/css</span></code>, there you will
+find the <code class="docutils literal notranslate"><span class="pre">theme.css</span></code> file which you can modify to change the look and feel of
+the website.</p>
+</div>
+<div class="section" id="publishing-your-changes">
+<h2>Publishing your changes<a class="headerlink" href="#publishing-your-changes" title="Permalink to this headline">¶</a></h2>
+<p>All the changes so far are local, to get them published simply make a pull
+request in the desired repo. Once the PR is accepted, the site will
+automatically be updated.</p>
+</div>
+<div class="section" id="more-advanced-stuff">
+<h2>More Advanced Stuff<a class="headerlink" href="#more-advanced-stuff" title="Permalink to this headline">¶</a></h2>
+<p>Except for the automatically generated pages, this website is a basic Sphinx
+website, all the information you can find about Sphinx and reStructuredText on
+the web is applicable here. So if you need something advanced, simply google it.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="CODE_OF_CONDUCT.html" class="btn btn-neutral float-left" title="Code of Conduct" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, VOTCA Development Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
