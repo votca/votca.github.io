@@ -715,6 +715,22 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
+<tr class="row-even"><td><p>inverse.imc.bonded_method</p></td>
+<td><p>ibi</p></td>
+<td><div class="line-block">
+<div class="line">method for calculating updates on the bonded interactions.</div>
+<div class="line">ibi or imc (not implemented), default=ibi</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.imc.settings_nonbonded</p></td>
+<td><p>imc</p></td>
+<td><div class="line-block">
+<div class="line">settings file to be used with csg_stat –do-imc. only</div>
+<div class="line">needed if bonded_method=ibi</div>
+</div>
+</td>
+</tr>
 <tr class="row-even"><td><p>inverse.lammps</p></td>
 <td></td>
 <td><p>general lammps specific options</p></td>
@@ -947,33 +963,148 @@ The following table contains the input options for CSG,</p>
 </tr>
 <tr class="row-odd"><td><p>inverse.method</p></td>
 <td></td>
-<td><p>method to be performed: ibi/imc/ft/optimizer</p></td>
+<td><p>method to be performed: ibi/iie/imc/ft/optimizer</p></td>
 </tr>
-<tr class="row-even"><td><p>inverse.optimizer</p></td>
+<tr class="row-even"><td><p>inverse.iie</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">general options for the IIE schemes (hncgn/ihnc/hncn/pygn/ipy/pyn)</div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.initial_guess</p></td>
+<td></td>
+<td><p>Settings for the initial guess</p></td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.initial_guess.method</p></td>
+<td><p>ie</p></td>
+<td><p>Method for the initial potential guess: table/bi/ie</p></td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.initial_guess.closure</p></td>
+<td></td>
+<td><p>OZ equation closure in case of method=ie: hnc/py</p></td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.initial_guess.ignore_intramolecular_correlation</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">If true, the initial guess will ignore the presence of</div>
+<div class="line">intramolecular correlation in the CG molecule.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.method</p></td>
+<td><p>gauss-newton</p></td>
+<td><div class="line-block">
+<div class="line">Update method to use: gauss-newton/newton/newton-mod.</div>
+<div class="line">For example closure=hnc + method=gauss-newton will result</div>
+<div class="line">in the HNCGN method. newton_mod is a modified newton scheme</div>
+<div class="line">that results in an IBI like expression e.g. IHNC.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.closure</p></td>
+<td><p>hnc</p></td>
+<td><p>OZ equation closure for the IIE update: hnc/py</p></td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.ignore_intramolecular_correlation</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">If true, the IIE updates (not the initial guess) will</div>
+<div class="line">ignore the presence of intramolecular correlation in the</div>
+<div class="line">CG molecule.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.cut_off</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Cut-off used for non-bonded potenitals in MD. Potential</div>
+<div class="line">will be set to zero beyond this point.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.g_extrap_factor</p></td>
+<td><p>1.0</p></td>
+<td><p>Lenght factor by which RDF will be extrapolated</p></td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.cut_jacobian</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">Wether to cut the Jacobian before multiplying with Δg.</div>
+<div class="line">Only for Newton methods</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.densities</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">List of densities of the beads, sorted by bead name. TODO:</div>
+<div class="line">replace by automatic calculation.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.n_intra</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">List of n_intra, the number of equal beads, sorted by</div>
+<div class="line">bead name. TODO: replace by automatic calculation.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.pressure_constraint</p></td>
+<td><p>none</p></td>
+<td><p>Apply pressure constraint. Only for hncgn/pygn</p></td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.extrap_near_core</p></td>
+<td><p>power</p></td>
+<td><div class="line-block">
+<div class="line">Method for extrapolation in and close to core region.</div>
+<div class="line">Valid values are: power (default), constant, none</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.iie.fix_near_cut_off</p></td>
+<td><p>full-deriv</p></td>
+<td><div class="line-block">
+<div class="line">Method for fixing discontinuity at end of potential. Valid</div>
+<div class="line">values are: full-deriv (default), none</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.iie.verbose</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">Print some info and dump compressed numpy arrays. Valid</div>
+<div class="line">values are: true (default), false</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.optimizer</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>inverse.optimizer.cma</p></td>
+<tr class="row-even"><td><p>inverse.optimizer.cma</p></td>
 <td></td>
 <td><p>general options for the cma optimizer</p></td>
 </tr>
-<tr class="row-even"><td><p>inverse.optimizer.cma.eps</p></td>
+<tr class="row-odd"><td><p>inverse.optimizer.cma.eps</p></td>
 <td></td>
 <td><p>standard epsilon, in which the best solution is searched</p></td>
 </tr>
-<tr class="row-odd"><td><p>inverse.optimizer.type</p></td>
+<tr class="row-even"><td><p>inverse.optimizer.type</p></td>
 <td></td>
 <td><p>Type of optimizer to be used</p></td>
 </tr>
-<tr class="row-even"><td><p>inverse.program</p></td>
+<tr class="row-odd"><td><p>inverse.program</p></td>
 <td><p>gromacs</p></td>
 <td><p>simulation package to be used (gromacs/espresso/lammps)</p></td>
 </tr>
-<tr class="row-odd"><td><p>inverse.restart_file</p></td>
+<tr class="row-even"><td><p>inverse.restart_file</p></td>
 <td><p>restart_points.log</p></td>
 <td><p>Name of the restart file in case a step has to be resumed</p></td>
 </tr>
-<tr class="row-even"><td><p>inverse.dist_min</p></td>
+<tr class="row-odd"><td><p>inverse.dist_min</p></td>
 <td><p>1e-10</p></td>
 <td><div class="line-block">
 <div class="line">minimal value for the rdf to consider for initial guess</div>
@@ -981,7 +1112,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>inverse.scriptpath</p></td>
+<tr class="row-even"><td><p>inverse.scriptpath</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">list of directories for user scripts (e.g. $PWD) separated</div>
@@ -989,23 +1120,23 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>inverse.simulation</p></td>
+<tr class="row-odd"><td><p>inverse.simulation</p></td>
 <td></td>
 <td><p>simulation options</p></td>
 </tr>
-<tr class="row-odd"><td><p>inverse.simulation.background</p></td>
+<tr class="row-even"><td><p>inverse.simulation.background</p></td>
 <td><p>no</p></td>
 <td><p>tells csg_inverse that simulation was send to the backgroud</p></td>
 </tr>
-<tr class="row-even"><td><p>inverse.simulation.tasks</p></td>
+<tr class="row-odd"><td><p>inverse.simulation.tasks</p></td>
 <td><p>auto</p></td>
 <td><p>number of threads to use for csg_stat</p></td>
 </tr>
-<tr class="row-odd"><td><p>nbsearch</p></td>
+<tr class="row-even"><td><p>nbsearch</p></td>
 <td><p>grid</p></td>
 <td><p>Grid search algorithm, simple (N square search) or grid</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded</p></td>
+<tr class="row-odd"><td><p>bonded</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Interaction specific option for bonded interactions, see</div>
@@ -1013,11 +1144,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded.dlpoly</p></td>
+<tr class="row-even"><td><p>bonded.dlpoly</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>bonded.dlpoly.header</p></td>
+<tr class="row-odd"><td><p>bonded.dlpoly.header</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Header of the interaction in dlpoly TABBND or TABANG file.</div>
@@ -1027,7 +1158,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded.name</p></td>
+<tr class="row-even"><td><p>bonded.name</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of the bonded interaction. The name can be arbitrary</div>
@@ -1036,7 +1167,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.periodic</p></td>
+<tr class="row-odd"><td><p>bonded.periodic</p></td>
 <td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">set to 1 when calculating bond dihedral potentials with</div>
@@ -1045,15 +1176,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded</p></td>
+<tr class="row-even"><td><p>non-bonded</p></td>
 <td></td>
 <td><p>Interaction specific option for non-bonded interactions</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.dlpoly</p></td>
+<tr class="row-odd"><td><p>non-bonded.dlpoly</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.dlpoly.header</p></td>
+<tr class="row-even"><td><p>non-bonded.dlpoly.header</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Header of the interaction in dlpoly TABLE file. The header</div>
@@ -1063,7 +1194,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.name</p></td>
+<tr class="row-odd"><td><p>non-bonded.name</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of the interaction. The name can be arbitrary but</div>
@@ -1072,15 +1203,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.type1</p></td>
+<tr class="row-even"><td><p>non-bonded.type1</p></td>
 <td></td>
 <td><p><strong>Bead</strong> type 1 of non-bonded interaction.</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.type2</p></td>
+<tr class="row-odd"><td><p>non-bonded.type2</p></td>
 <td></td>
 <td><p><strong>Bead</strong> type 2 of non-bonded interaction.</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.bondtype</p></td>
+<tr class="row-even"><td><p>non-bonded.bondtype</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Internal alias for “non-bonded” or “bonded”, set automatically</div>
@@ -1088,7 +1219,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.min</p></td>
+<tr class="row-odd"><td><p>non-bonded.min</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Lower bound of interval for potential table in which calculations</div>
@@ -1096,7 +1227,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.max</p></td>
+<tr class="row-even"><td><p>non-bonded.max</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Upper bound of interval for potential table in which calculations</div>
@@ -1104,7 +1235,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.step</p></td>
+<tr class="row-odd"><td><p>non-bonded.step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Step size of interval for potential table in which calculations</div>
@@ -1114,11 +1245,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.fmatch</p></td>
+<tr class="row-even"><td><p>non-bonded.fmatch</p></td>
 <td></td>
 <td><p>Force matching options</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.fmatch.min</p></td>
+<tr class="row-odd"><td><p>non-bonded.fmatch.min</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Minimum value of interval for distribution sampled in</div>
@@ -1130,7 +1261,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.fmatch.max</p></td>
+<tr class="row-even"><td><p>non-bonded.fmatch.max</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Maximum value of interval for distribution sampled in</div>
@@ -1140,7 +1271,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.fmatch.step</p></td>
+<tr class="row-odd"><td><p>non-bonded.fmatch.step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">grid spacing for the spline, which represents the interaction.</div>
@@ -1152,7 +1283,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.fmatch.out_step</p></td>
+<tr class="row-even"><td><p>non-bonded.fmatch.out_step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Grid spacing for the output grid. Normally, one wants</div>
@@ -1163,11 +1294,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.re</p></td>
+<tr class="row-odd"><td><p>non-bonded.re</p></td>
 <td></td>
 <td><p>Relative entropy options</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.re.function</p></td>
+<tr class="row-even"><td><p>non-bonded.re.function</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Functional form for the potential. Available functional</div>
@@ -1176,11 +1307,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.re.cbspl</p></td>
+<tr class="row-odd"><td><p>non-bonded.re.cbspl</p></td>
 <td></td>
 <td><p>options specific to cbspl function form</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.re.cbspl.nknots</p></td>
+<tr class="row-even"><td><p>non-bonded.re.cbspl.nknots</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Number of knot values to be used for the cbspl functional</div>
@@ -1194,11 +1325,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse</p></td>
 <td></td>
 <td><p>Contains all information relevant to iterative process</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.target</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.target</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">target distribution (e.g. rdf) which is tried to match</div>
@@ -1206,11 +1337,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.p_target</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.p_target</p></td>
 <td></td>
 <td><p>pressure contribution of this interaction</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.particle_dens</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.particle_dens</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">particle density of this species (for wjk pressure correction)</div>
@@ -1218,7 +1349,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.do_potential</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.do_potential</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the potential update. 1 means update,</div>
@@ -1227,11 +1358,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.espresso</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.espresso</p></td>
 <td></td>
 <td><p>Espresso specific options for this interations</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.espresso.table</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.espresso.table</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
@@ -1243,11 +1374,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.gromacs</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.gromacs</p></td>
 <td></td>
 <td><p>Gromacs specific options for this interations</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.gromacs.table</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.gromacs.table</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
@@ -1256,7 +1387,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.sim_prog</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">interaction specific options, which apply to all simulation</div>
@@ -1264,7 +1395,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
@@ -1276,7 +1407,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_begin</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_begin</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Start of the tabulated potential of this interaction.</div>
@@ -1284,7 +1415,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_end</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_end</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">End of the tabulated potential of this interaction. (Automatic</div>
@@ -1292,7 +1423,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_left_extrapolation</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_left_extrapolation</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Extrapolation function to use on the left. Default: exponential(non-bonded),</div>
@@ -1301,7 +1432,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_right_extrapolation</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_right_extrapolation</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Extrapolation function to use on the right. Default: constant(non-bonded),</div>
@@ -1310,7 +1441,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.sim_prog.table_bins</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.sim_prog.table_bins</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Binszie of the tabulated potential of this interaction.</div>
@@ -1318,11 +1449,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.imc</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.imc</p></td>
 <td></td>
-<td><p>ection containing inverse monte carlo specific options.</p></td>
+<td><p>section containing inverse monte carlo specific options.</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.imc.group</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.imc.group</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Group of interaction. Cross-correlations of all members</div>
@@ -1332,11 +1463,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.lammps</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.lammps</p></td>
 <td></td>
 <td><p>lammps specific options for this interations</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.lammps.scale</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.lammps.scale</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">x-axis scaling factor for the potential output, can be</div>
@@ -1345,7 +1476,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.lammps.table</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.lammps.table</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of file for tabulated potential of this interaction.</div>
@@ -1357,7 +1488,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.lammps.y_scale</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.lammps.y_scale</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">y-axis scaling factor for the potential output, can be</div>
@@ -1366,7 +1497,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Additional post processing of U after dU added to potential.</div>
@@ -1375,31 +1506,31 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options</p></td>
 <td></td>
 <td><p>Contains all options of post add scripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress</p></td>
 <td></td>
 <td><p>Contains all options of the postadd compress sripts</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress.filelist</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress.filelist</p></td>
 <td></td>
 <td><p>Files to be compressed</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress.program_opts</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress.program_opts</p></td>
 <td><p>-9</p></td>
 <td><p>Option to give to the compression command</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.compress.program</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.compress.program</p></td>
 <td><p>gzip</p></td>
 <td><p>Compression command to run</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.weight</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.weight</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">weight factors for the convergence of this interaction,</div>
@@ -1407,11 +1538,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.what</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.what</p></td>
 <td><p>dist</p></td>
 <td><p>list from what to calc the convergence: dist pot, ..</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.base</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.base</p></td>
 <td><p>tgt</p></td>
 <td><div class="line-block">
 <div class="line">what base values to be used to compute convergene error:</div>
@@ -1419,7 +1550,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.convergence.norm</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.convergence.norm</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">which norm to use to compute error: 1 first norm, 2 second</div>
@@ -1427,19 +1558,19 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.copyback</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.copyback</p></td>
 <td></td>
 <td><p>Contains all options of the postadd copyback sripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.copyback.filelist</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.copyback.filelist</p></td>
 <td></td>
 <td><p>File to be copied to back to maindir</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.overwrite</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.overwrite</p></td>
 <td></td>
 <td><p>Contains all options of the overwrite postadd scripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.overwrite.do</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.overwrite.do</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Cycle for overwrite postadd script (1 do, 0 do not) like</div>
@@ -1447,11 +1578,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot</p></td>
 <td></td>
 <td><p>Contains all options of the plot postadd scripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.fd</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.fd</p></td>
 <td><p>8</p></td>
 <td><div class="line-block">
 <div class="line">file descriptor to use, make it unique if you want to</div>
@@ -1459,7 +1590,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.gnuplot_opts</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.gnuplot_opts</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">extra options to give to gnuplot_bin like -persist or</div>
@@ -1467,7 +1598,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.kill</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.kill</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">kill all processes with that name before ploting (e.g.</div>
@@ -1475,15 +1606,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.plot.script</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.plot.script</p></td>
 <td></td>
 <td><p>plot script to give to gnuplot</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.average</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.average</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_add_options.average.what</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_add_options.average.what</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">list for which averages of last few steps are to computed:</div>
@@ -1492,7 +1623,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Additional post-processing of dU before added to potential.</div>
@@ -1501,11 +1632,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options</p></td>
 <td></td>
 <td><p>Contains all options of post update scripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.cibi</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.cibi</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Contains all options of the Kirkwood-Buff integral corrections</div>
@@ -1513,7 +1644,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.cibi.do</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.cibi.do</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the Kirkwood-Buff integral correction</div>
@@ -1522,15 +1653,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.cibi.kbint_with_errors</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.cibi.kbint_with_errors</p></td>
 <td><p>no</p></td>
 <td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.extrapolate</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.extrapolate</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.extrapolate.points</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.extrapolate.points</p></td>
 <td><p>5</p></td>
 <td><div class="line-block">
 <div class="line">Number of point to calculate the average from for the</div>
@@ -1538,7 +1669,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Contains all options of the Kirkwood-Buff ramp corrections</div>
@@ -1546,7 +1677,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.do</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.do</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the Kirkwood-Buff ramp correction (1</div>
@@ -1555,19 +1686,19 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.factor</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.factor</p></td>
 <td></td>
 <td><p>scaling factor for the ramp correction</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.kbint_with_errors</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.kbint_with_errors</p></td>
 <td><p>no</p></td>
 <td><p>calculate errors on the Kirkwood-Buff integral: yes/no</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.r_ramp</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.r_ramp</p></td>
 <td></td>
 <td><p>cutoff of the ramp</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.start</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.start</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Where to start averaging the Kirkwood-Buff integral for</div>
@@ -1575,7 +1706,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.kbibi.stop</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.kbibi.stop</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Where to stop averaging the Kirkwood-Buff integral for</div>
@@ -1583,23 +1714,23 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.lj</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.lj</p></td>
 <td></td>
 <td><p>Contains all options of the Lennard-Jones potential update</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.lj.c6</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.lj.c6</p></td>
 <td></td>
 <td><p>The c6 value for the extra LJ potential</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.lj.c12</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.lj.c12</p></td>
 <td></td>
 <td><p>The c12 value for the extra LJ potential</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure</p></td>
 <td></td>
 <td><p>Contains all options of the pressure correction scripts</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.do</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.do</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Update cycle for the pressure correction (1 do, 0 do not).</div>
@@ -1608,71 +1739,71 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.simple</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.simple</p></td>
 <td></td>
 <td><p>Contains all options of the simple pressure correction</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.simple.max_A</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.simple.max_A</p></td>
 <td><p>0.1</p></td>
 <td><p>maximum prefactor in units of kBT</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.simple.scale</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.simple.scale</p></td>
 <td></td>
 <td><p>slope of the simple pressure correction</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.ptype</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.ptype</p></td>
 <td></td>
 <td><p>Generic Pressure correction options</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.max_A</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.max_A</p></td>
 <td></td>
 <td><p>maximum prefactor in units of kBT</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.scale</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.ptype.scale</p></td>
 <td></td>
 <td><p>slope of the pressure correction</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.type</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.type</p></td>
 <td><p>simple</p></td>
 <td><p>Pressure correction type, can be simple or wjk</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.wjk</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.wjk</p></td>
 <td></td>
 <td><p>Contains all options of the wjk pressure correction</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.max_A</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.max_A</p></td>
 <td><p>0.1</p></td>
 <td><p>maximum prefactor in units of kBT</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.scale</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.pressure.wjk.scale</p></td>
 <td><p>1.0</p></td>
 <td><p>extra scaling factor of pressure wjk correction</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.scale</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.scale</p></td>
 <td><p>1.0</p></td>
 <td><p>scale factor for the update</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.smooth</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.smooth</p></td>
 <td></td>
 <td><p>Contains all options of the post_update smooth script</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.smooth.iterations</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.smooth.iterations</p></td>
 <td><p>1</p></td>
 <td><p>number of triangular smooth to be performed</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.splinesmooth</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.splinesmooth</p></td>
 <td></td>
 <td><p>Contains all options of the post_update spline smooth script</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.splinesmooth.step</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.splinesmooth.step</p></td>
 <td></td>
 <td><p>grid spacing for spline fit when doing spline smoothing</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the density calculation of the</div>
@@ -1680,11 +1811,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.axis</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.axis</p></td>
 <td><p>x</p></td>
 <td><p>Axis along which the density is calculated</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.min</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.min</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Lower bound of interval in which density calculation is</div>
@@ -1692,7 +1823,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.max</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.max</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Upper bound of interval in which density calculation is</div>
@@ -1700,7 +1831,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.step</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Step size of interval in which density calculation is</div>
@@ -1708,26 +1839,26 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.scale</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.scale</p></td>
 <td><p>1.0</p></td>
 <td><p>Scaling factor for density</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.molname</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.molname</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
 <td><p>The molname of this interaction</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.density.target</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.density.target</p></td>
 <td></td>
 <td><p>Filename of the target denstiy distribution in the maindir</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.function</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.function</p></td>
 <td></td>
 <td><p>Functional form of the interaction, using parameters in here</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.functionfile</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.functionfile</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">If the function is very complicated it can be defined</div>
@@ -1735,23 +1866,23 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping</p></td>
 <td></td>
 <td><p>option related to mapping changes</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping.change</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping.change</p></td>
 <td><p>no</p></td>
 <td><p>Does the mapping change in optimization: yes/no</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping.output</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping.output</p></td>
 <td><p>no</p></td>
 <td><p>Output file name for mapping</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.mapping.template</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.mapping.template</p></td>
 <td></td>
 <td><p>template for the mapping optimization</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.parameters</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.parameters</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Parameters to be fitted by the optimizer for this interaction.</div>
@@ -1759,7 +1890,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.pressure</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.pressure</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the pressure calculation of the</div>
@@ -1767,7 +1898,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.pressure.undef</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.pressure.undef</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Pressure to use if pressure from the simulation was nan</div>
@@ -1775,7 +1906,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Contains all options for the rdf calculation of the optimizer</div>
@@ -1783,11 +1914,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf.target</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf.target</p></td>
 <td></td>
 <td><p>Filename of the target rdf in the maindir</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf.weight</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf.weight</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Weighting function for calculating the convergency of</div>
@@ -1795,7 +1926,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.rdf.weightfile</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.rdf.weightfile</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">File with the weighting function definition calculating</div>
@@ -1803,11 +1934,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.inverse.optimizer.targets</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.targets</p></td>
 <td><p>rdf</p></td>
 <td><p>Targets to be fitted by the optimizer</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.inverse.optimizer.target_weights</p></td>
+<tr class="row-even"><td><p>non-bonded.inverse.optimizer.target_weights</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Weight of the targets, amount has to be the same as of</div>

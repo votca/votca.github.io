@@ -325,6 +325,14 @@ The following table contains the input options for CSG,
      - 0
      - | default magnitude for regularization parameter if not
        | given for the group explicitly, default =0
+   * - inverse.imc.bonded_method
+     - ibi
+     - | method for calculating updates on the bonded interactions.
+       | ibi or imc (not implemented), default=ibi
+   * - inverse.imc.settings_nonbonded
+     - imc
+     - | settings file to be used with csg_stat --do-imc. only
+       | needed if bonded_method=ibi
    * - inverse.lammps
      - 
      -  general lammps specific options 
@@ -471,7 +479,72 @@ The following table contains the input options for CSG,
        | bonded interactions
    * - inverse.method
      - 
-     - method to be performed: ibi/imc/ft/optimizer
+     - method to be performed: ibi/iie/imc/ft/optimizer
+   * - inverse.iie
+     - 
+     - | general options for the IIE schemes (hncgn/ihnc/hncn/pygn/ipy/pyn)
+       | 
+   * - inverse.iie.initial_guess
+     - 
+     - Settings for the initial guess
+   * - inverse.iie.initial_guess.method
+     - ie
+     - Method for the initial potential guess: table/bi/ie
+   * - inverse.iie.initial_guess.closure
+     - 
+     - OZ equation closure in case of method=ie: hnc/py
+   * - inverse.iie.initial_guess.ignore_intramolecular_correlation
+     - false
+     - | If true, the initial guess will ignore the presence of
+       | intramolecular correlation in the CG molecule.
+   * - inverse.iie.method
+     - gauss-newton
+     - | Update method to use: gauss-newton/newton/newton-mod.
+       | For example closure=hnc + method=gauss-newton will result
+       | in the HNCGN method. newton_mod is a modified newton scheme
+       | that results in an IBI like expression e.g. IHNC.
+   * - inverse.iie.closure
+     - hnc
+     - OZ equation closure for the IIE update: hnc/py
+   * - inverse.iie.ignore_intramolecular_correlation
+     - false
+     - | If true, the IIE updates (not the initial guess) will
+       | ignore the presence of intramolecular correlation in the
+       | CG molecule.
+   * - inverse.iie.cut_off
+     - 
+     - | Cut-off used for non-bonded potenitals in MD. Potential
+       | will be set to zero beyond this point.
+   * - inverse.iie.g_extrap_factor
+     - 1.0
+     - Lenght factor by which RDF will be extrapolated
+   * - inverse.iie.cut_jacobian
+     - true
+     - | Wether to cut the Jacobian before multiplying with Δg.
+       | Only for Newton methods
+   * - inverse.iie.densities
+     - 
+     - | List of densities of the beads, sorted by bead name. TODO:
+       | replace by automatic calculation.
+   * - inverse.iie.n_intra
+     - 
+     - | List of n_intra, the number of equal beads, sorted by
+       | bead name. TODO: replace by automatic calculation.
+   * - inverse.iie.pressure_constraint
+     - none
+     - Apply pressure constraint. Only for hncgn/pygn
+   * - inverse.iie.extrap_near_core
+     - power
+     - | Method for extrapolation in and close to core region.
+       | Valid values are: power (default), constant, none
+   * - inverse.iie.fix_near_cut_off
+     - full-deriv
+     - | Method for fixing discontinuity at end of potential. Valid
+       | values are: full-deriv (default), none
+   * - inverse.iie.verbose
+     - true
+     - | Print some info and dump compressed numpy arrays. Valid
+       | values are: true (default), false
    * - inverse.optimizer
      - 
      - 
@@ -701,7 +774,7 @@ The following table contains the input options for CSG,
        | (gromacs uses a non interaction specific option)
    * - non-bonded.inverse.imc
      - 
-     - ection containing inverse monte carlo specific options.
+     - section containing inverse monte carlo specific options.
    * - non-bonded.inverse.imc.group
      - 
      - | Group of interaction. Cross-correlations of all members

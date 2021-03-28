@@ -21,6 +21,9 @@
      - ibi
      - prepare_generic.sh
    * - prepare
+     - iie
+     - prepare_iie.sh
+   * - prepare
      - imc
      - prepare_imc.sh
    * - prepare
@@ -39,10 +42,16 @@
      - imc
      - prepare_generic_single.sh
    * - prepare_single
+     - generic
+     - prepare_generic_single.sh
+   * - prepare_single
      - optimizer
      - prepare_optimizer_single.sh
    * - initstep
      - ibi
+     - initialize_step_generic.sh
+   * - initstep
+     - iie
      - initialize_step_generic.sh
    * - initstep
      - imc
@@ -57,6 +66,9 @@
      - ibi
      - add_pot_generic.sh
    * - add_pot
+     - iie
+     - add_pot_generic.sh
+   * - add_pot
      - imc
      - add_pot_generic.sh
    * - add_pot
@@ -67,6 +79,9 @@
      - dummy.sh
    * - pre_update
      - ibi
+     - dummy.sh
+   * - pre_update
+     - iie
      - dummy.sh
    * - pre_update
      - imc
@@ -81,6 +96,9 @@
      - ibi
      - post_update_generic.sh
    * - post_update
+     - iie
+     - post_update_generic.sh
+   * - post_update
      - imc
      - post_update_generic.sh
    * - post_update
@@ -91,6 +109,9 @@
      - post_update_generic.sh
    * - post_update_single
      - ibi
+     - post_update_generic_single.sh
+   * - post_update_single
+     - iie
      - post_update_generic_single.sh
    * - post_update_single
      - imc
@@ -154,7 +175,7 @@
      - postadd_convergence.sh
    * - postadd
      - acc_convergence
-     - postadd_acc_convergence.sh 
+     - postadd_acc_convergence.sh
    * - postadd
      - shift
      - postadd_shift.sh
@@ -167,6 +188,9 @@
    * - postadd
      - average
      - postadd_average.sh
+   * - postadd
+     - smooth_at_cut_off
+     - postadd_smooth_at_cut_off.sh
    * - convergence_check
      - default
      - convergence_check_default.sh
@@ -182,6 +206,18 @@
    * - update
      - ibi_pot
      - update_ibi_pot.pl
+   * - update
+     - iie
+     - update_iie.sh
+   * - update
+     - iie_pot
+     - iie.py
+   * - dist
+     - invert_iie
+     - iie.py
+   * - rdf_incl_intra
+     - generic
+     - calc_rdf_generic.sh
    * - update
      - imc
      - update_imc.sh
@@ -257,6 +293,9 @@
    * - table
      - smooth
      - table_smooth.pl
+   * - table
+     - smooth_at_cut_off
+     - table_smooth_at_cut_off.py
    * - table
      - linearop
      - table_linearop.pl
