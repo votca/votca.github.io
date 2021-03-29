@@ -33,6 +33,16 @@
      - aux-def2-tzvp
      - Auxiliary basis set for RI
      - 
+   * - use_external_field
+     - false
+     - | whether or not to use an external field in the dft calculation
+       | 
+     - bool
+   * - externalfield
+     - 0.0 0.0 0.0
+     - | Field in atomic units used if the use ext. field flag
+       | is true
+     - 
    * - use_ecp
      - false
      - use an Effective Core Potentials for DFT Calculations
@@ -83,10 +93,6 @@
    * - xtpdft.with_screening
      - true
      - screening
-     - bool
-   * - xtpdft.use_external_field
-     - false
-     - whether or not to use an external field
      - bool
    * - xtpdft.use_external_density
      - false
