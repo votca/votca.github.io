@@ -107,7 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA Continuous Integration (Github Actions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA Continuous Integration (GitHub Actions)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-coding-rules">CPP Coding Rules</a><ul>
@@ -146,7 +146,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
 </ul>
@@ -255,7 +255,7 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 </ul>
 <div class="section" id="reporting-bugs">
 <h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
-<p>To report a bug, please create an issue on the appropriate github repo.
+<p>To report a bug, please create an issue on the appropriate GitHub repo.
 Please be sure to provide as much information as possible such as:</p>
 <ul class="simple">
 <li><p>The error messages</p></li>
@@ -264,7 +264,7 @@ Please be sure to provide as much information as possible such as:</p>
 <li><p>What dependencies were installed</p></li>
 <li><p>The calculation that was being run</p></li>
 </ul>
-<p>Issues can be directly created on the appropriate github repo:</p>
+<p>Issues can be directly created on the appropriate GitHub repo:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/votca/tools/issues">tools</a></p></li>
 <li><p><a class="reference external" href="https://github.com/votca/csg/issues">csg</a></p></li>
@@ -284,24 +284,23 @@ more automated version, see <a class="reference external" href="#votca-dev-tools
 <div class="section" id="votca-dev-tools">
 <h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this headline">¶</a></h2>
 <p>Running clang-format on every commit can be a drag, as can changing the
-copyright in every header. Building artifacts locally from a Gitlab run
-also takes multiple steps. Fortunately, you will find small scripts in the
+copyright in every header. Fortunately, you will find small scripts in the
 <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools repo</a>, which can
 automate this.</p>
 </div>
 <div class="section" id="votca-continuous-integration-github-actions">
-<h2>VOTCA Continuous Integration (Github Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
+<h2>VOTCA Continuous Integration (GitHub Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
 <p>Each pull request to master in the tools, csg, csg-tutorials, xtp, xtp-tutorials or votca repository
-is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> (There is still some Gitlab for the GPU builds).</p>
-<p>VOTCA can be built on various linux distributions, which are not all natively supported by Github actions. For non natively supported distributions,
+is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">GitHub actions</a></p>
+<p>VOTCA can be built on various linux distributions, which are not all natively supported by GitHub actions. For non natively supported distributions,
 instead of using the default virtual machines, VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of VOTCA (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
 <p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires; VOTCA code itself is not included. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
 The actual containers used for running the test builds are built on top of the <strong>votca/buildenv</strong> containers, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
-<p>More information can be found in the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">Github workflow files</a>.</p>
+<p>More information can be found in the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">GitHub workflow files</a>.</p>
 </div>
 <div class="section" id="making-a-release">
 <h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
-<p>Similar to the VOTCA containers, releases are also handled by Github actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
+<p>Similar to the VOTCA containers, releases are also handled by GitHub actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">here</a>. The release can only be made from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag in all involved submodules (plus pull requests for the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> to <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, see <a class="reference external" href="#updates-from-stable">below</a>).</p>
@@ -446,7 +445,7 @@ functions”.</p></li>
 </div>
 <div class="section" id="votca-specifics-indexing-ids-units">
 <h3>VOTCA specifics (indexing, ids, units)<a class="headerlink" href="#votca-specifics-indexing-ids-units" title="Permalink to this headline">¶</a></h3>
-<p>This can all be found here <a class="reference external" href="share/doc/VOTCA_LANGUAGE_GUIDE.rst">VOTCA_LANGUAGE_GUIDE</a></p>
+<p>This can all be found here <a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html"><span class="doc">VOTCA_LANGUAGE_GUIDE</span></a></p>
 </div>
 </div>
 <div class="section" id="testing">

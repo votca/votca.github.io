@@ -115,7 +115,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
 </ul>
@@ -213,7 +213,7 @@ code consistent between repositories. In the past, there has been
 difficulty in translating functionality between repositories and within
 the same repositories because different properties have been used to
 describe the same object attribute. For general programming guidelines
-look at the <a class="reference external" href="share/doc/DEVELOPERS_GUIDE.rst">Developers Guide</a></p>
+look at the <a class="reference internal" href="DEVELOPERS_GUIDE.html"><span class="doc">Developers Guide</span></a></p>
 <div class="section" id="types-and-ids">
 <h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this headline">¶</a></h2>
 <p>As an example, consider the csg bead object which had at one time
@@ -240,7 +240,7 @@ indicated with a type method and attribute.</p>
 </div>
 <div class="section" id="units-in-votca">
 <h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>VOTCA tried as much as possible to standarize units across both CSG and
+<p>VOTCA tried as much as possible to standardize units across both CSG and
 XTP. Externally, we parse in the units of the respective file format,
 e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstrom</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally, we convert all
 parsed units to:</p>
@@ -251,9 +251,9 @@ parsed units to:</p>
 </div>
 <div class="section" id="indexing-in-votca">
 <h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this headline">¶</a></h2>
-<p>All indeces in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
+<p>All indices in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
 start at index 0.</p>
-<p>Apart from special cases all indices and integers in votca should be
+<p>Apart from special cases all indices and integers in VOTCA should be
 <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>. <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
 methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be
 cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>. i.e: <code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>

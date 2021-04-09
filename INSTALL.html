@@ -98,8 +98,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#packages-for-various-linux-distributions">Packages for various Linux Distributions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Fedora</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#centos">CentOs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#opensuse">OpenSuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#centos">CentOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opensuse">openSUSE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sles">SLES</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
@@ -141,7 +141,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
 </ul>
@@ -249,7 +249,7 @@ cmake --build builddir --target install
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/ubuntu#L10-L13">Ubuntu</a></p>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/fedora#L10-L15">Fedora</a></p>
-<p>If you have an older version of a distribution, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_GROMACS=ON</span></code> or <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flags to automatically install the correct Gromacs and libint version.</p>
+<p>If you have an older version of a distribution, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_GROMACS=ON</span></code> or <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flags to automatically install the correct GROMACS and libint version.</p>
 <p>On Ubuntu 20.10 and older you will not get version 1.0.5 of the libecpint package. So in this case run <a class="reference external" href="https://github.com/votca/buildenv/blob/55c88641046dbb6152cf7d9e536e17f29205479f/ubuntu#L30-L33">this</a> or
 download the package from <a class="reference external" href="http://ftp.us.debian.org/debian/pool/main/libe/libecpint/">here</a>.</p>
 </div>
@@ -266,7 +266,7 @@ for resolving dependency issues. In particular, an appropriate extra
 <code class="docutils literal notranslate"><span class="pre">-D</span></code> flag is necessary to specify the path to a missed package. You
 will have to rerun the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s)
 added. For example, in the case of a locally installed version of
-Gromacs:</p>
+GROMACS:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
 </pre></div>
 </div>
@@ -322,7 +322,7 @@ package <code class="docutils literal notranslate"><span class="pre">HDF5</span>
 </div>
 </div>
 <div class="section" id="centos">
-<h3>CentOs<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
+<h3>CentOS<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
 <span class="n">yum</span> <span class="n">update</span>
 <span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
@@ -330,7 +330,7 @@ package <code class="docutils literal notranslate"><span class="pre">HDF5</span>
 </div>
 </div>
 <div class="section" id="opensuse">
-<h3>OpenSuse<a class="headerlink" href="#opensuse" title="Permalink to this headline">¶</a></h3>
+<h3>openSUSE<a class="headerlink" href="#opensuse" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
