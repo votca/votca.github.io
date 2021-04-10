@@ -102,7 +102,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced topics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#used-external-packages">Used external packages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gromacs">GroMaCS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gromacs">GROMACS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#espresso">ESPResSo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dl-poly">DL_POLY</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gnuplot">Gnuplot</a></li>
@@ -240,7 +240,7 @@ organized as follows: all scripts are called using two keywords</p>
 </div>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">update</span> <span class="pre">imc</span></code> calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> script for the
 inverse Monte Carlo procedure. The corresponding keywords are listed in
-sec. [sec:csg_table] or can be output directly by calling</p>
+:ref: <cite>_reference_scripts</cite> or can be output directly by calling</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list
 </pre></div>
 </div>
@@ -255,8 +255,8 @@ key3 key4 script2
 <p>If the local keys are already in use, the existing call will be
 overloaded.</p>
 <p>As an example, we will illustrate how to overload the script which calls
-the sampling package. The script runs from the GROMACSpackage only on
-one cpu. Our task will be to change the script so that GROMACSuses 8
+the sampling package. The script runs from the GROMACS package only on
+one cpu. Our task will be to change the script so that GROMACS uses 8
 cpus, which is basically the same as adding mpirun options in .</p>
 <p>First we find out which script calls :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list <span class="p">|</span> grep gromacs
@@ -273,7 +273,7 @@ convert_potential gromacs potential_to_gromacs.sh
 </pre></div>
 </div>
 <p>the third line indicates the script we need. If the output of is not
-clear, one can try to find the right script in sec. [sec:csg_table].
+clear, one can try to find the right script in :ref: <cite>_reference_scripts</cite>.
 Alternatively, check the folder</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;csg-installation&gt;/share/scripts/inverse
 </pre></div>
@@ -303,7 +303,7 @@ local path. Now we change the last line of <code class="docutils literal notrans
 </pre></div>
 </div>
 <p>This completes the customization. Do not forget to add <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> to
-in the setting XMLfile (see sec. [sec:ref_options]).</p>
+in the setting XMLfile (see :ref: <cite>_reference_settings_file</cite>).</p>
 <p>You can check the new script by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --scriptdir SCRIPTDIR --list
 csg_call --scriptdir SCRIPTDIR --run run gromacs
@@ -315,92 +315,88 @@ version number of the script.</p>
 <div class="section" id="used-external-packages">
 <h2>Used external packages<a class="headerlink" href="#used-external-packages" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="gromacs">
-<h3>GroMaCS<a class="headerlink" href="#gromacs" title="Permalink to this headline">¶</a></h3>
-<p>Get it from</p>
-<ul class="simple">
-<li></li>
-<li></li>
-</ul>
+<h3>GROMACS<a class="headerlink" href="#gromacs" title="Permalink to this headline">¶</a></h3>
+<p><cite>Link to Homepage &lt;https://manual.gromacs.org/documentation/&gt;</cite></p>
 </div>
 <div class="section" id="espresso">
 <h3>ESPResSo<a class="headerlink" href="#espresso" title="Permalink to this headline">¶</a></h3>
-<p>Get it from</p>
+<p><cite>Link to Homepage &lt;https://espressomd.org/&gt;</cite></p>
 </div>
 <div class="section" id="dl-poly">
 <h3>DL_POLY<a class="headerlink" href="#dl-poly" title="Permalink to this headline">¶</a></h3>
-<p>Get it from</p>
+<p><cite>Link to Homepage &lt;https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx&gt;</cite></p>
 </div>
 <div class="section" id="gnuplot">
 <h3>Gnuplot<a class="headerlink" href="#gnuplot" title="Permalink to this headline">¶</a></h3>
-<p>Get it from</p>
+<p><cite>Link to Homepage &lt;http://www.gnuplot.info/&gt;</cite></p>
 </div>
 <div class="section" id="lammps">
 <h3>LAMMPS<a class="headerlink" href="#lammps" title="Permalink to this headline">¶</a></h3>
-<p>Get it from</p>
+<p><cite>Link to Homepage &lt;https://lammps.sandia.gov/&gt;</cite></p>
 </div>
 </div>
 <div class="section" id="dl-poly-interface">
 <h2>DL_POLY interface<a class="headerlink" href="#dl-poly-interface" title="Permalink to this headline">¶</a></h2>
-<p><strong>WARNING: The DL_POLYinterface is still experimental (in development)
+<p><strong>WARNING: The DL_POLY interface is still experimental (in development)
 but it does support the Iterative Boltzmann Inversion and Inverse Monte
 Carlo schemes. The Force Matching might work as well, although it has
 not been tested thoroughly.</strong></p>
-<p>The DL_POLYinterface fully supports coarse-grain mapping of a full-atom
+<p>The DL_POLY interface fully supports coarse-grain mapping of a full-atom
 system previuosly simulated with any version of DL_POLY, including
 DL_POLY-Classic. However, the full optimization of the effective
 potentials with the aid of iterative methods will only become possible
-when the new release of DL_POLY-4(4.06) is made public; the reason
-being the incapability of earlier DL_POLYversions of using
+when the new release of DL_POLY-4 (4.06) is made public; the reason
+being the incapability of earlier DL_POLY versions of using
 user-specified tabulated force-fields for intramolecular, aka “bonded”,
 interactions: bonds, angles, dihedral angles (torsions). Below the
 coarse-graining and CG force-field optimization with the aid of the
-latest DL_POLY-4version (4.06+) are outlined.</p>
-<p>Running votcawith DL_POLY-4as MD simulation engine is very similar to
+latest DL_POLY-4 version (4.06+) are outlined.</p>
+<p>Running VOTCA with DL_POLY-4 as MD simulation engine is very similar to
 doing so with GROMACS. The three types of required input files in the
-case of DL_POLYare: CONTROL – containing the simulation directives and
+case of DL_POLY are: CONTROL – containing the simulation directives and
 parameters (instead of <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file for GROMACS), FIELD – the topology
 and force-field specifications (instead of <code class="docutils literal notranslate"><span class="pre">.top</span></code> and <code class="docutils literal notranslate"><span class="pre">.tpr</span></code> files),
 and CONFIG (instead of <code class="docutils literal notranslate"><span class="pre">.gro</span></code> file) – the initial configuration file,
 containing the MD cell matrix and particle coordinates (it can also
 include initial velocities and/or forces); for details see
-DL_POLY-4manual. Most of the votcatools and scripts described above in
-the case of using GROMACSwill work in the same manner, with the
+DL_POLY-4 manual. Most of the VOTCA tools and scripts described above in
+the case of using GROMACS will work in the same manner, with the
 following conventional substitutions for the (default) file names used
-in options for votcascripts, as necessary:</p>
+in options for VOTCA scripts, as necessary:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dlpf = the topology read from FIELD or written to FIELD_CGV
 .dlpc = the configuration read from CONFIG or written to CONFIG_CGV
 .dlph = the trajectory read from HISTORY or written to HISTORY_CGV
 </pre></div>
 </div>
 <p>It is also possible to specify file names different from the standard
-DL_POLYconvention, in which case the user has to use the corresponding
+DL_POLY convention, in which case the user has to use the corresponding
 dot-preceded extension(s); for example: FA-FIELD.dlpf instead of FIELD
-or CG-HISTORY.dlph instead of HISTORY_CGV (see section
-[sec:ref_programs], as well as the man pages or output of
-votcacommands, with option <code class="docutils literal notranslate"><span class="pre">—help</span></code>).</p>
-<p>votcafollows the DL_POLYconventions for file names and formats. Thus,
+or CG-HISTORY.dlph instead of HISTORY_CGV (see
+:ref: <cite>_reference_programs</cite>, as well as the man pages or output of
+VOTCA commands, with option <code class="docutils literal notranslate"><span class="pre">—help</span></code>).</p>
+<p>VOTCA follows the DL_POLY conventions for file names and formats. Thus,
 <code class="docutils literal notranslate"><span class="pre">csg_dlptopol</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_map</span></code> produce the CG topology (FIELD_CGV by
 default), configuration (CONFIG_CGV), and/or trajectory (HISTORY_CGV)
 files fully compatible with and usable by DL_POLY. <strong>Note that the
 ability of these tools to read and write a plethora of different file
 formats provides means to convert input and output files between the
-simulation packages supported by votca, e.g. GROMACS– DL_POLYor vice
+simulation packages supported by VOTCA, e.g. GROMACS – DL_POLY or vice
 versa. The user is, however, strongly advised to check the resulting
 files for consistency before using them).</strong></p>
 <p>Similarly, the distribution analysis and potential/force generation
-utilities, such as <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> and votcascripts, will read and write
+utilities, such as <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> and VOTCA scripts, will read and write
 DL_POLY-formatted files; in particular, the tabulated force-field files
 containing the potential and force/virial data: TABLE – for short-range
 (VdW) “non-bonded” interactions, TABBND, TABANG and TABDIH – for
 “bonded” interations: bonds, bending angles and dihedrals,
-correspondingly (for the format details see DL_POLY-4manual). Note,
+correspondingly (for the format details see DL_POLY-4 manual). Note,
 however, that the latter three files can only be used by
-DL_POLY-4(4.06+).</p>
+DL_POLY-4 (4.06+).</p>
 <p>The user is advised to search for “dlpoly” through the
 <code class="docutils literal notranslate"><span class="pre">csg_defaults.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> files and in scripts located in
 <code class="docutils literal notranslate"><span class="pre">share/votca/scripts/inverse/</span></code> in order to find out about the xml-tags
-and options specific for DL_POLY; see also sections [sec:ref_options]
-and [sec:csg_table].</p>
+and options specific for DL_POLY; see also :ref: <cite>_reference_settings_file</cite>
+and :ref: <cite>_reference_scripts</cite>.</p>
 </div>
 </div>
 

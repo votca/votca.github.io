@@ -232,24 +232,23 @@
 }
 </style>
 <div class="section" id="preparing-coarse-grained-runs">
-<h1>Preparing coarse-grained runs<a class="headerlink" href="#preparing-coarse-grained-runs" title="Permalink to this headline">¶</a></h1>
+<span id="preparing"></span><h1>Preparing coarse-grained runs<a class="headerlink" href="#preparing-coarse-grained-runs" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preliminary-note">
 <h2>Preliminary note<a class="headerlink" href="#preliminary-note" title="Permalink to this headline">¶</a></h2>
 <p>The coarse-grained run requires the molecule topology on the one hand
 and suitable potentials on the other. In this chapter, the generation of
-coarse-grained runs is decribed next, followed by a post-processing of
+coarse-grained runs is described next, followed by a post-processing of
 the potential.</p>
 <p>If the potential is of such a form that it allows direct fitting of a
 functional form, the section on post-processing can be skipped. Instead,
 a program of choice should be used to fit a functional form to the
 potential. Nevertheless, special attention should be paid to units
-(angles, bondlengths). The resulting curve can then be specified in the
+(angles, bond lengths). The resulting curve can then be specified in the
 MD package used for simulation. However, most potentials don’t allow an
 easy processing of this kind and tabulated potentials have to be used.</p>
 <div class="section" id="generating-a-topology-file-for-a-coarse-grained-run">
 <h3>Generating a topology file for a coarse-grained run<a class="headerlink" href="#generating-a-topology-file-for-a-coarse-grained-run" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="warning-this-section-describes-experimental-features-the-exact-names-and-options-of-the-program-might-change-in-the-near-future-the-section-is-specific-to-gromacssupport-though-a-generalization-for-other-md-packages-is-planned">
-<h4>WARNING: This section describes experimental features. The exact names and options of the program might change in the near future. The section is specific to GROMACSsupport though a generalization for other MD packages is planned.<a class="headerlink" href="#warning-this-section-describes-experimental-features-the-exact-names-and-options-of-the-program-might-change-in-the-near-future-the-section-is-specific-to-gromacssupport-though-a-generalization-for-other-md-packages-is-planned" title="Permalink to this headline">¶</a></h4>
+<p><strong>WARNING: This section describes experimental features. The exact names and options of the program might change in the near future. The section is specific to GROMACS support though a generalization for other MD packages is planned.</strong></p>
 <p>The mapping definition is close to a topology needed for a coarse
 grained run. To avoid redundant work, can be used to automatically
 generate a gromacs topology based on an atomistic reference system and a
@@ -266,14 +265,13 @@ and dihedrals. It can directly be used as a topology in GROMACS, however
 the force field definitions (atom types, bond types, etc.) still have to
 be added manually.</p>
 </div>
-</div>
 <div class="section" id="post-processing-of-the-potential">
-<h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Permalink to this headline">¶</a></h3>
-<p>The votcapackage provides a collection of scripts to handle potentials.
+<span id="preparing-post-processing-of-the-potential"></span><h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Permalink to this headline">¶</a></h3>
+<p>The VOTCA package provides a collection of scripts to handle potentials.
 They can be modified, refined, integrated or inter- and extrapolated.
 These scripts are the same ones as those used for iterative methods in
-chapter [sec:iterative_methods]. Scripts are called by . A complete
-list of available scripts can be found in sec. [sec:csg_table].</p>
+:ref: <cite>_methods_iterative_methods</cite>. Scripts are called by . A complete
+list of available scripts can be found in :ref: <cite>_reference_scripts</cite>.</p>
 <p>The post-processing roughly consists of the following steps (see further
 explanations below):</p>
 <ul class="simple">
@@ -336,9 +334,9 @@ Available options include averaging over a certain number of points
 quadratic), extrapolating just the left or right region of the file
 (<code class="docutils literal notranslate"><span class="pre">region</span></code>) and setting the curvature (<code class="docutils literal notranslate"><span class="pre">curvature</span></code>).</p>
 <p>The output <code class="docutils literal notranslate"><span class="pre">table_extrapolate.pot</span></code> of the extrapolation step can now
-be used for the coarse-grained run. If GROMACSis used as a molecule
+be used for the coarse-grained run. If GROMACS is used as a molecule
 dynamics package, the potential has to be converted and exported to a
-suitable GROMACSformat as described in the final step.</p>
+suitable GROMACS format as described in the final step.</p>
 </div>
 <div class="section" id="exporting-the-table">
 <h2>Exporting the table<a class="headerlink" href="#exporting-the-table" title="Permalink to this headline">¶</a></h2>
@@ -359,7 +357,7 @@ requires a small xml file <code class="docutils literal notranslate"><span class
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;table_end&gt;</span></code> is the GROMACS<code class="docutils literal notranslate"><span class="pre">rvdw+table_extension</span></code> and
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;table_end&gt;</span></code> is the GROMACS <code class="docutils literal notranslate"><span class="pre">rvdw+table_extension</span></code> and
 <code class="docutils literal notranslate"><span class="pre">&lt;pot_max&gt;</span></code> is just a number slightly smaller than the upper value of
 single/ double precision. The value given in <code class="docutils literal notranslate"><span class="pre">&lt;table_bins&gt;</span></code>
 corresponds to the <code class="docutils literal notranslate"><span class="pre">step</span></code> value of
@@ -370,11 +368,11 @@ corresponds to the <code class="docutils literal notranslate"><span class="pre">
 </pre></div>
 </div>
 <p>to convert the extrapolated values in <code class="docutils literal notranslate"><span class="pre">table_extrapolate.pot</span></code> to
-<code class="docutils literal notranslate"><span class="pre">table.xvg</span></code> (The file will contain the GROMACSC12 parts only which are
+<code class="docutils literal notranslate"><span class="pre">table.xvg</span></code> (The file will contain the GROMACS C12 parts only which are
 stored in the sixth und seventh column, this can be changed by adding
 the <code class="docutils literal notranslate"><span class="pre">–ia-type</span> <span class="pre">C6</span></code> option (for the fourth and fiveth column) or
 <code class="docutils literal notranslate"><span class="pre">–ia-type</span> <span class="pre">CB</span></code> option (for the second and third column) after . Ensure
-compatibility with the GROMACStopology. See the GROMACSmanual for
+compatibility with the GROMACS topology. See the GROMACS manual for
 further information).</p>
 <p>To obtain a bond table, run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --ia-type bond --ia-name XXX --options table.xml <span class="se">\</span>
