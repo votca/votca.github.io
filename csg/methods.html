@@ -264,12 +264,12 @@ whole trajectory and stores all information on bonded interactions in
 memory, which is useful for interactive analysis. For big systems,
 however, one can run out of memory. In this case can be used which,
 however, has a limited number of tasks it can perform (see
-:ref: <cite>_input_files_setting_files</cite> for an example on its usage).</p>
+<a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a> for an example on its usage).</p>
 <p>Another useful tool is . It can be used to convert an atomistic
 trajectory to a coarse-grained one, as it is discussed in
-:ref: <cite>_input_files_trajectories</cite>.</p>
+<a class="reference internal" href="input_files.html#input-files-trajectories"><span class="std std-ref">Trajectories</span></a>.</p>
 <p>To use one has to first define a mapping scheme. This is outlined
-in :ref: <cite>_input_files_mapping_files</cite>. Once the mapping scheme is specified, it
+in <a class="reference internal" href="input_files.html#input-files-mapping-files"><span class="std std-ref">Mapping files</span></a>. Once the mapping scheme is specified, it
 is possible to generate an exclusion list for the proper sampling of the
 atomistic resolution system.</p>
 <div class="section" id="generating-exclusion-lists">
@@ -368,27 +368,27 @@ can be used. Its usage and options are very similar to the <code class="docutils
 command. If tabulated potentials are written, special care should be
 taken to the parameters <code class="docutils literal notranslate"><span class="pre">T</span></code> (temperature) and the <code class="docutils literal notranslate"><span class="pre">scale</span></code>. The
 <code class="docutils literal notranslate"><span class="pre">scale</span></code> enables volume normalization as given in
-eq. [eq:boltzmann_norm]. Possible values are <code class="docutils literal notranslate"><span class="pre">no</span></code> (no scaling),
-<code class="docutils literal notranslate"><span class="pre">bond</span></code> (normalize bonds) and <code class="docutils literal notranslate"><span class="pre">angle</span></code> (normalize angles). To write
-out the tabulated potential for an angle potential at a temperature of
-300K, for instance, type:</p>
+<a class="reference internal" href="theory.html#theory-eq-boltzmann-norm"><span class="std std-ref">the equations in the theory section</span></a>. Possible
+values are <code class="docutils literal notranslate"><span class="pre">no</span></code> (no scaling), <code class="docutils literal notranslate"><span class="pre">bond</span></code> (normalize bonds) and <code class="docutils literal notranslate"><span class="pre">angle</span></code>
+(normalize angles). To write out the tabulated potential for an angle potential
+at a temperature of 300K, for instance, type:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tab set T 300
 tab set scale angle
 tab angle.pot *:angle:*
 </pre></div>
 </div>
 <p>The table is then written into the file <code class="docutils literal notranslate"><span class="pre">angle.pot</span></code> in the format
-described in :ref: <cite>_input_files_table_formats</cite>. An optional correlation analysis
+described in <a class="reference internal" href="input_files.html#input-files-table-formats"><span class="std std-ref">Table formats</span></a>. An optional correlation analysis
 is described in the next section. After the file has been created by
 command <code class="docutils literal notranslate"><span class="pre">tab</span></code>, the potential is prepared for the coarse-grained run in
-:ref: <cite>_preparing</cite>.</p>
+<a class="reference internal" href="preparing.html#preparing"><span class="std std-ref">Preparing coarse-grained runs</span></a>.</p>
 </div>
 <div class="section" id="correlation-analysis">
 <h4>Correlation analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this headline">¶</a></h4>
-<p>The factorization of <span class="math notranslate nohighlight">\(P\)</span> in eq. [eq:boltzmann_pmf] assumed
-uncorrelated quantities. offers two ways to evaluate correlations of
-interactions. One option is to use the linear correlation coefficient
-(command <code class="docutils literal notranslate"><span class="pre">cor</span></code>).</p>
+<p>The factorization of <span class="math notranslate nohighlight">\(P\)</span>, <a class="reference internal" href="theory.html#theory-eq-boltzmann-pmf"><span class="std std-ref">as shown in the theory
+section</span></a>, assumed uncorrelated quantities. VOTCA
+offers two ways to evaluate correlations of interactions. One option is to use
+the linear correlation coefficient (command <code class="docutils literal notranslate"><span class="pre">cor</span></code>).</p>
 <p>However, this is not a good measure since <code class="docutils literal notranslate"><span class="pre">cor</span></code> calculates the linear
 correlation only which might often lead to misleading
 results <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id2"><span>[Ruehle:2009.a]</span></a>. An example for such a case
@@ -428,7 +428,7 @@ coarse-graining.</p>
 and prepared for the coarse-grained run: This includes fitting of a
 smooth functional form, extrapolation and clipping of poorly sampled
 regions. Further processing of the potential is decribed in
-:ref: <cite>_preparing</cite>.</p>
+<a class="reference internal" href="preparing.html#preparing"><span class="std std-ref">Preparing coarse-grained runs</span></a>.</p>
 </div>
 </div>
 </div>
@@ -448,7 +448,7 @@ the trajectory file <em>must contain forces</em> (note that there is a suitable
 option in the GROMACS <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file), otherwise will not be able to
 run.</p>
 <p>In addition, a mapping scheme has to be created, which defines the
-coarse-grained model (see :ref: <cite>_input_files</cite>). At last, a control
+coarse-grained model (see <a class="reference internal" href="input_files.html#input-files"><span class="std std-ref">Input files</span></a>). At last, a control
 file has to be created, which contains all the information for
 coarse-graining the interactions and parameters for the force-matching
 run. This file is specified by the tag <code class="docutils literal notranslate"><span class="pre">–options</span></code> in the XMLformat. An
@@ -478,11 +478,11 @@ example might look like the following</p>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
-<p>Similarly to the case of spline fitting (see :ref: <cite>_reference_programs</cite> on
+<p>Similarly to the case of spline fitting (see <a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a> on
 ), the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
 to avoid empty bins within the grid. Determining <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> by
-using is recommended (see :ref: <cite>_input_files_setting_files</cite>). A full description
-of all available options can be found in :ref: <cite>_reference_settings_file</cite>.</p>
+using is recommended (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>). A full description
+of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 </div>
 <div class="section" id="program-output">
 <h3>Program output<a class="headerlink" href="#program-output" title="Permalink to this headline">¶</a></h3>
@@ -513,7 +513,7 @@ potential to the <code class="docutils literal notranslate"><span class="pre">.p
 <p>In general, each potential contains regions which are not sampled. In
 this case or in the case of further post-processing, the potential can
 be refined by employing resampling or extrapolating methods. See
-:ref: <cite>_preparing_post-processing_of_the_potential</cite> for further details.</p>
+<a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a> for further details.</p>
 </div>
 </div>
 <div class="section" id="iterative-methods">
@@ -521,34 +521,33 @@ be refined by employing resampling or extrapolating methods. See
 <p>The following sections deal with the Iterative Boltzmann Inversion (IBI)
 method, the Inverse Monte Carlo (IMC) method, the Iterative Integral Equation
 (IIE) method, and the Relative Entropy (RE) method.</p>
+<div class="figure align-default" id="id13">
+<span id="methods-fig-flowchart-spanning"></span><img alt="../_images/iterative-methods.png" src="../_images/iterative-methods.png" />
+<p class="caption"><span class="caption-text">Flowchart of the spanning workflow of iterative methods.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
 <p>In general, IBI, IMC, IIE, and RE are implemented within the same framework.
 Therefore, most of the settings and parameters used by these methods are
 similar and thus described in a general section (see
-:ref: <cite>_methods_inverse_monte_carlo</cite>). Further information on iterative methods
+<a class="reference internal" href="#methods-preparing-the-run"><span class="std std-ref">Preparing the run</span></a>). Further information on iterative methods
 follows in the next chapters, in particular on the IBI, IMC, IIE, and RE
 methods.</p>
-<div class="figure align-default" id="id13">
-<img alt="../_images/iterative-methods.png" src="../_images/iterative-methods.png" />
-<p class="caption"><span class="caption-text">Flowchart to perform iterative Boltzmann inversion.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</div>
 <div class="section" id="iterative-workflow-control">
 <span id="methods-iterative-workflow"></span><h3>Iterative workflow control<a class="headerlink" href="#iterative-workflow-control" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-default" id="id14">
-<img alt="../_images/iteration-scheme.png" src="../_images/iteration-scheme.png" />
-<p class="caption"><span class="caption-text">Block-scheme of the workflow control for the iterative
-methods. The most time-consuming parts are marked in red.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</div>
 <p>Iterative workflow control is essential for the IBI, IMC, IIE, and RE methods.</p>
+<div class="figure align-default" id="id14">
+<span id="methods-fig-flowchart-iterative"></span><img alt="../_images/iteration-scheme.png" src="../_images/iteration-scheme.png" />
+<p class="caption"><span class="caption-text">Forkflow control for the iterative methods. The most time-consuming parts
+are marked in red.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
 <p>The general idea of iterative workflow is sketched in
-fig. [fig:flowchart]. During the global initialization the initial guess
-for the coarse-grained potential is calculated from the reference
-function or converted from a given potential guess into the internal
-format. The actual iterative step starts with an iteration
-initialization. It searches for possible checkpoints and copies and
-converts files from the previous step and the base directory. Then, the
-simulation run is prepared by converting potentials into the format
-required by the external sampling program and the actual sampling is
-performed.</p>
+<a class="reference internal" href="#methods-fig-flowchart-iterative"><span class="std std-ref">the flowchart above</span></a>. During the global
+initialization the initial guess for the coarse-grained potential is calculated
+from the reference function or converted from a given potential guess into the
+internal format. The actual iterative step starts with an iteration
+initialization. It searches for possible checkpoints and copies and converts
+files from the previous step and the base directory. Then, the simulation run
+is prepared by converting potentials into the format required by the external
+sampling program and the actual sampling is performed.</p>
 <p>After sampling the phasespace, the potential update is calculated.
 Often, the update requires postprocessing, such as smoothing,
 interpolation, extrapolation or fitting to an analytical form.</p>
@@ -572,17 +571,17 @@ Therefore, all files needed to run a coarse-grained simulation, except
 for the potentials that are iteratively refined, must be provided and
 added to the in the settings XML-file. If an atomistic topology and a
 mapping definition are present, VOTCA offers tools to assist the setup of
-a coarse-grained topology (see :ref: <cite>_preparing</cite>).</p>
+a coarse-grained topology (see <a class="reference internal" href="preparing.html#preparing"><span class="std std-ref">Preparing coarse-grained runs</span></a>).</p>
 <p>To get an overview of how input files look like, it is suggested to take
 a look at one of the tutorials provided on .</p>
 <p>In what follows we describe how to set up the iterative coarse-graining,
 run the main script, continue the run, and add customized scripts.</p>
 <div class="section" id="preparing-the-run">
-<h4>Preparing the run<a class="headerlink" href="#preparing-the-run" title="Permalink to this headline">¶</a></h4>
+<span id="methods-preparing-the-run"></span><h4>Preparing the run<a class="headerlink" href="#preparing-the-run" title="Permalink to this headline">¶</a></h4>
 <p>To start the first iteration, one has to prepare the input for the
 sampling program. This means that all files for running a coarse-grained
 simulation must be present and described in a separate XMLfile, in our
-case <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> (see :ref: <cite>_input_files_setting_files</cite> for details). An
+case <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a> for details). An
 extract from this file is given below. The only exception are tabulated
 potentials, which will be created and updated by the script in the
 course of the iterative process.</p>
@@ -601,7 +600,7 @@ you plan to run the iterative procedure.</p>
 <p>A list of interactions to be iteratively refined has to be given in the
 options file. As an example, the <code class="docutils literal notranslate"><span class="pre">setting.xml</span></code> file for a propane is
 shown in below. For more details, see the full
-description of all options in :ref: <cite>_reference_settings_file</cite>.</p>
+description of all options in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
   <span class="nt">&lt;non-bonded&gt;</span> <span class="c">&lt;!-- non-bonded interactions --&gt;</span>
     <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="c">&lt;!-- name of the interaction --&gt;</span>
@@ -739,12 +738,9 @@ been successfully finished.</p>
 <h3>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="input-preparation">
 <h4>Input preparation<a class="headerlink" href="#input-preparation" title="Permalink to this headline">¶</a></h4>
-<p>This section describes the usage of IBI, implemented within the
-scripting framework described in
-:ref: <cite>_methods_iterative_workflow</cite>. It is suggested to get a basic
-understanding of this framework before proceeding.</p>
-<p>An outline of the workflow for performing IBIis given in
-fig. [fig:flow_ibi].</p>
+<p>This section describes the usage of IBI, implemented within the scripting
+framework described in <a class="reference internal" href="#methods-iterative-workflow"><span class="std std-ref">Iterative workflow control</span></a>. It is suggested to
+get a basic understanding of this framework before proceeding.</p>
 <p>To specify Iterative Boltzmann Inversion as algorithm in the script, add
 <code class="docutils literal notranslate"><span class="pre">ibi</span></code> in the <code class="docutils literal notranslate"><span class="pre">method</span></code> section of the XMLsetting file as shown below.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
@@ -768,7 +764,7 @@ framework described above is also necessary.</p>
 <p>In comparison to IBI, IMC needs significantly more statistics to
 calculate the potential update[Ruehle:2009.a]_. It is
 advisable to perform smoothing on the potential update. Smoothing can be
-performed as described in sec. [ref:ibi:optimize]. In addition, IMC can
+performed as described in <a class="reference internal" href="#methods-runtime-optimizations"><span class="std std-ref">Runtime optimization</span></a>. In addition, IMC can
 lead to problems related to finite size: for methanol, an undersized
 system proved to lead to a linear shift in the
 potential[Ruehle:2009.a]_. It is therefore always
@@ -907,7 +903,7 @@ beads per molecule has to be provided.</p>
 <p>In this section, additional options are described to run RE coarse
 graining. The usage of RE is similar to that of IBI and IMC and
 understanding the use of the scripting framework described in
-:ref: <cite>_methods_iterative_workflow</cite> is necessary.</p>
+<a class="reference internal" href="#methods-iterative-workflow"><span class="std std-ref">Iterative workflow control</span></a> is necessary.</p>
 <p>Currently, RE implementation supports optimization of two-body non-bonded
 pair interactions. Support for bonded and N-body interactions is
 possible by further extension of RE implementation.</p>
@@ -1110,7 +1106,7 @@ iteraction without doing potential update</p>
 used to calculate the average of <span class="math notranslate nohighlight">\(G_{ij}(R)\)</span>.</p>
 </div>
 <div class="section" id="runtime-optimization">
-<h3>Runtime optimization<a class="headerlink" href="#runtime-optimization" title="Permalink to this headline">¶</a></h3>
+<span id="methods-runtime-optimizations"></span><h3>Runtime optimization<a class="headerlink" href="#runtime-optimization" title="Permalink to this headline">¶</a></h3>
 <p>Most time per iteration is spent on running the coarse-grained system
 and on calculating the statistics. To get a feeling on how much
 statistics is needed, it is recommended to plot the distribution

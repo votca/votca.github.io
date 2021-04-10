@@ -240,7 +240,7 @@ organized as follows: all scripts are called using two keywords</p>
 </div>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">update</span> <span class="pre">imc</span></code> calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> script for the
 inverse Monte Carlo procedure. The corresponding keywords are listed in
-:ref: <cite>_reference_scripts</cite> or can be output directly by calling</p>
+<a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a> or can be output directly by calling</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list
 </pre></div>
 </div>
@@ -273,7 +273,7 @@ convert_potential gromacs potential_to_gromacs.sh
 </pre></div>
 </div>
 <p>the third line indicates the script we need. If the output of is not
-clear, one can try to find the right script in :ref: <cite>_reference_scripts</cite>.
+clear, one can try to find the right script in <a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a>.
 Alternatively, check the folder</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;csg-installation&gt;/share/scripts/inverse
 </pre></div>
@@ -303,7 +303,7 @@ local path. Now we change the last line of <code class="docutils literal notrans
 </pre></div>
 </div>
 <p>This completes the customization. Do not forget to add <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> to
-in the setting XMLfile (see :ref: <cite>_reference_settings_file</cite>).</p>
+in the setting XMLfile (see <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>).</p>
 <p>You can check the new script by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --scriptdir SCRIPTDIR --list
 csg_call --scriptdir SCRIPTDIR --run run gromacs
@@ -372,7 +372,7 @@ in options for VOTCA scripts, as necessary:</p>
 DL_POLY convention, in which case the user has to use the corresponding
 dot-preceded extension(s); for example: FA-FIELD.dlpf instead of FIELD
 or CG-HISTORY.dlph instead of HISTORY_CGV (see
-:ref: <cite>_reference_programs</cite>, as well as the man pages or output of
+<a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a>, as well as the man pages or output of
 VOTCA commands, with option <code class="docutils literal notranslate"><span class="pre">—help</span></code>).</p>
 <p>VOTCA follows the DL_POLY conventions for file names and formats. Thus,
 <code class="docutils literal notranslate"><span class="pre">csg_dlptopol</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_map</span></code> produce the CG topology (FIELD_CGV by
@@ -395,8 +395,8 @@ DL_POLY-4 (4.06+).</p>
 <p>The user is advised to search for “dlpoly” through the
 <code class="docutils literal notranslate"><span class="pre">csg_defaults.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> files and in scripts located in
 <code class="docutils literal notranslate"><span class="pre">share/votca/scripts/inverse/</span></code> in order to find out about the xml-tags
-and options specific for DL_POLY; see also :ref: <cite>_reference_settings_file</cite>
-and :ref: <cite>_reference_scripts</cite>.</p>
+and options specific for DL_POLY; see also <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>
+and <a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a>.</p>
 </div>
 </div>
 

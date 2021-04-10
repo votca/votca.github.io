@@ -234,7 +234,7 @@ file is created. When used as a command option, these files are combined
 in a list separated by a semicolon, e. g.
 <code class="docutils literal notranslate"><span class="pre">—cg</span></code> <code class="docutils literal notranslate"><span class="pre">protein.xml;solvent.xml</span></code>.</p>
 <div class="figure align-center" id="id2">
-<img alt="../_images/mapping.png" src="../_images/mapping.png" />
+<span id="input-files-fig-mapping"></span><img alt="../_images/mapping.png" src="../_images/mapping.png" />
 <p class="caption"><span class="caption-text">Atom labeling and mapping from an all-atom to a united atom representation of a propane molecule.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Each mapping file contains a <em>topology</em> of the coarse-grained molecule
@@ -247,13 +247,13 @@ positions of atoms which belong to it. Note that <span class="math notranslate n
 automatically re-normalized if their sum is not equal to 1, i. e. in the
 case of a center-of-mass mapping one can simply specify atomic masses. A
 complete reference for mapping file definitions can be found in
-:ref: <cite>_reference_mapping_file</cite>.</p>
+<a class="reference internal" href="reference.html#reference-mapping-file"><span class="std std-ref">Mapping file</span></a>.</p>
 <p>As an example, we will describe here a mapping file of a united atom
 model of a propane molecule, chemical structure of which is shown in
-fig. [fig:intro:propane]. In this coarse-grained model, two bead types
-(A,B) and three beads (A1, B1, A2) are defined, as shown in
-fig. [fig:propane_map]. We will use the centers of mass of the beads as
-coarse-grained coordinates.</p>
+<a class="reference internal" href="introduction.html#introduction-fig-propane"><span class="std std-ref">the figure in the introduction</span></a>. In this
+coarse-grained model, two bead types (A,B) and three beads (A1, B1, A2) are
+defined, as shown in <a class="reference internal" href="#input-files-fig-mapping"><span class="std std-ref">the figure above</span></a>. We will
+use the centers of mass of the beads as coarse-grained coordinates.</p>
 <p>Extracts from the <code class="docutils literal notranslate"><span class="pre">propane.xml</span></code> file of the tutorial are shown below.
 The <code class="docutils literal notranslate"><span class="pre">name</span></code> tag indicates the molecule name in the coarse-grained topology. The
 <code class="docutils literal notranslate"><span class="pre">ident</span></code> tag must match the name of the molecule in the atomistic representation.
@@ -278,7 +278,7 @@ the tool <code class="docutils literal notranslate"><span class="pre">csg_dump</
 from a topology file <code class="docutils literal notranslate"><span class="pre">.tpr</span></code>. This tool displays the atoms in the
 format <code class="docutils literal notranslate"><span class="pre">residue</span> <span class="pre">id:residue</span> <span class="pre">name:atom</span> <span class="pre">name</span></code>. For multicomponent
 systems, it might happen that molecules are not identified correctly.
-The workaround for this case is described in :ref: <cite>_input_files_advanced_topology_handling</cite>.</p>
+The workaround for this case is described in <a class="reference internal" href="#input-files-advanced-topology-handling"><span class="std std-ref">Advanced topology handling</span></a>.</p>
 <p>To compare coarse-grained and atomistic configurations one can use a
 standard visualization program, e. g. <code class="docutils literal notranslate"><span class="pre">vmd</span></code>. When comparing
 trajectories, one has to be careful, since <code class="docutils literal notranslate"><span class="pre">vmd</span></code> opens both a <code class="docutils literal notranslate"><span class="pre">.gro</span></code>
@@ -437,7 +437,7 @@ of <code class="docutils literal notranslate"><span class="pre">bead</span></cod
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">xx,</span> <span class="pre">yy,</span> <span class="pre">zz</span></code> are the dimensions of the box.</p>
 <p>A complete reference for a XML topology file can be found in
-:ref: <cite>_reference_topology_file</cite>.</p>
+<a class="reference internal" href="reference.html#reference-topology-file"><span class="std std-ref">Topology file</span></a>.</p>
 </div>
 <div class="section" id="trajectories">
 <span id="input-files-trajectories"></span><h2>Trajectories<a class="headerlink" href="#trajectories" title="Permalink to this headline">¶</a></h2>
@@ -510,7 +510,7 @@ potential) and <code class="docutils literal notranslate"><span class="pre">[err
 <code class="docutils literal notranslate"><span class="pre">o</span></code> (<code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>) symbolises a value out of the data range and
 <code class="docutils literal notranslate"><span class="pre">u</span></code> stands for an <code class="docutils literal notranslate"><span class="pre">undefined</span></code> value.</p>
 <p>The token <code class="docutils literal notranslate"><span class="pre">flag</span></code> will be important when extrapolating the table as
-described in :ref: <cite>_preparing_post-processing_of_the_potential</cite>.</p>
+described in <a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a>.</p>
 <p>For historical reasons, <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> uses a slightly different table format, it has
 no <code class="docutils literal notranslate"><span class="pre">flag</span></code> column and uses the third column as a force column when
 outputting a potential.</p>
