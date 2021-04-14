@@ -102,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#building-votca">Building VOTCA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-the-tutorials">Using the tutorials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#downloading-the-manual">Downloading the manual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-manual">The manual</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#running-gromacs">Running GROMACS</a><ul>
@@ -259,35 +259,17 @@ tutorial might take longer than one afternoon.</p>
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="building-votca">
 <h3>Building VOTCA<a class="headerlink" href="#building-votca" title="Permalink to this headline">¶</a></h3>
-<p>The simplest way is to use CMake:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="o">=</span>~/votca
-<span class="nv">version</span><span class="o">=</span>master <span class="c1"># or &#39;stable&#39; or &#39;v1.4.1&#39;</span>
-git clone -b <span class="si">${</span><span class="nv">version</span><span class="si">}</span> --recursive https://github.com/votca/votca.git
-<span class="nb">cd</span> votca
-mkdir build
-<span class="nb">cd</span> build
-cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span> ..
-make -j5
-make install
-</pre></div>
-</div>
-<p>To build a gromacs version for VOTCA use</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -DBUILD_OWN_GROMACS<span class="o">=</span>ON ..
-make -j5
-make install
-</pre></div>
-</div>
+<p>Instructions how to build and install VOTCA can be found
+<a class="reference internal" href="../INSTALL.html#install"><span class="std std-ref">here</span></a>.</p>
 </div>
 <div class="section" id="using-the-tutorials">
 <h3>Using the tutorials<a class="headerlink" href="#using-the-tutorials" title="Permalink to this headline">¶</a></h3>
 <p>All the tutorials are in the installation folder, i.e.
 <code class="docutils literal notranslate"><span class="pre">${prefix}/share/votca/csg-tutorials</span></code>.</p>
 </div>
-<div class="section" id="downloading-the-manual">
-<h3>Downloading the manual<a class="headerlink" href="#downloading-the-manual" title="Permalink to this headline">¶</a></h3>
-<p>The corresponding version of the manual can be found on
-<a class="reference external" href="https://github.com/votca/csg-manual/releases">github</a> (development
-version <a class="reference external" href="http://doc.votca.org/manual.pdf">here</a>).</p>
+<div class="section" id="the-manual">
+<h3>The manual<a class="headerlink" href="#the-manual" title="Permalink to this headline">¶</a></h3>
+<p>The CSG manual can be found <a class="reference internal" href="../csg/index.html#csg"><span class="std std-ref">here</span></a></p>
 </div>
 </div>
 <div class="section" id="running-gromacs">
