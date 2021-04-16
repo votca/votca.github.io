@@ -108,7 +108,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA Continuous Integration (GitHub Actions)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a Release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#major-releases">Major releases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-names">Release names</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-resources">CPP Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpp-coding-rules">CPP Coding Rules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#files">Files</a></li>
@@ -304,6 +308,81 @@ The actual containers used for running the test builds are built on top of the <
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">here</a>. The release can only be made from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag in all involved submodules (plus pull requests for the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> to <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, see <a class="reference external" href="#updates-from-stable">below</a>).</p>
+<div class="section" id="major-releases">
+<h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this headline">¶</a></h3>
+<p>In preparation for a major (not minor!) release the following additional steps need to be done:
+-  Create a new branch from the master branch of the :code:votca/votca repository and also in each of the submodules, e.g. :code:stable_bump.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">stable_bump</span>
+<span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">stable_bump</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>Bump the version in each of the CMakeLists files in the :code:votca/votca repository and each of the submodules. This can be done by
+replacing the string <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> by <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code> in the main <code class="code docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> of <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> and all submodules.</p></li>
+<li><p>Update the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files accordingly, by changing the top most section from <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> to <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code></p></li>
+<li><p>Commit changes in all submodules and update the submodules in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Version bumped to &lt;major&gt;-rc.1&quot;</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot; Version bumped to &lt;major&gt;-rc.1&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Push everything, but do NOT make the pull requests yet</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">stable_bump</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">stable_bump</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a branch, e.g. <code class="code docutils literal notranslate"><span class="pre">master_bump</span></code>, in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> and all submodules from the current master</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">master_bump</span>
+<span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">master_bump</span>
+</pre></div>
+</div>
+</li>
+<li><p>Bump the version in each of the CMakeLists files in the :code:votca/votca repository and each of the submodules. This can be done by
+replacing the string <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> by <code class="code docutils literal notranslate"><span class="pre">&lt;major+1&gt;-dev</span></code> in the main <code class="code docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> of <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> and all submodules.</p></li>
+<li><p>Create a new secion in the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files for <code class="code docutils literal notranslate"><span class="pre">&lt;major+1&gt;-dev</span></code></p></li>
+<li><p>Commit changes in all submodules and update the submodules in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Version bumped to &lt;major+1&gt;-dev&quot;</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">u</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot; Version bumped to &lt;major+1&gt;-dev&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Push everything, but do NOT make the pull requests yet</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master_bump</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master_bump</span>
+</pre></div>
+</div>
+</li>
+<li><p>Now, create a PR in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> from <code class="code docutils literal notranslate"><span class="pre">master_bump</span></code> into <code class="code docutils literal notranslate"><span class="pre">master</span></code></p></li>
+<li><p>Once merged, create PRs in all submodules from <code class="code docutils literal notranslate"><span class="pre">master_bump</span></code> into <code class="code docutils literal notranslate"><span class="pre">master</span></code></p></li>
+<li><p>Once all of these are merged and the automatically “Update master submodules” PR is merged, start with <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code> PRs</p></li>
+<li><p>Create a PR in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> from the <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code> branch into the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch</p></li>
+<li><p>Once merged, create PRs in all submodules from each of the <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code> branches into each of their <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branches</p></li>
+<li><p>Once all of them are merged and merge the automatically “Update stable submodules” PR</p></li>
+<li><p>Now everything is ready for the automatic release creation by Github Actions</p></li>
+</ul>
+</div>
+<div class="section" id="release-names">
+<h3>Release names<a class="headerlink" href="#release-names" title="Permalink to this headline">¶</a></h3>
+<p>Some releases have names, so far we have:</p>
+<ul class="simple">
+<li><p>1.1: SuperAnn - named after the spouse of a core developer</p></li>
+<li><p>1.2: SuperDoris - named after the administrator at MPI-P (VOTCA’s birthplace)</p></li>
+<li><p>1.3: SuperUzma - named after the spouse of a core developer</p></li>
+<li><p>1.4: SuperKurt - in occasion of Kurt Kremer’s 60th birthday</p></li>
+<li><p>1.5: SuperVictor - named after Victor Rühle, one of the original core developers</p></li>
+<li><p>1.6: SuperPelagia - named after the spouse of a core developer</p></li>
+<li><p>1.6.2: SuperGitta - in memory of the grandmother of a core developer</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="cpp-resources">
 <h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
