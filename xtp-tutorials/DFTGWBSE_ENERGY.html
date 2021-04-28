@@ -476,7 +476,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Interacting-with-the-XTP-command-line-interface">
 <h2>Interacting with the XTP command line interface<a class="headerlink" href="#Interacting-with-the-XTP-command-line-interface" title="Permalink to this headline">¶</a></h2>
-<p>To run a DFT-GWBSE calculation we will use the <a class="reference external" href="https://votca.github.io/xtp_tools.html">xtp_tools</a> calculator. Run the following command to view the help message of <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>:</p>
+<p>To run a DFT-GWBSE calculation we will use the <a class="reference external" href="https://www.votca.org/xtp/xtp_tools_overview.html">xtp_tools</a> calculator. Run the following command to view the help message of <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -497,9 +497,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)
-votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)
-votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)
+xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
+votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
+votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
 
 Runs excitation/charge transport tools
 
@@ -533,7 +533,7 @@ Tools:
 </div>
 <div class="section" id="Running-a-calculation-with-the-default-options">
 <h2>Running a calculation with the default options<a class="headerlink" href="#Running-a-calculation-with-the-default-options" title="Permalink to this headline">¶</a></h2>
-<p>To run a DFT-GWBSE calculation we just need to provide the path to the file in XYZ with the molecular coordinates. Check the <a class="reference external" href="https://votca.github.io/dftgwbse.html">dftgwbse defaults</a> for further information.</p>
+<p>To run a DFT-GWBSE calculation we just need to provide the path to the file in XYZ with the molecular coordinates. Check the <a class="reference external" href="https://www.votca.org/xtp/dftgwbse.html">dftgwbse defaults</a> for further information.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -634,7 +634,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 </div>
 <div class="section" id="Partial-Charges">
 <h2>Partial Charges<a class="headerlink" href="#Partial-Charges" title="Permalink to this headline">¶</a></h2>
-<p>We can compute now the partial charges using the <code class="docutils literal notranslate"><span class="pre">CHELPG</span></code> method by default. For more information see the <a class="reference external" href="https://votca.github.io/partialcharges.html">partialcharges documentation</a>. Once again, we only need to provide the name of the system to compute, which in our case is <code class="docutils literal notranslate"><span class="pre">methane</span></code>.</p>
+<p>We can compute now the partial charges using the <code class="docutils literal notranslate"><span class="pre">CHELPG</span></code> method by default. For more information see the <a class="reference external" href="https://www.votca.org/xtp/partialcharges.html">partialcharges documentation</a>. Once again, we only need to provide the name of the system to compute, which in our case is <code class="docutils literal notranslate"><span class="pre">methane</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -656,19 +656,19 @@ Registered partialcharges
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)
-votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)
-votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)
+xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
+votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
+votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2021-4-26 15:55:11 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
-... ... 2021-4-26 15:55:11 Calculating ESP at CHELPG grid points
-... ... 2021-4-26 15:55:13 Netcharge constrained to 0
-... ...  Sum of fitted charges: -2.42063e-14
+... ... 2021-4-28 16:8:19 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
+... ... 2021-4-28 16:8:19 Calculating ESP at CHELPG grid points
+... ... 2021-4-28 16:8:21 Netcharge constrained to 0
+... ...  Sum of fitted charges: -2.42202e-14
 ... ...  RMSE of fit:  0.00221583
 ... ...  RRMSE of fit: 0.107182
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -681,7 +681,7 @@ Initializing tool
 </div>
 <div class="section" id="Spectrum-Calculation">
 <h2>Spectrum Calculation<a class="headerlink" href="#Spectrum-Calculation" title="Permalink to this headline">¶</a></h2>
-<p>Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the <a class="reference external" href="https://votca.github.io/spectrum.html">spectrum calculator</a> to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will first grap a copy of <a class="reference external" href="https://votca.github.io/spectrum.html">spectrum calculator</a> and the modify its values as follows,</p>
+<p>Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the <a class="reference external" href="https://www.votca.org/xtp/spectrum.html">spectrum calculator</a> to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will first grap a copy of the options file and the modify its values as follows,</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -726,9 +726,9 @@ Registered spectrum
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)
-votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)
-votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)
+xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
+votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
+votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -801,6 +801,15 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (
 </div>
 <div class="output_area docutils container">
 <img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_31_1.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_31_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
 </div>
 </div>
 </div>

@@ -35,7 +35,7 @@
    "metadata": {},
    "source": [
     "## Interacting with the XTP command line interface\n",
-    "To run a DFT-GWBSE calculation we will use the [xtp_tools](https://votca.github.io/xtp_tools.html) calculator. Run the following command to view the help message of `xtp_tools`:"
+    "To run a DFT-GWBSE calculation we will use the [xtp_tools](https://www.votca.org/xtp/xtp_tools_overview.html) calculator. Run the following command to view the help message of `xtp_tools`:"
    ]
   },
   {
@@ -53,9 +53,9 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)\r\n",
-      "votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)\r\n",
-      "votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)\r\n",
+      "xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)\r\n",
+      "votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)\r\n",
+      "votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)\r\n",
       "\r\n",
       "Runs excitation/charge transport tools\r\n",
       "\r\n",
@@ -96,7 +96,7 @@
    "metadata": {},
    "source": [
     "## Running a calculation with the default options\n",
-    "To run a DFT-GWBSE calculation we just need to provide the path to the file in XYZ with the molecular coordinates. Check the [dftgwbse defaults](https://votca.github.io/dftgwbse.html) for further information."
+    "To run a DFT-GWBSE calculation we just need to provide the path to the file in XYZ with the molecular coordinates. Check the [dftgwbse defaults](https://www.votca.org/xtp/dftgwbse.html) for further information."
    ]
   },
   {
@@ -245,7 +245,7 @@
    "metadata": {},
    "source": [
     "## Partial Charges\n",
-    "We can compute now the partial charges using the `CHELPG` method by default. For more information see the [partialcharges documentation](https://votca.github.io/partialcharges.html). Once again, we only need to provide the name of the system to compute, which in our case is `methane`."
+    "We can compute now the partial charges using the `CHELPG` method by default. For more information see the [partialcharges documentation](https://www.votca.org/xtp/partialcharges.html). Once again, we only need to provide the name of the system to compute, which in our case is `methane`."
    ]
   },
   {
@@ -264,19 +264,19 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)\r\n",
-      "votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)\r\n",
-      "votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)\r\n",
+      "xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)\r\n",
+      "votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)\r\n",
+      "votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)\r\n",
       "\r\n",
       "Initializing tool\r\n",
       "... partialcharges Evaluating tool\r\n",
       "... partialcharges  Using 1 threads\r\n",
       "... ...  Loading QM data from methane.orb\r\n",
       "... ... ===== Running on 1 threads ===== \r\n",
-      "... ... 2021-4-26 15:55:11 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08\r\n",
-      "... ... 2021-4-26 15:55:11 Calculating ESP at CHELPG grid points\r\n",
-      "... ... 2021-4-26 15:55:13 Netcharge constrained to 0\r\n",
-      "... ...  Sum of fitted charges: -2.42063e-14\r\n",
+      "... ... 2021-4-28 16:8:19 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08\r\n",
+      "... ... 2021-4-28 16:8:19 Calculating ESP at CHELPG grid points\r\n",
+      "... ... 2021-4-28 16:8:21 Netcharge constrained to 0\r\n",
+      "... ...  Sum of fitted charges: -2.42202e-14\r\n",
       "... ...  RMSE of fit:  0.00221583\r\n",
       "... ...  RRMSE of fit: 0.107182\r\n",
       "... ... El Dipole from fitted charges [e*bohr]:\r\n",
@@ -296,7 +296,7 @@
    "metadata": {},
    "source": [
     "## Spectrum Calculation\n",
-    "Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the [spectrum calculator](https://votca.github.io/spectrum.html) to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will first grap a copy of [spectrum calculator](https://votca.github.io/spectrum.html) and the modify its values as follows,"
+    "Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the [spectrum calculator](https://www.votca.org/xtp/spectrum.html) to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will first grap a copy of the options file and the modify its values as follows,"
    ]
   },
   {
@@ -344,9 +344,9 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:46:51)\r\n",
-      "votca_csg, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:32:33)\r\n",
-      "votca_tools, version 2022-dev gitid: da54f15 (compiled Apr 26 2021, 15:30:05)\r\n",
+      "xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)\r\n",
+      "votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)\r\n",
+      "votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)\r\n",
       "\r\n",
       "Initializing tool\r\n",
       "... spectrum Evaluating tool\r\n",
@@ -448,13 +448,20 @@
     "sns.relplot(x=\"E(eV)\", y=\"epsGaussian\", ci=None, kind=\"line\", data=df) \n",
     "plt.plot()"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {
   "kernelspec": {
    "display_name": "Python 3",
    "language": "python",
-   "name": "python"
+   "name": "python3"
   },
   "language_info": {
    "codemirror_mode": {
