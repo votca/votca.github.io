@@ -1,30 +1,35 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>DFT + GWBSE Energy Calculation Using CH4 &mdash; VOTCA 2022-dev documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -32,11 +37,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="DFT + GWBSE Optimization Using CO" href="DFTGWBSE_OPTIMIZATION.html" />
@@ -80,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -145,6 +146,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -179,11 +181,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="XTP-TUTORIAL.html">XTP Tutorials</a> &raquo;</li>
         
@@ -192,7 +196,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/xtp-tutorials/DFTGWBSE_ENERGY.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -211,21 +215,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -326,7 +344,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -392,6 +410,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -497,9 +516,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
-votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
-votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
+xtp_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:27:59)
+votca_csg, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:13:11)
+votca_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:10:41)
 
 Runs excitation/charge transport tools
 
@@ -656,19 +675,19 @@ Registered partialcharges
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
-votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
-votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
+xtp_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:27:59)
+votca_csg, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:13:11)
+votca_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:10:41)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2021-4-28 16:8:19 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
-... ... 2021-4-28 16:8:19 Calculating ESP at CHELPG grid points
-... ... 2021-4-28 16:8:21 Netcharge constrained to 0
-... ...  Sum of fitted charges: -2.42202e-14
+... ... 2021-5-1 11:36:31 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
+... ... 2021-5-1 11:36:31 Calculating ESP at CHELPG grid points
+... ... 2021-5-1 11:36:33 Netcharge constrained to 0
+... ...  Sum of fitted charges: -2.42896e-14
 ... ...  RMSE of fit:  0.00221583
 ... ...  RRMSE of fit: 0.107182
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -726,9 +745,9 @@ Registered spectrum
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 16:00:24)
-votca_csg, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:46:04)
-votca_tools, version 2022-dev gitid: 673315a (compiled Apr 28 2021, 15:44:16)
+xtp_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:27:59)
+votca_csg, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:13:11)
+votca_tools, version 2022-dev gitid: 0fa8dae (compiled May  1 2021, 11:10:41)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -759,17 +778,17 @@ Initializing tool
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.9/site-packages (0.11.1)
-Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.9/site-packages (from seaborn) (1.19.4)
-Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.9/site-packages (from seaborn) (1.5.4)
-Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.9/site-packages (from seaborn) (1.0.5)
-Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.9/site-packages (from seaborn) (3.3.4)
-Requirement already satisfied: python-dateutil&gt;=2.6.1 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2.8.1)
-Requirement already satisfied: pytz&gt;=2017.2 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2020.5)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.9/site-packages (from seaborn) (1.20.1)
+Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.9/site-packages (from seaborn) (1.6.2)
+Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.9/site-packages (from seaborn) (1.2.1)
+Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.9/site-packages (from seaborn) (3.4.1)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.10.0)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.3.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (7.2.0)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
-Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;=0.23-&gt;seaborn) (1.15.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (8.1.2)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.9/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.1)
+Requirement already satisfied: six in /usr/lib/python3.9/site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.15.0)
+Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2021.1)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -820,29 +839,29 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="DFTGWBSE_OPTIMIZATION.html" class="btn btn-neutral float-right" title="DFT + GWBSE Optimization Using CO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="help.html" class="btn btn-neutral float-left" title="Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="DFTGWBSE_OPTIMIZATION.html" class="btn btn-neutral float-right" title="DFT + GWBSE Optimization Using CO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="help.html" class="btn btn-neutral float-left" title="Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, VOTCA Development Team
+        &#169; Copyright 2020, VOTCA Development Team.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -850,7 +869,6 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.9/site-packages (
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
