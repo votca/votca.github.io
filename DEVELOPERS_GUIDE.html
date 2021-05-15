@@ -315,7 +315,7 @@ To trigger it go <a class="reference external" href="https://github.com/votca/vo
 <div class="section" id="major-releases">
 <h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this headline">¶</a></h3>
 <p>In preparation for a major (not minor!) release the following additional steps need to be done:
--  Create a new branch from the master branch of the :code:votca/votca repository and also in each of the submodules, e.g. :code:stable_bump.</p>
+-  Create a new branch from the master branch of the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository and also in each of the submodules, e.g. <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code>.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
 <span class="n">git</span> <span class="n">submodules</span> <span class="n">foreach</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
@@ -325,7 +325,7 @@ To trigger it go <a class="reference external" href="https://github.com/votca/vo
 </div>
 </div></blockquote>
 <ul>
-<li><p>Bump the version in each of the CMakeLists files in the :code:votca/votca repository and each of the submodules. This can be done by
+<li><p>Bump the version in each of the CMakeLists files in the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository and each of the submodules. This can be done by
 replacing the string <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> by <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code> in the main <code class="code docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> of <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> and all submodules.</p></li>
 <li><p>Update the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files accordingly, by changing the top most section from <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> to <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code></p></li>
 <li><p>Commit changes in all submodules and update the submodules in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code></p>
@@ -349,7 +349,7 @@ replacing the string <code class="code docutils literal notranslate"><span class
 </pre></div>
 </div>
 </li>
-<li><p>Bump the version in each of the CMakeLists files in the :code:votca/votca repository and each of the submodules. This can be done by
+<li><p>Bump the version in each of the CMakeLists files in the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository and each of the submodules. This can be done by
 replacing the string <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> by <code class="code docutils literal notranslate"><span class="pre">&lt;major+1&gt;-dev</span></code> in the main <code class="code docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> of <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> and all submodules.</p></li>
 <li><p>Create a new secion in the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files for <code class="code docutils literal notranslate"><span class="pre">&lt;major+1&gt;-dev</span></code></p></li>
 <li><p>Commit changes in all submodules and update the submodules in <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code></p>
