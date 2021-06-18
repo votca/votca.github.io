@@ -429,9 +429,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:32:58)
-votca_csg, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:18:54)
-votca_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:16:30)
+xtp_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 18:05:50)
+votca_csg, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:48:28)
+votca_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:45:26)
 
 Runs excitation/charge transport tools
 
@@ -447,7 +447,10 @@ Allowed options:
   -e [ --execute ] arg        Name of Tool to run
   -l [ --list ]               Lists all available Tools
   -d [ --description ] arg    Short description of a Tools
-  -n [ --name ] arg           Name of the job to run
+  -c [ --cmdoptions ] arg     Modify options via command line by e.g. &#39;-c
+                              xmltag.subtag=value&#39;. Use whitespace to separate
+                              multiple options
+  -p [ --printoptions ] arg   Prints xml options of a Tool
 
 </pre></div></div>
 </div>
@@ -469,11 +472,11 @@ Allowed options:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -n methane -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
+<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
 </pre></div>
 </div>
 </div>
-<p>The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the <em>Current Work Directory</em> in a file named <code class="docutils literal notranslate"><span class="pre">methane_summary.xml</span></code>.</p>
+<p>The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the <em>Current Work Directory</em> in a file named <code class="docutils literal notranslate"><span class="pre">methane_summary.xml</span></code>. The <code class="docutils literal notranslate"><span class="pre">-c</span></code> option is important and we will come back to it later. It allows</p>
 </div>
 <div class="section" id="Running-a-calculation-using-your-own-input-file">
 <h2>Running a calculation using your own input file<a class="headerlink" href="#Running-a-calculation-using-your-own-input-file" title="Permalink to this headline">¶</a></h2>
@@ -515,7 +518,7 @@ Allowed options:
       &lt;package&gt;
 </pre></div></div>
 </div>
-<p>We will use the folling python snippet to change the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and the <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code>,</p>
+<p>We will use the folling python snippet to change the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and the <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -536,13 +539,12 @@ The option &#39;basisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has bee
 The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has been set to &#39;aux-ubecppol&#39;
 </pre></div></div>
 </div>
-<p>Now you can run the calculation using the <code class="docutils literal notranslate"><span class="pre">-o</span></code> command line argument, as follows</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -n methane -t <span class="m">2</span> -e dftgwbse -o OPTIONFILES/dftgwbse.xml &gt; dftgwbse.log
+<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -o OPTIONFILES/dftgwbse.xml -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
 </pre></div>
 </div>
 </div>
@@ -570,7 +572,7 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -n methane -e partialcharges
+<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -e partialcharges
 </pre></div>
 </div>
 </div>
@@ -585,19 +587,19 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:32:58)
-votca_csg, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:18:54)
-votca_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:16:30)
+xtp_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 18:05:50)
+votca_csg, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:48:28)
+votca_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:45:26)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2021-6-18 13:40:43 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
-... ... 2021-6-18 13:40:43 Calculating ESP at CHELPG grid points
-... ... 2021-6-18 13:40:44 Netcharge constrained to 0
-... ...  Sum of fitted charges: -2.42341e-14
+... ... 2021-6-18 18:15:9 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
+... ... 2021-6-18 18:15:9 Calculating ESP at CHELPG grid points
+... ... 2021-6-18 18:15:12 Netcharge constrained to 0
+... ...  Sum of fitted charges: -2.42757e-14
 ... ...  RMSE of fit:  0.00221583
 ... ...  RRMSE of fit: 0.107182
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -610,36 +612,14 @@ Initializing tool
 </div>
 <div class="section" id="Spectrum-Calculation">
 <h2>Spectrum Calculation<a class="headerlink" href="#Spectrum-Calculation" title="Permalink to this headline">¶</a></h2>
-<p>Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the <a class="reference external" href="https://www.votca.org/xtp/spectrum.html">spectrum calculator</a> to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will first grap a copy of the options file and the modify its values as follows,</p>
+<p>Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the <a class="reference external" href="https://www.votca.org/xtp/spectrum.html">spectrum calculator</a> to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will use the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to modify the options accordingly. Instead we could have printed out an options file using the <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-p</span> <span class="pre">spectrum</span></code> command and then modify the entries accordingly and
+then read them in using the <code class="docutils literal notranslate"><span class="pre">-o</span></code> option.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/spectrum.xml OPTIONFILES
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="s2">&quot;25&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;spectrum&quot;</span><span class="p">,</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-The option &#39;lower&#39; on file &#39;OPTIONFILES/spectrum.xml&#39; has been set to &#39;9&#39;
-The option &#39;upper&#39; on file &#39;OPTIONFILES/spectrum.xml&#39; has been set to &#39;25&#39;
-The option &#39;points&#39; on file &#39;OPTIONFILES/spectrum.xml&#39; has been set to &#39;1000&#39;
-</pre></div></div>
-</div>
-<p>Finally, we can invoke the calculator</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -n methane -e spectrum -o OPTIONFILES/spectrum.xml
+<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane <span class="nv">lower</span><span class="o">=</span><span class="m">9</span> <span class="nv">upper</span><span class="o">=</span><span class="m">25</span> <span class="nv">points</span><span class="o">=</span><span class="m">1000</span> -e spectrum
 </pre></div>
 </div>
 </div>
@@ -654,9 +634,9 @@ The option &#39;points&#39; on file &#39;OPTIONFILES/spectrum.xml&#39; has been 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:32:58)
-votca_csg, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:18:54)
-votca_tools, version 2022-dev gitid: b2c0c16 (compiled Jun 18 2021, 13:16:30)
+xtp_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 18:05:50)
+votca_csg, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:48:28)
+votca_tools, version 2022-dev gitid: dad4e1d (compiled Jun 18 2021, 17:45:26)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -673,7 +653,7 @@ Initializing tool
 <h2>(Optional) Plot the spectrum<a class="headerlink" href="#(Optional)-Plot-the-spectrum" title="Permalink to this headline">¶</a></h2>
 <p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries to plot the spectrum. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -701,7 +681,7 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packag
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -716,7 +696,7 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packag
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -728,7 +708,7 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packag
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_31_1.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_31_1.png" />
+<img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_28_1.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_28_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
