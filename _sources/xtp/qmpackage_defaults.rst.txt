@@ -90,10 +90,6 @@
      - 
      - This is automatically fill with the functional and basis set
      - 
-   * - xtpdft.with_screening
-     - true
-     - screening
-     - bool
    * - xtpdft.use_external_density
      - false
      - whether or not to use a precomputed external density
@@ -102,12 +98,10 @@
      - 1e-9
      - screening eps
      - float+
-   * - xtpdft.four_center_method
-     - cache
-     - method to compute the four-center integrals
-     - | cache
-       | direct
-       | RI
+   * - xtpdft.fock_matrix_reset
+     - 5
+     - how often the fock matrix should be reset
+     - int+
    * - xtpdft.convergence.energy
      - 1E-7
      - DeltaE at which calculation is converged
