@@ -2,7 +2,8 @@
 orb2fchk
 ********
 Converts orb files to gaussian fchk files.
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,6 +14,11 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
    * - qmstate
      - n
      - QMstate in string format, e.g. n, s4 etc.
@@ -22,4 +28,4 @@ The following table contains the defaults input options for the calculator,
      - For excited states output difference to groundstate
      - bool
 .. note::
-   An *xml* file containing the defaults for the `orb2fchk` calculator can be found at `$VOTCASHARE/xtp/xml/orb2fchk.xml`
+   An *xml* file containing the defaults for the `orb2fchk` calculator can be created via `-p orb2fchk -o FILENAME` command line options `

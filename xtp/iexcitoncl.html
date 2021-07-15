@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="iexcitoncl">
 <h1>iexcitoncl<a class="headerlink" href="#iexcitoncl" title="Permalink to this headline">¶</a></h1>
 <p>Classical coupling of transition charges
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -167,16 +167,20 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>name of jobfile to which jobs are written</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>use_states</p></td>
-<td><p>false</p></td>
-<td><p>Use pair of segments and exciton labels</p></td>
-<td><p>bool</p></td>
+<tr class="row-even"><td><p>states</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Use a list of pairs of segments and exciton labels for</div>
+<div class="line">writing the jobfile, e.g. DCV5T:n2s1</div>
+</div>
+</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>iexcitoncl</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/iexcitoncl.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>iexcitoncl</cite> calculator can be created via <cite>-p iexcitoncl -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

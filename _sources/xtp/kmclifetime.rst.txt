@@ -2,7 +2,8 @@
 kmclifetime
 ***********
 Perform Kinetic Monte Carlo simulations of singlets with decay
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -26,9 +27,9 @@ The following table contains the defaults input options for the calculator,
      - Name of the trajectory file
      - 
    * - numberofinsertions
-     - 
-     - 
-     - 
+     - 4000
+     - number of decays to simulate
+     - int+
    * - seed
      - 23
      - Integer to initialise the random number generator
@@ -78,4 +79,4 @@ The following table contains the defaults input options for the calculator,
      - Write to file every x steps
      - int+
 .. note::
-   An *xml* file containing the defaults for the `kmclifetime` calculator can be found at `$VOTCASHARE/xtp/xml/kmclifetime.xml`
+   An *xml* file containing the defaults for the `kmclifetime` calculator can be created via `-p kmclifetime -o FILENAME` command line options `

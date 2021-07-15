@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="coupling">
 <h1>coupling<a class="headerlink" href="#coupling" title="Permalink to this headline">¶</a></h1>
 <p>Compute the electronic couplings from log and orbital files.
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,7 +157,16 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>dftpackage.package.name</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.name</p></td>
 <td><p>xtp</p></td>
 <td><p>Name of the DFT package</p></td>
 <td><div class="line-block">
@@ -166,12 +175,210 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling_options.degeneracy</p></td>
+<tr class="row-even"><td><p>dftpackage.charge</p></td>
+<td><p>0</p></td>
+<td><p>Molecular charge</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.spin</p></td>
+<td><p>1</p></td>
+<td><p>Molecular multiplicity</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.basisset</p></td>
+<td><p>def2-tzvp</p></td>
+<td><p>Basis set for MOs</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.auxbasisset</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Auxiliary basis set for RI</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.externalfield</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Field given in x y z components</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.executable</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Path to executable for dftpackage</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.ecp</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Effective Core Potentials for DFT Calculations</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.optimize</p></td>
+<td><p>false</p></td>
+<td><p>Perform a molecular geometry optimization</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.functional</p></td>
+<td><p>XC_HYB_GGA_XC_PBEH</p></td>
+<td><div class="line-block">
+<div class="line">Exchange correlation functional used. You can also specify</div>
+<div class="line">an exchange and a correlation functional</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.scratch</p></td>
+<td><p>/tmp/qmpackage</p></td>
+<td><p>path to the scratch folder</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.polarization</p></td>
+<td><p>false</p></td>
+<td><p>Calculate polarisation</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.dipole_spacing</p></td>
+<td><p>0.1</p></td>
+<td><p>Spacing for splitting multipoles into charges</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.temporary_file</p></td>
+<td><p>temp</p></td>
+<td><p>Filename for temporary files without extension</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.convergence_tightness</p></td>
+<td><p>tight</p></td>
+<td><p>How accurate the dft self-consistency has to be</p></td>
+<td><div class="line-block">
+<div class="line">low</div>
+<div class="line">normal</div>
+<div class="line">tight</div>
+<div class="line">verytight</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.cleanup</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">files to remove after the calculation. Specify the fileextensions</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.initial_guess</p></td>
+<td><p>atom</p></td>
+<td><div class="line-block">
+<div class="line">Method to use to make initial guess, independent(electrons)</div>
+<div class="line">or atom(densities) or previous calculation keyword orbfile</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">independent</div>
+<div class="line">atom</div>
+<div class="line">orbfile</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.orca</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">orca specific keywords can be added here, where the xml</div>
+<div class="line">tag corresponds to the option and the value to the option’s</div>
+<div class="line">value</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<td><p>1e-9</p></td>
+<td><p>screening eps</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<td><p>5</p></td>
+<td><p>how often the fock matrix is reset</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<td><p>medium</p></td>
+<td><p>vxc grid quality</p></td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<td><p>1E-7</p></td>
+<td><p>DeltaE at which calculation is converged</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<td><p>DIIS</p></td>
+<td><p>Main method to use for convergence accelertation</p></td>
+<td><div class="line-block">
+<div class="line">DIIS</div>
+<div class="line">mixing</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<td><p>0.002</p></td>
+<td><p>DIIS error at which DIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<td><p>0.8</p></td>
+<td><p>DIIS error at which ADIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<td><p>20</p></td>
+<td><p>old hamiltonians to keep in history</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">if true remove the maximum element in the history if DIIS_length</div>
+<div class="line">is exceeded.Otherwise, the oldest element is removed.</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<td><p>0.0</p></td>
+<td><p>levelshift to apply to hamiltonian</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<td><p>0.2</p></td>
+<td><p>DIIS error at levelshifting is disabled</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<td><p>100</p></td>
+<td><p>max iterations to use</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<td><p>1e-7</p></td>
+<td><p>convergence error</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<td><p>0.7</p></td>
+<td><p>mixing parameter for linear mixing of density matrices</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftcoupling.degeneracy</p></td>
 <td><p>0.0</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftcoupling_options.levA</p></td>
+<tr class="row-even"><td><p>dftcoupling.levA</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -180,7 +387,7 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling_options.levB</p></td>
+<tr class="row-odd"><td><p>dftcoupling.levB</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -215,7 +422,7 @@ The following table contains the defaults input options for the calculator,</p>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>dimerAB.orbitals</p></td>
-<td><p>A.orb</p></td>
+<td><p>AB.orb</p></td>
 <td><p>Orbitals file</p></td>
 <td></td>
 </tr>
@@ -223,7 +430,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>coupling</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/coupling.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>coupling</cite> calculator can be created via <cite>-p coupling -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

@@ -2,7 +2,8 @@
 einternal
 *********
 Reads in site and reorganosation energies and writes them to the state file
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,10 +14,10 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
-   * - energiesXML
+   * - energies_file
      - system.xml
-     - | XML input file with vacuum site, reorganization (charging,
+     - | input file with vacuum site, reorganization (charging,
        | discharging) energies
      - 
 .. note::
-   An *xml* file containing the defaults for the `einternal` calculator can be found at `$VOTCASHARE/xtp/xml/einternal.xml`
+   An *xml* file containing the defaults for the `einternal` calculator can be created via `-p einternal -o FILENAME` command line options `

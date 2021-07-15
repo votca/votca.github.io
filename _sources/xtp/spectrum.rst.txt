@@ -2,7 +2,8 @@
 spectrum
 ********
 Convolutes singlet spectrum with gaussian or lorentzian function
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,6 +14,19 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
+   * - input
+     - OPTIONAL
+     - orbfile to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - ASCII output filename, if not given use job_name
+     - 
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
    * - fwhm
      - 0.2
      - peak width in eV
@@ -47,4 +61,4 @@ The following table contains the defaults input options for the calculator,
      - shift spectrum by amount of eV
      - float+
 .. note::
-   An *xml* file containing the defaults for the `spectrum` calculator can be found at `$VOTCASHARE/xtp/xml/spectrum.xml`
+   An *xml* file containing the defaults for the `spectrum` calculator can be created via `-p spectrum -o FILENAME` command line options `

@@ -2,7 +2,8 @@
 qmmm
 ****
 Executes qmmm calculations for individual molecules and clusters
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -29,9 +30,550 @@ The following table contains the defaults input options for the calculator,
      - qmmm_jobs.xml
      - name of jobfile to which jobs are written
      - 
-   * - write_parse.states
+   * - io_states
      - n e h
      - states to write jobs for and which to parse from jobfile
      - 
+   * - regions.qmregion.state
+     - n
+     - initial state to track or ground state for dftcalculations
+     - 
+   * - regions.qmregion.gwbse.tasks
+     - all
+     - tasks to do
+     - | [gw
+       | singlets
+       | triplets
+       | all]
+   * - regions.qmregion.gwbse.ranges
+     - default
+     - | default: all levels in RPA, 1:2*HOMO in QP and all in
+       | BSE; other options: factor,explicit
+     - | default
+       | factor
+       | explicit
+       | full
+   * - regions.qmregion.gwbse.rpamax
+     - 
+     - | only needed, if ranges is factor or explicit, number of
+       | levels in rpa
+     - 
+   * - regions.qmregion.gwbse.qpmin
+     - 
+     - | only needed, if ranges is factor or explicit, lowest MO
+       | to be used in GW
+     - 
+   * - regions.qmregion.gwbse.qpmax
+     - 
+     - | only needed, if ranges is factor or explicit, highest
+       | MO to be used in GW
+     - 
+   * - regions.qmregion.gwbse.bsemin
+     - 
+     - | only needed, if ranges is factor or explicit, lowest MO
+       | to be used in BSE
+     - 
+   * - regions.qmregion.gwbse.bsemax
+     - 
+     - | only needed, if ranges is factor or explicit, highest
+       | MO to be used in BSE
+     - 
+   * - regions.qmregion.gwbse.ignore_corelevels
+     - none
+     - | exclude core MO level from calculation on RPA,GW or BSE
+       | level
+     - | RPA
+       | GW
+       | BSE
+       | none
+   * - regions.qmregion.gwbse.auxbasisset
+     - OPTIONAL
+     - | Auxiliary basis set for RI, only used if DFT has no auxiliary
+       | set
+     - 
+   * - regions.qmregion.gwbse.gw.mode
+     - evGW
+     - use single short (G0W0) or self-consistent GW (evGW)
+     - | evGW
+       | G0W0
+   * - regions.qmregion.gwbse.gw.scissor_shift
+     - 0.0
+     - preshift unoccupied MOs by a constant for GW calculation
+     - float
+   * - regions.qmregion.gwbse.gw.sigma_integrator
+     - ppm
+     - self-energy correlation integration method
+     - | ppm
+       |  exact
+       |  cda
+   * - regions.qmregion.gwbse.gw.eta
+     - 1e-3
+     - small parameter eta of the Green's function
+     - float+
+   * - regions.qmregion.gwbse.gw.alpha
+     - 1e-3
+     - | parameter to smooth residue and integral calculation for
+       | the contour deformation technique
+     - float
+   * - regions.qmregion.gwbse.gw.quadrature_scheme
+     - legendre
+     - | If CDA is used for sigma integration this set the quadrature
+       | scheme to use
+     - | hermite
+       | laguerre
+       | legendre
+   * - regions.qmregion.gwbse.gw.quadrature_order
+     - 12
+     - Quadrature order if CDA is used for sigma integration
+     - | 8
+       | 10
+       | 12
+       | 14
+       | 16
+       | 18
+       | 20
+       | 40
+       | 100
+   * - regions.qmregion.gwbse.gw.qp_solver
+     - grid
+     - QP equation solve method
+     - | fixedpoint
+       | grid
+       | cda
+   * - regions.qmregion.gwbse.gw.qp_grid_steps
+     - 1001
+     - number of QP grid points
+     - int+
+   * - regions.qmregion.gwbse.gw.qp_grid_spacing
+     - 0.001
+     - spacing of QP grid points
+     - float+
+   * - regions.qmregion.gwbse.gw.qp_sc_max_iter
+     - 100
+     - | maximum number of iterations for quasiparticle equation
+       | solution
+     - int+
+   * - regions.qmregion.gwbse.gw.qp_sc_limit
+     - 1e-5
+     - quasiparticle equation solver convergence
+     - float+
+   * - regions.qmregion.gwbse.gw.sc_max_iter
+     - 50
+     - Maximum number of iterations in eVGW
+     - int+
+   * - regions.qmregion.gwbse.gw.mixing_order
+     - 20
+     - | Mixing of QP energies in evGW - 0: plain, 1: linear, >1:
+       | Anderson
+     - int+
+   * - regions.qmregion.gwbse.gw.sc_limit
+     - 1e-5
+     - evGW convergence criteria
+     - float+
+   * - regions.qmregion.gwbse.gw.mixing_alpha
+     - 0.7
+     - mixing alpha, also linear mixing
+     - float+
+   * - regions.qmregion.gwbse.gw.rebuild_3c_freq
+     - 5
+     - how often the 3c integrals in iterate should be rebuilt
+     - int+
+   * - regions.qmregion.gwbse.gw.sigma_plot.states
+     - 
+     - plot sigma(omega) for the following states, e.g 1 3 5
+     - 
+   * - regions.qmregion.gwbse.gw.sigma_plot.steps
+     - 201
+     - points to plot
+     - int+
+   * - regions.qmregion.gwbse.gw.sigma_plot.spacing
+     - 1e-2
+     - spacing of points units
+     - float+
+   * - regions.qmregion.gwbse.gw.sigma_plot.filename
+     - QPenergies_sigma.dat
+     - 
+     - 
+   * - regions.qmregion.gwbse.bse.exctotal
+     - 10
+     - maximum number of BSE states to calculate
+     - int+
+   * - regions.qmregion.gwbse.bse.useTDA
+     - false
+     - use TDA for BSE
+     - bool
+   * - regions.qmregion.gwbse.bse.dyn_screen_max_iter
+     - 0
+     - | maximum number of iterations for perturbative dynamical
+       | screening in BSE
+     - int+
+   * - regions.qmregion.gwbse.bse.dyn_screen_tol
+     - 1e-5
+     - | convergence tolerance for perturbative dynamical screening
+       | in BSE
+     - float+
+   * - regions.qmregion.gwbse.bse.davidson.correction
+     - DPR
+     - Davidson correction method
+     - | DPR
+       | OHLSEN
+   * - regions.qmregion.gwbse.bse.davidson.tolerance
+     - normal
+     - Numerical tolerance
+     - | loose
+       | normal
+       | strict
+       | lapack
+   * - regions.qmregion.gwbse.bse.davidson.update
+     - safe
+     -  how large the search space
+     - | min
+       | safe
+       | max
+   * - regions.qmregion.gwbse.bse.davidson.maxiter
+     - 50
+     - max iterations
+     - int+
+   * - regions.qmregion.gwbse.bse.use_Hqp_offdiag
+     - false
+     - | Using symmetrized off-diagonal elements of QP Hamiltonian
+       | in BSE
+     - bool
+   * - regions.qmregion.gwbse.bse.print_weight
+     - 0.5
+     - print exciton WF composition weight larger than minimum
+     - float+
+   * - regions.qmregion.gwbse.bse.fragments.fragment.indeces
+     - REQUIRED
+     - indeces of atoms in this fragment, e.g. 1 3 13:17
+     - 
+   * - regions.qmregion.dftpackage.name
+     - xtp
+     - Name of the DFT package
+     - | xtp
+       | orca
+   * - regions.qmregion.dftpackage.charge
+     - 0
+     - Molecular charge
+     - int
+   * - regions.qmregion.dftpackage.spin
+     - 1
+     - Molecular multiplicity
+     - int+
+   * - regions.qmregion.dftpackage.basisset
+     - def2-tzvp
+     - Basis set for MOs
+     - 
+   * - regions.qmregion.dftpackage.auxbasisset
+     - OPTIONAL
+     - Auxiliary basis set for RI
+     - 
+   * - regions.qmregion.dftpackage.externalfield
+     - OPTIONAL
+     - Field given in x y z components
+     - 
+   * - regions.qmregion.dftpackage.executable
+     - OPTIONAL
+     - Path to executable for dftpackage
+     - 
+   * - regions.qmregion.dftpackage.ecp
+     - OPTIONAL
+     - Effective Core Potentials for DFT Calculations
+     - 
+   * - regions.qmregion.dftpackage.optimize
+     - false
+     - Perform a molecular geometry optimization
+     - bool
+   * - regions.qmregion.dftpackage.functional
+     - XC_HYB_GGA_XC_PBEH
+     - | Exchange correlation functional used. You can also specify
+       | an exchange and a correlation functional
+     - 
+   * - regions.qmregion.dftpackage.scratch
+     - /tmp/qmpackage
+     - path to the scratch folder
+     - 
+   * - regions.qmregion.dftpackage.polarization
+     - false
+     - Calculate polarisation
+     - bool
+   * - regions.qmregion.dftpackage.dipole_spacing
+     - 0.1
+     - Spacing for splitting multipoles into charges
+     - float+
+   * - regions.qmregion.dftpackage.temporary_file
+     - temp
+     - Filename for temporary files without extension
+     - 
+   * - regions.qmregion.dftpackage.convergence_tightness
+     - tight
+     - How accurate the dft self-consistency has to be
+     - | low
+       | normal
+       | tight
+       | verytight
+   * - regions.qmregion.dftpackage.cleanup
+     - 
+     - | files to remove after the calculation. Specify the fileextensions
+       | 
+     - 
+   * - regions.qmregion.dftpackage.initial_guess
+     - atom
+     - | Method to use to make initial guess, independent(electrons)
+       | or atom(densities) or previous calculation keyword orbfile
+     - | independent
+       | atom
+       | orbfile
+   * - regions.qmregion.dftpackage.orca
+     - 
+     - | orca specific keywords can be added here, where the xml
+       | tag corresponds to the option and the value to the option's
+       | value
+     - 
+   * - regions.qmregion.dftpackage.xtpdft.screening_eps
+     - 1e-9
+     - screening eps
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.fock_matrix_reset
+     - 5
+     - how often the fock matrix is reset
+     - int+
+   * - regions.qmregion.dftpackage.xtpdft.integration_grid
+     - medium
+     - vxc grid quality
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
+   * - regions.qmregion.dftpackage.xtpdft.convergence.energy
+     - 1E-7
+     - DeltaE at which calculation is converged
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.method
+     - DIIS
+     - Main method to use for convergence accelertation
+     - | DIIS
+       | mixing
+   * - regions.qmregion.dftpackage.xtpdft.convergence.DIIS_start
+     - 0.002
+     - DIIS error at which DIIS takes over
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.ADIIS_start
+     - 0.8
+     - DIIS error at which ADIIS takes over
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.DIIS_length
+     - 20
+     - old hamiltonians to keep in history
+     - int+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.DIIS_maxout
+     - false
+     - | if true remove the maximum element in the history if DIIS_length
+       | is exceeded.Otherwise, the oldest element is removed.
+     - bool
+   * - regions.qmregion.dftpackage.xtpdft.convergence.levelshift
+     - 0.0
+     - levelshift to apply to hamiltonian 
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.levelshift_end
+     - 0.2
+     - DIIS error at levelshifting is disabled
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.max_iterations
+     - 100
+     - max iterations to use
+     - int+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.error
+     - 1e-7
+     - convergence error
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.mixing
+     - 0.7
+     - mixing parameter for linear mixing of density matrices
+     - float+
+   * - regions.qmregion.statetracker.oscillatorstrength
+     - OPTIONAL
+     - picks first state above a threshold
+     - float+
+   * - regions.qmregion.statetracker.localisation.fragment
+     - REQUIRED
+     - | Fragment definiton using atomids, can be a combination
+       | of ids and ranges of ids e.g. 1:5
+     - 
+   * - regions.qmregion.statetracker.localisation.threshold
+     - 0.1
+     - Threshold above which a state is considered localized
+     - 
+   * - regions.qmregion.statetracker.chargetransfer.fragment
+     - REQUIRED
+     - | Fragment definiton using atomids, can be a combination
+       | of ids and ranges of ids e.g. 1:5
+     - 
+   * - regions.qmregion.statetracker.chargetransfer.threshold
+     - 0.8
+     - Threshold above which a state is considered a CT state
+     - 
+   * - regions.qmregion.statetracker.density
+     - OPTIONAL
+     - | Tracks state by comparing the density to an earlier state,
+       | you have to specify a minimum threshold, which can be
+       | zero
+     - float+
+   * - regions.qmregion.statetracker.overlap
+     - OPTIONAL
+     - | Tracks state by calculating the overlap with an earlier
+       | state, you have to specify a minimum threshold, which
+       | can be zero
+     - float+
+   * - regions.qmregion.grid_for_potential
+     - medium
+     - Grid to integrate influence of qm density om other regions
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
+   * - regions.qmregion.extgrid
+     - medium
+     - | grid on which the interaction with classical regions is
+       | compute
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
+   * - regions.qmregion.tolerance_energy
+     - 5e-5
+     - | if energy difference for this region is below this value
+       | it is considered converged
+     - float+
+   * - regions.qmregion.tolerance_density
+     - 5e-5
+     - | if RMS difference of density matrix is below this value
+       | it is considered converged
+     - float+
+   * - regions.qmregion.id
+     - REQUIRED
+     - | id of the region, first region has to have id 0, ids must
+       | be consecutive
+     - int+
+   * - regions.qmregion.segments
+     - OPTIONAL
+     - | List of segments to include in the region separated by
+       | a whitespace. Each segment is defined by an index and
+       | a qmstate or a filename for the coordinates. e.g 1:s3
+       | or 0:ORFILES/methane.xyz
+     - 
+   * - regions.qmregion.cutoff.radius
+     - REQUIRED
+     - radius
+     - float+
+   * - regions.qmregion.cutoff.geometry
+     - n
+     - | geometry that should be used for mapping all the segments
+       | in the radius
+     - 
+   * - regions.qmregion.cutoff.region
+     - REQUIRED
+     - | Id of the region the cutoff should refer to, can be the
+       | same as this region's id, if segments are specified
+     - int+
+   * - regions.qmregion.cutoff.explicit_segs
+     - false
+     - | specifies if cutoff with respect to other region should
+       | be only towards segments specified explicitly using the
+       | `segments` tag
+     - bool
+   * - regions.polarregion.polar.tolerance_energy
+     - 1e-5
+     - Energy change as convergence criterion
+     - 
+   * - regions.polarregion.polar.tolerance_dipole
+     - 1e-5
+     - Field change as convergence criterion
+     - 
+   * - regions.polarregion.polar.max_iter
+     - 500
+     - Maximum number of iterations
+     - 
+   * - regions.polarregion.polar.exp_damp
+     - 0.39
+     - Thole sharpness parameter
+     - 
+   * - regions.polarregion.tolerance_energy
+     - 5e-5
+     - | if energy difference for this region is below this value
+       | it is considered converged
+     - float+
+   * - regions.polarregion.tolerance_dipole
+     - 5e-5
+     - | if RMS difference of all dipoles in the is below this
+       | value it is considered converged
+     - float+
+   * - regions.polarregion.id
+     - REQUIRED
+     - | id of the region, first region has to have id 0, ids must
+       | be consecutive
+     - int+
+   * - regions.polarregion.segments
+     - OPTIONAL
+     - | List of segments to include in the region separated by
+       | a whitespace. Each segment is defined by an index and
+       | a qmstate or a filename for the coordinates. e.g 1:s3
+       | or 0:ORFILES/methane.xyz
+     - 
+   * - regions.polarregion.cutoff.radius
+     - REQUIRED
+     - radius
+     - float+
+   * - regions.polarregion.cutoff.geometry
+     - n
+     - | geometry that should be used for mapping all the segments
+       | in the radius
+     - 
+   * - regions.polarregion.cutoff.region
+     - REQUIRED
+     - | Id of the region the cutoff should refer to, can be the
+       | same as this region's id, if segments are specified
+     - int+
+   * - regions.polarregion.cutoff.explicit_segs
+     - false
+     - | specifies if cutoff with respect to other region should
+       | be only towards segments specified explicitly using the
+       | `segments` tag
+     - bool
+   * - regions.staticregion.id
+     - REQUIRED
+     - | id of the region, first region has to have id 0, ids must
+       | be consecutive
+     - int+
+   * - regions.staticregion.segments
+     - OPTIONAL
+     - | List of segments to include in the region separated by
+       | a whitespace. Each segment is defined by an index and
+       | a qmstate or a filename for the coordinates. e.g 1:s3
+       | or 0:ORFILES/methane.xyz
+     - 
+   * - regions.staticregion.cutoff.radius
+     - REQUIRED
+     - radius
+     - float+
+   * - regions.staticregion.cutoff.geometry
+     - n
+     - | geometry that should be used for mapping all the segments
+       | in the radius
+     - 
+   * - regions.staticregion.cutoff.region
+     - REQUIRED
+     - | Id of the region the cutoff should refer to, can be the
+       | same as this region's id, if segments are specified
+     - int+
+   * - regions.staticregion.cutoff.explicit_segs
+     - false
+     - | specifies if cutoff with respect to other region should
+       | be only towards segments specified explicitly using the
+       | `segments` tag
+     - bool
 .. note::
-   An *xml* file containing the defaults for the `qmmm` calculator can be found at `$VOTCASHARE/xtp/xml/qmmm.xml`
+   An *xml* file containing the defaults for the `qmmm` calculator can be created via `-p qmmm -o FILENAME` command line options `

@@ -2,7 +2,8 @@
 gencube
 *******
 Tool to generate cube files from .orb file
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,6 +14,19 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
+   * - input
+     - OPTIONAL
+     - orbfile to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - Cubefile for visualisation
+     - 
    * - padding
      - 6.5
      - How far the grid should start from the molecule
@@ -43,5 +57,13 @@ The following table contains the defaults input options for the calculator,
        | files specified below
      - | new
        | substract
+   * - infile1
+     - OPTIONAL
+     - In mode substract mode cube file to substract from
+     - 
+   * - infile2
+     - OPTIONAL
+     - In mode substract mode cube file to substract
+     - 
 .. note::
-   An *xml* file containing the defaults for the `gencube` calculator can be found at `$VOTCASHARE/xtp/xml/gencube.xml`
+   An *xml* file containing the defaults for the `gencube` calculator can be created via `-p gencube -o FILENAME` command line options `

@@ -62,10 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-with-the-default-options">Running a calculation with the default options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Note</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Partial-Charges">Partial Charges</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Spectrum-Calculation">Spectrum Calculation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
@@ -429,9 +426,9 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Runs excitation/charge transport tools
 
@@ -442,7 +439,7 @@ Allowed options:
   --verbose                     be loud and noisy
   --verbose1                    be very loud and noisy
   -v [ --verbose2 ]             be extremly loud and noisy
-  -o [ --options ] arg          Tool options
+  -o [ --options ] arg          Tool user options.
   -t [ --nthreads ] arg (=1)    number of threads to create
   -e [ --execute ] arg        Name of Tool to run
   -l [ --list ]               Lists all available Tools
@@ -476,20 +473,29 @@ Allowed options:
 </pre></div>
 </div>
 </div>
-<p>The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the <em>Current Work Directory</em> in a file named <code class="docutils literal notranslate"><span class="pre">methane_summary.xml</span></code>. The <code class="docutils literal notranslate"><span class="pre">-c</span></code> option is important and we will come back to it later. It allows</p>
+<p>The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the <em>Current Work Directory</em> in a file named <code class="docutils literal notranslate"><span class="pre">methane_summary.xml</span></code>. The <code class="docutils literal notranslate"><span class="pre">-c</span></code> option is important and we will come back to it later. It allows changing options form the command line.</p>
 </div>
 <div class="section" id="Running-a-calculation-using-your-own-input-file">
 <h2>Running a calculation using your own input file<a class="headerlink" href="#Running-a-calculation-using-your-own-input-file" title="Permalink to this headline">¶</a></h2>
-<p>Let create a folder to store the input <code class="docutils literal notranslate"><span class="pre">options</span></code> for XTP and copy the defaults in there</p>
-<div class="nbinput nblast docutils container">
+<p>Let create a folder to store the input <code class="docutils literal notranslate"><span class="pre">options</span></code> for XTP and use the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to print an option file, specified by <code class="docutils literal notranslate"><span class="pre">-o</span></code>, with all the options so we can modify it afterwards</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">!</span>mkdir -p OPTIONFILES
-<span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/dftgwbse.xml OPTIONFILES
+<span class="o">!</span>xtp_tools -p dftgwbse -o OPTIONFILES/dftgwbse.xml
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Writing options for calculator dftgwbse to OPTIONFILES/dftgwbse.xml
+Done - stopping here
+</pre></div></div>
 </div>
 <p>You should have a <em>XML</em> file with the DFTWGSE options that looks like</p>
 <div class="nbinput docutils container">
@@ -506,27 +512,26 @@ Allowed options:
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;?xml version=&#34;1.0&#34;?&gt;
 &lt;options&gt;
-  &lt;!-- xtp_tools -e dftgwbse options.xml --&gt;
-  &lt;dftgwbse help=&#34;Compute electronic excitations using GW-BSE&#34;&gt;
-    &lt;optimize help=&#34;Perform a molecular geometry optimization&#34; default=&#34;false&#34; choices=&#34;bool&#34;/&gt;
-    &lt;basisset help=&#34;Basis set for MOs&#34; default=&#34;def2-tzvp&#34;/&gt;
-    &lt;auxbasisset help=&#34;Auxiliary basis set for RI&#34; default=&#34;aux-def2-tzvp&#34;/&gt;
-    &lt;functional help=&#34;Functional name(s) according to LIBXC&#34; default=&#34;XC_HYB_GGA_XC_PBEH&#34;/&gt;
-    &lt;dftpackage&gt;
-      &lt;package&gt;
+&lt;dftgwbse help=&#34;Compute electronic excitations using GW-BSE&#34;&gt;
+        &lt;job_name default=&#34;system&#34; help=&#34;Input file name without extension, also used for intermediate files&#34;&gt;system&lt;/job_name&gt;
+        &lt;dftpackage help=&#34;options for dftpackages&#34;&gt;
+                &lt;name choices=&#34;xtp,orca&#34; default=&#34;xtp&#34; help=&#34;Name of the DFT package&#34;&gt;xtp&lt;/name&gt;
+                &lt;charge choices=&#34;int&#34; default=&#34;0&#34; help=&#34;Molecular charge&#34;&gt;0&lt;/charge&gt;
+                &lt;spin choices=&#34;int+&#34; default=&#34;1&#34; help=&#34;Molecular multiplicity&#34;&gt;1&lt;/spin&gt;
+                &lt;basisset default=&#34;def2-tzvp&#34; help=&#34;Basis set for MOs&#34;&gt;def2-tzvp&lt;/basisset&gt;
+                &lt;auxbasisset default=&#34;OPTIONAL&#34; help=&#34;Auxiliary basis set for RI&#34;/&gt;
+                &lt;externalfield default=&#34;OPTIONAL&#34; help=&#34;Field given in x y z components&#34; unit=&#34;Hartree/bohr&#34;/&gt;
 </pre></div></div>
 </div>
-<p>We will use the folling python snippet to change the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and the <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code>.</p>
+<p>Some options are labelled as <code class="docutils literal notranslate"><span class="pre">OPTIONAL</span></code>, either fill them in or delete them if you do not want that functionality</p>
+<p>We created a small options file</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">edit_calculator</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;dftgwbse&quot;</span><span class="p">,</span> <span class="s2">&quot;basisset&quot;</span><span class="p">,</span> <span class="s2">&quot;ubecppol&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;dftgwbse&quot;</span><span class="p">,</span> <span class="s2">&quot;auxbasisset&quot;</span><span class="p">,</span> <span class="s2">&quot;aux-ubecppol&quot;</span><span class="p">)</span>
+<span></span><span class="o">!</span>cat dftgwbse2.xml
 </pre></div>
 </div>
 </div>
@@ -535,8 +540,15 @@ Allowed options:
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The option &#39;basisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has been set to &#39;ubecppol&#39;
-The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has been set to &#39;aux-ubecppol&#39;
+&lt;options&gt;
+    &lt;dftgwbse&gt;
+        &lt;job_name&gt;methane&lt;/job_name&gt;
+        &lt;dftpackage&gt;
+            &lt;basisset&gt;ubecppol&lt;/basisset&gt;
+            &lt;auxbasisset&gt;aux-ubecppol&lt;/auxbasisset&gt;
+        &lt;/dftpackage&gt;
+    &lt;/dftgwbse&gt;
+&lt;/options&gt;
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -544,25 +556,11 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -o OPTIONFILES/dftgwbse.xml -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
+<span></span><span class="o">!</span>xtp_tools -o dftgwbse2.xml -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse2.log
 </pre></div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Note<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Alternatively you could have create an empty <code class="docutils literal notranslate"><span class="pre">dftgwbse.xml</span></code> file and add the <code class="docutils literal notranslate"><span class="pre">basisset</span></code> and the <code class="docutils literal notranslate"><span class="pre">auxbasisset</span></code> by hand, as follows,</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;options&gt;</span>
-
-  <span class="nt">&lt;dftgwbse</span> <span class="na">help=</span><span class="s">&quot;Compute electronic excitations using GW-BSE&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;basisset&gt;</span>ubecppol<span class="nt">&lt;/basisset&gt;</span>
-    <span class="nt">&lt;auxbasisset&gt;</span>aux-ubecppol<span class="nt">&lt;/auxbasisset&gt;</span>
-  <span class="nt">&lt;/dftgwbse&gt;</span>
-
-<span class="nt">&lt;/options&gt;</span>
-</pre></div>
 </div>
 <p>XTP will automatically compare the default values with the user-provided and overwrites the defaults with the user input. Also, If I given property does not have a default value you can provide one using the XML file described above.</p>
-</div>
 </div>
 <div class="section" id="Partial-Charges">
 <h2>Partial Charges<a class="headerlink" href="#Partial-Charges" title="Permalink to this headline">¶</a></h2>
@@ -587,25 +585,25 @@ The option &#39;auxbasisset&#39; on file &#39;OPTIONFILES/dftgwbse.xml&#39; has 
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2021-7-9 18:0:44 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08
-... ... 2021-7-9 18:0:44 Calculating ESP at CHELPG grid points
-... ... 2021-7-9 18:0:47 Netcharge constrained to 0
-... ...  Sum of fitted charges: -2.41716e-14
-... ...  RMSE of fit:  0.00221583
-... ...  RRMSE of fit: 0.107182
+... ... 2021-7-15 1:3:54 Calculated Densities at Numerical Grid, Number of electrons is -2.37461e-08
+... ... 2021-7-15 1:3:54 Calculating ESP at CHELPG grid points
+... ... 2021-7-15 1:3:56 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41578e-14
+... ...  RMSE of fit:  0.00221585
+... ...  RRMSE of fit: 0.107179
 ... ... El Dipole from fitted charges [e*bohr]:
-                 dx = -0.7279 dy = +0.4712 dz = -0.4705 |d|^2 = +0.9733
+                 dx = +0.7278 dy = -0.4713 dz = +0.4706 |d|^2 = +0.9733
 ... ... El Dipole from exact qm density [e*bohr]:
-                 dx = -0.7621 dy = +0.4940 dz = -0.4932 |d|^2 = +1.0680
+                 dx = +0.7620 dy = -0.4941 dz = +0.4932 |d|^2 = +1.0681
 ... ... Written charges to methane.mps
 </pre></div></div>
 </div>
@@ -634,16 +632,16 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing tool
 ... spectrum Evaluating tool
 ... spectrum  Using 1 threads
 ... ... Calculating absorption spectrum plot methane.orb
 ... ...  Loading QM data from methane.orb
-... ...  Considering 5 excitation with max energy 13.8471 eV / min wave length 89.9395 nm
+... ...  Considering 10 excitation with max energy 14.6581 eV / min wave length 84.7405 nm
 ... ...  Spectrum in energy range from  9 to 25 eV and with broadening of FWHM 0.2 eV written to file  methane_spectrum.dat
 </pre></div></div>
 </div>
@@ -708,7 +706,7 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packag
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_28_1.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_28_1.png" />
+<img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_27_1.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_27_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">

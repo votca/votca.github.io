@@ -401,19 +401,9 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Setting-the-environment">
 <h2>Setting the environment<a class="headerlink" href="#Setting-the-environment" title="Permalink to this headline">¶</a></h2>
-<p>Create a folder to store the input <code class="docutils literal notranslate"><span class="pre">Options</span></code> for XTP</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>mkdir -p OPTIONFILES
-</pre></div>
-</div>
-</div>
 <p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries for plotting. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -453,42 +443,15 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.9/site-packag
 </div>
 <div class="section" id="Check-the-mapping">
 <h2>Check the mapping<a class="headerlink" href="#Check-the-mapping" title="Permalink to this headline">¶</a></h2>
-<p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping. We will need to copy the input from the <code class="docutils literal notranslate"><span class="pre">VOTCA</span></code> installation path to our local copy.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cp <span class="s2">&quot;</span><span class="nv">$VOTCASHARE</span><span class="s2">/xtp/xml/mapchecker.xml&quot;</span> OPTIONFILES/
-</pre></div>
-</div>
-</div>
-<p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options with the file containing the definition of the system. For doing, so we will use the python module <code class="docutils literal notranslate"><span class="pre">xml_editor</span></code> that we have imported above. The first argument is the name of the calculator (i.e. <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code>), the seconds argument is the name of the option to change and the third one, the value to use.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">xml_editor</span> <span class="kn">import</span> <span class="n">edit_calculator</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;mapchecker&quot;</span><span class="p">,</span> <span class="s2">&quot;map_file&quot;</span><span class="p">,</span> <span class="s2">&quot;system.xml&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has been set to &#39;system.xml&#39;
-</pre></div></div>
-</div>
+<p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping.</p>
+<p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options.</p>
 <p>Now we can run the checker as follows,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_run -e mapchecker -o OPTIONFILES/mapchecker.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e mapchecker -c <span class="nv">map_file</span><span class="o">=</span>system.xml -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -503,9 +466,9 @@ The option &#39;map_file&#39; on file &#39;OPTIONFILES/mapchecker.xml&#39; has b
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_run, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing calculator
 ... mapchecker
@@ -516,10 +479,10 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 ....
 ... mapchecker
  Using 1 threads
-Writing segments to md_segments step__10000.pdb
-Writing qmmolecules to qm_segments_n step__10000.pdb
-Writing polarsegments to mp_segments_e step__10000.pdb
-Writing polarsegments to mp_segments_h step__10000.pdb
+Writing segments to md_segments_step_10000.pdb
+Writing qmmolecules to qm_segments_n_step_10000.pdb
+Writing polarsegments to mp_segments_e_step_10000.pdb
+Writing polarsegments to mp_segments_h_step_10000.pdb
 Changes have not been written to state file.
 </pre></div></div>
 </div>
@@ -528,13 +491,11 @@ Changes have not been written to state file.
 <h2>Site energies and pair energy differences<a class="headerlink" href="#Site-energies-and-pair-energy-differences" title="Permalink to this headline">¶</a></h2>
 <p>We will compute the histrogram using <code class="docutils literal notranslate"><span class="pre">resolution_sites</span></code> of 0.03 eV. See <a class="reference external" href="https://votca.github.io/xtp/eanalyze.html">eanalyze options and defaults</a> for more information.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/eanalyze.xml OPTIONFILES/
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;eanalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution_sites&quot;</span><span class="p">,</span> <span class="s2">&quot;0.03&quot;</span><span class="p">)</span>
-<span class="o">!</span>xtp_run -e eanalyze -o OPTIONFILES/eanalyze.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e eanalyze -c <span class="nv">resolution_sites</span><span class="o">=</span><span class="m">0</span>.03 -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -543,16 +504,15 @@ Changes have not been written to state file.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The option &#39;resolution_sites&#39; on file &#39;OPTIONFILES/eanalyze.xml&#39; has been set to &#39;0.03&#39;
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
 ==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_run, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing calculator
 ... eanalyze
@@ -569,12 +529,13 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 ... ... excited state e
 ... ... excited state h
 ... ... excited state s
-... ... excited state tChanges have not been written to state file.
+... ... excited state t
+Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>In the current work directoy you can see the resulting files,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -600,7 +561,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <h2>Plotting the energies<a class="headerlink" href="#Plotting-the-energies" title="Permalink to this headline">¶</a></h2>
 <p>We will the previously installed <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library to plot the electron histrogram computed in the previous step,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -615,7 +576,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -627,22 +588,19 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_18_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_18_1.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Couplings-histrogram">
 <h2>Couplings histrogram<a class="headerlink" href="#Couplings-histrogram" title="Permalink to this headline">¶</a></h2>
-<p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/xtp/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator. First, we will make a copy of the calculators defaults in our local folder then we will edit them and finally run the calculation,</p>
+<p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/xtp/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/ianalyze.xml OPTIONFILES/
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution_logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;ianalyze&quot;</span><span class="p">,</span> <span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="s2">&quot;e, h&quot;</span><span class="p">)</span>
-<span class="o">!</span>xtp_run -e ianalyze -o OPTIONFILES/ianalyze.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e ianalyze -c <span class="nv">resolution_logJ2</span><span class="o">=</span><span class="m">0</span>.1 <span class="nv">states</span><span class="o">=</span>e,h -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -651,17 +609,15 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The option &#39;resolution_logJ2&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been set to &#39;0.1&#39;
-The option &#39;states&#39; on file &#39;OPTIONFILES/ianalyze.xml&#39; has been set to &#39;e, h&#39;
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
 ==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_run, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing calculator
 ... ianalyze
@@ -682,7 +638,7 @@ Changes have not been written to state file.
 <h2>Plotting the coupling histogram<a class="headerlink" href="#Plotting-the-coupling-histogram" title="Permalink to this headline">¶</a></h2>
 <p>We can now plot the logarithm of the squared coupling for the hole,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -694,7 +650,7 @@ Changes have not been written to state file.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -706,24 +662,19 @@ Changes have not been written to state file.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_22_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_22_1.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
 <h2>KMC simulations of multiple holes or electrons in periodic boundary conditions<a class="headerlink" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions" title="Permalink to this headline">¶</a></h2>
-<p>Finally, let get a copy of the <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> options and let do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
+<p>Finally, lets do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cp <span class="nv">$VOTCASHARE</span>/xtp/xml/kmcmultiple.xml OPTIONFILES/
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;runtime&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;outputtime&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;field&quot;</span><span class="p">,</span> <span class="s2">&quot;10 0 0&quot;</span><span class="p">)</span>
-<span class="n">edit_calculator</span><span class="p">(</span><span class="s2">&quot;kmcmultiple&quot;</span><span class="p">,</span> <span class="s2">&quot;carriertype&quot;</span><span class="p">,</span> <span class="s2">&quot;electron&quot;</span><span class="p">)</span>
-<span class="o">!</span>xtp_run -e kmcmultiple -o OPTIONFILES/kmcmultiple.xml -f state.hdf5
+<span></span><span class="o">!</span>xtp_run -e kmcmultiple -c <span class="nv">runtime</span><span class="o">=</span><span class="m">1000</span> <span class="nv">outputtime</span><span class="o">=</span><span class="m">10</span> <span class="nv">field</span><span class="o">=</span><span class="m">10</span>,0,0 <span class="nv">carriertype</span><span class="o">=</span>electron -f state.hdf5
 </pre></div>
 </div>
 </div>
@@ -732,19 +683,15 @@ Changes have not been written to state file.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-The option &#39;runtime&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;1000&#39;
-The option &#39;outputtime&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;10&#39;
-The option &#39;field&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;10 0 0&#39;
-The option &#39;carriertype&#39; on file &#39;OPTIONFILES/kmcmultiple.xml&#39; has been set to &#39;electron&#39;
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
 ==================================================
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)
-votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)
-votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)
+xtp_run, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)
+votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)
+votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)
 
 Initializing calculator
 ... kmcmultiple

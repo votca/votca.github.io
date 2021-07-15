@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CSG Tutorial" href="../csg-tutorials/README.html" />
-    <link rel="prev" title="QM Packages" href="qmpackages.html" /> 
+    <link rel="prev" title="mol2orb" href="mol2orb.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,12 +51,10 @@
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
 <li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#xtp-autogen-mapping">xtp_autogen_mapping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xtp-basisset">xtp_basisset</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xtp-parallel">xtp_parallel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xtp-update-mapfile">xtp_update_mapfile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#xtp-qmmm2qm">xtp_qmmm2qm</a></li>
 </ul>
@@ -215,70 +213,23 @@
 </div>
 </div>
 </div>
-<div class="section" id="xtp-parallel">
-<h3>xtp_parallel<a class="headerlink" href="#xtp-parallel" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="xtp-update-mapfile">
+<h3>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id5">
 <h4>NAME<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p><strong>xtp_parallel</strong> - Part of the VOTCA package</p>
+<p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
 </div>
 <div class="section" id="id6">
 <h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
-<p><strong>xtp_parallel</strong> [OPTIONS]</p>
-<p><strong>xtp_parallel</strong> [–help]</p>
-</div>
-<div class="section" id="id7">
-<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<p>Runs job-based heavy-duty calculators</p>
-</div>
-<div class="section" id="id8">
-<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
-
-  -h [ --help ]                    display this help and exit
-  --verbose                        be loud and noisy
-  --verbose1                       be very loud and noisy
-  -v [ --verbose2 ]                be extremly loud and noisy
-  -o [ --options ] arg             Calculator options
-  -t [ --nthreads ] arg (=1)       number of threads to create
-  -e [ --execute ] arg           Name of Calculator to run
-  -l [ --list ]                  Lists all available Calculators
-  -d [ --description ] arg       Short description of a Calculators
-  -c [ --cmdoptions ] arg        Modify options via command line by e.g. &#39;-c
-                                 xmltag.subtag=value&#39;. Use whitespace to
-                                 separate multiple options
-  -p [ --printoptions ] arg      Prints xml options of a Calculator
-  -f [ --file ] arg                hdf5 state file, *.hdf5
-  -i [ --first-frame ] arg (=0)    start from this frame
-  -n [ --nframes ] arg (=1)        number of frames to process
-  -s [ --save ] arg (=1)           whether or not to save changes to state file
-  -x [ --ompthreads ] arg (=1)     number of openmp threads to create in each
-                                 thread
-  -r [ --restart ] arg             restart pattern: &#39;host(pc1:234)
-                                 stat(FAILED)&#39;
-  -q [ --cache ] arg (=8)          assigns jobs in blocks of this size
-  -j [ --jobs ] arg (=run)         task(s) to perform: write, run, read
-  -m [ --maxjobs ] arg (=-1)       maximum number of jobs to process (-1 = inf)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="xtp-update-mapfile">
-<h3>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id9">
-<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
-<p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
-</div>
-<div class="section" id="id10">
-<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> [OPTIONS]</p>
 <p><strong>xtp_update_mapfile</strong> [–help]</p>
 </div>
-<div class="section" id="id11">
-<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p>Updates the CTP mapping file to VOTCA XTP</p>
 </div>
-<div class="section" id="id12">
-<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
 
   -h, --help                           show this help message and exit
@@ -290,22 +241,22 @@
 </div>
 <div class="section" id="xtp-qmmm2qm">
 <h3>xtp_qmmm2qm<a class="headerlink" href="#xtp-qmmm2qm" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id13">
-<h4>NAME<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id14">
-<h4>SYNOPSIS<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> [OPTIONS]</p>
 <p><strong>xtp_qmmm2qm</strong> [–help]</p>
 </div>
-<div class="section" id="id15">
-<h4>DESCRIPTION<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>Convert QMMM orb file into a DFTGWBSE-like orb file usable by
 gencube,densityanalysis,…</p>
 </div>
-<div class="section" id="id16">
-<h4>OPTIONS<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
 
   -h, --help                  show this help message and exit
@@ -324,7 +275,7 @@ gencube,densityanalysis,…</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="qmpackages.html" class="btn btn-neutral float-left" title="QM Packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mol2orb.html" class="btn btn-neutral float-left" title="mol2orb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../csg-tutorials/README.html" class="btn btn-neutral float-right" title="CSG Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

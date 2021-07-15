@@ -1,8 +1,9 @@
 
 vaverage
 ********
-
-The following table contains the defaults input options for the calculator,
+Writes a file containing the positions of molecules and the average carrier velocity on this molecule
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -21,9 +22,9 @@ The following table contains the defaults input options for the calculator,
      - occupation.dat
      - file with site occupations from kmcmultiple
      - 
-   * - outputfile
+   * - output
      - velocities.dat
-     - outputfile
+     - outputfile name 
      - 
 .. note::
-   An *xml* file containing the defaults for the `vaverage` calculator can be found at `$VOTCASHARE/xtp/xml/vaverage.xml`
+   An *xml* file containing the defaults for the `vaverage` calculator can be created via `-p vaverage -o FILENAME` command line options `

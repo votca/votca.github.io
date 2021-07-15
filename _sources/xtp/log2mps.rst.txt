@@ -2,7 +2,8 @@
 log2mps
 *******
 Generates an mps-file (with polar-site definitions) from a QM log-file
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,9 +14,22 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
-   * - package
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
+   * - dftpackage
      - orca
-     - QM package
+     - QM package name
      - orca
+   * - input
+     - OPTIONAL
+     - dftpackage log file to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - MPs file with charges, if not given use job_name
+     - 
 .. note::
-   An *xml* file containing the defaults for the `log2mps` calculator can be found at `$VOTCASHARE/xtp/xml/log2mps.xml`
+   An *xml* file containing the defaults for the `log2mps` calculator can be created via `-p log2mps -o FILENAME` command line options `

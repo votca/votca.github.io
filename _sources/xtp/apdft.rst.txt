@@ -2,7 +2,8 @@
 apdft
 *****
 Write Electrostatic potentials at core positions
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,6 +14,11 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
    * - grid
      - medium
      - grid quality
@@ -22,8 +28,17 @@ The following table contains the defaults input options for the calculator,
        | fine
        | xfine
    * - state
-     - N
+     - n
      - QM state to generate potential
      - 
+   * - input
+     - OPTIONAL
+     - orbfile to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - | File to write atoms atomids and potentials at those positions
+       | from
+     - 
 .. note::
-   An *xml* file containing the defaults for the `apdft` calculator can be found at `$VOTCASHARE/xtp/xml/apdft.xml`
+   An *xml* file containing the defaults for the `apdft` calculator can be created via `-p apdft -o FILENAME` command line options `

@@ -43,10 +43,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:26.250183Z",
-     "iopub.status.busy": "2021-07-09T18:00:26.249537Z",
-     "iopub.status.idle": "2021-07-09T18:00:26.962233Z",
-     "shell.execute_reply": "2021-07-09T18:00:26.961500Z"
+     "iopub.execute_input": "2021-07-15T01:03:38.172810Z",
+     "iopub.status.busy": "2021-07-15T01:03:38.172257Z",
+     "iopub.status.idle": "2021-07-15T01:03:38.850551Z",
+     "shell.execute_reply": "2021-07-15T01:03:38.849985Z"
     }
    },
    "outputs": [
@@ -60,9 +60,9 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)\r\n",
-      "votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)\r\n",
-      "votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)\r\n",
+      "xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)\r\n",
+      "votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)\r\n",
+      "votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)\r\n",
       "\r\n",
       "Runs excitation/charge transport tools\r\n",
       "\r\n",
@@ -73,7 +73,7 @@
       "  --verbose                     be loud and noisy\r\n",
       "  --verbose1                    be very loud and noisy\r\n",
       "  -v [ --verbose2 ]             be extremly loud and noisy\r\n",
-      "  -o [ --options ] arg          Tool options\r\n",
+      "  -o [ --options ] arg          Tool user options.\r\n",
       "  -t [ --nthreads ] arg (=1)    number of threads to create\r\n",
       "  -e [ --execute ] arg        Name of Tool to run\r\n",
       "  -l [ --list ]               Lists all available Tools\r\n",
@@ -112,10 +112,10 @@
    "execution_count": 2,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:26.969021Z",
-     "iopub.status.busy": "2021-07-09T18:00:26.966185Z",
-     "iopub.status.idle": "2021-07-09T18:00:34.930467Z",
-     "shell.execute_reply": "2021-07-09T18:00:34.930893Z"
+     "iopub.execute_input": "2021-07-15T01:03:38.856955Z",
+     "iopub.status.busy": "2021-07-15T01:03:38.854511Z",
+     "iopub.status.idle": "2021-07-15T01:03:45.780319Z",
+     "shell.execute_reply": "2021-07-15T01:03:45.779785Z"
     }
    },
    "outputs": [],
@@ -127,7 +127,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the *Current Work Directory* in a file named `methane_summary.xml`. The `-c` option is important and we will come back to it later. It allows "
+    "The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the *Current Work Directory* in a file named `methane_summary.xml`. The `-c` option is important and we will come back to it later. It allows changing options form the command line."
    ]
   },
   {
@@ -135,7 +135,7 @@
    "metadata": {},
    "source": [
     "## Running a calculation using your own input file\n",
-    "Let create a folder to store the input `options` for XTP and copy the defaults in there"
+    "Let create a folder to store the input `options` for XTP and use the `-p` option to print an option file, specified by `-o`, with all the options so we can modify it afterwards"
    ]
   },
   {
@@ -143,16 +143,25 @@
    "execution_count": 3,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:34.938482Z",
-     "iopub.status.busy": "2021-07-09T18:00:34.935195Z",
-     "iopub.status.idle": "2021-07-09T18:00:36.255684Z",
-     "shell.execute_reply": "2021-07-09T18:00:36.255032Z"
+     "iopub.execute_input": "2021-07-15T01:03:45.786574Z",
+     "iopub.status.busy": "2021-07-15T01:03:45.784371Z",
+     "iopub.status.idle": "2021-07-15T01:03:47.063973Z",
+     "shell.execute_reply": "2021-07-15T01:03:47.064462Z"
     }
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Writing options for calculator dftgwbse to OPTIONFILES/dftgwbse.xml\r\n",
+      "Done - stopping here\r\n"
+     ]
+    }
+   ],
    "source": [
     "!mkdir -p OPTIONFILES\n",
-    "!cp $VOTCASHARE/xtp/xml/dftgwbse.xml OPTIONFILES"
+    "!xtp_tools -p dftgwbse -o OPTIONFILES/dftgwbse.xml"
    ]
   },
   {
@@ -167,10 +176,10 @@
    "execution_count": 4,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:36.260384Z",
-     "iopub.status.busy": "2021-07-09T18:00:36.259871Z",
-     "iopub.status.idle": "2021-07-09T18:00:36.915582Z",
-     "shell.execute_reply": "2021-07-09T18:00:36.914776Z"
+     "iopub.execute_input": "2021-07-15T01:03:47.068543Z",
+     "iopub.status.busy": "2021-07-15T01:03:47.068047Z",
+     "iopub.status.idle": "2021-07-15T01:03:47.682235Z",
+     "shell.execute_reply": "2021-07-15T01:03:47.681762Z"
     }
    },
    "outputs": [
@@ -178,16 +187,16 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "<?xml version=\"1.0\"?>\r\n",
       "<options>\r\n",
-      "  <!-- xtp_tools -e dftgwbse options.xml -->\r\n",
-      "  <dftgwbse help=\"Compute electronic excitations using GW-BSE\">\r\n",
-      "    <optimize help=\"Perform a molecular geometry optimization\" default=\"false\" choices=\"bool\"/>\r\n",
-      "    <basisset help=\"Basis set for MOs\" default=\"def2-tzvp\"/>\r\n",
-      "    <auxbasisset help=\"Auxiliary basis set for RI\" default=\"aux-def2-tzvp\"/>\r\n",
-      "    <functional help=\"Functional name(s) according to LIBXC\" default=\"XC_HYB_GGA_XC_PBEH\"/>\r\n",
-      "    <dftpackage>\r\n",
-      "      <package>\r\n"
+      "<dftgwbse help=\"Compute electronic excitations using GW-BSE\">\r\n",
+      "\t<job_name default=\"system\" help=\"Input file name without extension, also used for intermediate files\">system</job_name>\r\n",
+      "\t<dftpackage help=\"options for dftpackages\">\r\n",
+      "\t\t<name choices=\"xtp,orca\" default=\"xtp\" help=\"Name of the DFT package\">xtp</name>\r\n",
+      "\t\t<charge choices=\"int\" default=\"0\" help=\"Molecular charge\">0</charge>\r\n",
+      "\t\t<spin choices=\"int+\" default=\"1\" help=\"Molecular multiplicity\">1</spin>\r\n",
+      "\t\t<basisset default=\"def2-tzvp\" help=\"Basis set for MOs\">def2-tzvp</basisset>\r\n",
+      "\t\t<auxbasisset default=\"OPTIONAL\" help=\"Auxiliary basis set for RI\"/>\r\n",
+      "\t\t<externalfield default=\"OPTIONAL\" help=\"Field given in x y z components\" unit=\"Hartree/bohr\"/>\r\n"
      ]
     }
    ],
@@ -199,7 +208,14 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We will use the folling python snippet to change the `basisset` and the `auxbasisset`."
+    "Some options are labelled as `OPTIONAL`, either fill them in or delete them if you do not want that functionality"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We created a small options file"
    ]
   },
   {
@@ -207,10 +223,10 @@
    "execution_count": 5,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:36.920830Z",
-     "iopub.status.busy": "2021-07-09T18:00:36.919186Z",
-     "iopub.status.idle": "2021-07-09T18:00:36.933280Z",
-     "shell.execute_reply": "2021-07-09T18:00:36.932671Z"
+     "iopub.execute_input": "2021-07-15T01:03:47.688341Z",
+     "iopub.status.busy": "2021-07-15T01:03:47.685859Z",
+     "iopub.status.idle": "2021-07-15T01:03:48.299597Z",
+     "shell.execute_reply": "2021-07-15T01:03:48.298541Z"
     }
    },
    "outputs": [
@@ -218,15 +234,20 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "The option 'basisset' on file 'OPTIONFILES/dftgwbse.xml' has been set to 'ubecppol'\n",
-      "The option 'auxbasisset' on file 'OPTIONFILES/dftgwbse.xml' has been set to 'aux-ubecppol'\n"
+      "<options>\r\n",
+      "    <dftgwbse>\r\n",
+      "        <job_name>methane</job_name>\r\n",
+      "        <dftpackage>\r\n",
+      "            <basisset>ubecppol</basisset>\r\n",
+      "            <auxbasisset>aux-ubecppol</auxbasisset>\r\n",
+      "        </dftpackage>\r\n",
+      "    </dftgwbse>\r\n",
+      "</options>\r\n"
      ]
     }
    ],
    "source": [
-    "from xml_editor import edit_calculator\n",
-    "edit_calculator(\"dftgwbse\", \"basisset\", \"ubecppol\")\n",
-    "edit_calculator(\"dftgwbse\", \"auxbasisset\", \"aux-ubecppol\")"
+    "!cat dftgwbse2.xml"
    ]
   },
   {
@@ -234,39 +255,15 @@
    "execution_count": 6,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:36.939988Z",
-     "iopub.status.busy": "2021-07-09T18:00:36.936986Z",
-     "iopub.status.idle": "2021-07-09T18:00:43.791139Z",
-     "shell.execute_reply": "2021-07-09T18:00:43.791552Z"
+     "iopub.execute_input": "2021-07-15T01:03:48.305837Z",
+     "iopub.status.busy": "2021-07-15T01:03:48.303588Z",
+     "iopub.status.idle": "2021-07-15T01:03:54.127905Z",
+     "shell.execute_reply": "2021-07-15T01:03:54.127418Z"
     }
    },
    "outputs": [],
    "source": [
-    "!xtp_tools -c job_name=methane -o OPTIONFILES/dftgwbse.xml -t 2 -e dftgwbse > dftgwbse.log"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "### Note\n",
-    "Alternatively you could have create an empty `dftgwbse.xml` file and add the `basisset` and the `auxbasisset` by hand, as follows,"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "```xml\n",
-    "<options>\n",
-    "  \n",
-    "  <dftgwbse help=\"Compute electronic excitations using GW-BSE\">\n",
-    "    <basisset>ubecppol</basisset>\n",
-    "    <auxbasisset>aux-ubecppol</auxbasisset>\n",
-    "  </dftgwbse>\n",
-    "\n",
-    "</options>\n",
-    "```"
+    "!xtp_tools -o dftgwbse2.xml -t 2 -e dftgwbse > dftgwbse2.log"
    ]
   },
   {
@@ -289,10 +286,10 @@
    "execution_count": 7,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:43.799077Z",
-     "iopub.status.busy": "2021-07-09T18:00:43.798321Z",
-     "iopub.status.idle": "2021-07-09T18:00:47.307064Z",
-     "shell.execute_reply": "2021-07-09T18:00:47.306602Z"
+     "iopub.execute_input": "2021-07-15T01:03:54.134306Z",
+     "iopub.status.busy": "2021-07-15T01:03:54.132018Z",
+     "iopub.status.idle": "2021-07-15T01:03:56.984104Z",
+     "shell.execute_reply": "2021-07-15T01:03:56.983609Z"
     }
    },
    "outputs": [
@@ -306,25 +303,25 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)\r\n",
-      "votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)\r\n",
-      "votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)\r\n",
+      "xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)\r\n",
+      "votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)\r\n",
+      "votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)\r\n",
       "\r\n",
       "Initializing tool\r\n",
       "... partialcharges Evaluating tool\r\n",
       "... partialcharges  Using 1 threads\r\n",
       "... ...  Loading QM data from methane.orb\r\n",
       "... ... ===== Running on 1 threads ===== \r\n",
-      "... ... 2021-7-9 18:0:44 Calculated Densities at Numerical Grid, Number of electrons is 2.37525e-08\r\n",
-      "... ... 2021-7-9 18:0:44 Calculating ESP at CHELPG grid points\r\n",
-      "... ... 2021-7-9 18:0:47 Netcharge constrained to 0\r\n",
-      "... ...  Sum of fitted charges: -2.41716e-14\r\n",
-      "... ...  RMSE of fit:  0.00221583\r\n",
-      "... ...  RRMSE of fit: 0.107182\r\n",
+      "... ... 2021-7-15 1:3:54 Calculated Densities at Numerical Grid, Number of electrons is -2.37461e-08\r\n",
+      "... ... 2021-7-15 1:3:54 Calculating ESP at CHELPG grid points\r\n",
+      "... ... 2021-7-15 1:3:56 Netcharge constrained to 0\r\n",
+      "... ...  Sum of fitted charges: 2.41578e-14\r\n",
+      "... ...  RMSE of fit:  0.00221585\r\n",
+      "... ...  RRMSE of fit: 0.107179\r\n",
       "... ... El Dipole from fitted charges [e*bohr]:\r\n",
-      "\t\t dx = -0.7279 dy = +0.4712 dz = -0.4705 |d|^2 = +0.9733\r\n",
+      "\t\t dx = +0.7278 dy = -0.4713 dz = +0.4706 |d|^2 = +0.9733\r\n",
       "... ... El Dipole from exact qm density [e*bohr]:\r\n",
-      "\t\t dx = -0.7621 dy = +0.4940 dz = -0.4932 |d|^2 = +1.0680\r\n",
+      "\t\t dx = +0.7620 dy = -0.4941 dz = +0.4932 |d|^2 = +1.0681\r\n",
       "... ... Written charges to methane.mps"
      ]
     }
@@ -346,10 +343,10 @@
    "execution_count": 8,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:47.314868Z",
-     "iopub.status.busy": "2021-07-09T18:00:47.311690Z",
-     "iopub.status.idle": "2021-07-09T18:00:48.102739Z",
-     "shell.execute_reply": "2021-07-09T18:00:48.103163Z"
+     "iopub.execute_input": "2021-07-15T01:03:56.990113Z",
+     "iopub.status.busy": "2021-07-15T01:03:56.988785Z",
+     "iopub.status.idle": "2021-07-15T01:03:57.671428Z",
+     "shell.execute_reply": "2021-07-15T01:03:57.671788Z"
     }
    },
    "outputs": [
@@ -363,16 +360,16 @@
       "\r\n",
       "please submit bugs to https://github.com/votca/xtp/issues\r\n",
       "\r\n",
-      "xtp_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:50:54)\r\n",
-      "votca_csg, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:32:14)\r\n",
-      "votca_tools, version 2022-dev gitid: 447ccb0 (compiled Jul  9 2021, 17:29:06)\r\n",
+      "xtp_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:56:02)\r\n",
+      "votca_csg, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:41:33)\r\n",
+      "votca_tools, version 2022-dev gitid: 24decaf (compiled Jul 15 2021, 00:39:32)\r\n",
       "\r\n",
       "Initializing tool\r\n",
       "... spectrum Evaluating tool\r\n",
       "... spectrum  Using 1 threads\r\n",
       "... ... Calculating absorption spectrum plot methane.orb\r\n",
       "... ...  Loading QM data from methane.orb\r\n",
-      "... ...  Considering 5 excitation with max energy 13.8471 eV / min wave length 89.9395 nm\r\n",
+      "... ...  Considering 10 excitation with max energy 14.6581 eV / min wave length 84.7405 nm\r\n",
       "... ...  Spectrum in energy range from  9 to 25 eV and with broadening of FWHM 0.2 eV written to file  methane_spectrum.dat"
      ]
     }
@@ -407,10 +404,10 @@
    "execution_count": 9,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:48.109983Z",
-     "iopub.status.busy": "2021-07-09T18:00:48.107934Z",
-     "iopub.status.idle": "2021-07-09T18:00:50.008453Z",
-     "shell.execute_reply": "2021-07-09T18:00:50.007888Z"
+     "iopub.execute_input": "2021-07-15T01:03:57.677760Z",
+     "iopub.status.busy": "2021-07-15T01:03:57.675278Z",
+     "iopub.status.idle": "2021-07-15T01:03:59.356595Z",
+     "shell.execute_reply": "2021-07-15T01:03:59.356061Z"
     }
    },
    "outputs": [
@@ -442,10 +439,10 @@
    "execution_count": 10,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-07-09T18:00:50.014394Z",
-     "iopub.status.busy": "2021-07-09T18:00:50.012963Z",
-     "iopub.status.idle": "2021-07-09T18:00:52.756492Z",
-     "shell.execute_reply": "2021-07-09T18:00:52.755970Z"
+     "iopub.execute_input": "2021-07-15T01:03:59.362049Z",
+     "iopub.status.busy": "2021-07-15T01:03:59.361087Z",
+     "iopub.status.idle": "2021-07-15T01:04:01.630341Z",
+     "shell.execute_reply": "2021-07-15T01:04:01.629947Z"
     }
    },
    "outputs": [
@@ -461,7 +458,7 @@
     },
     {
      "data": {
-      "image/png": "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\n",
+      "image/png": "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\n",
       "text/plain": [
        "<Figure size 360x360 with 1 Axes>"
       ]

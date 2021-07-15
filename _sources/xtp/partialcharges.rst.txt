@@ -2,7 +2,8 @@
 partialcharges
 **************
 Tool to derive partial charges from QM results stores in serialized file
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,23 +14,54 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
-   * - esp_options.esp2multipole.state
+   * - esp2multipole.state
      - n2s1
      - ground-,excited or transitionstate
-     - | groundstate
-       | singlet
-       | n2s1
-   * - esp_options.esp2multipole.method
+     - 
+   * - esp2multipole.method
      - CHELPG
      - Method to use derive partial charges
-     - | mulliken
-       | loewdin
-       | CHELPG
-   * - esp_options.esp2multipole.gridsize
+     - | CHELPG
+       | Mulliken
+       | Lowdin
+   * - esp2multipole.gridsize
      - fine
-     - Grid accuracy for numerical integration within CHELPG
+     - | Grid accuracy for numerical integration within CHELPG
+       | and GDMA
      - | coarse
        | medium
        | fine
+       | xfine
+       | xcoarse
+   * - esp2multipole.constraints.region.indeces
+     - REQUIRED
+     - indeces of atoms in this fragment, e.g. 1 3 13:17
+     - 
+   * - esp2multipole.constraints.region.charge
+     - 
+     - charge of region
+     - 
+   * - esp2multipole.constraints.pair
+     - 
+     - | Constraint where two atoms have to have the same charge,
+       | give atom indeces e.g. 1,2
+     - 
+   * - esp2multipole.svd.conditionnumber
+     - 1e-9
+     - Condition number under which inverses are dropped
+     - float+
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
+   * - input
+     - OPTIONAL
+     - orbfile to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - mps to write to, otherwise use job_name
+     - 
 .. note::
-   An *xml* file containing the defaults for the `partialcharges` calculator can be found at `$VOTCASHARE/xtp/xml/partialcharges.xml`
+   An *xml* file containing the defaults for the `partialcharges` calculator can be created via `-p partialcharges -o FILENAME` command line options `

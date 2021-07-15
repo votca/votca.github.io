@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="kmclifetime">
 <h1>kmclifetime<a class="headerlink" href="#kmclifetime" title="Permalink to this headline">¶</a></h1>
 <p>Perform Kinetic Monte Carlo simulations of singlets with decay
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -173,9 +173,9 @@ The following table contains the defaults input options for the calculator,</p>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>numberofinsertions</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>4000</p></td>
+<td><p>number of decays to simulate</p></td>
+<td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>seed</p></td>
 <td><p>23</p></td>
@@ -249,7 +249,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>kmclifetime</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/kmclifetime.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>kmclifetime</cite> calculator can be created via <cite>-p kmclifetime -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

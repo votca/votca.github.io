@@ -1,8 +1,9 @@
 
 densityanalysis
 ***************
-
-The following table contains the defaults input options for the calculator,
+Determine centroid and gyration tensor of electronic density
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,13 +14,22 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
-   * - density2gyration.state
-     - s1
-     - Sate to analyse
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
      - 
-   * - density2gyration.difference_to_groundstate
+   * - input
+     - OPTIONAL
+     - orbfile to read from, otherwise use job_name
+     - 
+   * - state
+     - s1
+     - State to analyse
+     - 
+   * - difference_to_groundstate
      - true
      - compare to the ground state
      - bool
 .. note::
-   An *xml* file containing the defaults for the `densityanalysis` calculator can be found at `$VOTCASHARE/xtp/xml/densityanalysis.xml`
+   An *xml* file containing the defaults for the `densityanalysis` calculator can be created via `-p densityanalysis -o FILENAME` command line options `

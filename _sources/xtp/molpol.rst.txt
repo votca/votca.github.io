@@ -2,7 +2,8 @@
 molpol
 ******
 Tool to scale distributed polarisibilites to DFT polarisibilites
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -13,33 +14,42 @@ The following table contains the defaults input options for the calculator,
      - Default Value
      - Description
      - Valid Input
-   * - options_polar.polar
-     - 
-     - 
-     - 
-   * - options_polar.tolerance_energy
+   * - polar.tolerance_energy
      - 1e-5
      - Energy change as convergence criterion
      - 
-   * - options_polar.tolerance_dipole
+   * - polar.tolerance_dipole
      - 1e-5
      - Field change as convergence criterion
      - 
-   * - options_polar.max_iter
+   * - polar.max_iter
      - 500
      - Maximum number of iterations
      - 
-   * - options_polar.exp_damp
+   * - polar.exp_damp
      - 0.39
      - Thole sharpness parameter
      - 
-   * - mode
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
      - 
+   * - input
+     - OPTIONAL
+     - mps to read from, otherwise use job_name
+     - 
+   * - output
+     - OPTIONAL
+     - File to write mps and polarisation to
+     - 
+   * - mode
+     - qmpackage
      - Read the polar target from a file or a qmpackage logfile
      - | file
        | qmpackage
    * - target_polarisability
-     - 
+     - OPTIONAL
      - should have this format: pxx pxy pxz pyy pyz pzz
      - 
    * - qmpackage
@@ -48,7 +58,7 @@ The following table contains the defaults input options for the calculator,
      - orca
    * - logfile
      - system.log
-     - | logfile of DFTpackage to read Target polarisability from
+     - | logfile of qmpackage to read Target polarisability from
        | if mode is qmpackage
      - 
    * - tolerance
@@ -60,4 +70,4 @@ The following table contains the defaults input options for the calculator,
      - maximum number of iterations
      - int+
 .. note::
-   An *xml* file containing the defaults for the `molpol` calculator can be found at `$VOTCASHARE/xtp/xml/molpol.xml`
+   An *xml* file containing the defaults for the `molpol` calculator can be created via `-p molpol -o FILENAME` command line options `

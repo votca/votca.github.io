@@ -2,7 +2,8 @@
 iexcitoncl
 **********
 Classical coupling of transition charges
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -21,9 +22,10 @@ The following table contains the defaults input options for the calculator,
      - exciton.jobs
      - name of jobfile to which jobs are written
      - 
-   * - use_states
-     - false
-     - Use pair of segments and exciton labels
-     - bool
+   * - states
+     - OPTIONAL
+     - | Use a list of pairs of segments and exciton labels for
+       | writing the jobfile, e.g. DCV5T:n2s1
+     - 
 .. note::
-   An *xml* file containing the defaults for the `iexcitoncl` calculator can be found at `$VOTCASHARE/xtp/xml/iexcitoncl.xml`
+   An *xml* file containing the defaults for the `iexcitoncl` calculator can be created via `-p iexcitoncl -o FILENAME` command line options `

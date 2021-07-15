@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="spectrum">
 <h1>spectrum<a class="headerlink" href="#spectrum" title="Permalink to this headline">¶</a></h1>
 <p>Convolutes singlet spectrum with gaussian or lorentzian function
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,27 +157,46 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>fwhm</p></td>
+<tr class="row-even"><td><p>input</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>orbfile to read from, otherwise use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>ASCII output filename, if not given use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>fwhm</p></td>
 <td><p>0.2</p></td>
 <td><p>peak width in eV</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>lower</p></td>
+<tr class="row-even"><td><p>lower</p></td>
 <td><p>0.0</p></td>
 <td><p>lower bound of spectrum in eV</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>upper</p></td>
+<tr class="row-odd"><td><p>upper</p></td>
 <td><p>3.5</p></td>
 <td><p>upper bound of spectrum in eV</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>points</p></td>
+<tr class="row-even"><td><p>points</p></td>
 <td><p>100</p></td>
 <td><p>datapoints between upper and lower to calculate</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>type</p></td>
+<tr class="row-odd"><td><p>type</p></td>
 <td><p>energy</p></td>
 <td><p>print put energy/wavelength (eV/nm)</p></td>
 <td><div class="line-block">
@@ -186,17 +205,17 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>minexc</p></td>
+<tr class="row-even"><td><p>minexc</p></td>
 <td><p>0</p></td>
 <td><p>lowest exciton to include in spectrum</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>maxexc</p></td>
+<tr class="row-odd"><td><p>maxexc</p></td>
 <td><p>10000</p></td>
 <td><p>highest exciton to include in spectrum</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>shift</p></td>
+<tr class="row-even"><td><p>shift</p></td>
 <td><p>0.0</p></td>
 <td><p>shift spectrum by amount of eV</p></td>
 <td><p>float+</p></td>
@@ -205,7 +224,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>spectrum</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/spectrum.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>spectrum</cite> calculator can be created via <cite>-p spectrum -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

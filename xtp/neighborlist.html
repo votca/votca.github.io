@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="neighborlist">
 <h1>neighborlist<a class="headerlink" href="#neighborlist" title="Permalink to this headline">¶</a></h1>
 <p>Determines neighbouring pairs for exciton transport
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,49 +157,31 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>segments.type</p></td>
-<td></td>
-<td><p>segments names if the segmentname method is used</p></td>
+<tr class="row-even"><td><p>segmentpairs.pair.type</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>names of two segmenttypes to create a pair</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>segments.cutoff</p></td>
-<td></td>
+<tr class="row-odd"><td><p>segmentpairs.pair.cutoff</p></td>
+<td><p>REQUIRED</p></td>
 <td><p>cutoff value if the segmentname method is used</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>cutoff_type</p></td>
-<td><p>constant</p></td>
-<td><p>method to define the cutoff</p></td>
-<td><div class="line-block">
-<div class="line">constant</div>
-<div class="line">segmentname</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>constant</p></td>
+<tr class="row-even"><td><p>constant</p></td>
 <td><p>1.5</p></td>
-<td><div class="line-block">
-<div class="line">cutoff for all other types of pairs if the constant method</div>
-<div class="line">is used</div>
-</div>
-</td>
+<td><p>contant cutoff for all segmenttypes</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>use_exciton_cutoff</p></td>
-<td><p>false</p></td>
-<td><p>Use exciton cutoff</p></td>
-<td><p>bool</p></td>
-</tr>
 <tr class="row-odd"><td><p>exciton_cutoff</p></td>
-<td></td>
+<td><p>OPTIONAL</p></td>
 <td><p>cutoff for classical exciton transition charge treatment</p></td>
-<td></td>
+<td><p>float+</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>neighborlist</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/neighborlist.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>neighborlist</cite> calculator can be created via <cite>-p neighborlist -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

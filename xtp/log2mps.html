@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="log2mps">
 <h1>log2mps<a class="headerlink" href="#log2mps" title="Permalink to this headline">¶</a></h1>
 <p>Generates an mps-file (with polar-site definitions) from a QM log-file
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,16 +157,35 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>package</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage</p></td>
 <td><p>orca</p></td>
-<td><p>QM package</p></td>
+<td><p>QM package name</p></td>
 <td><p>orca</p></td>
+</tr>
+<tr class="row-even"><td><p>input</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>dftpackage log file to read from, otherwise use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>MPs file with charges, if not given use job_name</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>log2mps</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/log2mps.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>log2mps</cite> calculator can be created via <cite>-p log2mps -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

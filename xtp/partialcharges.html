@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="partialcharges">
 <h1>partialcharges<a class="headerlink" href="#partialcharges" title="Permalink to this headline">¶</a></h1>
 <p>Tool to derive partial charges from QM results stores in serialized file
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,41 +157,85 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>esp_options.esp2multipole.state</p></td>
+<tr class="row-even"><td><p>esp2multipole.state</p></td>
 <td><p>n2s1</p></td>
 <td><p>ground-,excited or transitionstate</p></td>
-<td><div class="line-block">
-<div class="line">groundstate</div>
-<div class="line">singlet</div>
-<div class="line">n2s1</div>
-</div>
-</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p>esp_options.esp2multipole.method</p></td>
+<tr class="row-odd"><td><p>esp2multipole.method</p></td>
 <td><p>CHELPG</p></td>
 <td><p>Method to use derive partial charges</p></td>
 <td><div class="line-block">
-<div class="line">mulliken</div>
-<div class="line">loewdin</div>
 <div class="line">CHELPG</div>
+<div class="line">Mulliken</div>
+<div class="line">Lowdin</div>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>esp_options.esp2multipole.gridsize</p></td>
+<tr class="row-even"><td><p>esp2multipole.gridsize</p></td>
 <td><p>fine</p></td>
-<td><p>Grid accuracy for numerical integration within CHELPG</p></td>
+<td><div class="line-block">
+<div class="line">Grid accuracy for numerical integration within CHELPG</div>
+<div class="line">and GDMA</div>
+</div>
+</td>
 <td><div class="line-block">
 <div class="line">coarse</div>
 <div class="line">medium</div>
 <div class="line">fine</div>
+<div class="line">xfine</div>
+<div class="line">xcoarse</div>
 </div>
 </td>
+</tr>
+<tr class="row-odd"><td><p>esp2multipole.constraints.region.indeces</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>indeces of atoms in this fragment, e.g. 1 3 13:17</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>esp2multipole.constraints.region.charge</p></td>
+<td></td>
+<td><p>charge of region</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>esp2multipole.constraints.pair</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Constraint where two atoms have to have the same charge,</div>
+<div class="line">give atom indeces e.g. 1,2</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>esp2multipole.svd.conditionnumber</p></td>
+<td><p>1e-9</p></td>
+<td><p>Condition number under which inverses are dropped</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>input</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>orbfile to read from, otherwise use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>output</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>mps to write to, otherwise use job_name</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>partialcharges</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/partialcharges.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>partialcharges</cite> calculator can be created via <cite>-p partialcharges -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

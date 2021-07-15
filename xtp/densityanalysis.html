@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -140,7 +139,9 @@
 </style>
 <div class="section" id="densityanalysis">
 <h1>densityanalysis<a class="headerlink" href="#densityanalysis" title="Permalink to this headline">¶</a></h1>
-<p>The following table contains the defaults input options for the calculator,</p>
+<p>Determine centroid and gyration tensor of electronic density
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -156,12 +157,26 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>density2gyration.state</p></td>
-<td><p>s1</p></td>
-<td><p>Sate to analyse</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>density2gyration.difference_to_groundstate</p></td>
+<tr class="row-odd"><td><p>input</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>orbfile to read from, otherwise use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>s1</p></td>
+<td><p>State to analyse</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>difference_to_groundstate</p></td>
 <td><p>true</p></td>
 <td><p>compare to the ground state</p></td>
 <td><p>bool</p></td>
@@ -170,7 +185,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>densityanalysis</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/densityanalysis.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>densityanalysis</cite> calculator can be created via <cite>-p densityanalysis -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

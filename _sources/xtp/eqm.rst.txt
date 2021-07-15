@@ -2,7 +2,8 @@
 eqm
 ***
 Executes qm calculations for individual molecules
-The following table contains the defaults input options for the calculator,
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
 .. list-table::
    :header-rows: 1
@@ -29,19 +30,14 @@ The following table contains the defaults input options for the calculator,
      - votca_map.xml
      - xml file with segment definition
      - 
-   * - basisset
-     - def2-tzvp
-     - Basis set for MOs
-     - 
-   * - auxbasisset
-     - aux-def2-tzvp
-     - Auxiliary basis set for RI
-     - 
-   * - functional
-     - XC_HYB_GGA_XC_PBEH
-     - Functional name(s) according to LIBXC
-     - 
-   * - gwbse_options.gwbse.ranges
+   * - gwbse.tasks
+     - all
+     - tasks to do
+     - | [gw
+       | singlets
+       | triplets
+       | all]
+   * - gwbse.ranges
      - default
      - | default: all levels in RPA, 1:2*HOMO in QP and all in
        | BSE; other options: factor,explicit
@@ -49,78 +45,76 @@ The following table contains the defaults input options for the calculator,
        | factor
        | explicit
        | full
-   * - gwbse_options.gwbse.rpamax
+   * - gwbse.rpamax
      - 
      - | only needed, if ranges is factor or explicit, number of
        | levels in rpa
      - 
-   * - gwbse_options.gwbse.qpmin
+   * - gwbse.qpmin
      - 
      - | only needed, if ranges is factor or explicit, lowest MO
        | to be used in GW
      - 
-   * - gwbse_options.gwbse.qpmax
+   * - gwbse.qpmax
      - 
      - | only needed, if ranges is factor or explicit, highest
        | MO to be used in GW
      - 
-   * - gwbse_options.gwbse.bsemin
+   * - gwbse.bsemin
      - 
      - | only needed, if ranges is factor or explicit, lowest MO
        | to be used in BSE
      - 
-   * - gwbse_options.gwbse.bsemax
+   * - gwbse.bsemax
      - 
      - | only needed, if ranges is factor or explicit, highest
        | MO to be used in BSE
      - 
-   * - gwbse_options.gwbse.vxc.grid
-     - medium
-     - grid quality
-     - | xcoarse
-       | coarse
-       | medium
-       | fine
-       | xfine
-   * - gwbse_options.gwbse.scissor_shift
-     - 0.0
-     - preshift unoccupied MOs by a constant for GW calculation
-     - float
-   * - gwbse_options.gwbse.mode
+   * - gwbse.ignore_corelevels
+     - none
+     - | exclude core MO level from calculation on RPA,GW or BSE
+       | level
+     - | RPA
+       | GW
+       | BSE
+       | none
+   * - gwbse.auxbasisset
+     - OPTIONAL
+     - | Auxiliary basis set for RI, only used if DFT has no auxiliary
+       | set
+     - 
+   * - gwbse.gw.mode
      - evGW
      - use single short (G0W0) or self-consistent GW (evGW)
      - | evGW
        | G0W0
-   * - gwbse_options.gwbse.tasks
-     - all
-     - tasks to do
-     - | [gw
-       | singlets
-       | triplets
-       | all]
-   * - gwbse_options.gwbse.sigma_integrator
+   * - gwbse.gw.scissor_shift
+     - 0.0
+     - preshift unoccupied MOs by a constant for GW calculation
+     - float
+   * - gwbse.gw.sigma_integrator
      - ppm
      - self-energy correlation integration method
      - | ppm
        |  exact
        |  cda
-   * - gwbse_options.gwbse.eta
+   * - gwbse.gw.eta
      - 1e-3
      - small parameter eta of the Green's function
      - float+
-   * - gwbse_options.gwbse.alpha
+   * - gwbse.gw.alpha
      - 1e-3
      - | parameter to smooth residue and integral calculation for
        | the contour deformation technique
      - float
-   * - gwbse_options.gwbse.quadrature_scheme
+   * - gwbse.gw.quadrature_scheme
      - legendre
      - | If CDA is used for sigma integration this set the quadrature
        | scheme to use
      - | hermite
        | laguerre
        | legendre
-   * - gwbse_options.gwbse.quadrature_order
+   * - gwbse.gw.quadrature_order
      - 12
      - Quadrature order if CDA is used for sigma integration
      - | 8
@@ -132,159 +126,275 @@ The following table contains the defaults input options for the calculator,
        | 20
        | 40
        | 100
-   * - gwbse_options.gwbse.qp_solver
+   * - gwbse.gw.qp_solver
      - grid
      - QP equation solve method
      - | fixedpoint
        | grid
-   * - gwbse_options.gwbse.qp_grid_steps
+       | cda
+   * - gwbse.gw.qp_grid_steps
      - 1001
      - number of QP grid points
      - int+
-   * - gwbse_options.gwbse.qp_grid_spacing
+   * - gwbse.gw.qp_grid_spacing
      - 0.001
      - spacing of QP grid points
      - float+
-   * - gwbse_options.gwbse.exctotal
-     - 30
+   * - gwbse.gw.qp_sc_max_iter
+     - 100
+     - | maximum number of iterations for quasiparticle equation
+       | solution
+     - int+
+   * - gwbse.gw.qp_sc_limit
+     - 1e-5
+     - quasiparticle equation solver convergence
+     - float+
+   * - gwbse.gw.sc_max_iter
+     - 50
+     - Maximum number of iterations in eVGW
+     - int+
+   * - gwbse.gw.mixing_order
+     - 20
+     - | Mixing of QP energies in evGW - 0: plain, 1: linear, >1:
+       | Anderson
+     - int+
+   * - gwbse.gw.sc_limit
+     - 1e-5
+     - evGW convergence criteria
+     - float+
+   * - gwbse.gw.mixing_alpha
+     - 0.7
+     - mixing alpha, also linear mixing
+     - float+
+   * - gwbse.gw.rebuild_3c_freq
+     - 5
+     - how often the 3c integrals in iterate should be rebuilt
+     - int+
+   * - gwbse.gw.sigma_plot.states
+     - 
+     - plot sigma(omega) for the following states, e.g 1 3 5
+     - 
+   * - gwbse.gw.sigma_plot.steps
+     - 201
+     - points to plot
+     - int+
+   * - gwbse.gw.sigma_plot.spacing
+     - 1e-2
+     - spacing of points units
+     - float+
+   * - gwbse.gw.sigma_plot.filename
+     - QPenergies_sigma.dat
+     - 
+     - 
+   * - gwbse.bse.exctotal
+     - 10
      - maximum number of BSE states to calculate
      - int+
-   * - gwbse_options.gwbse.useTDA
+   * - gwbse.bse.useTDA
      - false
      - use TDA for BSE
      - bool
-   * - gwbse_options.gwbse.dynamical_screening_max_iterations
+   * - gwbse.bse.dyn_screen_max_iter
      - 0
      - | maximum number of iterations for perturbative dynamical
        | screening in BSE
      - int+
-   * - gwbse_options.gwbse.dynamical_screening_tolerance
+   * - gwbse.bse.dyn_screen_tol
      - 1e-5
      - | convergence tolerance for perturbative dynamical screening
        | in BSE
      - float+
-   * - gwbse_options.gwbse.ignore_corelevels
-     - no
-     - | exclude core MO level from calculation on RPA,GW or BSE
-       | level
-     - | RPA
-       | GW
-       | BSE
-       | no
-   * - gwbse_options.gwbse.eigensolver.davidson_correction
+   * - gwbse.bse.davidson.correction
      - DPR
      - Davidson correction method
      - | DPR
        | OHLSEN
-   * - gwbse_options.gwbse.eigensolver.davidson_tolerance
+   * - gwbse.bse.davidson.tolerance
      - normal
      - Numerical tolerance
      - | loose
        | normal
        | strict
        | lapack
-   * - gwbse_options.gwbse.eigensolver.davidson_ortho
-     - GS
-     - orthogonalisation routine: GramSchmidt or QR
-     - | GS
-       | QR
-   * - gwbse_options.gwbse.eigensolver.davidson_update
+   * - gwbse.bse.davidson.update
      - safe
      -  how large the search space
      - | min
        | safe
        | max
-   * - gwbse_options.gwbse.eigensolver.davidson_maxiter
+   * - gwbse.bse.davidson.maxiter
      - 50
      - max iterations
      - int+
-   * - gwbse_options.gwbse.gw_sc_max_iterations
-     - 50
-     - Maximum number of iterations in eVGW
-     - int+
-   * - gwbse_options.gwbse.gw_mixing_order
-     - 20
-     - | Mixing of QP energies in evGW - 0: plain, 1: linear, >1:
-       | Anderson
-     - int+
-   * - gwbse_options.gwbse.gw_sc_limit
-     - 1e-5
-     - evGW convergence criteria
-     - float+
-   * - gwbse_options.gwbse.gw_mixing_alpha
-     - 0.7
-     - mixing alpha, also linear mixing
-     - float+
-   * - gwbse_options.gwbse.g_sc_max_iterations
-     - 100
-     - | maximum number of iterations for quasiparticle equation
-       | solution
-     - int+
-   * - gwbse_options.gwbse.g_sc_limit
-     - 1e-5
-     - quasiparticle equation solver convergence
-     - float+
-   * - gwbse_options.gwbse.use_Hqp_offdiag
+   * - gwbse.bse.use_Hqp_offdiag
      - false
      - | Using symmetrized off-diagonal elements of QP Hamiltonian
        | in BSE
      - bool
-   * - gwbse_options.gwbse.sigma_plot_states
-     - 
-     - plot sigma(omega) for the following states, e.g 1 3 5
-     - 
-   * - gwbse_options.gwbse.sigma_plot_steps
-     - 201
-     - points to plot
-     - int+
-   * - gwbse_options.gwbse.sigma_plot_spacing
-     - 1e-2
-     - spacing of points units
-     - float+
-   * - gwbse_options.gwbse.sigma_plot_filename
-     - QPenergies_sigma.dat
-     - 
-     - 
-   * - gwbse_options.gwbse.bse_print_weight
+   * - gwbse.bse.print_weight
      - 0.5
      - print exciton WF composition weight larger than minimum
      - float+
-   * - gwbse_options.gwbse.rebuild_threecenter_freq
-     - 5
-     - how often the 3c integrals in iterate should be rebuilt
-     - int+
-   * - gwbse_options.gwbse.exctotal
-     - 5
-     - number of eigenvectors to calculate
-     - int+
-   * - gwbse_options.gwbse.ignore_corelevels
-     - none
+   * - gwbse.bse.fragments.fragment.indeces
+     - REQUIRED
+     - indeces of atoms in this fragment, e.g. 1 3 13:17
      - 
-     - | none
-       | RPA
-       | BSE
-       | GW
-   * - dftpackage.package.name
+   * - dftpackage.name
      - xtp
      - Name of the DFT package
      - | xtp
        | orca
-   * - dftpackage.package.use_auxbasisset
-     - true
-     - use an auxiliar basisset
+   * - dftpackage.charge
+     - 0
+     - Molecular charge
+     - int
+   * - dftpackage.spin
+     - 1
+     - Molecular multiplicity
+     - int+
+   * - dftpackage.basisset
+     - def2-tzvp
+     - Basis set for MOs
+     - 
+   * - dftpackage.auxbasisset
+     - OPTIONAL
+     - Auxiliary basis set for RI
+     - 
+   * - dftpackage.externalfield
+     - OPTIONAL
+     - Field given in x y z components
+     - 
+   * - dftpackage.executable
+     - OPTIONAL
+     - Path to executable for dftpackage
+     - 
+   * - dftpackage.ecp
+     - OPTIONAL
+     - Effective Core Potentials for DFT Calculations
+     - 
+   * - dftpackage.optimize
+     - false
+     - Perform a molecular geometry optimization
      - bool
-   * - esp_options.esp2multipole.state
+   * - dftpackage.functional
+     - XC_HYB_GGA_XC_PBEH
+     - | Exchange correlation functional used. You can also specify
+       | an exchange and a correlation functional
+     - 
+   * - dftpackage.scratch
+     - /tmp/qmpackage
+     - path to the scratch folder
+     - 
+   * - dftpackage.polarization
+     - false
+     - Calculate polarisation
+     - bool
+   * - dftpackage.dipole_spacing
+     - 0.1
+     - Spacing for splitting multipoles into charges
+     - float+
+   * - dftpackage.temporary_file
+     - temp
+     - Filename for temporary files without extension
+     - 
+   * - dftpackage.convergence_tightness
+     - tight
+     - How accurate the dft self-consistency has to be
+     - | low
+       | normal
+       | tight
+       | verytight
+   * - dftpackage.cleanup
+     - 
+     - | files to remove after the calculation. Specify the fileextensions
+       | 
+     - 
+   * - dftpackage.initial_guess
+     - atom
+     - | Method to use to make initial guess, independent(electrons)
+       | or atom(densities) or previous calculation keyword orbfile
+     - | independent
+       | atom
+       | orbfile
+   * - dftpackage.orca
+     - 
+     - | orca specific keywords can be added here, where the xml
+       | tag corresponds to the option and the value to the option's
+       | value
+     - 
+   * - dftpackage.xtpdft.screening_eps
+     - 1e-9
+     - screening eps
+     - float+
+   * - dftpackage.xtpdft.fock_matrix_reset
+     - 5
+     - how often the fock matrix is reset
+     - int+
+   * - dftpackage.xtpdft.integration_grid
+     - medium
+     - vxc grid quality
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
+   * - dftpackage.xtpdft.convergence.energy
+     - 1E-7
+     - DeltaE at which calculation is converged
+     - float+
+   * - dftpackage.xtpdft.convergence.method
+     - DIIS
+     - Main method to use for convergence accelertation
+     - | DIIS
+       | mixing
+   * - dftpackage.xtpdft.convergence.DIIS_start
+     - 0.002
+     - DIIS error at which DIIS takes over
+     - float+
+   * - dftpackage.xtpdft.convergence.ADIIS_start
+     - 0.8
+     - DIIS error at which ADIIS takes over
+     - float+
+   * - dftpackage.xtpdft.convergence.DIIS_length
+     - 20
+     - old hamiltonians to keep in history
+     - int+
+   * - dftpackage.xtpdft.convergence.DIIS_maxout
+     - false
+     - | if true remove the maximum element in the history if DIIS_length
+       | is exceeded.Otherwise, the oldest element is removed.
+     - bool
+   * - dftpackage.xtpdft.convergence.levelshift
+     - 0.0
+     - levelshift to apply to hamiltonian 
+     - float+
+   * - dftpackage.xtpdft.convergence.levelshift_end
+     - 0.2
+     - DIIS error at levelshifting is disabled
+     - float+
+   * - dftpackage.xtpdft.convergence.max_iterations
+     - 100
+     - max iterations to use
+     - int+
+   * - dftpackage.xtpdft.convergence.error
+     - 1e-7
+     - convergence error
+     - float+
+   * - dftpackage.xtpdft.convergence.mixing
+     - 0.7
+     - mixing parameter for linear mixing of density matrices
+     - float+
+   * - esp_options.state
      - n2s1
      - ground-,excited or transitionstate
-     - | groundstate
-       | singlet
-       | n2s1
-   * - esp_options.esp2multipole.method
+     - 
+   * - esp_options.method
      - CHELPG
      - Method to use derive partial charges
      - | CHELPG
        | Mulliken
-   * - esp_options.esp2multipole.gridsize
+       | Lowdin
+   * - esp_options.gridsize
      - fine
      - | Grid accuracy for numerical integration within CHELPG
        | and GDMA
@@ -293,5 +403,22 @@ The following table contains the defaults input options for the calculator,
        | fine
        | xfine
        | xcoarse
+   * - esp_options.constraints.region.indeces
+     - REQUIRED
+     - indeces of atoms in this fragment, e.g. 1 3 13:17
+     - 
+   * - esp_options.constraints.region.charge
+     - 
+     - charge of region
+     - 
+   * - esp_options.constraints.pair
+     - 
+     - | Constraint where two atoms have to have the same charge,
+       | give atom indeces e.g. 1,2
+     - 
+   * - esp_options.svd.conditionnumber
+     - 1e-9
+     - Condition number under which inverses are dropped
+     - float+
 .. note::
-   An *xml* file containing the defaults for the `eqm` calculator can be found at `$VOTCASHARE/xtp/xml/eqm.xml`
+   An *xml* file containing the defaults for the `eqm` calculator can be created via `-p eqm -o FILENAME` command line options `

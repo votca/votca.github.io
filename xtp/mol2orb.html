@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="QM Packages" href="qmpackages.html" />
+    <link rel="next" title="Reference" href="reference.html" />
     <link rel="prev" title="orb2mol" href="orb2mol.html" /> 
 </head>
 
@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="mol2orb">
 <h1>mol2orb<a class="headerlink" href="#mol2orb" title="Permalink to this headline">¶</a></h1>
 <p>Converts molden files to orb files.
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,12 +157,21 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>basisset</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>basisset</p></td>
 <td><p>def2-tzvp</p></td>
 <td><p>Basis set for MOs</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>auxbasisset</p></td>
+<tr class="row-even"><td><p>auxbasisset</p></td>
 <td><p>aux-def2-tzvp</p></td>
 <td><p>Auxiliary basis set for RI</p></td>
 <td></td>
@@ -171,7 +180,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>mol2orb</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/mol2orb.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>mol2orb</cite> calculator can be created via <cite>-p mol2orb -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 
@@ -181,7 +190,7 @@ The following table contains the defaults input options for the calculator,</p>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="orb2mol.html" class="btn btn-neutral float-left" title="orb2mol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="qmpackages.html" class="btn btn-neutral float-right" title="QM Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="reference.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

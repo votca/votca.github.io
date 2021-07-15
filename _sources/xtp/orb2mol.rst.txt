@@ -1,6 +1,23 @@
+
 orb2mol
 *******
 Converts molden files to orb files.
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
 .. note::
-   An *xml* file containing the defaults for the `orb2mol` calculator can be found at `$VOTCASHARE/xtp/xml/orb2mol.xml`
+   An *xml* file containing the defaults for the `orb2mol` calculator can be created via `-p orb2mol -o FILENAME` command line options `

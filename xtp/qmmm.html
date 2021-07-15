@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="qmmm">
 <h1>qmmm<a class="headerlink" href="#qmmm" title="Permalink to this headline">¶</a></h1>
 <p>Executes qmmm calculations for individual molecules and clusters
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -177,16 +177,854 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>name of jobfile to which jobs are written</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>write_parse.states</p></td>
+<tr class="row-even"><td><p>io_states</p></td>
 <td><p>n e h</p></td>
 <td><p>states to write jobs for and which to parse from jobfile</p></td>
 <td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.state</p></td>
+<td><p>n</p></td>
+<td><p>initial state to track or ground state for dftcalculations</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.tasks</p></td>
+<td><p>all</p></td>
+<td><p>tasks to do</p></td>
+<td><div class="line-block">
+<div class="line">[gw</div>
+<div class="line">singlets</div>
+<div class="line">triplets</div>
+<div class="line">all]</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.ranges</p></td>
+<td><p>default</p></td>
+<td><div class="line-block">
+<div class="line">default: all levels in RPA, 1:2*HOMO in QP and all in</div>
+<div class="line">BSE; other options: factor,explicit</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">default</div>
+<div class="line">factor</div>
+<div class="line">explicit</div>
+<div class="line">full</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.rpamax</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">only needed, if ranges is factor or explicit, number of</div>
+<div class="line">levels in rpa</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.qpmin</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">only needed, if ranges is factor or explicit, lowest MO</div>
+<div class="line">to be used in GW</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.qpmax</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">only needed, if ranges is factor or explicit, highest</div>
+<div class="line">MO to be used in GW</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bsemin</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">only needed, if ranges is factor or explicit, lowest MO</div>
+<div class="line">to be used in BSE</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bsemax</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">only needed, if ranges is factor or explicit, highest</div>
+<div class="line">MO to be used in BSE</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.ignore_corelevels</p></td>
+<td><p>none</p></td>
+<td><div class="line-block">
+<div class="line">exclude core MO level from calculation on RPA,GW or BSE</div>
+<div class="line">level</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">RPA</div>
+<div class="line">GW</div>
+<div class="line">BSE</div>
+<div class="line">none</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.auxbasisset</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Auxiliary basis set for RI, only used if DFT has no auxiliary</div>
+<div class="line">set</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.mode</p></td>
+<td><p>evGW</p></td>
+<td><p>use single short (G0W0) or self-consistent GW (evGW)</p></td>
+<td><div class="line-block">
+<div class="line">evGW</div>
+<div class="line">G0W0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.scissor_shift</p></td>
+<td><p>0.0</p></td>
+<td><p>preshift unoccupied MOs by a constant for GW calculation</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.sigma_integrator</p></td>
+<td><p>ppm</p></td>
+<td><p>self-energy correlation integration method</p></td>
+<td><div class="line-block">
+<div class="line">ppm</div>
+<div class="line-block">
+<div class="line">exact</div>
+<div class="line">cda</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.eta</p></td>
+<td><p>1e-3</p></td>
+<td><p>small parameter eta of the Green’s function</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.alpha</p></td>
+<td><p>1e-3</p></td>
+<td><div class="line-block">
+<div class="line">parameter to smooth residue and integral calculation for</div>
+<div class="line">the contour deformation technique</div>
+</div>
+</td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.quadrature_scheme</p></td>
+<td><p>legendre</p></td>
+<td><div class="line-block">
+<div class="line">If CDA is used for sigma integration this set the quadrature</div>
+<div class="line">scheme to use</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">hermite</div>
+<div class="line">laguerre</div>
+<div class="line">legendre</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.quadrature_order</p></td>
+<td><p>12</p></td>
+<td><p>Quadrature order if CDA is used for sigma integration</p></td>
+<td><div class="line-block">
+<div class="line">8</div>
+<div class="line">10</div>
+<div class="line">12</div>
+<div class="line">14</div>
+<div class="line">16</div>
+<div class="line">18</div>
+<div class="line">20</div>
+<div class="line">40</div>
+<div class="line">100</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.qp_solver</p></td>
+<td><p>grid</p></td>
+<td><p>QP equation solve method</p></td>
+<td><div class="line-block">
+<div class="line">fixedpoint</div>
+<div class="line">grid</div>
+<div class="line">cda</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.qp_grid_steps</p></td>
+<td><p>1001</p></td>
+<td><p>number of QP grid points</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.qp_grid_spacing</p></td>
+<td><p>0.001</p></td>
+<td><p>spacing of QP grid points</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.qp_sc_max_iter</p></td>
+<td><p>100</p></td>
+<td><div class="line-block">
+<div class="line">maximum number of iterations for quasiparticle equation</div>
+<div class="line">solution</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.qp_sc_limit</p></td>
+<td><p>1e-5</p></td>
+<td><p>quasiparticle equation solver convergence</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.sc_max_iter</p></td>
+<td><p>50</p></td>
+<td><p>Maximum number of iterations in eVGW</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.mixing_order</p></td>
+<td><p>20</p></td>
+<td><div class="line-block">
+<div class="line">Mixing of QP energies in evGW - 0: plain, 1: linear, &gt;1:</div>
+<div class="line">Anderson</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.sc_limit</p></td>
+<td><p>1e-5</p></td>
+<td><p>evGW convergence criteria</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.mixing_alpha</p></td>
+<td><p>0.7</p></td>
+<td><p>mixing alpha, also linear mixing</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.rebuild_3c_freq</p></td>
+<td><p>5</p></td>
+<td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.sigma_plot.states</p></td>
+<td></td>
+<td><p>plot sigma(omega) for the following states, e.g 1 3 5</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.sigma_plot.steps</p></td>
+<td><p>201</p></td>
+<td><p>points to plot</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.gw.sigma_plot.spacing</p></td>
+<td><p>1e-2</p></td>
+<td><p>spacing of points units</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.gw.sigma_plot.filename</p></td>
+<td><p>QPenergies_sigma.dat</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.exctotal</p></td>
+<td><p>10</p></td>
+<td><p>maximum number of BSE states to calculate</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bse.useTDA</p></td>
+<td><p>false</p></td>
+<td><p>use TDA for BSE</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.dyn_screen_max_iter</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">maximum number of iterations for perturbative dynamical</div>
+<div class="line">screening in BSE</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bse.dyn_screen_tol</p></td>
+<td><p>1e-5</p></td>
+<td><div class="line-block">
+<div class="line">convergence tolerance for perturbative dynamical screening</div>
+<div class="line">in BSE</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.davidson.correction</p></td>
+<td><p>DPR</p></td>
+<td><p>Davidson correction method</p></td>
+<td><div class="line-block">
+<div class="line">DPR</div>
+<div class="line">OHLSEN</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bse.davidson.tolerance</p></td>
+<td><p>normal</p></td>
+<td><p>Numerical tolerance</p></td>
+<td><div class="line-block">
+<div class="line">loose</div>
+<div class="line">normal</div>
+<div class="line">strict</div>
+<div class="line">lapack</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.davidson.update</p></td>
+<td><p>safe</p></td>
+<td><p>how large the search space</p></td>
+<td><div class="line-block">
+<div class="line">min</div>
+<div class="line">safe</div>
+<div class="line">max</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bse.davidson.maxiter</p></td>
+<td><p>50</p></td>
+<td><p>max iterations</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.use_Hqp_offdiag</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">Using symmetrized off-diagonal elements of QP Hamiltonian</div>
+<div class="line">in BSE</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.gwbse.bse.print_weight</p></td>
+<td><p>0.5</p></td>
+<td><p>print exciton WF composition weight larger than minimum</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.gwbse.bse.fragments.fragment.indeces</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>indeces of atoms in this fragment, e.g. 1 3 13:17</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.name</p></td>
+<td><p>xtp</p></td>
+<td><p>Name of the DFT package</p></td>
+<td><div class="line-block">
+<div class="line">xtp</div>
+<div class="line">orca</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.charge</p></td>
+<td><p>0</p></td>
+<td><p>Molecular charge</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.spin</p></td>
+<td><p>1</p></td>
+<td><p>Molecular multiplicity</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.basisset</p></td>
+<td><p>def2-tzvp</p></td>
+<td><p>Basis set for MOs</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.auxbasisset</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Auxiliary basis set for RI</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.externalfield</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Field given in x y z components</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.executable</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Path to executable for dftpackage</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.ecp</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Effective Core Potentials for DFT Calculations</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.optimize</p></td>
+<td><p>false</p></td>
+<td><p>Perform a molecular geometry optimization</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.functional</p></td>
+<td><p>XC_HYB_GGA_XC_PBEH</p></td>
+<td><div class="line-block">
+<div class="line">Exchange correlation functional used. You can also specify</div>
+<div class="line">an exchange and a correlation functional</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.scratch</p></td>
+<td><p>/tmp/qmpackage</p></td>
+<td><p>path to the scratch folder</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.polarization</p></td>
+<td><p>false</p></td>
+<td><p>Calculate polarisation</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.dipole_spacing</p></td>
+<td><p>0.1</p></td>
+<td><p>Spacing for splitting multipoles into charges</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.temporary_file</p></td>
+<td><p>temp</p></td>
+<td><p>Filename for temporary files without extension</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.convergence_tightness</p></td>
+<td><p>tight</p></td>
+<td><p>How accurate the dft self-consistency has to be</p></td>
+<td><div class="line-block">
+<div class="line">low</div>
+<div class="line">normal</div>
+<div class="line">tight</div>
+<div class="line">verytight</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.cleanup</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">files to remove after the calculation. Specify the fileextensions</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.initial_guess</p></td>
+<td><p>atom</p></td>
+<td><div class="line-block">
+<div class="line">Method to use to make initial guess, independent(electrons)</div>
+<div class="line">or atom(densities) or previous calculation keyword orbfile</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">independent</div>
+<div class="line">atom</div>
+<div class="line">orbfile</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.orca</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">orca specific keywords can be added here, where the xml</div>
+<div class="line">tag corresponds to the option and the value to the option’s</div>
+<div class="line">value</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.screening_eps</p></td>
+<td><p>1e-9</p></td>
+<td><p>screening eps</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.fock_matrix_reset</p></td>
+<td><p>5</p></td>
+<td><p>how often the fock matrix is reset</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.integration_grid</p></td>
+<td><p>medium</p></td>
+<td><p>vxc grid quality</p></td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.energy</p></td>
+<td><p>1E-7</p></td>
+<td><p>DeltaE at which calculation is converged</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.method</p></td>
+<td><p>DIIS</p></td>
+<td><p>Main method to use for convergence accelertation</p></td>
+<td><div class="line-block">
+<div class="line">DIIS</div>
+<div class="line">mixing</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<td><p>0.002</p></td>
+<td><p>DIIS error at which DIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<td><p>0.8</p></td>
+<td><p>DIIS error at which ADIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<td><p>20</p></td>
+<td><p>old hamiltonians to keep in history</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">if true remove the maximum element in the history if DIIS_length</div>
+<div class="line">is exceeded.Otherwise, the oldest element is removed.</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift</p></td>
+<td><p>0.0</p></td>
+<td><p>levelshift to apply to hamiltonian</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<td><p>0.2</p></td>
+<td><p>DIIS error at levelshifting is disabled</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.max_iterations</p></td>
+<td><p>100</p></td>
+<td><p>max iterations to use</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.error</p></td>
+<td><p>1e-7</p></td>
+<td><p>convergence error</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing</p></td>
+<td><p>0.7</p></td>
+<td><p>mixing parameter for linear mixing of density matrices</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.oscillatorstrength</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>picks first state above a threshold</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.localisation.fragment</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">Fragment definiton using atomids, can be a combination</div>
+<div class="line">of ids and ranges of ids e.g. 1:5</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.localisation.threshold</p></td>
+<td><p>0.1</p></td>
+<td><p>Threshold above which a state is considered localized</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.chargetransfer.fragment</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">Fragment definiton using atomids, can be a combination</div>
+<div class="line">of ids and ranges of ids e.g. 1:5</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.chargetransfer.threshold</p></td>
+<td><p>0.8</p></td>
+<td><p>Threshold above which a state is considered a CT state</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.density</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Tracks state by comparing the density to an earlier state,</div>
+<div class="line">you have to specify a minimum threshold, which can be</div>
+<div class="line">zero</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.overlap</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Tracks state by calculating the overlap with an earlier</div>
+<div class="line">state, you have to specify a minimum threshold, which</div>
+<div class="line">can be zero</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.grid_for_potential</p></td>
+<td><p>medium</p></td>
+<td><p>Grid to integrate influence of qm density om other regions</p></td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.extgrid</p></td>
+<td><p>medium</p></td>
+<td><div class="line-block">
+<div class="line">grid on which the interaction with classical regions is</div>
+<div class="line">compute</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.tolerance_energy</p></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if energy difference for this region is below this value</div>
+<div class="line">it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.tolerance_density</p></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if RMS difference of density matrix is below this value</div>
+<div class="line">it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.id</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">id of the region, first region has to have id 0, ids must</div>
+<div class="line">be consecutive</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.segments</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">List of segments to include in the region separated by</div>
+<div class="line">a whitespace. Each segment is defined by an index and</div>
+<div class="line">a qmstate or a filename for the coordinates. e.g 1:s3</div>
+<div class="line">or 0:ORFILES/methane.xyz</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.radius</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>radius</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.geometry</p></td>
+<td><p>n</p></td>
+<td><div class="line-block">
+<div class="line">geometry that should be used for mapping all the segments</div>
+<div class="line">in the radius</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.region</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">Id of the region the cutoff should refer to, can be the</div>
+<div class="line">same as this region’s id, if segments are specified</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.explicit_segs</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">specifies if cutoff with respect to other region should</div>
+<div class="line">be only towards segments specified explicitly using the</div>
+<div class="line"><cite>segments</cite> tag</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.polar.tolerance_energy</p></td>
+<td><p>1e-5</p></td>
+<td><p>Energy change as convergence criterion</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.polar.tolerance_dipole</p></td>
+<td><p>1e-5</p></td>
+<td><p>Field change as convergence criterion</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.polar.max_iter</p></td>
+<td><p>500</p></td>
+<td><p>Maximum number of iterations</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.polar.exp_damp</p></td>
+<td><p>0.39</p></td>
+<td><p>Thole sharpness parameter</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.tolerance_energy</p></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if energy difference for this region is below this value</div>
+<div class="line">it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.tolerance_dipole</p></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if RMS difference of all dipoles in the is below this</div>
+<div class="line">value it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.id</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">id of the region, first region has to have id 0, ids must</div>
+<div class="line">be consecutive</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.segments</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">List of segments to include in the region separated by</div>
+<div class="line">a whitespace. Each segment is defined by an index and</div>
+<div class="line">a qmstate or a filename for the coordinates. e.g 1:s3</div>
+<div class="line">or 0:ORFILES/methane.xyz</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.radius</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>radius</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.geometry</p></td>
+<td><p>n</p></td>
+<td><div class="line-block">
+<div class="line">geometry that should be used for mapping all the segments</div>
+<div class="line">in the radius</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.region</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">Id of the region the cutoff should refer to, can be the</div>
+<div class="line">same as this region’s id, if segments are specified</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.explicit_segs</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">specifies if cutoff with respect to other region should</div>
+<div class="line">be only towards segments specified explicitly using the</div>
+<div class="line"><cite>segments</cite> tag</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.staticregion.id</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">id of the region, first region has to have id 0, ids must</div>
+<div class="line">be consecutive</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.staticregion.segments</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">List of segments to include in the region separated by</div>
+<div class="line">a whitespace. Each segment is defined by an index and</div>
+<div class="line">a qmstate or a filename for the coordinates. e.g 1:s3</div>
+<div class="line">or 0:ORFILES/methane.xyz</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.radius</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>radius</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.geometry</p></td>
+<td><p>n</p></td>
+<td><div class="line-block">
+<div class="line">geometry that should be used for mapping all the segments</div>
+<div class="line">in the radius</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.region</p></td>
+<td><p>REQUIRED</p></td>
+<td><div class="line-block">
+<div class="line">Id of the region the cutoff should refer to, can be the</div>
+<div class="line">same as this region’s id, if segments are specified</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.explicit_segs</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">specifies if cutoff with respect to other region should</div>
+<div class="line">be only towards segments specified explicitly using the</div>
+<div class="line"><cite>segments</cite> tag</div>
+</div>
+</td>
+<td><p>bool</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>qmmm</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/qmmm.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>qmmm</cite> calculator can be created via <cite>-p qmmm -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

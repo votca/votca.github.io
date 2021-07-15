@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="einternal">
 <h1>einternal<a class="headerlink" href="#einternal" title="Permalink to this headline">¶</a></h1>
 <p>Reads in site and reorganosation energies and writes them to the state file
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,10 +157,10 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>energiesXML</p></td>
+<tr class="row-even"><td><p>energies_file</p></td>
 <td><p>system.xml</p></td>
 <td><div class="line-block">
-<div class="line">XML input file with vacuum site, reorganization (charging,</div>
+<div class="line">input file with vacuum site, reorganization (charging,</div>
 <div class="line">discharging) energies</div>
 </div>
 </td>
@@ -170,7 +170,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>einternal</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/einternal.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>einternal</cite> calculator can be created via <cite>-p einternal -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

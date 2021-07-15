@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="excitoncoupling">
 <h1>excitoncoupling<a class="headerlink" href="#excitoncoupling" title="Permalink to this headline">¶</a></h1>
 <p>Exciton couplings from serialized orbital files
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,7 +157,16 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>use_classical</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Output file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>use_classical</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Calculate Couplings from classical charges instead of</div>
@@ -166,22 +175,17 @@ The following table contains the defaults input options for the calculator,</p>
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>mpsA</p></td>
-<td></td>
+<tr class="row-even"><td><p>mpsA</p></td>
+<td><p>A.mps</p></td>
 <td><p>classical transition charges for segment A</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>mpsB</p></td>
-<td></td>
+<tr class="row-odd"><td><p>mpsB</p></td>
+<td><p>B.mps</p></td>
 <td><p>classical transition charges for segment B</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>output</p></td>
-<td><p>votca_excitoncoupling.xml</p></td>
-<td><p>Output file</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>bsecoupling_options.spin</p></td>
+<tr class="row-even"><td><p>bsecoupling.spin</p></td>
 <td><p>all</p></td>
 <td><p>Spin type for couplings</p></td>
 <td><div class="line-block">
@@ -191,52 +195,57 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.degeneracy</p></td>
+<tr class="row-odd"><td><p>bsecoupling.degeneracy</p></td>
 <td><p>0</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeA.states</p></td>
+<tr class="row-even"><td><p>bsecoupling.use_perturbation</p></td>
+<td><p>true</p></td>
+<td><p>Output coupling via perturbation theory as value</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>bsecoupling.moleculeA.states</p></td>
 <td><p>5</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeA.occLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeA.occLevels</p></td>
 <td><p>5</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeA.unoccLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeA.unoccLevels</p></td>
 <td><p>5</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeB.states</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeB.states</p></td>
 <td><p>5</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling_options.moleculeB.occLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeB.occLevels</p></td>
 <td><p>5</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling_options.moleculeB.unoccLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeB.unoccLevels</p></td>
 <td><p>5</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>orbitalsA</p></td>
+<tr class="row-odd"><td><p>orbitalsA</p></td>
 <td><p>A.orb</p></td>
 <td><p>Serialized orbitals file</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>orbitalsB</p></td>
+<tr class="row-even"><td><p>orbitalsB</p></td>
 <td><p>B.orb</p></td>
 <td><p>Serialized orbitals file</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>orbitalsAB</p></td>
+<tr class="row-odd"><td><p>orbitalsAB</p></td>
 <td><p>AB.orb</p></td>
 <td><p>Serialized orbitals file</p></td>
 <td></td>
@@ -245,7 +254,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>excitoncoupling</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/excitoncoupling.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>excitoncoupling</cite> calculator can be created via <cite>-p excitoncoupling -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

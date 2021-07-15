@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="eanalyze">
 <h1>eanalyze<a class="headerlink" href="#eanalyze" title="Permalink to this headline">¶</a></h1>
 <p>Histogram and correlation function of site energies and pair energy differences
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -183,17 +183,12 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>do_energy_landscape</p></td>
+<tr class="row-even"><td><p>output_energy_landscape</p></td>
 <td><p>false</p></td>
 <td><p>enable the computation of the energy landscape</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>do_distance_mode</p></td>
-<td></td>
-<td><p>enable the distance mode</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>match_pattern</p></td>
+<tr class="row-odd"><td><p>match_pattern</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
@@ -201,8 +196,8 @@ The following table contains the defaults input options for the calculator,</p>
 <td><p>Regex use to search for the segments</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>distancemode</p></td>
-<td><p>centerofmass</p></td>
+<tr class="row-even"><td><p>distancemode</p></td>
+<td><p>OPTIONAL</p></td>
 <td><p>mode to use if do_distance_mode is set to true</p></td>
 <td><div class="line-block">
 <div class="line">atoms</div>
@@ -214,7 +209,7 @@ The following table contains the defaults input options for the calculator,</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>eanalyze</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/eanalyze.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>eanalyze</cite> calculator can be created via <cite>-p eanalyze -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

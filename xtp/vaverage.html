@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -140,7 +139,9 @@
 </style>
 <div class="section" id="vaverage">
 <h1>vaverage<a class="headerlink" href="#vaverage" title="Permalink to this headline">¶</a></h1>
-<p>The following table contains the defaults input options for the calculator,</p>
+<p>Writes a file containing the positions of molecules and the average carrier velocity on this molecule
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -166,16 +167,16 @@
 <td><p>file with site occupations from kmcmultiple</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>outputfile</p></td>
+<tr class="row-even"><td><p>output</p></td>
 <td><p>velocities.dat</p></td>
-<td><p>outputfile</p></td>
+<td><p>outputfile name</p></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>vaverage</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/vaverage.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>vaverage</cite> calculator can be created via <cite>-p vaverage -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 

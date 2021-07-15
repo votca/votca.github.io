@@ -60,7 +60,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="qmpackages.html">QM Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 </li>
@@ -141,7 +140,8 @@
 <div class="section" id="gencube">
 <h1>gencube<a class="headerlink" href="#gencube" title="Permalink to this headline">¶</a></h1>
 <p>Tool to generate cube files from .orb file
-The following table contains the defaults input options for the calculator,</p>
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 38%" />
@@ -157,37 +157,56 @@ The following table contains the defaults input options for the calculator,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>padding</p></td>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>input</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>orbfile to read from, otherwise use job_name</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Cubefile for visualisation</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>padding</p></td>
 <td><p>6.5</p></td>
 <td><p>How far the grid should start from the molecule</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>xsteps</p></td>
+<tr class="row-even"><td><p>xsteps</p></td>
 <td><p>25</p></td>
 <td><p>Gridpoints in x-direction</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>ysteps</p></td>
+<tr class="row-odd"><td><p>ysteps</p></td>
 <td><p>25</p></td>
 <td><p>Gridpoints in y-direction</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>zsteps</p></td>
+<tr class="row-even"><td><p>zsteps</p></td>
 <td><p>25</p></td>
 <td><p>Gridpoints in z-direction</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>state</p></td>
+<tr class="row-odd"><td><p>state</p></td>
 <td><p>N</p></td>
 <td><p>State to generate cube file for</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>diff2gs</p></td>
+<tr class="row-even"><td><p>diff2gs</p></td>
 <td><p>false</p></td>
 <td><p>For excited states output difference to groundstate</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>mode</p></td>
+<tr class="row-odd"><td><p>mode</p></td>
 <td><p>new</p></td>
 <td><div class="line-block">
 <div class="line">new: generate new cube file, substract: substract to cube</div>
@@ -200,11 +219,21 @@ The following table contains the defaults input options for the calculator,</p>
 </div>
 </td>
 </tr>
+<tr class="row-even"><td><p>infile1</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>In mode substract mode cube file to substract from</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>infile2</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>In mode substract mode cube file to substract</p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An <em>xml</em> file containing the defaults for the <cite>gencube</cite> calculator can be found at <cite>$VOTCASHARE/xtp/xml/gencube.xml</cite></p>
+<p>An <em>xml</em> file containing the defaults for the <cite>gencube</cite> calculator can be created via <cite>-p gencube -o FILENAME</cite> command line options `</p>
 </div>
 </div>
 
