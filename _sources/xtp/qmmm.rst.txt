@@ -493,32 +493,6 @@ The following table contains the defaults input options for the calculator, The 
        | be only towards segments specified explicitly using the
        | `segments` tag
      - bool
-   * - regions.polarregion.polar.tolerance_energy
-     - 1e-5
-     - Energy change as convergence criterion
-     - 
-   * - regions.polarregion.polar.tolerance_dipole
-     - 1e-5
-     - Field change as convergence criterion
-     - 
-   * - regions.polarregion.polar.max_iter
-     - 500
-     - Maximum number of iterations
-     - 
-   * - regions.polarregion.polar.exp_damp
-     - 0.39
-     - Thole sharpness parameter
-     - 
-   * - regions.polarregion.tolerance_energy
-     - 5e-5
-     - | if energy difference for this region is below this value
-       | it is considered converged
-     - float+
-   * - regions.polarregion.tolerance_dipole
-     - 5e-5
-     - | if RMS difference of all dipoles in the is below this
-       | value it is considered converged
-     - float+
    * - regions.polarregion.id
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must
@@ -551,6 +525,24 @@ The following table contains the defaults input options for the calculator, The 
        | be only towards segments specified explicitly using the
        | `segments` tag
      - bool
+   * - regions.polarregion.tolerance_energy
+     - 5e-5
+     - | if energy difference for this region is below this value
+       | it is considered converged
+     - float+
+   * - regions.polarregion.tolerance_dipole
+     - 5e-5
+     - | convergence for interior iterations to converge polarisation
+       | response, solving linear syste,
+     - float+
+   * - regions.polarregion.max_iter
+     - 500
+     - Maximum number of iterations for interior iteration
+     - 
+   * - regions.polarregion.exp_damp
+     - 0.39
+     - Thole sharpness parameter
+     - 
    * - regions.staticregion.id
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must

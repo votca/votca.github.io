@@ -15,16 +15,18 @@ The following table contains the defaults input options for the calculator, The 
      - Description
      - Valid Input
    * - polar.tolerance_energy
-     - 1e-5
-     - Energy change as convergence criterion
-     - 
+     - 5e-5
+     - | if energy difference for this region is below this value
+       | it is considered converged
+     - float+
    * - polar.tolerance_dipole
-     - 1e-5
-     - Field change as convergence criterion
-     - 
+     - 5e-5
+     - | convergence for interior iterations to converge polarisation
+       | response, solving linear syste,
+     - float+
    * - polar.max_iter
      - 500
-     - Maximum number of iterations
+     - Maximum number of iterations for interior iteration
      - 
    * - polar.exp_damp
      - 0.39

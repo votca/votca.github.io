@@ -158,18 +158,26 @@ The following table contains the defaults input options for the calculator, The 
 </thead>
 <tbody>
 <tr class="row-even"><td><p>polar.tolerance_energy</p></td>
-<td><p>1e-5</p></td>
-<td><p>Energy change as convergence criterion</p></td>
-<td></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if energy difference for this region is below this value</div>
+<div class="line">it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>polar.tolerance_dipole</p></td>
-<td><p>1e-5</p></td>
-<td><p>Field change as convergence criterion</p></td>
-<td></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">convergence for interior iterations to converge polarisation</div>
+<div class="line">response, solving linear syste,</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>polar.max_iter</p></td>
 <td><p>500</p></td>
-<td><p>Maximum number of iterations</p></td>
+<td><p>Maximum number of iterations for interior iteration</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>polar.exp_damp</p></td>
