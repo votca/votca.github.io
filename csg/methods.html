@@ -726,14 +726,14 @@ unregularized version of IMC is applied.</p>
 </div>
 <div class="section" id="internal-degrees-of-freedom">
 <h4>Internal degrees of freedom<a class="headerlink" href="#internal-degrees-of-freedom" title="Permalink to this headline">¶</a></h4>
-<p>For internal degrees of freedom, one can apply the IBI method. In that case,
-one also has to provide a setting_nonbonded file, which will be used to
-calculate the IMC matrix only from the nonbonded interactions.</p>
+<p>For internal degrees of freedom, one can apply the IBI method as a post update
+method.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
   <span class="nt">&lt;imc&gt;</span>
-    <span class="nt">&lt;bonded_method&gt;</span>ibi<span class="nt">&lt;/bonded_method&gt;</span>
-    <span class="nt">&lt;settings_nonbonded&gt;</span>settings-nonbonded.xml<span class="nt">&lt;/settings_nonbonded&gt;</span>
+    <span class="nt">&lt;group&gt;</span>none<span class="nt">&lt;/group&gt;</span>
   <span class="nt">&lt;/imc&gt;</span>
+  <span class="nt">&lt;do_potential&gt;</span>0<span class="nt">&lt;/do_potential&gt;</span>
+  <span class="nt">&lt;post_update&gt;</span>ibi<span class="nt">&lt;/post_update&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>

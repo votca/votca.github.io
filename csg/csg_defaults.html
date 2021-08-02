@@ -633,22 +633,6 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>inverse.imc.bonded_method</p></td>
-<td><p>ibi</p></td>
-<td><div class="line-block">
-<div class="line">method for calculating updates on the bonded interactions.</div>
-<div class="line">ibi or imc (not implemented), default=ibi</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>inverse.imc.settings_nonbonded</p></td>
-<td><p>imc</p></td>
-<td><div class="line-block">
-<div class="line">settings file to be used with csg_stat –do-imc. only</div>
-<div class="line">needed if bonded_method=ibi</div>
-</div>
-</td>
-</tr>
 <tr class="row-even"><td><p>inverse.lammps</p></td>
 <td></td>
 <td><p>general lammps specific options</p></td>
@@ -1377,7 +1361,9 @@ The following table contains the input options for CSG,</p>
 <div class="line">Group of interaction. Cross-correlations of all members</div>
 <div class="line">of a group are taken into account for calculating the</div>
 <div class="line">update. If no cross correlations should be calculated,</div>
-<div class="line">interactions have to be put into different groups.</div>
+<div class="line">interactions have to be put into different groups. Group</div>
+<div class="line">‘none’ is completely ignored and update_potential needs</div>
+<div class="line">to be zero for the respective interactions.</div>
 </div>
 </td>
 </tr>
@@ -1584,6 +1570,19 @@ The following table contains the input options for CSG,</p>
 <td><div class="line-block">
 <div class="line">Number of point to calculate the average from for the</div>
 <div class="line">extrapolation</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.inverse.post_update_options.ibi</p></td>
+<td></td>
+<td><p>Contains all options of the IBI post-update script</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.inverse.post_update_options.ibi.do</p></td>
+<td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">Update cycle for the IBI post-update (1 do, 0 do not).</div>
+<div class="line">To do the post-update every third step specify “0 0 1”,</div>
+<div class="line">similar to do_potential</div>
 </div>
 </td>
 </tr>

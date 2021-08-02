@@ -325,14 +325,6 @@ The following table contains the input options for CSG,
      - 0
      - | default magnitude for regularization parameter if not
        | given for the group explicitly, default =0
-   * - inverse.imc.bonded_method
-     - ibi
-     - | method for calculating updates on the bonded interactions.
-       | ibi or imc (not implemented), default=ibi
-   * - inverse.imc.settings_nonbonded
-     - imc
-     - | settings file to be used with csg_stat --do-imc. only
-       | needed if bonded_method=ibi
    * - inverse.lammps
      - 
      -  general lammps specific options 
@@ -780,7 +772,9 @@ The following table contains the input options for CSG,
      - | Group of interaction. Cross-correlations of all members
        | of a group are taken into account for calculating the
        | update. If no cross correlations should be calculated,
-       | interactions have to be put into different groups.
+       | interactions have to be put into different groups. Group
+       | 'none' is completely ignored and update_potential needs
+       | to be zero for the respective interactions.
    * - non-bonded.inverse.lammps
      - 
      - lammps specific options for this interations
@@ -906,6 +900,14 @@ The following table contains the input options for CSG,
      - 5
      - | Number of point to calculate the average from for the
        | extrapolation
+   * - non-bonded.inverse.post_update_options.ibi
+     - 
+     - Contains all options of the IBI post-update script
+   * - non-bonded.inverse.post_update_options.ibi.do
+     - 1
+     - | Update cycle for the IBI post-update (1 do, 0 do not).
+       | To do the post-update every third step specify "0 0 1",
+       | similar to do_potential
    * - non-bonded.inverse.post_update_options.kbibi
      - 
      - | Contains all options of the Kirkwood-Buff ramp corrections
