@@ -59,6 +59,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer and Contributor Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#formatting-code">Formatting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#doxygen-documentation">Doxygen documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA Continuous Integration (GitHub Actions)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a Release</a><ul>
@@ -174,6 +175,7 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <li><p><a class="reference external" href="#updating-git-submodules">Updating Git Submodules</a></p></li>
 <li><p><a class="reference external" href="#updates-from-stable">Updates from stable</a></p></li>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`</span></a></p></li>
 </ul>
 <div class="section" id="reporting-bugs">
 <h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
@@ -199,9 +201,12 @@ Please be sure to provide as much information as possible such as:</p>
 <h2>Formatting code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
 <p>VOTCA uses <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to format the code, code that is not
 properly formatted is automatically rejected. The style files can be
-found in each repo. If you have a version <code class="docutils literal notranslate"><span class="pre">&gt;7.1</span></code> of <code class="docutils literal notranslate"><span class="pre">clang-format</span></code>
-you can just run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">format</span></code> and your code will be formatted. For an even
-more automated version, see <a class="reference external" href="#votca-dev-tools">VOTCA dev-tools</a></p>
+found in each repo. CMake provides a format target which you can run to format your code.
+The easiest way to format your code is just a <code class="docutils literal notranslate"><span class="pre">&#64;votca-bot</span> <span class="pre">format</span></code> comment in the PR, which then will automatically format your code.</p>
+</div>
+<div class="section" id="doxygen-documentation">
+<h2>Doxygen documentation<a class="headerlink" href="#doxygen-documentation" title="Permalink to this headline">¶</a></h2>
+<p>A complete overview of all C++ classes and code can be found <a class="reference external" href="https://doc.votca.org/">here</a> .</p>
 </div>
 <div class="section" id="votca-dev-tools">
 <h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this headline">¶</a></h2>
