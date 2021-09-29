@@ -157,7 +157,7 @@
 <p>To install the full package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
 version=master # or &#39;stable&#39; or &#39;v2021.2&#39;
-git clone -b ${version} --recursive https://github.com/votca/votca.git
+git clone -b ${version} https://github.com/votca/votca.git
 cmake -Bbuilddir -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
 cmake --build builddir --parallel &lt;number of cores&gt;
 cmake --build builddir --target install
