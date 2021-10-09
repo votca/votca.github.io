@@ -1,0 +1,31 @@
+
+gpu_benchmark
+*************
+Run a cpu and gpu benchmark for the gpu routines
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - outputfile
+     - gpu_benchmark_data.xml
+     - xml file to write data to
+     - 
+   * - job_name
+     - system
+     - | Input orbfile for which to run the benchmark without fileextension
+       | 
+     - 
+   * - repetitions
+     - 5
+     - How often each run should be executed to collect statistics
+     - int+
+.. note::
+   An *xml* file containing the defaults for the `gpu_benchmark` calculator can be created via `-p gpu_benchmark -o FILENAME` command line options `
