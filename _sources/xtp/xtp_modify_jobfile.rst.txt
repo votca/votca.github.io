@@ -1,0 +1,54 @@
+
+NAME
+****
+**xtp_modify_jobfile** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**xtp_modify_jobfile** [OPTIONS]
+
+**xtp_modify_jobfile** [--help]
+
+
+
+DESCRIPTION
+***********
+
+Creates a subset Jobfile from a larger Jobfile using selection criteria
+
+
+
+
+
+
+OPTIONS
+*******
+.. highlight:: none
+
+::
+
+  optional arguments:
+  
+    -h, --help                                              show this help
+                                                            message and exit
+    -i J_INPUT, --input J_INPUT                             Jobfile file to
+                                                            select from.
+    -o J_OUTPUT, --output J_OUTPUT                          Filename to write
+                                                            new jobfile to.
+    -l JOB_IDS [JOB_IDS ...], --job_ids JOB_IDS [JOB_IDS ...]
+                                                            Either a list of ids
+                                                            '1 3 5' or a range
+                                                            '1-5' or a
+                                                            combination thereof
+    -s SELECTOR, --selector SELECTOR                        A more flexible way
+                                                            to select jobs can
+                                                            be combined with
+                                                            ranges. Specify the
+                                                            xml tag you want
+                                                            inside the job via
+                                                            e.g. 'input/regions/
+                                                            region.id:0'. The
+                                                            tag must exist and
+                                                            the value behind the
+                                                            colon supports '?'
+                                                            and '*' wildcards
