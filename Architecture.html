@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The architecture of VOTCA &mdash; VOTCA 2022-dev documentation</title>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture of votca-xtp" href="xtp/Architecture.html" />
+    <link rel="prev" title="VOTCA Internal Contributor Language Guide" href="VOTCA_LANGUAGE_GUIDE.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Main">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" aria-label="Top" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>The architecture of VOTCA</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Architecture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="the-architecture-of-votca">
+<h1>The architecture of VOTCA<a class="headerlink" href="#the-architecture-of-votca" title="Permalink to this headline">¶</a></h1>
+<p>VOTCA consists of three main libraries <strong>tools</strong>, <strong>csg</strong> and <strong>xtp</strong>. While the structure has partially historic reasons, in general the following rule of thumb holds.</p>
+<ol class="arabic simple">
+<li><p><strong>tools</strong> provides low level routines and in general things that are used in <strong>csg</strong> and <strong>xtp</strong>, e.g. the <code class="code docutils literal notranslate"><span class="pre">calculator</span></code> class, which is the abstract base class for all calculators used. The most used class in <strong>csg</strong> and <strong>xtp</strong> is the <code class="code docutils literal notranslate"><span class="pre">Property</span></code> class, which is responsible for reading and writing xml files and handles most options handling inside VOTCA. In general all things that are used in <strong>csg</strong> and <strong>xtp</strong> but are not domain related should end up in <strong>tools</strong>. Additionally <strong>tools</strong> pulls in the <a class="reference external" href="https://eigen.tuxfamily.org">Eigen</a> library which provides all Vector/Matrix/Linear algebra functionality.</p></li>
+<li><p><strong>csg</strong> contains everything that is used for coarse-graining atomistic potentials. This includes fileparsers and writers for many molecular dynamics fileformats, from <em>xyz</em> to <a class="reference external" href="http://www.gromacs.org/">gromacs</a> and <a class="reference external" href="https://www.lammps.org/">lammps</a> input formats. Next to the atom coordinates and velocities it also provides topology readers, which allow you to read in which atom belongs to which molecule and which interactions exist, etc… This information is then contained in the <code class="code docutils literal notranslate"><span class="pre">Topology</span></code> class, which is also the backbone of most algorithms. Next to C++ code, <strong>csg</strong> contains a variety of additional scripts in various scripting languages.</p></li>
+<li><p><strong>xtp</strong> contains a lot of functionality for electronic state calculation using DFT and GW-BSE and their coupling to classical environments, i.e. QM/MM. Additionally it has functionality for exciton transport simulations on molecular dynamics structures (it uses the functionality provided by <strong>csg</strong> here). Similar to <strong>csg</strong>, it contains file readers for Quantum Chemistry packages (<a class="reference external" href="https://orcaforum.kofo.mpg.de/app.php/portal">ORCA</a> and its own DFT implementation). In contrast to <strong>csg</strong> it is OPENMP parallelized and also uses CUDA acceleration for some parts.</p></li>
+</ol>
+<p>Besides the 3 main folders, we also have the <strong>csg-tutorials</strong> and <strong>xtp-tutorials</strong> folder, which contain the respective tutorials.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="VOTCA_LANGUAGE_GUIDE.html" class="btn btn-neutral float-left" title="VOTCA Internal Contributor Language Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xtp/Architecture.html" class="btn btn-neutral float-right" title="Architecture of votca-xtp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
