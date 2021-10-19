@@ -174,7 +174,6 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <li><p><a class="reference external" href="#cpp-comment-guide">CPP Comment Guide</a></p></li>
 <li><p><a class="reference external" href="#updates-from-stable">Updates from stable</a></p></li>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`</span></a></p></li>
 </ul>
 <div class="section" id="reporting-bugs">
 <h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
@@ -187,14 +186,7 @@ Please be sure to provide as much information as possible such as:</p>
 <li><p>What dependencies were installed</p></li>
 <li><p>The calculation that was being run</p></li>
 </ul>
-<p>Issues can be directly created on the appropriate GitHub repo:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/votca/tools/issues">tools</a></p></li>
-<li><p><a class="reference external" href="https://github.com/votca/csg/issues">csg</a></p></li>
-<li><p><a class="reference external" href="https://github.com/votca/csg-tutorials/issues">csg-tutorials</a></p></li>
-<li><p><a class="reference external" href="https://github.com/votca/xtp/issues">xtp</a></p></li>
-<li><p><a class="reference external" href="https://github.com/votca/votca/issues">votca</a></p></li>
-</ul>
+<p>Issues can be directly created on the <a class="reference external" href="https://github.com/votca/votca/issues">GitHub repo</a>.</p>
 </div>
 <div class="section" id="formatting-code">
 <h2>Formatting code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
@@ -205,7 +197,7 @@ The easiest way to format your code is just a <code class="docutils literal notr
 </div>
 <div class="section" id="doxygen-documentation">
 <h2>Doxygen documentation<a class="headerlink" href="#doxygen-documentation" title="Permalink to this headline">¶</a></h2>
-<p>A complete overview of all C++ classes and code can be found <a class="reference external" href="https://doc.votca.org/">here</a> .</p>
+<p>A complete overview of all C++ classes and code can be found on <a class="reference external" href="https://doc.votca.org/">https://doc.votca.org/</a>.</p>
 </div>
 <div class="section" id="votca-dev-tools">
 <h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this headline">¶</a></h2>
@@ -227,20 +219,19 @@ The actual containers used for running the test builds are built on top of the <
 <div class="section" id="making-a-release">
 <h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
 <p>Similar to the VOTCA containers, releases are also handled by GitHub actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
-To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">here</a>. The release can only be made from the
+To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">this GitHub Action</a>. The release can only be made from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag.</p>
 <div class="section" id="major-releases">
 <h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this headline">¶</a></h3>
-<p>In preparation for a major (not minor!) release the following additional steps need to be done:
--  Create a new branch from the master branch of the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository, e.g. <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code>.</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">stable_bump</span> <span class="n">stable</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">master</span>
+<p>In preparation for a major (not minor!) release the following additional steps need to be done:</p>
+<ul>
+<li><p>Create a new branch from the master branch of the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository, e.g. <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b stable_bump stable
+git merge master
 </pre></div>
 </div>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li><p>Update the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files accordingly, by changing the top most section from <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> to <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code></p></li>
 <li><p>Commit everything and create a PR ino the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch.</p></li>
 </ul>
@@ -424,36 +415,36 @@ tools/include/votca/tools/vec.h.</p>
 it has not, take a look at what was done in the votca-tools repo.</p>
 <ol class="arabic">
 <li><p>Create a test file in
-<a class="reference external" href="https://github.com/votca/tools/tree/master/src/tests">tools/src/tests/</a>test_vec.cc
+<a class="reference external" href="https://github.com/votca/votca/tree/master/tools/src/tests">tools/src/tests/</a>test_vec.cc
 must have the same name as what appears in the foreach in the
 CMakeLists.txt file. And place the following contents:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define BOOST_TEST_MAIN</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define BOOST_TEST_MAIN</span>
 
-<span class="c1">#define BOOST_TEST_MODULE vec_test</span>
-<span class="c1">#include &lt;boost/test/unit_test.hpp&gt;</span>
-<span class="c1">#include &lt;exception&gt;</span>
+<span class="cp">#define BOOST_TEST_MODULE vec_test</span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/test/unit_test.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;exception&gt;</span><span class="cp"></span>
 
-<span class="c1">#include &lt;votca/tools/vec.h&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;votca/tools/vec.h&gt;</span><span class="cp"></span>
 
 <span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
-<span class="n">using</span> <span class="n">namespace</span> <span class="n">votca</span><span class="p">::</span><span class="n">tools</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">votca</span><span class="o">::</span><span class="n">tools</span><span class="p">;</span>
 
 <span class="n">BOOST_AUTO_TEST_SUITE</span><span class="p">(</span><span class="n">vec_test</span><span class="p">)</span>
 
 
 <span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test1</span><span class="p">){</span>
   <span class="n">vecv</span><span class="p">;</span>
-  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
-  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
-  <span class="p">:</span>
+  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
+  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
+  <span class="o">:</span>
 <span class="p">}</span>
 <span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test2</span><span class="p">){</span>
   <span class="n">vecv</span><span class="p">;</span>
-  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
-  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>
-  <span class="p">:</span>
+  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
+  <span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
+  <span class="o">:</span>
 <span class="p">}</span>
-<span class="p">:</span>
+<span class="o">:</span>
 <span class="n">BOOST_AUTO_TEST_SUITE_END</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -464,9 +455,9 @@ which boost test macros to use refer to the boost documentation</p>
 <ol class="arabic" start="2">
 <li><p>To compile and test the code create a folder tools/build and run the
 following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">DENABLE_TESTING</span><span class="o">=</span><span class="n">ON</span> <span class="o">../</span>
-<span class="n">make</span>
-<span class="n">make</span> <span class="n">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -DENABLE_TESTING<span class="o">=</span>ON ../
+make
+make <span class="nb">test</span>
 </pre></div>
 </div>
 </li>
@@ -485,7 +476,7 @@ style follows the google style fomatting rules. Have a look at the
 repository</a>
 for details.</p>
 <p>To run the clang-format function on file.cc.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clang</span><span class="o">-</span><span class="nb">format</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">style</span><span class="o">=</span><span class="n">file</span> <span class="n">file</span><span class="o">.</span><span class="n">cc</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang-format -i -style<span class="o">=</span>file file.cc
 </pre></div>
 </div>
 <p>‘-i’ ensures it will make changes to file.cc, omitting the ‘-i’ will
@@ -499,7 +490,7 @@ is preferable that spaces be used instead.</p>
 <h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Permalink to this headline">¶</a></h3>
 <p>Automatically formats python .py files. We are useing the default format
 rules of autopep8. To run on file.py and update the file run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autopep8</span> <span class="o">-</span><span class="n">i</span> <span class="n">file</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>autopep8 -i file.py
 </pre></div>
 </div>
 </div>
@@ -509,8 +500,8 @@ rules of autopep8. To run on file.py and update the file run:</p>
 found in the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a>
 repository. To use it copy the file <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> to your local .git
 subfolder to the hooks folder. E.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">777</span> <span class="n">dev</span><span class="o">-</span><span class="n">tools</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span>
-<span class="n">cp</span> <span class="n">dev</span><span class="o">-</span><span class="n">tools</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">votca</span><span class="o">/.</span><span class="n">git</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod <span class="m">777</span> dev-tools/pre-commit
+cp dev-tools/pre-commit votca/.git/hooks/
 </pre></div>
 </div>
 <p>The above will make the script executable and then copy it to the local
@@ -530,17 +521,17 @@ easily used for debugging.</p></li>
 <li><p>It would be preferential that the following doxygen commenting
 stencil be used in the header files above each class and function
 description.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
-<span class="o">*</span> \<span class="n">brief</span> <span class="n">function</span><span class="o">/</span><span class="k">class</span> <span class="nc">summary</span>
-<span class="o">*</span>
-<span class="o">*</span> <span class="n">Detailed</span> <span class="n">function</span><span class="o">/</span><span class="k">class</span> <span class="nc">description</span> <span class="k">if</span> <span class="n">needed</span>
-<span class="o">*</span>
-<span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="ow">in</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">1</span>
-<span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="n">out</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">2</span>
-<span class="o">*</span> <span class="nd">@param</span><span class="p">[</span><span class="ow">in</span><span class="p">,</span><span class="n">out</span><span class="p">]</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="n">parameter</span> <span class="mi">3</span>
-<span class="o">*</span> <span class="p">:</span>
-<span class="o">*</span> <span class="nd">@return</span> <span class="o">-</span> <span class="n">description</span> <span class="n">of</span> <span class="k">return</span> <span class="nb">type</span>
-<span class="o">*/</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* \brief function/class summary</span>
+<span class="cm">*</span>
+<span class="cm">* Detailed function/class description if needed</span>
+<span class="cm">*</span>
+<span class="cm">* @param[in] - description of parameter 1</span>
+<span class="cm">* @param[out] - description of parameter 2</span>
+<span class="cm">* @param[in,out] - description of parameter 3</span>
+<span class="cm">* :</span>
+<span class="cm">* @return - description of return type</span>
+<span class="cm">*/</span>
 </pre></div>
 </div>
 </li>
@@ -560,26 +551,26 @@ to you, there are different approaches for debugging the problem. As an
 example, fedora dnf has extended support to the <strong>pcc64le</strong> architecture.
 Assuming you have access to fedora you can run the following commands to
 simulate the build process on the <strong>pcc64le</strong> architecture:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">update</span>
-<span class="n">dnf</span> <span class="n">install</span> <span class="n">qemu</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">static</span> <span class="n">dnf</span><span class="o">-</span><span class="n">utils</span>
-<span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="n">mock</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
-<span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">dnf</span> <span class="o">--</span><span class="n">init</span>
-<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">votca</span><span class="o">/</span><span class="n">fedora</span><span class="o">-</span><span class="n">copr</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
-<span class="n">spectool</span> <span class="o">-</span><span class="n">g</span> <span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
-<span class="n">rpmbuild</span> <span class="o">-</span><span class="n">D</span><span class="s2">&quot;_sourcedir $</span><span class="si">{PWD}</span><span class="s2">&quot;</span> <span class="o">-</span><span class="n">D</span><span class="s2">&quot;_srcrpmdir $</span><span class="si">{PWD}</span><span class="s2">&quot;</span> <span class="o">-</span><span class="n">bs</span> <span class="n">votca</span><span class="o">.</span><span class="n">spec</span>
-<span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">dnf</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">clean</span> <span class="n">votca</span><span class="o">-</span><span class="mf">1.5</span><span class="o">-</span><span class="mf">1.</span><span class="o">*.</span><span class="n">src</span><span class="o">.</span><span class="n">rpm</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf update
+dnf install qemu-user-static dnf-utils
+usermod -a -G mock &lt;username&gt;
+mock -r epel-7-ppc64le --forcearch ppc64le --dnf --init
+wget https://raw.githubusercontent.com/votca/fedora-copr/master/votca.spec
+spectool -g votca.spec
+rpmbuild -D<span class="s2">&quot;_sourcedir </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span> -D<span class="s2">&quot;_srcrpmdir </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span> -bs votca.spec
+mock -r epel-7-ppc64le --forcearch ppc64le --dnf --no-clean votca-1.5-1.*.src.rpm
 </pre></div>
 </div>
 <p>Here, votca-1.5-1 should be replaced with the correct version. The above
 commands would setup and run the dnf installation process on the
 <strong>pcc64le</strong> enviroment. If a bug was found and the build crashes one can
 interactively intervene by issuing the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">shell</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock -r epel-7-ppc64le --forcearch ppc64le --shell
 </pre></div>
 </div>
 <p>You will also need to install a text editor if you want to change the
 source files before running the interactive instance.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mock</span> <span class="o">-</span><span class="n">r</span> <span class="n">epel</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">ppc64le</span> <span class="o">--</span><span class="n">forcearch</span> <span class="n">ppc64le</span> <span class="o">--</span><span class="n">install</span> <span class="n">vim</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock -r epel-7-ppc64le --forcearch ppc64le --install vim
 </pre></div>
 </div>
 <p>Note: we have used this process with the <strong>ppc64le</strong> architecture as an
