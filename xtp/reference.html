@@ -6,16 +6,17 @@
   <title>Reference &mdash; VOTCA 2022-dev documentation</title>
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +44,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Manuals</span></p>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
@@ -65,12 +66,12 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/README.html">CSG Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Development</span></p>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
@@ -79,7 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Community</span></p>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
@@ -144,61 +145,25 @@
 <h2>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="xtp-autogen-mapping">
 <h3>xtp_autogen_mapping<a class="headerlink" href="#xtp-autogen-mapping" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="name">
-<h4>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h4>
-<p><strong>xtp_autogen_mapping</strong> - Part of the VOTCA package</p>
-</div>
-<div class="section" id="synopsis">
-<h4>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h4>
-<p><strong>xtp_autogen_mapping</strong> [OPTIONS]</p>
-<p><strong>xtp_autogen_mapping</strong> [–help]</p>
-</div>
-<div class="section" id="description">
-<h4>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h4>
-<p>Automatically generate a mapping file</p>
-</div>
-<div class="section" id="options">
-<h4>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
-
-  -h, --help            show this help message and exit
-  -pdb PDBFILE, --pdbfile PDBFILE
-                        PDB coordinate file
-  -opt, --optimize      optimization of XYZ and MPS files
-  -s {n,e,h} [{n,e,h} ...], --states {n,e,h} [{n,e,h} ...]
-                        which states to optimize
-  -orca ORCA, --orca ORCA
-                        full path to orca executable
-  -f FUNCTIONAL, --functional FUNCTIONAL
-                        DFT functional
-  -b BASIS, --basis BASIS
-                        basis set
-  --nori                Do not to use the Resolution of Identity approximation
-  -m MDNAME, --mdname MDNAME
-                        Name of the molecule in the MD topology
-  --version             show program&#39;s version number and exit
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="xtp-basisset">
 <h3>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id1">
-<h4>NAME<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="name">
+<h4>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_basisset</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id2">
-<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="synopsis">
+<h4>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_basisset</strong> [OPTIONS]</p>
 <p><strong>xtp_basisset</strong> [–help]</p>
 </div>
-<div class="section" id="id3">
-<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="description">
+<h4>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h4>
 <p>Creates votca xml basissetfiles from NWCHEM basissetfiles</p>
 </div>
-<div class="section" id="id4">
-<h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
+<div class="section" id="options">
+<h4>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                     show this help message and
                                                  exit
@@ -218,22 +183,22 @@
 </div>
 <div class="section" id="xtp-update-mapfile">
 <h3>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id5">
-<h4>NAME<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id1">
+<h4>NAME<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id6">
-<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> [OPTIONS]</p>
 <p><strong>xtp_update_mapfile</strong> [–help]</p>
 </div>
-<div class="section" id="id7">
-<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id3">
+<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>Updates the CTP mapping file to VOTCA XTP</p>
 </div>
-<div class="section" id="id8">
-<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
+<div class="section" id="id4">
+<h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                           show this help message and exit
   -sin S_INPUT, --S_input S_INPUT      Mapping file to update.
@@ -244,23 +209,23 @@
 </div>
 <div class="section" id="xtp-qmmm2qm">
 <h3>xtp_qmmm2qm<a class="headerlink" href="#xtp-qmmm2qm" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id9">
-<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>NAME<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id10">
-<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id6">
+<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> [OPTIONS]</p>
 <p><strong>xtp_qmmm2qm</strong> [–help]</p>
 </div>
-<div class="section" id="id11">
-<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p>Convert QMMM orb file into a DFTGWBSE-like orb file usable by
 gencube,densityanalysis,…</p>
 </div>
-<div class="section" id="id12">
-<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
+<div class="section" id="id8">
+<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                  show this help message and exit
   -f FILE, --file FILE        Input File (String)
@@ -272,22 +237,22 @@ gencube,densityanalysis,…</p>
 </div>
 <div class="section" id="xtp-modify-jobfile">
 <h3>xtp_modify_jobfile<a class="headerlink" href="#xtp-modify-jobfile" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id13">
-<h4>NAME<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> - Part of the VOTCA package</p>
 </div>
-<div class="section" id="id14">
-<h4>SYNOPSIS<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> [OPTIONS]</p>
 <p><strong>xtp_modify_jobfile</strong> [–help]</p>
 </div>
-<div class="section" id="id15">
-<h4>DESCRIPTION<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <p>Creates a subset Jobfile from a larger Jobfile using selection criteria</p>
 </div>
-<div class="section" id="id16">
-<h4>OPTIONS<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>optional arguments:
+<div class="section" id="id12">
+<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                              show this help
                                                           message and exit
