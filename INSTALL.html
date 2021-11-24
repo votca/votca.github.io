@@ -48,6 +48,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#resolving-the-not-found-dependency-errors">Resolving the ‘not found’ dependency errors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-cmake-flags">Common CMake Flags</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#other-cmake-flags">Other CMake Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-advice">Performance advice</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intel-processors">Intel Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amd-processors">AMD Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cuda-support">CUDA support</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#packages-for-various-linux-distributions">Packages for various Linux Distributions</a><ul>
@@ -57,16 +63,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#sles">SLES</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#stable-version">Stable version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#release-version">Release version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Stable version</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freebsd">FreeBSD</a></li>
 </ul>
 </li>
@@ -161,7 +159,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
 version=master # or &#39;stable&#39; or &#39;v2021.2&#39;
 git clone -b ${version} https://github.com/votca/votca.git
-cmake -Bbuilddir -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
+cmake -B builddir -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
 cmake --build builddir --parallel &lt;number of cores&gt;
 cmake --build builddir --target install
 </pre></div>
@@ -233,6 +231,42 @@ package <code class="docutils literal notranslate"><span class="pre">HDF5</span>
 <code class="docutils literal notranslate"><span class="pre">master</span></code> branch)</p></li>
 </ul>
 </div>
+<div class="section" id="performance-advice">
+<h3>Performance advice<a class="headerlink" href="#performance-advice" title="Permalink to this headline">¶</a></h3>
+<p>VOTCA-XTP relies on the Eigen library for vector-matrix operations, and a lot of
+performance can be gained by enabling vectorization and/or use of Intel’s <code class="docutils literal notranslate"><span class="pre">MKL</span></code>
+as backend, which is automatically detected by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. Below are some recommendations
+for different architectures:</p>
+<div class="section" id="intel-processors">
+<h4>Intel Processors<a class="headerlink" href="#intel-processors" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipcx</span></code> from the Intel OneAPI basekit give similar performance
+when used with the MKL. No special flags have to be supplied to <code class="docutils literal notranslate"><span class="pre">CMake</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> are used, the compiler option <code class="docutils literal notranslate"><span class="pre">-march=native</span></code> is automatically injected
+into the build. If you compile VOTCA on a heterogeneous cluster with different instruction sets,
+this may cause the executables to not run. Override this by specifying
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_CXX_FLAGS=-mtune=native</span></code> (at probably lower performance), or perform node-type
+specific builds.</p>
+<p>As a rough estimate, runtimes with vectorization and  <code class="docutils literal notranslate"><span class="pre">gcc/clang</span></code> are 30% shorter than without
+vectorization. Use of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> reduces them by another 50%.</p>
+</div>
+<div class="section" id="amd-processors">
+<h4>AMD Processors<a class="headerlink" href="#amd-processors" title="Permalink to this headline">¶</a></h4>
+<p>We recommend using <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> rather than an Intel compiler on AMD. Vectorization
+in <code class="docutils literal notranslate"><span class="pre">Eigen</span></code> is automatically enabled by injection of <code class="docutils literal notranslate"><span class="pre">-march=native</span></code>. See above comment
+about heterogeneous envionments.</p>
+<p>If you have Intel’s MKL installed, and it is found by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>, performance will be helped
+but by how much idepends on which architecture-specific implementation MKL picks at runtime.
+This can be affected by a <a class="reference external" href="https://en.wikipedia.org/wiki/Math_Kernel_Library">vendor lock-in</a>,
+and work-arounds are documented <a class="reference external" href="https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html">for Intel MKL on AMD Zen</a>
+and <a class="reference external" href="https://documentation.sigma2.no/jobs/mkl.html#using-mkl-efficiently">in general</a>.
+We advise that you test this on your specific architecture.</p>
+</div>
+<div class="section" id="cuda-support">
+<h4>CUDA support<a class="headerlink" href="#cuda-support" title="Permalink to this headline">¶</a></h4>
+<p>If your system has a <code class="docutils literal notranslate"><span class="pre">NVIDIA</span></code> GPU, enable offloading of matrix operations
+by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</span></code>.</p>
+</div>
+</div>
 </div>
 <div class="section" id="packages-for-various-linux-distributions">
 <h2>Packages for various Linux Distributions<a class="headerlink" href="#packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
@@ -285,19 +319,13 @@ the capability of building VOTCA and all its dependencies:</p>
 <span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
-<div class="section" id="stable-version">
-<h4>Stable version<a class="headerlink" href="#stable-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest stable version from git using:</p>
 <blockquote>
 <div><p>spack install <a class="reference external" href="mailto:votca-csg&#37;&#52;&#48;stable">votca-csg<span>&#64;</span>stable</a></p>
 </div></blockquote>
-</div>
-<div class="section" id="development-version">
-<h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest development version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span><span class="nd">@develop</span>
 </pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="docker">
@@ -308,19 +336,13 @@ the following docker commands:</p>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-<div class="section" id="release-version">
-<h4>Release version<a class="headerlink" href="#release-version" title="Permalink to this headline">¶</a></h4>
 <p>Docker can also install the latest released version, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v1</span><span class="mf">.6</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h4>Stable version<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Docker can also install the latest stable version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">stable</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="freebsd">
