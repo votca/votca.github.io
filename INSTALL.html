@@ -68,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#conda-forge">Conda-forge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#release-version">Release version</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Stable version</a></li>
@@ -280,6 +281,10 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 <h2>Packages for various Linux Distributions<a class="headerlink" href="#packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>Fedora<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span>
+</pre></div>
+</div>
+<p>Or in older versions of Fedora:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
@@ -288,12 +293,20 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 <h3>CentOS<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
 <span class="n">yum</span> <span class="n">update</span>
-<span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span>
+</pre></div>
+</div>
+<p>Or in older versions of CentOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="opensuse">
 <h3>openSUSE<a class="headerlink" href="#opensuse" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span>
+</pre></div>
+</div>
+<p>Or in older versions of openSUSE:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
@@ -313,7 +326,7 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 </div>
 <div class="section" id="gentoo">
 <h3>Gentoo<a class="headerlink" href="#gentoo" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emerge</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emerge</span> <span class="n">votca</span>
 </pre></div>
 </div>
 </div>
@@ -342,6 +355,12 @@ the capability of building VOTCA and all its dependencies:</p>
 </div>
 </div>
 </div>
+<div class="section" id="conda-forge">
+<h3>Conda-forge<a class="headerlink" href="#conda-forge" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">votca</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="docker">
 <h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
 <p>VOTCA is also available through docker and can be accessed and run with
@@ -353,7 +372,7 @@ the following docker commands:</p>
 <div class="section" id="release-version">
 <h4>Release version<a class="headerlink" href="#release-version" title="Permalink to this headline">¶</a></h4>
 <p>Docker can also install the latest released version, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v1</span><span class="mf">.6</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v2021</span><span class="mf">.2</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
 </div>
