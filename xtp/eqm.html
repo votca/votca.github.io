@@ -353,7 +353,6 @@ The following table contains the defaults input options for the calculator, The 
 <td><div class="line-block">
 <div class="line">fixedpoint</div>
 <div class="line">grid</div>
-<div class="line">cda</div>
 </div>
 </td>
 </tr>
@@ -634,17 +633,36 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
+<td></td>
+<td><p>Indices of atoms in active region</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
+<td><p>0.4</p></td>
+<td><div class="line-block">
+<div class="line">Mulliken population above which orbital is considered</div>
+<div class="line">in the active region</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
+<td><p>10000.0</p></td>
+<td><p>Levelshift energy for the projection operator</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.screening_eps</p></td>
 <td><p>1e-9</p></td>
 <td><p>screening eps</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -656,12 +674,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -670,22 +688,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -694,37 +712,37 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>esp_options.state</p></td>
+<tr class="row-odd"><td><p>esp_options.state</p></td>
 <td><p>n2s1</p></td>
 <td><p>ground-,excited or transitionstate</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>esp_options.method</p></td>
+<tr class="row-even"><td><p>esp_options.method</p></td>
 <td><p>CHELPG</p></td>
 <td><p>Method to use derive partial charges</p></td>
 <td><div class="line-block">
@@ -734,7 +752,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>esp_options.gridsize</p></td>
+<tr class="row-odd"><td><p>esp_options.gridsize</p></td>
 <td><p>fine</p></td>
 <td><div class="line-block">
 <div class="line">Grid accuracy for numerical integration within CHELPG</div>
@@ -750,17 +768,17 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>esp_options.constraints.region.indeces</p></td>
+<tr class="row-even"><td><p>esp_options.constraints.region.indeces</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>indeces of atoms in this fragment, e.g. 1 3 13:17</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>esp_options.constraints.region.charge</p></td>
+<tr class="row-odd"><td><p>esp_options.constraints.region.charge</p></td>
 <td></td>
 <td><p>charge of region</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>esp_options.constraints.pair</p></td>
+<tr class="row-even"><td><p>esp_options.constraints.pair</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Constraint where two atoms have to have the same charge,</div>
@@ -769,7 +787,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>esp_options.svd.conditionnumber</p></td>
+<tr class="row-odd"><td><p>esp_options.svd.conditionnumber</p></td>
 <td><p>1e-9</p></td>
 <td><p>Condition number under which inverses are dropped</p></td>
 <td><p>float+</p></td>

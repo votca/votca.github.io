@@ -291,17 +291,36 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
+<td></td>
+<td><p>Indices of atoms in active region</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
+<td><p>0.4</p></td>
+<td><div class="line-block">
+<div class="line">Mulliken population above which orbital is considered</div>
+<div class="line">in the active region</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
+<td><p>10000.0</p></td>
+<td><p>Levelshift energy for the projection operator</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.screening_eps</p></td>
 <td><p>1e-9</p></td>
 <td><p>screening eps</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -313,12 +332,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -327,22 +346,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -351,37 +370,37 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling.degeneracy</p></td>
+<tr class="row-even"><td><p>dftcoupling.degeneracy</p></td>
 <td><p>0.0</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftcoupling.levA</p></td>
+<tr class="row-odd"><td><p>dftcoupling.levA</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -390,7 +409,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling.levB</p></td>
+<tr class="row-even"><td><p>dftcoupling.levB</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -399,32 +418,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>moleculeA.log</p></td>
+<tr class="row-odd"><td><p>moleculeA.log</p></td>
 <td><p>A.log</p></td>
 <td><p>Log file of molecule A</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>moleculeA.orbitals</p></td>
+<tr class="row-even"><td><p>moleculeA.orbitals</p></td>
 <td><p>A.orb</p></td>
 <td><p>Orbitals file</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>moleculeB.log</p></td>
+<tr class="row-odd"><td><p>moleculeB.log</p></td>
 <td><p>B.log</p></td>
 <td><p>Log file of molecule B</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>moleculeB.orbitals</p></td>
+<tr class="row-even"><td><p>moleculeB.orbitals</p></td>
 <td><p>B.orb</p></td>
 <td><p>Orbitals file</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dimerAB.log</p></td>
+<tr class="row-odd"><td><p>dimerAB.log</p></td>
 <td><p>AB.log</p></td>
 <td><p>Log file of dimer AB</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dimerAB.orbitals</p></td>
+<tr class="row-even"><td><p>dimerAB.orbitals</p></td>
 <td><p>AB.orb</p></td>
 <td><p>Orbitals file</p></td>
 <td></td>
