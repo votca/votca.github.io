@@ -66,6 +66,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#stable-version">Stable version</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-build-options">Other build options</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#conda-forge">Conda-forge</a></li>
@@ -350,6 +351,17 @@ the capability of building VOTCA and all its dependencies:</p>
 <h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest development version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="nd">@master</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-build-options">
+<h4>Other build options<a class="headerlink" href="#other-build-options" title="Permalink to this headline">¶</a></h4>
+<p>Spack has other options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">info</span> <span class="n">votca</span>
+</pre></div>
+</div>
+<p>One useful option is to build votca without xtp:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">~</span><span class="n">xtp</span>
 </pre></div>
 </div>
 </div>
