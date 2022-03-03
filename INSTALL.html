@@ -169,7 +169,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
 version=master # or &#39;stable&#39; or &#39;v2021.2&#39;
 git clone -b ${version} https://github.com/votca/votca.git
-cmake -B builddir -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} votca
+cmake -B builddir -S votca -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix}
 cmake --build builddir --parallel &lt;number of cores&gt;
 cmake --build builddir --target install
 </pre></div>
@@ -196,7 +196,7 @@ for resolving dependency issues. In particular, an appropriate extra
 will have to rerun the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s)
 added. For example, in the case of a locally installed version of
 GROMACS:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so ..
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so -S ..
 </pre></div>
 </div>
 <p>Be careful to use exactly the option suggested in the error message! You
