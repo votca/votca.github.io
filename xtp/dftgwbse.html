@@ -755,49 +755,58 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>localize.max_iterations</p></td>
 <td><p>10000</p></td>
 <td><p>Maximum number of iterations for PM Localization</p></td>
-<td></td>
+<td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>localize.convergence_limit</p></td>
 <td><p>1e-5</p></td>
 <td><p>Convergence criteria for PM localization</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>logging_file</p></td>
+<tr class="row-even"><td><p>localize.method</p></td>
+<td><p>unitary-optimizer</p></td>
+<td><p>Method for the localization optimization</p></td>
+<td><div class="line-block">
+<div class="line">[jacobi-sweeps</div>
+<div class="line">unitary-optimizer]</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>logging_file</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>File to send logging data to.</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>archiveA</p></td>
+<tr class="row-even"><td><p>archiveA</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>orbfile for moleculeA of guess</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>archiveB</p></td>
+<tr class="row-odd"><td><p>archiveB</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>orbfile for moleculeA of guess</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.state</p></td>
+<tr class="row-even"><td><p>geometry_optimization.state</p></td>
 <td><p>s1</p></td>
 <td><p>initial state to optimize for</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.maxiter</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.maxiter</p></td>
 <td><p>50</p></td>
 <td><p>Maximum iteration number</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.trajectory_file</p></td>
+<tr class="row-even"><td><p>geometry_optimization.trajectory_file</p></td>
 <td><p>optimisation.trj</p></td>
 <td><p>File to write trajectory</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.statetracker.oscillatorstrength</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.statetracker.oscillatorstrength</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>picks first state above a threshold</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.statetracker.localisation.fragment</p></td>
+<tr class="row-even"><td><p>geometry_optimization.statetracker.localisation.fragment</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Fragment definiton using atomids, can be a combination</div>
@@ -806,12 +815,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.statetracker.localisation.threshold</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.statetracker.localisation.threshold</p></td>
 <td><p>0.1</p></td>
 <td><p>Threshold above which a state is considered localized</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.statetracker.chargetransfer.fragment</p></td>
+<tr class="row-even"><td><p>geometry_optimization.statetracker.chargetransfer.fragment</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Fragment definiton using atomids, can be a combination</div>
@@ -820,12 +829,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.statetracker.chargetransfer.threshold</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.statetracker.chargetransfer.threshold</p></td>
 <td><p>0.8</p></td>
 <td><p>Threshold above which a state is considered a CT state</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.statetracker.density</p></td>
+<tr class="row-even"><td><p>geometry_optimization.statetracker.density</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Tracks state by comparing the density to an earlier state,</div>
@@ -835,7 +844,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.statetracker.overlap</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.statetracker.overlap</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Tracks state by calculating the overlap with an earlier</div>
@@ -845,52 +854,52 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.convergence.energy</p></td>
+<tr class="row-even"><td><p>geometry_optimization.convergence.energy</p></td>
 <td><p>1.e-6</p></td>
 <td><p>Energy error tolerance</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.convergence.RMSForce</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.convergence.RMSForce</p></td>
 <td><p>3.e-5</p></td>
 <td><p>Force Root mean square error tolerance</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.convergence.MaxForce</p></td>
+<tr class="row-even"><td><p>geometry_optimization.convergence.MaxForce</p></td>
 <td><p>1.e-4</p></td>
 <td><p>Maximum force Convergence criteria</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.convergence.RMSStep</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.convergence.RMSStep</p></td>
 <td><p>6.e-4</p></td>
 <td><p>Step Root mean square error tolerance</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.convergence.MaxStep</p></td>
+<tr class="row-even"><td><p>geometry_optimization.convergence.MaxStep</p></td>
 <td><p>1.e-3</p></td>
 <td><p>convergence criteria for geometry optimisation</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.optimizer.method</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.optimizer.method</p></td>
 <td><p>BFGS-TRM</p></td>
 <td></td>
 <td><p>BFGS-TRM</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.optimizer.trust</p></td>
+<tr class="row-even"><td><p>geometry_optimization.optimizer.trust</p></td>
 <td><p>0.01</p></td>
 <td><p>initial trustregion</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.forces.method</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.forces.method</p></td>
 <td><p>central</p></td>
 <td><p>finite differences method, central or forward</p></td>
 <td><p>central forward</p></td>
 </tr>
-<tr class="row-odd"><td><p>geometry_optimization.forces.CoMforce_removal</p></td>
+<tr class="row-even"><td><p>geometry_optimization.forces.CoMforce_removal</p></td>
 <td><p>true</p></td>
 <td><p>Remove total force on molecule</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>geometry_optimization.forces.displacement</p></td>
+<tr class="row-odd"><td><p>geometry_optimization.forces.displacement</p></td>
 <td><p>0.001</p></td>
 <td><p>finite difference displacement</p></td>
 <td><p>float+</p></td>

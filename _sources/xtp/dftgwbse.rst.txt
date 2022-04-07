@@ -407,11 +407,16 @@ The following table contains the defaults input options for the calculator, The 
    * - localize.max_iterations
      - 10000
      - Maximum number of iterations for PM Localization
-     - 
+     - int+
    * - localize.convergence_limit
      - 1e-5
      - Convergence criteria for PM localization
      - 
+   * - localize.method
+     - unitary-optimizer
+     - Method for the localization optimization
+     - | [jacobi-sweeps
+       | unitary-optimizer]
    * - logging_file
      - OPTIONAL
      - File to send logging data to.
