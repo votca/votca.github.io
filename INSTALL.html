@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
@@ -161,9 +162,9 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="installation">
+<section id="installation">
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="general-source-installation-instructions">
+<section id="general-source-installation-instructions">
 <h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this headline">¶</a></h2>
 <p>To install the full package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
@@ -174,15 +175,15 @@ cmake --build builddir --parallel &lt;number of cores&gt;
 cmake --build builddir --target install
 </pre></div>
 </div>
-<div class="section" id="dependency-installation">
+<section id="dependency-installation">
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/ubuntu#L10-L13">Ubuntu</a></p>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/fedora#L10-L15">Fedora</a></p>
 <p>If you have an older version of a distribution, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_GROMACS=ON</span></code> or <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flags to automatically install the correct GROMACS and libint version.</p>
 <p>On Ubuntu 20.10 and older you will not get version 1.0.5 of the libecpint package. So in this case run <a class="reference external" href="https://github.com/votca/buildenv/blob/55c88641046dbb6152cf7d9e536e17f29205479f/ubuntu#L30-L33">this</a> or
 download the package from <a class="reference external" href="http://ftp.us.debian.org/debian/pool/main/libe/libecpint/">here</a>.</p>
-</div>
-<div class="section" id="resolving-the-not-found-dependency-errors">
+</section>
+<section id="resolving-the-not-found-dependency-errors">
 <h3>Resolving the ‘not found’ dependency errors<a class="headerlink" href="#resolving-the-not-found-dependency-errors" title="Permalink to this headline">¶</a></h3>
 <p>Assuming all the <a class="reference external" href="#dependency-installation">dependencies</a> have been
 correctly installed, one or more might still appear with the ‘not found’ status upon
@@ -219,8 +220,8 @@ CMake has options to <em>remember</em> where libraries came from at link time,
 which can be enabled by setting <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_RPATH_USE_LINK_PATH</span></code> to
 <code class="docutils literal notranslate"><span class="pre">ON</span></code>. VOTCA has enabled this option and a couple of other rpath
 related tweaks when setting <code class="docutils literal notranslate"><span class="pre">ENABLE_RPATH_INJECT</span></code> to <code class="docutils literal notranslate"><span class="pre">ON</span></code>.</p>
-</div>
-<div class="section" id="common-cmake-flags">
+</section>
+<section id="common-cmake-flags">
 <h3>Common CMake Flags<a class="headerlink" href="#common-cmake-flags" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_CSGAPPS</span></code> - Install the extra csg applications repo (ON/OFF,
@@ -230,8 +231,8 @@ Default OFF)</p></li>
 (Default is /usr/local/bin)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ENABLE_TESTING</span></code> - compile tests (ON/OFF, Default OFF)</p></li>
 </ul>
-</div>
-<div class="section" id="other-cmake-flags">
+</section>
+<section id="other-cmake-flags">
 <h3>Other CMake Flags<a class="headerlink" href="#other-cmake-flags" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_&lt;name&gt;</span></code> - Disable using an optional
@@ -240,14 +241,14 @@ package called <code class="docutils literal notranslate"><span class="pre">&lt;
 package <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> (ON/OFF, Default OFF; relevant only for the
 <code class="docutils literal notranslate"><span class="pre">master</span></code> branch)</p></li>
 </ul>
-</div>
-<div class="section" id="performance-advice">
+</section>
+<section id="performance-advice">
 <h3>Performance advice<a class="headerlink" href="#performance-advice" title="Permalink to this headline">¶</a></h3>
 <p>VOTCA-XTP relies on the Eigen library for vector-matrix operations, and a lot of
 performance can be gained by enabling vectorization and/or use of Intel’s <code class="docutils literal notranslate"><span class="pre">MKL</span></code>
 as backend, which is automatically detected by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. Below are some recommendations
 for different architectures:</p>
-<div class="section" id="intel-processors">
+<section id="intel-processors">
 <h4>Intel Processors<a class="headerlink" href="#intel-processors" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipcx</span></code> from the Intel OneAPI basekit give similar performance
 when used with the MKL. No special flags have to be supplied to <code class="docutils literal notranslate"><span class="pre">CMake</span></code>.</p>
@@ -258,8 +259,8 @@ this may cause the executables to not run. Override this by specifying
 specific builds.</p>
 <p>As a rough estimate, runtimes with vectorization and  <code class="docutils literal notranslate"><span class="pre">gcc/clang</span></code> are 30% shorter than without
 vectorization. Use of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> reduces them by another 50%.</p>
-</div>
-<div class="section" id="amd-processors">
+</section>
+<section id="amd-processors">
 <h4>AMD Processors<a class="headerlink" href="#amd-processors" title="Permalink to this headline">¶</a></h4>
 <p>We recommend using <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> rather than an Intel compiler on AMD. Vectorization
 in <code class="docutils literal notranslate"><span class="pre">Eigen</span></code> is automatically enabled by injection of <code class="docutils literal notranslate"><span class="pre">-march=native</span></code>. See above comment
@@ -270,17 +271,17 @@ This can be affected by a <a class="reference external" href="https://en.wikiped
 and work-arounds are documented <a class="reference external" href="https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html">for Intel MKL on AMD Zen</a>
 and <a class="reference external" href="https://documentation.sigma2.no/jobs/mkl.html#using-mkl-efficiently">in general</a>.
 We advise that you test this on your specific architecture.</p>
-</div>
-<div class="section" id="cuda-support">
+</section>
+<section id="cuda-support">
 <h4>CUDA support<a class="headerlink" href="#cuda-support" title="Permalink to this headline">¶</a></h4>
 <p>If your system has a <code class="docutils literal notranslate"><span class="pre">NVIDIA</span></code> GPU, enable offloading of matrix operations
 by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</span></code>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="packages-for-various-linux-distributions">
+</section>
+</section>
+</section>
+<section id="packages-for-various-linux-distributions">
 <h2>Packages for various Linux Distributions<a class="headerlink" href="#packages-for-various-linux-distributions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Fedora<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span>
 </pre></div>
@@ -289,8 +290,8 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dnf</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="centos">
+</section>
+<section id="centos">
 <h3>CentOS<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
 <span class="n">yum</span> <span class="n">update</span>
@@ -301,8 +302,8 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="opensuse">
+</section>
+<section id="opensuse">
 <h3>openSUSE<a class="headerlink" href="#opensuse" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span>
 </pre></div>
@@ -311,27 +312,27 @@ by <code class="docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</s
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span> <span class="n">votca</span><span class="o">-</span><span class="n">xtp</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sles">
+</section>
+<section id="sles">
 <h3>SLES<a class="headerlink" href="#sles" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUSEConnect</span> <span class="o">-</span><span class="n">p</span> <span class="n">PackageHub</span><span class="o">/</span><span class="mf">12.2</span><span class="o">/</span><span class="n">x86_64</span>
 <span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="debian-ubuntu">
+</section>
+<section id="debian-ubuntu">
 <h3>Debian / Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="gentoo">
+</section>
+<section id="gentoo">
 <h3>Gentoo<a class="headerlink" href="#gentoo" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emerge</span> <span class="n">votca</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="spack">
+</section>
+<section id="spack">
 <h3>Spack<a class="headerlink" href="#spack" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://spack.io/">Spack</a> is a package manager, which has
 the capability of building VOTCA and all its dependencies:</p>
@@ -340,21 +341,21 @@ the capability of building VOTCA and all its dependencies:</p>
 <span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span>
 </pre></div>
 </div>
-<div class="section" id="stable-version">
+<section id="stable-version">
 <h4>Stable version<a class="headerlink" href="#stable-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest stable version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="nd">@stable</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="development-version">
+</section>
+<section id="development-version">
 <h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h4>
 <p>Spack can also install the latest development version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="nd">@master</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="other-build-options">
+</section>
+<section id="other-build-options">
 <h4>Other build options<a class="headerlink" href="#other-build-options" title="Permalink to this headline">¶</a></h4>
 <p>Spack has other options:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">info</span> <span class="n">votca</span>
@@ -364,15 +365,15 @@ the capability of building VOTCA and all its dependencies:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="o">~</span><span class="n">xtp</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="conda-forge">
+</section>
+</section>
+<section id="conda-forge">
 <h3>Conda-forge<a class="headerlink" href="#conda-forge" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">votca</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="docker">
+</section>
+<section id="docker">
 <h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
 <p>VOTCA is also available through docker and can be accessed and run with
 the following docker commands:</p>
@@ -380,22 +381,22 @@ the following docker commands:</p>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-<div class="section" id="release-version">
+<section id="release-version">
 <h4>Release version<a class="headerlink" href="#release-version" title="Permalink to this headline">¶</a></h4>
 <p>Docker can also install the latest released version, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v2021</span><span class="mf">.2</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h4>Stable version<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Docker can also install the latest stable version from git using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">stable</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="freebsd">
+</section>
+</section>
+<section id="freebsd">
 <h3>FreeBSD<a class="headerlink" href="#freebsd" title="Permalink to this headline">¶</a></h3>
 <p>On FreeBSD VOTCA can be installed from a binary package (recommended):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pkg</span> <span class="n">install</span> <span class="n">votca</span>
@@ -405,9 +406,9 @@ the following docker commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">science</span><span class="o">/</span><span class="n">votca</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span> <span class="n">clean</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="linking-error-undefined-reference-to">
+</section>
+</section>
+<section id="linking-error-undefined-reference-to">
 <h2>Linking Error: Undefined reference to<a class="headerlink" href="#linking-error-undefined-reference-to" title="Permalink to this headline">¶</a></h2>
 <p>This error can occur for a multitude of reasons. You may have
 forgotten to add paths to the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> or forgotten to import
@@ -417,16 +418,16 @@ another cause might be ABI incompability between libraries due to
 different libraries being compiled with different compilers or compiler
 versions. Click <a class="reference external" href="https://github.com/ICRAR/shark/issues/1">here</a> for
 an example.</p>
-</div>
-<div class="section" id="gcc-and-mkl-undefined-symbol">
+</section>
+<section id="gcc-and-mkl-undefined-symbol">
 <h2>GCC and MKL : undefined symbol:<a class="headerlink" href="#gcc-and-mkl-undefined-symbol" title="Permalink to this headline">¶</a></h2>
 <p>This can happen with some GCC versions. Adding the
 <code class="docutils literal notranslate"><span class="pre">-Wl,--no-as-needed</span></code> to <code class="docutils literal notranslate"><span class="pre">CMAKE_EXE_LINKER_FLAGS:STRING=</span></code> to the
 <code class="docutils literal notranslate"><span class="pre">CMakeCache.txt</span></code> in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory can fix this. For more
 information look
 <a class="reference external" href="https://software.intel.com/en-us/articles/symbol-lookup-error-when-linking-intel-mkl-with-gcc-on-ubuntu">here</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The architecture of VOTCA &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
@@ -122,7 +123,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="the-architecture-of-votca">
+<section id="the-architecture-of-votca">
 <h1>The architecture of VOTCA<a class="headerlink" href="#the-architecture-of-votca" title="Permalink to this headline">¶</a></h1>
 <p>VOTCA consists of three main libraries <strong>tools</strong>, <strong>csg</strong> and <strong>xtp</strong>. While the structure has partially historic reasons, in general the following rule of thumb holds.</p>
 <ol class="arabic simple">
@@ -131,7 +132,7 @@
 <li><p><strong>xtp</strong> contains a lot of functionality for electronic state calculation using DFT and GW-BSE and their coupling to classical environments, i.e. QM/MM. Additionally it has functionality for exciton transport simulations on molecular dynamics structures (it uses the functionality provided by <strong>csg</strong> here). Similar to <strong>csg</strong>, it contains file readers for Quantum Chemistry packages (<a class="reference external" href="https://orcaforum.kofo.mpg.de/app.php/portal">ORCA</a> and its own DFT implementation). In contrast to <strong>csg</strong> it is OPENMP parallelized and also uses CUDA acceleration for some parts.</p></li>
 </ol>
 <p>Besides the 3 main folders, we also have the <strong>csg-tutorials</strong> and <strong>xtp-tutorials</strong> folder, which contain the respective tutorials.</p>
-</div>
+</section>
 
 
            </div>

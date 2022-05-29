@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Preparing coarse-grained runs &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -17,8 +18,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -153,9 +154,9 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="preparing-coarse-grained-runs">
+<section id="preparing-coarse-grained-runs">
 <span id="preparing"></span><h1>Preparing coarse-grained runs<a class="headerlink" href="#preparing-coarse-grained-runs" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="preliminary-note">
+<section id="preliminary-note">
 <h2>Preliminary note<a class="headerlink" href="#preliminary-note" title="Permalink to this headline">¶</a></h2>
 <p>The coarse-grained run requires the molecule topology on the one hand
 and suitable potentials on the other. In this chapter, the generation of
@@ -168,7 +169,7 @@ potential. Nevertheless, special attention should be paid to units
 (angles, bond lengths). The resulting curve can then be specified in the
 MD package used for simulation. However, most potentials don’t allow an
 easy processing of this kind and tabulated potentials have to be used.</p>
-<div class="section" id="generating-a-topology-file-for-a-coarse-grained-run">
+<section id="generating-a-topology-file-for-a-coarse-grained-run">
 <h3>Generating a topology file for a coarse-grained run<a class="headerlink" href="#generating-a-topology-file-for-a-coarse-grained-run" title="Permalink to this headline">¶</a></h3>
 <p><strong>WARNING: This section describes experimental features. The exact names and options of the program might change in the near future. The section is specific to GROMACS support though a generalization for other MD packages is planned.</strong></p>
 <p>The mapping definition is close to a topology needed for a coarse
@@ -186,8 +187,8 @@ for the first molecule including definitions for atoms, bonds, angles
 and dihedrals. It can directly be used as a topology in GROMACS, however
 the force field definitions (atom types, bond types, etc.) still have to
 be added manually.</p>
-</div>
-<div class="section" id="post-processing-of-the-potential">
+</section>
+<section id="post-processing-of-the-potential">
 <span id="preparing-post-processing-of-the-potential"></span><h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Permalink to this headline">¶</a></h3>
 <p>The VOTCA package provides a collection of scripts to handle potentials.
 They can be modified, refined, integrated or inter- and extrapolated.
@@ -203,9 +204,9 @@ format ()</p></li>
 <li><p>extrapolation of the potential at the borders ( table extrapolate)</p></li>
 <li><p>exporting the table to xvg ( convert_potential gromacs)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="clipping-of-poorly-sampled-regions">
+</section>
+</section>
+<section id="clipping-of-poorly-sampled-regions">
 <h2>Clipping of poorly sampled regions<a class="headerlink" href="#clipping-of-poorly-sampled-regions" title="Permalink to this headline">¶</a></h2>
 <p>Regions with an irregular distribution of samples should be deleted
 first. This is simply done by editing the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file and by deleting
@@ -214,8 +215,8 @@ those values.</p>
 good and is not to noisy and set the flags in the potential file of the
 bad parts by hand to <code class="docutils literal notranslate"><span class="pre">o</span></code> (for <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>). Those values will
 later be extrapolated and overwritten.</p>
-</div>
-<div class="section" id="resampling">
+</section>
+<section id="resampling">
 <h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h2>
 <p>Use the command</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_resample --in table.pot --out table_resample.pot <span class="se">\</span>
@@ -236,8 +237,8 @@ covered in the file are automatically marked by a flag <code class="docutils lit
 <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>) for extrapolation in the next step.</p>
 <p>The potential <em>don’t</em> have to start at 0, this is done by the export
 script (to xvg) automatically.</p>
-</div>
-<div class="section" id="extrapolation">
+</section>
+<section id="extrapolation">
 <h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Permalink to this headline">¶</a></h2>
 <p>The following line</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table extrapolate <span class="o">[</span>options<span class="o">]</span> table_resample.pot <span class="se">\</span>
@@ -259,8 +260,8 @@ quadratic), extrapolating just the left or right region of the file
 be used for the coarse-grained run. If GROMACS is used as a molecule
 dynamics package, the potential has to be converted and exported to a
 suitable GROMACS format as described in the final step.</p>
-</div>
-<div class="section" id="exporting-the-table">
+</section>
+<section id="exporting-the-table">
 <h2>Exporting the table<a class="headerlink" href="#exporting-the-table" title="Permalink to this headline">¶</a></h2>
 <p>Finally, the table is exported to <code class="docutils literal notranslate"><span class="pre">xvg</span></code>. The conversion procedure
 requires a small xml file <code class="docutils literal notranslate"><span class="pre">table.xml</span></code> as shown below:</p>
@@ -318,8 +319,8 @@ non-bonded interactions or zero at the minimum for bonded interaction</p></li>
 <li><p>Calculate the force (assume periodicity for dihedral potentials)</p></li>
 <li><p>Write to the format needed by gromacs</p></li>
 </ul>
-</div>
-<div class="section" id="an-example-on-non-bonded-interactions">
+</section>
+<section id="an-example-on-non-bonded-interactions">
 <h2>An example on non-bonded interactions<a class="headerlink" href="#an-example-on-non-bonded-interactions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call pot shift_nonbonded table.pot table.pot.refined
 csg_resample --grid <span class="m">0</span>.3:0.05:2 --in table.pot.refined <span class="se">\</span>
@@ -330,7 +331,7 @@ csg_call table extrapolate --function constant --region right <span class="se">\
          table.pot.refined table.pot.refined
 </pre></div>
 </div>
-<div class="section" id="alternatives">
+<section id="alternatives">
 <h3>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h3>
 <p>Additionally to the two methods described above, namely (a) providing
 the MD package directly with a functional form fitted with a program of
@@ -343,9 +344,9 @@ csg_call table integrate force.d minus_pot.d
 csg_call table linearop minus_pot.d pot.d -1 <span class="m">0</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

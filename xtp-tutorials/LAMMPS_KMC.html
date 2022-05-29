@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kinect Monte Carlo Simulations Using LAMMPS &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -17,8 +18,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -395,16 +396,16 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Kinect-Monte-Carlo-Simulations-Using-LAMMPS">
+<section id="Kinect-Monte-Carlo-Simulations-Using-LAMMPS">
 <h1>Kinect Monte Carlo Simulations Using LAMMPS<a class="headerlink" href="#Kinect-Monte-Carlo-Simulations-Using-LAMMPS" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="Requirements">
+<section id="Requirements">
 <h2>Requirements<a class="headerlink" href="#Requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>You will need to install <strong>VOTCA</strong> using the instructions described <a class="reference external" href="https://github.com/votca/votca/blob/master/share/doc/INSTALL.rst">here</a></p></li>
 <li><p>Once the installation is completed you need to activate the VOTCA enviroment by running the <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> script that has been installed at the <code class="docutils literal notranslate"><span class="pre">bin</span></code> subfolder for the path that you have provided for the installation step above</p></li>
 </ul>
-</div>
-<div class="section" id="Setting-the-environment">
+</section>
+<section id="Setting-the-environment">
 <h2>Setting the environment<a class="headerlink" href="#Setting-the-environment" title="Permalink to this headline">¶</a></h2>
 <p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries for plotting. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
 <div class="nbinput docutils container">
@@ -422,22 +423,22 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.10/site-packages (0.11.1)
-Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.10/site-packages (from seaborn) (1.21.5)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.10/site-packages (from seaborn) (1.22.0)
 Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.10/site-packages (from seaborn) (1.8.0)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.10/site-packages (from seaborn) (1.3.3)
-Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.10/site-packages (from seaborn) (3.5.1)
+Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.10/site-packages (from seaborn) (3.5.2)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.11.0)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.4.1)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.10.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.26.1)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (8.3.2)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (21.3)
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.1)
-Requirement already satisfied: six in /usr/lib/python3.10/site-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.1.0)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (21.3)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.29.1)
+Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/lib/python3.10/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.4.7)
 Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.10/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2022.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
 </pre></div></div>
 </div>
-<div class="section" id="Notes">
+<section id="Notes">
 <h3>Notes<a class="headerlink" href="#Notes" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
@@ -446,9 +447,9 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.10/site-packa
 <li><p>In Jupyter the command <code class="docutils literal notranslate"><span class="pre">%env</span></code> set an environmental variable</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="Check-the-mapping">
+</section>
+</section>
+<section id="Check-the-mapping">
 <h2>Check the mapping<a class="headerlink" href="#Check-the-mapping" title="Permalink to this headline">¶</a></h2>
 <p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping.</p>
 <p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options.</p>
@@ -473,9 +474,9 @@ Requirement already satisfied: pytz&gt;=2017.3 in /usr/lib/python3.10/site-packa
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 06:01:55)
-votca_csg, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:48:49)
-votca_tools, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:46:33)
+xtp_run, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:35:58)
+votca_csg, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:19:54)
+votca_tools, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:17:34)
 
 Initializing calculator
 ... mapchecker
@@ -493,8 +494,8 @@ Writing polarsegments to mp_segments_h_step_10000.pdb
 Changes have not been written to state file.
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Site-energies-and-pair-energy-differences">
+</section>
+<section id="Site-energies-and-pair-energy-differences">
 <h2>Site energies and pair energy differences<a class="headerlink" href="#Site-energies-and-pair-energy-differences" title="Permalink to this headline">¶</a></h2>
 <p>We will compute the histrogram using <code class="docutils literal notranslate"><span class="pre">resolution_sites</span></code> of 0.03 eV. See <a class="reference external" href="https://votca.github.io/xtp/eanalyze.html">eanalyze options and defaults</a> for more information.</p>
 <div class="nbinput docutils container">
@@ -517,9 +518,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 06:01:55)
-votca_csg, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:48:49)
-votca_tools, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:46:33)
+xtp_run, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:35:58)
+votca_csg, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:19:54)
+votca_tools, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:17:34)
 
 Initializing calculator
 ... eanalyze
@@ -563,8 +564,8 @@ eanalyze.pairlist_e.out  eanalyze.sitecorr_s.out
 eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Plotting-the-energies">
+</section>
+<section id="Plotting-the-energies">
 <h2>Plotting the energies<a class="headerlink" href="#Plotting-the-energies" title="Permalink to this headline">¶</a></h2>
 <p>We will the previously installed <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library to plot the electron histrogram computed in the previous step,</p>
 <div class="nbinput docutils container">
@@ -598,8 +599,8 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Couplings-histrogram">
+</section>
+<section id="Couplings-histrogram">
 <h2>Couplings histrogram<a class="headerlink" href="#Couplings-histrogram" title="Permalink to this headline">¶</a></h2>
 <p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/xtp/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator.</p>
 <div class="nbinput docutils container">
@@ -622,9 +623,9 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 06:01:55)
-votca_csg, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:48:49)
-votca_tools, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:46:33)
+xtp_run, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:35:58)
+votca_csg, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:19:54)
+votca_tools, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:17:34)
 
 Initializing calculator
 ... ianalyze
@@ -640,8 +641,8 @@ Calculating for state h now.
 Changes have not been written to state file.
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Plotting-the-coupling-histogram">
+</section>
+<section id="Plotting-the-coupling-histogram">
 <h2>Plotting the coupling histogram<a class="headerlink" href="#Plotting-the-coupling-histogram" title="Permalink to this headline">¶</a></h2>
 <p>We can now plot the logarithm of the squared coupling for the hole,</p>
 <div class="nbinput docutils container">
@@ -672,8 +673,8 @@ Changes have not been written to state file.
 <img alt="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
+</section>
+<section id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
 <h2>KMC simulations of multiple holes or electrons in periodic boundary conditions<a class="headerlink" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <p>Finally, lets do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
 <div class="nbinput docutils container">
@@ -696,9 +697,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 06:01:55)
-votca_csg, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:48:49)
-votca_tools, version 2023-dev gitid: 3bb0876 (compiled May 20 2022, 05:46:33)
+xtp_run, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:35:58)
+votca_csg, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:19:54)
+votca_tools, version 2023-dev gitid: 0287a5c (compiled May 29 2022, 14:17:34)
 
 Initializing calculator
 ... kmcmultiple
@@ -771,8 +772,8 @@ Changes have not been written to state file.
 </pre></div></div>
 </div>
 <p>You can find both the <em>occupation data</em> and the <em>rates</em> for the electron at 300 K, on files <code class="docutils literal notranslate"><span class="pre">occupation.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">rates.dat</span></code>, respectively.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

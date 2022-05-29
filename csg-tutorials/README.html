@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSG Tutorial &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
@@ -171,29 +172,29 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="csg-tutorial">
+<section id="csg-tutorial">
 <h1>CSG Tutorial<a class="headerlink" href="#csg-tutorial" title="Permalink to this headline">¶</a></h1>
 <p>(Based on the 2011-2017 CECAM meetings)</p>
 <p>Please pick topics you are most interested in, since finishing the
 tutorial might take longer than one afternoon.</p>
-<div class="section" id="installation">
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="building-votca">
+<section id="building-votca">
 <h3>Building VOTCA<a class="headerlink" href="#building-votca" title="Permalink to this headline">¶</a></h3>
 <p>Instructions how to build and install VOTCA can be found
 <a class="reference internal" href="../INSTALL.html#install"><span class="std std-ref">here</span></a>.</p>
-</div>
-<div class="section" id="using-the-tutorials">
+</section>
+<section id="using-the-tutorials">
 <h3>Using the tutorials<a class="headerlink" href="#using-the-tutorials" title="Permalink to this headline">¶</a></h3>
 <p>All the tutorials are in the installation folder, i.e.
 <code class="docutils literal notranslate"><span class="pre">${prefix}/share/votca/csg-tutorials</span></code>.</p>
-</div>
-<div class="section" id="the-manual">
+</section>
+<section id="the-manual">
 <h3>The manual<a class="headerlink" href="#the-manual" title="Permalink to this headline">¶</a></h3>
 <p>The CSG manual can be found <a class="reference internal" href="../csg/index.html#csg"><span class="std std-ref">here</span></a></p>
-</div>
-</div>
-<div class="section" id="running-gromacs">
+</section>
+</section>
+<section id="running-gromacs">
 <h2>Running GROMACS<a class="headerlink" href="#running-gromacs" title="Permalink to this headline">¶</a></h2>
 <p>The tutorial uses GROMACS, a molecular dynamics (MD) package, for
 generating the reference data. If you are not familiar with GROMACS,
@@ -201,7 +202,7 @@ please read the following section for a brief overview on how to set up
 and run MD simulations using GROMACS. You can find all the GROMACS input
 files in the <code class="docutils literal notranslate"><span class="pre">atomistic</span></code> folder of each tutorial, e.g., for a box of
 atomistic water see <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/atomistic/</span></code>.</p>
-<div class="section" id="input-files">
+<section id="input-files">
 <h3>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h3>
 <p>You will need four files to run MD simulations * <code class="docutils literal notranslate"><span class="pre">conf.gro</span></code> - stores
 the coordinates of the molecule(s). It can be viewed with vmd. The
@@ -217,8 +218,8 @@ file, often used by the iterative Boltzmann inversion method *
 <code class="docutils literal notranslate"><span class="pre">nstlog</span></code> - output frequency of the md.log file * <code class="docutils literal notranslate"><span class="pre">nstenergy</span></code> -
 output frequency to the ener.edr file containing all thermodynamic
 information</p>
-</div>
-<div class="section" id="md-simulations">
+</section>
+<section id="md-simulations">
 <h3>MD simulations<a class="headerlink" href="#md-simulations" title="Permalink to this headline">¶</a></h3>
 <p>To run MD simulations using GROMACS, first one must create a binary
 topology file <code class="docutils literal notranslate"><span class="pre">topol.tpr</span></code> using the <code class="docutils literal notranslate"><span class="pre">gmx</span> <span class="pre">grompp</span></code> program. Then run
@@ -229,9 +230,9 @@ contains <code class="docutils literal notranslate"><span class="pre">conf.gro</
 gmx mdrun -v <span class="c1"># -v (verbose) gives the estimate of the run time</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="running-other-md-programs">
+</section>
+</section>
+<section id="running-other-md-programs">
 <h2>Running other MD programs<a class="headerlink" href="#running-other-md-programs" title="Permalink to this headline">¶</a></h2>
 <p>In addition to GROMACS, VOTCA supports <code class="docutils literal notranslate"><span class="pre">ESPResSo</span></code>, <code class="docutils literal notranslate"><span class="pre">Lammps</span></code>,
 <code class="docutils literal notranslate"><span class="pre">dl_poly</span></code>, <code class="docutils literal notranslate"><span class="pre">HOOMD-blue</span></code>, and <code class="docutils literal notranslate"><span class="pre">ESPResSo++</span></code>. The interface to these
@@ -252,10 +253,10 @@ csg_inverse. It stores the whole simulation procedure.</p></li>
 condition. This is needed as most gro/pdb/xyz files have no molecule
 definition in them.</p></li>
 </ul>
-</div>
-<div class="section" id="mapping-an-atomistic-trajectory-onto-a-coarse-grained-trajectory">
+</section>
+<section id="mapping-an-atomistic-trajectory-onto-a-coarse-grained-trajectory">
 <h2>Mapping an atomistic trajectory onto a coarse-grained trajectory<a class="headerlink" href="#mapping-an-atomistic-trajectory-onto-a-coarse-grained-trajectory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="spc-e-water">
+<section id="spc-e-water">
 <h3>SPC/E Water<a class="headerlink" href="#spc-e-water" title="Permalink to this headline">¶</a></h3>
 <p>Folder: <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/atomistic/</span></code></p>
 <p>Have a look at the center of mass mapping file <code class="docutils literal notranslate"><span class="pre">water.xml</span></code> in this
@@ -281,9 +282,9 @@ gmx mdrun -v <span class="c1"># runs MD integrator. The trajectory is saved to t
 (adjust the corresponding line in the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script to map
 <code class="docutils literal notranslate"><span class="pre">traj.trr</span></code> onto <code class="docutils literal notranslate"><span class="pre">traj_cg.trr</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conf(out).gro</span></code> to
 <code class="docutils literal notranslate"><span class="pre">conf_cg.gro</span></code>.)</p>
-</div>
-</div>
-<div class="section" id="iterative-boltzmann-inversion-ibi-for-spc-e-water">
+</section>
+</section>
+<section id="iterative-boltzmann-inversion-ibi-for-spc-e-water">
 <h2>Iterative Boltzmann inversion (IBI) for SPC/E water<a class="headerlink" href="#iterative-boltzmann-inversion-ibi-for-spc-e-water" title="Permalink to this headline">¶</a></h2>
 <p>Here, a one-site coarse-grained (CG) model of a rigid 3-site water
 molecule (SPC/E model) is constructed (see the previous section of the
@@ -295,7 +296,7 @@ trajectory. In the last step, a coarse-grained potential is obtained by
 matching the RDFs of the atomisitc and CG systems using the IBI method.
 For a more detailed description, look at the following
 <a class="reference external" href="http://pubs.acs.org/doi/abs/10.1021/ct900369w">publication</a>.</p>
-<div class="section" id="atomistic-simulation">
+<section id="atomistic-simulation">
 <h3>Atomistic simulation<a class="headerlink" href="#atomistic-simulation" title="Permalink to this headline">¶</a></h3>
 <p>A short atomistic MD simulation has been already run in the last part of
 the previous section (see folder: <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/atomistic/</span></code>).
@@ -308,8 +309,8 @@ information:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Extract_Energies.sh <span class="nv">$equi</span> <span class="c1">#  The argument $equi is optional. If provided, analysis will start at the corresponding time frame (in GROMACS units, ps) (e.g. 1 to 5)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="calculation-of-rdf">
+</section>
+<section id="calculation-of-rdf">
 <h3>Calculation of RDF<a class="headerlink" href="#calculation-of-rdf" title="Permalink to this headline">¶</a></h3>
 <p>Once again, check the mapping file <code class="docutils literal notranslate"><span class="pre">water.xml</span></code>. Atom names listed in
 the definition of the COM bead should correspond to those used in the
@@ -325,8 +326,8 @@ the center of mass RDF:</p>
 </div>
 <p>Compare your RDF with <code class="docutils literal notranslate"><span class="pre">CG-CG.dist.tgt</span></code> in <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/ibi/</span></code>
 which has been calculated with a much longer atomistic simulation run.</p>
-</div>
-<div class="section" id="running-ibi">
+</section>
+<section id="running-ibi">
 <h3>Running IBI<a class="headerlink" href="#running-ibi" title="Permalink to this headline">¶</a></h3>
 <p>Now switch to the folder: <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/ibi/</span></code>. Reduce the number
 of MD steps in <code class="docutils literal notranslate"><span class="pre">grompp.mdp</span></code> and adjust the equilibration time in the
@@ -349,9 +350,9 @@ the CG simulation is significantly too high. This can be adjusted by
 applying a pressure correction. To do so, add an appropriate post update
 option to the settings file, so that a (simple) pressure correction is
 applied. You can check the corresponding section of the manual.</p>
-</div>
-</div>
-<div class="section" id="inverse-monte-carlo-imc-for-spc-e-water">
+</section>
+</section>
+<section id="inverse-monte-carlo-imc-for-spc-e-water">
 <h2>Inverse Monte Carlo (IMC) for SPC/E water<a class="headerlink" href="#inverse-monte-carlo-imc-for-spc-e-water" title="Permalink to this headline">¶</a></h2>
 <p>Developing a CG potential with the inverse Monte Carlo (IMC) method
 works in a similar way as in the IBI example. The IMC procedure, again,
@@ -375,8 +376,8 @@ compare it with the IBI tutorial. You can do this by copying the
 <code class="docutils literal notranslate"><span class="pre">Extract_Energies.sh</span></code> script from the main folder
 (<code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/ibi/</span></code>) to the appropriate step folder
 (<code class="docutils literal notranslate"><span class="pre">step_xxx</span></code>) and executing it.</p>
-</div>
-<div class="section" id="relative-entropy-re-minimization-for-spc-e-water">
+</section>
+<section id="relative-entropy-re-minimization-for-spc-e-water">
 <h2>Relative entropy (RE) minimization for SPC/E water<a class="headerlink" href="#relative-entropy-re-minimization-for-spc-e-water" title="Permalink to this headline">¶</a></h2>
 <p>Relative entropy (RE) minimization based coarse-graining of SPC/E water
 works similar to the IBI and the IMC example above. The reference
@@ -405,12 +406,12 @@ compare it with the IBI tutorial. Again, you can do this by copying the
 (<code class="docutils literal notranslate"><span class="pre">step_xxx</span></code>) and executing it. For a more detailed description of the
 RE method, look at the following
 <a class="reference external" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0131754">publication</a>.</p>
-</div>
-<div class="section" id="force-matching-for-spc-e-water">
+</section>
+<section id="force-matching-for-spc-e-water">
 <h2>Force matching for SPC/E water<a class="headerlink" href="#force-matching-for-spc-e-water" title="Permalink to this headline">¶</a></h2>
 <p>We will now derive a non-bonded CG potential for SPC/E using the force
 matching method.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Atomistic simulation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Basis for the force matching procedure is an atomistic MD simulation.
 All files are found in the atomistic folder
@@ -421,8 +422,8 @@ value (<code class="docutils literal notranslate"><span class="pre">5000-10000</
 of the trajectory. Make sure, both, coordinates and forces are written
 to the trajectory file (<code class="docutils literal notranslate"><span class="pre">nstxout</span></code> and <code class="docutils literal notranslate"><span class="pre">nstfout</span></code> should have the same
 value in <code class="docutils literal notranslate"><span class="pre">grompp.mdp</span></code>).</p>
-</div>
-<div class="section" id="force-matching-fm">
+</section>
+<section id="force-matching-fm">
 <h3>Force matching (FM)<a class="headerlink" href="#force-matching-fm" title="Permalink to this headline">¶</a></h3>
 <p>All files for running the actual force matching calculation can be found
 in <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/force_matching/</span></code>. Have a look at the settings
@@ -447,8 +448,8 @@ csg_call table linearop CG-CG.pot CG-CG.pot -1 <span class="m">0</span> <span cl
 </div>
 <p>Change the spline grid (<code class="docutils literal notranslate"><span class="pre">step</span></code>), blocksize, and parameter
 constrainedLS. his should provide an overview of the whole procedure.</p>
-</div>
-<div class="section" id="running-of-cg-simulation">
+</section>
+<section id="running-of-cg-simulation">
 <h3>Running of CG simulation<a class="headerlink" href="#running-of-cg-simulation" title="Permalink to this headline">¶</a></h3>
 <p>To run a CG simulation with GROMACS, the potential has to be converted
 to a potential table, GROMACS can read (<code class="docutils literal notranslate"><span class="pre">table_CG_CG.xvg</span></code>). (Check the
@@ -474,14 +475,14 @@ important but cannot be projected on a 2-body coarse-grained
 force-field. The incorporation of non-bonded 3-body interactions is work
 in progress. An extension to analytic non-bonded 3-body interactions
 will be released soon).</p>
-</div>
-</div>
-<div class="section" id="visualization-of-ibi-updates">
+</section>
+</section>
+<section id="visualization-of-ibi-updates">
 <h2>Visualization of IBI updates<a class="headerlink" href="#visualization-of-ibi-updates" title="Permalink to this headline">¶</a></h2>
 <p>Go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/realtime</span></code>. Execute the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code>
 script.</p>
-</div>
-<div class="section" id="coarse-graining-of-liquid-methanol">
+</section>
+<section id="coarse-graining-of-liquid-methanol">
 <h2>Coarse-graining of liquid methanol<a class="headerlink" href="#coarse-graining-of-liquid-methanol" title="Permalink to this headline">¶</a></h2>
 <p>In the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/methanol/</span></code>, you will find all relevant
 files to run an atomistic simulation of liquid methanol and obtain CG
@@ -492,14 +493,14 @@ and the atomistic simulation to the differences of the SPC/E water
 simulations. You will see that in the case of methanol, a pair potential
 is a better approximation to an ideal CG potential as in the SPC/E water
 case. The reason is that non-bonded 3-body effects are less important.</p>
-</div>
-<div class="section" id="coarse-graining-of-liquid-hexane">
+</section>
+<section id="coarse-graining-of-liquid-hexane">
 <h2>Coarse-graining of liquid hexane<a class="headerlink" href="#coarse-graining-of-liquid-hexane" title="Permalink to this headline">¶</a></h2>
 <p>Go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/</span></code>. So far, we only considered
 single bead mappings. Hexane is a small alkane molecule. In this
 tutorial, a 3 bead CG mapping with one bond type and one angle type is
 chosen</p>
-<div class="section" id="id2">
+<section id="id2">
 <h3>Atomistic simulation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Go into the <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/atomistic/</span></code> folder. Have a look at
 the mapping file <code class="docutils literal notranslate"><span class="pre">hexane.xml</span></code>. The hexane molecule is mapped to 3
@@ -516,8 +517,8 @@ to those in <code class="docutils literal notranslate"><span class="pre">csg-tut
 longer atomistic MD run. You can map the (final) .gro file of the
 atomistic simuation to the CG one to get all necessary information for
 running the IBI procedure.</p>
-</div>
-<div class="section" id="ibi-for-all-interactions">
+</section>
+<section id="ibi-for-all-interactions">
 <h3>IBI for all interactions<a class="headerlink" href="#ibi-for-all-interactions" title="Permalink to this headline">¶</a></h3>
 <p>Go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code>. The folder contains
 target RDFs and bond and angle distributions from a longer atomistic MD
@@ -533,8 +534,8 @@ Calculate the pressure after several iterations using <code class="docutils lite
 You can do this by copying the <code class="docutils literal notranslate"><span class="pre">Extract_Energies.sh</span></code> script from the
 main folder (<code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/ibi/</span></code>) to the appropriate step folder
 (<code class="docutils literal notranslate"><span class="pre">step_xxx</span></code>) and executing it.</p>
-</div>
-<div class="section" id="ibi-for-non-bonded-interactions-only">
+</section>
+<section id="ibi-for-non-bonded-interactions-only">
 <h3>IBI for non-bonded interactions only<a class="headerlink" href="#ibi-for-non-bonded-interactions-only" title="Permalink to this headline">¶</a></h3>
 <p>Go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_nonbonded</span></code>. The folder
 contains the same target RDFs as the <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code>
@@ -555,8 +556,8 @@ as well as the obtained non-bonded potentials with the ones of the
 distributions (This can be done with <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>, using the
 <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file and the <code class="docutils literal notranslate"><span class="pre">hexane_cg.xml</span></code> mapping file of the
 <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code> folder.)</p>
-</div>
-<div class="section" id="fm-for-all-interactions-together">
+</section>
+<section id="fm-for-all-interactions-together">
 <h3>FM for all interactions together<a class="headerlink" href="#fm-for-all-interactions-together" title="Permalink to this headline">¶</a></h3>
 <p>Go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/force_matching</span></code>. The folder
 contains the hexane mapping file with bond and angle interactions
@@ -576,8 +577,8 @@ the coarse-grained force field lacks essential interactions such as
 bond-angle or 3-body correlations. In such cases it can help to perform
 force matching only on the non-bonded contributions as was shown
 <a class="reference external" href="http://dx.doi.org/10.1002/mats.201100011">here</a>.</p>
-</div>
-<div class="section" id="fm-for-non-bonded-interactions-only">
+</section>
+<section id="fm-for-non-bonded-interactions-only">
 <h3>FM for non-bonded interactions only<a class="headerlink" href="#fm-for-non-bonded-interactions-only" title="Permalink to this headline">¶</a></h3>
 <p>The files for the tutorial can be found in
 <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/hybrid_force_matching/</span></code>. The folder should
@@ -605,9 +606,9 @@ simulation, using the <code class="docutils literal notranslate"><span class="pr
 and <code class="docutils literal notranslate"><span class="pre">table_a1.xvg</span></code>) from the <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_nonbonded/</span></code>
 folder. Calculate the RDFs, bond and angle distributions and compare the
 results to the IBI results and FM of all interactions together.</p>
-</div>
-</div>
-<div class="section" id="regularization-of-the-inverse-monte-carlo-method">
+</section>
+</section>
+<section id="regularization-of-the-inverse-monte-carlo-method">
 <h2>Regularization of the inverse Monte Carlo method<a class="headerlink" href="#regularization-of-the-inverse-monte-carlo-method" title="Permalink to this headline">¶</a></h2>
 <p>For this tutorial go to the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials/LJ1-LJ2/imc</span></code>.
 Inverse Monte Carlo (IMC) needs a well defined cross-correlation matrix
@@ -638,16 +639,16 @@ this decomposition one could get an educated guess on the order of the
 magnitude of the regularization parameter. It should be larger than the
 smallest singular values squared and smaller compared to the larger
 ones.</p>
-</div>
-<div class="section" id="additional-tutorials">
+</section>
+<section id="additional-tutorials">
 <h2>Additional tutorials<a class="headerlink" href="#additional-tutorials" title="Permalink to this headline">¶</a></h2>
 <p>Have a look in the folder <code class="docutils literal notranslate"><span class="pre">csg-tutorials</span></code>. It contains additional
 tutorials on propane, methanol-water and urea-water mixtures. To do the
 tutorials, have a look at the corresponding <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> scripts.</p>
-</div>
-<div class="section" id="advanced-topics">
+</section>
+<section id="advanced-topics">
 <h2>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="extending-the-scripting-framework">
+<section id="extending-the-scripting-framework">
 <h3>Extending the scripting framework<a class="headerlink" href="#extending-the-scripting-framework" title="Permalink to this headline">¶</a></h3>
 <p>Write a post update script, which smooths the tail of a potential by
 transforming <code class="docutils literal notranslate"><span class="pre">dU(r)</span></code> to <code class="docutils literal notranslate"><span class="pre">s(r)dU(r)</span></code> with</p>
@@ -658,15 +659,15 @@ transforming <code class="docutils literal notranslate"><span class="pre">dU(r)<
 </div>
 <p>Hints: Start from <code class="docutils literal notranslate"><span class="pre">skeleton.pl</span></code> and use <code class="docutils literal notranslate"><span class="pre">pressure_cor_simple.pl</span></code> as
 a template.</p>
-</div>
-<div class="section" id="writing-an-analysis-tool">
+</section>
+<section id="writing-an-analysis-tool">
 <h3>Writing an analysis tool<a class="headerlink" href="#writing-an-analysis-tool" title="Permalink to this headline">¶</a></h3>
 <p>VOTCA allows to write your own analysis code. There are many examples
 and two templates for serial and threaded analysis. If you are willing
 to learn how to write your own analysis in C++, ask for assistance.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
