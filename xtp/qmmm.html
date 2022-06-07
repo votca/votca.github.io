@@ -855,16 +855,25 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.id</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.tolerance_density_max</p></td>
+<td><p>5e-5</p></td>
+<td><div class="line-block">
+<div class="line">if Max difference of density matrix is below this value</div>
+<div class="line">it is considered converged</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
 <div class="line">be consecutive</div>
 </div>
 </td>
-<td><p>int+</p></td>
+<td><p>int</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.segments</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -875,12 +884,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.cutoff.radius</p></td>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.cutoff.geometry</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -889,7 +898,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.cutoff.region</p></td>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -898,7 +907,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.cutoff.explicit_segs</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>
@@ -908,16 +917,16 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.id</p></td>
+<tr class="row-even"><td><p>regions.polarregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
 <div class="line">be consecutive</div>
 </div>
 </td>
-<td><p>int+</p></td>
+<td><p>int</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.segments</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -928,12 +937,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.cutoff.radius</p></td>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.cutoff.geometry</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -942,7 +951,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.cutoff.region</p></td>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -951,7 +960,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.cutoff.explicit_segs</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>
@@ -961,7 +970,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.tolerance_energy</p></td>
+<tr class="row-even"><td><p>regions.polarregion.tolerance_energy</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
 <div class="line">if energy difference for this region is below this value</div>
@@ -970,7 +979,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.tolerance_dipole</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.tolerance_dipole</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
 <div class="line">convergence for interior iterations to converge polarisation</div>
@@ -979,26 +988,26 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.max_iter</p></td>
+<tr class="row-even"><td><p>regions.polarregion.max_iter</p></td>
 <td><p>500</p></td>
 <td><p>Maximum number of iterations for interior iteration</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.exp_damp</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.exp_damp</p></td>
 <td><p>0.39</p></td>
 <td><p>Thole sharpness parameter</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.id</p></td>
+<tr class="row-even"><td><p>regions.staticregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
 <div class="line">be consecutive</div>
 </div>
 </td>
-<td><p>int+</p></td>
+<td><p>int</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.segments</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -1009,12 +1018,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.cutoff.radius</p></td>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.cutoff.geometry</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -1023,7 +1032,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.cutoff.region</p></td>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -1032,7 +1041,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.cutoff.explicit_segs</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>

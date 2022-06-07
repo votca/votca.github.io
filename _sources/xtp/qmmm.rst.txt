@@ -473,11 +473,16 @@ The following table contains the defaults input options for the calculator, The 
      - | if RMS difference of density matrix is below this value
        | it is considered converged
      - float+
+   * - regions.qmregion.tolerance_density_max
+     - 5e-5
+     - | if Max difference of density matrix is below this value
+       | it is considered converged
+     - float+
    * - regions.qmregion.id
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must
        | be consecutive
-     - int+
+     - int
    * - regions.qmregion.segments
      - OPTIONAL
      - | List of segments to include in the region separated by
@@ -509,7 +514,7 @@ The following table contains the defaults input options for the calculator, The 
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must
        | be consecutive
-     - int+
+     - int
    * - regions.polarregion.segments
      - OPTIONAL
      - | List of segments to include in the region separated by
@@ -559,7 +564,7 @@ The following table contains the defaults input options for the calculator, The 
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must
        | be consecutive
-     - int+
+     - int
    * - regions.staticregion.segments
      - OPTIONAL
      - | List of segments to include in the region separated by
