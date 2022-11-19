@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Theoretical background &mdash; VOTCA 2023-dev documentation</title>
@@ -16,6 +16,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -156,9 +157,9 @@
 }
 </style>
 <section id="theoretical-background">
-<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h1>
+<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this heading">¶</a></h1>
 <section id="mapping">
-<span id="theory-mapping"></span><h2>Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h2>
+<span id="theory-mapping"></span><h2>Mapping<a class="headerlink" href="#mapping" title="Permalink to this heading">¶</a></h2>
 <p>The mapping is an operator that establishes a link between the atomistic
 and coarse-grained representations of the system. An atomistic system is
 described by specifying the values of the Cartesian coordinates and
@@ -168,7 +169,7 @@ momenta</p>
 \mathbf r^n &amp;= \{\mathbf r_1,\dots,\mathbf r_n\}, \\
 \mathbf p^n &amp;= \{\mathbf p_1,\dots,\mathbf p_n\}.
 \end{aligned}\end{split}\]</div>
-<p>of the <span class="math notranslate nohighlight">\(n\)</span> atoms in the system. <a class="footnote-reference brackets" href="#id5" id="id1">1</a> On a coarse-grained level,
+<p>of the <span class="math notranslate nohighlight">\(n\)</span> atoms in the system. <a class="footnote-reference brackets" href="#id5" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> On a coarse-grained level,
 the coordinates and momenta are specified by the positions and momenta
 of CG sites</p>
 <div class="math notranslate nohighlight">
@@ -221,14 +222,13 @@ by <a class="reference internal" href="bibliography.html#noid-2008-1" id="id4">
 mapping, then <span class="math notranslate nohighlight">\(c_{Ii} = \frac{m_i}{M_I}\)</span>, and the
 condition is automatically satisfied.</p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In what follows we adopt notations of ref. <a class="reference internal" href="bibliography.html#noid-2008-1" id="id6"><span>[Noid:2008.1]</span></a>.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In what follows we adopt notations of ref. <a class="reference internal" href="bibliography.html#noid-2008-1" id="id6"><span>[Noid:2008.1]</span></a>.</p>
+</aside>
 </section>
 <section id="boltzmann-inversion">
-<h2>Boltzmann inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this headline">¶</a></h2>
+<h2>Boltzmann inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
 <p>Boltzmann inversion is mostly used for <em>bonded</em> potentials, such as
 bonds, angles, and torsions <a class="reference internal" href="bibliography.html#tschoep-1998" id="id7"><span>[Tschoep:1998]</span></a>. Boltzmann
 inversion is structure-based and only requires positions of atoms.</p>
@@ -284,19 +284,18 @@ Hence, one has to carefully check whether this assumption holds in
 practice. This can be done by performing coarse-grained simulations and
 comparing cross-correlations for all pairs of degrees of freedom in
 atomistic and coarse-grained resolution, e. g. using a two-dimensional
-histogram, analogous to a Ramachandran plot.  <a class="footnote-reference brackets" href="#id9" id="id8">2</a></p>
+histogram, analogous to a Ramachandran plot.  <a class="footnote-reference brackets" href="#id9" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
-<dd><p>Checking the linear correlation coefficient does not guarantee
+<aside class="footnote brackets" id="id9" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">2</a><span class="fn-bracket">]</span></span>
+<p>Checking the linear correlation coefficient does not guarantee
 statistical independence of variables, for example
 <span class="math notranslate nohighlight">\(c(x, x^2)=0\)</span> if <span class="math notranslate nohighlight">\(x\)</span> has a symmetric probability density
 <span class="math notranslate nohighlight">\(P(x) = P(-x)\)</span>. This case is often encountered in systems used
 for coarse-graining.</p>
-</dd>
-</dl>
+</aside>
 <section id="separation-of-bonded-and-non-bonded-degrees-of-freedom">
-<h3>Separation of bonded and non-bonded degrees of freedom<a class="headerlink" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom" title="Permalink to this headline">¶</a></h3>
+<h3>Separation of bonded and non-bonded degrees of freedom<a class="headerlink" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom" title="Permalink to this heading">¶</a></h3>
 <p>When coarse-graining polymeric systems, it is convenient to treat bonded
 and non-bonded interactions separately <a class="reference internal" href="bibliography.html#tschoep-1998" id="id10"><span>[Tschoep:1998]</span></a>.
 In this case, sampling of the atomistic system shall be performed on a
@@ -314,7 +313,7 @@ contribute to the bonded interactions of the coarse-grained model.</p>
 </section>
 </section>
 <section id="iterative-methods">
-<span id="theory-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">¶</a></h2>
+<span id="theory-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this heading">¶</a></h2>
 <figure class="align-center" id="id29">
 <span id="theory-fig-iterative-simple"></span><img alt="../_images/iteration-scheme-simple.png" src="../_images/iteration-scheme-simple.png" />
 <figcaption>
@@ -334,7 +333,7 @@ update the potential, for instance Iterative Boltzmann Inversion (see
 a convergence criterion is satisfied.</p>
 </section>
 <section id="iterative-boltzmann-inversion">
-<span id="theory-iterative-boltzmann-inversion"></span><h2>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this headline">¶</a></h2>
+<span id="theory-iterative-boltzmann-inversion"></span><h2>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
 <p>Iterative Boltzmann inversion (IBI) is a natural extension of the
 Boltzmann inversion method. Since the goal of the coarse-grained model
 is to reproduce the distribution functions of the reference system as
@@ -364,7 +363,7 @@ issues as the inverse Boltzmann method, i. e. smoothing and
 extrapolation of the potential must be used.</p>
 </section>
 <section id="inverse-monte-carlo">
-<span id="theory-inverse-monte-carlo"></span><h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<span id="theory-inverse-monte-carlo"></span><h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this heading">¶</a></h2>
 <p>Inverse Monte Carlo (IMC) is an iterative scheme which additionally
 includes cross correlations of distributions. A detailed derivation of
 the IMCmethod can be found in ref. <a class="reference internal" href="bibliography.html#lyubartsev-1995" id="id12"><span>[Lyubartsev:1995]</span></a>.</p>
@@ -400,7 +399,7 @@ of particle pairs with interparticle distances
 <span class="math notranslate nohighlight">\(r_{ij} = r_{\alpha}\)</span> which correspond to the tabulated value of
 the potential <span class="math notranslate nohighlight">\(U_{\alpha}\)</span>.</p>
 <section id="regularization-of-inverse-monte-carlo">
-<h3>Regularization of Inverse Monte Carlo<a class="headerlink" href="#regularization-of-inverse-monte-carlo" title="Permalink to this headline">¶</a></h3>
+<h3>Regularization of Inverse Monte Carlo<a class="headerlink" href="#regularization-of-inverse-monte-carlo" title="Permalink to this heading">¶</a></h3>
 <p>To get a well defined cross correlation matrix,
 <span class="math notranslate nohighlight">\(A_{\alpha \gamma}\)</span>, enough sampling is needed. If there is not
 enough smapling or the initial potential guess is far from the real
@@ -413,7 +412,8 @@ follows:<a class="reference internal" href="bibliography.html#murtola-2007" id="
 \[\Delta U_\gamma = \arg \min \| A_{\alpha \gamma} \Delta U_\gamma - \left(\left&lt;S_{\alpha}\right&gt; - S_{\alpha}^{\text{ref}}\right) \|^2 + \lambda \| R \Delta U_{\gamma} \|^{2}\]</div>
 <p>This equation is known as Tikhonov regularization, where
 <span class="math notranslate nohighlight">\(R\)</span> is the regularization operator, which here is the identity
-matrix and <span class="math notranslate nohighlight">\(\lambda &gt;0 \)</span>lambda` can only be determined if the exact
+matrix and <span class="math notranslate nohighlight">\(\lambda &gt;0 ` is the regularization parameter. The
+optimal choice for :math:\)</span>lambda` can only be determined if the exact
 solution of the inverse problem is known, which in practice is not the
 case. To get a good initial guess on the magnitude of the regularization
 parameter a singular value decomposition of the matrix
@@ -423,7 +423,7 @@ small compared to the larger ones.[Rosenberger:2016]_</p>
 </section>
 </section>
 <section id="iterative-integral-equation-methods">
-<h2>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this headline">¶</a></h2>
+<h2>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this heading">¶</a></h2>
 <p>Iterative Integral Equation (IIE) methods are best compared to the IMC method.
 The main difference is that the Jacobian is not sampled from particle number
 fluctuations, but approximately infered from the RDFs. The connection of
@@ -462,7 +462,7 @@ l_\alpha = \frac{2}{3} \pi \rho^2 \frac{g_{\text{tgt},\alpha} + g_{\text{tgt},\a
 and <a class="reference internal" href="bibliography.html#bernhardt-2021" id="id15"><span>[Bernhardt:2021]</span></a>.</p>
 </section>
 <section id="force-matching">
-<h2>Force Matching<a class="headerlink" href="#force-matching" title="Permalink to this headline">¶</a></h2>
+<h2>Force Matching<a class="headerlink" href="#force-matching" title="Permalink to this heading">¶</a></h2>
 <p>Force matching (FM) is another approach to evaluate corse-grained
 potentials [Ercolessi:1994,Izvekov:2005,Noid:2007]_. In
 contrast to the structure-based approaches, its aim is not to reproduce
@@ -493,7 +493,8 @@ down <span class="math notranslate nohighlight">\(N \times L\)</span> equations<
 \[{{{{\mathbf F}}}}_{Il}^\text{cg}(g_1, \dots ,g_M)={{{\mathbf F}}}_{il}^\text{ref},\;
   I=1,\dots,N,\; l=1,\dots,L~.\]</div>
 <p>Here <span class="math notranslate nohighlight">\({{{{\mathbf F}}}}_{Il}^\text{ref}\)</span> is the force on
-the bead <span class="math notranslate nohighlight">\(I\)</span> and <span class="math notranslate nohighlight">\({{{{\mathbf F}}}}_{Il}^\text{cg} \)</span>
+the bead <span class="math notranslate nohighlight">\(I\)</span> and <span class="math notranslate nohighlight">\({{{{\mathbf F}}}}_{Il}^\text{cg} `
+is the coarse-grained representation of this force. The index :math:`l\)</span>
 enumerates snapshots picked for coarse-graining. By running the
 simulations long enough one can always ensure that
 <span class="math notranslate nohighlight">\(M &lt; N times L\)</span>. In this case the set of equations
@@ -512,7 +513,7 @@ one can split the trajectory into blocks, find the coarse-grained
 potential for each block and then perform averaging over all blocks.</p>
 </section>
 <section id="relative-entropy">
-<h2>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this headline">¶</a></h2>
+<h2>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this heading">¶</a></h2>
 <p>Relative entropy is a method which quantifies the extent of the
 configurational phase-space overlap between two molecular
 ensembles <a class="reference internal" href="bibliography.html#wu2005" id="id19"><span>[Wu2005]</span></a>. It can be used as a measure of the

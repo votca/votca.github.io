@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Methods &mdash; VOTCA 2023-dev documentation</title>
@@ -16,6 +16,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -166,9 +167,9 @@
 }
 </style>
 <section id="methods">
-<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h1>
 <section id="boltzmann-inversion">
-<h2>Boltzmann Inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this headline">¶</a></h2>
+<h2>Boltzmann Inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
 <p>provides a potential of mean force for a given degree of freedom.</p>
 <figure class="align-center" id="id9">
 <img alt="../_images/pre-iterative-method.png" src="../_images/pre-iterative-method.png" />
@@ -198,7 +199,7 @@ in <a class="reference internal" href="input_files.html#input-files-mapping-fil
 is possible to generate an exclusion list for the proper sampling of the
 atomistic resolution system.</p>
 <section id="generating-exclusion-lists">
-<span id="methods-exclusions"></span><h3>Generating exclusion lists<a class="headerlink" href="#generating-exclusion-lists" title="Permalink to this headline">¶</a></h3>
+<span id="methods-exclusions"></span><h3>Generating exclusion lists<a class="headerlink" href="#generating-exclusion-lists" title="Permalink to this heading">¶</a></h3>
 <p>Exclusion lists are useful when sampling from a special reference system
 is needed, for example for polymer coarse-graining with a separation of
 bonded and non-bonded degrees of freedom.</p>
@@ -227,7 +228,7 @@ follows</p>
 the GROMACS topology file.</p>
 </section>
 <section id="statistical-analysis">
-<h3>Statistical analysis<a class="headerlink" href="#statistical-analysis" title="Permalink to this headline">¶</a></h3>
+<h3>Statistical analysis<a class="headerlink" href="#statistical-analysis" title="Permalink to this heading">¶</a></h3>
 <p>For statistical analysis provides an interactive mode. To enter the
 interactive mode, use the <code class="docutils literal notranslate"><span class="pre">–trj</span></code> option followed by the file name of
 the reference trajectory</p>
@@ -269,7 +270,7 @@ redirects from the shell.</p>
 </pre></div>
 </div>
 <section id="distribution-functions-and-tabulated-potentials">
-<h4>Distribution functions and tabulated potentials<a class="headerlink" href="#distribution-functions-and-tabulated-potentials" title="Permalink to this headline">¶</a></h4>
+<h4>Distribution functions and tabulated potentials<a class="headerlink" href="#distribution-functions-and-tabulated-potentials" title="Permalink to this heading">¶</a></h4>
 <p>Distribution functions (tabulated potentials) can be created with the
 <code class="docutils literal notranslate"><span class="pre">hist</span></code> (<code class="docutils literal notranslate"><span class="pre">tab</span></code>) command. For instance, to write out the distribution
 function for all interactions of group AA-bond (where AA-bond is the
@@ -309,7 +310,7 @@ command <code class="docutils literal notranslate"><span class="pre">tab</span><
 <a class="reference internal" href="preparing.html#preparing"><span class="std std-ref">Preparing coarse-grained runs</span></a>.</p>
 </section>
 <section id="correlation-analysis">
-<h4>Correlation analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this headline">¶</a></h4>
+<h4>Correlation analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this heading">¶</a></h4>
 <p>The factorization of <span class="math notranslate nohighlight">\(P\)</span>, <a class="reference internal" href="theory.html#theory-eq-boltzmann-pmf"><span class="std std-ref">as shown in the theory
 section</span></a>, assumed uncorrelated quantities. VOTCA
 offers two ways to evaluate correlations of interactions. One option is to use
@@ -362,7 +363,7 @@ regions. Further processing of the potential is decribed in
 </section>
 </section>
 <section id="force-matching">
-<h2>Force matching<a class="headerlink" href="#force-matching" title="Permalink to this headline">¶</a></h2>
+<h2>Force matching<a class="headerlink" href="#force-matching" title="Permalink to this heading">¶</a></h2>
 <figure class="align-default" id="id12">
 <img alt="Flowchart to perform force matching." src="../_images/force-matching.png" />
 <figcaption>
@@ -373,7 +374,7 @@ regions. Further processing of the potential is decribed in
 the utility. A list of available options can be found in the reference
 section of (command <code class="docutils literal notranslate"><span class="pre">–h</span></code>).</p>
 <section id="program-input">
-<h3>Program input<a class="headerlink" href="#program-input" title="Permalink to this headline">¶</a></h3>
+<h3>Program input<a class="headerlink" href="#program-input" title="Permalink to this heading">¶</a></h3>
 <p>needs an atomistic reference run to perform coarse-graining. Therefore,
 the trajectory file <em>must contain forces</em> (note that there is a suitable
 option in the GROMACS <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file), otherwise will not be able to
@@ -416,7 +417,7 @@ using is recommended (see <a class="reference internal" href="input_files.html#i
 of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 </section>
 <section id="program-output">
-<h3>Program output<a class="headerlink" href="#program-output" title="Permalink to this headline">¶</a></h3>
+<h3>Program output<a class="headerlink" href="#program-output" title="Permalink to this heading">¶</a></h3>
 <p>produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file for each interaction, specified in
 the CG-options file (option <code class="docutils literal notranslate"><span class="pre">options</span></code>). These files have 4 columns
 containing distance, corresponding force, a table flag and the force
@@ -431,7 +432,7 @@ free to have a look at the output files and decide to stop , provided
 the force error is small enough.</p>
 </section>
 <section id="integration-and-extrapolation-of-force-files">
-<h3>Integration and extrapolation of .force files<a class="headerlink" href="#integration-and-extrapolation-of-force-files" title="Permalink to this headline">¶</a></h3>
+<h3>Integration and extrapolation of .force files<a class="headerlink" href="#integration-and-extrapolation-of-force-files" title="Permalink to this heading">¶</a></h3>
 <p>To convert forces (<code class="docutils literal notranslate"><span class="pre">.force</span></code>) to potentials (<code class="docutils literal notranslate"><span class="pre">.pot</span></code>), tables have to
 be integrated. To use the built-in integration command from the
 scripting framework, execute</p>
@@ -448,7 +449,7 @@ be refined by employing resampling or extrapolating methods. See
 </section>
 </section>
 <section id="iterative-methods">
-<span id="methods-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this headline">¶</a></h2>
+<span id="methods-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this heading">¶</a></h2>
 <p>The following sections deal with the Iterative Boltzmann Inversion (IBI)
 method, the Inverse Monte Carlo (IMC) method, the Iterative Integral Equation
 (IIE) method, and the Relative Entropy (RE) method.</p>
@@ -465,7 +466,7 @@ similar and thus described in a general section (see
 follows in the next chapters, in particular on the IBI, IMC, IIE, and RE
 methods.</p>
 <section id="iterative-workflow-control">
-<span id="methods-iterative-workflow"></span><h3>Iterative workflow control<a class="headerlink" href="#iterative-workflow-control" title="Permalink to this headline">¶</a></h3>
+<span id="methods-iterative-workflow"></span><h3>Iterative workflow control<a class="headerlink" href="#iterative-workflow-control" title="Permalink to this heading">¶</a></h3>
 <p>Iterative workflow control is essential for the IBI, IMC, IIE, and RE methods.</p>
 <figure class="align-default" id="id14">
 <span id="methods-fig-flowchart-iterative"></span><img alt="../_images/iteration-scheme.png" src="../_images/iteration-scheme.png" />
@@ -491,7 +492,7 @@ iterative process continues, the next iterative step will start to
 initialize.</p>
 </section>
 <section id="how-to-start">
-<h3>How to start:<a class="headerlink" href="#how-to-start" title="Permalink to this headline">¶</a></h3>
+<h3>How to start:<a class="headerlink" href="#how-to-start" title="Permalink to this heading">¶</a></h3>
 <p>The first thing to do is generate reference distribution functions.
 These might come from experiments or from atomistic simulations. To get
 reasonable results out of the iterative process, the reference
@@ -512,7 +513,7 @@ a look at one of the tutorials provided on .</p>
 <p>In what follows we describe how to set up the iterative coarse-graining,
 run the main script, continue the run, and add customized scripts.</p>
 <section id="preparing-the-run">
-<span id="methods-preparing-the-run"></span><h4>Preparing the run<a class="headerlink" href="#preparing-the-run" title="Permalink to this headline">¶</a></h4>
+<span id="methods-preparing-the-run"></span><h4>Preparing the run<a class="headerlink" href="#preparing-the-run" title="Permalink to this heading">¶</a></h4>
 <p>To start the first iteration, one has to prepare the input for the
 sampling program. This means that all files for running a coarse-grained
 simulation must be present and described in a separate XMLfile, in our
@@ -580,7 +581,7 @@ description of all options in <a class="reference internal" href="reference.html
 </div>
 </section>
 <section id="starting-the-iterative-process">
-<h4>Starting the iterative process<a class="headerlink" href="#starting-the-iterative-process" title="Permalink to this headline">¶</a></h4>
+<h4>Starting the iterative process<a class="headerlink" href="#starting-the-iterative-process" title="Permalink to this heading">¶</a></h4>
 <p>After all input files have been set up, the run can be started by</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse --options settings.xml
 </pre></div>
@@ -613,10 +614,6 @@ the <code class="docutils literal notranslate"><span class="pre">post_add</span>
 except for a potential instead of an update.</p>
 <p>To summarize, we list all standard output files for each iterative step:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 76%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.dist.new</span></code></p></td>
 <td><p>distribution functions of the current step</p></td>
@@ -646,7 +643,7 @@ found in the log file. The name of the log file is specified in the
 steering XMLfile.</p>
 </section>
 <section id="restarting-and-continuing">
-<h4>Restarting and continuing<a class="headerlink" href="#restarting-and-continuing" title="Permalink to this headline">¶</a></h4>
+<h4>Restarting and continuing<a class="headerlink" href="#restarting-and-continuing" title="Permalink to this heading">¶</a></h4>
 <p>The interrupted or finished iterative process can be restarted either by
 extending a finished run or by restarting the interrupted run. When the
 script is called, it automatically checks for a file called <code class="docutils literal notranslate"><span class="pre">done</span></code> in
@@ -670,9 +667,9 @@ been successfully finished.</p>
 </section>
 </section>
 <section id="iterative-boltzmann-inversion">
-<h3>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this headline">¶</a></h3>
+<h3>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this heading">¶</a></h3>
 <section id="input-preparation">
-<h4>Input preparation<a class="headerlink" href="#input-preparation" title="Permalink to this headline">¶</a></h4>
+<h4>Input preparation<a class="headerlink" href="#input-preparation" title="Permalink to this heading">¶</a></h4>
 <p>This section describes the usage of IBI, implemented within the scripting
 framework described in <a class="reference internal" href="#methods-iterative-workflow"><span class="std std-ref">Iterative workflow control</span></a>. It is suggested to
 get a basic understanding of this framework before proceeding.</p>
@@ -689,13 +686,13 @@ get a basic understanding of this framework before proceeding.</p>
 </section>
 </section>
 <section id="inverse-monte-carlo">
-<span id="methods-inverse-monte-carlo"></span><h3>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this headline">¶</a></h3>
+<span id="methods-inverse-monte-carlo"></span><h3>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this heading">¶</a></h3>
 <p>In this section, additional options are described to run IMC coarse graining.
 The usage of IMC is similar to that of IBI, hence, understanding the scripting
 framework described above is also necessary.</p>
 <p><strong>WARNING: multicomponent IMC is still experimental!</strong></p>
 <section id="general-considerations">
-<h4>General considerations<a class="headerlink" href="#general-considerations" title="Permalink to this headline">¶</a></h4>
+<h4>General considerations<a class="headerlink" href="#general-considerations" title="Permalink to this heading">¶</a></h4>
 <p>In comparison to IBI, IMC needs significantly more statistics to
 calculate the potential update[Ruehle:2009.a]_. It is
 advisable to perform smoothing on the potential update. Smoothing can be
@@ -707,7 +704,7 @@ necessary to check that the system size is sufficiently large and that
 runlength csg smoothing iterations are well balanced.</p>
 </section>
 <section id="correlation-groups">
-<h4>Correlation groups<a class="headerlink" href="#correlation-groups" title="Permalink to this headline">¶</a></h4>
+<h4>Correlation groups<a class="headerlink" href="#correlation-groups" title="Permalink to this heading">¶</a></h4>
 <p>Unlike IBI, IMC also takes cross-correlations of interactions into account in
 order to calculate the update. However, it might not always be beneficial to
 evaluate cross-correlations of all pairs of interactions. By specifying
@@ -727,7 +724,7 @@ account. <code class="docutils literal notranslate"><span class="pre">group</spa
 </div>
 </section>
 <section id="regularization">
-<h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h4>
+<h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">¶</a></h4>
 <p>To use the regularized version of IMC a <span class="math notranslate nohighlight">\(\lambda\)</span> value <span class="math notranslate nohighlight">\(&gt;0\)</span>
 has to be set with <code class="docutils literal notranslate"><span class="pre">imc.groupname.reg</span></code>. If set to <span class="math notranslate nohighlight">\(0\)</span> (default value) the
 unregularized version of IMC is applied.</p>
@@ -743,7 +740,7 @@ unregularized version of IMC is applied.</p>
 </div>
 </section>
 <section id="internal-degrees-of-freedom">
-<h4>Internal degrees of freedom<a class="headerlink" href="#internal-degrees-of-freedom" title="Permalink to this headline">¶</a></h4>
+<h4>Internal degrees of freedom<a class="headerlink" href="#internal-degrees-of-freedom" title="Permalink to this heading">¶</a></h4>
 <p>For internal degrees of freedom, one can apply the IBI method as a post update
 method.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
@@ -758,11 +755,11 @@ method.</p>
 </section>
 </section>
 <section id="iterative-integral-equation-methods">
-<h3>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this headline">¶</a></h3>
+<h3>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this heading">¶</a></h3>
 <p>In this section, we describe some options that are relevant only to IIE
 methods.</p>
 <section id="id3">
-<h4>General considerations<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>General considerations<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
 <p>In comparison to IBI, IIE methods need RDF information on a longer range than
 the cut-off. This means one needs a sufficiently large box or one can try the
 RDF extension method.</p>
@@ -770,7 +767,7 @@ RDF extension method.</p>
 for molecular CG representations.</p>
 </section>
 <section id="closure-and-optimization-method">
-<h4>Closure and optimization method<a class="headerlink" href="#closure-and-optimization-method" title="Permalink to this headline">¶</a></h4>
+<h4>Closure and optimization method<a class="headerlink" href="#closure-and-optimization-method" title="Permalink to this heading">¶</a></h4>
 <p>The initial guess can be table, Boltzmann Inversion (BI), or integral equation
 (IE). Three optimization methods are implemented: Newton, Newton-mod, and
 Gauss-Newton. The former two are very similar. With the latter constraints can
@@ -792,7 +789,7 @@ Percus-Yevick (PY). The options in the xml file have to be lowercase.</p>
 </div>
 </section>
 <section id="pressure-constraint">
-<h4>Pressure constraint<a class="headerlink" href="#pressure-constraint" title="Permalink to this headline">¶</a></h4>
+<h4>Pressure constraint<a class="headerlink" href="#pressure-constraint" title="Permalink to this heading">¶</a></h4>
 <p>When using the Gauss-Newton method one can impose a pressure constraint (in
 bar). This can lead to instabilities in the core region of the potential and
 make an extrapolation necessary. There is also an option to fix steps near the
@@ -811,7 +808,7 @@ cut-off.</p>
 </div>
 </section>
 <section id="other-options">
-<h4>Other options<a class="headerlink" href="#other-options" title="Permalink to this headline">¶</a></h4>
+<h4>Other options<a class="headerlink" href="#other-options" title="Permalink to this heading">¶</a></h4>
 <p>One can set a a cut-off for the potential, which can (and should) be lower than
 the range of the RDF. Number densities of the CG beads have to be provided. The
 RDF can be extrapolated by a built-in algorithm but the result should be
@@ -834,7 +831,7 @@ beads per molecule has to be provided.</p>
 </section>
 </section>
 <section id="relative-entropy">
-<h3>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this headline">¶</a></h3>
+<h3>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this heading">¶</a></h3>
 <p>In this section, additional options are described to run RE coarse
 graining. The usage of RE is similar to that of IBI and IMC and
 understanding the use of the scripting framework described in
@@ -843,7 +840,7 @@ understanding the use of the scripting framework described in
 pair interactions. Support for bonded and N-body interactions is
 possible by further extension of RE implementation.</p>
 <section id="potential-function-and-parameters">
-<h4>Potential function and parameters<a class="headerlink" href="#potential-function-and-parameters" title="Permalink to this headline">¶</a></h4>
+<h4>Potential function and parameters<a class="headerlink" href="#potential-function-and-parameters" title="Permalink to this heading">¶</a></h4>
 <p>In RE, CG potentials are modeled using analytical functional forms.
 Therefore, for each CG interaction, an analytical functional must be
 specified in the XMLsetting file as</p>
@@ -899,7 +896,7 @@ characteristics of pair potentials for sufficiently large number of
 knots.</p>
 </section>
 <section id="update-scaling-parameter">
-<h4>Update scaling parameter<a class="headerlink" href="#update-scaling-parameter" title="Permalink to this headline">¶</a></h4>
+<h4>Update scaling parameter<a class="headerlink" href="#update-scaling-parameter" title="Permalink to this heading">¶</a></h4>
 <p>Depending on the quality of the initial guess and sensitivity of the CG
 system to the CG parameters, scaling of the parameter update size may be
 required to ensure the stability and convergence of the RE minimization.
@@ -907,7 +904,7 @@ The scaling parameter, <span class="math notranslate nohighlight">\(\chi\in(0...
 the XMLsettings file.</p>
 </section>
 <section id="statistical-averaging-of-parameters">
-<h4>Statistical averaging of parameters<a class="headerlink" href="#statistical-averaging-of-parameters" title="Permalink to this headline">¶</a></h4>
+<h4>Statistical averaging of parameters<a class="headerlink" href="#statistical-averaging-of-parameters" title="Permalink to this heading">¶</a></h4>
 <p>Due to stochastic nature of the CG simulations, near convergence, the CG
 potential paramters may fluctuate around the mean converged values.
 Therefore, the optimal CG parameters can be estimated by averaging over
@@ -916,7 +913,7 @@ should be specified in the <code class="docutils literal notranslate"><span clas
 file.</p>
 </section>
 <section id="id4">
-<h4>General considerations<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h4>General considerations<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
 <p>To ensure the stability of the relative entropy minimization, some
 precautionary measures are taken. For the Newton-Raphson update to
 converge towards a minimum, the Hessian, <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>, must be
@@ -949,7 +946,7 @@ zero.</p>
 </section>
 </section>
 <section id="pressure-correction">
-<h3>Pressure correction<a class="headerlink" href="#pressure-correction" title="Permalink to this headline">¶</a></h3>
+<h3>Pressure correction<a class="headerlink" href="#pressure-correction" title="Permalink to this heading">¶</a></h3>
 <p>The pressure of the coarse-grained system usually does not match the
 pressure of the full atomistic system. This is because iterative
 Boltzmann inversion only targets structural properties but not
@@ -959,7 +956,7 @@ used based on small modifications of the potential. The correction can
 be enable by adding pressure to the list of scripts. The type of
 pressure correction is selected by setting .</p>
 <section id="simple-pressure-correction">
-<h4>Simple pressure correction<a class="headerlink" href="#simple-pressure-correction" title="Permalink to this headline">¶</a></h4>
+<h4>Simple pressure correction<a class="headerlink" href="#simple-pressure-correction" title="Permalink to this heading">¶</a></h4>
 <p>In ref.[Reith:2003]_ a simple linear attractive
 potential was added to the coarse-grained potential</p>
 <div class="math notranslate nohighlight">
@@ -988,7 +985,7 @@ pressure it can become necessary to tune the scaling factor <span class="math no
 during the iterative process.</p>
 </section>
 <section id="advanced-pressure-correction">
-<h4>Advanced pressure correction<a class="headerlink" href="#advanced-pressure-correction" title="Permalink to this headline">¶</a></h4>
+<h4>Advanced pressure correction<a class="headerlink" href="#advanced-pressure-correction" title="Permalink to this heading">¶</a></h4>
 <p>In <a class="reference internal" href="bibliography.html#wang-2009" id="id5"><span>[Wang:2009]</span></a> a pressure correction based on the
 virial expression of the pressure was introduced. The potential term
 remains as in the simple form while a different sturcture of the
@@ -1000,7 +997,7 @@ input parameter, which is added as in the input file.</p>
 </section>
 </section>
 <section id="kirkwood-buff-correction">
-<h3>Kirkwood-Buff correction<a class="headerlink" href="#kirkwood-buff-correction" title="Permalink to this headline">¶</a></h3>
+<h3>Kirkwood-Buff correction<a class="headerlink" href="#kirkwood-buff-correction" title="Permalink to this heading">¶</a></h3>
 <p>In order to reproduce the exact Kirkwood-Buff ingetrals (KBIs), an
 correction term can be added into the coarse-grained
 potential <a class="reference internal" href="bibliography.html#ganguly-2012" id="id6"><span>[Ganguly:2012]</span></a>,</p>
@@ -1041,7 +1038,7 @@ iteraction without doing potential update</p>
 used to calculate the average of <span class="math notranslate nohighlight">\(G_{ij}(R)\)</span>.</p>
 </section>
 <section id="runtime-optimization">
-<span id="methods-runtime-optimizations"></span><h3>Runtime optimization<a class="headerlink" href="#runtime-optimization" title="Permalink to this headline">¶</a></h3>
+<span id="methods-runtime-optimizations"></span><h3>Runtime optimization<a class="headerlink" href="#runtime-optimization" title="Permalink to this heading">¶</a></h3>
 <p>Most time per iteration is spent on running the coarse-grained system
 and on calculating the statistics. To get a feeling on how much
 statistics is needed, it is recommended to plot the distribution
@@ -1071,7 +1068,7 @@ script and can be enabled by adding</p>
 <p>to the inverse section of an interaction in the settings XMLfile.</p>
 </section>
 <section id="coordination-iterative-boltzmann-inversion">
-<h3>Coordination Iterative Boltzmann Inversion<a class="headerlink" href="#coordination-iterative-boltzmann-inversion" title="Permalink to this headline">¶</a></h3>
+<h3>Coordination Iterative Boltzmann Inversion<a class="headerlink" href="#coordination-iterative-boltzmann-inversion" title="Permalink to this heading">¶</a></h3>
 <p>The method <span class="math notranslate nohighlight">\(\mathcal{C}-\)</span>IBI (Coordination Iterative Boltzmann
 Inversion) uses pair-wise cumulative coordination as a target function
 within an iterative Boltzmann inversion. This method reproduces

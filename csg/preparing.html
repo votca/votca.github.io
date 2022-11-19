@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Preparing coarse-grained runs &mdash; VOTCA 2023-dev documentation</title>
@@ -16,6 +16,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -155,9 +156,9 @@
 }
 </style>
 <section id="preparing-coarse-grained-runs">
-<span id="preparing"></span><h1>Preparing coarse-grained runs<a class="headerlink" href="#preparing-coarse-grained-runs" title="Permalink to this headline">¶</a></h1>
+<span id="preparing"></span><h1>Preparing coarse-grained runs<a class="headerlink" href="#preparing-coarse-grained-runs" title="Permalink to this heading">¶</a></h1>
 <section id="preliminary-note">
-<h2>Preliminary note<a class="headerlink" href="#preliminary-note" title="Permalink to this headline">¶</a></h2>
+<h2>Preliminary note<a class="headerlink" href="#preliminary-note" title="Permalink to this heading">¶</a></h2>
 <p>The coarse-grained run requires the molecule topology on the one hand
 and suitable potentials on the other. In this chapter, the generation of
 coarse-grained runs is described next, followed by a post-processing of
@@ -170,7 +171,7 @@ potential. Nevertheless, special attention should be paid to units
 MD package used for simulation. However, most potentials don’t allow an
 easy processing of this kind and tabulated potentials have to be used.</p>
 <section id="generating-a-topology-file-for-a-coarse-grained-run">
-<h3>Generating a topology file for a coarse-grained run<a class="headerlink" href="#generating-a-topology-file-for-a-coarse-grained-run" title="Permalink to this headline">¶</a></h3>
+<h3>Generating a topology file for a coarse-grained run<a class="headerlink" href="#generating-a-topology-file-for-a-coarse-grained-run" title="Permalink to this heading">¶</a></h3>
 <p><strong>WARNING: This section describes experimental features. The exact names and options of the program might change in the near future. The section is specific to GROMACS support though a generalization for other MD packages is planned.</strong></p>
 <p>The mapping definition is close to a topology needed for a coarse
 grained run. To avoid redundant work, can be used to automatically
@@ -189,7 +190,7 @@ the force field definitions (atom types, bond types, etc.) still have to
 be added manually.</p>
 </section>
 <section id="post-processing-of-the-potential">
-<span id="preparing-post-processing-of-the-potential"></span><h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Permalink to this headline">¶</a></h3>
+<span id="preparing-post-processing-of-the-potential"></span><h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Permalink to this heading">¶</a></h3>
 <p>The VOTCA package provides a collection of scripts to handle potentials.
 They can be modified, refined, integrated or inter- and extrapolated.
 These scripts are the same ones as those used for iterative methods in
@@ -207,7 +208,7 @@ format ()</p></li>
 </section>
 </section>
 <section id="clipping-of-poorly-sampled-regions">
-<h2>Clipping of poorly sampled regions<a class="headerlink" href="#clipping-of-poorly-sampled-regions" title="Permalink to this headline">¶</a></h2>
+<h2>Clipping of poorly sampled regions<a class="headerlink" href="#clipping-of-poorly-sampled-regions" title="Permalink to this heading">¶</a></h2>
 <p>Regions with an irregular distribution of samples should be deleted
 first. This is simply done by editing the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file and by deleting
 those values.</p>
@@ -217,7 +218,7 @@ bad parts by hand to <code class="docutils literal notranslate"><span class="pre
 later be extrapolated and overwritten.</p>
 </section>
 <section id="resampling">
-<h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h2>
+<h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this heading">¶</a></h2>
 <p>Use the command</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_resample --in table.pot --out table_resample.pot <span class="se">\</span>
              --grid min:step:max
@@ -239,7 +240,7 @@ covered in the file are automatically marked by a flag <code class="docutils lit
 script (to xvg) automatically.</p>
 </section>
 <section id="extrapolation">
-<h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Permalink to this headline">¶</a></h2>
+<h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Permalink to this heading">¶</a></h2>
 <p>The following line</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table extrapolate <span class="o">[</span>options<span class="o">]</span> table_resample.pot <span class="se">\</span>
          table_extrapolate.pot
@@ -262,7 +263,7 @@ dynamics package, the potential has to be converted and exported to a
 suitable GROMACS format as described in the final step.</p>
 </section>
 <section id="exporting-the-table">
-<h2>Exporting the table<a class="headerlink" href="#exporting-the-table" title="Permalink to this headline">¶</a></h2>
+<h2>Exporting the table<a class="headerlink" href="#exporting-the-table" title="Permalink to this heading">¶</a></h2>
 <p>Finally, the table is exported to <code class="docutils literal notranslate"><span class="pre">xvg</span></code>. The conversion procedure
 requires a small xml file <code class="docutils literal notranslate"><span class="pre">table.xml</span></code> as shown below:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
@@ -321,7 +322,7 @@ non-bonded interactions or zero at the minimum for bonded interaction</p></li>
 </ul>
 </section>
 <section id="an-example-on-non-bonded-interactions">
-<h2>An example on non-bonded interactions<a class="headerlink" href="#an-example-on-non-bonded-interactions" title="Permalink to this headline">¶</a></h2>
+<h2>An example on non-bonded interactions<a class="headerlink" href="#an-example-on-non-bonded-interactions" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call pot shift_nonbonded table.pot table.pot.refined
 csg_resample --grid <span class="m">0</span>.3:0.05:2 --in table.pot.refined <span class="se">\</span>
          --out table.pot.refined
@@ -332,7 +333,7 @@ csg_call table extrapolate --function constant --region right <span class="se">\
 </pre></div>
 </div>
 <section id="alternatives">
-<h3>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h3>
+<h3>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this heading">¶</a></h3>
 <p>Additionally to the two methods described above, namely (a) providing
 the MD package directly with a functional form fitted with a program of
 choice or (b) using <code class="docutils literal notranslate"><span class="pre">csg_resample</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">table</span> <span class="pre">extrapolate</span></code> and

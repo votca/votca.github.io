@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Input files &mdash; VOTCA 2023-dev documentation</title>
@@ -16,6 +16,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -148,9 +149,9 @@
 }
 </style>
 <section id="input-files">
-<span id="id1"></span><h1>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Input files<a class="headerlink" href="#input-files" title="Permalink to this heading">¶</a></h1>
 <section id="mapping-files">
-<span id="input-files-mapping-files"></span><h2>Mapping files<a class="headerlink" href="#mapping-files" title="Permalink to this headline">¶</a></h2>
+<span id="input-files-mapping-files"></span><h2>Mapping files<a class="headerlink" href="#mapping-files" title="Permalink to this heading">¶</a></h2>
 <p>Mapping relates atomistic and coarse-grained representations of the
 system. It is organized as follows: for each molecule <em>type</em> a mapping
 file is created. When used as a command option, these files are combined
@@ -196,7 +197,7 @@ of the atoms in the topology section. In particular, the number of
 weights given should match the number of beads.</p>
 </section>
 <section id="verification-of-a-mapping">
-<h2>Verification of a mapping<a class="headerlink" href="#verification-of-a-mapping" title="Permalink to this headline">¶</a></h2>
+<h2>Verification of a mapping<a class="headerlink" href="#verification-of-a-mapping" title="Permalink to this heading">¶</a></h2>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">ident</span></code> tag should match the molecule name in the reference
 system. A common mistake occurs when beads have wrong names. In this case,
 the tool <code class="docutils literal notranslate"><span class="pre">csg_dump</span></code> can be used in order to identify the atoms which are read in
@@ -257,7 +258,7 @@ the atomistic run has to be removed using the <code class="docutils literal notr
 </div>
 </section>
 <section id="advanced-topology-handling">
-<span id="input-files-advanced-topology-handling"></span><h2>Advanced topology handling<a class="headerlink" href="#advanced-topology-handling" title="Permalink to this headline">¶</a></h2>
+<span id="input-files-advanced-topology-handling"></span><h2>Advanced topology handling<a class="headerlink" href="#advanced-topology-handling" title="Permalink to this heading">¶</a></h2>
 <p>A topology is completely specified by a set of beads, their types, and a
 list of bonded interactions. VOTCA is able to read topologies in the
 GROMACS<code class="docutils literal notranslate"><span class="pre">.tpr</span></code> format. For example, one can create a coarse-grained
@@ -365,7 +366,7 @@ of <code class="docutils literal notranslate"><span class="pre">bead</span></cod
 <a class="reference internal" href="reference.html#reference-topology-file"><span class="std std-ref">Topology file</span></a>.</p>
 </section>
 <section id="trajectories">
-<span id="input-files-trajectories"></span><h2>Trajectories<a class="headerlink" href="#trajectories" title="Permalink to this headline">¶</a></h2>
+<span id="input-files-trajectories"></span><h2>Trajectories<a class="headerlink" href="#trajectories" title="Permalink to this heading">¶</a></h2>
 <p>A trajectory is a set of frames containing coordinates (velocities and
 forces) for the beads defined in the topology. VOTCA currently supports
 <code class="docutils literal notranslate"><span class="pre">.trr</span></code>, <code class="docutils literal notranslate"><span class="pre">.xtc</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> and H5MD <code class="docutils literal notranslate"><span class="pre">.h5</span></code> trajectory
@@ -387,7 +388,7 @@ mapping (such as , use <code class="docutils literal notranslate"><span class="p
 mapping disabled by default (e.g. , use <code class="docutils literal notranslate"><span class="pre">—cg</span></code> to enable mapping).</p>
 </section>
 <section id="setting-files">
-<span id="input-files-setting-files"></span><h2>Setting files<a class="headerlink" href="#setting-files" title="Permalink to this headline">¶</a></h2>
+<span id="input-files-setting-files"></span><h2>Setting files<a class="headerlink" href="#setting-files" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
   <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
     <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
@@ -420,7 +421,7 @@ distribution functions and analysing them. As an example, the command</p>
 <code class="docutils literal notranslate"><span class="pre">interaction</span> <span class="pre">name.dist.new</span></code>.</p>
 </section>
 <section id="table-formats">
-<span id="input-files-table-formats"></span><h2>Table formats<a class="headerlink" href="#table-formats" title="Permalink to this headline">¶</a></h2>
+<span id="input-files-table-formats"></span><h2>Table formats<a class="headerlink" href="#table-formats" title="Permalink to this heading">¶</a></h2>
 <p>In the iterative framework distribution functions, potentials and forces
 are returned as tables and saved in a file. Those tables generally have
 the format</p>

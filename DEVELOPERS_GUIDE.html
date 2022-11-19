@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Developer and Contributor Guide &mdash; VOTCA 2023-dev documentation</title>
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -163,7 +164,7 @@
 }
 </style>
 <section id="developer-and-contributor-guide">
-<h1>Developer and Contributor Guide<a class="headerlink" href="#developer-and-contributor-guide" title="Permalink to this headline">¶</a></h1>
+<h1>Developer and Contributor Guide<a class="headerlink" href="#developer-and-contributor-guide" title="Permalink to this heading">¶</a></h1>
 <p>This page is designed to give new developers general guidelines for
 implementing code consistent with the VOTCA and cpp style and standard.</p>
 <ul class="simple">
@@ -178,7 +179,7 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
 </ul>
 <section id="reporting-bugs">
-<h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
+<h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this heading">¶</a></h2>
 <p>To report a bug, please create an issue on the appropriate GitHub repo.
 Please be sure to provide as much information as possible such as:</p>
 <ul class="simple">
@@ -191,25 +192,25 @@ Please be sure to provide as much information as possible such as:</p>
 <p>Issues can be directly created on the <a class="reference external" href="https://github.com/votca/votca/issues">GitHub repo</a>.</p>
 </section>
 <section id="formatting-code">
-<h2>Formatting code<a class="headerlink" href="#formatting-code" title="Permalink to this headline">¶</a></h2>
+<h2>Formatting code<a class="headerlink" href="#formatting-code" title="Permalink to this heading">¶</a></h2>
 <p>VOTCA uses <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to format the code, code that is not
 properly formatted is automatically rejected. The style files can be
 found in each repo. CMake provides a format target which you can run to format your code.
 The easiest way to format your code is just a <code class="docutils literal notranslate"><span class="pre">&#64;votca-bot</span> <span class="pre">format</span></code> comment in the PR, which then will automatically format your code.</p>
 </section>
 <section id="doxygen-documentation">
-<h2>Doxygen documentation<a class="headerlink" href="#doxygen-documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Doxygen documentation<a class="headerlink" href="#doxygen-documentation" title="Permalink to this heading">¶</a></h2>
 <p>A complete overview of all C++ classes and code can be found on <a class="reference external" href="https://doc.votca.org/">https://doc.votca.org/</a>.</p>
 </section>
 <section id="votca-dev-tools">
-<h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this headline">¶</a></h2>
+<h2>VOTCA dev-tools<a class="headerlink" href="#votca-dev-tools" title="Permalink to this heading">¶</a></h2>
 <p>Running clang-format on every commit can be a drag, as can changing the
 copyright in every header. Fortunately, you will find small scripts in the
 <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools repo</a>, which can
 automate this.</p>
 </section>
 <section id="votca-continuous-integration-github-actions">
-<h2>VOTCA Continuous Integration (GitHub Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this headline">¶</a></h2>
+<h2>VOTCA Continuous Integration (GitHub Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Permalink to this heading">¶</a></h2>
 <p>Each pull request to master in the votca repository
 is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">GitHub actions</a></p>
 <p>VOTCA can be built on various linux distributions, which are not all natively supported by GitHub actions. For non natively supported distributions,
@@ -219,13 +220,13 @@ The actual containers used for running the test builds are built on top of the <
 <p>More information can be found in the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">GitHub workflow files</a>.</p>
 </section>
 <section id="making-a-release">
-<h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
+<h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this heading">¶</a></h2>
 <p>Similar to the VOTCA containers, releases are also handled by GitHub actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">this GitHub Action</a>. The release can only be made from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
 <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag.</p>
 <section id="major-releases">
-<h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this headline">¶</a></h3>
+<h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this heading">¶</a></h3>
 <p>In preparation for a major (not minor!) release the following additional steps need to be done:</p>
 <ul>
 <li><p>Create a new branch from the master branch of the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository, e.g. <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code>.</p>
@@ -239,7 +240,7 @@ git merge master
 </ul>
 </section>
 <section id="release-names">
-<h3>Release names<a class="headerlink" href="#release-names" title="Permalink to this headline">¶</a></h3>
+<h3>Release names<a class="headerlink" href="#release-names" title="Permalink to this heading">¶</a></h3>
 <p>Some releases have names, so far we have:</p>
 <ul class="simple">
 <li><p>1.1: SuperAnn - named after the spouse of a core developer</p></li>
@@ -253,7 +254,7 @@ git merge master
 </section>
 </section>
 <section id="cpp-resources">
-<h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this headline">¶</a></h2>
+<h2>CPP Resources<a class="headerlink" href="#cpp-resources" title="Permalink to this heading">¶</a></h2>
 <p>A good starting point, is to take a look at the cpp standard. Though the
 code has not always consistently followed the cpp standard we now make
 an effort to really enforce it and follow best practices.</p>
@@ -265,17 +266,17 @@ Practices2</a></p></li>
 </ul>
 </section>
 <section id="cpp-coding-rules">
-<h2>CPP Coding Rules<a class="headerlink" href="#cpp-coding-rules" title="Permalink to this headline">¶</a></h2>
+<h2>CPP Coding Rules<a class="headerlink" href="#cpp-coding-rules" title="Permalink to this heading">¶</a></h2>
 <p>Here are a few general rules that should be followed:</p>
 <section id="files">
-<h3>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<h3>Files<a class="headerlink" href="#files" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Each class goes into a separate file.</p></li>
 <li><p>Each filename should be the the name of the class it contains written in lowercase.</p></li>
 </ul>
 </section>
 <section id="includes">
-<h3>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h3>
+<h3>Includes<a class="headerlink" href="#includes" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>When including a header file from within the same repo that you are
 working use the relative includes. This consists of using quotation
@@ -290,7 +291,7 @@ use the anglular brackets i.e.</p>
 </ul>
 </section>
 <section id="header-files">
-<h3>Header Files<a class="headerlink" href="#header-files" title="Permalink to this headline">¶</a></h3>
+<h3>Header Files<a class="headerlink" href="#header-files" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>One class, one header.</p></li>
 <li><p>When creating header guards use the template: VOTCA_VOTCA-REPO-NAME_CLASS-NAME_H. Where
@@ -307,7 +308,7 @@ class instead.</p></li>
 </ul>
 </section>
 <section id="auto">
-<h3>Auto<a class="headerlink" href="#auto" title="Permalink to this headline">¶</a></h3>
+<h3>Auto<a class="headerlink" href="#auto" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Avoid using auto unless the type is very long, the reason being auto
 obscures the underlying type and can make it difficult to discern
@@ -315,7 +316,7 @@ what a variable is meant to be used for.</p></li>
 </ul>
 </section>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Normally class names in upper case.</p></li>
 <li><p>Order of access modifiers in class definitions should be as follows:
@@ -328,7 +329,7 @@ what a variable is meant to be used for.</p></li>
 </ul>
 </section>
 <section id="naming-in-classes">
-<h3>Naming in Classes<a class="headerlink" href="#naming-in-classes" title="Permalink to this headline">¶</a></h3>
+<h3>Naming in Classes<a class="headerlink" href="#naming-in-classes" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>All member variables should be in lower case and end with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p></li>
 <li><p>All functions should start with upper case, no <code class="docutils literal notranslate"><span class="pre">_</span></code> should exist in their names.</p></li>
@@ -337,7 +338,7 @@ what a variable is meant to be used for.</p></li>
 </ul>
 </section>
 <section id="get-set-functions">
-<h3>get/set Functions<a class="headerlink" href="#get-set-functions" title="Permalink to this headline">¶</a></h3>
+<h3>get/set Functions<a class="headerlink" href="#get-set-functions" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> functions should start with a lowercase <code class="docutils literal notranslate"><span class="pre">get</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code> (these are the only
 functions which should directly <code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">get</span></code> a private member variable)</p></li>
@@ -348,7 +349,7 @@ functions which should directly <code class="docutils literal notranslate"><span
 </ul>
 </section>
 <section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Functions should remain short.</p></li>
 <li><p>Functions should not have more than one use, so use boolean arguments
@@ -356,7 +357,7 @@ sparingly.</p></li>
 </ul>
 </section>
 <section id="pointers">
-<h3>Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h3>
+<h3>Pointers<a class="headerlink" href="#pointers" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>In general, use pointers sparringly. Most objects are small and a
 copy does not change performance. Use references if you want to avoid copies.</p></li>
@@ -372,7 +373,7 @@ very wrong.</p></li>
 </ul>
 </section>
 <section id="general">
-<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<h3>General<a class="headerlink" href="#general" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Do not comment out code, if you do not use it delete it.</p></li>
 <li><p>Variables should have clear and explicit names.</p></li>
@@ -391,14 +392,14 @@ functions”.</p></li>
 </ul>
 </section>
 <section id="votca-specifics-indexing-ids-units">
-<h3>VOTCA specifics (indexing, ids, units)<a class="headerlink" href="#votca-specifics-indexing-ids-units" title="Permalink to this headline">¶</a></h3>
+<h3>VOTCA specifics (indexing, ids, units)<a class="headerlink" href="#votca-specifics-indexing-ids-units" title="Permalink to this heading">¶</a></h3>
 <p>This can all be found here <a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html"><span class="doc">VOTCA_LANGUAGE_GUIDE</span></a></p>
 </section>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">¶</a></h2>
 <section id="unit-testing">
-<h3>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h3>
+<h3>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this heading">¶</a></h3>
 <p>Each module contains a src folder. Within the src folder exists a
 library folder: libtools, libcsg etc… and a tools folder. A tests
 folder should also exist in the src folder. If it does not you should
@@ -468,10 +469,10 @@ make <span class="nb">test</span>
 </section>
 </section>
 <section id="cpp-coding-style-guide">
-<h2>CPP Coding Style Guide<a class="headerlink" href="#cpp-coding-style-guide" title="Permalink to this headline">¶</a></h2>
+<h2>CPP Coding Style Guide<a class="headerlink" href="#cpp-coding-style-guide" title="Permalink to this heading">¶</a></h2>
 <p>VOTCA uses a few auto formatting tools to help enforce the rules.</p>
 <section id="clang-format">
-<h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Permalink to this headline">¶</a></h3>
+<h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Permalink to this heading">¶</a></h3>
 <p>Automatically ensures consistent formatting for .cc and .h files. The
 style follows the google style fomatting rules. Have a look at the
 <code class="docutils literal notranslate"><span class="pre">.clang-format</span> <span class="pre">file</span></code> in the <a class="reference external" href="https://github.com/votca/votca/blob/master/.clang-format">main votca
@@ -489,7 +490,7 @@ default style guide.</p>
 is preferable that spaces be used instead.</p>
 </section>
 <section id="autopep8">
-<h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Permalink to this headline">¶</a></h3>
+<h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Permalink to this heading">¶</a></h3>
 <p>Automatically formats python .py files. We are useing the default format
 rules of autopep8. To run on file.py and update the file run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>autopep8 -i file.py
@@ -497,7 +498,7 @@ rules of autopep8. To run on file.py and update the file run:</p>
 </div>
 </section>
 <section id="automating-formatting">
-<h3>Automating Formatting<a class="headerlink" href="#automating-formatting" title="Permalink to this headline">¶</a></h3>
+<h3>Automating Formatting<a class="headerlink" href="#automating-formatting" title="Permalink to this heading">¶</a></h3>
 <p>The above formatters can be automated at every commit using the script
 found in the <a class="reference external" href="https://github.com/votca/dev-tools">dev-tools</a>
 repository. To use it copy the file <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> to your local .git
@@ -513,7 +514,7 @@ also update the license date.</p>
 </section>
 </section>
 <section id="cpp-comment-guide">
-<h2>CPP Comment Guide<a class="headerlink" href="#cpp-comment-guide" title="Permalink to this headline">¶</a></h2>
+<h2>CPP Comment Guide<a class="headerlink" href="#cpp-comment-guide" title="Permalink to this heading">¶</a></h2>
 <p>It is preferential that the following guidelines be followed when adding
 comments to code:</p>
 <ol class="arabic">
@@ -544,7 +545,7 @@ its fully compiled state. It may be found at: <a class="reference external" href
 merged into the <code class="code docutils literal notranslate"><span class="pre">master</span></code> votca branch!</p>
 </section>
 <section id="failed-release-builds">
-<h2>Failed Release Builds<a class="headerlink" href="#failed-release-builds" title="Permalink to this headline">¶</a></h2>
+<h2>Failed Release Builds<a class="headerlink" href="#failed-release-builds" title="Permalink to this heading">¶</a></h2>
 <p>To prepare votca for distribution on different linux flavors there are
 different requirements from the package managers. Some of the
 architectures that the package managers support can be quite varied. In
