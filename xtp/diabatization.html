@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NAME &mdash; VOTCA 2023-dev documentation</title>
+  <title>diabatization &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -46,9 +46,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -60,7 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
 </ul>
@@ -88,9 +88,9 @@
 <div role="navigation" aria-label="Breadcrumbs">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>NAME</li>
+      <li>diabatization</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/tools/votca_property.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/xtp/diabatization.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -122,33 +122,95 @@
     text-align: unset;
 }
 </style>
-<section id="name">
-<h1>NAME<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h1>
-<p><strong>votca_property</strong> - Part of the VOTCA package</p>
-</section>
-<section id="synopsis">
-<h1>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h1>
-<p><strong>votca_property</strong> [OPTIONS]</p>
-<p><strong>votca_property</strong> [–help]</p>
-</section>
-<section id="description">
-<h1>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h1>
-<p>votca_property
-votca_tools, version 2023-dev gitid: 9140004 (compiled Nov 29 2022, 12:16:16)</p>
-<p>Helper for parsing XML files</p>
-</section>
-<section id="options">
-<h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h1>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
-
-  -h [ --help ]            display this help and exit
-  --verbose                be loud and noisy
-  --verbose1               be very loud and noisy
-  -v [ --verbose2 ]        be extremly loud and noisy
-  --file arg             xml file to parse
-  --format arg           output format [XML TXT]
-  --level arg            output from this level
-</pre></div>
+<section id="diabatization">
+<h1>diabatization<a class="headerlink" href="#diabatization" title="Permalink to this heading">¶</a></h1>
+<p>Perform 2 state diabatization on adiabatic BSE states
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 25%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Valid Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>orb_file</p></td>
+<td><p>system.orb</p></td>
+<td><p>Input orb file with adiabatic states</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>orb_file2</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Input orb file with second adiabatic state for QMMM</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>method</p></td>
+<td><p>er</p></td>
+<td><p>Method for diabatization</p></td>
+<td><div class="line-block">
+<div class="line">[er</div>
+<div class="line">gmh</div>
+<div class="line">fcd]</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>state_idx_1</p></td>
+<td></td>
+<td><p>State index 1</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>state_idx_2</p></td>
+<td></td>
+<td><p>State index 2</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>qmtype</p></td>
+<td><p>singlet</p></td>
+<td><p>Spin type of the BSE excitation</p></td>
+<td><p>singlet triplet</p></td>
+</tr>
+<tr class="row-odd"><td><p>use_RI</p></td>
+<td><p>true</p></td>
+<td><p>Use RI for electron repulsion integrals</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>fragments.fragment.indices</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>indices of atoms in this fragment, e.g. 1 3 13:17</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>E1</p></td>
+<td><p>1.0</p></td>
+<td><p>Adiabatic energy of stare 1 in case of QMMM</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>E2</p></td>
+<td><p>1.0</p></td>
+<td><p>Adiabatic energy of stare 3 in case of QMMM</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An <em>xml</em> file containing the defaults for the <cite>diabatization</cite> calculator can be created via <cite>-p diabatization -o FILENAME</cite> command line options `</p>
 </div>
 </section>
 
