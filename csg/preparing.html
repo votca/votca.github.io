@@ -174,10 +174,10 @@ easy processing of this kind and tabulated potentials have to be used.</p>
 <h3>Generating a topology file for a coarse-grained run<a class="headerlink" href="#generating-a-topology-file-for-a-coarse-grained-run" title="Permalink to this heading">¶</a></h3>
 <p><strong>WARNING: This section describes experimental features. The exact names and options of the program might change in the near future. The section is specific to GROMACS support though a generalization for other MD packages is planned.</strong></p>
 <p>The mapping definition is close to a topology needed for a coarse
-grained run. To avoid redundant work, can be used to automatically
+grained run. To avoid redundant work, <code class="docutils literal notranslate"><span class="pre">csg_gmxtopol</span></code> can be used to automatically
 generate a gromacs topology based on an atomistic reference system and a
 mapping file.</p>
-<p>At the current state, can only generate the topology for the first
+<p>At the current state, <code class="docutils literal notranslate"><span class="pre">csg_gmxtopol</span></code> can only generate the topology for the first
 molecule in the system. If more molecule types are present, a special
 tpr file has to be prepared. The program can be executed by</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_gmxtopol --top topol.tpr --cg map.xml --out cgtop
@@ -194,7 +194,7 @@ be added manually.</p>
 <p>The VOTCA package provides a collection of scripts to handle potentials.
 They can be modified, refined, integrated or inter- and extrapolated.
 These scripts are the same ones as those used for iterative methods in
-<a class="reference internal" href="methods.html#methods-iterative-methods"><span class="std std-ref">Iterative methods</span></a>. Scripts are called by . A complete
+<a class="reference internal" href="methods.html#methods-iterative-methods"><span class="std std-ref">Iterative methods</span></a>. Scripts are called by <code class="docutils literal notranslate"><span class="pre">csg_call</span></code>. A complete
 list of available scripts can be found in <a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a>.</p>
 <p>The post-processing roughly consists of the following steps (see further
 explanations below):</p>
@@ -226,7 +226,7 @@ later be extrapolated and overwritten.</p>
 </div>
 <p>to resample the potential given in file –<code class="docutils literal notranslate"><span class="pre">table.pot</span></code> from <code class="docutils literal notranslate"><span class="pre">min</span></code> to
 <code class="docutils literal notranslate"><span class="pre">max</span></code> with a grid spacing of <code class="docutils literal notranslate"><span class="pre">step</span></code> steps. The result is written to
-the file specified by <code class="docutils literal notranslate"><span class="pre">out</span></code>. Additionally, allows the specification of
+the file specified by <code class="docutils literal notranslate"><span class="pre">out</span></code>. Additionally, <code class="docutils literal notranslate"><span class="pre">csg_resample</span></code> allows the specification of
 spline interpolation (<code class="docutils literal notranslate"><span class="pre">spfit</span></code>), the calculation of derivatives
 (<code class="docutils literal notranslate"><span class="pre">derivative</span></code>) and comments (<code class="docutils literal notranslate"><span class="pre">comment</span></code>). Check the help (<code class="docutils literal notranslate"><span class="pre">help</span></code>)
 for further information.</p>
@@ -247,7 +247,7 @@ script (to xvg) automatically.</p>
 </pre></div>
 </div>
 <p>calls the extrapolation procedure, which processes the range of values
-marked by . The input file is <code class="docutils literal notranslate"><span class="pre">table_resample.pot</span></code> created in the last
+marked by <code class="docutils literal notranslate"><span class="pre">csg_resample</span></code>. The input file is <code class="docutils literal notranslate"><span class="pre">table_resample.pot</span></code> created in the last
 step.</p>
 <p>After resampling, all values in the potential file that should be used
 as a basis for extrapolation are marked with an <code class="docutils literal notranslate"><span class="pre">i</span></code>, while all values
@@ -295,7 +295,7 @@ corresponds to the <code class="docutils literal notranslate"><span class="pre">
 <code class="docutils literal notranslate"><span class="pre">table.xvg</span></code> (The file will contain the GROMACS C12 parts only which are
 stored in the sixth und seventh column, this can be changed by adding
 the <code class="docutils literal notranslate"><span class="pre">–ia-type</span> <span class="pre">C6</span></code> option (for the fourth and fiveth column) or
-<code class="docutils literal notranslate"><span class="pre">–ia-type</span> <span class="pre">CB</span></code> option (for the second and third column) after . Ensure
+<code class="docutils literal notranslate"><span class="pre">–ia-type</span> <span class="pre">CB</span></code> option (for the second and third column) after <code class="docutils literal notranslate"><span class="pre">csg_call</span></code>. Ensure
 compatibility with the GROMACS topology. See the GROMACS manual for
 further information).</p>
 <p>To obtain a bond table, run</p>

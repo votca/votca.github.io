@@ -167,7 +167,7 @@ inverse Monte Carlo procedure. The corresponding keywords are listed in
 </pre></div>
 </div>
 <p>It is advised not to change already implemented scripts. To customize a
-script or add a new one, copy the script to your own directory (set by )
+script or add a new one, copy the script to your own directory (set by <code class="docutils literal notranslate"><span class="pre">inverse.scriptpath</span></code>)
 and redirect its call by creating your own <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> file in this
 directory which looks like this</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>key1 key2 script1 options
@@ -177,10 +177,10 @@ key3 key4 script2
 <p>If the local keys are already in use, the existing call will be
 overloaded.</p>
 <p>As an example, we will illustrate how to overload the script which calls
-the sampling package. The script runs from the GROMACS package only on
+the sampling package. The <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> script runs <code class="docutils literal notranslate"><span class="pre">mdrun</span></code> from the GROMACS package only on
 one cpu. Our task will be to change the script so that GROMACS uses 8
-cpus, which is basically the same as adding mpirun options in .</p>
-<p>First we find out which script calls :</p>
+cpus, which is basically the same as adding mpirun options in <code class="docutils literal notranslate"><span class="pre">inverse.gromacs.mdrun.command</span></code>.</p>
+<p>First we find out which script calls <code class="docutils literal notranslate"><span class="pre">mdrun</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list <span class="p">|</span> grep gromacs
 </pre></div>
 </div>
@@ -194,7 +194,7 @@ imc_stat gromacs imc_stat_generic.sh
 convert_potential gromacs potential_to_gromacs.sh
 </pre></div>
 </div>
-<p>the third line indicates the script we need. If the output of is not
+<p>the third line indicates the script we need. If the output of <code class="docutils literal notranslate"><span class="pre">csg_call</span></code> is not
 clear, one can try to find the right script in <a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a>.
 Alternatively, check the folder</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;csg-installation&gt;/share/scripts/inverse
@@ -225,7 +225,7 @@ local path. Now we change the last line of <code class="docutils literal notrans
 </pre></div>
 </div>
 <p>This completes the customization. Do not forget to add <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> to
-in the setting XMLfile (see <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>).</p>
+<code class="docutils literal notranslate"><span class="pre">inverse.scriptpath</span></code> in the setting XML file (see <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>).</p>
 <p>You can check the new script by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --scriptdir SCRIPTDIR --list
 csg_call --scriptdir SCRIPTDIR --run run gromacs
@@ -295,7 +295,7 @@ DL_POLY convention, in which case the user has to use the corresponding
 dot-preceded extension(s); for example: FA-FIELD.dlpf instead of FIELD
 or CG-HISTORY.dlph instead of HISTORY_CGV (see
 <a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a>, as well as the man pages or output of
-VOTCA commands, with option <code class="docutils literal notranslate"><span class="pre">—help</span></code>).</p>
+VOTCA commands, with option <code class="docutils literal notranslate"><span class="pre">--help</span></code>).</p>
 <p>VOTCA follows the DL_POLY conventions for file names and formats. Thus,
 <code class="docutils literal notranslate"><span class="pre">csg_dlptopol</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_map</span></code> produce the CG topology (FIELD_CGV by
 default), configuration (CONFIG_CGV), and/or trajectory (HISTORY_CGV)

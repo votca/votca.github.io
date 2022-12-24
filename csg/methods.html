@@ -66,6 +66,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#program-input">Program input</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#program-output">Program output</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#integration-and-extrapolation-of-force-files">Integration and extrapolation of .force files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#three-body-stillinger-weber-interactions">Three-body Stillinger-Weber interactions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#iterative-methods">Iterative methods</a><ul>
@@ -170,11 +171,11 @@
 <h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h1>
 <section id="boltzmann-inversion">
 <h2>Boltzmann Inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
-<p>provides a potential of mean force for a given degree of freedom.</p>
-<figure class="align-center" id="id9">
+<p><code class="docutils literal notranslate"><span class="pre">Boltzmann</span> <span class="pre">inversion</span></code> provides a potential of mean force for a given degree of freedom.</p>
+<figure class="align-center" id="id12">
 <img alt="../_images/pre-iterative-method.png" src="../_images/pre-iterative-method.png" />
 <figcaption>
-<p><span class="caption-text">Flowchart demonstrating useful options of the tool</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Flowchart demonstrating useful options of the tool</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>It is mostly used for deriving <em>bonded</em> interactions from canonical
@@ -185,16 +186,16 @@ potentials can then be obtained by using iterative methods or force
 matching.</p>
 <p>The main tool which can be used to calculate histograms, cross-correlate
 coarse-grained variables, create exclusion lists, as well as prepare
-tabulated potentials for coarse-grained simulations is . It parses the
+tabulated potentials for coarse-grained simulations is <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code>. It parses the
 whole trajectory and stores all information on bonded interactions in
 memory, which is useful for interactive analysis. For big systems,
-however, one can run out of memory. In this case can be used which,
+however, one can run out of memory. In this case <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> can be used which,
 however, has a limited number of tasks it can perform (see
 <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a> for an example on its usage).</p>
-<p>Another useful tool is . It can be used to convert an atomistic
+<p>Another useful tool is <code class="docutils literal notranslate"><span class="pre">csg_map</span></code>. It can be used to convert an atomistic
 trajectory to a coarse-grained one, as it is discussed in
 <a class="reference internal" href="input_files.html#input-files-trajectories"><span class="std std-ref">Trajectories</span></a>.</p>
-<p>To use one has to first define a mapping scheme. This is outlined
+<p>To use <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> one has to first define a mapping scheme. This is outlined
 in <a class="reference internal" href="input_files.html#input-files-mapping-files"><span class="std std-ref">Mapping files</span></a>. Once the mapping scheme is specified, it
 is possible to generate an exclusion list for the proper sampling of the
 atomistic resolution system.</p>
@@ -212,10 +213,10 @@ and .xml mapping files are ready, simply run</p>
 <p>This will create a list of exclusions for all interactions that are not
 within a bonded interaction of the coarse-grained sub-bead. As an
 example, consider coarse-graining of a linear chain of three beads which
-are only connected by bonds. In this case, will create exclusions for
+are only connected by bonds. In this case, <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> will create exclusions for
 all non-bonded interactions of atoms in the first bead with atoms of the
 3rd bead as these would contribute only to the non-bonded interaction
-potential. Note that will only create the exclusion list for the fist
+potential. Note that <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> will only create the exclusion list for the fist
 molecule in the topology.</p>
 <p>To add the exclusions to the GROMACS topology of the molecule, either
 include the file specified by the –excl option into the .top file as
@@ -229,7 +230,7 @@ the GROMACS topology file.</p>
 </section>
 <section id="statistical-analysis">
 <h3>Statistical analysis<a class="headerlink" href="#statistical-analysis" title="Permalink to this heading">¶</a></h3>
-<p>For statistical analysis provides an interactive mode. To enter the
+<p>For statistical analysis <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> provides an interactive mode. To enter the
 interactive mode, use the <code class="docutils literal notranslate"><span class="pre">–trj</span></code> option followed by the file name of
 the reference trajectory</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_boltzmann --top topol.tpr --trj traj.trr --cg mapping.xml
@@ -248,10 +249,10 @@ help hist set periodic
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>list
 </pre></div>
 </div>
-<p>command for a list of available interactions. Note again that loads the
+<p>command for a list of available interactions. Note again that <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> loads the
 whole trajectory and all information on bonded interactions into the
 memory. Hence, its main application should be single molecules. See the
-introduction of this chapter for the command.</p>
+introduction of this chapter for <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> the command.</p>
 <p>If a specific interaction shall be used, it can be referred to by</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>molecule:interaction-group:index
 </pre></div>
@@ -312,7 +313,7 @@ command <code class="docutils literal notranslate"><span class="pre">tab</span><
 <section id="correlation-analysis">
 <h4>Correlation analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this heading">¶</a></h4>
 <p>The factorization of <span class="math notranslate nohighlight">\(P\)</span>, <a class="reference internal" href="theory.html#theory-eq-boltzmann-pmf"><span class="std std-ref">as shown in the theory
-section</span></a>, assumed uncorrelated quantities. VOTCA
+section</span></a>, assumed uncorrelated quantities. <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code>
 offers two ways to evaluate correlations of interactions. One option is to use
 the linear correlation coefficient (command <code class="docutils literal notranslate"><span class="pre">cor</span></code>).</p>
 <p>However, this is not a good measure since <code class="docutils literal notranslate"><span class="pre">cor</span></code> calculates the linear
@@ -336,16 +337,16 @@ simpler plot of column 3 over 2, whose density of points reflect the
 probability.</p>
 <p>Two examples for 2D histograms are shown below: one for the propane
 molecule and one for hexane.</p>
-<figure class="align-default" id="id10">
-<img alt="../_images/propane_hist2d.png" src="../_images/propane_hist2d.png" />
+<figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="../_images/propane_hist2d.png"><img alt="../_images/propane_hist2d.png" src="../_images/propane_hist2d.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">hexane histograms: before and after the coarse-grained run</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">propane histogram</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id11">
-<img alt="../_images/hexane2.png" src="../_images/hexane2.png" />
+<figure class="align-default" id="id14">
+<a class="reference internal image-reference" href="../_images/hexane2.png"><img alt="../_images/hexane2.png" src="../_images/hexane2.png" style="width: 600px;" /></a>
 <figcaption>
-<p><span class="caption-text">hexane histograms: before and after the coarse-grained run</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">hexane histograms: before and after the coarse-grained run</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The two plots show the correlations between angle and bondlength for
@@ -363,21 +364,21 @@ regions. Further processing of the potential is decribed in
 </section>
 </section>
 <section id="force-matching">
-<h2>Force matching<a class="headerlink" href="#force-matching" title="Permalink to this heading">¶</a></h2>
-<figure class="align-default" id="id12">
-<img alt="Flowchart to perform force matching." src="../_images/force-matching.png" />
+<span id="methods-fm"></span><h2>Force matching<a class="headerlink" href="#force-matching" title="Permalink to this heading">¶</a></h2>
+<figure class="align-default" id="id15">
+<span id="methods-fig-fm-flowchart"></span><img alt="Flowchart to perform force matching." src="../_images/force-matching.png" />
 <figcaption>
-<p><span class="caption-text">Flowchart to perform force matching.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Flowchart to perform force matching.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The force matching algorithm with cubic spline basis is implemented in
 the utility. A list of available options can be found in the reference
 section of (command <code class="docutils literal notranslate"><span class="pre">–h</span></code>).</p>
 <section id="program-input">
-<h3>Program input<a class="headerlink" href="#program-input" title="Permalink to this heading">¶</a></h3>
-<p>needs an atomistic reference run to perform coarse-graining. Therefore,
+<span id="methods-fm-program-input"></span><h3>Program input<a class="headerlink" href="#program-input" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> needs an atomistic reference run to perform coarse-graining. Therefore,
 the trajectory file <em>must contain forces</em> (note that there is a suitable
-option in the GROMACS <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file), otherwise will not be able to
+option in the GROMACS <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file), otherwise <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> will not be able to
 run.</p>
 <p>In addition, a mapping scheme has to be created, which defines the
 coarse-grained model (see <a class="reference internal" href="input_files.html#input-files"><span class="std std-ref">Input files</span></a>). At last, a control
@@ -411,15 +412,15 @@ example might look like the following</p>
 </pre></div>
 </div>
 <p>Similarly to the case of spline fitting (see <a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a> on
-), the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
+<code class="docutils literal notranslate"><span class="pre">csg_resample</span></code>), the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
 to avoid empty bins within the grid. Determining <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> by
-using is recommended (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>). A full description
+using <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is recommended (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>). A full description
 of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 </section>
 <section id="program-output">
-<h3>Program output<a class="headerlink" href="#program-output" title="Permalink to this heading">¶</a></h3>
-<p>produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file for each interaction, specified in
-the CG-options file (option <code class="docutils literal notranslate"><span class="pre">options</span></code>). These files have 4 columns
+<span id="methods-fm-program-output"></span><h3>Program output<a class="headerlink" href="#program-output" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file for each interaction, specified in
+the CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>). These files have 4 columns
 containing distance, corresponding force, a table flag and the force
 error, which is estimated via a block-averaging procedure. If you are
 working with an angle, then the first column will contain the
@@ -428,11 +429,11 @@ corresponding angle in radians.</p>
 potentials and do extrapolation and potentially smoothing afterwards.</p>
 <p>Output files are not only produced at the end of the program execution,
 but also after every successful processing of each block. The user is
-free to have a look at the output files and decide to stop , provided
+free to have a look at the output files and decide to stop <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>, provided
 the force error is small enough.</p>
 </section>
 <section id="integration-and-extrapolation-of-force-files">
-<h3>Integration and extrapolation of .force files<a class="headerlink" href="#integration-and-extrapolation-of-force-files" title="Permalink to this heading">¶</a></h3>
+<span id="methods-fm-integration"></span><h3>Integration and extrapolation of .force files<a class="headerlink" href="#integration-and-extrapolation-of-force-files" title="Permalink to this heading">¶</a></h3>
 <p>To convert forces (<code class="docutils literal notranslate"><span class="pre">.force</span></code>) to potentials (<code class="docutils literal notranslate"><span class="pre">.pot</span></code>), tables have to
 be integrated. To use the built-in integration command from the
 scripting framework, execute</p>
@@ -440,12 +441,105 @@ scripting framework, execute</p>
 csg_call table linearop minus_CG-CG.d CG-CG.d -1 <span class="m">0</span>
 </pre></div>
 </div>
-<p>This command calls the script, which integrates the force and writes the
+<p>This command calls the <code class="docutils literal notranslate"><span class="pre">table_integrate.pl</span></code> script, which integrates the force and writes the
 potential to the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file.</p>
 <p>In general, each potential contains regions which are not sampled. In
 this case or in the case of further post-processing, the potential can
 be refined by employing resampling or extrapolating methods. See
 <a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a> for further details.</p>
+</section>
+<section id="three-body-stillinger-weber-interactions">
+<span id="methods-fm-threebody"></span><h3>Three-body Stillinger-Weber interactions<a class="headerlink" href="#three-body-stillinger-weber-interactions" title="Permalink to this heading">¶</a></h3>
+<p>As described in the theory section, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> is also able to parametrize
+the angular part of three-body interactions of the Stillinger-Weber type (see subsec. <a class="reference internal" href="theory.html#theory-fm-threebody"><span class="std std-ref">Three-body Stillinger-Weber interactions</span></a>).
+The general procedure is the same, as shown in the two-body case
+(See flowchart in Fig. <a class="reference internal" href="#methods-fig-fm-flowchart"><span class="std std-ref">Flowchart to perform force matching.</span></a>).
+It has to be specified in the control file that one wants to parametrize a three-body interaction. An example might look like this:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
+  <span class="cm">&lt;!-- fmatch section --&gt;</span>
+  <span class="nt">&lt;fmatch&gt;</span>
+    <span class="cm">&lt;!-- Number of frames for block averaging --&gt;</span>
+    <span class="nt">&lt;frames_per_block&gt;</span>10<span class="nt">&lt;/frames_per_block&gt;</span>
+    <span class="cm">&lt;!-- Constrained least squares?--&gt;</span>
+    <span class="nt">&lt;constrainedLS&gt;</span>true<span class="nt">&lt;/constrainedLS&gt;</span>
+  <span class="nt">&lt;/fmatch&gt;</span>
+  <span class="cm">&lt;!-- example for a non-bonded interaction entry with three-body SW interactions --&gt;</span>
+  <span class="nt">&lt;non-bonded&gt;</span>
+    <span class="cm">&lt;!-- name of the interaction --&gt;</span>
+    <span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
+    <span class="cm">&lt;!-- flag for three-body interactions --&gt;</span>
+    <span class="nt">&lt;threebody&gt;</span>true<span class="nt">&lt;/threebody&gt;</span>
+    <span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
+    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
+    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+    <span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
+    <span class="cm">&lt;!-- fmatch section of interaction --&gt;</span>
+    <span class="nt">&lt;fmatch&gt;</span>
+      <span class="cm">&lt;!-- short-range cutoff (in nm) --&gt;</span>
+      <span class="nt">&lt;a&gt;</span>0.37<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;sigma&gt;</span>1.0<span class="nt">&lt;/sigma&gt;</span>
+      <span class="cm">&lt;!-- switching range (steepness of exponential switching function) (in nm) --&gt;</span>
+      <span class="nt">&lt;gamma&gt;</span>0.08<span class="nt">&lt;/gamma&gt;</span>
+      <span class="cm">&lt;!-- min for angular interaction (in rad) --&gt;</span>
+      <span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
+      <span class="cm">&lt;!-- max for angular interaction (in rad) --&gt;</span>
+      <span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
+      <span class="cm">&lt;!-- step size for internal spline representation (in rad) --&gt;</span>
+      <span class="nt">&lt;step&gt;</span>0.1<span class="nt">&lt;/step&gt;</span>
+      <span class="cm">&lt;!-- output step size for angular interaction (in rad) --&gt;</span>
+      <span class="nt">&lt;out_step&gt;</span>0.0031415927<span class="nt">&lt;/out_step&gt;</span>
+    <span class="nt">&lt;/fmatch&gt;</span>
+  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="nt">&lt;/cg&gt;</span>
+</pre></div>
+</div>
+<p>As in the case of pair interactions, the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a
+way as to avoid empty bins within the grid. Determining <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> by using
+<code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is recommended (see sec. <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>).</p>
+<p>For each three-body interaction as specified in the CG-options file
+<code class="docutils literal notranslate"><span class="pre">--options</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file, as well as a
+<code class="docutils literal notranslate"><span class="pre">.pot</span></code> file. Due to the functional form of the Stillinger-Weber potential,
+<code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> outputs the three-body force in angular direction, as well as the angular potential.
+Therefore, in contrast to the two-body force (see section <a class="reference internal" href="#methods-fm-integration"><span class="std std-ref">Integration and extrapolation of .force files</span></a>), the angular
+three-body force does not have to be numerically integrated. The <code class="docutils literal notranslate"><span class="pre">.force</span></code>, as well as
+the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file have 4 columns containing the angle in radians, the force or potential,
+the error (which is estimated via a block-averaging procedure) and a table flag.</p>
+<p>Coarse-grained simulations with three-body Stillinger-Weber interactions can be done with
+LAMMPS with the MANYBODY <em>pair_style sw/angle/table</em> (<a class="reference external" href="https://docs.lammps.org/pair_sw_angle_table.html">https://docs.lammps.org/pair_sw_angle_table.html</a>). For this, the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file has to be
+converted into a table format according to the LAMMPS <em>angle_style table</em> (<a class="reference external" href="https://docs.lammps.org/angle_table.html">https://docs.lammps.org/angle_table.html</a>). This can be done with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --options table.xml --ia-name XXX --ia-type angle convert_potential lammps --clean --no-shift XXX.pot table_XXX.txt
+</pre></div>
+</div>
+<p>in line with the conversion of angular tables for bonded interactions. Therefore, the
+CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>) now has to contain a <code class="docutils literal notranslate"><span class="pre">&lt;bonded&gt;</span></code>
+section with the appropriate interaction name:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
+  <span class="nt">&lt;bonded&gt;</span>
+    <span class="cm">&lt;!-- name of the interaction --&gt;</span>
+    <span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
+    <span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
+    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
+    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+    <span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
+    <span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
+    <span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
+    <span class="nt">&lt;step&gt;</span>0.0031415927<span class="nt">&lt;/step&gt;</span>
+    <span class="cm">&lt;!-- settings for converting table to lammps angular format --&gt;</span>
+    <span class="nt">&lt;inverse&gt;</span>
+      <span class="nt">&lt;lammps&gt;</span>
+        <span class="nt">&lt;table_begin&gt;</span>0<span class="nt">&lt;/table_begin&gt;</span>
+        <span class="nt">&lt;table_end&gt;</span>180<span class="nt">&lt;/table_end&gt;</span>
+        <span class="nt">&lt;table_bins&gt;</span>0.18<span class="nt">&lt;/table_bins&gt;</span>
+        <span class="nt">&lt;y_scale&gt;</span>0.239006<span class="nt">&lt;/y_scale&gt;</span>
+        <span class="nt">&lt;avg_points&gt;</span>1<span class="nt">&lt;/avg_points&gt;</span>
+      <span class="nt">&lt;/lammps&gt;</span>
+    <span class="nt">&lt;/inverse&gt;</span>
+  <span class="nt">&lt;/bonded&gt;</span>
+<span class="nt">&lt;/cg&gt;</span>
+</pre></div>
+</div>
+<p>For a further description of posprocessing, we refer again to sec. <a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a>.
+For a more detailed example, we refer to the tutorial in csg-tutorials/spce/3body_sw/.</p>
 </section>
 </section>
 <section id="iterative-methods">
@@ -453,10 +547,10 @@ be refined by employing resampling or extrapolating methods. See
 <p>The following sections deal with the Iterative Boltzmann Inversion (IBI)
 method, the Inverse Monte Carlo (IMC) method, the Iterative Integral Equation
 (IIE) method, and the Relative Entropy (RE) method.</p>
-<figure class="align-default" id="id13">
+<figure class="align-default" id="id16">
 <span id="methods-fig-flowchart-spanning"></span><img alt="../_images/iterative-methods.png" src="../_images/iterative-methods.png" />
 <figcaption>
-<p><span class="caption-text">Flowchart of the spanning workflow of iterative methods.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Flowchart of the spanning workflow of iterative methods.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>In general, IBI, IMC, IIE, and RE are implemented within the same framework.
@@ -468,11 +562,11 @@ methods.</p>
 <section id="iterative-workflow-control">
 <span id="methods-iterative-workflow"></span><h3>Iterative workflow control<a class="headerlink" href="#iterative-workflow-control" title="Permalink to this heading">¶</a></h3>
 <p>Iterative workflow control is essential for the IBI, IMC, IIE, and RE methods.</p>
-<figure class="align-default" id="id14">
+<figure class="align-default" id="id17">
 <span id="methods-fig-flowchart-iterative"></span><img alt="../_images/iteration-scheme.png" src="../_images/iteration-scheme.png" />
 <figcaption>
 <p><span class="caption-text">Forkflow control for the iterative methods. The most time-consuming parts
-are marked in red.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+are marked in red.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The general idea of iterative workflow is sketched in
@@ -500,16 +594,16 @@ distributions should be of good quality (little noise, etc).</p>
 <p>VOTCA can create initial guesses for the coarse-grained potentials by
 Boltzmann inverting the distribution function. If a custom initial guess
 for an interaction shall be used instead, the table can be provided in
-<em>:math:`&lt;`interaction:math:`&gt;`.pot.in</em>. As already mentioned,
+<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.pot.in</span></code>. As already mentioned,
 VOTCA automatically creates potential tables to run a simulation.
 However, it does not know how to run a coarse-grained simulation.
 Therefore, all files needed to run a coarse-grained simulation, except
 for the potentials that are iteratively refined, must be provided and
-added to the in the settings XML-file. If an atomistic topology and a
+added to the <code class="docutils literal notranslate"><span class="pre">&lt;filelist&gt;</span></code> in the settings XML-file. If an atomistic topology and a
 mapping definition are present, VOTCA offers tools to assist the setup of
 a coarse-grained topology (see <a class="reference internal" href="preparing.html#preparing"><span class="std std-ref">Preparing coarse-grained runs</span></a>).</p>
 <p>To get an overview of how input files look like, it is suggested to take
-a look at one of the tutorials provided on .</p>
+a look at one of the tutorials provided in csg_tutorials.</p>
 <p>In what follows we describe how to set up the iterative coarse-graining,
 run the main script, continue the run, and add customized scripts.</p>
 <section id="preparing-the-run">
@@ -535,8 +629,7 @@ potential table to a file called <code class="docutils literal notranslate"><spa
 you plan to run the iterative procedure.</p>
 <p>A list of interactions to be iteratively refined has to be given in the
 options file. As an example, the <code class="docutils literal notranslate"><span class="pre">setting.xml</span></code> file for a propane is
-shown in below. For more details, see the full
-description of all options in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
+shown in below:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
   <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
     <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
@@ -579,6 +672,8 @@ description of all options in <a class="reference internal" href="reference.html
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
+<p>For more details, see the full
+description of all options in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 </section>
 <section id="starting-the-iterative-process">
 <h4>Starting the iterative process<a class="headerlink" href="#starting-the-iterative-process" title="Permalink to this heading">¶</a></h4>
@@ -646,21 +741,21 @@ steering XMLfile.</p>
 <h4>Restarting and continuing<a class="headerlink" href="#restarting-and-continuing" title="Permalink to this heading">¶</a></h4>
 <p>The interrupted or finished iterative process can be restarted either by
 extending a finished run or by restarting the interrupted run. When the
-script is called, it automatically checks for a file called <code class="docutils literal notranslate"><span class="pre">done</span></code> in
+script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> is called, it automatically checks for a file called <code class="docutils literal notranslate"><span class="pre">done</span></code> in
 the current directory. If this file is found, the program assumes that
-the run is finished. To extend the run, simply increase in the settings
+the run is finished. To extend the run, simply increase <code class="docutils literal notranslate"><span class="pre">inverse.iterations_max</span></code> in the settings
 file and remove the file called <code class="docutils literal notranslate"><span class="pre">done</span></code>. After that, can be restarted,
 which will automatically recognize existing steps and continue after the
 last one.</p>
-<p>If the iteration was interrupted, the script might not be able to
+<p>If the iteration was interrupted, the script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> might not be able to
 restart on its own. In this case, the easiest solution is to delete the
 last step and start again. The script will then repeat the last step and
 continue. However, this method is not always practical since sampling
 and analysis might be time-consuming and the run might have only crashed
 due to some inadequate post processing option. To avoid repeating the
-entire run, the script creates a file with restart points and labels
+entire run, the script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> creates a file with restart points and labels
 already completed steps such as simulation, analysis, etc. The file name
-is specified in the option . If specific actions should be redone, one
+is specified in the option <code class="docutils literal notranslate"><span class="pre">inverse.restart_file</span></code>. If specific actions should be redone, one
 can simply remove the corresponding lines from this file. Note that a
 file <code class="docutils literal notranslate"><span class="pre">done</span></code> is also created in each folder for those steps which have
 been successfully finished.</p>
@@ -694,12 +789,12 @@ framework described above is also necessary.</p>
 <section id="general-considerations">
 <h4>General considerations<a class="headerlink" href="#general-considerations" title="Permalink to this heading">¶</a></h4>
 <p>In comparison to IBI, IMC needs significantly more statistics to
-calculate the potential update[Ruehle:2009.a]_. It is
+calculate the potential update <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id3"><span>[Ruehle:2009.a]</span></a>. It is
 advisable to perform smoothing on the potential update. Smoothing can be
 performed as described in <a class="reference internal" href="#methods-runtime-optimizations"><span class="std std-ref">Runtime optimization</span></a>. In addition, IMC can
 lead to problems related to finite size: for methanol, an undersized
 system proved to lead to a linear shift in the
-potential[Ruehle:2009.a]_. It is therefore always
+potential <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id4"><span>[Ruehle:2009.a]</span></a>. It is therefore always
 necessary to check that the system size is sufficiently large and that
 runlength csg smoothing iterations are well balanced.</p>
 </section>
@@ -708,9 +803,9 @@ runlength csg smoothing iterations are well balanced.</p>
 <p>Unlike IBI, IMC also takes cross-correlations of interactions into account in
 order to calculate the update. However, it might not always be beneficial to
 evaluate cross-correlations of all pairs of interactions. By specifying
-<code class="docutils literal notranslate"><span class="pre">group</span></code> for each interaction, as shown in the xml snippet below, one can
+<code class="docutils literal notranslate"><span class="pre">&lt;group&gt;</span></code> for each interaction, as shown in the xml snippet below, one can
 define groups of interactions, amongst which cross-correlations are taken into
-account. <code class="docutils literal notranslate"><span class="pre">group</span></code> can be any name.</p>
+account. <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;</span></code> can be any name.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;non-bonded&gt;</span>
   <span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;type1&gt;</span>CG<span class="nt">&lt;/type1&gt;</span>
@@ -758,8 +853,8 @@ method.</p>
 <h3>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this heading">¶</a></h3>
 <p>In this section, we describe some options that are relevant only to IIE
 methods.</p>
-<section id="id3">
-<h4>General considerations<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<section id="id5">
+<h4>General considerations<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
 <p>In comparison to IBI, IIE methods need RDF information on a longer range than
 the cut-off. This means one needs a sufficiently large box or one can try the
 RDF extension method.</p>
@@ -908,12 +1003,12 @@ the XMLsettings file.</p>
 <p>Due to stochastic nature of the CG simulations, near convergence, the CG
 potential paramters may fluctuate around the mean converged values.
 Therefore, the optimal CG parameters can be estimated by averaging over
-the last few iterations. To specify averaging, the <code class="docutils literal notranslate"><span class="pre">average</span></code>, keyword
-should be specified in the <code class="docutils literal notranslate"><span class="pre">post_update</span></code> options in the XMLsettings
+the last few iterations. To specify averaging, the <code class="docutils literal notranslate"><span class="pre">&lt;average&gt;</span></code>, keyword
+should be specified in the <code class="docutils literal notranslate"><span class="pre">&lt;post_update&gt;</span></code> options in the XMLsettings
 file.</p>
 </section>
-<section id="id4">
-<h4>General considerations<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<section id="id6">
+<h4>General considerations<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
 <p>To ensure the stability of the relative entropy minimization, some
 precautionary measures are taken. For the Newton-Raphson update to
 converge towards a minimum, the Hessian, <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>, must be
@@ -951,13 +1046,13 @@ zero.</p>
 pressure of the full atomistic system. This is because iterative
 Boltzmann inversion only targets structural properties but not
 thermodynamic properties. In order correct the pressure in such a way
-that it matches the target pressure ()., different strategies have been
+that it matches the target pressure (<code class="docutils literal notranslate"><span class="pre">inverse.p_target</span></code>)., different strategies have been
 used based on small modifications of the potential. The correction can
-be enable by adding pressure to the list of scripts. The type of
-pressure correction is selected by setting .</p>
+be enable by adding pressure to the list of <code class="docutils literal notranslate"><span class="pre">inverse.post_update</span></code> scripts. The type of
+pressure correction is selected by setting <code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.pressure.type</span></code>.</p>
 <section id="simple-pressure-correction">
 <h4>Simple pressure correction<a class="headerlink" href="#simple-pressure-correction" title="Permalink to this heading">¶</a></h4>
-<p>In ref.[Reith:2003]_ a simple linear attractive
+<p>In ref. <a class="reference internal" href="bibliography.html#reith-2003" id="id7"><span>[Reith:2003]</span></a> a simple linear attractive
 potential was added to the coarse-grained potential</p>
 <div class="math notranslate nohighlight">
 \[\Delta V(r)=A \left( 1-\frac{r}{r_{cutoff}} \right) \,,\]</div>
@@ -965,7 +1060,9 @@ potential was added to the coarse-grained potential</p>
 <div class="math notranslate nohighlight">
 \[A = -{\operatorname{sgn}}(\Delta P)0.1k_{B}T\min(1,|f\Delta P) \,,\]</div>
 <p><span class="math notranslate nohighlight">\(\Delta p=P_i-P_\text{target}\)</span>, and scaling factor <span class="math notranslate nohighlight">\(f\)</span> and
-<span class="math notranslate nohighlight">\(P_\text{target}\)</span> can be specified in the settings file as and .</p>
+<span class="math notranslate nohighlight">\(P_\text{target}\)</span> can be specified in the settings file as
+<code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.pressure.simple.scale</span></code> and
+<code class="docutils literal notranslate"><span class="pre">inverse.p_target</span></code>.</p>
 <p>As an example for a block doing simple pressure correction, every third
 interaction is</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;post_update&gt;</span>pressure<span class="nt">&lt;/post_update&gt;</span>
@@ -980,27 +1077,28 @@ interaction is</p>
 <span class="nt">&lt;/post_update_options&gt;</span>
 </pre></div>
 </div>
-<p>Here, is the scaling factor <span class="math notranslate nohighlight">\(f\)</span>. In order to get the correct
+<p>Here, <code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.pressure.simple.scale</span></code>
+is the scaling factor <span class="math notranslate nohighlight">\(f\)</span>. In order to get the correct
 pressure it can become necessary to tune the scaling factor <span class="math notranslate nohighlight">\(f\)</span>
 during the iterative process.</p>
 </section>
 <section id="advanced-pressure-correction">
 <h4>Advanced pressure correction<a class="headerlink" href="#advanced-pressure-correction" title="Permalink to this heading">¶</a></h4>
-<p>In <a class="reference internal" href="bibliography.html#wang-2009" id="id5"><span>[Wang:2009]</span></a> a pressure correction based on the
+<p>In <a class="reference internal" href="bibliography.html#wang-2009" id="id8"><span>[Wang:2009]</span></a> a pressure correction based on the
 virial expression of the pressure was introduced. The potential term
 remains as in the simple form while a different sturcture of the
 <span class="math notranslate nohighlight">\(A\)</span> factor is used:</p>
 <div class="math notranslate nohighlight">
 \[A = \left[\frac{-2\pi\rho^{2}}{3r_{cut}}\int_{0}^{r_{cut}}r^{3}g_{i}(r)dr\right]A_{i}=\Delta P.\]</div>
-<p>This factor requires the particle density :math:` rho ` as additional
-input parameter, which is added as in the input file.</p>
+<p>This factor requires the particle density <span class="math notranslate nohighlight">\(\rho\)</span> as additional
+input parameter, which is added as <code class="docutils literal notranslate"><span class="pre">inverse.particle_dens</span></code> in the input file.</p>
 </section>
 </section>
 <section id="kirkwood-buff-correction">
 <h3>Kirkwood-Buff correction<a class="headerlink" href="#kirkwood-buff-correction" title="Permalink to this heading">¶</a></h3>
 <p>In order to reproduce the exact Kirkwood-Buff ingetrals (KBIs), an
 correction term can be added into the coarse-grained
-potential <a class="reference internal" href="bibliography.html#ganguly-2012" id="id6"><span>[Ganguly:2012]</span></a>,</p>
+potential <a class="reference internal" href="bibliography.html#ganguly-2012" id="id9"><span>[Ganguly:2012]</span></a>,</p>
 <div class="math notranslate nohighlight">
 \[\Delta U_{ij}^{(n)}(r) = \frac{k_{B}T}\;A\;(G_{ij}^{(n)} - G_{ij}^\text{ref})\left(1- \frac{r}{r_\text{ramp}}\right),\]</div>
 <p>where <span class="math notranslate nohighlight">\(G_{ij}^{(ref)}\)</span> is the KBI calculated from the reference
@@ -1034,7 +1132,9 @@ iteraction without doing potential update</p>
 <span class="nt">&lt;/post_update_options&gt;</span>
 </pre></div>
 </div>
-<p>Here, is the scaling factor <span class="math notranslate nohighlight">\(A\)</span>. is <span class="math notranslate nohighlight">\(r_1\)</span> and is <span class="math notranslate nohighlight">\(r_2\)</span>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.kbibi.factor</span></code> is the scaling factor <span class="math notranslate nohighlight">\(A\)</span>.
+<code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.kbibi.start</span></code> is <span class="math notranslate nohighlight">\(r_1\)</span>
+and <code class="docutils literal notranslate"><span class="pre">inverse.post_update_options.kbibi.stop</span></code> is <span class="math notranslate nohighlight">\(r_2\)</span>
 used to calculate the average of <span class="math notranslate nohighlight">\(G_{ij}(R)\)</span>.</p>
 </section>
 <section id="runtime-optimization">
@@ -1053,7 +1153,7 @@ smoothed, sharp features like the first peak in SPC/Ewater might get
 lost. Smoothing on the delta potential works quite well, since the sharp
 features are already present from the initial guess. By applying
 iterations of a simple triangular smoothing
-(<span class="math notranslate nohighlight">\(\Delta U_i = 0.25 \Delta U_{i-1} + 0.5\Delta U_i + 0.25\Delta U_{i+1}\)</span>),
+<span class="math notranslate nohighlight">\(\left(\Delta U_i = 0.25 \Delta U_{i-1} + 0.5\Delta U_i + 0.25\Delta U_{i+1}\right)\)</span>,
 a reasonable coarse-grained potential for SPC/Ewater could be produced
 in less than 10 minutes. Smoothing is implemented as a post_update
 script and can be enabled by adding</p>
@@ -1073,14 +1173,14 @@ script and can be enabled by adding</p>
 Inversion) uses pair-wise cumulative coordination as a target function
 within an iterative Boltzmann inversion. This method reproduces
 solvation thermodynamics of binary and ternary mixtures
-<a class="reference internal" href="bibliography.html#deoliveira-2016" id="id7"><span>[deOliveira:2016]</span></a>.</p>
+<a class="reference internal" href="bibliography.html#deoliveira-2016" id="id10"><span>[deOliveira:2016]</span></a>.</p>
 <p>The estimation of coordination is given by:</p>
 <div class="math notranslate nohighlight">
 \[\label{eq:coord}
 \mathcal{C}_{ij}(r) = 4\pi \int_{0}^{r} {\rm g}_{ij}(r')r'^{2}dr'\]</div>
 <p>with the indices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> standing for every set of
 pairs, uses a volume integral of <span class="math notranslate nohighlight">\({\rm g}(r)\)</span>.</p>
-<p>The Kirkwood and Buff theory (KB) <a class="reference internal" href="bibliography.html#kirkwood-1951" id="id8"><span>[Kirkwood:1951]</span></a>
+<p>The Kirkwood and Buff theory (KB) <a class="reference internal" href="bibliography.html#kirkwood-1951" id="id11"><span>[Kirkwood:1951]</span></a>
 connects the pair-wise coordinations with particule fluctuations and,
 thus, with the solution thermodynamics
 [Mukherji:2013,Naim:2006]_. This theory make use of the
