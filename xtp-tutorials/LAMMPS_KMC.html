@@ -72,7 +72,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#Notes">Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Check-the-mapping">Check the mapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Plotting-the-energies">Plotting the energies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Couplings-histrogram">Couplings histrogram</a></li>
@@ -451,57 +450,11 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 </div></blockquote>
 </section>
 </section>
-<section id="Check-the-mapping">
-<h2>Check the mapping<a class="headerlink" href="#Check-the-mapping" title="Permalink to this heading">¶</a></h2>
-<p>Let us first output <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files for the segments, qmmolecules and classical segments in order to check the mapping.</p>
-<p>We need to update the <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> options.</p>
-<p>Now we can run the checker as follows,</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_run -e mapchecker -c <span class="nv">map_file</span><span class="o">=</span>system.xml -f state.hdf5
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-==================================================
-========   VOTCA (http://www.votca.org)   ========
-==================================================
-
-please submit bugs to https://github.com/votca/xtp/issues
-
-xtp_run, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 08:03:49)
-votca_csg, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:49:06)
-votca_tools, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:46:26)
-
-Initializing calculator
-... mapchecker
-1 frames in statefile, Ids are: 10000
-Starting at frame 10000
-Evaluating frame 10000
-Import MD Topology (i.e. frame 10000) from state.hdf5
-....
-... mapchecker
- Using 1 threads
-Writing segments to md_segments_step_10000.pdb
-Writing qmmolecules to qm_segments_n_step_10000.pdb
-Writing polarsegments to mp_segments_e_step_10000.pdb
-Writing polarsegments to mp_segments_h_step_10000.pdb
-Changes have not been written to state file.
-</pre></div></div>
-</div>
-</section>
 <section id="Site-energies-and-pair-energy-differences">
 <h2>Site energies and pair energy differences<a class="headerlink" href="#Site-energies-and-pair-energy-differences" title="Permalink to this heading">¶</a></h2>
 <p>We will compute the histrogram using <code class="docutils literal notranslate"><span class="pre">resolution_sites</span></code> of 0.03 eV. See <a class="reference external" href="https://votca.github.io/xtp/eanalyze.html">eanalyze options and defaults</a> for more information.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -520,9 +473,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 08:03:49)
-votca_csg, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:49:06)
-votca_tools, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:46:26)
+xtp_run, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:59:54)
+votca_csg, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:45:27)
+votca_tools, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:42:49)
 
 Initializing calculator
 ... eanalyze
@@ -545,7 +498,7 @@ Changes have not been written to state file.
 </div>
 <p>In the current work directoy you can see the resulting files,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -571,7 +524,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <h2>Plotting the energies<a class="headerlink" href="#Plotting-the-energies" title="Permalink to this heading">¶</a></h2>
 <p>We will the previously installed <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library to plot the electron histrogram computed in the previous step,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -586,7 +539,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -598,7 +551,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_11_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_11_1.png" />
 </div>
 </div>
 </section>
@@ -606,7 +559,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <h2>Couplings histrogram<a class="headerlink" href="#Couplings-histrogram" title="Permalink to this heading">¶</a></h2>
 <p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/xtp/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,9 +578,9 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 08:03:49)
-votca_csg, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:49:06)
-votca_tools, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:46:26)
+xtp_run, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:59:54)
+votca_csg, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:45:27)
+votca_tools, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:42:49)
 
 Initializing calculator
 ... ianalyze
@@ -648,7 +601,7 @@ Changes have not been written to state file.
 <h2>Plotting the coupling histogram<a class="headerlink" href="#Plotting-the-coupling-histogram" title="Permalink to this heading">¶</a></h2>
 <p>We can now plot the logarithm of the squared coupling for the hole,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -660,7 +613,7 @@ Changes have not been written to state file.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -672,7 +625,7 @@ Changes have not been written to state file.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_19_1.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
 </div>
 </div>
 </section>
@@ -680,7 +633,7 @@ Changes have not been written to state file.
 <h2>KMC simulations of multiple holes or electrons in periodic boundary conditions<a class="headerlink" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions" title="Permalink to this heading">¶</a></h2>
 <p>Finally, lets do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -699,9 +652,9 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/xtp/issues
 
-xtp_run, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 08:03:49)
-votca_csg, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:49:06)
-votca_tools, version 2023-dev gitid: 14c2e01 (compiled Dec 24 2022, 07:46:26)
+xtp_run, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:59:54)
+votca_csg, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:45:27)
+votca_tools, version 2023-dev gitid: b7a2614 (compiled Dec 24 2022, 15:42:49)
 
 Initializing calculator
 ... kmcmultiple
