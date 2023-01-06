@@ -46,9 +46,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -60,7 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
 </ul>
@@ -90,7 +90,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>NAME</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/tools/votca_property.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/xtp/xtp_autogen_mapping.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -124,30 +124,37 @@
 </style>
 <section id="name">
 <h1>NAME<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h1>
-<p><strong>votca_property</strong> - Part of the VOTCA package</p>
+<p><strong>xtp_autogen_mapping</strong> - Part of the VOTCA package</p>
 </section>
 <section id="synopsis">
 <h1>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h1>
-<p><strong>votca_property</strong> [OPTIONS]</p>
-<p><strong>votca_property</strong> [–help]</p>
+<p><strong>xtp_autogen_mapping</strong> [OPTIONS]</p>
+<p><strong>xtp_autogen_mapping</strong> [–help]</p>
 </section>
 <section id="description">
 <h1>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h1>
-<p>votca_property
-votca_tools, version 2023-dev gitid: cc98c65 (compiled Jan  6 2023, 05:46:44)</p>
-<p>Helper for parsing XML files</p>
+<p>Automatically generate a mapping file</p>
 </section>
 <section id="options">
 <h1>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h1>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
-  -h [ --help ]            display this help and exit
-  --verbose                be loud and noisy
-  --verbose1               be very loud and noisy
-  -v [ --verbose2 ]        be extremly loud and noisy
-  --file arg             xml file to parse
-  --format arg           output format [XML TXT]
-  --level arg            output from this level
+  -h, --help            show this help message and exit
+  -pdb PDBFILE, --pdbfile PDBFILE
+                        PDB coordinate file
+  -opt, --optimize      optimization of XYZ and MPS files
+  -s {n,e,h} [{n,e,h} ...], --states {n,e,h} [{n,e,h} ...]
+                        which states to optimize
+  -orca ORCA, --orca ORCA
+                        full path to orca executable
+  -f FUNCTIONAL, --functional FUNCTIONAL
+                        DFT functional
+  -b BASIS, --basis BASIS
+                        basis set
+  --nori                Do not to use the Resolution of Identity approximation
+  -m MDNAME, --mdname MDNAME
+                        Name of the molecule in the MD topology
+  --version             show program&#39;s version number and exit
 </pre></div>
 </div>
 </section>

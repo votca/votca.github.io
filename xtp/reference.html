@@ -147,24 +147,60 @@
 <h2>Programs<a class="headerlink" href="#programs" title="Permalink to this heading">¶</a></h2>
 <section id="xtp-autogen-mapping">
 <h3>xtp_autogen_mapping<a class="headerlink" href="#xtp-autogen-mapping" title="Permalink to this heading">¶</a></h3>
-</section>
-<section id="xtp-basisset">
-<h3>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Permalink to this heading">¶</a></h3>
 <section id="name">
 <h4>NAME<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h4>
-<p><strong>xtp_basisset</strong> - Part of the VOTCA package</p>
+<p><strong>xtp_autogen_mapping</strong> - Part of the VOTCA package</p>
 </section>
 <section id="synopsis">
 <h4>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h4>
-<p><strong>xtp_basisset</strong> [OPTIONS]</p>
-<p><strong>xtp_basisset</strong> [–help]</p>
+<p><strong>xtp_autogen_mapping</strong> [OPTIONS]</p>
+<p><strong>xtp_autogen_mapping</strong> [–help]</p>
 </section>
 <section id="description">
 <h4>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h4>
-<p>Creates votca xml basissetfiles from NWCHEM basissetfiles</p>
+<p>Automatically generate a mapping file</p>
 </section>
 <section id="options">
 <h4>OPTIONS<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
+
+  -h, --help            show this help message and exit
+  -pdb PDBFILE, --pdbfile PDBFILE
+                        PDB coordinate file
+  -opt, --optimize      optimization of XYZ and MPS files
+  -s {n,e,h} [{n,e,h} ...], --states {n,e,h} [{n,e,h} ...]
+                        which states to optimize
+  -orca ORCA, --orca ORCA
+                        full path to orca executable
+  -f FUNCTIONAL, --functional FUNCTIONAL
+                        DFT functional
+  -b BASIS, --basis BASIS
+                        basis set
+  --nori                Do not to use the Resolution of Identity approximation
+  -m MDNAME, --mdname MDNAME
+                        Name of the molecule in the MD topology
+  --version             show program&#39;s version number and exit
+</pre></div>
+</div>
+</section>
+</section>
+<section id="xtp-basisset">
+<h3>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Permalink to this heading">¶</a></h3>
+<section id="id1">
+<h4>NAME<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<p><strong>xtp_basisset</strong> - Part of the VOTCA package</p>
+</section>
+<section id="id2">
+<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<p><strong>xtp_basisset</strong> [OPTIONS]</p>
+<p><strong>xtp_basisset</strong> [–help]</p>
+</section>
+<section id="id3">
+<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<p>Creates votca xml basissetfiles from NWCHEM basissetfiles</p>
+</section>
+<section id="id4">
+<h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                     show this help message and
@@ -185,21 +221,21 @@
 </section>
 <section id="xtp-update-mapfile">
 <h3>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Permalink to this heading">¶</a></h3>
-<section id="id1">
-<h4>NAME<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<section id="id5">
+<h4>NAME<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id2">
-<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<section id="id6">
+<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> [OPTIONS]</p>
 <p><strong>xtp_update_mapfile</strong> [–help]</p>
 </section>
-<section id="id3">
-<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<section id="id7">
+<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
 <p>Updates the CTP mapping file to VOTCA XTP</p>
 </section>
-<section id="id4">
-<h4>OPTIONS<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<section id="id8">
+<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                           show this help message and exit
@@ -211,22 +247,22 @@
 </section>
 <section id="xtp-qmmm2qm">
 <h3>xtp_qmmm2qm<a class="headerlink" href="#xtp-qmmm2qm" title="Permalink to this heading">¶</a></h3>
-<section id="id5">
-<h4>NAME<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<section id="id9">
+<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id6">
-<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<section id="id10">
+<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> [OPTIONS]</p>
 <p><strong>xtp_qmmm2qm</strong> [–help]</p>
 </section>
-<section id="id7">
-<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<section id="id11">
+<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
 <p>Convert QMMM orb file into a DFTGWBSE-like orb file usable by
 gencube,densityanalysis,…</p>
 </section>
-<section id="id8">
-<h4>OPTIONS<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
+<section id="id12">
+<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                  show this help message and exit
@@ -239,21 +275,21 @@ gencube,densityanalysis,…</p>
 </section>
 <section id="xtp-modify-jobfile">
 <h3>xtp_modify_jobfile<a class="headerlink" href="#xtp-modify-jobfile" title="Permalink to this heading">¶</a></h3>
-<section id="id9">
-<h4>NAME<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h4>
+<section id="id13">
+<h4>NAME<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id10">
-<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h4>
+<section id="id14">
+<h4>SYNOPSIS<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> [OPTIONS]</p>
 <p><strong>xtp_modify_jobfile</strong> [–help]</p>
 </section>
-<section id="id11">
-<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
+<section id="id15">
+<h4>DESCRIPTION<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h4>
 <p>Creates a subset Jobfile from a larger Jobfile using selection criteria</p>
 </section>
-<section id="id12">
-<h4>OPTIONS<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<section id="id16">
+<h4>OPTIONS<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                              show this help
