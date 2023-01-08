@@ -54,7 +54,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/README.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -456,11 +456,8 @@ CMakeLists.txt file. And place the following contents:</p>
 <p>Replace the ‘…’ and ‘:’ with the appropriate syntax. For more info on
 which boost test macros to use refer to the boost documentation</p>
 <ol class="arabic" start="2">
-<li><p>To compile and test the code create a folder tools/build and run the
-following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -DENABLE_TESTING<span class="o">=</span>ON ../
-make
-make <span class="nb">test</span>
+<li><p>To run the test involve following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
 </pre></div>
 </div>
 </li>
