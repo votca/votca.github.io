@@ -350,6 +350,14 @@ The following table contains the defaults input options for the calculator, The 
      - 10000.0
      - Levelshift energy for the projection operator
      - 
+   * - regions.qmregion.dftpackage.xtpdft.dft_in_dft.truncate_basis
+     - false
+     - Truncate the basis-set to active atoms only
+     - bool
+   * - regions.qmregion.dftpackage.xtpdft.dft_in_dft.truncation_threshold
+     - 1e-4
+     - Threshold to convert an inactive atom to a border atom
+     - float+
    * - regions.qmregion.dftpackage.xtpdft.screening_eps
      - 1e-9
      - screening eps
