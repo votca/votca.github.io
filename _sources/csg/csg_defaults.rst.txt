@@ -572,6 +572,9 @@ The following table contains the input options for CSG,
    * - inverse.simulation.tasks
      - auto
      - number of threads to use for csg_stat
+   * - inverse.scale
+     - 
+     - update scaling factor for the relative entropy update
    * - nbsearch
      - grid
      - Grid search algorithm, simple (N square search) or grid
@@ -722,6 +725,12 @@ The following table contains the input options for CSG,
        | original espresso script needs to contain the name of
        | that table as the tabulated interaction (see tutorial
        | methanol ibi_espresso for details).
+   * - non-bonded.inverse.espressopp
+     - 
+     - Espresso++ specific options for this interations
+   * - non-bonded.inverse.hoomd-blue
+     - 
+     - HOOMD-blue specific options for this interations
    * - non-bonded.inverse.gromacs
      - 
      - Gromacs specific options for this interations
