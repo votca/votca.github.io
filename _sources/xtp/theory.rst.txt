@@ -4,25 +4,5 @@ Theory and Background
 DFT and GW-BSE
 **************
 
-A molecule consists of $N$ electrons at positions $\rset$, and $M$ nuclei at positions $\Rset$. Here we use the following notation: a coordinate without an index represents the whole set of coordinates, i.e., $\rset=\{\vecr_1,\vecr_2,\dots,\vecr_N\}$. 
-
-The non-relativistic Hamiltonian of the system then reads
-
-$$ 
-\hat{\mathcal{H}}=\hat{T}_\text{el}+\hat{T}_\text{nuc}+\hat{V}_\text{nuc-nuc}+\hat{V}_\text{el}+\hat{V}_\text{nuc-el}
-$$
-
-with $\hat{T}_{\text{el}}$ and $\hat{T}_{\text{nuc}}$ as the kinetic energy operators of electrons and nuclei, $\hat{V}_{\text{nuc-nuc}}$ and $\hat{V}_{\text{el-el}}$ as the nuclei-nuclei and electron-electron interaction operator, respectively, and finally $\hat{V}_{\text{nuc-el}}$ the nuclei-electron interaction. The individual terms read:
-
-\begin{align}
-\hat{T}_{\text{el}}&=\sum_i \frac{\vect{\hat{\vect{p}}_i}^2}{2m_e}\\
-\hat{T}_{\text{nuc}}&=\sum_K \frac{\vect{\hat{ \vect{P}}_K}^2}{2 M_K}\\
-\hat{V}_{\text{nuc-nuc}}&=\frac{1}{2} \sum_{K\neq L} \frac{Z_L Z_K e^2}{|\vect{R}_L-\vect{R}_K|}\\
-\hat{V}_{\text{el-el}}&=\frac{1}{2} \sum_{i\neq j} \frac{e^2}{|\vecr_i-\vecr_j|}\\
-\hat{V}_{\text{nuc-el}}&=-\sum_{i,K} \frac{Z_K e^2}{|\vecr_i-\vect{R}_K|}
-\label{equ:theory_fullhamiltonian}
-\end{align}
-
-
 Hopping transport
 *****************
