@@ -420,6 +420,19 @@ The following table contains the defaults input options for the calculator, The 
      - 0.7
      - mixing parameter for linear mixing of density matrices
      - float+
+   * - regions.qmregion.localize.max_iterations
+     - 10000
+     - Maximum number of iterations for PM Localization
+     - int+
+   * - regions.qmregion.localize.convergence_limit
+     - 1e-5
+     - Convergence criteria for PM localization
+     - 
+   * - regions.qmregion.localize.method
+     - unitary-optimizer
+     - Method for the localization optimization
+     - | [jacobi-sweeps
+       | unitary-optimizer]
    * - regions.qmregion.statetracker.oscillatorstrength
      - OPTIONAL
      - picks first state above a threshold
