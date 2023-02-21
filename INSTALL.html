@@ -201,6 +201,7 @@ GROMACS:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so -S ..
 </pre></div>
 </div>
+<p>Please also ensure GROMACS was build with <code class="docutils literal notranslate"><span class="pre">-DGMX_INSTALL_LEGACY_API=ON</span></code>.</p>
 <p>Be careful to use exactly the option suggested in the error message! You
 can also add <code class="docutils literal notranslate"><span class="pre">-LH</span></code> or <code class="docutils literal notranslate"><span class="pre">-LAH</span></code> options to the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command in
 order to see the available options with brief explanations (note that
