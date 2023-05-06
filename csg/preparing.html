@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Preparing coarse-grained runs &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -180,7 +181,7 @@ mapping file.</p>
 <p>At the current state, <code class="docutils literal notranslate"><span class="pre">csg_gmxtopol</span></code> can only generate the topology for the first
 molecule in the system. If more molecule types are present, a special
 tpr file has to be prepared. The program can be executed by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_gmxtopol --top topol.tpr --cg map.xml --out cgtop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_gmxtopol<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--cg<span class="w"> </span>map.xml<span class="w"> </span>--out<span class="w"> </span>cgtop
 </pre></div>
 </div>
 <p>which will create a file <code class="docutils literal notranslate"><span class="pre">cgtop.top</span></code>. This file includes the topology
@@ -220,8 +221,8 @@ later be extrapolated and overwritten.</p>
 <section id="resampling">
 <h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this heading">¶</a></h2>
 <p>Use the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_resample --in table.pot --out table_resample.pot <span class="se">\</span>
-             --grid min:step:max
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_resample<span class="w"> </span>--in<span class="w"> </span>table.pot<span class="w"> </span>--out<span class="w"> </span>table_resample.pot<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>--grid<span class="w"> </span>min:step:max
 </pre></div>
 </div>
 <p>to resample the potential given in file –<code class="docutils literal notranslate"><span class="pre">table.pot</span></code> from <code class="docutils literal notranslate"><span class="pre">min</span></code> to
@@ -242,8 +243,8 @@ script (to xvg) automatically.</p>
 <section id="extrapolation">
 <h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Permalink to this heading">¶</a></h2>
 <p>The following line</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table extrapolate <span class="o">[</span>options<span class="o">]</span> table_resample.pot <span class="se">\</span>
-         table_extrapolate.pot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>table<span class="w"> </span>extrapolate<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>table_resample.pot<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>table_extrapolate.pot
 </pre></div>
 </div>
 <p>calls the extrapolation procedure, which processes the range of values
@@ -267,17 +268,17 @@ suitable GROMACS format as described in the final step.</p>
 <p>Finally, the table is exported to <code class="docutils literal notranslate"><span class="pre">xvg</span></code>. The conversion procedure
 requires a small xml file <code class="docutils literal notranslate"><span class="pre">table.xml</span></code> as shown below:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span>
-    <span class="nt">&lt;name&gt;</span>XXX<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
-  <span class="nt">&lt;inverse&gt;</span>
-    <span class="nt">&lt;gromacs&gt;</span>
-      <span class="nt">&lt;pot_max&gt;</span>1e8<span class="nt">&lt;/pot_max&gt;</span>
-      <span class="nt">&lt;table_end&gt;</span>8.0<span class="nt">&lt;/table_end&gt;</span>
-      <span class="nt">&lt;table_bins&gt;</span>0.002<span class="nt">&lt;/table_bins&gt;</span>
-    <span class="nt">&lt;/gromacs&gt;</span>
-  <span class="nt">&lt;/inverse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>XXX<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">    </span><span class="nt">&lt;gromacs&gt;</span>
+<span class="w">      </span><span class="nt">&lt;pot_max&gt;</span>1e8<span class="nt">&lt;/pot_max&gt;</span>
+<span class="w">      </span><span class="nt">&lt;table_end&gt;</span>8.0<span class="nt">&lt;/table_end&gt;</span>
+<span class="w">      </span><span class="nt">&lt;table_bins&gt;</span>0.002<span class="nt">&lt;/table_bins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/gromacs&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/inverse&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -287,8 +288,8 @@ single/ double precision. The value given in <code class="docutils literal notra
 corresponds to the <code class="docutils literal notranslate"><span class="pre">step</span></code> value of
 <code class="docutils literal notranslate"><span class="pre">csg_resample</span> <span class="pre">-grid</span> <span class="pre">min:step:max</span></code>.</p>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">xml</span></code> file above, call</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --options table.xml --ia-type non-bonded --ia-name XXX <span class="se">\</span>
-  convert_potential gromacs table_extrapolate.pot table.xvg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--options<span class="w"> </span>table.xml<span class="w"> </span>--ia-type<span class="w"> </span>non-bonded<span class="w"> </span>--ia-name<span class="w"> </span>XXX<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>convert_potential<span class="w"> </span>gromacs<span class="w"> </span>table_extrapolate.pot<span class="w"> </span>table.xvg
 </pre></div>
 </div>
 <p>to convert the extrapolated values in <code class="docutils literal notranslate"><span class="pre">table_extrapolate.pot</span></code> to
@@ -299,8 +300,8 @@ the <code class="docutils literal notranslate"><span class="pre">–ia-type</spa
 compatibility with the GROMACS topology. See the GROMACS manual for
 further information).</p>
 <p>To obtain a bond table, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --ia-type bond --ia-name XXX --options table.xml <span class="se">\</span>
-convert_potential gromacs table_extrapolate.pot table.xvg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--ia-type<span class="w"> </span>bond<span class="w"> </span>--ia-name<span class="w"> </span>XXX<span class="w"> </span>--options<span class="w"> </span>table.xml<span class="w"> </span><span class="se">\</span>
+convert_potential<span class="w"> </span>gromacs<span class="w"> </span>table_extrapolate.pot<span class="w"> </span>table.xvg
 </pre></div>
 </div>
 <p>It is also possible to use <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">dihedral</span></code> as type as well,
@@ -323,13 +324,13 @@ non-bonded interactions or zero at the minimum for bonded interaction</p></li>
 </section>
 <section id="an-example-on-non-bonded-interactions">
 <h2>An example on non-bonded interactions<a class="headerlink" href="#an-example-on-non-bonded-interactions" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call pot shift_nonbonded table.pot table.pot.refined
-csg_resample --grid <span class="m">0</span>.3:0.05:2 --in table.pot.refined <span class="se">\</span>
-         --out table.pot.refined
-csg_call table extrapolate --function quadratic --region left <span class="se">\</span>
-         table.pot.refined table.pot.refined
-csg_call table extrapolate --function constant --region right <span class="se">\</span>
-         table.pot.refined table.pot.refined
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>pot<span class="w"> </span>shift_nonbonded<span class="w"> </span>table.pot<span class="w"> </span>table.pot.refined
+csg_resample<span class="w"> </span>--grid<span class="w"> </span><span class="m">0</span>.3:0.05:2<span class="w"> </span>--in<span class="w"> </span>table.pot.refined<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--out<span class="w"> </span>table.pot.refined
+csg_call<span class="w"> </span>table<span class="w"> </span>extrapolate<span class="w"> </span>--function<span class="w"> </span>quadratic<span class="w"> </span>--region<span class="w"> </span>left<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>table.pot.refined<span class="w"> </span>table.pot.refined
+csg_call<span class="w"> </span>table<span class="w"> </span>extrapolate<span class="w"> </span>--function<span class="w"> </span>constant<span class="w"> </span>--region<span class="w"> </span>right<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>table.pot.refined<span class="w"> </span>table.pot.refined
 </pre></div>
 </div>
 <section id="alternatives">
@@ -340,9 +341,9 @@ choice or (b) using <code class="docutils literal notranslate"><span class="pre"
 <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">convert_potential</span></code>, another method would be suitable. This
 is integrating the force table as follows</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the table</span>
-csg_call table integrate force.d minus_pot.d
+csg_call<span class="w"> </span>table<span class="w"> </span>integrate<span class="w"> </span>force.d<span class="w"> </span>minus_pot.d
 <span class="c1"># multiply by -1</span>
-csg_call table linearop minus_pot.d pot.d -1 <span class="m">0</span>
+csg_call<span class="w"> </span>table<span class="w"> </span>linearop<span class="w"> </span>minus_pot.d<span class="w"> </span>pot.d<span class="w"> </span>-1<span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
 </section>

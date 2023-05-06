@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced topics &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -157,21 +158,21 @@
 <p>Each sub-step of an iteration and all direct calls can be adjusted to
 the user needs. The internal part of the iterative framework is
 organized as follows: all scripts are called using two keywords</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call key1 key2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>key1<span class="w"> </span>key2
 </pre></div>
 </div>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">csg_call</span> <span class="pre">update</span> <span class="pre">imc</span></code> calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> script for the
 inverse Monte Carlo procedure. The corresponding keywords are listed in
 <a class="reference internal" href="reference.html#reference-scripts"><span class="std std-ref">Scripts</span></a> or can be output directly by calling</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--list
 </pre></div>
 </div>
 <p>It is advised not to change already implemented scripts. To customize a
 script or add a new one, copy the script to your own directory (set by <code class="docutils literal notranslate"><span class="pre">inverse.scriptpath</span></code>)
 and redirect its call by creating your own <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> file in this
 directory which looks like this</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>key1 key2 script1 options
-key3 key4 script2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>key1<span class="w"> </span>key2<span class="w"> </span>script1<span class="w"> </span>options
+key3<span class="w"> </span>key4<span class="w"> </span>script2
 </pre></div>
 </div>
 <p>If the local keys are already in use, the existing call will be
@@ -181,7 +182,7 @@ the sampling package. The <code class="docutils literal notranslate"><span class
 one cpu. Our task will be to change the script so that GROMACS uses 8
 cpus, which is basically the same as adding mpirun options in <code class="docutils literal notranslate"><span class="pre">inverse.gromacs.mdrun.command</span></code>.</p>
 <p>First we find out which script calls <code class="docutils literal notranslate"><span class="pre">mdrun</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --list <span class="p">|</span> grep gromacs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gromacs
 </pre></div>
 </div>
 <p>The output should look as follows</p>
@@ -202,33 +203,33 @@ Alternatively, check the folder</p>
 </div>
 <p>for all available scripts.</p>
 <p>Analyzing the output of</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --cat run gromacs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--cat<span class="w"> </span>run<span class="w"> </span>gromacs
 </pre></div>
 </div>
 <p>we can conclude that this is indeed the script we need as the content
 (in shorted form is):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical mdrun
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical<span class="w"> </span>mdrun
 </pre></div>
 </div>
 <p>Now we can create our own <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code>, add a new script there, make it
 executable and overload the call of the script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p SCRIPTDIR
-cp <span class="sb">`</span>csg_call --quiet --show run gromacs<span class="sb">`</span> SCRIPTDIR/my_run_gromacs.sh
-chmod <span class="m">755</span> SCRIPTDIR/my_run_gromacs.sh
-<span class="nb">echo</span> <span class="s2">&quot;run gromacs my_run_gromacs.sh&quot;</span> &gt;&gt; SCRIPTDIR/csg_table
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>SCRIPTDIR
+cp<span class="w"> </span><span class="sb">`</span>csg_call<span class="w"> </span>--quiet<span class="w"> </span>--show<span class="w"> </span>run<span class="w"> </span>gromacs<span class="sb">`</span><span class="w"> </span>SCRIPTDIR/my_run_gromacs.sh
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>SCRIPTDIR/my_run_gromacs.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;run gromacs my_run_gromacs.sh&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>SCRIPTDIR/csg_table
 </pre></div>
 </div>
 <p>Please note that <code class="docutils literal notranslate"><span class="pre">my_run_gromacs.sh</span></code> is the name of the script and
 <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> is the custom script directory, which can be a global or a
 local path. Now we change the last line of <code class="docutils literal notranslate"><span class="pre">my_run_gromacs.sh</span></code> to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical mpirun -np <span class="m">8</span> mdrun
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>critical<span class="w"> </span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>mdrun
 </pre></div>
 </div>
 <p>This completes the customization. Do not forget to add <code class="docutils literal notranslate"><span class="pre">SCRIPTDIR</span></code> to
 <code class="docutils literal notranslate"><span class="pre">inverse.scriptpath</span></code> in the setting XML file (see <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>).</p>
 <p>You can check the new script by running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --scriptdir SCRIPTDIR --list
-csg_call --scriptdir SCRIPTDIR --run run gromacs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--scriptdir<span class="w"> </span>SCRIPTDIR<span class="w"> </span>--list
+csg_call<span class="w"> </span>--scriptdir<span class="w"> </span>SCRIPTDIR<span class="w"> </span>--run<span class="w"> </span>run<span class="w"> </span>gromacs
 </pre></div>
 </div>
 <p>Finally, do not forget to remove the license infomation and change the

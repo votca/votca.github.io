@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Input files &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -182,50 +183,50 @@ defined, as shown in <a class="reference internal" href="#input-files-fig-mappin
 use the centers of mass of the beads as coarse-grained coordinates.</p>
 <p>Extracts from the <code class="docutils literal notranslate"><span class="pre">propane.xml</span></code> file of the tutorial are shown below.</p>
 <div class="highlight-xml notranslate" id="propane-mapping-file"><div class="highlight"><pre><span></span><span class="nt">&lt;cg_molecule&gt;</span>
-  <span class="nt">&lt;name&gt;</span>ppn<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- molecule name in cg representation --&gt;</span>
-  <span class="nt">&lt;ident&gt;</span>ppn<span class="nt">&lt;/ident&gt;</span> <span class="cm">&lt;!-- molecule name in atomistic topology --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>ppn<span class="nt">&lt;/name&gt;</span><span class="w"> </span><span class="cm">&lt;!-- molecule name in cg representation --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;ident&gt;</span>ppn<span class="nt">&lt;/ident&gt;</span><span class="w"> </span><span class="cm">&lt;!-- molecule name in atomistic topology --&gt;</span>
 
-  <span class="nt">&lt;topology&gt;</span> <span class="cm">&lt;!-- topology of one molecule --&gt;</span>
-    <span class="nt">&lt;cg_beads&gt;</span>
-      <span class="nt">&lt;cg_bead&gt;</span>  <span class="cm">&lt;!-- definition of a coarse-grained bead --&gt;</span>
-        <span class="nt">&lt;name&gt;</span>A1<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;type&gt;</span>A<span class="nt">&lt;/type&gt;</span>
-        <span class="nt">&lt;mapping&gt;</span>A<span class="nt">&lt;/mapping&gt;</span> <span class="cm">&lt;!-- reference to a map --&gt;</span>
-          <span class="cm">&lt;!-- atoms belonging to this bead --&gt;</span>
-        <span class="nt">&lt;beads&gt;</span>1:ppn:C1 1:ppn:H4 1:ppn:H5 1:ppn:H6<span class="nt">&lt;/beads&gt;</span>
-      <span class="nt">&lt;/cg_bead&gt;</span>
-      <span class="cm">&lt;!-- more bead definitions --&gt;</span>
-    <span class="nt">&lt;/cg_beads&gt;</span>
+<span class="w">  </span><span class="nt">&lt;topology&gt;</span><span class="w"> </span><span class="cm">&lt;!-- topology of one molecule --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cg_beads&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cg_bead&gt;</span><span class="w">  </span><span class="cm">&lt;!-- definition of a coarse-grained bead --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;name&gt;</span>A1<span class="nt">&lt;/name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;type&gt;</span>A<span class="nt">&lt;/type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mapping&gt;</span>A<span class="nt">&lt;/mapping&gt;</span><span class="w"> </span><span class="cm">&lt;!-- reference to a map --&gt;</span>
+<span class="w">          </span><span class="cm">&lt;!-- atoms belonging to this bead --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;beads&gt;</span>1:ppn:C1<span class="w"> </span>1:ppn:H4<span class="w"> </span>1:ppn:H5<span class="w"> </span>1:ppn:H6<span class="nt">&lt;/beads&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cg_bead&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- more bead definitions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cg_beads&gt;</span>
 
-    <span class="nt">&lt;cg_bonded&gt;</span> <span class="cm">&lt;!-- bonded interactions --&gt;</span>
-      <span class="nt">&lt;bond&gt;</span>
-        <span class="nt">&lt;name&gt;</span>bond<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;beads&gt;</span>
-          A1 B1
-          B1 A2
-        <span class="nt">&lt;/beads&gt;</span>
-      <span class="nt">&lt;/bond&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cg_bonded&gt;</span><span class="w"> </span><span class="cm">&lt;!-- bonded interactions --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;bond&gt;</span>
+<span class="w">        </span><span class="nt">&lt;name&gt;</span>bond<span class="nt">&lt;/name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">          </span>A1<span class="w"> </span>B1
+<span class="w">          </span>B1<span class="w"> </span>A2
+<span class="w">        </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/bond&gt;</span>
 
-      <span class="nt">&lt;angle&gt;</span>
-        <span class="nt">&lt;name&gt;</span>angle<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;beads&gt;</span>
-          A1 B1 A2
-        <span class="nt">&lt;/beads&gt;</span>
-      <span class="nt">&lt;/angle&gt;</span>
-    <span class="nt">&lt;/cg_bonded&gt;</span>
-  <span class="nt">&lt;/topology&gt;</span>
+<span class="w">      </span><span class="nt">&lt;angle&gt;</span>
+<span class="w">        </span><span class="nt">&lt;name&gt;</span>angle<span class="nt">&lt;/name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">          </span>A1<span class="w"> </span>B1<span class="w"> </span>A2
+<span class="w">        </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cg_bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/topology&gt;</span>
 
-  <span class="nt">&lt;maps&gt;</span>
-    <span class="nt">&lt;map&gt;</span> <span class="cm">&lt;!-- mapping A --&gt;</span>
-      <span class="nt">&lt;name&gt;</span>A<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;weights&gt;</span> 12 1 1 1 <span class="nt">&lt;/weights&gt;</span>
-    <span class="nt">&lt;/map&gt;</span>
-    <span class="cm">&lt;!-- more mapping definitions --&gt;</span>
-  <span class="nt">&lt;/maps&gt;</span>
-<span class="nt">&lt;/cg_molecule&gt;</span> <span class="cm">&lt;!-- end of the molecule --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;maps&gt;</span>
+<span class="w">    </span><span class="nt">&lt;map&gt;</span><span class="w"> </span><span class="cm">&lt;!-- mapping A --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>A<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;weights&gt;</span><span class="w"> </span>12<span class="w"> </span>1<span class="w"> </span>1<span class="w"> </span>1<span class="w"> </span><span class="nt">&lt;/weights&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/map&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- more mapping definitions --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/maps&gt;</span>
+<span class="nt">&lt;/cg_molecule&gt;</span><span class="w"> </span><span class="cm">&lt;!-- end of the molecule --&gt;</span>
 
-An extract from the mapping file propane.xml of a propane molecule. The complete
-file can be found in the csg-tutorials/propane/single_molecule tutorial
+An<span class="w"> </span>extract<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>mapping<span class="w"> </span>file<span class="w"> </span>propane.xml<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>propane<span class="w"> </span>molecule.<span class="w"> </span>The<span class="w"> </span>complete
+file<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>found<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>csg-tutorials/propane/single_molecule<span class="w"> </span>tutorial
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> tag indicates the molecule name in the coarse-grained topology. The
@@ -267,7 +268,7 @@ list of bonded interactions. VOTCA is able to read topologies in the
 GROMACS<code class="docutils literal notranslate"><span class="pre">.tpr</span></code> format. For example, one can create a coarse-grained
 topology based on the mapping file and atomistic GROMACS topology using
 <code class="docutils literal notranslate"><span class="pre">csg_gmxtopol</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_gmxtopol --top topol.tpr --cg propane.xml --out out.top
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_gmxtopol<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--cg<span class="w"> </span>propane.xml<span class="w"> </span>--out<span class="w"> </span>out.top
 </pre></div>
 </div>
 <p>In some cases, however, one might want to use a .pdb, H5MD or .dump file
@@ -282,11 +283,11 @@ topology and then modify parts of it. The new XML topology can be used
 with the <code class="docutils literal notranslate"><span class="pre">--tpr</span></code> option, as any other topology file.</p>
 <p>For example, if information about a molecule is not present at all, a
 XML topology file can be created from a <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> file as follows</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topology</span> <span class="na">base=</span><span class="s">&quot;snapshot.pdb&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;molecules&gt;</span>
-    <span class="nt">&lt;clear/&gt;</span>
-    <span class="nt">&lt;define</span> <span class="na">name=</span><span class="s">&quot;mCP&quot;</span> <span class="na">first=</span><span class="s">&quot;1&quot;</span> <span class="na">nbeads=</span><span class="s">&quot;52&quot;</span> <span class="na">nmols=</span><span class="s">&quot;216&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/molecules&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topology</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;snapshot.pdb&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;molecules&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clear/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;define</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mCP&quot;</span><span class="w"> </span><span class="na">first=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">nbeads=</span><span class="s">&quot;52&quot;</span><span class="w"> </span><span class="na">nmols=</span><span class="s">&quot;216&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/molecules&gt;</span>
 <span class="nt">&lt;/topology&gt;</span>
 </pre></div>
 </div>
@@ -299,11 +300,11 @@ topology file.</p>
 <p>If molecule information is already present in the parent topology but
 molecules are not named properly (as is the case with old
 GROMACS<code class="docutils literal notranslate"><span class="pre">.tpr</span></code> files), one can rename them using</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topology</span> <span class="na">base=</span><span class="s">&quot;topol.tpr&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;molecules&gt;</span>
-    <span class="nt">&lt;rename</span> <span class="na">name=</span><span class="s">&quot;PPY3&quot;</span> <span class="na">range=</span><span class="s">&quot;1:125&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;rename</span> <span class="na">name=</span><span class="s">&quot;Cl&quot;</span> <span class="na">range=</span><span class="s">&quot;126:250&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/molecules&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topology</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;topol.tpr&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;molecules&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rename</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;PPY3&quot;</span><span class="w"> </span><span class="na">range=</span><span class="s">&quot;1:125&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rename</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Cl&quot;</span><span class="w"> </span><span class="na">range=</span><span class="s">&quot;126:250&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/molecules&gt;</span>
 <span class="nt">&lt;/topology&gt;</span>
 </pre></div>
 </div>
@@ -314,46 +315,46 @@ a LAMMPS .dump file or H5MD file then it is also possible to directly define
 the topology in a XML file. Here is an example of a XML file where the
 trajectory is read from a H5MD file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;topology&gt;</span>
-  <span class="cm">&lt;!-- particle group name in H5MD file --&gt;</span>
-  <span class="nt">&lt;h5md_particle_group</span> <span class="na">name=</span><span class="s">&quot;atoms&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;molecules&gt;</span>
-    <span class="cm">&lt;!-- define molecule, number of beads, number of mols --&gt;</span>
-    <span class="nt">&lt;molecule</span> <span class="na">name=</span><span class="s">&quot;BUT&quot;</span> <span class="na">nmols=</span><span class="s">&quot;4000&quot;</span> <span class="na">nbeads=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>
-      <span class="cm">&lt;!-- composition of molecule, bead definition --&gt;</span>
-      <span class="nt">&lt;bead</span> <span class="na">name=</span><span class="s">&quot;C1&quot;</span> <span class="na">type=</span><span class="s">&quot;C&quot;</span> <span class="na">mass=</span><span class="s">&quot;15.035&quot;</span> <span class="na">q=</span><span class="s">&quot;0.0&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;bead</span> <span class="na">name=</span><span class="s">&quot;C2&quot;</span> <span class="na">type=</span><span class="s">&quot;C&quot;</span> <span class="na">mass=</span><span class="s">&quot;14.028&quot;</span> <span class="na">q=</span><span class="s">&quot;0.0&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;bead</span> <span class="na">name=</span><span class="s">&quot;C3&quot;</span> <span class="na">type=</span><span class="s">&quot;C&quot;</span> <span class="na">mass=</span><span class="s">&quot;14.028&quot;</span> <span class="na">q=</span><span class="s">&quot;0.0&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;bead</span> <span class="na">name=</span><span class="s">&quot;C4&quot;</span> <span class="na">type=</span><span class="s">&quot;C&quot;</span> <span class="na">mass=</span><span class="s">&quot;15.035&quot;</span> <span class="na">q=</span><span class="s">&quot;0.0&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/molecule&gt;</span>
-  <span class="nt">&lt;/molecules&gt;</span>
-  <span class="cm">&lt;!-- bonded terms --&gt;</span>
-  <span class="nt">&lt;bonded&gt;</span>
-    <span class="nt">&lt;bond&gt;</span>
-      <span class="nt">&lt;name&gt;</span>bond1<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;beads&gt;</span>
-        BUT:C1 BUT:C2
-      <span class="nt">&lt;/beads&gt;</span>
-    <span class="nt">&lt;/bond&gt;</span>
-    <span class="nt">&lt;bond&gt;</span>
-      <span class="nt">&lt;name&gt;</span>bond2<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;beads&gt;</span>
-        BUT:C2 BUT:C3
-      <span class="nt">&lt;/beads&gt;</span>
-    <span class="nt">&lt;/bond&gt;</span>
-    <span class="nt">&lt;angle&gt;</span>
-      <span class="nt">&lt;name&gt;</span>angle1<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;beads&gt;</span>
-        BUT:C1 BUT:C2 BUT:C3
-        BUT:C2 BUT:C3 BUT:C4
-      <span class="nt">&lt;/beads&gt;</span>
-    <span class="nt">&lt;/angle&gt;</span>
-    <span class="nt">&lt;dihedral&gt;</span>
-      <span class="nt">&lt;name&gt;</span>dihedral1<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;beads&gt;</span>
-        BUT:C1 BUT:C2 BUT:C3 BUT:C4
-      <span class="nt">&lt;/beads&gt;</span>
-    <span class="nt">&lt;/dihedral&gt;</span>
-  <span class="nt">&lt;/bonded&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- particle group name in H5MD file --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;h5md_particle_group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;atoms&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;molecules&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- define molecule, number of beads, number of mols --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;molecule</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;BUT&quot;</span><span class="w"> </span><span class="na">nmols=</span><span class="s">&quot;4000&quot;</span><span class="w"> </span><span class="na">nbeads=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- composition of molecule, bead definition --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;bead</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;C1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="na">mass=</span><span class="s">&quot;15.035&quot;</span><span class="w"> </span><span class="na">q=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;bead</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;C2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="na">mass=</span><span class="s">&quot;14.028&quot;</span><span class="w"> </span><span class="na">q=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;bead</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;C3&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="na">mass=</span><span class="s">&quot;14.028&quot;</span><span class="w"> </span><span class="na">q=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;bead</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;C4&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="na">mass=</span><span class="s">&quot;15.035&quot;</span><span class="w"> </span><span class="na">q=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/molecule&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/molecules&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- bonded terms --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;bonded&gt;</span>
+<span class="w">    </span><span class="nt">&lt;bond&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>bond1<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">        </span>BUT:C1<span class="w"> </span>BUT:C2
+<span class="w">      </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/bond&gt;</span>
+<span class="w">    </span><span class="nt">&lt;bond&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>bond2<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">        </span>BUT:C2<span class="w"> </span>BUT:C3
+<span class="w">      </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/bond&gt;</span>
+<span class="w">    </span><span class="nt">&lt;angle&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>angle1<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">        </span>BUT:C1<span class="w"> </span>BUT:C2<span class="w"> </span>BUT:C3
+<span class="w">        </span>BUT:C2<span class="w"> </span>BUT:C3<span class="w"> </span>BUT:C4
+<span class="w">      </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dihedral&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>dihedral1<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;beads&gt;</span>
+<span class="w">        </span>BUT:C1<span class="w"> </span>BUT:C2<span class="w"> </span>BUT:C3<span class="w"> </span>BUT:C4
+<span class="w">      </span><span class="nt">&lt;/beads&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dihedral&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/bonded&gt;</span>
 <span class="nt">&lt;/topology&gt;</span>
 </pre></div>
 </div>
@@ -361,7 +362,7 @@ trajectory is read from a H5MD file:</p>
 <code class="docutils literal notranslate"><span class="pre">molecule</span></code> is replicated <code class="docutils literal notranslate"><span class="pre">nmols</span></code> times. Inside <code class="docutils literal notranslate"><span class="pre">molecule</span></code>, the list
 of <code class="docutils literal notranslate"><span class="pre">bead</span></code> has to be defined with the name, type, mass and charge.</p>
 <p>The box size can be set by the tag <code class="docutils literal notranslate"><span class="pre">box</span></code>:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;box</span> <span class="na">xx=</span><span class="s">&quot;6.0&quot;</span> <span class="na">yy=</span><span class="s">&quot;6.0&quot;</span> <span class="na">zz=</span><span class="s">&quot;6.0&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;box</span><span class="w"> </span><span class="na">xx=</span><span class="s">&quot;6.0&quot;</span><span class="w"> </span><span class="na">yy=</span><span class="s">&quot;6.0&quot;</span><span class="w"> </span><span class="na">zz=</span><span class="s">&quot;6.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">xx,</span> <span class="pre">yy,</span> <span class="pre">zz</span></code> are the dimensions of the box.</p>
@@ -376,7 +377,7 @@ forces) for the beads defined in the topology. VOTCA currently supports
 formats.</p>
 <p>Once the mapping file is created, it is easy to convert an atomistic to
 a coarse-grained trajectory using <code class="docutils literal notranslate"><span class="pre">csg_map</span></code>.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>csg_map --top topol.tpr --trj traj.trr --cg propane.xml --out cg.gro
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>csg_map<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--trj<span class="w"> </span>traj.trr<span class="w"> </span>--cg<span class="w"> </span>propane.xml<span class="w"> </span>--out<span class="w"> </span>cg.gro
 </pre></div>
 </div>
 <p>The program <code class="docutils literal notranslate"><span class="pre">csg_map</span></code> also provides the option <code class="docutils literal notranslate"><span class="pre">--no-map</span></code>. In this case, no
@@ -393,19 +394,19 @@ mapping disabled by default (e.g. <code class="docutils literal notranslate"><sp
 <section id="setting-files">
 <span id="input-files-setting-files"></span><h2>Setting files<a class="headerlink" href="#setting-files" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span> <span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span>  <span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
-    <span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-    <span class="nt">&lt;inverse&gt;</span>
-      ... specific commands
-    <span class="nt">&lt;/inverse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span><span class="w"> </span><span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span><span class="w"> </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span><span class="w"> </span><span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span><span class="w">  </span><span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">      </span>...<span class="w"> </span>specific<span class="w"> </span>commands
+<span class="w">    </span><span class="nt">&lt;/inverse&gt;</span>
 
-    ... specific section for inverse boltzmann, force matching etc.
-  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">    </span>...<span class="w"> </span>specific<span class="w"> </span>section<span class="w"> </span>for<span class="w"> </span>inverse<span class="w"> </span>boltzmann,<span class="w"> </span>force<span class="w"> </span>matching<span class="w"> </span>etc.
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -418,7 +419,7 @@ extended in the sections on iterative boltzmann inversion (<code class="docutils
 matching (<code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>) or statistical analysis (<code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>).</p>
 <p>Generally, <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is an analysis tool which can be used for computing radial
 distribution functions and analysing them. As an example, the command</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>csg_stat --top topol.tpr --trj traj.xtc --options settings.xml
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>csg_stat<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--trj<span class="w"> </span>traj.xtc<span class="w"> </span>--options<span class="w"> </span>settings.xml
 </pre></div>
 </div>
 <p>computes the distributions of all interactions specified in
@@ -430,18 +431,18 @@ the option <code class="docutils literal notranslate"><span class="pre">--cg</sp
 the <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file for calculating the angular distribution between
 three beads of type A which are all within a cutoff distance of 0.37 (nm) might look like:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>A-A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;threebody&gt;</span>true<span class="nt">&lt;/threebody&gt;</span> <span class="cm">&lt;!-- is a three-body interaction --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span> <span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
-    <span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span> <span class="cm">&lt;!--minimum angle in radians --&gt;</span>
-    <span class="nt">&lt;max&gt;</span>3.14<span class="nt">&lt;/max&gt;</span> <span class="cm">&lt;!-- maximum angle in radians --&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.02<span class="nt">&lt;/step&gt;</span>
-    <span class="nt">&lt;cut&gt;</span>0.37<span class="nt">&lt;/cut&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span><span class="w"> </span><span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>A-A-A<span class="nt">&lt;/name&gt;</span><span class="w"> </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;threebody&gt;</span>true<span class="nt">&lt;/threebody&gt;</span><span class="w"> </span><span class="cm">&lt;!-- is a three-body interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span><span class="w"> </span><span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span><span class="w"> </span><span class="cm">&lt;!--minimum angle in radians --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max&gt;</span>3.14<span class="nt">&lt;/max&gt;</span><span class="w"> </span><span class="cm">&lt;!-- maximum angle in radians --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.02<span class="nt">&lt;/step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cut&gt;</span>0.37<span class="nt">&lt;/cut&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -453,15 +454,15 @@ pair potential of mean force (PMF) for non-bonded pairs:</p>
 is the total force acting on a bead projected onto the unit distance vector connecting this pair of beads.
 The settings file has to contain the additional option:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span> <span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span>  <span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
-    <span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-    <span class="nt">&lt;force&gt;</span>true<span class="nt">&lt;/force&gt;</span>  <span class="cm">&lt;!-- calculate pair PMF for this interaction --&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span><span class="w"> </span><span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span><span class="w"> </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span><span class="w"> </span><span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span><span class="w">  </span><span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;force&gt;</span>true<span class="nt">&lt;/force&gt;</span><span class="w">  </span><span class="cm">&lt;!-- calculate pair PMF for this interaction --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>

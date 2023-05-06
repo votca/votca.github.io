@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DFT + GWBSE Energy Calculation Using CH4 &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -336,11 +337,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -349,10 +351,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -364,12 +370,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -416,8 +425,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools --help
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>--help
 </pre></div>
 </div>
 </div>
@@ -432,7 +440,7 @@ div.rendered_html tbody tr:hover {
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_tools, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Runs excitation/charge transport tools
 
@@ -472,8 +480,7 @@ Allowed options:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse.log
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span>-t<span class="w"> </span><span class="m">2</span><span class="w"> </span>-e<span class="w"> </span>dftgwbse<span class="w"> </span>&gt;<span class="w"> </span>dftgwbse.log
 </pre></div>
 </div>
 </div>
@@ -486,9 +493,8 @@ Allowed options:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>mkdir -p OPTIONFILES
-<span class="o">!</span>xtp_tools -p dftgwbse -o OPTIONFILES/dftgwbse.xml
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>-p<span class="w"> </span>OPTIONFILES
+<span class="o">!</span>xtp_tools<span class="w"> </span>-p<span class="w"> </span>dftgwbse<span class="w"> </span>-o<span class="w"> </span>OPTIONFILES/dftgwbse.xml
 </pre></div>
 </div>
 </div>
@@ -506,8 +512,7 @@ Done - stopping here
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>head -n <span class="m">10</span> OPTIONFILES/dftgwbse.xml
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>OPTIONFILES/dftgwbse.xml
 </pre></div>
 </div>
 </div>
@@ -534,8 +539,7 @@ Done - stopping here
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>cat dftgwbse2.xml
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>dftgwbse2.xml
 </pre></div>
 </div>
 </div>
@@ -559,8 +563,7 @@ Done - stopping here
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -o dftgwbse2.xml -t <span class="m">2</span> -e dftgwbse &gt; dftgwbse2.log
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-o<span class="w"> </span>dftgwbse2.xml<span class="w"> </span>-t<span class="w"> </span><span class="m">2</span><span class="w"> </span>-e<span class="w"> </span>dftgwbse<span class="w"> </span>&gt;<span class="w"> </span>dftgwbse2.log
 </pre></div>
 </div>
 </div>
@@ -573,8 +576,7 @@ Done - stopping here
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane -e partialcharges
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span>-e<span class="w"> </span>partialcharges
 </pre></div>
 </div>
 </div>
@@ -589,17 +591,17 @@ Done - stopping here
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_tools, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2023-4-28 5:24:7 Calculated Densities at Numerical Grid, Number of electrons is -2.37461e-08
-... ... 2023-4-28 5:24:7 Calculating ESP at CHELPG grid points
-... ... 2023-4-28 5:24:9 Netcharge constrained to 0
-... ...  Sum of fitted charges: 2.41751e-14
+... ... 2023-5-6 3:15:5 Calculated Densities at Numerical Grid, Number of electrons is -2.37461e-08
+... ... 2023-5-6 3:15:5 Calculating ESP at CHELPG grid points
+... ... 2023-5-6 3:15:6 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.42341e-14
 ... ...  RMSE of fit:  0.00221585
 ... ...  RRMSE of fit: 0.107179
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -618,8 +620,7 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_tools -c <span class="nv">job_name</span><span class="o">=</span>methane <span class="nv">lower</span><span class="o">=</span><span class="m">9</span> <span class="nv">upper</span><span class="o">=</span><span class="m">25</span> <span class="nv">points</span><span class="o">=</span><span class="m">1000</span> -e spectrum
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span><span class="nv">lower</span><span class="o">=</span><span class="m">9</span><span class="w"> </span><span class="nv">upper</span><span class="o">=</span><span class="m">25</span><span class="w"> </span><span class="nv">points</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span>-e<span class="w"> </span>spectrum
 </pre></div>
 </div>
 </div>
@@ -634,7 +635,7 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_tools, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -654,8 +655,7 @@ Initializing tool
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>pip install seaborn --user
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>seaborn<span class="w"> </span>--user
 </pre></div>
 </div>
 </div>
@@ -665,17 +665,17 @@ Initializing tool
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.11/site-packages (0.11.2)
-Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.11/site-packages (from seaborn) (1.22.0)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.11/site-packages (from seaborn) (1.24.3)
 Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.11/site-packages (from seaborn) (1.8.1)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.11/site-packages (from seaborn) (1.5.3)
-Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.11/site-packages (from seaborn) (3.6.3)
+Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.11/site-packages (from seaborn) (3.7.1)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.0.7)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.37.2)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.39.3)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (21.3)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.2.0)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (3.0.9)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (23.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.4.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (3.0.9)
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2023.3)
 Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
@@ -685,8 +685,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;epsGaussian&quot;</span><span class="p">,</span><span class="s2">&quot;IM(eps)Gaussian&quot;</span><span class="p">,</span>  <span class="s2">&quot;epsLorentz&quot;</span><span class="p">,</span>  <span class="s2">&quot;Im(esp)Lorentz&quot;</span><span class="p">]</span>
@@ -716,8 +715,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

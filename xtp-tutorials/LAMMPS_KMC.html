@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kinect Monte Carlo Simulations Using LAMMPS &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -335,11 +336,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -348,10 +350,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -363,12 +369,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -411,8 +420,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>pip install seaborn --user
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>seaborn<span class="w"> </span>--user
 </pre></div>
 </div>
 </div>
@@ -422,17 +430,17 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.11/site-packages (0.11.2)
-Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.11/site-packages (from seaborn) (1.22.0)
+Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.11/site-packages (from seaborn) (1.24.3)
 Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.11/site-packages (from seaborn) (1.8.1)
 Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.11/site-packages (from seaborn) (1.5.3)
-Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.11/site-packages (from seaborn) (3.6.3)
+Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.11/site-packages (from seaborn) (3.7.1)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.0.7)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.37.2)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.39.3)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (21.3)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.2.0)
-Requirement already satisfied: pyparsing&gt;=2.2.1 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (3.0.9)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (23.0)
+Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.4.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (3.0.9)
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2023.3)
 Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
@@ -456,8 +464,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_run -e eanalyze -c <span class="nv">resolution_sites</span><span class="o">=</span><span class="m">0</span>.03 -f state.hdf5
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>eanalyze<span class="w"> </span>-c<span class="w"> </span><span class="nv">resolution_sites</span><span class="o">=</span><span class="m">0</span>.03<span class="w"> </span>-f<span class="w"> </span>state.hdf5
 </pre></div>
 </div>
 </div>
@@ -472,7 +479,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_run, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Initializing calculator
 ... eanalyze
@@ -498,8 +505,7 @@ Changes have not been written to state file.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>ls eanalyze*
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>eanalyze*
 </pre></div>
 </div>
 </div>
@@ -524,8 +530,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
@@ -559,8 +564,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_run -e ianalyze -c <span class="nv">resolution_logJ2</span><span class="o">=</span><span class="m">0</span>.1 <span class="nv">states</span><span class="o">=</span>e,h -f state.hdf5
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>ianalyze<span class="w"> </span>-c<span class="w"> </span><span class="nv">resolution_logJ2</span><span class="o">=</span><span class="m">0</span>.1<span class="w"> </span><span class="nv">states</span><span class="o">=</span>e,h<span class="w"> </span>-f<span class="w"> </span>state.hdf5
 </pre></div>
 </div>
 </div>
@@ -575,7 +579,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_run, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Initializing calculator
 ... ianalyze
@@ -599,15 +603,14 @@ Changes have not been written to state file.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;ianalyze.ihist_h.out&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -615,13 +618,6 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 []
 </pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
-</div>
 </div>
 </section>
 <section id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
@@ -631,8 +627,7 @@ Changes have not been written to state file.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>xtp_run -e kmcmultiple -c <span class="nv">runtime</span><span class="o">=</span><span class="m">1000</span> <span class="nv">outputtime</span><span class="o">=</span><span class="m">10</span> <span class="nv">field</span><span class="o">=</span><span class="m">10</span>,0,0 <span class="nv">carriertype</span><span class="o">=</span>electron -f state.hdf5
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>kmcmultiple<span class="w"> </span>-c<span class="w"> </span><span class="nv">runtime</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="nv">outputtime</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">field</span><span class="o">=</span><span class="m">10</span>,0,0<span class="w"> </span><span class="nv">carriertype</span><span class="o">=</span>electron<span class="w"> </span>-f<span class="w"> </span>state.hdf5
 </pre></div>
 </div>
 </div>
@@ -647,7 +642,7 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: b533e39 (compiled Apr 28 2023, 05:20:47)
+xtp_run, version 2024-dev gitid: c6cfd69 (compiled May  6 2023, 02:46:01)
 
 Initializing calculator
 ... kmcmultiple

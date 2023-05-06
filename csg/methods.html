@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Methods &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -207,7 +208,7 @@ bonded and non-bonded degrees of freedom.</p>
 <p>To generate an exclusion list, an atomistic topology without exclusions
 and a mapping scheme have to be prepared first. Once the .tpr topology
 and .xml mapping files are ready, simply run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_boltzmann --top topol.tpr --cg mapping.xml --excl exclusions.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_boltzmann<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--cg<span class="w"> </span>mapping.xml<span class="w"> </span>--excl<span class="w"> </span>exclusions.txt
 </pre></div>
 </div>
 <p>This will create a list of exclusions for all interactions that are not
@@ -233,7 +234,7 @@ the GROMACS topology file.</p>
 <p>For statistical analysis <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> provides an interactive mode. To enter the
 interactive mode, use the <code class="docutils literal notranslate"><span class="pre">–trj</span></code> option followed by the file name of
 the reference trajectory</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_boltzmann --top topol.tpr --trj traj.trr --cg mapping.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_boltzmann<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--trj<span class="w"> </span>traj.trr<span class="w"> </span>--cg<span class="w"> </span>mapping.xml
 </pre></div>
 </div>
 <p>To get help on a specific command of the interactive mode, type</p>
@@ -267,7 +268,7 @@ use wildcards (e.g. <code class="docutils literal notranslate"><span class="pre"
 <p>To exit the interactive mode, use the command <code class="docutils literal notranslate"><span class="pre">q</span></code>.</p>
 <p>If analysis commands are to be read from a file, use the pipe or stdin
 redirects from the shell.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat commands <span class="p">|</span> csg_boltzmann topol.top --trj traj.trr --cg mapping.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>commands<span class="w"> </span><span class="p">|</span><span class="w"> </span>csg_boltzmann<span class="w"> </span>topol.top<span class="w"> </span>--trj<span class="w"> </span>traj.trr<span class="w"> </span>--cg<span class="w"> </span>mapping.xml
 </pre></div>
 </div>
 <section id="distribution-functions-and-tabulated-potentials">
@@ -387,27 +388,27 @@ coarse-graining the interactions and parameters for the force-matching
 run. This file is specified by the tag <code class="docutils literal notranslate"><span class="pre">–options</span></code> in the XMLformat. An
 example might look like the following</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="cm">&lt;!--fmatch section --&gt;</span>
-  <span class="nt">&lt;fmatch&gt;</span>
-    <span class="cm">&lt;!--Number of frames for block averaging --&gt;</span>
-    <span class="nt">&lt;frames_per_block&gt;</span>6<span class="nt">&lt;/frames_per_block&gt;</span>
-    <span class="cm">&lt;!--Constrained least squares?--&gt;</span>
-    <span class="nt">&lt;constrainedLS&gt;</span>false<span class="nt">&lt;/constrainedLS&gt;</span>
-  <span class="nt">&lt;/fmatch&gt;</span>
-  <span class="cm">&lt;!-- example for a non-bonded interaction entry --&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span>
-    <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="cm">&lt;!-- fmatch specific stuff --&gt;</span>
-    <span class="nt">&lt;fmatch&gt;</span>
-      <span class="nt">&lt;min&gt;</span>0.27<span class="nt">&lt;/min&gt;</span>
-      <span class="nt">&lt;max&gt;</span>1.2<span class="nt">&lt;/max&gt;</span>
-      <span class="nt">&lt;step&gt;</span>0.02<span class="nt">&lt;/step&gt;</span>
-      <span class="nt">&lt;out_step&gt;</span>0.005<span class="nt">&lt;/out_step&gt;</span>
-    <span class="nt">&lt;/fmatch&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!--fmatch section --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;fmatch&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!--Number of frames for block averaging --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;frames_per_block&gt;</span>6<span class="nt">&lt;/frames_per_block&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!--Constrained least squares?--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;constrainedLS&gt;</span>false<span class="nt">&lt;/constrainedLS&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/fmatch&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- example for a non-bonded interaction entry --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- fmatch specific stuff --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;fmatch&gt;</span>
+<span class="w">      </span><span class="nt">&lt;min&gt;</span>0.27<span class="nt">&lt;/min&gt;</span>
+<span class="w">      </span><span class="nt">&lt;max&gt;</span>1.2<span class="nt">&lt;/max&gt;</span>
+<span class="w">      </span><span class="nt">&lt;step&gt;</span>0.02<span class="nt">&lt;/step&gt;</span>
+<span class="w">      </span><span class="nt">&lt;out_step&gt;</span>0.005<span class="nt">&lt;/out_step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/fmatch&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -437,8 +438,8 @@ the force error is small enough.</p>
 <p>To convert forces (<code class="docutils literal notranslate"><span class="pre">.force</span></code>) to potentials (<code class="docutils literal notranslate"><span class="pre">.pot</span></code>), tables have to
 be integrated. To use the built-in integration command from the
 scripting framework, execute</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table integrate CG-CG.force minus_CG-CG.pot
-csg_call table linearop minus_CG-CG.d CG-CG.d -1 <span class="m">0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>table<span class="w"> </span>integrate<span class="w"> </span>CG-CG.force<span class="w"> </span>minus_CG-CG.pot
+csg_call<span class="w"> </span>table<span class="w"> </span>linearop<span class="w"> </span>minus_CG-CG.d<span class="w"> </span>CG-CG.d<span class="w"> </span>-1<span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
 <p>This command calls the <code class="docutils literal notranslate"><span class="pre">table_integrate.pl</span></code> script, which integrates the force and writes the
@@ -456,40 +457,40 @@ The general procedure is the same, as shown in the two-body case
 (See flowchart in Fig. <a class="reference internal" href="#methods-fig-fm-flowchart"><span class="std std-ref">Flowchart to perform force matching.</span></a>).
 It has to be specified in the control file that one wants to parametrize a three-body interaction. An example might look like this:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="cm">&lt;!-- fmatch section --&gt;</span>
-  <span class="nt">&lt;fmatch&gt;</span>
-    <span class="cm">&lt;!-- Number of frames for block averaging --&gt;</span>
-    <span class="nt">&lt;frames_per_block&gt;</span>10<span class="nt">&lt;/frames_per_block&gt;</span>
-    <span class="cm">&lt;!-- Constrained least squares?--&gt;</span>
-    <span class="nt">&lt;constrainedLS&gt;</span>true<span class="nt">&lt;/constrainedLS&gt;</span>
-  <span class="nt">&lt;/fmatch&gt;</span>
-  <span class="cm">&lt;!-- example for a non-bonded interaction entry with three-body SW interactions --&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span>
-    <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
-    <span class="cm">&lt;!-- flag for three-body interactions --&gt;</span>
-    <span class="nt">&lt;threebody&gt;</span>true<span class="nt">&lt;/threebody&gt;</span>
-    <span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
-    <span class="cm">&lt;!-- fmatch section of interaction --&gt;</span>
-    <span class="nt">&lt;fmatch&gt;</span>
-      <span class="cm">&lt;!-- short-range cutoff (in nm) --&gt;</span>
-      <span class="nt">&lt;a&gt;</span>0.37<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;sigma&gt;</span>1.0<span class="nt">&lt;/sigma&gt;</span>
-      <span class="cm">&lt;!-- switching range (steepness of exponential switching function) (in nm) --&gt;</span>
-      <span class="nt">&lt;gamma&gt;</span>0.08<span class="nt">&lt;/gamma&gt;</span>
-      <span class="cm">&lt;!-- min for angular interaction (in rad) --&gt;</span>
-      <span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
-      <span class="cm">&lt;!-- max for angular interaction (in rad) --&gt;</span>
-      <span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
-      <span class="cm">&lt;!-- step size for internal spline representation (in rad) --&gt;</span>
-      <span class="nt">&lt;step&gt;</span>0.1<span class="nt">&lt;/step&gt;</span>
-      <span class="cm">&lt;!-- output step size for angular interaction (in rad) --&gt;</span>
-      <span class="nt">&lt;out_step&gt;</span>0.0031415927<span class="nt">&lt;/out_step&gt;</span>
-    <span class="nt">&lt;/fmatch&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- fmatch section --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;fmatch&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Number of frames for block averaging --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;frames_per_block&gt;</span>10<span class="nt">&lt;/frames_per_block&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Constrained least squares?--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;constrainedLS&gt;</span>true<span class="nt">&lt;/constrainedLS&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/fmatch&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- example for a non-bonded interaction entry with three-body SW interactions --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- flag for three-body interactions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;threebody&gt;</span>true<span class="nt">&lt;/threebody&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- fmatch section of interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;fmatch&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- short-range cutoff (in nm) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;a&gt;</span>0.37<span class="nt">&lt;/a&gt;</span>
+<span class="w">      </span><span class="nt">&lt;sigma&gt;</span>1.0<span class="nt">&lt;/sigma&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- switching range (steepness of exponential switching function) (in nm) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;gamma&gt;</span>0.08<span class="nt">&lt;/gamma&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- min for angular interaction (in rad) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- max for angular interaction (in rad) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- step size for internal spline representation (in rad) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;step&gt;</span>0.1<span class="nt">&lt;/step&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- output step size for angular interaction (in rad) --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;out_step&gt;</span>0.0031415927<span class="nt">&lt;/out_step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/fmatch&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -507,34 +508,34 @@ the error (which is estimated via a block-averaging procedure) and a table flag.
 <p>Coarse-grained simulations with three-body Stillinger-Weber interactions can be done with
 LAMMPS with the MANYBODY <em>pair_style sw/angle/table</em> (<a class="reference external" href="https://docs.lammps.org/pair_sw_angle_table.html">https://docs.lammps.org/pair_sw_angle_table.html</a>). For this, the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file has to be
 converted into a table format according to the LAMMPS <em>angle_style table</em> (<a class="reference external" href="https://docs.lammps.org/angle_table.html">https://docs.lammps.org/angle_table.html</a>). This can be done with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --options table.xml --ia-name XXX --ia-type angle convert_potential lammps --clean --no-shift XXX.pot table_XXX.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--options<span class="w"> </span>table.xml<span class="w"> </span>--ia-name<span class="w"> </span>XXX<span class="w"> </span>--ia-type<span class="w"> </span>angle<span class="w"> </span>convert_potential<span class="w"> </span>lammps<span class="w"> </span>--clean<span class="w"> </span>--no-shift<span class="w"> </span>XXX.pot<span class="w"> </span>table_XXX.txt
 </pre></div>
 </div>
 <p>in line with the conversion of angular tables for bonded interactions. Therefore, the
 CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>) now has to contain a <code class="docutils literal notranslate"><span class="pre">&lt;bonded&gt;</span></code>
 section with the appropriate interaction name:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;bonded&gt;</span>
-    <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
-    <span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
-    <span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
-    <span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.0031415927<span class="nt">&lt;/step&gt;</span>
-    <span class="cm">&lt;!-- settings for converting table to lammps angular format --&gt;</span>
-    <span class="nt">&lt;inverse&gt;</span>
-      <span class="nt">&lt;lammps&gt;</span>
-        <span class="nt">&lt;table_begin&gt;</span>0<span class="nt">&lt;/table_begin&gt;</span>
-        <span class="nt">&lt;table_end&gt;</span>180<span class="nt">&lt;/table_end&gt;</span>
-        <span class="nt">&lt;table_bins&gt;</span>0.18<span class="nt">&lt;/table_bins&gt;</span>
-        <span class="nt">&lt;y_scale&gt;</span>0.239006<span class="nt">&lt;/y_scale&gt;</span>
-        <span class="nt">&lt;avg_points&gt;</span>1<span class="nt">&lt;/avg_points&gt;</span>
-      <span class="nt">&lt;/lammps&gt;</span>
-    <span class="nt">&lt;/inverse&gt;</span>
-  <span class="nt">&lt;/bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;bonded&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
+<span class="w">    </span><span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.0031415927<span class="nt">&lt;/step&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- settings for converting table to lammps angular format --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">      </span><span class="nt">&lt;lammps&gt;</span>
+<span class="w">        </span><span class="nt">&lt;table_begin&gt;</span>0<span class="nt">&lt;/table_begin&gt;</span>
+<span class="w">        </span><span class="nt">&lt;table_end&gt;</span>180<span class="nt">&lt;/table_end&gt;</span>
+<span class="w">        </span><span class="nt">&lt;table_bins&gt;</span>0.18<span class="nt">&lt;/table_bins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;y_scale&gt;</span>0.239006<span class="nt">&lt;/y_scale&gt;</span>
+<span class="w">        </span><span class="nt">&lt;avg_points&gt;</span>1<span class="nt">&lt;/avg_points&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/lammps&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/inverse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/bonded&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -631,43 +632,43 @@ you plan to run the iterative procedure.</p>
 options file. As an example, the <code class="docutils literal notranslate"><span class="pre">setting.xml</span></code> file for a propane is
 shown in below:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  <span class="nt">&lt;non-bonded&gt;</span> <span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
-    <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span> <span class="cm">&lt;!-- name of the interaction --&gt;</span>
-    <span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span> <span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
-    <span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-    <span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span>  <span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
-    <span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
-    <span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-    <span class="nt">&lt;inverse&gt;</span>
-      <span class="nt">&lt;target&gt;</span>A-A.dist.tgt<span class="nt">&lt;/target&gt;</span> <span class="cm">&lt;!-- target distribution --&gt;</span>
-      <span class="nt">&lt;do_potential&gt;</span>1 0 0<span class="nt">&lt;/do_potential&gt;</span>  <span class="cm">&lt;!-- update cycles --&gt;</span>
-      <span class="nt">&lt;gromacs&gt;</span>
-        <span class="nt">&lt;table&gt;</span>table_A_A.xvg<span class="nt">&lt;/table&gt;</span>
-      <span class="nt">&lt;/gromacs&gt;</span>
-    <span class="nt">&lt;/inverse&gt;</span>
-  <span class="nt">&lt;/non-bonded&gt;</span>
-  <span class="cm">&lt;!-- ... more non-bonded interactions --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span><span class="w"> </span><span class="cm">&lt;!-- non-bonded interactions --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span><span class="w"> </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span><span class="w"> </span><span class="cm">&lt;!-- types involved in this interaction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span><span class="w">  </span><span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
+<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
+<span class="w">    </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">      </span><span class="nt">&lt;target&gt;</span>A-A.dist.tgt<span class="nt">&lt;/target&gt;</span><span class="w"> </span><span class="cm">&lt;!-- target distribution --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;do_potential&gt;</span>1<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/do_potential&gt;</span><span class="w">  </span><span class="cm">&lt;!-- update cycles --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;gromacs&gt;</span>
+<span class="w">        </span><span class="nt">&lt;table&gt;</span>table_A_A.xvg<span class="nt">&lt;/table&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/gromacs&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/inverse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- ... more non-bonded interactions --&gt;</span>
 
-  <span class="cm">&lt;!-- general options for the inverse script --&gt;</span>
-  <span class="nt">&lt;inverse&gt;</span>
-    <span class="nt">&lt;kBT&gt;</span>1.6629<span class="nt">&lt;/kBT&gt;</span> <span class="cm">&lt;!-- 300*0.00831451 gromacs units --&gt;</span>
-    <span class="nt">&lt;program&gt;</span>gromacs<span class="nt">&lt;/program&gt;</span> <span class="cm">&lt;!-- use gromacs to sample --&gt;</span>
-    <span class="nt">&lt;gromacs&gt;</span> <span class="cm">&lt;!-- gromacs specific options --&gt;</span>
-      <span class="nt">&lt;equi_time&gt;</span>10<span class="nt">&lt;/equi_time&gt;</span> <span class="cm">&lt;!-- ignore so many frames --&gt;</span>
-      <span class="nt">&lt;table_bins&gt;</span>0.002<span class="nt">&lt;/table_bins&gt;</span> <span class="cm">&lt;!-- grid for table*.xvg --&gt;</span>
-      <span class="nt">&lt;pot_max&gt;</span>1000000<span class="nt">&lt;/pot_max&gt;</span> <span class="cm">&lt;!-- cut the potential at value --&gt;</span>
-      <span class="nt">&lt;table_end&gt;</span>2.0<span class="nt">&lt;/table_end&gt;</span> <span class="cm">&lt;!-- extend the tables to value --&gt;</span>
-      <span class="nt">&lt;topol&gt;</span>topol.tpr<span class="nt">&lt;/topol&gt;</span> <span class="cm">&lt;!-- topology + trajectory files --&gt;</span>
-      <span class="nt">&lt;traj&gt;</span>traj.xtc<span class="nt">&lt;/traj&gt;</span>
-    <span class="nt">&lt;/gromacs&gt;</span>
-    <span class="cm">&lt;!-- these files are copied for each new run --&gt;</span>
-    <span class="nt">&lt;filelist&gt;</span>grompp.mdp topol.top table.xvg
-      table_a1.xvg table_b1.xvg index.ndx
-  <span class="nt">&lt;/filelist&gt;</span>
-  <span class="nt">&lt;iterations_max&gt;</span>300<span class="nt">&lt;/iterations_max&gt;</span> <span class="cm">&lt;!-- number of iterations --&gt;</span>
-  <span class="nt">&lt;method&gt;</span>ibi<span class="nt">&lt;/method&gt;</span> <span class="cm">&lt;!-- inverse Boltzmann or inverse MC --&gt;</span>
-  <span class="nt">&lt;log_file&gt;</span>inverse.log<span class="nt">&lt;/log_file&gt;</span> <span class="cm">&lt;!-- log file --&gt;</span>
-  <span class="nt">&lt;restart_file&gt;</span>restart_points.log<span class="nt">&lt;/restart_file&gt;</span> <span class="cm">&lt;!-- restart --&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- general options for the inverse script --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">    </span><span class="nt">&lt;kBT&gt;</span>1.6629<span class="nt">&lt;/kBT&gt;</span><span class="w"> </span><span class="cm">&lt;!-- 300*0.00831451 gromacs units --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;program&gt;</span>gromacs<span class="nt">&lt;/program&gt;</span><span class="w"> </span><span class="cm">&lt;!-- use gromacs to sample --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;gromacs&gt;</span><span class="w"> </span><span class="cm">&lt;!-- gromacs specific options --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;equi_time&gt;</span>10<span class="nt">&lt;/equi_time&gt;</span><span class="w"> </span><span class="cm">&lt;!-- ignore so many frames --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;table_bins&gt;</span>0.002<span class="nt">&lt;/table_bins&gt;</span><span class="w"> </span><span class="cm">&lt;!-- grid for table*.xvg --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;pot_max&gt;</span>1000000<span class="nt">&lt;/pot_max&gt;</span><span class="w"> </span><span class="cm">&lt;!-- cut the potential at value --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;table_end&gt;</span>2.0<span class="nt">&lt;/table_end&gt;</span><span class="w"> </span><span class="cm">&lt;!-- extend the tables to value --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;topol&gt;</span>topol.tpr<span class="nt">&lt;/topol&gt;</span><span class="w"> </span><span class="cm">&lt;!-- topology + trajectory files --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;traj&gt;</span>traj.xtc<span class="nt">&lt;/traj&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/gromacs&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- these files are copied for each new run --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;filelist&gt;</span>grompp.mdp<span class="w"> </span>topol.top<span class="w"> </span>table.xvg
+<span class="w">      </span>table_a1.xvg<span class="w"> </span>table_b1.xvg<span class="w"> </span>index.ndx
+<span class="w">  </span><span class="nt">&lt;/filelist&gt;</span>
+<span class="w">  </span><span class="nt">&lt;iterations_max&gt;</span>300<span class="nt">&lt;/iterations_max&gt;</span><span class="w"> </span><span class="cm">&lt;!-- number of iterations --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;method&gt;</span>ibi<span class="nt">&lt;/method&gt;</span><span class="w"> </span><span class="cm">&lt;!-- inverse Boltzmann or inverse MC --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;log_file&gt;</span>inverse.log<span class="nt">&lt;/log_file&gt;</span><span class="w"> </span><span class="cm">&lt;!-- log file --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;restart_file&gt;</span>restart_points.log<span class="nt">&lt;/restart_file&gt;</span><span class="w"> </span><span class="cm">&lt;!-- restart --&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
@@ -678,7 +679,7 @@ description of all options in <a class="reference internal" href="reference.html
 <section id="starting-the-iterative-process">
 <h4>Starting the iterative process<a class="headerlink" href="#starting-the-iterative-process" title="Permalink to this heading">¶</a></h4>
 <p>After all input files have been set up, the run can be started by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse --options settings.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse<span class="w"> </span>--options<span class="w"> </span>settings.xml
 </pre></div>
 </div>
 <p>Each iteration is stored in a separate directory, named
@@ -771,10 +772,10 @@ get a basic understanding of this framework before proceeding.</p>
 <p>To specify Iterative Boltzmann Inversion as algorithm in the script, add
 <code class="docutils literal notranslate"><span class="pre">ibi</span></code> in the <code class="docutils literal notranslate"><span class="pre">method</span></code> section of the XMLsetting file as shown below.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-  ...
-  <span class="nt">&lt;inverse&gt;</span>
-    <span class="nt">&lt;method&gt;</span>ibi<span class="nt">&lt;/method&gt;</span>
-  <span class="nt">&lt;/inverse&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method&gt;</span>ibi<span class="nt">&lt;/method&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/inverse&gt;</span>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
@@ -807,13 +808,13 @@ evaluate cross-correlations of all pairs of interactions. By specifying
 define groups of interactions, amongst which cross-correlations are taken into
 account. <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;</span></code> can be any name.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;non-bonded&gt;</span>
-  <span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;type1&gt;</span>CG<span class="nt">&lt;/type1&gt;</span>
-  <span class="nt">&lt;type2&gt;</span>CG<span class="nt">&lt;/type2&gt;</span>
-  ...
-  <span class="nt">&lt;imc&gt;</span>
-    <span class="nt">&lt;group&gt;</span>solvent<span class="nt">&lt;/group&gt;</span>
- <span class="nt">&lt;/imc&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;type1&gt;</span>CG<span class="nt">&lt;/type1&gt;</span>
+<span class="w">  </span><span class="nt">&lt;type2&gt;</span>CG<span class="nt">&lt;/type2&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;imc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;group&gt;</span>solvent<span class="nt">&lt;/group&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/imc&gt;</span>
 <span class="nt">&lt;/non-bonded&gt;</span>
 </pre></div>
 </div>
@@ -824,12 +825,12 @@ account. <code class="docutils literal notranslate"><span class="pre">&lt;group&
 has to be set with <code class="docutils literal notranslate"><span class="pre">imc.groupname.reg</span></code>. If set to <span class="math notranslate nohighlight">\(0\)</span> (default value) the
 unregularized version of IMC is applied.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
-  <span class="nt">&lt;imc&gt;</span>
-    <span class="nt">&lt;default_reg&gt;</span>150<span class="nt">&lt;/default_reg&gt;</span>
-    <span class="nt">&lt;solvent&gt;</span>
-        <span class="nt">&lt;reg&gt;</span>300<span class="nt">&lt;/reg&gt;</span>
-    <span class="nt">&lt;/solvent&gt;</span>
-  <span class="nt">&lt;/imc&gt;</span>
+<span class="w">  </span><span class="nt">&lt;imc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;default_reg&gt;</span>150<span class="nt">&lt;/default_reg&gt;</span>
+<span class="w">    </span><span class="nt">&lt;solvent&gt;</span>
+<span class="w">        </span><span class="nt">&lt;reg&gt;</span>300<span class="nt">&lt;/reg&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/solvent&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/imc&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>
@@ -839,11 +840,11 @@ unregularized version of IMC is applied.</p>
 <p>For internal degrees of freedom, one can apply the IBI method as a post update
 method.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
-  <span class="nt">&lt;imc&gt;</span>
-    <span class="nt">&lt;group&gt;</span>none<span class="nt">&lt;/group&gt;</span>
-  <span class="nt">&lt;/imc&gt;</span>
-  <span class="nt">&lt;do_potential&gt;</span>0<span class="nt">&lt;/do_potential&gt;</span>
-  <span class="nt">&lt;post_update&gt;</span>ibi<span class="nt">&lt;/post_update&gt;</span>
+<span class="w">  </span><span class="nt">&lt;imc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;group&gt;</span>none<span class="nt">&lt;/group&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/imc&gt;</span>
+<span class="w">  </span><span class="nt">&lt;do_potential&gt;</span>0<span class="nt">&lt;/do_potential&gt;</span>
+<span class="w">  </span><span class="nt">&lt;post_update&gt;</span>ibi<span class="nt">&lt;/post_update&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>
@@ -869,16 +870,16 @@ Gauss-Newton. The former two are very similar. With the latter constraints can
 be added. Two closures relations are implemented: hypernetted-chain (HNC) and
 Percus-Yevick (PY). The options in the xml file have to be lowercase.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
-  ...
-  <span class="nt">&lt;iie&gt;</span>
-    <span class="nt">&lt;initial_guess&gt;</span>
-      <span class="nt">&lt;method&gt;</span>ie<span class="nt">&lt;/method&gt;</span>
-      <span class="nt">&lt;closure&gt;</span>hnc<span class="nt">&lt;/closure&gt;</span>
-    <span class="nt">&lt;/initial_guess&gt;</span>
-    <span class="nt">&lt;method&gt;</span>newton<span class="nt">&lt;/method&gt;</span>
-    <span class="nt">&lt;closure&gt;</span>hnc<span class="nt">&lt;/closure&gt;</span>
-    ...
-  <span class="nt">&lt;/iie&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;iie&gt;</span>
+<span class="w">    </span><span class="nt">&lt;initial_guess&gt;</span>
+<span class="w">      </span><span class="nt">&lt;method&gt;</span>ie<span class="nt">&lt;/method&gt;</span>
+<span class="w">      </span><span class="nt">&lt;closure&gt;</span>hnc<span class="nt">&lt;/closure&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/initial_guess&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method&gt;</span>newton<span class="nt">&lt;/method&gt;</span>
+<span class="w">    </span><span class="nt">&lt;closure&gt;</span>hnc<span class="nt">&lt;/closure&gt;</span>
+<span class="w">    </span>...
+<span class="w">  </span><span class="nt">&lt;/iie&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>
@@ -890,14 +891,14 @@ bar). This can lead to instabilities in the core region of the potential and
 make an extrapolation necessary. There is also an option to fix steps near the
 cut-off.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
-  ...
-  <span class="nt">&lt;iie&gt;</span>
-    <span class="nt">&lt;method&gt;</span>gauss-newton<span class="nt">&lt;/method&gt;</span>
-    ...
-    <span class="nt">&lt;pressure_constraint&gt;</span>1.0<span class="nt">&lt;/pressure_constraint&gt;</span>
-    <span class="nt">&lt;extrap_near_core&gt;</span>constant<span class="nt">&lt;/extrap_near_core&gt;</span>
-    <span class="nt">&lt;fix_near_cut_off&gt;</span>none<span class="nt">&lt;/fix_near_cut_off&gt;</span>
-  <span class="nt">&lt;/iie&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;iie&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method&gt;</span>gauss-newton<span class="nt">&lt;/method&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;pressure_constraint&gt;</span>1.0<span class="nt">&lt;/pressure_constraint&gt;</span>
+<span class="w">    </span><span class="nt">&lt;extrap_near_core&gt;</span>constant<span class="nt">&lt;/extrap_near_core&gt;</span>
+<span class="w">    </span><span class="nt">&lt;fix_near_cut_off&gt;</span>none<span class="nt">&lt;/fix_near_cut_off&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/iie&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>
@@ -911,15 +912,15 @@ validated to be meaningful. One can choose to ignore the RISM formalism for
 the case of bonds in the CG representation (not recommended). The number of
 beads per molecule has to be provided.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;inverse&gt;</span>
-  ...
-  <span class="nt">&lt;iie&gt;</span>
-    ...
-    <span class="nt">&lt;cut_off&gt;</span>1.2<span class="nt">&lt;/cut_off&gt;</span>
-    <span class="nt">&lt;densities&gt;</span>4.651<span class="nt">&lt;/densities&gt;</span>
-    <span class="nt">&lt;g_extrap_factor&gt;</span>2<span class="nt">&lt;/g_extrap_factor&gt;</span>
-    <span class="nt">&lt;ignore_intramolecular_correlation&gt;</span>false<span class="nt">&lt;/ignore_intramolecular_correlation&gt;</span>
-    <span class="nt">&lt;n_intra&gt;</span>4<span class="nt">&lt;/n_intra&gt;</span>
-  <span class="nt">&lt;/iie&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;iie&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;cut_off&gt;</span>1.2<span class="nt">&lt;/cut_off&gt;</span>
+<span class="w">    </span><span class="nt">&lt;densities&gt;</span>4.651<span class="nt">&lt;/densities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;g_extrap_factor&gt;</span>2<span class="nt">&lt;/g_extrap_factor&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ignore_intramolecular_correlation&gt;</span>false<span class="nt">&lt;/ignore_intramolecular_correlation&gt;</span>
+<span class="w">    </span><span class="nt">&lt;n_intra&gt;</span>4<span class="nt">&lt;/n_intra&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/iie&gt;</span>
 <span class="nt">&lt;/inverse&gt;</span>
 </pre></div>
 </div>
@@ -940,17 +941,17 @@ possible by further extension of RE implementation.</p>
 Therefore, for each CG interaction, an analytical functional must be
 specified in the XMLsetting file as</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;non-bonded&gt;</span>
-  <span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;type1&gt;</span>CG<span class="nt">&lt;/type1&gt;</span>
-  <span class="nt">&lt;type2&gt;</span>CG<span class="nt">&lt;/type2&gt;</span>
-  ...
-  <span class="nt">&lt;re&gt;</span>
-    <span class="nt">&lt;function&gt;</span>cbspl or lj126<span class="nt">&lt;/function&gt;</span>
-      <span class="nt">&lt;cbspl&gt;</span>
-        <span class="nt">&lt;nknots&gt;</span>48<span class="nt">&lt;/nknots&gt;</span>
-      <span class="nt">&lt;/cbspl&gt;</span>
-  <span class="nt">&lt;/re&gt;</span>
-  ...
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>CG-CG<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;type1&gt;</span>CG<span class="nt">&lt;/type1&gt;</span>
+<span class="w">  </span><span class="nt">&lt;type2&gt;</span>CG<span class="nt">&lt;/type2&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;re&gt;</span>
+<span class="w">    </span><span class="nt">&lt;function&gt;</span>cbspl<span class="w"> </span>or<span class="w"> </span>lj126<span class="nt">&lt;/function&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cbspl&gt;</span>
+<span class="w">        </span><span class="nt">&lt;nknots&gt;</span>48<span class="nt">&lt;/nknots&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cbspl&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/re&gt;</span>
+<span class="w">  </span>...
 <span class="nt">&lt;/non-bonded&gt;</span>
 </pre></div>
 </div>
@@ -1067,13 +1068,13 @@ potential was added to the coarse-grained potential</p>
 interaction is</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;post_update&gt;</span>pressure<span class="nt">&lt;/post_update&gt;</span>
 <span class="nt">&lt;post_update_options&gt;</span>
-  <span class="nt">&lt;pressure&gt;</span>
-    <span class="nt">&lt;type&gt;</span>simple<span class="nt">&lt;/type&gt;</span>
-    <span class="nt">&lt;do&gt;</span>0 0 1<span class="nt">&lt;/do&gt;</span>
-    <span class="nt">&lt;simple&gt;</span>
-      <span class="nt">&lt;scale&gt;</span>0.0003<span class="nt">&lt;/scale&gt;</span>
-    <span class="nt">&lt;/simple&gt;</span>
-  <span class="nt">&lt;/pressure&gt;</span>
+<span class="w">  </span><span class="nt">&lt;pressure&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>simple<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;do&gt;</span>0<span class="w"> </span>0<span class="w"> </span>1<span class="nt">&lt;/do&gt;</span>
+<span class="w">    </span><span class="nt">&lt;simple&gt;</span>
+<span class="w">      </span><span class="nt">&lt;scale&gt;</span>0.0003<span class="nt">&lt;/scale&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/simple&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/pressure&gt;</span>
 <span class="nt">&lt;/post_update_options&gt;</span>
 </pre></div>
 </div>
@@ -1122,13 +1123,13 @@ iteraction without doing potential update</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;do_potential&gt;</span>0<span class="nt">&lt;/do_potential&gt;</span>
 <span class="nt">&lt;post_update&gt;</span>kbibi<span class="nt">&lt;/post_update&gt;</span>
 <span class="nt">&lt;post_update_options&gt;</span>
-  <span class="nt">&lt;kbibi&gt;</span>
-    <span class="nt">&lt;do&gt;</span>1<span class="nt">&lt;/do&gt;</span>
-    <span class="nt">&lt;start&gt;</span>1.0<span class="nt">&lt;/start&gt;</span>
-    <span class="nt">&lt;stop&gt;</span>1.4<span class="nt">&lt;/stop&gt;</span>
-    <span class="nt">&lt;factor&gt;</span>0.05<span class="nt">&lt;/factor&gt;</span>
-    <span class="nt">&lt;r_ramp&gt;</span>1.4<span class="nt">&lt;/r_ramp&gt;</span>
-  <span class="nt">&lt;/kbibi&gt;</span>
+<span class="w">  </span><span class="nt">&lt;kbibi&gt;</span>
+<span class="w">    </span><span class="nt">&lt;do&gt;</span>1<span class="nt">&lt;/do&gt;</span>
+<span class="w">    </span><span class="nt">&lt;start&gt;</span>1.0<span class="nt">&lt;/start&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stop&gt;</span>1.4<span class="nt">&lt;/stop&gt;</span>
+<span class="w">    </span><span class="nt">&lt;factor&gt;</span>0.05<span class="nt">&lt;/factor&gt;</span>
+<span class="w">    </span><span class="nt">&lt;r_ramp&gt;</span>1.4<span class="nt">&lt;/r_ramp&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/kbibi&gt;</span>
 <span class="nt">&lt;/post_update_options&gt;</span>
 </pre></div>
 </div>
@@ -1159,9 +1160,9 @@ in less than 10 minutes. Smoothing is implemented as a post_update
 script and can be enabled by adding</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;post_update&gt;</span>smooth<span class="nt">&lt;/post_update&gt;</span>
 <span class="nt">&lt;post_update_options&gt;</span>
-  <span class="nt">&lt;smooth&gt;</span>
-      <span class="nt">&lt;iterations&gt;</span>2<span class="nt">&lt;/iterations&gt;</span>
-  <span class="nt">&lt;/smooth&gt;</span>
+<span class="w">  </span><span class="nt">&lt;smooth&gt;</span>
+<span class="w">      </span><span class="nt">&lt;iterations&gt;</span>2<span class="nt">&lt;/iterations&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/smooth&gt;</span>
 <span class="nt">&lt;/post_update_options&gt;</span>
 </pre></div>
 </div>
@@ -1208,17 +1209,17 @@ from the all atom simulations,</p>
 <p>To perform the <span class="math notranslate nohighlight">\(\mathcal{C}-\)</span>IBI is necessary include some lines
 inside of the .xml file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
- <span class="nt">&lt;non-bonded&gt;</span>
-  <span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span>
-  ...
-  <span class="nt">&lt;inverse&gt;</span>
-   <span class="nt">&lt;post_update&gt;</span>cibi<span class="nt">&lt;/post_update&gt;</span>
-   <span class="nt">&lt;post_update_options&gt;</span>
-     <span class="nt">&lt;cibi&gt;</span>
-       <span class="nt">&lt;do&gt;</span>1<span class="nt">&lt;/do&gt;</span>
-     <span class="nt">&lt;/cibi&gt;</span>
-   <span class="nt">&lt;/post_update_options&gt;</span>
-   ...
+<span class="w"> </span><span class="nt">&lt;non-bonded&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>A-A<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span>...
+<span class="w">  </span><span class="nt">&lt;inverse&gt;</span>
+<span class="w">   </span><span class="nt">&lt;post_update&gt;</span>cibi<span class="nt">&lt;/post_update&gt;</span>
+<span class="w">   </span><span class="nt">&lt;post_update_options&gt;</span>
+<span class="w">     </span><span class="nt">&lt;cibi&gt;</span>
+<span class="w">       </span><span class="nt">&lt;do&gt;</span>1<span class="nt">&lt;/do&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/cibi&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/post_update_options&gt;</span>
+<span class="w">   </span>...
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>

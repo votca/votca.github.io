@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSG Tutorial &mdash; VOTCA 2024-dev documentation</title>
@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -237,8 +238,8 @@ topology file <code class="docutils literal notranslate"><span class="pre">topol
 the MD integrator using the <code class="docutils literal notranslate"><span class="pre">gmx</span> <span class="pre">mdrun</span></code> program. <code class="docutils literal notranslate"><span class="pre">topol.tpr</span></code>
 contains <code class="docutils literal notranslate"><span class="pre">conf.gro</span></code>, <code class="docutils literal notranslate"><span class="pre">grompp.mdp</span></code>, <code class="docutils literal notranslate"><span class="pre">topol.top</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">forcefield.itp</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx grompp -c conf.gro <span class="c1"># -c is needed if other than conf.gro file is used</span>
-gmx mdrun -v <span class="c1"># -v (verbose) gives the estimate of the run time</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>grompp<span class="w"> </span>-c<span class="w"> </span>conf.gro<span class="w"> </span><span class="c1"># -c is needed if other than conf.gro file is used</span>
+gmx<span class="w"> </span>mdrun<span class="w"> </span>-v<span class="w"> </span><span class="c1"># -v (verbose) gives the estimate of the run time</span>
 </pre></div>
 </div>
 </section>
@@ -294,8 +295,8 @@ Due to limited time, decrease the number of steps (<code class="docutils literal
 <code class="docutils literal notranslate"><span class="pre">grompp.mdp</span></code> to a reasonable value (<code class="docutils literal notranslate"><span class="pre">5000-10000</span></code>) and adjust the
 output frequency of the trajectory, .log, and .edr files to, e.g.,
 50-100 (<code class="docutils literal notranslate"><span class="pre">nstxout</span></code>, <code class="docutils literal notranslate"><span class="pre">nstfout</span></code>, <code class="docutils literal notranslate"><span class="pre">nstlog</span></code>, nstenergy):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx grompp <span class="c1"># combines conf.gro, topol.top, and grompp.mdp, and forcefield.itp (which is in the gromos43a1.ff folder of GROMACS) into topol.tpr</span>
-gmx mdrun -v <span class="c1"># runs MD integrator. The trajectory is saved to traj.trr</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>grompp<span class="w"> </span><span class="c1"># combines conf.gro, topol.top, and grompp.mdp, and forcefield.itp (which is in the gromos43a1.ff folder of GROMACS) into topol.tpr</span>
+gmx<span class="w"> </span>mdrun<span class="w"> </span>-v<span class="w"> </span><span class="c1"># runs MD integrator. The trajectory is saved to traj.trr</span>
 </pre></div>
 </div>
 <p>Map this short atomistic trajectory to a CG trajectory using <code class="docutils literal notranslate"><span class="pre">csg_map</span></code>
@@ -326,7 +327,7 @@ energy, pressure, etc.) from the binary <code class="docutils literal notranslat
 you (see the corresponding command line in the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script). It
 creates an additional subfolder <code class="docutils literal notranslate"><span class="pre">energies</span></code> with all thermodynamic
 information:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Extract_Energies.sh <span class="nv">$equi</span> <span class="c1">#  The argument $equi is optional. If provided, analysis will start at the corresponding time frame (in GROMACS units, ps) (e.g. 1 to 5)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Extract_Energies.sh<span class="w"> </span><span class="nv">$equi</span><span class="w"> </span><span class="c1">#  The argument $equi is optional. If provided, analysis will start at the corresponding time frame (in GROMACS units, ps) (e.g. 1 to 5)</span>
 </pre></div>
 </div>
 </section>
@@ -335,13 +336,13 @@ information:</p>
 <p>Once again, check the mapping file <code class="docutils literal notranslate"><span class="pre">water.xml</span></code>. Atom names listed in
 the definition of the COM bead should correspond to those used in the
 <code class="docutils literal notranslate"><span class="pre">conf.gro</span></code> file. You can use <code class="docutils literal notranslate"><span class="pre">csg_dump</span></code> to check this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_dump --top topol.tpr
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_dump<span class="w"> </span>--top<span class="w"> </span>topol.tpr
 </pre></div>
 </div>
 <p>Check the options file <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code>. It contains the section of the
 corresponding non-bonded interaction (<code class="docutils literal notranslate"><span class="pre">CG-CG</span></code>). After this, calculate
 the center of mass RDF:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_stat --top topol.tpr --trj traj.trr --cg water.xml --options settings.xml <span class="o">(</span>--nt <span class="m">3</span> --begin <span class="nv">$equi</span><span class="o">)</span> <span class="c1"># ( ) denotes additional options: --nt # number of threads to run calculation in parallel with more then one threads (e.g. 3), --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_stat<span class="w"> </span>--top<span class="w"> </span>topol.tpr<span class="w"> </span>--trj<span class="w"> </span>traj.trr<span class="w"> </span>--cg<span class="w"> </span>water.xml<span class="w"> </span>--options<span class="w"> </span>settings.xml<span class="w"> </span><span class="o">(</span>--nt<span class="w"> </span><span class="m">3</span><span class="w"> </span>--begin<span class="w"> </span><span class="nv">$equi</span><span class="o">)</span><span class="w"> </span><span class="c1"># ( ) denotes additional options: --nt # number of threads to run calculation in parallel with more then one threads (e.g. 3), --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
 </pre></div>
 </div>
 <p>Compare your RDF with <code class="docutils literal notranslate"><span class="pre">CG-CG.dist.tgt</span></code> in <code class="docutils literal notranslate"><span class="pre">csg-tutorials/spce/ibi/</span></code>
@@ -354,7 +355,7 @@ of MD steps in <code class="docutils literal notranslate"><span class="pre">grom
 settings.xml file (<code class="docutils literal notranslate"><span class="pre">cg.gromacs.equi_time</span></code>) to a lower value (time
 frame in GROMACS units (ps) at which the analysis of the CG trajectory
 is started in each IBI step). Finally, start the IBI iterations:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse --options settings.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse<span class="w"> </span>--options<span class="w"> </span>settings.xml
 </pre></div>
 </div>
 <p>At each iteration step, the current CG potential is <code class="docutils literal notranslate"><span class="pre">CG-CG.pot.cur</span></code>.
@@ -386,7 +387,7 @@ adjust the equilibration time in the <code class="docutils literal notranslate">
 IBI, but needs a better statistical sampling in each CG step. Therefore,
 the number of MD steps should be larger than in the IBI tutorial. Start
 the IMC iterations:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse --options settings.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse<span class="w"> </span>--options<span class="w"> </span>settings.xml
 </pre></div>
 </div>
 <p>Again, the current CG potential is <code class="docutils literal notranslate"><span class="pre">CG-CG.pot.cur</span></code>, the CG-CG RDF is
@@ -414,7 +415,7 @@ parameters (<code class="docutils literal notranslate"><span class="pre">CG-CG.p
 minimization algorithm. Reduce the number of MD steps in <code class="docutils literal notranslate"><span class="pre">grompp.mdp</span></code>,
 adjust the equilibration time in the <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file
 (<code class="docutils literal notranslate"><span class="pre">cg.gromacs.equi_time</span></code>) and start the RE iterations:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse --options settings.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse<span class="w"> </span>--options<span class="w"> </span>settings.xml
 </pre></div>
 </div>
 <p>Again, the current CG potential is <code class="docutils literal notranslate"><span class="pre">CG-CG.pot.cur</span></code>, the CG-CG RDF is
@@ -456,13 +457,13 @@ representation (<code class="docutils literal notranslate"><span class="pre">ste
 and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be adjusted to be within the range of the RDF (see
 the calculation of RDF section of the IBI tutorial). Run the FM
 calculation (see also the corresponding line of the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_fmatch --top ../atomistic/topol.tpr --trj ../atomistic/traj.trr --options fmatch.xml --cg water.xml <span class="o">(</span>--begin <span class="nv">$equi</span> <span class="o">)</span> <span class="c1"># ( ) denotes additional option: , --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_fmatch<span class="w"> </span>--top<span class="w"> </span>../atomistic/topol.tpr<span class="w"> </span>--trj<span class="w"> </span>../atomistic/traj.trr<span class="w"> </span>--options<span class="w"> </span>fmatch.xml<span class="w"> </span>--cg<span class="w"> </span>water.xml<span class="w"> </span><span class="o">(</span>--begin<span class="w"> </span><span class="nv">$equi</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="c1"># ( ) denotes additional option: , --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
 </pre></div>
 </div>
 <p>To obtain the CG potential, the CG force has to be integrated. (see the
 appropriate lines in the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table integrate CG-CG.force CG-CG.pot <span class="c1"># integrates the table</span>
-csg_call table linearop CG-CG.pot CG-CG.pot -1 <span class="m">0</span> <span class="c1"># multiplication of all table values by -1 (potential)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>table<span class="w"> </span>integrate<span class="w"> </span>CG-CG.force<span class="w"> </span>CG-CG.pot<span class="w"> </span><span class="c1"># integrates the table</span>
+csg_call<span class="w"> </span>table<span class="w"> </span>linearop<span class="w"> </span>CG-CG.pot<span class="w"> </span>CG-CG.pot<span class="w"> </span>-1<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># multiplication of all table values by -1 (potential)</span>
 </pre></div>
 </div>
 <p>Change the spline grid (<code class="docutils literal notranslate"><span class="pre">step</span></code>), blocksize, and parameter
@@ -473,7 +474,7 @@ constrainedLS. This should provide an overview of the whole procedure.</p>
 <p>To run a CG simulation with GROMACS, the potential has to be converted
 to a potential table, GROMACS can read (<code class="docutils literal notranslate"><span class="pre">table_CG_CG.xvg</span></code>). (Check the
 inverse section in the <code class="docutils literal notranslate"><span class="pre">fmatch.xml</span></code> for the corresponding options):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --options fmatch.xml --ia-name CG-CG --ia-type non-bonded convert_potential gromacs --clean input.pot table_CG_CG.xvg <span class="c1"># calls convert_potential gromacs. Unsampled regions for distances smaller than the min value are extrapolated.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--options<span class="w"> </span>fmatch.xml<span class="w"> </span>--ia-name<span class="w"> </span>CG-CG<span class="w"> </span>--ia-type<span class="w"> </span>non-bonded<span class="w"> </span>convert_potential<span class="w"> </span>gromacs<span class="w"> </span>--clean<span class="w"> </span>input.pot<span class="w"> </span>table_CG_CG.xvg<span class="w"> </span><span class="c1"># calls convert_potential gromacs. Unsampled regions for distances smaller than the min value are extrapolated.</span>
 </pre></div>
 </div>
 <p>To run a CG simulation, you will need the <code class="docutils literal notranslate"><span class="pre">conf.gro</span></code>, <code class="docutils literal notranslate"><span class="pre">topol.top</span></code>,
@@ -522,15 +523,15 @@ adjusted empirically. The values of a=0.37 nm and gamma=0.08 mean that the
 three-body potential gets fully switched on in the first interaction shell of
 the RDF over a range of 0.08 nm.</p>
 <p>Run the FM calculation (see also the corresponding line of the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_fmatch --top ../atomistic/topol.tpr --trj ../atomistic/traj.trr --options fmatch.xml --cg water.xml <span class="o">(</span>--begin <span class="nv">$equi</span> <span class="o">)</span> <span class="c1"># ( ) denotes additional option: , --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_fmatch<span class="w"> </span>--top<span class="w"> </span>../atomistic/topol.tpr<span class="w"> </span>--trj<span class="w"> </span>../atomistic/traj.trr<span class="w"> </span>--options<span class="w"> </span>fmatch.xml<span class="w"> </span>--cg<span class="w"> </span>water.xml<span class="w"> </span><span class="o">(</span>--begin<span class="w"> </span><span class="nv">$equi</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="c1"># ( ) denotes additional option: , --begin # time frame in GROMACS units (ps) to start analysis (e.g. 1 to 5)</span>
 </pre></div>
 </div>
 <p>To obtain the two-body CG potential, the CG force has to be integrated.
 Before, it is multiplied by a switching function to guarantee a smooth decay to
 zero at the pair cutoff. (see the appropriate lines in the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call table switch_border CG-CG.force CG-CG.force_switched <span class="m">1</span>.0 <span class="c1"># multiplication of all table values at distance &gt; 1.0 with switching function</span>
-csg_call table integrate CG-CG.force_switched CG-CG.pot <span class="c1"># integrates the table</span>
-csg_call table linearop CG-CG.pot CG-CG.pot -1 <span class="m">0</span> <span class="c1"># multiplication of all table values by -1 (potential)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>table<span class="w"> </span>switch_border<span class="w"> </span>CG-CG.force<span class="w"> </span>CG-CG.force_switched<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="c1"># multiplication of all table values at distance &gt; 1.0 with switching function</span>
+csg_call<span class="w"> </span>table<span class="w"> </span>integrate<span class="w"> </span>CG-CG.force_switched<span class="w"> </span>CG-CG.pot<span class="w"> </span><span class="c1"># integrates the table</span>
+csg_call<span class="w"> </span>table<span class="w"> </span>linearop<span class="w"> </span>CG-CG.pot<span class="w"> </span>CG-CG.pot<span class="w"> </span>-1<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="c1"># multiplication of all table values by -1 (potential)</span>
 </pre></div>
 </div>
 <p>Due to the functional form ot the SW potential, VOTCA outputs the three-body force
@@ -553,7 +554,7 @@ contains the table settings of the LAMMPS potential table. The distance units ha
 from nm to Ang (<code class="docutils literal notranslate"><span class="pre">scale</span></code>) and the energy units from kJ/mol to kcal/mol (<code class="docutils literal notranslate"><span class="pre">y_scale</span></code>). The setting
 of <code class="docutils literal notranslate"><span class="pre">avg_points</span></code> to 1 allows for a smoother extrapolation of the potential to unsampled
 regions. Now convert the two-body potential:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call --options convert_tables.xml --ia-name CG-CG-CG --ia-type angle convert_potential lammps --clean --no-shift input_angular.pot table_CG_CG_CG.txt <span class="c1"># calls convert_potential lammps. Unsampled regions for distances smaller than the min value are extrapolated. The --ia-type angle implies a unit conversion from radiants to degrees and the option --no-shift prevents a shifting of the potential.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--options<span class="w"> </span>convert_tables.xml<span class="w"> </span>--ia-name<span class="w"> </span>CG-CG-CG<span class="w"> </span>--ia-type<span class="w"> </span>angle<span class="w"> </span>convert_potential<span class="w"> </span>lammps<span class="w"> </span>--clean<span class="w"> </span>--no-shift<span class="w"> </span>input_angular.pot<span class="w"> </span>table_CG_CG_CG.txt<span class="w"> </span><span class="c1"># calls convert_potential lammps. Unsampled regions for distances smaller than the min value are extrapolated. The --ia-type angle implies a unit conversion from radiants to degrees and the option --no-shift prevents a shifting of the potential.</span>
 </pre></div>
 </div>
 <p>To run a CG simulation, one needs a LAMMPS data file (<code class="docutils literal notranslate"><span class="pre">spce.data</span></code>) with the CG starting
@@ -584,14 +585,14 @@ version &lt;<a class="reference external" href="https://github.com/lammps/lammps
 files (<code class="docutils literal notranslate"><span class="pre">pair_sw_angle_table.cpp</span></code>) and header (<code class="docutils literal notranslate"><span class="pre">pair_sw_angle_table.h</span></code>)
 are also available at &lt;<a class="reference external" href="https://gitlab.mpcdf.mpg.de/votca/lammps">https://gitlab.mpcdf.mpg.de/votca/lammps</a>&gt;.</p>
 <p>Once compiled LAMMPS, you can run the simulation with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lmp &lt; spce.in &gt; spce.out <span class="c1"># runs LAMMPS and store log file with thermodynamic output in spce.out.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lmp<span class="w"> </span>&lt;<span class="w"> </span>spce.in<span class="w"> </span>&gt;<span class="w"> </span>spce.out<span class="w"> </span><span class="c1"># runs LAMMPS and store log file with thermodynamic output in spce.out.</span>
 </pre></div>
 </div>
 <p>If you have installed and want to run LAMMPS with MPI parallelization, use the
 command <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">n_proc</span> <span class="pre">lmp_mpi</span></code> where <code class="docutils literal notranslate"><span class="pre">n_proc</span></code> stands for the number of processors.
 Adjust the appropriate line in the <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> script. You can calculate the RDF and the angular
 distribution with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_stat --options calculate_distributions.xml --top traj.dump --trj traj.dump <span class="c1"># call csg_stat with different settings.xml file</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_stat<span class="w"> </span>--options<span class="w"> </span>calculate_distributions.xml<span class="w"> </span>--top<span class="w"> </span>traj.dump<span class="w"> </span>--trj<span class="w"> </span>traj.dump<span class="w"> </span><span class="c1"># call csg_stat with different settings.xml file</span>
 </pre></div>
 </div>
 <p>Now have a look at <code class="docutils literal notranslate"><span class="pre">calculate_distributions.xml</span></code>. It has two <code class="docutils literal notranslate"><span class="pre">cg.non-bonded</span></code> blocks for
