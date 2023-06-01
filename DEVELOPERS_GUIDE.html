@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developer and Contributor Guide &mdash; VOTCA 2024-dev documentation</title>
+  <title>Developer and Contributor Guide &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -67,7 +67,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#votca-dev-tools">VOTCA dev-tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#votca-continuous-integration-github-actions">VOTCA Continuous Integration (GitHub Actions)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-a-release">Making a Release</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#major-releases">Major releases</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#release-names">Release names</a></li>
 </ul>
 </li>
@@ -176,7 +175,6 @@ implementing code consistent with the VOTCA and cpp style and standard.</p>
 <li><p><a class="reference external" href="#testing">Testing</a></p></li>
 <li><p><a class="reference external" href="#cpp-coding-style-guide">CPP Coding Style Guide</a></p></li>
 <li><p><a class="reference external" href="#cpp-comment-guide">CPP Comment Guide</a></p></li>
-<li><p><a class="reference external" href="#updates-from-stable">Updates from stable</a></p></li>
 <li><p><a class="reference external" href="#failed-release-builds">Failed Release Builds</a></p></li>
 </ul>
 <section id="reporting-bugs">
@@ -224,22 +222,8 @@ The actual containers used for running the test builds are built on top of the <
 <h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this heading">¶</a></h2>
 <p>Similar to the VOTCA containers, releases are also handled by GitHub actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">this GitHub Action</a>. The release can only be made from the
-<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
-<code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag.</p>
-<section id="major-releases">
-<h3>Major releases<a class="headerlink" href="#major-releases" title="Permalink to this heading">¶</a></h3>
-<p>In preparation for a major (not minor!) release the following additional steps need to be done:</p>
-<ul>
-<li><p>Create a new branch from the master branch of the <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> repository, e.g. <code class="code docutils literal notranslate"><span class="pre">stable_bump</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>stable_bump<span class="w"> </span>stable
-git<span class="w"> </span>merge<span class="w"> </span>master
-</pre></div>
-</div>
-</li>
-<li><p>Update the <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> files accordingly, by changing the top most section from <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-dev</span></code> to <code class="code docutils literal notranslate"><span class="pre">&lt;major&gt;-rc.1</span></code></p></li>
-<li><p>Commit everything and create a PR ino the <code class="code docutils literal notranslate"><span class="pre">stable</span></code> branch.</p></li>
-</ul>
-</section>
+<code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
+<code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag.</p>
 <section id="release-names">
 <h3>Release names<a class="headerlink" href="#release-names" title="Permalink to this heading">¶</a></h3>
 <p>Some releases have names, so far we have:</p>

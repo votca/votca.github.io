@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; VOTCA 2024-dev documentation</title>
+  <title>Installation &mdash; VOTCA 2023-dev documentation</title>
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -67,7 +67,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#stable-version">Stable version</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#development-version">Development version</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#other-build-options">Other build options</a></li>
 </ul>
@@ -75,7 +74,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#conda-forge">Conda-forge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#release-version">Release version</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Stable version</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#freebsd">FreeBSD</a></li>
@@ -170,7 +168,7 @@
 <h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this heading">¶</a></h2>
 <p>To install the full package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
-version=master # or &#39;stable&#39; or &#39;v2023-rc.1&#39;
+version=master # or &#39;v2023-rc.1&#39;
 git clone -b ${version} https://github.com/votca/votca.git
 cmake -B builddir -S votca -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix}
 cmake --build builddir --parallel &lt;number of cores&gt;
@@ -344,13 +342,6 @@ the capability of building VOTCA and all its dependencies:</p>
 <span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span>
 </pre></div>
 </div>
-<section id="stable-version">
-<h4>Stable version<a class="headerlink" href="#stable-version" title="Permalink to this heading">¶</a></h4>
-<p>Spack can also install the latest stable version from git using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spack</span> <span class="n">install</span> <span class="n">votca</span><span class="nd">@stable</span>
-</pre></div>
-</div>
-</section>
 <section id="development-version">
 <h4>Development version<a class="headerlink" href="#development-version" title="Permalink to this heading">¶</a></h4>
 <p>Spack can also install the latest development version from git using:</p>
@@ -388,13 +379,6 @@ the following docker commands:</p>
 <h4>Release version<a class="headerlink" href="#release-version" title="Permalink to this heading">¶</a></h4>
 <p>Docker can also install the latest released version, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v2021</span><span class="mf">.2</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
-</pre></div>
-</div>
-</section>
-<section id="id2">
-<h4>Stable version<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
-<p>Docker can also install the latest stable version from git using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">stable</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
 </section>
