@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XTP ASE Interface &mdash; VOTCA 2023-rc.2 documentation</title>
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Workflow and Calculator Structure" href="workflows_and_calculators.html" />
+    <link rel="prev" title="Theory and Background" href="theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Main">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XTP ASE Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#option-parser">Option parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">XTP calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">Single Point Caclulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">Geometry Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" aria-label="Top" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+<div role="navigation" aria-label="Breadcrumbs">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="XTP-MANUAL.html">XTP Manual</a> &raquo;</li>
+      <li>XTP ASE Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/pyxtp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="xtp-ase-interface">
+<h1>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Permalink to this heading">¶</a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<section id="environment-variables">
+<h3>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading">¶</a></h3>
+<p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
+interface to find the default xml files and create the options data structure.
+You can set this environment variable in your shell configuration file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">VOTCASHARE</span><span class="o">=</span>/share/votca/
+</pre></div>
+</div>
+<p>Or within python itself:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;VOTCASHARE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/share/votca/&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="option-parser">
+<h2>Option parser<a class="headerlink" href="#option-parser" title="Permalink to this heading">¶</a></h2>
+<p>The <cite>XTPOptions</cite> class is the preferred handler for setting all the options of the xtp calculator.</p>
+</section>
+<section id="xtp-calculator">
+<h2>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Permalink to this heading">¶</a></h2>
+<p>Frequently used options can be specified using
+the calculator’s <cite>set</cite> routine.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>keyword</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>default value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">label</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Name of input and output files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>None</p></td>
+<td><p>XC functional to be used</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">basisset</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Basis set to be used</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">charge</span></code></p></td>
+<td><p>int</p></td>
+<td><p>0</p></td>
+<td><p>Charge of the molecule</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="single-point-caclulation">
+<h2>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Permalink to this heading">¶</a></h2>
+<p>Here is an example of setting up a calculation on a water molecule:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
+<span class="n">wat</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set up a XTP calculator</span>
+<span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span>
+
+
+<span class="c1"># change options for the calculations</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">functional</span> <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
+
+<span class="c1"># attach the calculator</span>
+<span class="n">wat</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+
+<span class="c1"># compute the energy terms</span>
+<span class="n">wat</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="geometry-optimization">
+<h2>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Permalink to this heading">¶</a></h2>
+<p>Here is an example of setting up a geometry of a carbon monoxide
+molecule using forces calculated on the first singlet state:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
+<span class="n">co</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span>
+<span class="n">co</span><span class="o">.</span><span class="n">rattle</span><span class="p">()</span>
+
+<span class="c1"># Set up a XTP calculator</span>
+<span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span>
+
+<span class="c1"># change options for the calculations</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">()</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">functional</span> <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
+
+<span class="c1"># specify the wich forces we want to use</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">select_force</span><span class="p">(</span><span class="n">energy</span><span class="o">=</span><span class="s1">&#39;singlets&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># attach the calculator</span>
+<span class="n">co</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+
+<span class="c1"># compute the energy terms</span>
+<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">QuasiNewton</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>
+<span class="n">dyn</span> <span class="o">=</span> <span class="n">QuasiNewton</span><span class="p">(</span><span class="n">co</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;test.traj&#39;</span><span class="p">)</span>
+<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;final.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="theory.html" class="btn btn-neutral float-left" title="Theory and Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
