@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; VOTCA 2023-rc.2-dev documentation</title>
+  <title>Installation &mdash; VOTCA 2023-dev documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -166,7 +166,7 @@
 <h2>General (Source) Installation Instructions<a class="headerlink" href="#general-source-installation-instructions" title="Permalink to this heading">¶</a></h2>
 <p>To install the full package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prefix=WHERE/TO/INSTALL/VOTCA
-version=master # or &#39;v2023-rc.2&#39;
+version=master # or &#39;v2023&#39;
 git clone -b ${version} https://github.com/votca/votca.git
 cmake -B builddir -S votca -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix}
 cmake --build builddir --parallel &lt;number of cores&gt;
