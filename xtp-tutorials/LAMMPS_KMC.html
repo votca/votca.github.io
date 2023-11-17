@@ -12,9 +12,6 @@
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -425,21 +422,20 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Requirement already satisfied: seaborn in /usr/lib/python3.11/site-packages (0.11.2)
-Requirement already satisfied: numpy&gt;=1.15 in /usr/lib64/python3.11/site-packages (from seaborn) (1.24.4)
-Requirement already satisfied: scipy&gt;=1.0 in /usr/lib64/python3.11/site-packages (from seaborn) (1.10.1)
-Requirement already satisfied: pandas&gt;=0.23 in /usr/lib64/python3.11/site-packages (from seaborn) (1.5.3)
-Requirement already satisfied: matplotlib&gt;=2.2 in /usr/lib64/python3.11/site-packages (from seaborn) (3.7.3)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.0.7)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (4.39.3)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (1.4.5)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (23.0)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/lib64/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (9.4.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (3.0.9)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.11/site-packages (from matplotlib&gt;=2.2-&gt;seaborn) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.11/site-packages (from pandas&gt;=0.23-&gt;seaborn) (2023.3.post1)
-Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2-&gt;seaborn) (1.16.0)
+Requirement already satisfied: seaborn in /usr/lib/python3.12/site-packages (0.13.0)
+Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.12/site-packages (from seaborn) (1.24.4)
+Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.12/site-packages (from seaborn) (1.5.3)
+Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.3 in /usr/lib64/python3.12/site-packages (from seaborn) (3.8.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.1.1)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (0.11.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (4.42.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.4.5)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (23.1)
+Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (10.1.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (3.0.9)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.12/site-packages (from pandas&gt;=1.2-&gt;seaborn) (2023.3.post1)
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.16.0)
 </pre></div></div>
 </div>
 <section id="Notes">
@@ -475,7 +471,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.11/site-packages 
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2023-dev gitid: 4939fc3 (compiled Nov 16 2023, 14:20:09)
+xtp_run, version 2023-dev gitid: 3055863 (compiled Nov 17 2023, 02:32:04)
 
 Initializing calculator
 ... eanalyze
@@ -537,6 +533,22 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 </div>
 </div>
 <div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_17157/2362228021.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
+/usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning:
+
+The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
+
+  func(*plot_args, **plot_kwargs)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
@@ -549,7 +561,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_11_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_11_1.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_11_2.png" src="../_images/xtp-tutorials_LAMMPS_KMC_11_2.png" />
 </div>
 </div>
 </section>
@@ -575,7 +587,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2023-dev gitid: 4939fc3 (compiled Nov 16 2023, 14:20:09)
+xtp_run, version 2023-dev gitid: 3055863 (compiled Nov 17 2023, 02:32:04)
 
 Initializing calculator
 ... ianalyze
@@ -606,7 +618,23 @@ Changes have not been written to state file.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_17157/886975016.py:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
+/usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning:
+
+The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
+
+  func(*plot_args, **plot_kwargs)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -614,6 +642,13 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 []
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_2.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_2.png" />
+</div>
 </div>
 </section>
 <section id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
@@ -638,7 +673,7 @@ Changes have not been written to state file.
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2023-dev gitid: 4939fc3 (compiled Nov 16 2023, 14:20:09)
+xtp_run, version 2023-dev gitid: 3055863 (compiled Nov 17 2023, 02:32:04)
 
 Initializing calculator
 ... kmcmultiple
