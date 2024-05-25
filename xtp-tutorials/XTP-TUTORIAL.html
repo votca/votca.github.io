@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XTP Tutorials &mdash; VOTCA 2024-dev documentation</title>
@@ -11,14 +11,14 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="DFT + GWBSE Energy Calculation Using CH4" href="DFTGWBSE_ENERGY.html" />
+    <link rel="next" title="Developer and Contributor Guide" href="../DEVELOPERS_GUIDE.html" />
     <link rel="prev" title="CSG Tutorial" href="../csg-tutorials/Tutorial.html" /> 
 </head>
 
@@ -54,13 +54,7 @@
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">XTP Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">XTP Tutorials</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -104,119 +98,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="xtp-tutorials">
-<h1>XTP Tutorials<a class="headerlink" href="#xtp-tutorials" title="Permalink to this heading">¶</a></h1>
+  <section id="xtp-tutorials">
+<h1>XTP Tutorials<a class="headerlink" href="#xtp-tutorials" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Running-a-calculation-with-the-default-options">Running a calculation with the default options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Partial-Charges">Partial Charges</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#Spectrum-Calculation">Spectrum Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#What-this-tutorial-is-about">What this tutorial is about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Define-the-molecular-structure">Define the molecular structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Compute-the-forces">Compute the forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Geometry-optimization">Geometry optimization</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#What-this-tutorial-is-about">What this tutorial is about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Define-the-molecular-structure">Define the molecular structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Instantiate-the-xtp-calculator">Instantiate the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Run-the-calcuation">Run the calcuation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Visualize-the-results">Visualize the results</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_GROMACS.html#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling">Coupling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling-analysis">Coupling analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QMMM-calculations">QMMM calculations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_LAMMPS.html#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QMMM-Calculations">QMMM Calculations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Setting-the-environment">Setting the environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="LAMMPS_KMC.html#Notes">Notes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Plotting-the-energies">Plotting the energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Couplings-histrogram">Couplings histrogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Plotting-the-coupling-histogram">Plotting the coupling histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">KMC simulations of multiple holes or electrons in periodic boundary conditions</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </section>
 
@@ -225,7 +109,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../csg-tutorials/Tutorial.html" class="btn btn-neutral float-left" title="CSG Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="DFTGWBSE_ENERGY.html" class="btn btn-neutral float-right" title="DFT + GWBSE Energy Calculation Using CH4" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

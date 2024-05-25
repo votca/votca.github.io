@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VOTCA Internal Contributor Language Guide &mdash; VOTCA 2024-dev documentation</title>
@@ -11,9 +11,9 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/documentation_options.js?v=61889540"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -101,32 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="votca-internal-contributor-language-guide">
-<h1>VOTCA Internal Contributor Language Guide<a class="headerlink" href="#votca-internal-contributor-language-guide" title="Permalink to this heading">¶</a></h1>
+  <section id="votca-internal-contributor-language-guide">
+<h1>VOTCA Internal Contributor Language Guide<a class="headerlink" href="#votca-internal-contributor-language-guide" title="Link to this heading">¶</a></h1>
 <p>This language guide has been created to establish rules to keep VOTCA’s
 code consistent between repositories. In the past, there has been
 difficulty in translating functionality between repositories and within
@@ -134,7 +110,7 @@ the same repositories because different properties have been used to
 describe the same object attribute. For general programming guidelines
 look at the <a class="reference internal" href="DEVELOPERS_GUIDE.html"><span class="doc">Developers Guide</span></a></p>
 <section id="types-and-ids">
-<h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Permalink to this heading">¶</a></h2>
+<h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Link to this heading">¶</a></h2>
 <p>As an example, consider the csg bead object which had at one time
 contained the name, type and id attribute. The name of a bead is ill
 defined and could be unique but was not guaranteed to be so.</p>
@@ -158,7 +134,7 @@ indicated with a type method and attribute.</p>
 </div>
 </section>
 <section id="units-in-votca">
-<h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Permalink to this heading">¶</a></h2>
+<h2>Units in VOTCA<a class="headerlink" href="#units-in-votca" title="Link to this heading">¶</a></h2>
 <p>VOTCA tried as much as possible to standardize units across both CSG and
 XTP. Externally, we parse in the units of the respective file format,
 e.g. <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> <code class="docutils literal notranslate"><span class="pre">Angstrom</span></code>, <code class="docutils literal notranslate"><span class="pre">.gro</span></code> <code class="docutils literal notranslate"><span class="pre">nm</span></code>. Internally, we convert all
@@ -169,7 +145,7 @@ parsed units to:</p>
 </ul>
 </section>
 <section id="indexing-in-votca">
-<h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Permalink to this heading">¶</a></h2>
+<h2>Indexing in VOTCA<a class="headerlink" href="#indexing-in-votca" title="Link to this heading">¶</a></h2>
 <p>All indices in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
 start at index 0.</p>
 <p>Apart from special cases all indices and integers in VOTCA should be

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The architecture of VOTCA &mdash; VOTCA 2024-dev documentation</title>
@@ -11,9 +11,9 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/documentation_options.js?v=61889540"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -96,32 +96,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="the-architecture-of-votca">
-<h1>The architecture of VOTCA<a class="headerlink" href="#the-architecture-of-votca" title="Permalink to this heading">¶</a></h1>
+  <section id="the-architecture-of-votca">
+<h1>The architecture of VOTCA<a class="headerlink" href="#the-architecture-of-votca" title="Link to this heading">¶</a></h1>
 <p>VOTCA consists of three main libraries <strong>tools</strong>, <strong>csg</strong> and <strong>xtp</strong>. While the structure has partially historic reasons, in general the following rule of thumb holds.</p>
 <ol class="arabic simple">
 <li><p><strong>tools</strong> provides low level routines and in general things that are used in <strong>csg</strong> and <strong>xtp</strong>, e.g. the <code class="code docutils literal notranslate"><span class="pre">calculator</span></code> class, which is the abstract base class for all calculators used. The most used class in <strong>csg</strong> and <strong>xtp</strong> is the <code class="code docutils literal notranslate"><span class="pre">Property</span></code> class, which is responsible for reading and writing xml files and handles most options handling inside VOTCA. In general all things that are used in <strong>csg</strong> and <strong>xtp</strong> but are not domain related should end up in <strong>tools</strong>. Additionally <strong>tools</strong> pulls in the <a class="reference external" href="https://eigen.tuxfamily.org">Eigen</a> library which provides all Vector/Matrix/Linear algebra functionality.</p></li>

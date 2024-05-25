@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced topics &mdash; VOTCA 2024-dev documentation</title>
@@ -11,9 +11,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -122,34 +122,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="advanced-topics">
-<h1>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this heading">¶</a></h1>
+  <section id="advanced-topics">
+<h1>Advanced topics<a class="headerlink" href="#advanced-topics" title="Link to this heading">¶</a></h1>
 <section id="customization">
-<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this heading">¶</a></h2>
+<h2>Customization<a class="headerlink" href="#customization" title="Link to this heading">¶</a></h2>
 <p>Each sub-step of an iteration and all direct calls can be adjusted to
 the user needs. The internal part of the iterative framework is
 organized as follows: all scripts are called using two keywords</p>
@@ -231,30 +207,30 @@ csg_call<span class="w"> </span>--scriptdir<span class="w"> </span>SCRIPTDIR<spa
 version number of the script.</p>
 </section>
 <section id="used-external-packages">
-<h2>Used external packages<a class="headerlink" href="#used-external-packages" title="Permalink to this heading">¶</a></h2>
+<h2>Used external packages<a class="headerlink" href="#used-external-packages" title="Link to this heading">¶</a></h2>
 <section id="gromacs">
-<h3>GROMACS<a class="headerlink" href="#gromacs" title="Permalink to this heading">¶</a></h3>
+<h3>GROMACS<a class="headerlink" href="#gromacs" title="Link to this heading">¶</a></h3>
 <p><cite>Link to Homepage &lt;https://manual.gromacs.org/documentation/&gt;</cite></p>
 </section>
 <section id="espresso">
-<h3>ESPResSo<a class="headerlink" href="#espresso" title="Permalink to this heading">¶</a></h3>
+<h3>ESPResSo<a class="headerlink" href="#espresso" title="Link to this heading">¶</a></h3>
 <p><cite>Link to Homepage &lt;https://espressomd.org/&gt;</cite></p>
 </section>
 <section id="dl-poly">
-<h3>DL_POLY<a class="headerlink" href="#dl-poly" title="Permalink to this heading">¶</a></h3>
+<h3>DL_POLY<a class="headerlink" href="#dl-poly" title="Link to this heading">¶</a></h3>
 <p><cite>Link to Homepage &lt;https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx&gt;</cite></p>
 </section>
 <section id="gnuplot">
-<h3>Gnuplot<a class="headerlink" href="#gnuplot" title="Permalink to this heading">¶</a></h3>
+<h3>Gnuplot<a class="headerlink" href="#gnuplot" title="Link to this heading">¶</a></h3>
 <p><cite>Link to Homepage &lt;http://www.gnuplot.info/&gt;</cite></p>
 </section>
 <section id="lammps">
-<h3>LAMMPS<a class="headerlink" href="#lammps" title="Permalink to this heading">¶</a></h3>
+<h3>LAMMPS<a class="headerlink" href="#lammps" title="Link to this heading">¶</a></h3>
 <p><cite>Link to Homepage &lt;https://lammps.sandia.gov/&gt;</cite></p>
 </section>
 </section>
 <section id="dl-poly-interface">
-<h2>DL_POLY interface<a class="headerlink" href="#dl-poly-interface" title="Permalink to this heading">¶</a></h2>
+<h2>DL_POLY interface<a class="headerlink" href="#dl-poly-interface" title="Link to this heading">¶</a></h2>
 <p><strong>WARNING: The DL_POLY interface is still experimental (in development)
 but it does support the Iterative Boltzmann Inversion and Inverse Monte
 Carlo schemes. The Force Matching might work as well, although it has

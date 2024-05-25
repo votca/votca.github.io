@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Architecture of votca-xtp &mdash; VOTCA 2024-dev documentation</title>
@@ -11,9 +11,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -103,32 +103,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="architecture-of-votca-xtp">
-<h1>Architecture of votca-xtp<a class="headerlink" href="#architecture-of-votca-xtp" title="Permalink to this heading">¶</a></h1>
+  <section id="architecture-of-votca-xtp">
+<h1>Architecture of votca-xtp<a class="headerlink" href="#architecture-of-votca-xtp" title="Link to this heading">¶</a></h1>
 <p><strong>xtp</strong> has 4 major subfolders.</p>
 <ol class="arabic simple">
 <li><p><strong>include</strong> contains nearly all the header files, these are also installed and can be included from other libraries</p></li>
@@ -139,26 +115,26 @@
 <p>For more information look at the developer guide on <a class="reference external" href="https://www.votca.org">the votca webpage</a> and maybe watch this <a class="reference external" href="https://youtu.be/QPnbB0dQ7Pk">video</a>.
 In the following I want to try to explain some major information flows/designs in <strong>xtp</strong>.</p>
 <section id="how-electronic-structure-calculations-are-run">
-<h2>How electronic structure calculations are run<a class="headerlink" href="#how-electronic-structure-calculations-are-run" title="Permalink to this heading">¶</a></h2>
+<h2>How electronic structure calculations are run<a class="headerlink" href="#how-electronic-structure-calculations-are-run" title="Link to this heading">¶</a></h2>
 <p>So DFT calculations need as an input a basisset, which tells you which kind of basisfunctions belong to a certain element and we need a list of atoms, their element and coordinates. <strong>xtp</strong> comes with a number of basissets in the <a class="reference external" href="https://github.com/votca/votca/tree/master/xtp/share/xtp/basis_sets">share/xtp/basis_sets</a> directory. So the <code class="code docutils literal notranslate"><span class="pre">basisset</span></code> class loads the basisset, loading a list of atoms is normally done via the <code class="code docutils literal notranslate"><span class="pre">qmmolecule</span></code> class, which can read xyz files. Otherwise you can use a <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/segmentmapper.h">QMMapper</a> to convert a molecular dynamics molecule into a <code class="code docutils literal notranslate"><span class="pre">qmmolecule</span></code>. Combining a <code class="code docutils literal notranslate"><span class="pre">basisset</span></code> with a <code class="code docutils literal notranslate"><span class="pre">qmmolecule</span></code> gives you an <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/aobasis.h">AOBasis</a>, which contains the information about the shells/basisfunctions for each atom. For most functionality you also need an auxiliary basisset for the RI approximation, you find more information about that <a class="reference external" href="https://research.tue.nl/en/publications/investigation-of-exciton-properties-in-organic-materials-via-many">here</a>. Using the <code class="code docutils literal notranslate"><span class="pre">AOBasis</span></code> you can create the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/aomatrix.h">single electron matrices</a> and <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/ERIs.h">electron-electron integrals</a>, which are mostly produced via the <a class="reference external" href="https://github.com/evaleev/libint">libint</a> and <a class="reference external" href="https://github.com/robashaw/libecpint">libecpint</a> libraries (the latter is for pseudopotentials). For the exchange correlation functionals we use the <a class="reference external" href="https://www.tddft.org/programs/libxc/">libxc library</a>. To evaluate this you have to perform a numerical integration on a <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/vxc_grid.h">grid</a> and <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/vxc_potential.h">evaluate the functional</a> . For DFT you have to do this in a self-consisten way which is done in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/dftengine.h">dftengine</a>.</p>
 <p>If you instead do not want to use the internal DFT implementation but use ORCA, this is all wrapped in an abstract class <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/qmpackage.h">qmpackage</a> , where you can choose ORCA or xtpdft, see for example <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/tools/dftgwbse.cc">dftgwbse.cc</a>. The results of DFT calculations are stored in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/orbitals.h">orbitals class</a></p>
 <p>The GW-BSE calculations are wrapped in <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/gwbse.h">gwbse</a>. They typically consist of a GW and a BSE step.  The GW step is in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/gw.h">GW class</a> which can choose different ways to evaluate the self-energy, Sigma, which is implemented via a <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/sigmafactory.h">factory</a>. The BSE is found in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/bse.h">bse class</a>. Technically the BSE is mostly an eigenvalue decomposition of a very large matrix, which we never explicitly build, but only calculate <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/bse_operator.h">its effects</a> on a testvector in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/davidsonsolver.h">davidson solver</a>. The results of the GW and BSE calculations are stored in the <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/orbitals.h">orbitals class</a></p>
 </section>
 <section id="how-options-are-parsed-in-xtp">
-<h2>How options are parsed in xtp<a class="headerlink" href="#how-options-are-parsed-in-xtp" title="Permalink to this heading">¶</a></h2>
+<h2>How options are parsed in xtp<a class="headerlink" href="#how-options-are-parsed-in-xtp" title="Link to this heading">¶</a></h2>
 <p>So all calculators can be supplied options in two ways via the <code class="code docutils literal notranslate"><span class="pre">-o</span></code> flag and then giving an xml file with the options or via the <code class="code docutils literal notranslate"><span class="pre">-c</span></code> flag and then adding a string like <code class="code docutils literal notranslate"><span class="pre">TAG=VALUE</span></code> or a combination of both. In <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/xtpapplication.cc">xtp application</a> first it is checked if options are given via the  <code class="code docutils literal notranslate"><span class="pre">-o</span></code> flag and otherwise an empty <code class="code docutils literal notranslate"><span class="pre">Property</span></code> object is created, to which then the options from the <code class="code docutils literal notranslate"><span class="pre">-c</span></code> are added. Then a <a class="reference external" href="https://github.com/votca/votca/blob/master/tools/include/votca/tools/optionshandler.h">Optionshandler</a> is created with the location of the default option files.
 First the optionhandler loads the default option file for that calculator, e.g. <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/share/xtp/xml/dftgwbse.xml">dftgwbse</a> then it replaces all links in that file with the subpackages e.g. <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/share/xtp/xml/subpackages/dftpackage.xml">dftpackage</a> and then adds the useroptions. It checks if the useroptions exist  and if an errors are in there. Afterwards the options are forwarded to the specific calculator.</p>
 </section>
 <section id="how-statefiles-are-parsed-in">
-<h2>How statefiles are parsed in<a class="headerlink" href="#how-statefiles-are-parsed-in" title="Permalink to this heading">¶</a></h2>
+<h2>How statefiles are parsed in<a class="headerlink" href="#how-statefiles-are-parsed-in" title="Link to this heading">¶</a></h2>
 <p>Statefiles are only used in the <strong>xtp_parallel</strong> and <strong>xtp_run</strong> executables, which derive from <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/stateapplication.h">stateapplication</a>, which again derives from the above mentioned <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/xtpapplication.cc">xtp application</a>. Their parsing is implemented in <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/statesaver.cc">statesaver</a>. Underlying all statefiles are the hdf5interfaces that are also used for the orbitals file and are implemented in <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/checkpointwriter.h">checkpointwriter</a> and <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/checkpointreader.h">checkpointreader</a>.</p>
 </section>
 <section id="how-the-cuda-support-works">
-<h2>How the cuda support works<a class="headerlink" href="#how-the-cuda-support-works" title="Permalink to this heading">¶</a></h2>
+<h2>How the cuda support works<a class="headerlink" href="#how-the-cuda-support-works" title="Link to this heading">¶</a></h2>
 <p>CUDA support is optional and is enabled via <code class="code docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</span></code> in cmake and then enabled via <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/votca_xtp_config.h.in">votca_xtp_config</a>. CUDA is basically only used for matrix multiplication. The matrix class which wraps the <a class="reference external" href="https://docs.nvidia.com/cuda/cublas/index.html">CUBLAS</a> class is <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/cudamatrix.h">CudaMatrix</a>, which has ownwership of gpumemory. Calling the CUDA code inside openmp is handled via <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/openmp_cuda.h">OpenMP_CUDA class</a>, which also implements the specific commands for CPU and GPU calls.</p>
 </section>
 <section id="how-code-is-executed">
-<h2>How code is executed<a class="headerlink" href="#how-code-is-executed" title="Permalink to this heading">¶</a></h2>
+<h2>How code is executed<a class="headerlink" href="#how-code-is-executed" title="Link to this heading">¶</a></h2>
 <p>In general you either call <strong>xtp_parallel</strong> <strong>xtp_run</strong> or <strong>xtp_tools</strong> which then call <strong>xtpapplication</strong> or <strong>stateapplication</strong> which creates the specific calculator gives it some options and runs it.</p>
 </section>
 </section>

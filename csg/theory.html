@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Theoretical background &mdash; VOTCA 2024-dev documentation</title>
@@ -11,9 +11,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -131,34 +131,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="theoretical-background">
-<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this heading">¶</a></h1>
+  <section id="theoretical-background">
+<h1>Theoretical background<a class="headerlink" href="#theoretical-background" title="Link to this heading">¶</a></h1>
 <section id="mapping">
-<span id="theory-mapping"></span><h2>Mapping<a class="headerlink" href="#mapping" title="Permalink to this heading">¶</a></h2>
+<span id="theory-mapping"></span><h2>Mapping<a class="headerlink" href="#mapping" title="Link to this heading">¶</a></h2>
 <p>The mapping is an operator that establishes a link between the atomistic
 and coarse-grained representations of the system. An atomistic system is
 described by specifying the values of the Cartesian coordinates and
@@ -222,14 +198,14 @@ mapping, then <span class="math notranslate nohighlight">\(c_{Ii} = \frac{m_i}{M
 condition is automatically satisfied.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id5" role="note">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>In what follows we adopt notations of ref. <a class="reference internal" href="bibliography.html#noid-2008-1" id="id6"><span>[Noid:2008.1]</span></a>.</p>
 </aside>
 </aside>
 </section>
 <section id="boltzmann-inversion">
-<h2>Boltzmann inversion<a class="headerlink" href="#boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
+<h2>Boltzmann inversion<a class="headerlink" href="#boltzmann-inversion" title="Link to this heading">¶</a></h2>
 <p>Boltzmann inversion is mostly used for <em>bonded</em> potentials, such as
 bonds, angles, and torsions <a class="reference internal" href="bibliography.html#tschoep-1998" id="id7"><span>[Tschoep:1998]</span></a>. Boltzmann
 inversion is structure-based and only requires positions of atoms.</p>
@@ -288,7 +264,7 @@ atomistic and coarse-grained resolution, e. g. using a two-dimensional
 histogram, analogous to a Ramachandran plot.  <a class="footnote-reference brackets" href="#id9" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id9" role="note">
+<aside class="footnote brackets" id="id9" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">2</a><span class="fn-bracket">]</span></span>
 <p>Checking the linear correlation coefficient does not guarantee
 statistical independence of variables, for example
@@ -298,7 +274,7 @@ for coarse-graining.</p>
 </aside>
 </aside>
 <section id="separation-of-bonded-and-non-bonded-degrees-of-freedom">
-<h3>Separation of bonded and non-bonded degrees of freedom<a class="headerlink" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom" title="Permalink to this heading">¶</a></h3>
+<h3>Separation of bonded and non-bonded degrees of freedom<a class="headerlink" href="#separation-of-bonded-and-non-bonded-degrees-of-freedom" title="Link to this heading">¶</a></h3>
 <p>When coarse-graining polymeric systems, it is convenient to treat bonded
 and non-bonded interactions separately <a class="reference internal" href="bibliography.html#tschoep-1998" id="id10"><span>[Tschoep:1998]</span></a>.
 In this case, sampling of the atomistic system shall be performed on a
@@ -310,17 +286,17 @@ contribute to the bonded interactions of the coarse-grained model.</p>
 <figure class="align-center" id="id31">
 <img alt="../_images/excl.png" src="../_images/excl.png" />
 <figcaption>
-<p><span class="caption-text">Example of excluded interactions.</span><a class="headerlink" href="#id31" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Example of excluded interactions.</span><a class="headerlink" href="#id31" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="iterative-methods">
-<span id="theory-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Permalink to this heading">¶</a></h2>
+<span id="theory-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Link to this heading">¶</a></h2>
 <figure class="align-center" id="id32">
 <span id="theory-fig-iterative-simple"></span><img alt="../_images/iteration-scheme-simple.png" src="../_images/iteration-scheme-simple.png" />
 <figcaption>
-<p><span class="caption-text">Block-scheme of an iterative method.</span><a class="headerlink" href="#id32" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Block-scheme of an iterative method.</span><a class="headerlink" href="#id32" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Iterative workflow control is essential for the IBI and IMC methods. The
@@ -336,7 +312,7 @@ update the potential, for instance Iterative Boltzmann Inversion (see
 a convergence criterion is satisfied.</p>
 </section>
 <section id="iterative-boltzmann-inversion">
-<span id="theory-iterative-boltzmann-inversion"></span><h2>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Permalink to this heading">¶</a></h2>
+<span id="theory-iterative-boltzmann-inversion"></span><h2>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Link to this heading">¶</a></h2>
 <p>Iterative Boltzmann inversion (IBI) is a natural extension of the
 Boltzmann inversion method. Since the goal of the coarse-grained model
 is to reproduce the distribution functions of the reference system as
@@ -366,7 +342,7 @@ issues as the inverse Boltzmann method, i. e. smoothing and
 extrapolation of the potential must be used.</p>
 </section>
 <section id="inverse-monte-carlo">
-<span id="theory-inverse-monte-carlo"></span><h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Permalink to this heading">¶</a></h2>
+<span id="theory-inverse-monte-carlo"></span><h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Link to this heading">¶</a></h2>
 <p>Inverse Monte Carlo (IMC) is an iterative scheme which additionally
 includes cross correlations of distributions. A detailed derivation of
 the IMCmethod can be found in ref. <a class="reference internal" href="bibliography.html#lyubartsev-1995" id="id12"><span>[Lyubartsev:1995]</span></a>.</p>
@@ -402,7 +378,7 @@ of particle pairs with interparticle distances
 <span class="math notranslate nohighlight">\(r_{ij} = r_{\alpha}\)</span> which correspond to the tabulated value of
 the potential <span class="math notranslate nohighlight">\(U_{\alpha}\)</span>.</p>
 <section id="regularization-of-inverse-monte-carlo">
-<span id="theory-inverse-monte-carlo-regularization"></span><h3>Regularization of Inverse Monte Carlo<a class="headerlink" href="#regularization-of-inverse-monte-carlo" title="Permalink to this heading">¶</a></h3>
+<span id="theory-inverse-monte-carlo-regularization"></span><h3>Regularization of Inverse Monte Carlo<a class="headerlink" href="#regularization-of-inverse-monte-carlo" title="Link to this heading">¶</a></h3>
 <p>To get a well defined cross correlation matrix,
 <span class="math notranslate nohighlight">\(A_{\alpha \gamma}\)</span>, enough sampling is needed. If there is not
 enough smapling or the initial potential guess is far from the real
@@ -426,7 +402,7 @@ small compared to the larger ones. <a class="reference internal" href="bibliogra
 </section>
 </section>
 <section id="iterative-integral-equation-methods">
-<h2>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Iterative Integral Equation methods<a class="headerlink" href="#iterative-integral-equation-methods" title="Link to this heading">¶</a></h2>
 <p>Iterative Integral Equation (IIE) methods are best compared to the IMC method.
 The main difference is that the Jacobian is not sampled from particle number
 fluctuations, but approximately infered from the RDFs. The connection of
@@ -465,7 +441,7 @@ l_\alpha = \frac{2}{3} \pi \rho^2 \frac{g_{\text{tgt},\alpha} + g_{\text{tgt},\a
 and <a class="reference internal" href="bibliography.html#bernhardt-2021" id="id16"><span>[Bernhardt:2021]</span></a>.</p>
 </section>
 <section id="force-matching">
-<h2>Force Matching<a class="headerlink" href="#force-matching" title="Permalink to this heading">¶</a></h2>
+<h2>Force Matching<a class="headerlink" href="#force-matching" title="Link to this heading">¶</a></h2>
 <p>Force matching (FM) is another approach to evaluate corse-grained
 potentials [Ercolessi:1994,Izvekov:2005,Noid:2007]_. In
 contrast to the structure-based approaches, its aim is not to reproduce
@@ -515,7 +491,7 @@ constrained by the amount of memory available. To remedy the situation,
 one can split the trajectory into blocks, find the coarse-grained
 potential for each block and then perform averaging over all blocks.</p>
 <section id="three-body-stillinger-weber-interactions">
-<span id="theory-fm-threebody"></span><h3>Three-body Stillinger-Weber interactions<a class="headerlink" href="#three-body-stillinger-weber-interactions" title="Permalink to this heading">¶</a></h3>
+<span id="theory-fm-threebody"></span><h3>Three-body Stillinger-Weber interactions<a class="headerlink" href="#three-body-stillinger-weber-interactions" title="Link to this heading">¶</a></h3>
 <p>In addition to non-bonded pair interactions, it is also possible to parametrize non-bonded
 three-body interactions of the Stillinger Weber type <a class="reference internal" href="bibliography.html#stillinger-computer-1985" id="id20"><span>[stillinger_computer_1985]</span></a>:</p>
 <div class="math notranslate nohighlight" id="theory-eq-sw1">
@@ -538,7 +514,7 @@ we refer to ref. <a class="reference internal" href="bibliography.html#scherer-u
 </section>
 </section>
 <section id="relative-entropy">
-<h2>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Permalink to this heading">¶</a></h2>
+<h2>Relative Entropy<a class="headerlink" href="#relative-entropy" title="Link to this heading">¶</a></h2>
 <p>Relative entropy is a method which quantifies the extent of the
 configurational phase-space overlap between two molecular
 ensembles <a class="reference internal" href="bibliography.html#wu2005" id="id22"><span>[Wu2005]</span></a>. It can be used as a measure of the
