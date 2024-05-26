@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DFT + GWBSE Energy Calculation Using CH4 &mdash; VOTCA 2024-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Atomic Forces and Geometry Optimizaiton" href="geometry_optimization.html" />
+    <link rel="prev" title="XTP Tutorials" href="XTP-TUTORIAL.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DFT + GWBSE Energy Calculation Using CH4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Note">Note</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-with-the-default-options">Running a calculation with the default options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Running-a-calculation-using-your-own-input-file">Running a calculation using your own input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Partial-Charges">Partial Charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spectrum-Calculation">Spectrum Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">DFT + GWBSE Energy Calculation Using CH4</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/DFTGWBSE_ENERGY.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="DFT-+-GWBSE-Energy-Calculation-Using-CH4">
+<h1>DFT + GWBSE Energy Calculation Using CH4<a class="headerlink" href="#DFT-+-GWBSE-Energy-Calculation-Using-CH4" title="Link to this heading">¶</a></h1>
+<section id="Introduction">
+<h2>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">¶</a></h2>
+<p>This tutorial explains how to perform calculation to predict electronic excitation using the <strong>GWBSE</strong> method. See <a class="reference external" href="https://doi.org/10.3389/fchem.2019.00377">the GW Compendium: A Practical Guide to Theoretical Photoemission Spectroscopy</a>, for an excellent introduction to the method.</p>
+</section>
+<section id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>You will need to install <strong>VOTCA</strong> using the instructions described <a class="reference external" href="https://github.com/votca/votca/blob/master/share/sphinx/INSTALL.rst">here</a></p></li>
+<li><p>Once the installation is completed you need to activate the VOTCA enviroment by running the <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> script that has been installed at the bin subfolder for the path that you have provided for the installation step above</p></li>
+</ul>
+</section>
+<section id="Interacting-with-the-XTP-command-line-interface">
+<h2>Interacting with the XTP command line interface<a class="headerlink" href="#Interacting-with-the-XTP-command-line-interface" title="Link to this heading">¶</a></h2>
+<p>To run a DFT-GWBSE calculation we will use the <a class="reference external" href="https://www.votca.org/xtp/xtp_tools_overview.html">xtp_tools</a> calculator. Run the following command to view the help message of <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/votca/issues
+
+xtp_tools, version 2024-dev gitid: 4eb3fb5 (compiled May 26 2024, 17:55:21)
+
+Runs excitation/charge transport tools
+
+
+
+Allowed options:
+  -h [ --help ]                 display this help and exit
+  --verbose                     be loud and noisy
+  --verbose1                    be very loud and noisy
+  -v [ --verbose2 ]             be extremly loud and noisy
+  -o [ --options ] arg          Tool user options.
+  -t [ --nthreads ] arg (=1)    number of threads to create
+  -e [ --execute ] arg        Name of Tool to run
+  -l [ --list ]               Lists all available Tools
+  -d [ --description ] arg    Short description of a Tools
+  -c [ --cmdoptions ] arg     Modify options via command line by e.g. &#39;-c
+                              xmltag.subtag=value&#39;. Use whitespace to separate
+                              multiple options
+  -p [ --printoptions ] arg   Prints xml options of a Tool
+
+</pre></div></div>
+</div>
+<section id="Note">
+<h3>Note<a class="headerlink" href="#Note" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>In Jupyter the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol means: <em>run the following command as a standard unix command</em></p></li>
+<li><p>In Jupyter the command <code class="docutils literal notranslate"><span class="pre">%env</span></code> set an environmental variable</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="Running-a-calculation-with-the-default-options">
+<h2>Running a calculation with the default options<a class="headerlink" href="#Running-a-calculation-with-the-default-options" title="Link to this heading">¶</a></h2>
+<p>To run a DFT-GWBSE calculation we just need to provide the path to the file in XYZ with the molecular coordinates. Check the <a class="reference external" href="https://www.votca.org/xtp/dftgwbse.html">dftgwbse defaults</a> for further information.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span>-t<span class="w"> </span><span class="m">2</span><span class="w"> </span>-e<span class="w"> </span>dftgwbse<span class="w"> </span>&gt;<span class="w"> </span>dftgwbse.log
+</pre></div>
+</div>
+</div>
+<p>The previous command will run the DFT-GWBSE calculation using the aforementioned defaults and the results are store in the <em>Current Work Directory</em> in a file named <code class="docutils literal notranslate"><span class="pre">methane_summary.xml</span></code>. The <code class="docutils literal notranslate"><span class="pre">-c</span></code> option is important and we will come back to it later. It allows changing options form the command line.</p>
+</section>
+<section id="Running-a-calculation-using-your-own-input-file">
+<h2>Running a calculation using your own input file<a class="headerlink" href="#Running-a-calculation-using-your-own-input-file" title="Link to this heading">¶</a></h2>
+<p>Let create a folder to store the input <code class="docutils literal notranslate"><span class="pre">options</span></code> for XTP and use the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to print an option file, specified by <code class="docutils literal notranslate"><span class="pre">-o</span></code>, with all the options so we can modify it afterwards</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>-p<span class="w"> </span>OPTIONFILES
+<span class="o">!</span>xtp_tools<span class="w"> </span>-p<span class="w"> </span>dftgwbse<span class="w"> </span>-o<span class="w"> </span>OPTIONFILES/dftgwbse.xml
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Writing options for calculator dftgwbse to OPTIONFILES/dftgwbse.xml
+Done - stopping here
+</pre></div></div>
+</div>
+<p>You should have a <em>XML</em> file with the DFTWGSE options that looks like</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>OPTIONFILES/dftgwbse.xml
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;options&gt;
+&lt;dftgwbse help=&#34;Compute electronic excitations using GW-BSE&#34;&gt;
+        &lt;job_name default=&#34;system&#34; help=&#34;Input file name without extension, also used for intermediate files&#34;&gt;system&lt;/job_name&gt;
+        &lt;dftpackage help=&#34;options for dftpackages&#34;&gt;
+                &lt;name choices=&#34;xtp,orca&#34; default=&#34;xtp&#34; help=&#34;Name of the DFT package&#34;&gt;xtp&lt;/name&gt;
+                &lt;charge choices=&#34;int&#34; default=&#34;0&#34; help=&#34;Molecular charge&#34;&gt;0&lt;/charge&gt;
+                &lt;spin choices=&#34;int+&#34; default=&#34;1&#34; help=&#34;Molecular multiplicity&#34;&gt;1&lt;/spin&gt;
+                &lt;basisset default=&#34;def2-tzvp&#34; help=&#34;Basis set for MOs&#34;&gt;def2-tzvp&lt;/basisset&gt;
+                &lt;auxbasisset default=&#34;OPTIONAL&#34; help=&#34;Auxiliary basis set for RI&#34;/&gt;
+                &lt;externalfield default=&#34;OPTIONAL&#34; help=&#34;Field given in x y z components&#34; unit=&#34;Hartree/bohr&#34;/&gt;
+</pre></div></div>
+</div>
+<p>Some options are labelled as <code class="docutils literal notranslate"><span class="pre">OPTIONAL</span></code>, either fill them in or delete them if you do not want that functionality</p>
+<p>We created a small options file</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>dftgwbse2.xml
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;options&gt;
+    &lt;dftgwbse&gt;
+        &lt;job_name&gt;methane&lt;/job_name&gt;
+        &lt;dftpackage&gt;
+            &lt;basisset&gt;ubecppol&lt;/basisset&gt;
+            &lt;auxbasisset&gt;aux-ubecppol&lt;/auxbasisset&gt;
+        &lt;/dftpackage&gt;
+    &lt;/dftgwbse&gt;
+&lt;/options&gt;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-o<span class="w"> </span>dftgwbse2.xml<span class="w"> </span>-t<span class="w"> </span><span class="m">2</span><span class="w"> </span>-e<span class="w"> </span>dftgwbse<span class="w"> </span>&gt;<span class="w"> </span>dftgwbse2.log
+</pre></div>
+</div>
+</div>
+<p>XTP will automatically compare the default values with the user-provided and overwrites the defaults with the user input. Also, If I given property does not have a default value you can provide one using the XML file described above.</p>
+</section>
+<section id="Partial-Charges">
+<h2>Partial Charges<a class="headerlink" href="#Partial-Charges" title="Link to this heading">¶</a></h2>
+<p>We can compute now the partial charges using the <code class="docutils literal notranslate"><span class="pre">CHELPG</span></code> method by default. For more information see the <a class="reference external" href="https://www.votca.org/xtp/partialcharges.html">partialcharges documentation</a>. Once again, we only need to provide the name of the system to compute, which in our case is <code class="docutils literal notranslate"><span class="pre">methane</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span>-e<span class="w"> </span>partialcharges
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/votca/issues
+
+xtp_tools, version 2024-dev gitid: 4eb3fb5 (compiled May 26 2024, 17:55:21)
+
+Initializing tool
+... partialcharges Evaluating tool
+... partialcharges  Using 1 threads
+... ...  Loading QM data from methane.orb
+... ... ===== Running on 1 threads =====
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+... ... 2024-5-26 18:13:21 Calculated Densities at Numerical Grid, Number of electrons is -2.37461e-08
+... ... 2024-5-26 18:13:21 Calculating ESP at CHELPG grid points
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+... ... 2024-5-26 18:13:23 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41612e-14
+... ...  RMSE of fit:  0.00221585
+... ...  RRMSE of fit: 0.107179
+... ... El Dipole from fitted charges [e*bohr]:
+                 dx = +0.7278 dy = -0.4713 dz = +0.4706 |d|^2 = +0.9733
+... ... El Dipole from exact qm density [e*bohr]:
+                 dx = +0.7620 dy = -0.4941 dz = +0.4932 |d|^2 = +1.0681
+... ... Written charges to methane.mps
+</pre></div></div>
+</div>
+</section>
+<section id="Spectrum-Calculation">
+<h2>Spectrum Calculation<a class="headerlink" href="#Spectrum-Calculation" title="Link to this heading">¶</a></h2>
+<p>Finally, lets compute a convolution of the singlet spectrum using a gaussian function. For doing so, we will modify the default values for the <a class="reference external" href="https://www.votca.org/xtp/spectrum.html">spectrum calculator</a> to compute the spectrum between 9 and 25 eV, using 1000 points in that energy range. We will use the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option to modify the options accordingly. Instead we could have printed out an options file using the <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-p</span> <span class="pre">spectrum</span></code> command and then modify the entries accordingly and
+then read them in using the <code class="docutils literal notranslate"><span class="pre">-o</span></code> option.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_tools<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>methane<span class="w"> </span><span class="nv">lower</span><span class="o">=</span><span class="m">9</span><span class="w"> </span><span class="nv">upper</span><span class="o">=</span><span class="m">25</span><span class="w"> </span><span class="nv">points</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span>-e<span class="w"> </span>spectrum
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please submit bugs to https://github.com/votca/votca/issues
+
+xtp_tools, version 2024-dev gitid: 4eb3fb5 (compiled May 26 2024, 17:55:21)
+
+Initializing tool
+... spectrum Evaluating tool
+... spectrum  Using 1 threads
+... ... Calculating absorption spectrum plot methane.orb
+... ...  Loading QM data from methane.orb
+... ...  Considering 10 excitation with max energy 14.6581 eV / min wave length 84.7405 nm
+... ...  Spectrum in energy range from  9 to 25 eV and with broadening of FWHM 0.2 eV written to file  methane_spectrum.dat
+</pre></div></div>
+</div>
+<p>The results are stored in the <code class="docutils literal notranslate"><span class="pre">methane_spectrum.dat</span></code> file.</p>
+</section>
+<section id="(Optional)-Plot-the-spectrum">
+<h2>(Optional) Plot the spectrum<a class="headerlink" href="#(Optional)-Plot-the-spectrum" title="Link to this heading">¶</a></h2>
+<p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries to plot the spectrum. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>seaborn<span class="w"> </span>--user
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: seaborn in /usr/lib/python3.12/site-packages (0.13.0)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.12/site-packages (from seaborn) (1.26.4)
+Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.12/site-packages (from seaborn) (2.2.1)
+Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.3 in /usr/lib64/python3.12/site-packages (from seaborn) (3.8.4)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.2.0)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (0.11.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (4.50.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.4.5)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (23.2)
+Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (10.3.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (3.1.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (2.8.2)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.12/site-packages (from pandas&gt;=1.2-&gt;seaborn) (2024.1)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.3-&gt;seaborn) (1.16.0)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;epsGaussian&quot;</span><span class="p">,</span><span class="s2">&quot;IM(eps)Gaussian&quot;</span><span class="p">,</span>  <span class="s2">&quot;epsLorentz&quot;</span><span class="p">,</span>  <span class="s2">&quot;Im(esp)Lorentz&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;methane_spectrum.dat&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;epsGaussian&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_13606/3151737206.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  df = pd.read_table(&#34;methane_spectrum.dat&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning:
+
+The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
+
+  func(*plot_args, **plot_kwargs)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_DFTGWBSE_ENERGY_27_3.png" src="../_images/xtp-tutorials_DFTGWBSE_ENERGY_27_3.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="XTP-TUTORIAL.html" class="btn btn-neutral float-left" title="XTP Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="geometry_optimization.html" class="btn btn-neutral float-right" title="Atomic Forces and Geometry Optimizaiton" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

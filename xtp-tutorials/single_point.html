@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Point Energy using pyxtp &mdash; VOTCA 2024-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QMMM workflow using GROMACS and VOTCA-XTP" href="QMMM_GROMACS.html" />
+    <link rel="prev" title="Atomic Forces and Geometry Optimizaiton" href="geometry_optimization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#What-this-tutorial-is-about">What this tutorial is about</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Define-the-molecular-structure">Define the molecular structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Instantiate-the-xtp-calculator">Instantiate the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Run-the-calcuation">Run the calcuation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Visualize-the-results">Visualize the results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/single_point.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Single-Point-Energy-using-pyxtp">
+<h1>Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code><a class="headerlink" href="#Single-Point-Energy-using-pyxtp" title="Link to this heading">¶</a></h1>
+<section id="What-this-tutorial-is-about">
+<h2>What this tutorial is about<a class="headerlink" href="#What-this-tutorial-is-about" title="Link to this heading">¶</a></h2>
+<p>In this tutrial we will learn how to setup a simple single point calculation using the pyton interface to <code class="docutils literal notranslate"><span class="pre">XTP</span></code>, i.e. <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> and the Atomistic Simulation Environment (ASE). Let’s first import the relevant modules:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span><span class="p">,</span> <span class="n">Visualization</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Define-the-molecular-structure">
+<h2>Define the molecular structure<a class="headerlink" href="#Define-the-molecular-structure" title="Link to this heading">¶</a></h2>
+<p>The python interface is built to leverage the ASE molecular structure classes <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> and <code class="docutils literal notranslate"><span class="pre">Molecule</span></code>. Therefore we cam simply define the atomistic structure we want to use via the ASE native functionalities. Let’s for example define a <code class="docutils literal notranslate"><span class="pre">CO</span></code> molecule using the <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> ASE class</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mf">1.4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Instantiate-the-xtp-calculator">
+<h2>Instantiate the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator<a class="headerlink" href="#Instantiate-the-xtp-calculator" title="Link to this heading">¶</a></h2>
+<p>ASE works with so-called calculators that handle the ab-initio calculation. Many quantum chemistry packages have their own dedicated calculators (see the exhaustive list here: <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html">https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html</a>). ‘pyxtp’ is nothing more than a dedicated ASE calculator for XTP. It can therefore be used as any other calculator.</p>
+<p>We first need to instantiate the calcultor. Here we use <code class="docutils literal notranslate"><span class="pre">nthreads=2</span></code> to indicate to the calculator to use two threads to perform the calculation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">nthreads</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Configure-the-xtp-calculator">
+<h2>Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator<a class="headerlink" href="#Configure-the-xtp-calculator" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator comes with many options. Those options are precisely those that can be accessed through the different XML files that are used to configure the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> tools of <code class="docutils literal notranslate"><span class="pre">XTP</span></code>. A summary of those options can be found here: <a class="reference external" href="https://www.votca.org/xtp/dftgwbse.html">https://www.votca.org/xtp/dftgwbse.html</a>. These options can be easily navigated through the <code class="docutils literal notranslate"><span class="pre">calc.options</span></code> and using the autocomplete (tab) functionality. Let’s for example change the basis set and auxilliary basis set of the calculations.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>We can also give redirect all the logging output to a dedicated file</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logging_file</span> <span class="o">=</span> <span class="s1">&#39;CO_energy.log&#39;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Run-the-calcuation">
+<h2>Run the calcuation<a class="headerlink" href="#Run-the-calcuation" title="Link to this heading">¶</a></h2>
+<p>As for any ASE calculator, the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator must be attached to the molecular structure. To do that we simply need to assign our <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator to the <code class="docutils literal notranslate"><span class="pre">calc</span></code> attribute of or molecular structure</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+</pre></div>
+</div>
+</div>
+<p>To run the calculation we can simply call the <code class="docutils literal notranslate"><span class="pre">.get_potential_energy()</span></code> of the molecular structure, and all the rest will be done automatically</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-113.00304600751416
+</pre></div></div>
+</div>
+</section>
+<section id="Visualize-the-results">
+<h2>Visualize the results<a class="headerlink" href="#Visualize-the-results" title="Link to this heading">¶</a></h2>
+<p>Several visualisations are directly provided by <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code>. It is for example possible to directly plot the absorption spectrum of the molecular structure assuming a Gaussian broadening of the peaks</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">viz</span> <span class="o">=</span> <span class="n">Visualization</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">save_figure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">viz</span><span class="o">.</span><span class="n">plot_absorption_gaussian</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_single_point_15_0.png" src="../_images/xtp-tutorials_single_point_15_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="geometry_optimization.html" class="btn btn-neutral float-left" title="Atomic Forces and Geometry Optimizaiton" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="QMMM_GROMACS.html" class="btn btn-neutral float-right" title="QMMM workflow using GROMACS and VOTCA-XTP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
