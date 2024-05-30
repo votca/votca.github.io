@@ -7,6 +7,7 @@
   <title>XTP Tutorials &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -58,9 +59,6 @@
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a></li>
 </ul>
 </li>
 </ul>
@@ -139,59 +137,6 @@
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Visualize-the-results">Visualize the results</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_GROMACS.html#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling">Coupling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling-analysis">Coupling analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QMMM-calculations">QMMM calculations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_LAMMPS.html#Note">Note</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QMMM-Calculations">QMMM Calculations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="LAMMPS_KMC.html">Kinect Monte Carlo Simulations Using LAMMPS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Setting-the-environment">Setting the environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="LAMMPS_KMC.html#Notes">Notes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Plotting-the-energies">Plotting the energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Couplings-histrogram">Couplings histrogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Plotting-the-coupling-histogram">Plotting the coupling histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">KMC simulations of multiple holes or electrons in periodic boundary conditions</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </section>
@@ -207,7 +152,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

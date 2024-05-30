@@ -7,6 +7,7 @@
   <title>XTP Manual &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="xtp_introduction.html" />
+    <link rel="next" title="1. Introduction" href="xtp_introduction.html" />
     <link rel="prev" title="Bibliography" href="../csg/bibliography.html" /> 
 </head>
 
@@ -50,11 +51,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">XTP Manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">2. Theory and Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">3. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">4. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">5. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a></li>
 </ul>
 </li>
 </ul>
@@ -105,93 +110,98 @@
              
   <section id="xtp-manual">
 <h1>XTP Manual<a class="headerlink" href="#xtp-manual" title="Link to this heading">¶</a></h1>
+<p><strong>Disclaimer:</strong>
+This manual is not complete. The best way to start using the software is
+to look at the provided tutorials. The reference section is generated
+automatically from the source code of the master version, so please make sure that your
+software and manual versions match.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory and Background</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="theory.html#dft-and-gw-bse">DFT and GW-BSE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html#hopping-transport">Hopping transport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">2. Theory and Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#density-functional-theory">2.1. Density-Functional Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#many-body-green-s-functions-and-the-bethe-salpeter-equation">2.2. Many-Body Green’s Functions and the Bethe-Salpeter Equation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">XTP ASE Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">3. XTP ASE Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">3.1. Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">3.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">Option parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">XTP calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">Single Point Caclulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">3.2. Option parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">3.3. XTP calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">3.4. Single Point Caclulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">3.5. Geometry Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">xtp_map</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">OPTIONS</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">xtp_parallel</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eqm.html">eqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">iexcitoncl</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iqm.html">iqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="qmmm.html">qmmm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">4. Workflow and Calculator Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">4.1. xtp_map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">4.1.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">4.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">4.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">4.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">4.1.1.4. OPTIONS</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">xtp_run</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">eanalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="einternal.html">einternal</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">ianalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">kmclifetime</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">kmcmultiple</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">mapchecker</a></li>
-<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">neighborlist</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vaverage.html">vaverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">4.2. xtp_parallel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">4.2.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">4.2.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">4.2.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">4.2.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">4.2.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eqm.html">4.2.1.4.1. eqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">4.2.1.4.2. iexcitoncl</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iqm.html">4.2.1.4.3. iqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="qmmm.html">4.2.1.4.4. qmmm</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">xtp_tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="apdft.html">apdft</a></li>
-<li class="toctree-l5"><a class="reference internal" href="coupling.html">coupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">densityanalysis</a></li>
-<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">dftgwbse</a></li>
-<li class="toctree-l5"><a class="reference internal" href="diabatization.html">diabatization</a></li>
-<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">excitoncoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gencube.html">gencube</a></li>
-<li class="toctree-l5"><a class="reference internal" href="log2mps.html">log2mps</a></li>
-<li class="toctree-l5"><a class="reference internal" href="molpol.html">molpol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">partialcharges</a></li>
-<li class="toctree-l5"><a class="reference internal" href="spectrum.html">spectrum</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">orb2fchk</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">orb2mol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">mol2orb</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gpu_benchmark.html">gpu_benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">4.3. xtp_run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">4.3.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">4.3.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">4.3.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">4.3.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">4.3.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">4.3.1.4.1. eanalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="einternal.html">4.3.1.4.2. einternal</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">4.3.1.4.3. ianalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">4.3.1.4.4. kmclifetime</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">4.3.1.4.5. kmcmultiple</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">4.3.1.4.6. mapchecker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">4.3.1.4.7. neighborlist</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vaverage.html">4.3.1.4.8. vaverage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">4.4. xtp_tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">4.4.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">4.4.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">4.4.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">4.4.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">4.4.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="apdft.html">4.4.1.4.1. apdft</a></li>
+<li class="toctree-l5"><a class="reference internal" href="coupling.html">4.4.1.4.2. coupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">4.4.1.4.3. densityanalysis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">4.4.1.4.4. dftgwbse</a></li>
+<li class="toctree-l5"><a class="reference internal" href="diabatization.html">4.4.1.4.5. diabatization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">4.4.1.4.6. excitoncoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gencube.html">4.4.1.4.7. gencube</a></li>
+<li class="toctree-l5"><a class="reference internal" href="log2mps.html">4.4.1.4.8. log2mps</a></li>
+<li class="toctree-l5"><a class="reference internal" href="molpol.html">4.4.1.4.9. molpol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">4.4.1.4.10. partialcharges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spectrum.html">4.4.1.4.11. spectrum</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">4.4.1.4.12. orb2fchk</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">4.4.1.4.13. orb2mol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">4.4.1.4.14. mol2orb</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gpu_benchmark.html">4.4.1.4.15. gpu_benchmark</a></li>
 </ul>
 </li>
 </ul>
@@ -200,42 +210,64 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">Programs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">xtp_basisset</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#name">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#description">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#options">OPTIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">5. Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">5.1. Programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">5.1.1. xtp_basisset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#name">5.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">5.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#description">5.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#options">5.1.1.4. OPTIONS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">xtp_update_mapfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">5.1.2. xtp_update_mapfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">5.1.2.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">5.1.2.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">5.1.2.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">5.1.2.4. OPTIONS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">xtp_modify_jobfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">5.1.3. xtp_modify_jobfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">5.1.3.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">5.1.3.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">5.1.3.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">5.1.3.4. OPTIONS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">xtp_qmmm2qm</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">OPTIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">5.1.4. xtp_qmmm2qm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">5.1.4.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">5.1.4.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">5.1.4.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">5.1.4.4. OPTIONS</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
 </ul>
 </div>
+<section id="citations">
+<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">¶</a></h2>
+<p>Development of this software depends on academic research grants. If
+you are using the package, please cite the following papers:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../csg/bibliography.html#scherer-understanding-2018" id="id1"><span>[scherer_understanding_2018]</span></a> Force-matching with three-body interactions in VOTCA</p></li>
+<li><p><a class="reference internal" href="../csg/bibliography.html#mashayakrelative" id="id2"><span>[mashayakrelative]</span></a> Relative entropy and optimization-driven coarse-graining methods in VOTCA</p></li>
+<li><p><a class="reference internal" href="../csg/bibliography.html#ruhle2011hybrid" id="id3"><span>[ruhle2011hybrid]</span></a> Hybrid approaches to coarse-graining using the VOTCA package: liquid hexane</p></li>
+<li><p><a class="reference internal" href="../csg/bibliography.html#ruehle-2009-a" id="id4"><span>[Ruehle:2009.a]</span></a> Versatile Object-oriented Toolkit for Coarse-graining Applications</p></li>
+</ul>
+</section>
+<section id="development">
+<h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
+<p>The core development is currently taking place at the Eindhoven University of Technology, Netherlands, and Los Alamos National Laboratory.</p>
+</section>
+<section id="copyright">
+<h2>Copyright<a class="headerlink" href="#copyright" title="Link to this heading">¶</a></h2>
+<p>VOTCA is free software. The entire package is available under the Apache
+License. For details, check the LICENSE file in the source code. The
+VOTCA source code is available on our homepage, .</p>
+</section>
 </section>
 
 
@@ -243,13 +275,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../csg/bibliography.html" class="btn btn-neutral float-left" title="Bibliography" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="xtp_introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="xtp_introduction.html" class="btn btn-neutral float-right" title="1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

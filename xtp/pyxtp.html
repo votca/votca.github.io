@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XTP ASE Interface &mdash; VOTCA 2024-dev documentation</title>
+  <title>3. XTP ASE Interface &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Workflow and Calculator Structure" href="workflows_and_calculators.html" />
-    <link rel="prev" title="Theory and Background" href="theory.html" /> 
+    <link rel="next" title="4. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
+    <link rel="prev" title="2. Theory and Background" href="theory.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,21 +51,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory and Background</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">XTP ASE Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">2. Theory and Background</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. XTP ASE Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">3.1. Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">3.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#option-parser">Option parser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">XTP calculator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">Single Point Caclulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">Geometry Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-parser">3.2. Option parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">3.3. XTP calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">3.4. Single Point Caclulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">3.5. Geometry Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">4. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">5. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
 </ul>
 </li>
 </ul>
@@ -104,7 +109,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active">XTP ASE Interface</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>XTP ASE Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/pyxtp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,11 +120,11 @@
            <div itemprop="articleBody">
              
   <section id="xtp-ase-interface">
-<h1>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">3. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <section id="environment-variables">
-<h3>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">3.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
 <p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
 interface to find the default xml files and create the options data structure.
 You can set this environment variable in your shell configuration file:</p>
@@ -133,11 +138,11 @@ You can set this environment variable in your shell configuration file:</p>
 </section>
 </section>
 <section id="option-parser">
-<h2>Option parser<a class="headerlink" href="#option-parser" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Option parser<a class="headerlink" href="#option-parser" title="Link to this heading">¶</a></h2>
 <p>The <cite>XTPOptions</cite> class is the preferred handler for setting all the options of the xtp calculator.</p>
 </section>
 <section id="xtp-calculator">
-<h2>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
 <p>Frequently used options can be specified using
 the calculator’s <cite>set</cite> routine.</p>
 <table class="docutils align-default">
@@ -173,7 +178,7 @@ the calculator’s <cite>set</cite> routine.</p>
 </table>
 </section>
 <section id="single-point-caclulation">
-<h2>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
 <p>Here is an example of setting up a calculation on a water molecule:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
 <span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
@@ -198,7 +203,7 @@ the calculator’s <cite>set</cite> routine.</p>
 </div>
 </section>
 <section id="geometry-optimization">
-<h2>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Link to this heading">¶</a></h2>
 <p>Here is an example of setting up a geometry of a carbon monoxide
 molecule using forces calculated on the first singlet state:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
@@ -236,14 +241,14 @@ molecule using forces calculated on the first singlet state:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="theory.html" class="btn btn-neutral float-left" title="Theory and Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="theory.html" class="btn btn-neutral float-left" title="2. Theory and Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="4. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

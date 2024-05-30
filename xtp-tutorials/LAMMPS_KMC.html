@@ -7,6 +7,7 @@
   <title>Kinect Monte Carlo Simulations Using LAMMPS &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
       <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -20,9 +21,7 @@
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Developer and Contributor Guide" href="../DEVELOPERS_GUIDE.html" />
-    <link rel="prev" title="QMMM workflow using LAMMPS and VOTCA-XTP" href="QMMM_LAMMPS.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,29 +54,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Kinect Monte Carlo Simulations Using LAMMPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Setting-the-environment">Setting the environment</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Notes">Notes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Site-energies-and-pair-energy-differences">Site energies and pair energy differences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-energies">Plotting the energies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Couplings-histrogram">Couplings histrogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-coupling-histogram">Plotting the coupling histogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">KMC simulations of multiple holes or electrons in periodic boundary conditions</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -109,7 +88,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
       <li class="breadcrumb-item active">Kinect Monte Carlo Simulations Using LAMMPS</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp-tutorials/LAMMPS_KMC.ipynb.txt" rel="nofollow"> View page source</a>
@@ -215,7 +193,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.12/site-packages 
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: e61d4c1 (compiled May 28 2024, 20:41:13)
+xtp_run, version 2024-dev gitid: 5f9ae87 (compiled May 30 2024, 13:03:54)
 
 Initializing calculator
 ... eanalyze
@@ -314,7 +292,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_11636/2362228021.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_13647/2362228021.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 </pre></div></div>
 </div>
@@ -369,7 +347,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: e61d4c1 (compiled May 28 2024, 20:41:13)
+xtp_run, version 2024-dev gitid: 5f9ae87 (compiled May 30 2024, 13:03:54)
 
 Initializing calculator
 ... ianalyze
@@ -414,7 +392,7 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 &lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_11636/886975016.py:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_13647/886975016.py:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
@@ -462,7 +440,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 
 please submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024-dev gitid: e61d4c1 (compiled May 28 2024, 20:41:13)
+xtp_run, version 2024-dev gitid: 5f9ae87 (compiled May 30 2024, 13:03:54)
 
 Initializing calculator
 ... kmcmultiple
@@ -556,15 +534,12 @@ Changes have not been written to state file.
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="QMMM_LAMMPS.html" class="btn btn-neutral float-left" title="QMMM workflow using LAMMPS and VOTCA-XTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
