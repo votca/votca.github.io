@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. Reference &mdash; VOTCA 2024-dev documentation</title>
+  <title>6. Reference &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Bibliography" href="bibliography.html" />
-    <link rel="prev" title="4.4.1.4.15. gpu_benchmark" href="gpu_benchmark.html" /> 
+    <link rel="next" title="7. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="5.4.1.4.15. gpu_benchmark" href="gpu_benchmark.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,20 +52,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">2. Theory and Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">3. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">4. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Reference</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#programs">5.1. Programs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#xtp-basisset">5.1.1. xtp_basisset</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xtp-update-mapfile">5.1.2. xtp_update_mapfile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xtp-modify-jobfile">5.1.3. xtp_modify_jobfile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xtp-qmmm2qm">5.1.4. xtp_qmmm2qm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">3. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">4. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">5. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#programs">6.1. Programs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-basisset">6.1.1. xtp_basisset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-update-mapfile">6.1.2. xtp_update_mapfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-modify-jobfile">6.1.3. xtp_modify_jobfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtp-qmmm2qm">6.1.4. xtp_qmmm2qm</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -108,7 +109,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5. </span>Reference</li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/reference.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,26 +120,26 @@
            <div itemprop="articleBody">
              
   <section id="reference">
-<h1><span class="section-number">5. </span>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">6. </span>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h1>
 <section id="programs">
-<h2><span class="section-number">5.1. </span>Programs<a class="headerlink" href="#programs" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Programs<a class="headerlink" href="#programs" title="Link to this heading">¶</a></h2>
 <section id="xtp-basisset">
-<h3><span class="section-number">5.1.1. </span>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">6.1.1. </span>xtp_basisset<a class="headerlink" href="#xtp-basisset" title="Link to this heading">¶</a></h3>
 <section id="name">
-<h4><span class="section-number">5.1.1.1. </span>NAME<a class="headerlink" href="#name" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.1.1. </span>NAME<a class="headerlink" href="#name" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_basisset</strong> - Part of the VOTCA package</p>
 </section>
 <section id="synopsis">
-<h4><span class="section-number">5.1.1.2. </span>SYNOPSIS<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.1.2. </span>SYNOPSIS<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_basisset</strong> [OPTIONS]</p>
 <p><strong>xtp_basisset</strong> [–help]</p>
 </section>
 <section id="description">
-<h4><span class="section-number">5.1.1.3. </span>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.1.3. </span>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h4>
 <p>Creates votca xml basissetfiles from NWCHEM basissetfiles</p>
 </section>
 <section id="options">
-<h4><span class="section-number">5.1.1.4. </span>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.1.4. </span>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                     show this help message and
@@ -158,22 +159,22 @@
 </section>
 </section>
 <section id="xtp-update-mapfile">
-<h3><span class="section-number">5.1.2. </span>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">6.1.2. </span>xtp_update_mapfile<a class="headerlink" href="#xtp-update-mapfile" title="Link to this heading">¶</a></h3>
 <section id="id1">
-<h4><span class="section-number">5.1.2.1. </span>NAME<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.2.1. </span>NAME<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> - Part of the VOTCA package</p>
 </section>
 <section id="id2">
-<h4><span class="section-number">5.1.2.2. </span>SYNOPSIS<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.2.2. </span>SYNOPSIS<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_update_mapfile</strong> [OPTIONS]</p>
 <p><strong>xtp_update_mapfile</strong> [–help]</p>
 </section>
 <section id="id3">
-<h4><span class="section-number">5.1.2.3. </span>DESCRIPTION<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.2.3. </span>DESCRIPTION<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <p>Updates the CTP mapping file to VOTCA XTP</p>
 </section>
 <section id="id4">
-<h4><span class="section-number">5.1.2.4. </span>OPTIONS<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.2.4. </span>OPTIONS<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                           show this help message and exit
@@ -184,22 +185,22 @@
 </section>
 </section>
 <section id="xtp-modify-jobfile">
-<h3><span class="section-number">5.1.3. </span>xtp_modify_jobfile<a class="headerlink" href="#xtp-modify-jobfile" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">6.1.3. </span>xtp_modify_jobfile<a class="headerlink" href="#xtp-modify-jobfile" title="Link to this heading">¶</a></h3>
 <section id="id5">
-<h4><span class="section-number">5.1.3.1. </span>NAME<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.3.1. </span>NAME<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> - Part of the VOTCA package</p>
 </section>
 <section id="id6">
-<h4><span class="section-number">5.1.3.2. </span>SYNOPSIS<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.3.2. </span>SYNOPSIS<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_modify_jobfile</strong> [OPTIONS]</p>
 <p><strong>xtp_modify_jobfile</strong> [–help]</p>
 </section>
 <section id="id7">
-<h4><span class="section-number">5.1.3.3. </span>DESCRIPTION<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.3.3. </span>DESCRIPTION<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <p>Creates a subset Jobfile from a larger Jobfile using selection criteria</p>
 </section>
 <section id="id8">
-<h4><span class="section-number">5.1.3.4. </span>OPTIONS<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.3.4. </span>OPTIONS<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                                              show this help
@@ -230,23 +231,23 @@
 </section>
 </section>
 <section id="xtp-qmmm2qm">
-<h3><span class="section-number">5.1.4. </span>xtp_qmmm2qm<a class="headerlink" href="#xtp-qmmm2qm" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">6.1.4. </span>xtp_qmmm2qm<a class="headerlink" href="#xtp-qmmm2qm" title="Link to this heading">¶</a></h3>
 <section id="id9">
-<h4><span class="section-number">5.1.4.1. </span>NAME<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.4.1. </span>NAME<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> - Part of the VOTCA package</p>
 </section>
 <section id="id10">
-<h4><span class="section-number">5.1.4.2. </span>SYNOPSIS<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.4.2. </span>SYNOPSIS<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <p><strong>xtp_qmmm2qm</strong> [OPTIONS]</p>
 <p><strong>xtp_qmmm2qm</strong> [–help]</p>
 </section>
 <section id="id11">
-<h4><span class="section-number">5.1.4.3. </span>DESCRIPTION<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.4.3. </span>DESCRIPTION<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
 <p>Convert QMMM orb file into a DFTGWBSE-like orb file usable by
 gencube,densityanalysis,…</p>
 </section>
 <section id="id12">
-<h4><span class="section-number">5.1.4.4. </span>OPTIONS<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<h4><span class="section-number">6.1.4.4. </span>OPTIONS<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options:
 
   -h, --help                  show this help message and exit
@@ -264,8 +265,8 @@ gencube,densityanalysis,…</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gpu_benchmark.html" class="btn btn-neutral float-left" title="4.4.1.4.15. gpu_benchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="bibliography.html" class="btn btn-neutral float-right" title="6. Bibliography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gpu_benchmark.html" class="btn btn-neutral float-left" title="5.4.1.4.15. gpu_benchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bibliography.html" class="btn btn-neutral float-right" title="7. Bibliography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

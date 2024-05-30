@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Electronic Structure Theories &mdash; VOTCA 2024-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Charge and Energy Transfer Theory" href="transfer_theory.html" />
+    <link rel="prev" title="1. Introduction" href="xtp_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Electronic Structure Theories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#density-functional-theory">2.1. Density-Functional Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#many-body-green-s-functions-and-the-bethe-salpeter-equation">2.2. Many-Body Green’s Functions and the Bethe-Salpeter Equation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">3. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">4. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">5. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">6. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Electronic Structure Theories</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/elstruc_theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="electronic-structure-theories">
+<h1><span class="section-number">2. </span>Electronic Structure Theories<a class="headerlink" href="#electronic-structure-theories" title="Link to this heading">¶</a></h1>
+<section id="density-functional-theory">
+<h2><span class="section-number">2.1. </span>Density-Functional Theory<a class="headerlink" href="#density-functional-theory" title="Link to this heading">¶</a></h2>
+<p>Excited state calculations require a reference ground state calculation within density-functional theory. VOTCA-XTP provides both an automated interface to the ORCA package <a class="reference internal" href="bibliography.html#neese-2012" id="id1"><span>[Neese:2012]</span></a> and a lightweight internal DFT engine based on atom-centered Gaussian-type orbitals for method developing and testing. It solves the Kohn-Sham Equations for the molecular orbitals <span class="math notranslate nohighlight">\(\phi_n^\textrm{KS}(\mathbf{r})\)</span> with orbital energies <span class="math notranslate nohighlight">\(\varepsilon_n^\textrm{KS}\)</span></p>
+<div class="math notranslate nohighlight" id="equation-equ-ks">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-equ-ks" title="Link to this equation">¶</a></span>\[\left\{ -\frac{\hbar^2}{2m}\nabla^2 + V_\mathrm{ext}(\mathbf{r}) + V_\textrm{H}(\mathbf{r}) +V_\textrm{xc}(\mathbf{r})\right\}\phi_n^\textrm{KS}(\mathbf{r})  =\varepsilon_n^\textrm{KS} \phi_n^\textrm{KS}(\mathbf{r}) ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_\textrm{ext}\)</span> is the external potential, <span class="math notranslate nohighlight">\(V_\textrm{H}\)</span> the Hartree potential, and <span class="math notranslate nohighlight">\(V_\textrm{xc}\)</span> the exchange-correlation potential. VOTCA-XTP also contains functionality for projector-based-embedding DFT-in-DFT ground state calculations <a class="reference internal" href="bibliography.html#manby-2012" id="id2"><span>[Manby:2012]</span></a>, in which a chosen <em>active</em> subregion of a molecular system is embedded into an inactive one, reproducing the total energy of the full system ground state exactly.</p>
+</section>
+<section id="many-body-green-s-functions-and-the-bethe-salpeter-equation">
+<h2><span class="section-number">2.2. </span>Many-Body Green’s Functions and the Bethe-Salpeter Equation<a class="headerlink" href="#many-body-green-s-functions-and-the-bethe-salpeter-equation" title="Link to this heading">¶</a></h2>
+<p>Using the ground-state reference, many-body Green’s functions theory with the <span class="math notranslate nohighlight">\(GW\)</span> approximation first calculates <em>single-particle excitations</em> (electron addition or removal) as solutions to the <em>quasiparticle equations</em></p>
+<div class="math notranslate nohighlight" id="equation-equ-qp">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-equ-qp" title="Link to this equation">¶</a></span>\[\left\{ -\frac{\hbar^2}{2m}\nabla^2 + V_\textrm{ext}(\mathbf{r}) + V_\textrm{H}(\mathbf{r})\right\}\phi_n^\textrm{QP}(\mathbf{r}) + \int{\Sigma(\mathbf{r},\mathbf{r}',\varepsilon_n^\textrm{QP})\phi_n^\textrm{QP}(\mathbf{r}')d\mathbf{r}'} = \varepsilon_n^\textrm{QP} \phi_n^\textrm{QP}(\mathbf{r}) .\]</div>
+<p>In place of the exchange-correlation potential in <a class="reference internal" href="#equation-equ-ks">Eq.2.1</a>, the energy-dependent self-energy operator <span class="math notranslate nohighlight">\(\Sigma(\mathbf{r},\mathbf{r}',E)\)</span> occurs in the QP equations. This operator is evaluated using the one-body Green’s function in quasi-particle approximation</p>
+<div class="math notranslate nohighlight" id="equation-equ-green">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-equ-green" title="Link to this equation">¶</a></span>\[G(\mathbf{r},\mathbf{r}',\omega) = \sum_n{\frac{\phi_n(\mathbf{r})\phi_n^*(\mathbf{r}')}{\omega-\varepsilon_n+i0^+\textrm{sgn}(\varepsilon_n -\mu)}}\]</div>
+<p>as</p>
+<div class="math notranslate nohighlight" id="equation-equ-sigma">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-equ-sigma" title="Link to this equation">¶</a></span>\[\Sigma(\mathbf{r},\mathbf{r}',E) = \frac{i}{2\pi} \int{e^{-i\omega 0^+}G(\mathbf{r},\mathbf{r}',E-\omega)W(\mathbf{r},\mathbf{r}',\omega)\,d\omega},\]</div>
+<p>where <span class="math notranslate nohighlight">\(W\)</span> denotes the dynamically screened Coulomb interaction. Assuming that <span class="math notranslate nohighlight">\(\phi^\textrm{QP}_n\approx \phi^\textrm{KS}_n\)</span>, the quasiparticle energies can be evaluated perturbatively according to</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-gw-sc">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-equ-theory-gw-sc" title="Link to this equation">¶</a></span>\[\varepsilon_n^\textrm{QP}= \varepsilon_n^\textrm{KS} + \Delta \varepsilon_n^{GW} = \varepsilon_n^\textrm{KS} + \left\langle\phi^\textrm{KS}_n\left\vert \Sigma(\varepsilon_n^\textrm{QP})-V_\text{xc} \right\vert\phi^\textrm{KS}_n\right\rangle .\]</div>
+<p>As the correction <span class="math notranslate nohighlight">\(\Delta \varepsilon_n^{GW}\)</span> itself depends on <span class="math notranslate nohighlight">\(\varepsilon_n^\textrm{QP}\)</span>, <a class="reference internal" href="#equation-equ-theory-gw-sc">Eq.2.5</a> needs to be solved self-consistently.</p>
+<p>Neutral excitations with a conserved number of electrons can be obtained from the Bethe-Salpeter Equation (BSE) by expressing coupled electron-hole amplitudes of excitation <span class="math notranslate nohighlight">\(S\)</span> in a product basis of single-particle orbitals, i.e.,</p>
+<div class="math notranslate nohighlight" id="equation-equ-bsewf">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-equ-bsewf" title="Link to this equation">¶</a></span>\[\chi_S(\mathbf{r}_\textrm{e},\mathbf{r}_\textrm{h})=\sum_{v}^{\mathrm{occ}}\sum_c^{\mathrm{unocc}}A_{vc}^S\phi_{c}(\mathbf{r}_\textrm{e})\phi^*_{v}(\mathbf{r}_\textrm{h})+B_{vc}^S\phi_{v}(\mathbf{r}_\textrm{e})\phi^{*}_{c}(\mathbf{r}_\textrm{h}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{r}_\textrm{e}\)</span> (<span class="math notranslate nohighlight">\(\mathbf{r}_\textrm{h}\)</span>) is for the electron (hole) coordinate and <span class="math notranslate nohighlight">\(A_{vc}\)</span> (<span class="math notranslate nohighlight">\(B_{vc}\)</span>) are the expansion coefficients of the excited state wave function in terms of resonant (anti-resonant) transitions between occupied <span class="math notranslate nohighlight">\(v\)</span> and unoccupied <span class="math notranslate nohighlight">\(c\)</span> states, respectively. In this basis, the BSE turns into an effective two-particle Hamiltonian problem of the form</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-bseeigenvalue">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-equ-theory-bseeigenvalue" title="Link to this equation">¶</a></span>\[\begin{split}\begin{pmatrix}
+                                \underline{\mathbf{H}}^{\text{res}}&amp;\underline{\mathbf{K}} \\
+                                -\underline{\mathbf{K}} &amp; -\underline{\mathbf{H}}^{\text{res}}
+                               \end{pmatrix}
+                               \begin{pmatrix}
+                               \mathbf{A}^S\\ \mathbf{B}^S
+                               \end{pmatrix}
+                               =\Omega_S
+                               \begin{pmatrix}
+                               \mathbf{A}^S\\ \mathbf{B}^S
+                               \end{pmatrix}.\end{split}\]</div>
+<p>Specifically, the matrix elements of the blocks <span class="math notranslate nohighlight">\(\underline{\mathbf{H}}^{\text{res}}\)</span> and <span class="math notranslate nohighlight">\(\underline{\mathbf{K}}\)</span> are calculated as</p>
+<div class="math notranslate nohighlight" id="equation-equ-bseelements">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-equ-bseelements" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+H^{\text{res}}_{vc,v'c'}&amp;=D_{vc,v'c'}+\eta K^\mathrm{x}_{vc,v'c'}+K^\mathrm{d}_{vc,v'c'}\\
+ K_{cv,v'c'}&amp;=\eta K^\mathrm{x}_{cv,v'c'}+K^\mathrm{d}_{cv,v'c'}\, ,
+\end{align}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-kd">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-equ-theory-kd" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+    D_{vc,v'c'}&amp;=(\varepsilon_c-\varepsilon_v)\delta_{vv'}\delta_{cc'},\\
+    K^\text{x}_{vc,v'c'}&amp;=\iint  \phi_c^*(\mathbf{r}_\textrm{e})\phi_v(\mathbf{r}_\textrm{e})v_{\mathrm{C}}(\mathbf{r}_\textrm{e},\mathbf{r}_\textrm{h}) \phi_{c'}(\mathbf{r}_\textrm{h})\phi_{v'}^*(\mathbf{r}_\textrm{h}) d^3\mathbf{r}_\textrm{e} d^3\mathbf{r}_\textrm{h}\\
+    K^\text{d}_{vc,v'c'}&amp;=-\iint
+           \phi_c^*(\mathbf{r}_\textrm{e})\phi_{c'}(\mathbf{r}_\textrm{e})W(\mathbf{r}_\textrm{e},\mathbf{r}_\textrm{h},\omega=0) \phi_v(\mathbf{r}_\textrm{h})\phi_{v'}^*(\mathbf{r}_\textrm{h})d^3\mathbf{r}_\textrm{e} d^3\mathbf{r}_\textrm{h}
+           \, .
+\end{align}\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\eta=2\)</span> (<span class="math notranslate nohighlight">\(\eta=0\)</span>) for singlet (triplet) excitations.
+Here, <span class="math notranslate nohighlight">\(K^\text{x}\)</span> is the repulsive exchange interaction originating from the bare Coulomb term <span class="math notranslate nohighlight">\(v_\mathrm{C}\)</span>, while the direct interaction <span class="math notranslate nohighlight">\(K^\text{d}\)</span> contains the attractive, but screened, interaction <span class="math notranslate nohighlight">\(W\)</span> between electron and hole, causing the binding of the electron-hole pair. In <a class="reference internal" href="#equation-equ-theory-kd">Eq.2.9</a> it is assumed that the dynamic properties of <span class="math notranslate nohighlight">\(W(\omega)\)</span> are negligible, and the computationally less demanding static approximation <span class="math notranslate nohighlight">\(\omega=0\)</span> is employed.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xtp_introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transfer_theory.html" class="btn btn-neutral float-right" title="3. Charge and Energy Transfer Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

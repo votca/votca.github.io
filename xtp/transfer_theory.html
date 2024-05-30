@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Charge and Energy Transfer Theory &mdash; VOTCA 2024-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. XTP ASE Interface" href="pyxtp.html" />
+    <link rel="prev" title="2. Electronic Structure Theories" href="elstruc_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Charge and Energy Transfer Theory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adiabatic-vs-diabatic-states">3.1. Adiabatic vs Diabatic States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electron-transfer-rates-in-the-marcus-picture">3.2. Electron Transfer Rates in the Marcus Picture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monomer-states-as-approximations-to-diabatic-states">3.3. Monomer States as Approximations to Diabatic States</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">4. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">5. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">6. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Charge and Energy Transfer Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/transfer_theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="charge-and-energy-transfer-theory">
+<h1><span class="section-number">3. </span>Charge and Energy Transfer Theory<a class="headerlink" href="#charge-and-energy-transfer-theory" title="Link to this heading">¶</a></h1>
+<p>The basic process of all rate models is the excitation transfer reaction from a donor molecule <span class="math notranslate nohighlight">\(A\)</span> to an acceptor molecule <span class="math notranslate nohighlight">\(B\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A^*B\longrightarrow AB^*,\]</div>
+<p>where <span class="math notranslate nohighlight">\(A^*\)</span> denotes a molecule <span class="math notranslate nohighlight">\(A\)</span> in its excited state. The excitation can either be a single particle excitation, as a hole or electron, or a two-particle excitation, like a singlet or triplet exciton. For the two molecule system we introduce the adiabatic states <span class="math notranslate nohighlight">\(\ket{0}\)</span> and <span class="math notranslate nohighlight">\(\ket{1}\)</span>, which depend on the set of nuclear coordinates, <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>. Instead of this multidimensional space, we focus on the one-dimensional reaction coordinate <span class="math notranslate nohighlight">\(\xi\)</span>, which is some linear combination of all nuclear coordinates.</p>
+<section id="adiabatic-vs-diabatic-states">
+<h2><span class="section-number">3.1. </span>Adiabatic vs Diabatic States<a class="headerlink" href="#adiabatic-vs-diabatic-states" title="Link to this heading">¶</a></h2>
+<p>The adiabatic potential energy surface is plotted <a class="reference internal" href="#fig-theory-reorg"><span class="std std-numref">Fig. 3.1</span></a>. For a given molecular arrangement, denoted <span class="math notranslate nohighlight">\(\xi_A\)</span>, the excitation localizes on molecule <span class="math notranslate nohighlight">\(A\)</span> and for <span class="math notranslate nohighlight">\(\xi_B\)</span> on molecule <span class="math notranslate nohighlight">\(B\)</span>. Expanded in the adiabatic states, the full Hamiltonian of the dimer complex can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{H}^{AB}=\sum_{i=0,1}\hat{H}^i_\text{nuc}(\xi)\ket{i}\bra{i}+\hat{\Theta}^{01}(\xi)\ket{0}\bra{1}+\hat{\Theta}^{10}(\xi)\ket{1}\bra{0},\]</div>
+<p>Transitions between these states are mediated by the matrix elements <span class="math notranslate nohighlight">\(\hat{\Theta}^{01}\)</span> and <span class="math notranslate nohighlight">\(\hat{\Theta}^{10}\)</span> of the <em>non-adiabicity</em> operator <span class="math notranslate nohighlight">\(\hat{\Theta}^{ij}\)</span>. If the system is in either state <span class="math notranslate nohighlight">\(\ket{0}\)</span> or <span class="math notranslate nohighlight">\(\ket{1}\)</span> the nuclear dynamics are governed by:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-ham-adiab">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-equ-theory-ham-adiab" title="Link to this equation">¶</a></span>\[\hat{H}^{0/1}_\text{nuc}(\xi)=\hat{T}_\text{nuc}+\underbrace{\hat{V}_\text{nuc-nuc}+\hat{\Theta}^{0/1}(\xi)+E_{el}^{0/1}(\xi)}_{=U^{0/1}(\xi)}\]</div>
+<figure class="align-center" id="id3">
+<span id="fig-theory-reorg"></span><a class="reference internal image-reference" href="../_images/reorg.svg"><img alt="../_images/reorg.svg" src="../_images/reorg.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Diabatic (black) and adiabatic (red dashed) potential energy surfaces along the reaction coordinate <span class="math notranslate nohighlight">\(\xi\)</span>. Whereas the adiabatic surfaces do not cross, but change character, the diabatic states retain their chemical character but cross. The electronic coupling <span class="math notranslate nohighlight">\(J_{AB}\)</span> can be read of as half the energetic separation between <span class="math notranslate nohighlight">\(\ket{0}\)</span> and <span class="math notranslate nohighlight">\(\ket{1}\)</span> at <span class="math notranslate nohighlight">\(\xi^*\)</span>.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In the case of a delocalized system, the electronic excitation is well described by <span class="math notranslate nohighlight">\(\ket{0}\)</span> and the nuclear motion will be governed by <span class="math notranslate nohighlight">\(\hat{H}^0\)</span> from <a class="reference internal" href="#equation-equ-theory-ham-adiab">Eq.3.1</a>. This situation corresponds to a large split of the adiabatic energy surfaces (<span class="math notranslate nohighlight">\(J_{AB}\)</span> in <a class="reference internal" href="#fig-theory-reorg"><span class="std std-numref">Fig. 3.1</span></a>).</p>
+<p>If the electronic excitation is strongly localized on molecule <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\ket{0}\)</span> alone would describe it poorly. Instead a mixture of adiabatic states is needed to describe the localized state. These adiabatic states couple due to the <em>non-adiabacity</em> operator. To ease the calculation we introduce a localized electronic basis, known as the <em>diabatic basis</em>.</p>
+<p>The diabatic states <span class="math notranslate nohighlight">\(\ket{A}\)</span>, <span class="math notranslate nohighlight">\(\ket{B}\)</span> are related to the adiabatic basis <span class="math notranslate nohighlight">\(\ket{0}\)</span>,:math:<cite>ket{1}</cite> via a basis transformation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+\ket{A(\xi_0)}\\
+\ket{B(\xi_0)}
+\end{pmatrix}
+=
+\underline{\mathbf{T}}(\xi)
+\begin{pmatrix}
+\ket{0(\xi)}\\
+\ket{1(\xi)}
+\end{pmatrix}\end{split}\]</div>
+<p>The transformation matrix <span class="math notranslate nohighlight">\(\underline{\mathbf{T}}(\xi)\)</span> is chosen in such a way to absorb the dependence on the nuclear coordinates <span class="math notranslate nohighlight">\(\xi\)</span>. In <a class="reference internal" href="#fig-theory-reorg"><span class="std std-numref">Fig. 3.1</span></a> the adiabatic and diabatic states are shown. Whereas adiabatic states localize or not localize depending on the nuclear geometry, diabatic states are always localized. They are defined in one reference nuclear configuration, <span class="math notranslate nohighlight">\(\xi_0\)</span>, and so do not carry any dependence on the nuclear coordinates anymore, hence their matrix elements with the non-adiabicity operator vanish:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-diabaticdef">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-equ-theory-diabaticdef" title="Link to this equation">¶</a></span>\[\bra{X}\hat{\Theta}\ket{Y}=0\,\; \text{with}\, X,Y\in\{A,B\}.\]</div>
+<p>They are no longer eigenstates of the electronic Hamiltonian, except at <span class="math notranslate nohighlight">\(\xi_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{H}_\text{el}(\xi_0)\ket{X}=E_\text{el}^X\ket{X}, \text{with}\, X\in\{A,B\}.\]</div>
+<p>In the thus defined <em>diabatic basis</em> the Hamiltonian reads:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{H}^{AB}=\hat{H}^A_\text{nuc}(\xi)\ket{A}\bra{A}+\hat{H}^B_\text{nuc}(\xi)\ket{B}\bra{B}+J_{AB}\left(\ket{A}\bra{B}+\ket{B}\bra{A}\right)\]</div>
+<p>As all terms containing the non-adiabicity operator vanish, electronic coupling between the diabatic states is introduced via:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-electroniccoupling">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-equ-theory-electroniccoupling" title="Link to this equation">¶</a></span>\[J_{AB}(\xi)=\bra{A}\hat{H}_\text{el}(\xi)\ket{B}\]</div>
+<p>If the system is in one of the diabatic states <span class="math notranslate nohighlight">\(\ket{A}\)</span> or <span class="math notranslate nohighlight">\(\ket{B}\)</span>, the nuclear dynamics are described by the following Hamiltonian:</p>
+<div class="math notranslate nohighlight">
+\[\hat{H}^{A/B}_\text{nuc}=\hat{T}_\text{nuc}+\underbrace{\hat{V}_\text{nuc-nuc}+J_{AA/BB}(\xi)+E_\text{el}^{A/B}}_{=U^{A/B}(\xi)}\]</div>
+<p>In <a class="reference internal" href="#fig-theory-reorg"><span class="std std-numref">Fig. 3.1</span></a> the diabatic energy surfaces cross at <span class="math notranslate nohighlight">\(\xi^*\)</span>. This is necessary as diabatic states are localized, i.e. for certain molecular configurations (<span class="math notranslate nohighlight">\(\xi&gt;\xi^*\)</span> state <span class="math notranslate nohighlight">\(\ket{B}\)</span> is energetically more optimal than <span class="math notranslate nohighlight">\(\ket{A}\)</span>). Adiabatic states/surfaces exhibit an avoided crossing at <span class="math notranslate nohighlight">\(\xi^*\)</span>, as they cannot cross because an adiabatic state is always defined with respect to its energy, i.e. the ground state adiabatic state is defined as the lowest energy state. Instead, the adiabatic state changes character from being more localized on <span class="math notranslate nohighlight">\(A\)</span> to being more localized on <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</section>
+<section id="electron-transfer-rates-in-the-marcus-picture">
+<h2><span class="section-number">3.2. </span>Electron Transfer Rates in the Marcus Picture<a class="headerlink" href="#electron-transfer-rates-in-the-marcus-picture" title="Link to this heading">¶</a></h2>
+<p>Using the diabatic basis, we proceed by calculating the rate expression <span class="math notranslate nohighlight">\(\omega_{A\rightarrow B}\)</span>. As the excitation is localized <span class="math notranslate nohighlight">\(J_{AB}\)</span> is small and can be treated as a perturbation <a class="reference internal" href="bibliography.html#marcus-1993" id="id1"><span>[Marcus:1993]</span></a>. Using Fermi’s golden rule yields:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-fermigr">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-equ-theory-fermigr" title="Link to this equation">¶</a></span>\[\omega_{A\rightarrow B}=\frac{2\pi}{\hbar}|J_{AB}|^2\int f(\xi)\delta(U_A(\xi)-U_B(\xi))\,d\xi,\]</div>
+<p>with the integration over all configuration <span class="math notranslate nohighlight">\(\xi\)</span> weighted by the Boltzmann factor <span class="math notranslate nohighlight">\(f(\xi)\propto \exp(-U_A(\xi)/k_BT)\)</span>. The delta-function enforces energy-conservation, as a transition can only happen at the crossing point <span class="math notranslate nohighlight">\(\xi^*\)</span>, where <span class="math notranslate nohighlight">\(U_A(\xi^*)=U_B(\xi^*)\)</span>. We also neglect the dependency of <span class="math notranslate nohighlight">\(J_{AB}\)</span> on <span class="math notranslate nohighlight">\(\xi\)</span> as in the <em>Condon approximation</em>.</p>
+<p>If the diabatic PESs <span class="math notranslate nohighlight">\(U_A(\xi)\)</span> and <span class="math notranslate nohighlight">\(U_B(\xi)\)</span> are known the rate equation <a class="reference internal" href="#equation-equ-theory-fermigr">Eq.3.4</a> can be solved. For most systems the computational cost of calculating the PES is too large and so the PESs have to be approximated. The first simplification is the introduction of the reaction coordinate <span class="math notranslate nohighlight">\(\xi\)</span>. If we go back one step and look at a general PES <span class="math notranslate nohighlight">\(U(\mathbf{R})\)</span>, with some minimum at <span class="math notranslate nohighlight">\(\mathbf{R}^0\)</span>, we can expand it to second order around that minimum:</p>
+<div class="math notranslate nohighlight">
+\[U(\mathbf{R})=U^0+\sum_{ij} h_{ij} (R_i-R_i^0)(R_j-R_j^0)=U^0+\sum_{a} \omega_a (Q_a-Q_a^0)^2=U(\mathbf{Q}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q_a\)</span> are mass weighted normal mode coordinates with eigenfrequencies <span class="math notranslate nohighlight">\(\omega_a\)</span>, obtained by diagonalizing the Hessian matrix <span class="math notranslate nohighlight">\(h_{ij}\)</span>. The excitation transfer reaction is typically triggered by a subset of these eigenmodes. Often the nuclear motion can be described as a linear combination of these eigenmodes, yielding the reaction coordinate, <span class="math notranslate nohighlight">\(\xi\)</span>, with its eigenfrequency <span class="math notranslate nohighlight">\(\omega_\xi\)</span> and conjugate momentum operator <span class="math notranslate nohighlight">\(\hat{P}_\xi\)</span>. The corresponding nuclear Hamiltonian then reads:</p>
+<div class="math notranslate nohighlight">
+\[\hat{H}_\text{nuc}=\frac{1}{2} \hat{P}_\xi^2+U^0+\frac{1}{2} \omega_\xi (\xi-\xi^0)^2.\]</div>
+<p>Treating the oscillations along <span class="math notranslate nohighlight">\(\xi\)</span>, i.e. the promoting mode, classically we arrive at the Marcus rate equation <a class="reference internal" href="bibliography.html#marcus-1993" id="id2"><span>[Marcus:1993]</span></a>:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-marcus">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-equ-theory-marcus" title="Link to this equation">¶</a></span>\[\omega_{A\rightarrow B}=\frac{2\pi}{\hbar}\frac{|J_{AB}|^2}{\sqrt{4\pi \lambda k_B T}}\exp \left[ -\frac{(U_{AB}-\lambda)^2}{4\lambda k_BT}\right].\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\lambda\)</span> denotes the classical reorganization energy, which describes the molecular rearrangement necessary for the excitation transfer to happen</p>
+<div class="math notranslate nohighlight">
+\[\lambda=\frac{1}{2}\omega_\xi(\xi_A-\xi_B)^2.\]</div>
+<p>If the dimer complex is surrounded by other molecules environmental reorganization effects may also contribute. These can be described by an additional harmonic mode <span class="math notranslate nohighlight">\(\tilde{\xi}\)</span>, yielding the outer sphere reorganization energy:</p>
+<div class="math notranslate nohighlight">
+\[\lambda^\text{out}=\frac{1}{2}\omega_{\tilde{\xi}}(\tilde{\xi}_A-\tilde{\xi}_B)^2.\]</div>
+<p><span class="math notranslate nohighlight">\(U_{AB}\)</span> in <a class="reference internal" href="#equation-equ-theory-marcus">Eq.3.5</a> is the energy difference:</p>
+<div class="math notranslate nohighlight">
+\[U_{AB}=U_A(\xi_A)-U_B(\xi_B)\]</div>
+<p>The Marcus rate has been used to great success to describe charge transfer in solution and solids. The classical treatment of the promoting modes <span class="math notranslate nohighlight">\(\xi,\tilde{\xi}\)</span> is only justified if <span class="math notranslate nohighlight">\(k_BT\gg\omega_\xi,\omega_{\tilde{\xi}}\)</span>. This is rarely the case, as intramolecular vibrations have zero-point energies of around 0.1eV, which is roughly four times the thermal energy at room temperature. Yet, the Marcus theory has been shown to give good results even at the limits of its validity. Other rate expression like, Marcus-Levich-Jortner rates, which treat the promoting mode quantum mechanically or Weiss-Dorsey rates, which treat the whole system quantum mechanically, extend the formal applicability of transfer rate theories. Unfortunately, these rates require additional input parameters to describe the PES, which can only be obtained at substantial computational cost.</p>
+</section>
+<section id="monomer-states-as-approximations-to-diabatic-states">
+<h2><span class="section-number">3.3. </span>Monomer States as Approximations to Diabatic States<a class="headerlink" href="#monomer-states-as-approximations-to-diabatic-states" title="Link to this heading">¶</a></h2>
+<p>Computational cost is already a major concern, as diabatic states, defined via <a class="reference internal" href="#equation-equ-theory-diabaticdef">Eq.3.2</a>, are very difficult or even impossible to calculate. Practically, the diabatic states have to be approximated. As the diabatic state <span class="math notranslate nohighlight">\(\ket{A}\)</span> resembles an excited monomer <span class="math notranslate nohighlight">\(A\)</span> and a ground state molecule <span class="math notranslate nohighlight">\(B\)</span>, the following simplification is used:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-diabaticstateapprox">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-equ-theory-diabaticstateapprox" title="Link to this equation">¶</a></span>\[\ket{A}\approx \ket{1_a}\otimes\ket{0_b}\]</div>
+<p>The diabatic state is approximately the product of the adiabatic excited state of the isolated monomer <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\ket{1_a}\)</span> and the ground state of the isolated monomer <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(\ket{0_b}\)</span>. All energetic contributions separate into monomer contributions as well e.g.:</p>
+<div class="math notranslate nohighlight" id="equation-equ-coarsesitee">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-equ-coarsesitee" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+U_{AB}&amp;=U_A(\xi_A)-U_B(\xi_B)\approx U_a^1(\xi_a^1)+U_b^0(\xi_b^0)-(U_a^0(\xi_a^0)+U_b^1(\xi_b^0)\nonumber\\
+&amp;=\underbrace{(U_a^1(\xi_a^1)-U_a^0(\xi_a^0))}_{\Delta E_a}-\underbrace{(U_b^1(\xi_b^1)-U_b^0(\xi_b^0))}_{\Delta E_b}=\Delta E_{ab},
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta E_{ab}\)</span> is the site energy difference between the molecules and <span class="math notranslate nohighlight">\(\xi_{a/b}^{0/1}\)</span> are the molecular configuration of monomer <span class="math notranslate nohighlight">\(A/B\)</span> in state <span class="math notranslate nohighlight">\(0/1\)</span>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="elstruc_theory.html" class="btn btn-neutral float-left" title="2. Electronic Structure Theories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyxtp.html" class="btn btn-neutral float-right" title="4. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

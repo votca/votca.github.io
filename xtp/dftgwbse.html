@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.4.1.4.4. dftgwbse &mdash; VOTCA 2024-dev documentation</title>
+  <title>5.4.1.4.4. dftgwbse &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.4.1.4.5. diabatization" href="diabatization.html" />
-    <link rel="prev" title="4.4.1.4.3. densityanalysis" href="densityanalysis.html" /> 
+    <link rel="next" title="5.4.1.4.5. diabatization" href="diabatization.html" />
+    <link rel="prev" title="5.4.1.4.3. densityanalysis" href="densityanalysis.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,20 +52,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">2. Theory and Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">3. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">4. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">4.1. xtp_map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">4.2. xtp_parallel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">4.3. xtp_run</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_tools_overview.html">4.4. xtp_tools</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_tools_overview.html#help">4.4.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">3. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">4. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">5. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">5.1. xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">5.2. xtp_parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">5.3. xtp_run</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_tools_overview.html">5.4. xtp_tools</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_tools_overview.html#help">5.4.1. help</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">5. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">6. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -108,9 +109,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">4. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">4.4. </span>xtp_tools</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.4.1.4.4. </span>dftgwbse</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">5. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">5.4. </span>xtp_tools</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.4.1.4.4. </span>dftgwbse</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/dftgwbse.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,7 +122,7 @@
            <div itemprop="articleBody">
              
   <section id="dftgwbse">
-<h1><span class="section-number">4.4.1.4.4. </span>dftgwbse<a class="headerlink" href="#dftgwbse" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">5.4.1.4.4. </span>dftgwbse<a class="headerlink" href="#dftgwbse" title="Link to this heading">¶</a></h1>
 <p>Compute electronic excitations using GW-BSE
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -788,8 +789,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="densityanalysis.html" class="btn btn-neutral float-left" title="4.4.1.4.3. densityanalysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="diabatization.html" class="btn btn-neutral float-right" title="4.4.1.4.5. diabatization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="densityanalysis.html" class="btn btn-neutral float-left" title="5.4.1.4.3. densityanalysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diabatization.html" class="btn btn-neutral float-right" title="5.4.1.4.5. diabatization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
