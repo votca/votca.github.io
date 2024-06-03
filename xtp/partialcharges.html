@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5.4.1.4.10. partialcharges &mdash; VOTCA 2024-dev documentation</title>
+  <title>6.4.1.4.10. partialcharges &mdash; VOTCA 2024-dev documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.4.1.4.11. spectrum" href="spectrum.html" />
-    <link rel="prev" title="5.4.1.4.9. molpol" href="molpol.html" /> 
+    <link rel="next" title="6.4.1.4.11. spectrum" href="spectrum.html" />
+    <link rel="prev" title="6.4.1.4.9. molpol" href="molpol.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,19 +54,20 @@
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">3. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">4. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">5. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">5.1. xtp_map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">5.2. xtp_parallel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">5.3. xtp_run</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_tools_overview.html">5.4. xtp_tools</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_tools_overview.html#help">5.4.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">4. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">5. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">6. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">6.1. xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">6.2. xtp_parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">6.3. xtp_run</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_tools_overview.html">6.4. xtp_tools</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_tools_overview.html#help">6.4.1. help</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">6. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">7. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">8. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -109,9 +110,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">5. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">5.4. </span>xtp_tools</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5.4.1.4.10. </span>partialcharges</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">6. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">6.4. </span>xtp_tools</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.4.1.4.10. </span>partialcharges</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/partialcharges.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,7 +123,7 @@
            <div itemprop="articleBody">
              
   <section id="partialcharges">
-<h1><span class="section-number">5.4.1.4.10. </span>partialcharges<a class="headerlink" href="#partialcharges" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">6.4.1.4.10. </span>partialcharges<a class="headerlink" href="#partialcharges" title="Link to this heading">¶</a></h1>
 <p>Tool to derive partial charges from QM results stores in serialized file
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -227,8 +228,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="molpol.html" class="btn btn-neutral float-left" title="5.4.1.4.9. molpol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="spectrum.html" class="btn btn-neutral float-right" title="5.4.1.4.11. spectrum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="molpol.html" class="btn btn-neutral float-left" title="6.4.1.4.9. molpol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spectrum.html" class="btn btn-neutral float-right" title="6.4.1.4.11. spectrum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Charge and Energy Transport Model &mdash; VOTCA 2024-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=61889540"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. XTP ASE Interface" href="pyxtp.html" />
+    <link rel="prev" title="3. Charge and Energy Transfer Theory" href="transfer_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">TOOLS Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">3. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Charge and Energy Transport Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#partitioning-of-the-system">4.1. Partitioning of the system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-energies">4.2. Site Energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-energies">4.3. Reorganization energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directed-graphs">4.4. Directed Graphs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">5. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">6. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">7. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">8. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg-tutorials/Tutorial.html">CSG Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Charge and Energy Transport Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/transport_theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="charge-and-energy-transport-model">
+<h1><span class="section-number">4. </span>Charge and Energy Transport Model<a class="headerlink" href="#charge-and-energy-transport-model" title="Link to this heading">¶</a></h1>
+<section id="partitioning-of-the-system">
+<h2><span class="section-number">4.1. </span>Partitioning of the system<a class="headerlink" href="#partitioning-of-the-system" title="Link to this heading">¶</a></h2>
+<p>Before the charge or exciton dynamics can be calculated using rate models, a given morphology has to be divided into sites, on which excitations localize. This requires knowledge of the localization of the electronic states, as each site should preferably contain a single diabatic state of the complete system. In detail knowledge of the localization requires electronic structure calculations of the whole system, which are not feasible for larger systems. Instead, the partitioning into segments can only be justified a posteriori by assessing the magnitude of the electronic couplings between segments.</p>
+<figure class="align-center" id="id5">
+<span id="fig-theory-fragment-def"></span><a class="reference internal image-reference" href="../_images/fragment_def.svg"><img alt="../_images/fragment_def.svg" src="../_images/fragment_def.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Partitioning scheme as employed in VOTCA. a) For small, inflexible molecules, the whole molecule is replaced by a rigid fragment. b) For larger molecules, more fragments are used to allow for some flexibility for the slower degrees of freedom. The whole molecule is still one segment. c) For a polymer, the chain is cut into segments, using input from quantum mechanical studies. Each segment may also contain more than one rigid fragment.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In many systems chemical intuition allows defining partitioning, which satisfies this test retrospectively, e.g., in most organic electronic systems a conjugated system is a good minimal guess. As shown in <a class="reference internal" href="#fig-theory-fragment-def"><span class="std std-numref">Fig. 4.1</span></a> all atoms belonging to a single site are collectively referred to as a conjugate segment.</p>
+<p>In small molecule systems each molecule is typically chosen as a single conjugated segment, because electronic structure calculations typically show complete delocalization of electronic states over the individual molecules. In polymeric systems this simple approach may fail, as torsion of the backbone and electron-phonon interaction may lead to localization on polymeric subunits instead of delocalization over the whole polymer chain. In these cases quantum mechanical calculations of the whole chain are necessary to determine localization sites.</p>
+<p>After the system is partitioned into segments, these segments are additionally separated into rigid fragments, as depicted in <a class="reference internal" href="#fig-theory-fragment-def"><span class="std std-numref">Fig. 4.1</span></a>. These fragments are typically insensitive to thermal fluctuations, e.g., a thiophene or benzene ring stays planar even at elevated temperatures. Although the fragment definitions are theoretically not necessary for the calculation of rates, the molecular dynamics configurations of the rigid fragments are often replaced with quantum mechanically optimized rigid fragments, in order to <em>integrate out</em> fast degrees of freedom, e.g. the promoting modes, which are already described in the rate models. This has the additional benefit of removing some of the mismatch between quantum mechanically obtained geometries and molecular dynamics results.</p>
+</section>
+<section id="site-energies">
+<h2><span class="section-number">4.2. </span>Site Energies<a class="headerlink" href="#site-energies" title="Link to this heading">¶</a></h2>
+<p>The site energy, <span class="math notranslate nohighlight">\(\Delta E_a\)</span>, of a molecule <span class="math notranslate nohighlight">\(a\)</span> is basically defined via <a class="reference internal" href="transfer_theory.html#equation-equ-coarsesitee">Eq.3.7</a>. Although this is a simple definition it is frayed with computational difficulties as the energy <span class="math notranslate nohighlight">\(U_a\)</span> not only depends on the isolated molecule but also the chemical environment it is located in. As discussed before, the electronic state also must be sufficiently localized on the molecule to even make the definition of a site energy valid. Sufficient localization entails weaker coupling to the surrounding, allowing us to treat the chemical environment as a small perturbation to the electronic state.</p>
+<p>Although there are exchange, dispersion, and electrostatic inrteractions between molecules, we focues only on the last, electrostatic interaction. There are a couple of reasons for this approximation. Firstly, we are not really interested in the absolute values of site energies but in differences between different electronic states, e.g. <span class="math notranslate nohighlight">\(\Delta E_a=U^1_a-U^0_a\)</span>. Consequently, all interactions, which influence both states nearly equally, e.g. dispersion interaction, cancel out. Secondly, electrostatic interaction is very directional, thus it is very sensitive to changes in the charge distribution on the molecules. Thirdly, and most importantly it is typically the strongest interaction present, due to its slow decay with distance. So the site energy of a molecule <span class="math notranslate nohighlight">\(a\)</span> in state <span class="math notranslate nohighlight">\(i\)</span> is decomposed into the energy from the internal degrees of freedom <span class="math notranslate nohighlight">\(E_\text{int}\)</span> and the electrostatic contribution from the environment <span class="math notranslate nohighlight">\(E_\text{estat}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-equ-coarse-siteenergydiff">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-equ-coarse-siteenergydiff" title="Link to this equation">¶</a></span>\[U_a^i(\xi_a^i)\approx E_\text{int}^i+E_\text{estat}^i\]</div>
+<p>The internal site energy difference <span class="math notranslate nohighlight">\(\Delta E_{\text{int}}=E_{\text{int}}^1-E_{\text{int}}^0\)</span> can be calculated from the vacuum PES of the single molecule via:</p>
+<div class="math notranslate nohighlight" id="equation-equ-interalsiteenergy">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-equ-interalsiteenergy" title="Link to this equation">¶</a></span>\[\Delta E_{\text{int}}= U^1_\text{vac}(\xi^1_a)-U^0_\text{vac}(\xi^0_a).\]</div>
+<p>Theoretically <span class="math notranslate nohighlight">\(\Delta E_a\)</span> is an adiabatic excitation energy calculated from the respective geometries for the ground and excited state. Depending on the electronic excitation (electron, hole, exciton) and the system at hand, slow (compared to the timescale of hopping) vibrational modes may seriously change the local excitation energy by distorting molecular geometries. These distortions lead to disorder in the internal site energies. Using vacuum optimized geometries may not be a good approximation, as they optimize out this dynamic, but on the timescale of electronic motion, frozen disorder. In practice geometries from molecular dynamics simulations are used for the ground and excited states, using the mapping procedure described earlier to account for the geometry reorganization upon excitation in the site energies.</p>
+<p>As mentioned above, the electrostatic contribution to the site energy of a molecule <span class="math notranslate nohighlight">\(E_{\text{estat}}^i\)</span> depends on the surrounding. The question is how to treat this effect. A fully quantum mechanical treatment of the whole system is impossible. Instead, the interaction between the quantum mechanical excitation and the environment can be modeled on different levels (see <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a>). Starting with the quantum mechanical excitation in vacuum, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (a), either the electrostatic potential of the surrounding molecules can be fully added to the Hamiltonian operator of the quantum mechanical region <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (c). Instead the interaction can be described as classically interacting charge densities, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (b), which will be described in the next paragraphs. The effects of polarization contributions, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (d), which allow the environment to react to excitations will be described later.</p>
+<figure class="align-center" id="id6">
+<span id="fig-theory-siteenergies"></span><a class="reference internal image-reference" href="../_images/siteenergies.svg"><img alt="../_images/siteenergies.svg" src="../_images/siteenergies.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Overview of the site energy calculation options in the VOTCA suite using either a perturbative classical approach or a coupled QM/MM approach. For the classical approach the initial starting point is a vacuum QM calculation, yielding the ground state and excited state energies in vacuum (a). Adding purely classical electrostatic leads to different environments for every molecule and thus a spread of the HOMO and LUMO energies (b). (d) Adding classical polarization (indicated by black arrows) on neighboring molecules allows the system to relax and reduce the energetic disorder. Likewise, the QM/MM treatment inserts a fully quantum mechanical description of the molecule surrounded by classical charges (c) or as in the classical model a full polarization response of the environment (d). The difference being, that a the polarization response of the molecule in question is more flexible in the QM/MM treatment, as charge can flow over the whole molecule.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Focusing on one molecule, the electrostatic contribution of the environment to its Hamiltonian reads:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-extham">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-equ-theory-extham" title="Link to this equation">¶</a></span>\[\hat{H}_\text{ext}=\int d^3{\mathbf{r}} \hat{\rho}(\mathbf{r})\varphi(\mathbf{r})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{\rho}(\mathbf{r})\)</span> is the molecules charge density operator and <span class="math notranslate nohighlight">\(\varphi(\mathbf{r})\)</span> is the external electrostatic potential due to the environment. It can be written as:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-extpot">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-equ-theory-extpot" title="Link to this equation">¶</a></span>\[\varphi(\mathbf{r})=\sum_K \int d^3{\mathbf{r'}}\frac{\rho_K(\mathbf{r'})}{|\mathbf{r'}-\mathbf{r}|},\]</div>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> runs over all molecules in the environment and <span class="math notranslate nohighlight">\(\rho_K(\mathbf{r'})\)</span> is the molecular charge density belonging to molecule <span class="math notranslate nohighlight">\(K\)</span>. Here, we modeled the neighboring molecules as classical entities by replacing their charge density operator with the respective classical charge densities.</p>
+<p>Calculating the external potential, <a class="reference internal" href="#equation-equ-theory-extpot">Eq.4.4</a>, requires an integration over the charge densities of the adjacent molecules, which although possible is computationally very demanding for large systems. Instead, a distributed multipole expansion is used to calculate the external potential. In a distributed multipole expansion, the molecular charge density <span class="math notranslate nohighlight">\(\rho(\mathbf{r})\)</span> is not expanded via multipoles centered around a single point. Instead, the molecule is divided into regions, which are described by their own multipole moments. A region typically comprises a single atom, with the origin located at the atom. The potential of a single region of molecule can be expanded as:</p>
+<div class="math notranslate nohighlight">
+\[\varphi(\mathbf{r})^\text{el}=T(\mathbf{r})q-T_\alpha(\mathbf{r})d_\alpha +\frac{1}{3}T_{\alpha\beta}(\mathbf{r})\Theta_{\alpha\beta}-\dots+\frac{(-1)^n}{(2n-1)!!}T_{\alpha\beta\dots\nu}^{(n)}(\mathbf{r})\zeta^{(n)}_{\alpha\beta\dots\nu},\]</div>
+<p>with <span class="math notranslate nohighlight">\(q\)</span> being the charge of that region, <span class="math notranslate nohighlight">\(d\)</span> the dipole moment, <span class="math notranslate nohighlight">\(\Theta_{\alpha\beta}\)</span> the Cartesian quadrupole tensor and <span class="math notranslate nohighlight">\(\zeta^{(n)}_{\alpha\beta\cdots\nu}\)</span> the corresponding higher moments. The Cartesian interaction tensor <span class="math notranslate nohighlight">\(T_{\alpha\beta\cdots\nu}^{(n)}\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[T_{\alpha\beta\cdots\nu}^{(n)}(\mathbf{r})=\nabla_\alpha\nabla_\beta\dots\nabla_\nu\frac{1}{|\mathbf{r}|}\]</div>
+<p>Finally, <span class="math notranslate nohighlight">\(\varphi(\mathbf{r})\)</span> reduces to a sum over all regions <span class="math notranslate nohighlight">\(r(K)\)</span> of all adjacent molecules <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\varphi(\mathbf{r})=\sum_K\sum_{r(K)} \varphi(\mathbf{r})^\text{single}_{K,r(K)}\]</div>
+<p>The resulting potential can then be inserted into <a class="reference internal" href="#equation-equ-theory-extham">Eq.4.3</a> and in conjunction with the <em>ab-initio</em> methods the excited and ground state energy can be calculated. This corresponds to the first QM/MM approach in <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a>, where the quantum mechanical charge density reacts to the static environment. This approach still has two drawbacks. Firstly, performing an <em>ab-initio</em> calculation for every molecule in a large system can be computationally infeasible. Secondly, so far we have assumed that the environment does not react to the excitation. In reality, the environment tries to lower the total energy by screening the excitation, e.g. the environment polarizes. The polarization response of the environment in turn will lead to a polarization of the center molecule. This feedback loop requires a self-consistent treatment, regardless of whether the central molecule is described classically or quantum mechanically.</p>
+<p>To address the first problem, we simply substitute the quantum mechanical treatment of the center molecule by a classical description via distributed multipole moments. The electrostatic interaction <span class="math notranslate nohighlight">\(V^{AB}_\text{elstatic}\)</span> between two molecules <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> then reduces to:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-classicinteraction">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-equ-theory-classicinteraction" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+V^{AB}_\text{elstatic}=&amp;\sum_{a\in A}\sum_{b\in B}\left[T^{ab}q^aq^b+T^{ab}_\alpha(q^ad^b_\alpha-d_\alpha^aq^b)+\right.\nonumber\\
+&amp;\left.T^{ab}_{\alpha\beta}(\frac{1}{3}q^a\Theta^b_{\alpha\beta}-d^a_{\alpha}d^b_{\beta}+\frac{1}{3}\Theta^a_{\alpha\beta}q^b)+\dots\right]
+\end{align}\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(T^{ab}=T(\mathbf{r}_a-\mathbf{r}_b)\)</span>.</p>
+<p>The electrostatic contribution to the site energy of molecule <span class="math notranslate nohighlight">\(A\)</span> in state <span class="math notranslate nohighlight">\(i\)</span> then reads:</p>
+<div class="math notranslate nohighlight" id="equation-equ-coarse-electrostatic">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-equ-coarse-electrostatic" title="Link to this equation">¶</a></span>\[E^i_{\text{estat}}=\sum_{B}V^{AB}_\text{elstatic}(a^i),\]</div>
+<p>where <span class="math notranslate nohighlight">\((a^i)\)</span> denotes that the multipoles belonging to the state <span class="math notranslate nohighlight">\(i\)</span> should be used. <span class="math notranslate nohighlight">\(B\)</span> runs over all other molecules, with their respective ground state multipoles. The classical environment correction for a transition from the ground state to <span class="math notranslate nohighlight">\(n\)</span>-th excited state then be <span class="math notranslate nohighlight">\(\Delta E=E^0_{\text{estat}}-E^n_{\text{estat}}\)</span>.</p>
+<p>The second problem of how to incorporate the polarization response of the environment requires an extension of the distributed multipole model.
+Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule is also assigned a polarization tensor <span class="math notranslate nohighlight">\(\alpha^a_{\alpha\beta}\)</span>. An external field <span class="math notranslate nohighlight">\(F^a_\alpha\)</span> will lead to an induced dipole moment on site <span class="math notranslate nohighlight">\(a\)</span>. The induced dipoles are not only caused by the external field originating from the by static multipoles on other atoms but also by the fields originating from induced dipole moments on other atoms. The total field at <span class="math notranslate nohighlight">\(a\)</span> thus is a combination of the static external field <span class="math notranslate nohighlight">\(F^a_\alpha\)</span> as well as the induced fields from the induced dipoles on all other atoms. The induced dipole on <span class="math notranslate nohighlight">\(a\)</span> is:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-apple">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-equ-theory-apple" title="Link to this equation">¶</a></span>\[\Delta d^a_\gamma=\alpha^a_{\alpha\beta}\left(F^a_\alpha+\sum_{b\neq a} T^{ab}_{\alpha\beta}\Delta d^b_\beta \right)\]</div>
+<p>The assignment of atomic polarizabilities is called the Applequist model. Here, the polarizations are only correlated via the fields they generate (see <a class="reference internal" href="#equation-equ-theory-apple">Eq.4.7</a>) and cannot model the flow of charges across the whole molecule. For molecules with large conjugated systems, which can displace charges over larger distances, necessitating more advanced polarization models or a full quantum mechanical treatment are necessary. The system of equations, <a class="reference internal" href="#equation-equ-theory-apple">Eq.4.7</a>, has to be solved self-consistently or via matrix inversion, which both increase the computational cost approximately by one order of magnitude in comparison to a static approach.</p>
+<p>Letting the environment react to the excitation on the center molecule explicitly couples the QM and MM system to each other. So energy differences cannot be calculated for the embedded molecule but instead total energies have to be subtracted. For example, the first excitation energy <span class="math notranslate nohighlight">\(\Omega_1\)</span> has to be calculated via:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-qmmmexcitation">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-equ-theory-qmmmexcitation" title="Link to this equation">¶</a></span>\[ \Omega_1=\left[GS(BG[\Omega_1])+\Omega_1(BG[\Omega_1])\right]-GS(BG[GS])\]</div>
+<p>with <span class="math notranslate nohighlight">\(GS(BG[\Omega_1])\)</span> being the ground state energy, in a background/environment polarized for the first excited state. As a result, for each site energy the excited state in its polarization environment as well as the ground state in its polarization environment have to be calculated, further increasing the computational cost in comparison to a simple static approach.</p>
+<p>Finally, the induced-induced interaction of the Applequist model leads to a polarization catastrophe at short distances. This is an artifact of the point-dipole description of polarization, as in reality the polarization response is smeared out. An empirical fix, called Thole damping, avoids this overpolarization by introducing a smeared out charge density <span class="math notranslate nohighlight">\(\varrho(u)\)</span> with <span class="math notranslate nohighlight">\(u=r/S_{ab}\)</span> and <span class="math notranslate nohighlight">\(S_{ab}=(\alpha_a\alpha_b)^{1/6}\)</span>, which modifies the dipole-dipole interaction between atoms <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> with mean polarizabilities <span class="math notranslate nohighlight">\(\alpha_a\)</span>, <span class="math notranslate nohighlight">\(\alpha_b\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\tilde{T}^{ab}_{\alpha\beta}=\frac{f_e R^2\delta_{\alpha\beta}-3f_tR_\alpha R_\beta}{R^5}.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(f_e\)</span> and <span class="math notranslate nohighlight">\(f_t\)</span> are the corresponding damping functions, which depend on the form of the smeared out charge density. We use the smeared density from the AMOEBA force field</p>
+<div class="math notranslate nohighlight">
+\[\varrho(u)=\frac{3a}{4\pi}\exp(-au^3).\]</div>
+<p>This leads to <span class="math notranslate nohighlight">\(f_e=1-\exp(-\lambda u^3)\)</span> and <span class="math notranslate nohighlight">\(f_t=1-(1+\lambda u^3)\exp(-\lambda u^3)\)</span>. In this work we use <span class="math notranslate nohighlight">\(\lambda=0.37\)</span>. The atomic polarizabilities <span class="math notranslate nohighlight">\(\alpha\)</span> were taken from a generic set of element-based polarizabilities. These are sufficient to reproduce the molecular polarizability of many organic compounds. However, <span class="math notranslate nohighlight">\(\pi\)</span>-conjugated molecules with their delocalized <span class="math notranslate nohighlight">\(\pi\)</span>-orbitals have higher polarizabilities which cannot be reproduced with the generic atomic polarizabilities. In this case the atomic polarizabilities are scaled to match the molecular polarizabilities from ab-initio calculations for the respective compounds.</p>
+<p>A technical difficulty that may even arise from the simple electrostatic summation in <a class="reference internal" href="#equation-equ-theory-classicinteraction">Eq.4.5</a> is the question of how many neighboring molecules have to be considered. Traditionally a cut-off based approach is used, taking all molecules within a certain distance into account. This is problematic because the electrostatic interaction does not converge with increasing cutoff size. Although this is ameliorated by the fact, that most systems are not charged and thus the charge-charge interaction cancels out, even charge-quadrupole interaction is only conditionally convergent. Depending on the dimensionality of the system and the excitation of interest more advanced methods like <em>long-range aperiodic embedding</em> have to be used.</p>
+<p>This finally leaves the question of how to reduce the molecular density <span class="math notranslate nohighlight">\(\rho(r)\)</span> to a set of multipole moments located at the atoms <span class="math notranslate nohighlight">\(\{Q_{\alpha\beta}^i\}\)</span>. There is a number of different methods to arrive at atom-centered multipoles, from Mulliken charges <a class="reference internal" href="bibliography.html#mulliken-1955" id="id1"><span>[Mulliken:1955]</span></a> over <a class="reference internal" href="bibliography.html#reed-1985" id="id2"><span>[Reed:1985]</span></a> charges to GDMA <a class="reference internal" href="bibliography.html#stone-2005" id="id3"><span>[Stone:2005]</span></a> multipoles. We will briefly outline the CHELPG (CHarges from ELectrostatic Potential, Grid-base) method <a class="reference internal" href="bibliography.html#chirlian-1987" id="id4"><span>[Chirlian:1987]</span></a> , which, although it does not produce chemically intuitive charges, is designed to reproduce the electrostatic potential outside the molecule optimally via point charges. The point charges derived from molecular charge densities are typically referred to as partial charges.</p>
+<p>CHELPG partial charges <span class="math notranslate nohighlight">\(\{q_i\}\)</span> are derived by calculating the electrostatic potential <span class="math notranslate nohighlight">\(\phi_{el}(\mathbf{r})\)</span> from the electron density <span class="math notranslate nohighlight">\(\rho(\mathbf{r})\)</span> at a large number of grid points outside the molecule <span class="math notranslate nohighlight">\(\{\mathbf{g}_i\}\)</span> and then adjusting the partial charges to reproduce the potential in a least square sense as optimally as possible, e.g. minimizing:</p>
+<div class="math notranslate nohighlight">
+\[\text{min}=\left(\sum_{j=0}^K \phi_{el}(\mathbf{g}_j)-\sum_{i=0}^N \frac{q_i}{|\mathbf{r}_i-\mathbf{g}_j|}\right)^2-\lambda \left(q_{\text{mol}}-\sum_{i=0}^N q_i\right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(j\)</span> runs over all grid points, <span class="math notranslate nohighlight">\(\phi_{el}(\mathbf{g}_j)\)</span> is the respective potential at that grid point and <span class="math notranslate nohighlight">\(N\)</span> is the number of atomic sites. <span class="math notranslate nohighlight">\(\lambda\)</span> is a Lagrange multiplier to constrain the optimization to the desired total charge of the molecule <span class="math notranslate nohighlight">\(q_{\text{mol}}\)</span>.</p>
+</section>
+<section id="reorganization-energies">
+<h2><span class="section-number">4.3. </span>Reorganization energies<a class="headerlink" href="#reorganization-energies" title="Link to this heading">¶</a></h2>
+<p>In Marcus theory the nuclear rearrangement on excitation and deexcitation of a molecule are expressed in the two reorganization energies:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\lambda_{A\rightarrow B}&amp;=U_B(\xi_A)-U_B(\xi_B)\\
+\lambda_{B\rightarrow A}&amp;=U_A(\xi_B)-U_A(\xi_A)
+\end{align}\end{split}\]</div>
+<p>Using the approximation that the diabatic state can be written as a product of monomer states (<a class="reference internal" href="transfer_theory.html#equation-equ-theory-diabaticstateapprox">Eq.3.6</a>) the energy of a diabatic state <span class="math notranslate nohighlight">\(U_B(\xi_A)\)</span> splits into a sum of monomer contributions.</p>
+<div class="math notranslate nohighlight" id="equation-equ-reorg-full">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-equ-reorg-full" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+\lambda_{A\rightarrow B}&amp;=U_b^1(\xi_b^0)+U_a^0(\xi_a^1)-(U_b^1(\xi_b^1)+U_a^0(\xi_a^0))\nonumber\\
+\lambda_{B\rightarrow A}&amp;=U_a^1(\xi_a^0)+U_b^0(\xi_b^1)-(U_a^1(\xi_a^1)+U_b^0(\xi_b^0))
+\end{align}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(U_b^1(\xi_b^0)\)</span> is the energy of monomer <span class="math notranslate nohighlight">\(B\)</span>, in its first excited state, evaluated at the nuclear coordinates <span class="math notranslate nohighlight">\(\xi_b^0\)</span> of the ground state of <span class="math notranslate nohighlight">\(B\)</span>. Consequently, within this approximation the reorganization energy for a pair of molecules can be calculated from monomer properties of the individual molecules.</p>
+<figure class="align-center" id="id7">
+<span id="fig-theory-reorg-mol"></span><a class="reference internal image-reference" href="../_images/reorg_mol.svg"><img alt="../_images/reorg_mol.svg" src="../_images/reorg_mol.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Absorption and emission inside a molecule.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>A better understanding of the reorganization energy can be gained if we first avoid the dimer problem and look at the single molecule problem of light absorption and emission in a single molecule as depicted in <a class="reference internal" href="#fig-theory-reorg-mol"><span class="std std-numref">Fig. 4.3</span></a>. Upon absorption of a photon with energy <span class="math notranslate nohighlight">\(\Delta E^{\text{abs.}}\)</span> the molecule transitions from the electronic ground state, <span class="math notranslate nohighlight">\(\ket{0(R^0)}\)</span>, where <span class="math notranslate nohighlight">\(R^0\)</span> is the minimum of the ground state PES, to an excited state, <span class="math notranslate nohighlight">\(\ket{1(R^0)}\)</span>. Here it is assumed, that during the absorption the geometry does not change. This is again the Condon approximation. After absorption the molecule then releases the energy <span class="math notranslate nohighlight">\(\lambda^1\)</span> thermally, reaching the minimum of the excited state PES, <span class="math notranslate nohighlight">\(\ket{1(R^0)}\)</span>. Afterwards the molecule emits a photon of energy <span class="math notranslate nohighlight">\(\Delta E^{\text{em.}}\)</span>, returning to the electronic ground state <span class="math notranslate nohighlight">\(\ket{0(R^1)}\)</span>, but at an excited geometry. Through thermalisation of the energy <span class="math notranslate nohighlight">\(\lambda^0\)</span> the molecule finally <em>descends</em> to <span class="math notranslate nohighlight">\(\ket{0(R^0)}\)</span>. If we look at exciton transfer reactions between two molecules, the transfer can be conceptualized as the emission of a photon on one molecule and adsorption on the other. Assigning the emission and, thus, <span class="math notranslate nohighlight">\(\lambda^0\)</span> to molecule <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\lambda^1\)</span> to molecule <span class="math notranslate nohighlight">\(B\)</span>, we also arrive at equation <a class="reference internal" href="#equation-equ-reorg-full">Eq.4.9</a>. <a class="reference internal" href="#fig-theory-reorg-mol"><span class="std std-numref">Fig. 4.3</span></a> also shows that <span class="math notranslate nohighlight">\(\Delta E^{\text{em.}}\)</span> is always smaller than <span class="math notranslate nohighlight">\(\Delta E^{\text{abs.}}\)</span>. The difference between the two is called the <em>Stokes-shift</em> and can be experimentally determined from spectroscopic measurements. Measurements of the Stokes-Shift allow us to compare theoretical reorganization energies with experimental values. As mentioned before in the derivation of the Marcus rates, for excitation transfer to happen <span class="math notranslate nohighlight">\(\Delta E^{\text{abs.}}_B\)</span> must equal <span class="math notranslate nohighlight">\(\Delta E^{\text{em.}}_A\)</span> to conserve energy. An energy quantum, corresponding to the Stokes shift, has to be provided by thermal fluctuations.</p>
+<p>The calculation of <span class="math notranslate nohighlight">\(U^1(\xi^1)\)</span> requires a geometry optimization to find the nuclear configuration with the lowest energy. Especially for excited states, these geometry optimizations are extremely costly. As a further approximation the reorganization is assumed to be independent of the molecular environment. In doing so, the value <span class="math notranslate nohighlight">\(\lambda\)</span> only has to be calculated once for each molecular species in the system at hand, instead of for every molecule.</p>
+</section>
+<section id="directed-graphs">
+<h2><span class="section-number">4.4. </span>Directed Graphs<a class="headerlink" href="#directed-graphs" title="Link to this heading">¶</a></h2>
+<p>After calculating all rates between the segments we have reduced the real system of molecules to a discrete irregular lattice of sites, which are connected (<a class="reference internal" href="#fig-theory-directedgraph"><span class="std std-numref">Fig. 4.4</span></a>). These connections are also called edges. The combination of vertices and edges is called a graph. The graph that results from transfer rate theory is weighted, as the edges connecting vertices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> have different rates for each pair, and also directed as the weights differ in both directions:</p>
+<div class="math notranslate nohighlight">
+\[\omega_{A\rightarrow B}\neq \omega_{B\rightarrow A}.\]</div>
+<figure class="align-center" id="id8">
+<span id="fig-theory-directedgraph"></span><a class="reference internal image-reference" href="../_images/directedgraph.svg"><img alt="../_images/directedgraph.svg" src="../_images/directedgraph.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Molecular structure and the resulting directed graph. The rates calculated from the molecular properties reduce the molecular structure allow us to build a directed and weighted graph, with edges weighted by the appropriate rates and vertices carrying occupation probabilities.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>As we assume that the excitation hops from site to site and that hopping is a rather rare event, the excitation resides on the site long enough for the thermal vibration to dissipate the information of where the excitation came from. The transport is said to be incoherent, meaning the excitation has lost its memory and the next hop of the excitation is independent of the last hop. Such a process is called <em>Markovian</em>. It allows us to formulate an equation of how the occupation probabilities of each vertex <span class="math notranslate nohighlight">\(p_A\)</span> evolve in time is:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-master-equ">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-equ-theory-master-equ" title="Link to this equation">¶</a></span>\[\frac{d}{d t} p_A(t)=\sum_B p_B(t)\omega_{B\rightarrow A}-p_A(t)\omega_{A\rightarrow B}\]</div>
+<p>This continuity equation simply states that change in occupation of site <span class="math notranslate nohighlight">\(A\)</span> is equal to the probability current flowing in minus the current flowing out and so conserves the total probability. It is also referred to as the Master Equation. In this formulation it only describes the motion of a single excitation, as it does not account for interaction between excitations. Although there are ways to incorporate interaction between excitations into <a class="reference internal" href="#equation-equ-theory-master-equ">Eq.4.10</a>, we will first deal with its solution. The master equation is simply a system of linear differential equations and can be solved using standard numerical methods. Although this has approach has its merits, we instead choose a very different option using the <em>kinetic Monte Carlo</em> or KMC method, because it allows us to easily add excitation interaction, excitation decay and conversion from one species to another. Furthermore, KMC is better suited for very large systems, in which explicitly setting up a large rate matrix is prohibitively expensive, and for systems with widely varying rates, as solvers otherwise run into numerical difficulties.</p>
+<p>In KMC, we explicitly simulate the hopping of individual excitations. Using a variable step size method, we promote time and at each time step we randomly choose an excitation and its next hopping destination. The probability of choosing a hopping destination is weighted by the rate assigned to that transition. As these rates can vary by orders of magnitude we do not increment time by a fixed amount but instead use the variable step size method (VSSM).</p>
+<p>From the resulting ensemble of trajectories (see <a class="reference internal" href="#fig-theory-kmctraj"><span class="std std-numref">Fig. 4.5</span></a>) the diffusion coefficient <span class="math notranslate nohighlight">\(D_{\alpha\beta}\)</span> can be calculated via:</p>
+<div class="math notranslate nohighlight" id="equation-equ-theory-kmcdiff">
+<span class="eqno">(4.11)<a class="headerlink" href="#equation-equ-theory-kmcdiff" title="Link to this equation">¶</a></span>\[6 D_{\alpha\beta}t=\langle \Delta r_\alpha \Delta r_\beta \rangle.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(t\)</span> is the temporal length of the trajectories, <span class="math notranslate nohighlight">\(\Delta \mathbf{r}\)</span> denotes the distance vector between initial and last site and <span class="math notranslate nohighlight">\(\langle \dots \rangle\)</span> denotes an average over the ensemble of trajectories.</p>
+<figure class="align-center" id="id9">
+<span id="fig-theory-kmctraj"></span><a class="reference internal image-reference" href="../_images/kmctraj.svg"><img alt="../_images/kmctraj.svg" src="../_images/kmctraj.svg" width="400" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">KMC trajectory of an exciton. <span class="math notranslate nohighlight">\(\Delta \mathbf{r}\)</span> denotes the end-end distance of the trajectory. The small box indicates the initial simulation box. Diffusion coefficients can be calculated from averaging over trajectories.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>With the calculation of the diffusion constant conceptually the bridge between <em>ab-initio</em> input and macroscopic transport properties has been build. So using the molecular dynamics approach we are able to simulate morphologies of organic semiconductors and then reintroduce electronic dynamics via rate models.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transfer_theory.html" class="btn btn-neutral float-left" title="3. Charge and Energy Transfer Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyxtp.html" class="btn btn-neutral float-right" title="5. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
