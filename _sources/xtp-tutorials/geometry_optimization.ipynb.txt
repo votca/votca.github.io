@@ -16,10 +16,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-06-08T23:25:43.080363Z",
-     "iopub.status.busy": "2024-06-08T23:25:43.080172Z",
-     "iopub.status.idle": "2024-06-08T23:25:43.588574Z",
-     "shell.execute_reply": "2024-06-08T23:25:43.588027Z"
+     "iopub.execute_input": "2024-06-11T08:15:00.625210Z",
+     "iopub.status.busy": "2024-06-11T08:15:00.624799Z",
+     "iopub.status.idle": "2024-06-11T08:15:01.206451Z",
+     "shell.execute_reply": "2024-06-11T08:15:01.205851Z"
     }
    },
    "outputs": [],
@@ -27,7 +27,7 @@
     "from pyxtp import xtp\n",
     "from ase.io import write\n",
     "from ase.build import molecule\n",
-    "from ase.optimize import QuasiNewton"
+    "from ase.optimize import GoodOldQuasiNewton"
    ]
   },
   {
@@ -36,7 +36,7 @@
    "source": [
     "## Define the molecular structure\n",
     "\n",
-    "We define here a `CO` molecule and rattle the atomic positions to make the calculation more intersting.  "
+    "We define here a `CO` molecule in its ground state geometry.  "
    ]
   },
   {
@@ -44,16 +44,15 @@
    "execution_count": 2,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-06-08T23:25:43.594894Z",
-     "iopub.status.busy": "2024-06-08T23:25:43.594379Z",
-     "iopub.status.idle": "2024-06-08T23:25:43.606159Z",
-     "shell.execute_reply": "2024-06-08T23:25:43.605742Z"
+     "iopub.execute_input": "2024-06-11T08:15:01.209882Z",
+     "iopub.status.busy": "2024-06-11T08:15:01.209340Z",
+     "iopub.status.idle": "2024-06-11T08:15:01.221100Z",
+     "shell.execute_reply": "2024-06-11T08:15:01.220564Z"
     }
    },
    "outputs": [],
    "source": [
-    "atoms = molecule('CO')\n",
-    "atoms.rattle()"
+    "atoms = molecule('CO')"
    ]
   },
   {
@@ -76,10 +75,10 @@
    "execution_count": 3,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-06-08T23:25:43.608655Z",
-     "iopub.status.busy": "2024-06-08T23:25:43.608342Z",
-     "iopub.status.idle": "2024-06-08T23:25:43.614511Z",
-     "shell.execute_reply": "2024-06-08T23:25:43.614099Z"
+     "iopub.execute_input": "2024-06-11T08:15:01.224490Z",
+     "iopub.status.busy": "2024-06-11T08:15:01.224050Z",
+     "iopub.status.idle": "2024-06-11T08:15:01.230665Z",
+     "shell.execute_reply": "2024-06-11T08:15:01.230174Z"
     }
    },
    "outputs": [],
@@ -116,13 +115,43 @@
    "execution_count": 4,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-06-08T23:25:43.617038Z",
-     "iopub.status.busy": "2024-06-08T23:25:43.616620Z",
-     "iopub.status.idle": "2024-06-08T23:26:30.565585Z",
-     "shell.execute_reply": "2024-06-08T23:26:30.565032Z"
+     "iopub.execute_input": "2024-06-11T08:15:01.233812Z",
+     "iopub.status.busy": "2024-06-11T08:15:01.233388Z",
+     "iopub.status.idle": "2024-06-11T08:15:47.297145Z",
+     "shell.execute_reply": "2024-06-11T08:15:47.296507Z"
     }
    },
    "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
+     ]
+    },
     {
      "name": "stdout",
      "output_type": "stream",
@@ -150,16 +179,6 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
@@ -181,19 +200,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -225,8 +231,8 @@
     {
      "data": {
       "text/plain": [
-       "array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],\n",
-       "       [ 2.68871965e-04, -2.63027573e-05, -3.15593106e-01]])"
+       "array([[-3.51789708e-08, -3.51221274e-08,  3.19442265e-01],\n",
+       "       [ 3.50510732e-08,  3.51931817e-08, -3.19442265e-01]])"
       ]
      },
      "execution_count": 4,
@@ -244,7 +250,7 @@
    "source": [
     "## Geometry optimization\n",
     "\n",
-    "Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can fir example use the Quasi Newton method implemented in ASE to relaxr the molecular structre in the excited states we have just specify"
+    "Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can for example use the QuasiNewton method implemented in ASE to relax the molecular structre in the excited states we have just specified. We here fix the number of steps to 10 to limit the computational cost. "
    ]
   },
   {
@@ -252,10 +258,10 @@
    "execution_count": 5,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-06-08T23:26:30.568243Z",
-     "iopub.status.busy": "2024-06-08T23:26:30.567907Z",
-     "iopub.status.idle": "2024-06-09T00:02:08.575487Z",
-     "shell.execute_reply": "2024-06-09T00:02:08.575042Z"
+     "iopub.execute_input": "2024-06-11T08:15:47.299959Z",
+     "iopub.status.busy": "2024-06-11T08:15:47.299752Z",
+     "iopub.status.idle": "2024-06-11T08:24:59.318965Z",
+     "shell.execute_reply": "2024-06-11T08:24:59.318376Z"
     }
    },
    "outputs": [
@@ -266,7 +272,8 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xml                    Step     Time          Energy         fmax\n",
+      "GoodOldQuasiNewton:    0 08:15:51     -113.101204        0.3194\n"
      ]
     },
     {
@@ -274,9 +281,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -285,16 +289,6 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
@@ -314,6 +308,9 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -327,14 +324,17 @@
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
@@ -367,47 +367,40 @@
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xmlnew radius 0.012247 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml                Step[ FC]     Time          Energy          fmax\n",
-      "BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156\n"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Corrected Newton step: abs(D) = 0.02 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Abs Gbar estimate 0.04277062911312575\n"
      ]
     },
     {
@@ -415,19 +408,16 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
+      "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    1 08:16:41     -113.098913        0.3194\n"
      ]
     },
     {
@@ -435,16 +425,16 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
+      "\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -458,24 +448,17 @@
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -497,15 +480,15 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -527,9 +510,6 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
     },
@@ -550,75 +530,60 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xmlenergies -113.09891342922347 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "reject step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "new radius 0.006124 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Corrected Newton step: abs(D) = 0.02 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "Abs Gbar estimate 0.10842867542200418\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    2 08:17:31     -113.100204        0.1650\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -630,15 +595,18 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -648,6 +616,9 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -669,16 +640,6 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
@@ -689,6 +650,9 @@
      "output_type": "stream",
      "text": [
       "\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -710,63 +674,42 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xmlenergies -113.10020359454819 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "reject step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "new radius 0.003062 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "Corrected Newton step: abs(D) = 0.02 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Abs Gbar estimate 0.15250769803328734\n"
      ]
     },
     {
@@ -774,9 +717,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -786,7 +726,7 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    3 08:18:22     -113.100741        0.1326\n"
      ]
     },
     {
@@ -794,9 +734,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -814,27 +751,24 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
+      "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "... ... Writing output to CO_summary.xml"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -844,9 +778,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -869,9 +800,6 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
     },
@@ -890,9 +818,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -905,15 +830,15 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
+      "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -935,40 +860,42 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "energies -113.10074132944393 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "reject step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "new radius 0.001531 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "eigenvalues 20.00 20.00 20.00 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Corrected Newton step: abs(D) = 0.02 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Abs Gbar estimate 0.1773597097467828\n"
      ]
     },
     {
@@ -976,9 +903,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -988,24 +912,21 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    4 08:19:13     -113.100982        0.1157\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      " Using 2 threads"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
+      "\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -1026,9 +947,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -1050,9 +968,6 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -1064,18 +979,15 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
+      "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -1087,2037 +999,16 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xmlBFGSLineSearch:    1[ 15] 23:40:02     -113.101116        0.1018\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xmlBFGSLineSearch:    2[ 18] 23:42:36     -113.101116        0.1018\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "BFGSLineSearch:    3[ 19] 23:43:27     -113.101116        0.1018\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
       "\n",
-      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
@@ -3136,9 +1027,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -3149,62 +1037,44 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlenergies -113.1009823679656 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "reject step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "new radius 0.000765 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Corrected Newton step: abs(D) = 0.02 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Abs Gbar estimate 0.19048884052022896\n"
      ]
     },
     {
@@ -3214,7 +1084,7 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    5 08:20:03     -113.101096        0.1070\n"
      ]
     },
     {
@@ -3243,16 +1113,6 @@
      "text": [
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
@@ -3265,9 +1125,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -3321,64 +1178,7 @@
       "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -3389,68 +1189,43 @@
      "text": [
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlenergies -113.10109580257972 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "reject step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "new radius 0.000383 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Corrected Newton step: abs(D) = 0.02 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Abs Gbar estimate 0.19722918719288207\n"
      ]
     },
     {
@@ -3460,7 +1235,7 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    6 08:20:54     -113.101151        0.1026\n"
      ]
     },
     {
@@ -3468,9 +1243,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -3480,9 +1252,6 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
     },
@@ -3491,9 +1260,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -3502,9 +1268,6 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
@@ -3514,19 +1277,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -3567,6 +1317,9 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -3579,14 +1332,17 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
+      "\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -3599,90 +1355,63 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlenergies -113.10115073499115 -113.10120446793368\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "energy change; actual: 0.000054 estimated: -0.000171 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Energy prediction factor 1.3134242789785378\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Force prediction factor 0.9871071542322355\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Scale factors 0.364431 2.744000 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "new radius 0.000139 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
+      "eigenvalues 20.00 20.00 20.00 \n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Newton step\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "Abs Gbar estimate 7.269920011450772e-49\n"
      ]
     },
     {
@@ -3692,7 +1421,7 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    7 08:21:44     -113.101164        0.1004\n"
      ]
     },
     {
@@ -3752,60 +1481,6 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xmlBFGSLineSearch:    4[ 30] 23:51:58     -113.101116        0.1018\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
@@ -3817,106 +1492,6 @@
       "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xmlBFGSLineSearch:    5[ 31] 23:52:49     -113.101116        0.1018\n"
      ]
     },
     {
@@ -3949,6 +1524,92 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "energies -113.101163690112 -113.10115073499115\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "energy change; actual: -0.000013 estimated: -0.000006 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Energy prediction factor 0.9946121248106281\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Force prediction factor -188.69765099747215\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Scale factors 0.510204 0.364431 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "new radius 0.000100 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "eigenvalues 8.18 20.00 20.00 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Corrected Newton step: abs(D) = 0.02 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Abs Gbar estimate 0.019708724392429603\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    8 08:22:34     -113.101178        0.0998\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
     },
@@ -3968,6 +1629,26 @@
      "text": [
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml Using 2 threads\n",
+      "... ... Reading structure from CO.xyz"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
@@ -4032,10 +1713,63 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlenergies -113.10117777029019 -113.101163690112\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "energy change; actual: -0.000014 estimated: -0.000014 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Energy prediction factor 3.6532990221216366e-05\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Force prediction factor 0.0010675466093815345\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Scale factors 3.841600 0.510204 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "new radius 0.000384 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "eigenvalues 8.19 20.00 20.00 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Corrected Newton step: abs(D) = 0.02 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Abs Gbar estimate 0.018835386938576802\n"
      ]
     },
     {
@@ -4043,22 +1777,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -4068,10 +1786,7 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    9 08:23:24     -113.101231        0.0993\n"
      ]
     },
     {
@@ -4079,62 +1794,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -4162,19 +1821,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -4195,497 +1841,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xmlBFGSLineSearch:    7[ 37] 23:57:56     -113.101119        0.1016\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -4741,55 +1896,6 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
@@ -4800,7 +1906,63 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlenergies -113.10123110034623 -113.10117777029019\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "energy change; actual: -0.000053 estimated: -0.000053 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Energy prediction factor 5.784116236107195e-05\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Force prediction factor 0.002474074944464186\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Scale factors 3.841600 0.510204 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "new radius 0.001476 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "eigenvalues 8.21 20.00 20.00 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Corrected Newton step: abs(D) = 0.02 \n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Abs Gbar estimate 0.015655811318716843\n"
      ]
     },
     {
@@ -4808,39 +1970,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -4850,17 +1979,7 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
+      "... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:   10 08:24:13     -113.101425        0.0970\n"
      ]
     },
     {
@@ -4868,107 +1987,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz"
      ]
     },
@@ -4991,26 +2009,6 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
@@ -5024,29 +2022,6 @@
       " Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
      ]
     },
@@ -5055,42 +2030,6 @@
      "output_type": "stream",
      "text": [
       " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
-      "... ... Reading structure from CO.xyz"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml"
@@ -5123,16 +2062,6 @@
      "text": [
       "\n",
       "... ... Saving data to CO.orb\n",
-      "... ... Writing output to CO_summary.xml"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      " Using 2 threads\n",
-      "... ... Reading structure from CO.xyz\n",
-      "... ... Saving data to CO.orb\n",
       "... ... Writing output to CO_summary.xml Using 2 threads\n",
       "... ... Reading structure from CO.xyz\n",
       "... ... Saving data to CO.orb\n",
@@ -5143,13 +2072,26 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "BFGSLineSearch:    9[ 42] 00:02:08     -113.102311        0.0082\n"
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Using 2 threads\n",
+      "... ... Reading structure from CO.xyz\n",
+      "... ... Saving data to CO.orb\n",
+      "... ... Writing output to CO_summary.xml"
      ]
     }
    ],
    "source": [
-    "dyn = QuasiNewton(atoms, trajectory='test.traj')\n",
-    "dyn.run(fmax=0.01)\n",
+    "dyn = GoodOldQuasiNewton(atoms, trajectory='test.traj')\n",
+    "dyn.run(fmax=0.05, steps=10)\n",
     "write('final.xyz', atoms)"
    ]
   }

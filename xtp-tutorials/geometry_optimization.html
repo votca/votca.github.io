@@ -125,20 +125,19 @@
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span>
 <span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>
 <span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
-<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">QuasiNewton</span>
+<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">GoodOldQuasiNewton</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="Define-the-molecular-structure">
 <h2>Define the molecular structure<a class="headerlink" href="#Define-the-molecular-structure" title="Link to this heading">¶</a></h2>
-<p>We define here a <code class="docutils literal notranslate"><span class="pre">CO</span></code> molecule and rattle the atomic positions to make the calculation more intersting.</p>
+<p>We define here a <code class="docutils literal notranslate"><span class="pre">CO</span></code> molecule in its ground state geometry.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span>
-<span class="n">atoms</span><span class="o">.</span><span class="n">rattle</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -201,6 +200,39 @@
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
@@ -212,17 +244,6 @@
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
@@ -246,20 +267,6 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -296,20 +303,20 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
-       [ 2.68871965e-04, -2.63027573e-05, -3.15593106e-01]])
+array([[-3.51789708e-08, -3.51221274e-08,  3.19442265e-01],
+       [ 3.50510732e-08,  3.51931817e-08, -3.19442265e-01]])
 </pre></div></div>
 </div>
 </section>
 <section id="Geometry-optimization">
 <h2>Geometry optimization<a class="headerlink" href="#Geometry-optimization" title="Link to this heading">¶</a></h2>
-<p>Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can fir example use the Quasi Newton method implemented in ASE to relaxr the molecular structre in the excited states we have just specify</p>
+<p>Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can for example use the QuasiNewton method implemented in ASE to relax the molecular structre in the excited states we have just specified. We here fix the number of steps to 10 to limit the computational cost.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dyn</span> <span class="o">=</span> <span class="n">QuasiNewton</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;test.traj&#39;</span><span class="p">)</span>
-<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dyn</span> <span class="o">=</span> <span class="n">GoodOldQuasiNewton</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;test.traj&#39;</span><span class="p">)</span>
+<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">write</span><span class="p">(</span><span class="s1">&#39;final.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -322,7 +329,8 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml                    Step     Time          Energy         fmax
+GoodOldQuasiNewton:    0 08:15:51     -113.101204        0.3194
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -331,9 +339,6 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -343,17 +348,6 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -375,6 +369,9 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -390,6 +387,8 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -397,7 +396,8 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -434,6 +434,8 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -441,10 +443,10 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
+ Using 2 threads
 ... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xmlnew radius 0.012247
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -452,10 +454,7 @@ array([[-2.68871588e-04,  2.63021107e-05,  3.15593105e-01],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml                Step[ FC]     Time          Energy          fmax
-BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -463,10 +462,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -474,10 +470,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.04277062911312575
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -487,8 +480,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -496,10 +487,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    1 08:16:41     -113.098913        0.3194
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -509,8 +499,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -518,7 +506,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
+
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -534,17 +524,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -552,7 +533,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -576,8 +558,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -585,7 +566,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -609,9 +591,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
@@ -634,8 +613,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xmlenergies -113.09891342922347 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -643,9 +621,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+reject step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -653,10 +629,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.006124
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -664,10 +637,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -675,10 +645,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -686,11 +653,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Abs Gbar estimate 0.10842867542200418
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -698,10 +661,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
+ Using 2 threads
 ... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    2 08:17:31     -113.100204        0.1650
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -709,7 +672,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -722,8 +686,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -731,7 +694,11 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -742,6 +709,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -765,17 +735,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -788,6 +747,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
@@ -810,8 +772,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xmlenergies -113.10020359454819 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -819,10 +780,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+reject step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -830,9 +788,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.003062
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -840,13 +796,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -854,11 +804,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -866,12 +812,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.15250769803328734
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -880,9 +821,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -893,7 +831,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    3 08:18:22     -113.100741        0.1326
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -902,9 +840,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -925,8 +860,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -934,11 +867,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -946,7 +877,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -958,9 +890,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -982,9 +911,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1007,9 +933,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1023,7 +946,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1031,8 +955,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1056,10 +979,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+energies -113.10074132944393 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1067,10 +987,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+reject step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1078,11 +995,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+new radius 0.001531
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1090,9 +1003,23 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Corrected Newton step: abs(D) = 0.02
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Abs Gbar estimate 0.1773597097467828
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1101,9 +1028,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -1114,7 +1038,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    4 08:19:13     -113.100982        0.1157
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1123,9 +1047,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1133,7 +1054,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
+
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1156,9 +1077,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1182,9 +1100,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1197,7 +1112,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1205,11 +1121,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1222,7 +1134,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1230,13 +1143,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1244,8 +1154,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1258,9 +1167,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
@@ -1272,8 +1178,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xmlenergies -113.1009823679656 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1281,12 +1186,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+reject step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1294,10 +1194,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.000765
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1305,13 +1202,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1319,11 +1210,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1331,9 +1218,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.19048884052022896
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1342,12 +1227,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    5 08:20:03     -113.101096        0.1070
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1378,6 +1260,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1415,8 +1300,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1424,21 +1307,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1446,13 +1318,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1460,7 +1329,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
+
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1474,7 +1345,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlenergies -113.10109580257972 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1482,11 +1353,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+reject step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1494,10 +1361,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+new radius 0.000383
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1505,9 +1369,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1515,11 +1377,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1527,9 +1385,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.19722918719288207
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1540,8 +1396,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    6 08:20:54     -113.101151        0.1026
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1549,9 +1404,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
+ Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -1571,9 +1424,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -1595,8 +1445,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1604,21 +1453,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
+ Using 2 threads
 ... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1626,7 +1464,8 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
+ Using 2 threads
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1652,14 +1491,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1695,12 +1526,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlenergies -113.10115073499115 -113.10120446793368
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1708,11 +1536,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+energy change; actual: 0.000054 estimated: -0.000171
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1720,10 +1544,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Energy prediction factor 1.3134242789785378
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1731,12 +1552,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Force prediction factor 0.9871071542322355
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1744,10 +1560,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Scale factors 0.364431 2.744000
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1755,13 +1568,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.000139
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1769,10 +1576,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 20.00 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1780,10 +1584,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Newton step
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1791,10 +1592,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 7.269920011450772e-49
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1805,7 +1603,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    7 08:21:44     -113.101164        0.1004
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1850,7 +1648,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1859,8 +1656,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
+... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1868,13 +1667,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1882,8 +1678,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1909,14 +1704,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -1927,6 +1714,9 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -1937,10 +1727,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+energies -113.101163690112 -113.10115073499115
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1948,10 +1735,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+energy change; actual: -0.000013 estimated: -0.000006
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1959,13 +1743,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Energy prediction factor 0.9946121248106281
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1973,13 +1751,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Force prediction factor -188.69765099747215
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1987,10 +1759,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Scale factors 0.510204 0.364431
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1998,10 +1767,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.000100
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2009,10 +1775,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 8.18 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2020,11 +1783,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2032,9 +1791,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.019708724392429603
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2045,7 +1802,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    8 08:22:34     -113.101178        0.0998
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2054,9 +1811,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -2094,8 +1848,6 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2103,10 +1855,10 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xml Using 2 threads
+... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2114,11 +1866,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -2131,8 +1879,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2140,9 +1887,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
+ Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -2181,2866 +1926,7 @@ BFGSLineSearch:    0[  0] 23:27:21     -113.101116        0.3156
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlBFGSLineSearch:    1[ 15] 23:40:02     -113.101116        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlBFGSLineSearch:    2[ 18] 23:42:36     -113.101116        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-BFGSLineSearch:    3[ 19] 23:43:27     -113.101116        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlBFGSLineSearch:    4[ 30] 23:51:58     -113.101116        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlBFGSLineSearch:    5[ 31] 23:52:49     -113.101116        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+... ... Writing output to CO_summary.xmlenergies -113.10117777029019 -113.101163690112
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5048,9 +1934,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+energy change; actual: -0.000014 estimated: -0.000014
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5058,10 +1942,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Energy prediction factor 3.6532990221216366e-05
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5069,10 +1950,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Force prediction factor 0.0010675466093815345
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5080,10 +1958,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlBFGSLineSearch:    7[ 37] 23:57:56     -113.101119        0.1016
+Scale factors 3.841600 0.510204
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5091,8 +1966,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+new radius 0.000384
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5100,12 +1974,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 8.19 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5113,10 +1982,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5124,13 +1990,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.018835386938576802
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5140,9 +2000,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5152,7 +2009,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    9 08:23:24     -113.101231        0.0993
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5162,11 +2019,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5174,11 +2026,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -5200,9 +2048,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -5213,15 +2058,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
+... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -5235,9 +2072,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
  Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
@@ -5261,9 +2095,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -5287,28 +2118,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -5320,28 +2129,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -5354,7 +2141,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
 
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlenergies -113.10123110034623 -113.10117777029019
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5362,13 +2149,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+energy change; actual: -0.000053 estimated: -0.000053
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5376,13 +2157,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Energy prediction factor 5.784116236107195e-05
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5390,13 +2165,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Force prediction factor 0.002474074944464186
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5404,10 +2173,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Scale factors 3.841600 0.510204
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5415,13 +2181,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+new radius 0.001476
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5429,10 +2189,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 8.21 20.00 20.00
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5440,13 +2197,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Corrected Newton step: abs(D) = 0.02
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5454,13 +2205,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+Abs Gbar estimate 0.015655811318716843
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5469,9 +2214,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 </pre></div></div>
 </div>
@@ -5481,22 +2223,8 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:   10 08:24:13     -113.101425        0.0970
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5506,8 +2234,6 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 <div class="highlight"><pre>
  Using 2 threads
 ... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -5515,8 +2241,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
+
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -5543,18 +2268,7 @@ BFGSLineSearch:    6[ 35] 23:56:13     -113.101117        0.1018
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -5566,20 +2280,6 @@ BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -5603,20 +2303,6 @@ BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
@@ -5631,14 +2317,6 @@ BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
 </pre></div></div>
@@ -5649,9 +2327,6 @@ BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
 <div class="output_area docutils container">
 <div class="highlight"><pre>
  Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
 ... ... Reading structure from CO.xyz
 ... ... Saving data to CO.orb
 ... ... Writing output to CO_summary.xml
@@ -5662,7 +2337,10 @@ BFGSLineSearch:    8[ 41] 00:01:18     -113.101287        0.0946
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-BFGSLineSearch:    9[ 42] 00:02:08     -113.102311        0.0082
+ Using 2 threads
+... ... Reading structure from CO.xyz
+... ... Saving data to CO.orb
+... ... Writing output to CO_summary.xml
 </pre></div></div>
 </div>
 </section>
