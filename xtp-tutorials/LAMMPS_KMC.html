@@ -141,13 +141,6 @@ Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.12/sit
 Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (23.2)
 Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (10.3.0)
 Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.1.2)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.8.2)
 </pre></div></div>
 </div>
@@ -201,7 +194,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.12/site-packages 
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024.1-dev gitid: 1a486d6 (compiled Jul 26 2024, 05:11:37)
+xtp_run, version 2024.1-dev gitid: 6b9e329 (compiled Aug  1 2024, 15:14:48)
 
 Initializing calculator
 ... eanalyze
@@ -300,7 +293,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_11628/2362228021.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_13639/2362228021.py:5: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 </pre></div></div>
 </div>
@@ -356,7 +349,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024.1-dev gitid: 1a486d6 (compiled Jul 26 2024, 05:11:37)
+xtp_run, version 2024.1-dev gitid: 6b9e329 (compiled Aug  1 2024, 15:14:48)
 
 Initializing calculator
 ... ianalyze
@@ -401,7 +394,7 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 &lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/tmp/ipykernel_11628/886975016.py:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/tmp/ipykernel_13639/886975016.py:2: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
@@ -450,7 +443,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2024.1-dev gitid: 1a486d6 (compiled Jul 26 2024, 05:11:37)
+xtp_run, version 2024.1-dev gitid: 6b9e329 (compiled Aug  1 2024, 15:14:48)
 
 Initializing calculator
 ... kmcmultiple
@@ -466,6 +459,8 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 ....
+... kmcmultiple
+ Using 1 threads
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -473,8 +468,7 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-... kmcmultiple
- Using 1 threads
+
  ...
 -----------------------------------
       KMC FOR MULTIPLE CHARGES
