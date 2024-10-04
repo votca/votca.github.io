@@ -35,10 +35,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:29.376392Z",
-     "iopub.status.busy": "2024-09-29T18:56:29.376189Z",
-     "iopub.status.idle": "2024-09-29T18:56:31.061348Z",
-     "shell.execute_reply": "2024-09-29T18:56:31.060728Z"
+     "iopub.execute_input": "2024-10-04T05:14:18.158015Z",
+     "iopub.status.busy": "2024-10-04T05:14:18.157585Z",
+     "iopub.status.idle": "2024-10-04T05:14:19.848083Z",
+     "shell.execute_reply": "2024-10-04T05:14:19.847419Z"
     }
    },
    "outputs": [
@@ -46,16 +46,16 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Requirement already satisfied: seaborn in /usr/lib/python3.12/site-packages (0.13.2)\r\n"
+      "Requirement already satisfied: seaborn in /usr/lib/python3.12/site-packages (0.13.2)\r\n",
+      "Requirement already satisfied: numpy!=1.24.0,>=1.20 in /usr/lib64/python3.12/site-packages (from seaborn) (1.26.4)\r\n",
+      "Requirement already satisfied: pandas>=1.2 in /usr/lib64/python3.12/site-packages (from seaborn) (2.2.1)\r\n",
+      "Requirement already satisfied: matplotlib!=3.6.1,>=3.4 in /usr/lib64/python3.12/site-packages (from seaborn) (3.8.4)\r\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Requirement already satisfied: numpy!=1.24.0,>=1.20 in /usr/lib64/python3.12/site-packages (from seaborn) (1.26.4)\r\n",
-      "Requirement already satisfied: pandas>=1.2 in /usr/lib64/python3.12/site-packages (from seaborn) (2.2.1)\r\n",
-      "Requirement already satisfied: matplotlib!=3.6.1,>=3.4 in /usr/lib64/python3.12/site-packages (from seaborn) (3.8.4)\r\n",
       "Requirement already satisfied: contourpy>=1.0.1 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.2.0)\r\n",
       "Requirement already satisfied: cycler>=0.10 in /usr/lib/python3.12/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (0.11.0)\r\n",
       "Requirement already satisfied: fonttools>=4.22.0 in /usr/lib64/python3.12/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (4.50.0)\r\n",
@@ -108,10 +108,10 @@
    "execution_count": 2,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:31.064649Z",
-     "iopub.status.busy": "2024-09-29T18:56:31.064442Z",
-     "iopub.status.idle": "2024-09-29T18:56:32.137999Z",
-     "shell.execute_reply": "2024-09-29T18:56:32.137357Z"
+     "iopub.execute_input": "2024-10-04T05:14:19.851387Z",
+     "iopub.status.busy": "2024-10-04T05:14:19.851020Z",
+     "iopub.status.idle": "2024-10-04T05:14:20.932730Z",
+     "shell.execute_reply": "2024-10-04T05:14:20.932130Z"
     }
    },
    "outputs": [
@@ -126,7 +126,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Sep 29 2024, 18:52:13)\r\n",
+      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Oct  4 2024, 05:12:15)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... eanalyze\r\n",
@@ -140,19 +140,20 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      ".... \r\n"
+      ".... \r\n",
+      "... eanalyze\r\n",
+      " Using 1 threads\r\n",
+      "... ... Short-listed 1000 segments (pattern='*')\r\n",
+      "... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only. \r\n",
+      "... ... ...      Statistics of site-energy differences operate on the full list.\r\n",
+      "... ... excited state e"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "... eanalyze\r\n",
-      " Using 1 threads\r\n",
-      "... ... Short-listed 1000 segments (pattern='*')\r\n",
-      "... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only. \r\n",
-      "... ... ...      Statistics of site-energy differences operate on the full list.\r\n",
-      "... ... excited state e\r\n",
+      "\r\n",
       "... ... excited state h"
      ]
     },
@@ -169,7 +170,14 @@
      "output_type": "stream",
      "text": [
       "\r\n",
-      "... ... excited state t\r\n",
+      "... ... excited state t"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\r\n",
       "Changes have not been written to state file.\r\n"
      ]
     }
@@ -190,10 +198,10 @@
    "execution_count": 3,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:32.141177Z",
-     "iopub.status.busy": "2024-09-29T18:56:32.140796Z",
-     "iopub.status.idle": "2024-09-29T18:56:32.252071Z",
-     "shell.execute_reply": "2024-09-29T18:56:32.251487Z"
+     "iopub.execute_input": "2024-10-04T05:14:20.935578Z",
+     "iopub.status.busy": "2024-10-04T05:14:20.935188Z",
+     "iopub.status.idle": "2024-10-04T05:14:21.046193Z",
+     "shell.execute_reply": "2024-10-04T05:14:21.045708Z"
     }
    },
    "outputs": [
@@ -227,10 +235,10 @@
    "execution_count": 4,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:32.254788Z",
-     "iopub.status.busy": "2024-09-29T18:56:32.254589Z",
-     "iopub.status.idle": "2024-09-29T18:56:33.299997Z",
-     "shell.execute_reply": "2024-09-29T18:56:33.299308Z"
+     "iopub.execute_input": "2024-10-04T05:14:21.049341Z",
+     "iopub.status.busy": "2024-10-04T05:14:21.049162Z",
+     "iopub.status.idle": "2024-10-04T05:14:22.101730Z",
+     "shell.execute_reply": "2024-10-04T05:14:22.100906Z"
     }
    },
    "outputs": [
@@ -240,7 +248,7 @@
      "text": [
       "<>:5: SyntaxWarning: invalid escape sequence '\\s'\n",
       "<>:5: SyntaxWarning: invalid escape sequence '\\s'\n",
-      "/tmp/ipykernel_12411/2362228021.py:5: SyntaxWarning: invalid escape sequence '\\s'\n",
+      "/tmp/ipykernel_11609/2362228021.py:5: SyntaxWarning: invalid escape sequence '\\s'\n",
       "  df = pd.read_table(\"eanalyze.pairhist_e.out\", comment=\"#\", sep='\\s+',names=columns, skiprows=2)\n"
      ]
     },
@@ -299,10 +307,10 @@
    "execution_count": 5,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:33.302691Z",
-     "iopub.status.busy": "2024-09-29T18:56:33.302496Z",
-     "iopub.status.idle": "2024-09-29T18:56:34.241734Z",
-     "shell.execute_reply": "2024-09-29T18:56:34.241121Z"
+     "iopub.execute_input": "2024-10-04T05:14:22.104630Z",
+     "iopub.status.busy": "2024-10-04T05:14:22.104256Z",
+     "iopub.status.idle": "2024-10-04T05:14:23.041779Z",
+     "shell.execute_reply": "2024-10-04T05:14:23.041220Z"
     }
    },
    "outputs": [
@@ -317,7 +325,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Sep 29 2024, 18:52:13)\r\n",
+      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Oct  4 2024, 05:12:15)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... ianalyze\r\n",
@@ -363,10 +371,10 @@
    "execution_count": 6,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:34.244511Z",
-     "iopub.status.busy": "2024-09-29T18:56:34.244274Z",
-     "iopub.status.idle": "2024-09-29T18:56:34.421061Z",
-     "shell.execute_reply": "2024-09-29T18:56:34.420419Z"
+     "iopub.execute_input": "2024-10-04T05:14:23.044797Z",
+     "iopub.status.busy": "2024-10-04T05:14:23.044402Z",
+     "iopub.status.idle": "2024-10-04T05:14:23.218008Z",
+     "shell.execute_reply": "2024-10-04T05:14:23.217234Z"
     }
    },
    "outputs": [
@@ -376,7 +384,7 @@
      "text": [
       "<>:2: SyntaxWarning: invalid escape sequence '\\s'\n",
       "<>:2: SyntaxWarning: invalid escape sequence '\\s'\n",
-      "/tmp/ipykernel_12411/886975016.py:2: SyntaxWarning: invalid escape sequence '\\s'\n",
+      "/tmp/ipykernel_11609/886975016.py:2: SyntaxWarning: invalid escape sequence '\\s'\n",
       "  df = pd.read_table(\"ianalyze.ihist_h.out\", comment=\"#\", sep='\\s+',names=columns, skiprows=2)\n",
       "/usr/lib/python3.12/site-packages/seaborn/axisgrid.py:854: FutureWarning: \n",
       "\n",
@@ -426,10 +434,10 @@
    "execution_count": 7,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-09-29T18:56:34.424080Z",
-     "iopub.status.busy": "2024-09-29T18:56:34.423665Z",
-     "iopub.status.idle": "2024-09-29T18:56:35.333491Z",
-     "shell.execute_reply": "2024-09-29T18:56:35.332939Z"
+     "iopub.execute_input": "2024-10-04T05:14:23.221135Z",
+     "iopub.status.busy": "2024-10-04T05:14:23.220723Z",
+     "iopub.status.idle": "2024-10-04T05:14:24.134709Z",
+     "shell.execute_reply": "2024-10-04T05:14:24.134004Z"
     }
    },
    "outputs": [
@@ -444,7 +452,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Sep 29 2024, 18:52:13)\r\n",
+      "xtp_run, version 2024.2-dev gitid: 30631ad (compiled Oct  4 2024, 05:12:15)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... kmcmultiple\r\n",
