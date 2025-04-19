@@ -13,7 +13,7 @@
   <![endif]-->
   
         <script src="../_static/documentation_options.js?v=9cf8aa06"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -125,7 +125,8 @@
 <h2><span class="section-number">4.1. </span>Partitioning of the system<a class="headerlink" href="#partitioning-of-the-system" title="Link to this heading">¶</a></h2>
 <p>Before the charge or exciton dynamics can be calculated using rate models, a given morphology has to be divided into sites, on which excitations localize. This requires knowledge of the localization of the electronic states, as each site should preferably contain a single diabatic state of the complete system. In detail knowledge of the localization requires electronic structure calculations of the whole system, which are not feasible for larger systems. Instead, the partitioning into segments can only be justified a posteriori by assessing the magnitude of the electronic couplings between segments.</p>
 <figure class="align-center" id="id5">
-<span id="fig-theory-fragment-def"></span><a class="reference internal image-reference" href="../_images/fragment_def.svg"><img alt="../_images/fragment_def.svg" src="../_images/fragment_def.svg" width="400" /></a>
+<span id="fig-theory-fragment-def"></span><a class="reference internal image-reference" href="../_images/fragment_def.svg"><img alt="../_images/fragment_def.svg" src="../_images/fragment_def.svg" style="width: 400px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Partitioning scheme as employed in VOTCA. a) For small, inflexible molecules, the whole molecule is replaced by a rigid fragment. b) For larger molecules, more fragments are used to allow for some flexibility for the slower degrees of freedom. The whole molecule is still one segment. c) For a polymer, the chain is cut into segments, using input from quantum mechanical studies. Each segment may also contain more than one rigid fragment.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
@@ -146,7 +147,8 @@
 <p>Theoretically <span class="math notranslate nohighlight">\(\Delta E_a\)</span> is an adiabatic excitation energy calculated from the respective geometries for the ground and excited state. Depending on the electronic excitation (electron, hole, exciton) and the system at hand, slow (compared to the timescale of hopping) vibrational modes may seriously change the local excitation energy by distorting molecular geometries. These distortions lead to disorder in the internal site energies. Using vacuum optimized geometries may not be a good approximation, as they optimize out this dynamic, but on the timescale of electronic motion, frozen disorder. In practice geometries from molecular dynamics simulations are used for the ground and excited states, using the mapping procedure described earlier to account for the geometry reorganization upon excitation in the site energies.</p>
 <p>As mentioned above, the electrostatic contribution to the site energy of a molecule <span class="math notranslate nohighlight">\(E_{\text{estat}}^i\)</span> depends on the surrounding. The question is how to treat this effect. A fully quantum mechanical treatment of the whole system is impossible. Instead, the interaction between the quantum mechanical excitation and the environment can be modeled on different levels (see <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a>). Starting with the quantum mechanical excitation in vacuum, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (a), either the electrostatic potential of the surrounding molecules can be fully added to the Hamiltonian operator of the quantum mechanical region <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (c). Instead the interaction can be described as classically interacting charge densities, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (b), which will be described in the next paragraphs. The effects of polarization contributions, <a class="reference internal" href="#fig-theory-siteenergies"><span class="std std-numref">Fig. 4.2</span></a> (d), which allow the environment to react to excitations will be described later.</p>
 <figure class="align-center" id="id6">
-<span id="fig-theory-siteenergies"></span><a class="reference internal image-reference" href="../_images/siteenergies.svg"><img alt="../_images/siteenergies.svg" src="../_images/siteenergies.svg" width="400" /></a>
+<span id="fig-theory-siteenergies"></span><a class="reference internal image-reference" href="../_images/siteenergies.svg"><img alt="../_images/siteenergies.svg" src="../_images/siteenergies.svg" style="width: 400px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Overview of the site energy calculation options in the VOTCA suite using either a perturbative classical approach or a coupled QM/MM approach. For the classical approach the initial starting point is a vacuum QM calculation, yielding the ground state and excited state energies in vacuum (a). Adding purely classical electrostatic leads to different environments for every molecule and thus a spread of the HOMO and LUMO energies (b). (d) Adding classical polarization (indicated by black arrows) on neighboring molecules allows the system to relax and reduce the energetic disorder. Likewise, the QM/MM treatment inserts a fully quantum mechanical description of the molecule surrounded by classical charges (c) or as in the classical model a full polarization response of the environment (d). The difference being, that a the polarization response of the molecule in question is more flexible in the QM/MM treatment, as charge can flow over the whole molecule.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
@@ -218,7 +220,8 @@ Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule
 \end{align}\end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(U_b^1(\xi_b^0)\)</span> is the energy of monomer <span class="math notranslate nohighlight">\(B\)</span>, in its first excited state, evaluated at the nuclear coordinates <span class="math notranslate nohighlight">\(\xi_b^0\)</span> of the ground state of <span class="math notranslate nohighlight">\(B\)</span>. Consequently, within this approximation the reorganization energy for a pair of molecules can be calculated from monomer properties of the individual molecules.</p>
 <figure class="align-center" id="id7">
-<span id="fig-theory-reorg-mol"></span><a class="reference internal image-reference" href="../_images/reorg_mol.svg"><img alt="../_images/reorg_mol.svg" src="../_images/reorg_mol.svg" width="400" /></a>
+<span id="fig-theory-reorg-mol"></span><a class="reference internal image-reference" href="../_images/reorg_mol.svg"><img alt="../_images/reorg_mol.svg" src="../_images/reorg_mol.svg" style="width: 400px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Absorption and emission inside a molecule.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
@@ -232,7 +235,8 @@ Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule
 <div class="math notranslate nohighlight">
 \[\omega_{A\rightarrow B}\neq \omega_{B\rightarrow A}.\]</div>
 <figure class="align-center" id="id8">
-<span id="fig-theory-directedgraph"></span><a class="reference internal image-reference" href="../_images/directedgraph.svg"><img alt="../_images/directedgraph.svg" src="../_images/directedgraph.svg" width="400" /></a>
+<span id="fig-theory-directedgraph"></span><a class="reference internal image-reference" href="../_images/directedgraph.svg"><img alt="../_images/directedgraph.svg" src="../_images/directedgraph.svg" style="width: 400px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Molecular structure and the resulting directed graph. The rates calculated from the molecular properties reduce the molecular structure allow us to build a directed and weighted graph, with edges weighted by the appropriate rates and vertices carrying occupation probabilities.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
@@ -247,7 +251,8 @@ Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule
 <span class="eqno">(4.11)<a class="headerlink" href="#equation-equ-theory-kmcdiff" title="Link to this equation">¶</a></span>\[6 D_{\alpha\beta}t=\langle \Delta r_\alpha \Delta r_\beta \rangle.\]</div>
 <p>Here <span class="math notranslate nohighlight">\(t\)</span> is the temporal length of the trajectories, <span class="math notranslate nohighlight">\(\Delta \mathbf{r}\)</span> denotes the distance vector between initial and last site and <span class="math notranslate nohighlight">\(\langle \dots \rangle\)</span> denotes an average over the ensemble of trajectories.</p>
 <figure class="align-center" id="id9">
-<span id="fig-theory-kmctraj"></span><a class="reference internal image-reference" href="../_images/kmctraj.svg"><img alt="../_images/kmctraj.svg" src="../_images/kmctraj.svg" width="400" /></a>
+<span id="fig-theory-kmctraj"></span><a class="reference internal image-reference" href="../_images/kmctraj.svg"><img alt="../_images/kmctraj.svg" src="../_images/kmctraj.svg" style="width: 400px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">KMC trajectory of an exciton. <span class="math notranslate nohighlight">\(\Delta \mathbf{r}\)</span> denotes the end-end distance of the trajectory. The small box indicates the initial simulation box. Diffusion coefficients can be calculated from averaging over trajectories.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
 </figcaption>
