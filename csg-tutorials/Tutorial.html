@@ -617,11 +617,8 @@ folder. Have a look at the <code class="docutils literal notranslate"><span clas
 of time steps and the output frequencies in grompp.mdp and run an
 atomistic simulation. Extract the thermodynamic information
 (<code class="docutils literal notranslate"><span class="pre">./Extract_Energies.sh</span></code>) and calculate the 3 different RDFs (A-A,
-B-B, A-B) and the bond and angle distributions with <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>. In
-addition, you can compute the bond and angle distributions with
-<code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> (see <code class="docutils literal notranslate"><span class="pre">run_boltzmann.sh</span></code>) Compare the distributions
-to those in <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code> obtained by a significantly
-longer atomistic MD run. You can map the (final) .gro file of the
+B-B, A-B) and the bond and angle distributions with <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>.
+You can map the (final) .gro file of the
 atomistic simuation to the CG one to get all necessary information for
 running the IBI procedure.</p>
 </section>
@@ -649,20 +646,18 @@ contains the same target RDFs as the <code class="docutils literal notranslate">
 folder. In addition, it contains the tabulated bond and angle potentials
 (<code class="docutils literal notranslate"><span class="pre">table_b1.xvg</span></code> and <code class="docutils literal notranslate"><span class="pre">table_a1.xvg</span></code>). They are obtained by
 (non-iterative) Boltzmann inversion of the bond and angle target
-distribution functions of a longer MD simulation run. You can compute
-them with <code class="docutils literal notranslate"><span class="pre">csg_boltzmann</span></code> (see the <code class="docutils literal notranslate"><span class="pre">run_boltzmann.sh</span></code> script). A
-lack of statistics will become most apparent at lower values of the
-angle. In this case you might want to adjust the min value in the
-<code class="docutils literal notranslate"><span class="pre">boltzmann_cmds</span></code> file. Compare your results with the pre-computed ones
+distribution functions of a longer MD simulation run.
+Calculate the bond and angle
+distributions (This can be done with <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>, using the
+<code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file and the <code class="docutils literal notranslate"><span class="pre">hexane_cg.xml</span></code> mapping file of the
+<code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code> folder.)
+Compare your results with the pre-computed ones
 (<code class="docutils literal notranslate"><span class="pre">table_b1.xvg</span></code> and <code class="docutils literal notranslate"><span class="pre">table_a1.xvg</span></code>) and with the ones in the
 subfolder <code class="docutils literal notranslate"><span class="pre">step_001</span></code> in <code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code> Again, adjust
 the number of time steps and equilibration time and start the iteration
 process. Calculate the pressure and compare the thermodynamic properties
 as well as the obtained non-bonded potentials with the ones of the
-<code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span> <span class="pre">tutorial</span></code>. Calculate the bond and angle
-distributions (This can be done with <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>, using the
-<code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file and the <code class="docutils literal notranslate"><span class="pre">hexane_cg.xml</span></code> mapping file of the
-<code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span></code> folder.)</p>
+<code class="docutils literal notranslate"><span class="pre">csg-tutorials/hexane/ibi_all</span> <span class="pre">tutorial</span></code>.</p>
 </section>
 <section id="fm-for-all-interactions-together">
 <h3>FM for all interactions together<a class="headerlink" href="#fm-for-all-interactions-together" title="Link to this heading">¶</a></h3>
