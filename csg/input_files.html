@@ -371,9 +371,6 @@ mapping disabled by default (e.g. <code class="docutils literal notranslate"><sp
 <span class="w">    </span><span class="nt">&lt;min&gt;</span>0<span class="nt">&lt;/min&gt;</span><span class="w">  </span><span class="cm">&lt;!-- dimension + grid spacing of tables--&gt;</span>
 <span class="w">    </span><span class="nt">&lt;max&gt;</span>1.36<span class="nt">&lt;/max&gt;</span>
 <span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-<span class="w">    </span><span class="nt">&lt;inverse&gt;</span>
-<span class="w">      </span>...<span class="w"> </span>specific<span class="w"> </span>commands
-<span class="w">    </span><span class="nt">&lt;/inverse&gt;</span>
 
 <span class="w">    </span>...<span class="w"> </span>specific<span class="w"> </span>section<span class="w"> </span>for<span class="w"> </span>inverse<span class="w"> </span>boltzmann,<span class="w"> </span>force<span class="w"> </span>matching<span class="w"> </span>etc.
 <span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
@@ -385,7 +382,7 @@ mapping disabled by default (e.g. <code class="docutils literal notranslate"><sp
 <p>A setting file is written in the format <code class="docutils literal notranslate"><span class="pre">.xml</span></code>. It consists of a
 general section displayed above, and a specific section depending on the
 program used for simulations. The setting displayed above is later
-extended in the sections on iterative boltzmann inversion (<code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code>), force
+extended in the sections on force
 matching (<code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>) or statistical analysis (<code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>).</p>
 <p>Generally, <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is an analysis tool which can be used for computing radial
 distribution functions and analysing them. As an example, the command</p>

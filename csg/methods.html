@@ -64,8 +64,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#force-matching">Force matching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#iterative-methods">Iterative methods</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#preparing-the-run">Preparing the run</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#starting-the-iterative-process">Starting the iterative process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#restarting-and-continuing">Restarting and continuing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#input-preparation">Input preparation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#general-considerations">General considerations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#correlation-groups">Correlation groups</a></li>
@@ -260,7 +258,7 @@ example might look like the following</p>
 <code class="docutils literal notranslate"><span class="pre">csg_resample</span></code>), the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
 to avoid empty bins within the grid. Determining <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> by
 using <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is recommended (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>). A full description
-of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
+of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">csgapps</span></a>.</p>
 <p id="methods-fm-program-output"><code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file for each interaction, specified in
 the CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>). These files have 4 columns
 containing distance, corresponding force, a table flag and the force
@@ -273,19 +271,6 @@ potentials and do extrapolation and potentially smoothing afterwards.</p>
 but also after every successful processing of each block. The user is
 free to have a look at the output files and decide to stop <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>, provided
 the force error is small enough.</p>
-<p id="methods-fm-integration">To convert forces (<code class="docutils literal notranslate"><span class="pre">.force</span></code>) to potentials (<code class="docutils literal notranslate"><span class="pre">.pot</span></code>), tables have to
-be integrated. To use the built-in integration command from the
-scripting framework, execute</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>table<span class="w"> </span>integrate<span class="w"> </span>CG-CG.force<span class="w"> </span>minus_CG-CG.pot
-csg_call<span class="w"> </span>table<span class="w"> </span>linearop<span class="w"> </span>minus_CG-CG.d<span class="w"> </span>CG-CG.d<span class="w"> </span>-1<span class="w"> </span><span class="m">0</span>
-</pre></div>
-</div>
-<p>This command calls the <code class="docutils literal notranslate"><span class="pre">table_integrate.pl</span></code> script, which integrates the force and writes the
-potential to the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file.</p>
-<p>In general, each potential contains regions which are not sampled. In
-this case or in the case of further post-processing, the potential can
-be refined by employing resampling or extrapolating methods. See
-<a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a> for further details.</p>
 <p id="methods-fm-threebody">As described in the theory section, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> is also able to parametrize
 the angular part of three-body interactions of the Stillinger-Weber type (see subsec. <a class="reference internal" href="theory.html#theory-fm-threebody"><span class="std std-ref">Three-body Stillinger-Weber interactions</span></a>).
 The general procedure is the same, as shown in the two-body case
@@ -342,39 +327,7 @@ the <code class="docutils literal notranslate"><span class="pre">.pot</span></co
 the error (which is estimated via a block-averaging procedure) and a table flag.</p>
 <p>Coarse-grained simulations with three-body Stillinger-Weber interactions can be done with
 LAMMPS with the MANYBODY <em>pair_style sw/angle/table</em> (<a class="reference external" href="https://docs.lammps.org/pair_sw_angle_table.html">https://docs.lammps.org/pair_sw_angle_table.html</a>). For this, the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file has to be
-converted into a table format according to the LAMMPS <em>angle_style table</em> (<a class="reference external" href="https://docs.lammps.org/angle_table.html">https://docs.lammps.org/angle_table.html</a>). This can be done with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_call<span class="w"> </span>--options<span class="w"> </span>table.xml<span class="w"> </span>--ia-name<span class="w"> </span>XXX<span class="w"> </span>--ia-type<span class="w"> </span>angle<span class="w"> </span>convert_potential<span class="w"> </span>lammps<span class="w"> </span>--clean<span class="w"> </span>--no-shift<span class="w"> </span>XXX.pot<span class="w"> </span>table_XXX.txt
-</pre></div>
-</div>
-<p>in line with the conversion of angular tables for bonded interactions. Therefore, the
-CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>) now has to contain a <code class="docutils literal notranslate"><span class="pre">&lt;bonded&gt;</span></code>
-section with the appropriate interaction name:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-<span class="w">  </span><span class="nt">&lt;bonded&gt;</span>
-<span class="w">    </span><span class="cm">&lt;!-- name of the interaction --&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>CG-CG-CG<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="cm">&lt;!-- CG bead types (according to mapping file) --&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type1&gt;</span>A<span class="nt">&lt;/type1&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type2&gt;</span>A<span class="nt">&lt;/type2&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type3&gt;</span>A<span class="nt">&lt;/type3&gt;</span>
-<span class="w">    </span><span class="nt">&lt;min&gt;</span>0.7194247283<span class="nt">&lt;/min&gt;</span>
-<span class="w">    </span><span class="nt">&lt;max&gt;</span>3.1415927<span class="nt">&lt;/max&gt;</span>
-<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.0031415927<span class="nt">&lt;/step&gt;</span>
-<span class="w">    </span><span class="cm">&lt;!-- settings for converting table to lammps angular format --&gt;</span>
-<span class="w">    </span><span class="nt">&lt;inverse&gt;</span>
-<span class="w">      </span><span class="nt">&lt;lammps&gt;</span>
-<span class="w">        </span><span class="nt">&lt;table_begin&gt;</span>0<span class="nt">&lt;/table_begin&gt;</span>
-<span class="w">        </span><span class="nt">&lt;table_end&gt;</span>180<span class="nt">&lt;/table_end&gt;</span>
-<span class="w">        </span><span class="nt">&lt;table_bins&gt;</span>0.18<span class="nt">&lt;/table_bins&gt;</span>
-<span class="w">        </span><span class="nt">&lt;y_scale&gt;</span>0.239006<span class="nt">&lt;/y_scale&gt;</span>
-<span class="w">        </span><span class="nt">&lt;avg_points&gt;</span>1<span class="nt">&lt;/avg_points&gt;</span>
-<span class="w">      </span><span class="nt">&lt;/lammps&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/inverse&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/bonded&gt;</span>
-<span class="nt">&lt;/cg&gt;</span>
-</pre></div>
-</div>
-<p>For a further description of posprocessing, we refer again to sec. <a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a>.</p>
+converted into a table format according to the LAMMPS <em>angle_style table</em> (<a class="reference external" href="https://docs.lammps.org/angle_table.html">https://docs.lammps.org/angle_table.html</a>).</p>
 </section>
 <section id="iterative-methods">
 <span id="methods-iterative-methods"></span><h2>Iterative methods<a class="headerlink" href="#iterative-methods" title="Link to this heading">¶</a></h2>
@@ -500,92 +453,7 @@ shown in below:</p>
 </pre></div>
 </div>
 <p>For more details, see the full
-description of all options in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
-</section>
-<section id="starting-the-iterative-process">
-<h3>Starting the iterative process<a class="headerlink" href="#starting-the-iterative-process" title="Link to this heading">¶</a></h3>
-<p>After all input files have been set up, the run can be started by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_inverse<span class="w"> </span>--options<span class="w"> </span>settings.xml
-</pre></div>
-</div>
-<p>Each iteration is stored in a separate directory, named
-<code class="docutils literal notranslate"><span class="pre">step_&lt;iteration&gt;</span></code>. <code class="docutils literal notranslate"><span class="pre">step_000</span></code> is a special folder which contains
-the initial setup. For each new iteration, the files required to run the
-CG simulation (as specified in the config file) are copied to the
-current working directory. The updated potentials are copied from the
-last step, <code class="docutils literal notranslate"><span class="pre">step_&lt;n-1&gt;/&lt;interaction&gt;.pot.new</span></code>, and used as the new
-working potentials <code class="docutils literal notranslate"><span class="pre">step_&lt;n&gt;/&lt;interaction&gt;.pot.cur</span></code>.</p>
-<p>After the run preparation, all potentials are converted into the format
-of the sampling program and the simulation starts. Once the sampling has
-finished, analysis programs generate new distributions, which are stored
-in <code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dist.new</span></code>, and new potential updates, stored in
-<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.new</span></code>.</p>
-<p>Before adding the update to the old potential, it can be processed in
-the <code class="docutils literal notranslate"><span class="pre">post_update</span></code> step. For each script that is specified in the
-postupdate, <code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.new</span></code> is renamed to
-<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.old</span></code> and stored in
-<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.&lt;a-number&gt;</span></code> before the processing script is
-called. Each processing script uses the current potential update
-<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.cur</span></code> and writes the processed update to
-<code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.dpot.new</span></code>. As an example, a pressure correction is
-implemented as a postupdate script within this framework.</p>
-<p>After all postupdate scripts have been called, the update is added to
-the potential and the new potential <code class="docutils literal notranslate"><span class="pre">&lt;interaction&gt;.pot.new</span></code> is
-written. Additional post-processing of the potential can be performed in
-the <code class="docutils literal notranslate"><span class="pre">post_add</span></code> step which is analogous to the <code class="docutils literal notranslate"><span class="pre">post_update</span></code> step
-except for a potential instead of an update.</p>
-<p>To summarize, we list all standard output files for each iterative step:</p>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.dist.new</span></code></p></td>
-<td><p>distribution functions of the current step</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*.dpot.new</span></code></p></td>
-<td><p>the final potential update, created by <code class="docutils literal notranslate"><span class="pre">calc_update</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.dpot.&lt;number&gt;</span></code></p></td>
-<td><p>for each postupdate script, the <code class="docutils literal notranslate"><span class="pre">.dpot.new</span></code> is saved and a new one</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p>is created</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.pot.cur</span></code></p></td>
-<td><p>the current potential used for the actual run</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*.pot.new</span></code></p></td>
-<td><p>the new potential after the add step</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.pot.&lt;number&gt;</span></code></p></td>
-<td><p>same as <code class="docutils literal notranslate"><span class="pre">dpot.&lt;number&gt;</span></code> but for <code class="docutils literal notranslate"><span class="pre">post_add</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<p>If a sub-step fails during the iteration, additional information can be
-found in the log file. The name of the log file is specified in the
-steering XMLfile.</p>
-</section>
-<section id="restarting-and-continuing">
-<h3>Restarting and continuing<a class="headerlink" href="#restarting-and-continuing" title="Link to this heading">¶</a></h3>
-<p>The interrupted or finished iterative process can be restarted either by
-extending a finished run or by restarting the interrupted run. When the
-script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> is called, it automatically checks for a file called <code class="docutils literal notranslate"><span class="pre">done</span></code> in
-the current directory. If this file is found, the program assumes that
-the run is finished. To extend the run, simply increase <code class="docutils literal notranslate"><span class="pre">inverse.iterations_max</span></code> in the settings
-file and remove the file called <code class="docutils literal notranslate"><span class="pre">done</span></code>. After that, can be restarted,
-which will automatically recognize existing steps and continue after the
-last one.</p>
-<p>If the iteration was interrupted, the script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> might not be able to
-restart on its own. In this case, the easiest solution is to delete the
-last step and start again. The script will then repeat the last step and
-continue. However, this method is not always practical since sampling
-and analysis might be time-consuming and the run might have only crashed
-due to some inadequate post processing option. To avoid repeating the
-entire run, the script <code class="docutils literal notranslate"><span class="pre">csg_inverse</span></code> creates a file with restart points and labels
-already completed steps such as simulation, analysis, etc. The file name
-is specified in the option <code class="docutils literal notranslate"><span class="pre">inverse.restart_file</span></code>. If specific actions should be redone, one
-can simply remove the corresponding lines from this file. Note that a
-file <code class="docutils literal notranslate"><span class="pre">done</span></code> is also created in each folder for those steps which have
-been successfully finished.</p>
+description of all options in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">csgapps</span></a>.</p>
 <section id="iterative-boltzmann-inversion">
 <h4>Iterative Boltzmann Inversion<a class="headerlink" href="#iterative-boltzmann-inversion" title="Link to this heading">¶</a></h4>
 </section>
