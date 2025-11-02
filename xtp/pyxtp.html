@@ -182,11 +182,11 @@ the calculator’s <cite>set</cite> routine.</p>
 <h2><span class="section-number">5.4. </span>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
 <p>Here is an example of setting up a calculation on a water molecule:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
-<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
 <span class="n">wat</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
 
 <span class="c1"># Set up a XTP calculator</span>
-<span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
 
 
 <span class="c1"># change options for the calculations</span>
@@ -208,12 +208,12 @@ the calculator’s <cite>set</cite> routine.</p>
 <p>Here is an example of setting up a geometry of a carbon monoxide
 molecule using forces calculated on the first singlet state:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
-<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
 <span class="n">co</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span>
 <span class="n">co</span><span class="o">.</span><span class="n">rattle</span><span class="p">()</span>
 
 <span class="c1"># Set up a XTP calculator</span>
-<span class="kn">from</span> <span class="nn">pyxtp</span> <span class="kn">import</span> <span class="n">xtp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
 
 <span class="c1"># change options for the calculations</span>
 <span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">()</span>
@@ -228,8 +228,8 @@ molecule using forces calculated on the first singlet state:</p>
 <span class="n">co</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
 
 <span class="c1"># compute the energy terms</span>
-<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">QuasiNewton</span>
-<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuasiNewton</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write</span>
 <span class="n">dyn</span> <span class="o">=</span> <span class="n">QuasiNewton</span><span class="p">(</span><span class="n">co</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;test.traj&#39;</span><span class="p">)</span>
 <span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">write</span><span class="p">(</span><span class="s1">&#39;final.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
