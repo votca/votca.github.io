@@ -16,8 +16,6 @@
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -62,9 +60,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#clipping-of-poorly-sampled-regions">Clipping of poorly sampled regions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resampling">Resampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extrapolation">Extrapolation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exporting-the-table">Exporting the table</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
@@ -180,28 +176,6 @@ good and is not to noisy and set the flags in the potential file of the
 bad parts by hand to <code class="docutils literal notranslate"><span class="pre">o</span></code> (for <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>). Those values will
 later be extrapolated and overwritten.</p>
 </section>
-<section id="resampling">
-<h2>Resampling<a class="headerlink" href="#resampling" title="Link to this heading">¶</a></h2>
-<p>Use the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>csg_resample<span class="w"> </span>--in<span class="w"> </span>table.pot<span class="w"> </span>--out<span class="w"> </span>table_resample.pot<span class="w"> </span><span class="se">\</span>
-<span class="w">             </span>--grid<span class="w"> </span>min:step:max
-</pre></div>
-</div>
-<p>to resample the potential given in file –<code class="docutils literal notranslate"><span class="pre">table.pot</span></code> from <code class="docutils literal notranslate"><span class="pre">min</span></code> to
-<code class="docutils literal notranslate"><span class="pre">max</span></code> with a grid spacing of <code class="docutils literal notranslate"><span class="pre">step</span></code> steps. The result is written to
-the file specified by <code class="docutils literal notranslate"><span class="pre">out</span></code>. Additionally, <code class="docutils literal notranslate"><span class="pre">csg_resample</span></code> allows the specification of
-spline interpolation (<code class="docutils literal notranslate"><span class="pre">spfit</span></code>), the calculation of derivatives
-(<code class="docutils literal notranslate"><span class="pre">derivative</span></code>) and comments (<code class="docutils literal notranslate"><span class="pre">comment</span></code>). Check the help (<code class="docutils literal notranslate"><span class="pre">help</span></code>)
-for further information.</p>
-<p>It is important to note that the values <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> <em>don’t</em>
-correspond to the minimum and maximum value in the input file, but to
-the range of values the potential is desired to cover after
-extrapolation. Therefore, values in <span class="math notranslate nohighlight">\([ \min,\max ]\)</span> that are not
-covered in the file are automatically marked by a flag <code class="docutils literal notranslate"><span class="pre">o</span></code> (for
-<code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>) for extrapolation in the next step.</p>
-<p>The potential <em>don’t</em> have to start at 0, this is done by the export
-script (to xvg) automatically.</p>
-</section>
 <section id="extrapolation">
 <h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Link to this heading">¶</a></h2>
 <p>After resampling, all values in the potential file that should be used
@@ -216,31 +190,6 @@ quadratic), extrapolating just the left or right region of the file
 be used for the coarse-grained run. If GROMACS is used as a molecule
 dynamics package, the potential has to be converted and exported to a
 suitable GROMACS format as described in the final step.</p>
-</section>
-<section id="exporting-the-table">
-<h2>Exporting the table<a class="headerlink" href="#exporting-the-table" title="Link to this heading">¶</a></h2>
-<p>Finally, the table is exported to <code class="docutils literal notranslate"><span class="pre">xvg</span></code>. The conversion procedure
-requires a small xml file <code class="docutils literal notranslate"><span class="pre">table.xml</span></code> as shown below:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
-<span class="w">  </span><span class="nt">&lt;non-bonded&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>XXX<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;step&gt;</span>0.01<span class="nt">&lt;/step&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/non-bonded&gt;</span>
-<span class="w">  </span><span class="nt">&lt;inverse&gt;</span>
-<span class="w">    </span><span class="nt">&lt;gromacs&gt;</span>
-<span class="w">      </span><span class="nt">&lt;pot_max&gt;</span>1e8<span class="nt">&lt;/pot_max&gt;</span>
-<span class="w">      </span><span class="nt">&lt;table_end&gt;</span>8.0<span class="nt">&lt;/table_end&gt;</span>
-<span class="w">      </span><span class="nt">&lt;table_bins&gt;</span>0.002<span class="nt">&lt;/table_bins&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/gromacs&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/inverse&gt;</span>
-<span class="nt">&lt;/cg&gt;</span>
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;table_end&gt;</span></code> is the GROMACS <code class="docutils literal notranslate"><span class="pre">rvdw+table_extension</span></code> and
-<code class="docutils literal notranslate"><span class="pre">&lt;pot_max&gt;</span></code> is just a number slightly smaller than the upper value of
-single/ double precision. The value given in <code class="docutils literal notranslate"><span class="pre">&lt;table_bins&gt;</span></code>
-corresponds to the <code class="docutils literal notranslate"><span class="pre">step</span></code> value of
-<code class="docutils literal notranslate"><span class="pre">csg_resample</span> <span class="pre">-grid</span> <span class="pre">min:step:max</span></code>.</p>
 </section>
 </section>
 

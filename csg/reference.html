@@ -65,7 +65,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#csg-gmxtopol">csg_gmxtopol</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-imc-solve">csg_imc_solve</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-map">csg_map</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#csg-resample">csg_resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-reupdate">csg_reupdate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-stat">csg_stat</a></li>
 </ul>
@@ -460,65 +459,23 @@ or a selected set of frames only (see options).</p>
 </div>
 </section>
 </section>
-<section id="csg-resample">
-<h3>csg_resample<a class="headerlink" href="#csg-resample" title="Link to this heading">¶</a></h3>
+<section id="csg-reupdate">
+<h3>csg_reupdate<a class="headerlink" href="#csg-reupdate" title="Link to this heading">¶</a></h3>
 <section id="id26">
 <h4>NAME<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h4>
-<p><strong>csg_resample</strong> - Part of the VOTCA package</p>
+<p><strong>csg_reupdate</strong> - Part of the VOTCA package</p>
 </section>
 <section id="id27">
 <h4>SYNOPSIS<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h4>
-<p><strong>csg_resample</strong> [OPTIONS]</p>
-<p><strong>csg_resample</strong> [–help]</p>
-</section>
-<section id="id28">
-<h4>DESCRIPTION<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
-<p>Change grid and interval of any sort of table files.
-Mainly called internally by inverse script, can also be
-used to manually prepare input files for coarse-grained
-simulations.</p>
-</section>
-<section id="id29">
-<h4>OPTIONS<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
-
-  --help                produce this help message
-  --in arg              table to read
-  --out arg             table to write
-  --derivative arg      table to write
-  --grid arg            new grid spacing (min:step:max). If &#39;grid&#39; is specified
-                        only, interpolation is performed.
-  --type arg (=akima)   [cubic|akima|linear]. If option is not specified, the
-                        default type &#39;akima&#39; is assumed.
-  --fitgrid arg         specify fit grid (min:step:max). If &#39;grid&#39; and
-                        &#39;fitgrid&#39; are specified, a fit is performed.
-  --nocut               Option for fitgrid: Normally, values out of fitgrid
-                        boundaries are cut off. If they shouldn&#39;t, choose
-                        --nocut.
-  --comment arg         store a comment in the output table
-  --boundaries arg      (natural|periodic|derivativezero) sets boundary
-                        conditions
-</pre></div>
-</div>
-</section>
-</section>
-<section id="csg-reupdate">
-<h3>csg_reupdate<a class="headerlink" href="#csg-reupdate" title="Link to this heading">¶</a></h3>
-<section id="id30">
-<h4>NAME<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
-<p><strong>csg_reupdate</strong> - Part of the VOTCA package</p>
-</section>
-<section id="id31">
-<h4>SYNOPSIS<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
 <p><strong>csg_reupdate</strong> [OPTIONS]</p>
 <p><strong>csg_reupdate</strong> [–help]</p>
 </section>
-<section id="id32">
-<h4>DESCRIPTION<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
+<section id="id28">
+<h4>DESCRIPTION<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
 <p>computes relative entropy update.</p>
 </section>
-<section id="id33">
-<h4>OPTIONS<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
+<section id="id29">
+<h4>OPTIONS<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                       display this help and exit
@@ -559,24 +516,24 @@ Trajectory options:
 </section>
 <section id="csg-stat">
 <h3>csg_stat<a class="headerlink" href="#csg-stat" title="Link to this heading">¶</a></h3>
-<section id="id34">
-<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
+<section id="id30">
+<h4>NAME<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
 <p><strong>csg_stat</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id35">
-<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
+<section id="id31">
+<h4>SYNOPSIS<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
 <p><strong>csg_stat</strong> [OPTIONS]</p>
 <p><strong>csg_stat</strong> [–help]</p>
 </section>
-<section id="id36">
-<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
+<section id="id32">
+<h4>DESCRIPTION<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
 <p>Calculate all distributions (bonded and non-bonded) specified in options file.
 Optionally calculates update Eigen::Matrix3d for invere Monte Carlo. This program
 is called inside the inverse scripts. Big systems
 can be treated as well as non-bonded interactions can be evaluated.</p>
 </section>
-<section id="id37">
-<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
+<section id="id33">
+<h4>OPTIONS<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -923,21 +880,21 @@ The following table contains the input options for CSG,</p>
 <p>Extra user-contibuted applications based on the csg application class, that aren’t needed for the normal workflows. Installable with <code class="docutils literal notranslate"><span class="pre">-DINSTALL_CSGAPPS=ON</span></code>.</p>
 <section id="csg-fluctuations">
 <h3>csg_fluctuations<a class="headerlink" href="#csg-fluctuations" title="Link to this heading">¶</a></h3>
-<section id="id38">
-<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
+<section id="id34">
+<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fluctuations</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id39">
-<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
+<section id="id35">
+<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fluctuations</strong> [OPTIONS]</p>
 <p><strong>csg_fluctuations</strong> [–help]</p>
 </section>
-<section id="id40">
-<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
+<section id="id36">
+<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
 <p>calculate density fluctuations in subvolumes of the simulation box.Subolumes can be either cubic slabs in dimensions (x|y|z) or sphericalslabs with respect to either the center of box or a reference molecule</p>
 </section>
-<section id="id41">
-<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
+<section id="id37">
+<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                        display this help and exit
@@ -979,17 +936,17 @@ Trajectory options:
 </section>
 <section id="csg-orientcorr">
 <h3>csg_orientcorr<a class="headerlink" href="#csg-orientcorr" title="Link to this heading">¶</a></h3>
-<section id="id42">
-<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
+<section id="id38">
+<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id43">
-<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
+<section id="id39">
+<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> [OPTIONS]</p>
 <p><strong>csg_orientcorr</strong> [–help]</p>
 </section>
-<section id="id44">
-<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
+<section id="id40">
+<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
 <p>Calculates the orientational correlation function
 &lt;3/2*u(0)*u(r) - 1/2&gt;
 for a polymer melt, where u is the vector pointing along a bond and
@@ -997,8 +954,8 @@ r the distance between bond segments (centered on middle of bond).</p>
 <p>The output is correlation.dat (with intra-molecular contributions) and
 correlation_excl.dat, where inter-molecular contributions are excluded.</p>
 </section>
-<section id="id45">
-<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
+<section id="id41">
+<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]               display this help and exit
@@ -1030,23 +987,23 @@ Trajectory options:
 </section>
 <section id="csg-part-dist">
 <h3>csg_part_dist<a class="headerlink" href="#csg-part-dist" title="Link to this heading">¶</a></h3>
-<section id="id46">
-<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
+<section id="id42">
+<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id47">
-<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
+<section id="id43">
+<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> [OPTIONS]</p>
 <p><strong>csg_part_dist</strong> [–help]</p>
 </section>
-<section id="id48">
-<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
+<section id="id44">
+<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
 <p>This program reads a topology and (set of) trajectory(ies). For every
 binned value of a chosen coordinate, it outputs the time-averaged number of
 particles, listed by particle types.</p>
 </section>
-<section id="id49">
-<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
+<section id="id45">
+<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   --top arg             topology file
@@ -1068,21 +1025,21 @@ particles, listed by particle types.</p>
 </section>
 <section id="csg-partial-rdf">
 <h3>csg_partial_rdf<a class="headerlink" href="#csg-partial-rdf" title="Link to this heading">¶</a></h3>
-<section id="id50">
-<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
+<section id="id46">
+<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id51">
-<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
+<section id="id47">
+<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> [OPTIONS]</p>
 <p><strong>csg_partial_rdf</strong> [–help]</p>
 </section>
-<section id="id52">
-<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
+<section id="id48">
+<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
 <p>Calculate spatially confined rdfs</p>
 </section>
-<section id="id53">
-<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
+<section id="id49">
+<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1128,21 +1085,21 @@ Trajectory options:
 </section>
 <section id="csg-radii">
 <h3>csg_radii<a class="headerlink" href="#csg-radii" title="Link to this heading">¶</a></h3>
-<section id="id54">
-<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
+<section id="id50">
+<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id55">
-<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
+<section id="id51">
+<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> [OPTIONS]</p>
 <p><strong>csg_radii</strong> [–help]</p>
 </section>
-<section id="id56">
-<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
+<section id="id52">
+<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
 <p>calculate gyration- and hydrodynamic radius for a specific molecule or molecule type</p>
 </section>
-<section id="id57">
-<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
+<section id="id53">
+<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1169,24 +1126,24 @@ Trajectory options:
 </section>
 <section id="csg-sphericalorder">
 <h3>csg_sphericalorder<a class="headerlink" href="#csg-sphericalorder" title="Link to this heading">¶</a></h3>
-<section id="id58">
-<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
+<section id="id54">
+<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id59">
-<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
+<section id="id55">
+<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> [OPTIONS]</p>
 <p><strong>csg_sphericalorder</strong> [–help]</p>
 </section>
-<section id="id60">
-<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
+<section id="id56">
+<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>!! EXPERIMENTAL !! Calculate spherical order parameter.</dt><dd><p>Needs non-spherical beads in mapping.</p>
 </dd>
 </dl>
 </section>
-<section id="id61">
-<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
+<section id="id57">
+<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1222,21 +1179,21 @@ Trajectory options:
 </section>
 <section id="csg-traj-force">
 <h3>csg_traj_force<a class="headerlink" href="#csg-traj-force" title="Link to this heading">¶</a></h3>
-<section id="id62">
-<h4>NAME<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h4>
+<section id="id58">
+<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id63">
-<h4>SYNOPSIS<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h4>
+<section id="id59">
+<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> [OPTIONS]</p>
 <p><strong>csg_traj_force</strong> [–help]</p>
 </section>
-<section id="id64">
-<h4>DESCRIPTION<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h4>
+<section id="id60">
+<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
 <p>Adds/subtracts forces from given atomistic trajectories</p>
 </section>
-<section id="id65">
-<h4>OPTIONS<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h4>
+<section id="id61">
+<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
