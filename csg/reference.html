@@ -58,7 +58,6 @@
 <li class="toctree-l2"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#programs">Programs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#csg-density">csg_density</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-dlptopol">csg_dlptopol</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-dump">csg_dump</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-fmatch">csg_fmatch</a></li>
@@ -79,6 +78,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#csg-radii">csg_radii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-sphericalorder">csg_sphericalorder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-traj-force">csg_traj_force</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#csg-density">csg_density</a></li>
 </ul>
 </li>
 </ul>
@@ -140,79 +140,19 @@
 <h1>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h1>
 <section id="programs">
 <span id="reference-programs"></span><h2>Programs<a class="headerlink" href="#programs" title="Link to this heading">¶</a></h2>
-<section id="csg-density">
-<h3>csg_density<a class="headerlink" href="#csg-density" title="Link to this heading">¶</a></h3>
+<section id="csg-dlptopol">
+<h3>csg_dlptopol<a class="headerlink" href="#csg-dlptopol" title="Link to this heading">¶</a></h3>
 <section id="name">
 <h4>NAME<a class="headerlink" href="#name" title="Link to this heading">¶</a></h4>
-<p><strong>csg_density</strong> - Part of the VOTCA package</p>
+<p><strong>csg_dlptopol</strong> - Part of the VOTCA package</p>
 </section>
 <section id="synopsis">
 <h4>SYNOPSIS<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h4>
-<p><strong>csg_density</strong> [OPTIONS]</p>
-<p><strong>csg_density</strong> [–help]</p>
-</section>
-<section id="description">
-<h4>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h4>
-<p>Calculates the mass density distribution along a box axis or radial density profile from reference point</p>
-</section>
-<section id="options">
-<h4>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
-
-  -h [ --help ]             display this help and exit
-  --verbose                 be loud and noisy
-  --verbose1                be very loud and noisy
-  -v [ --verbose2 ]         be extremly loud and noisy
-  --top arg                 atomistic topology file
-
-Mapping options:
-
-  --cg arg                  [OPTIONAL] coarse graining mapping and bond
-                          definitions
-                            (xml-file). If no file is given, program acts on
-                          original trajectory
-  --map-ignore arg          list of molecules to ignore if mapping is done
-                          separated by ;
-
-Specific options::
-
-  --type arg (=mass)      density type: mass or number
-  --axis arg (=r)         [x|y|z|r] density axis (r=spherical)
-  --step arg (=0.01)      spacing of density
-  --block-length arg        write blocks of this length, the averages are
-                          cleared after every write
-  --out arg               Output file
-  --rmax arg              rmax (default for [r] =min of all box vectors/2, else
-                          l )
-  --scale arg (=1)        scale factor for the density
-  --molname arg (=*)      molname
-  --filter arg (=*)       filter bead names
-  --ref arg               reference zero point
-
-Trajectory options:
-
-  --trj arg                 atomistic trajectory file
-  --begin arg (=0)          skip frames before this time (only works for
-                          Gromacs files)
-  --first-frame arg (=0)    start with this frame
-  --nframes arg             process the given number of frames
-</pre></div>
-</div>
-</section>
-</section>
-<section id="csg-dlptopol">
-<h3>csg_dlptopol<a class="headerlink" href="#csg-dlptopol" title="Link to this heading">¶</a></h3>
-<section id="id1">
-<h4>NAME<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
-<p><strong>csg_dlptopol</strong> - Part of the VOTCA package</p>
-</section>
-<section id="id2">
-<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <p><strong>csg_dlptopol</strong> [OPTIONS]</p>
 <p><strong>csg_dlptopol</strong> [–help]</p>
 </section>
-<section id="id3">
-<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<section id="description">
+<h4>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading">¶</a></h4>
 <p>Create a dlpoly topology template based on an existing (atomistic) topology and
 a mapping xml-file. The created template file needs to be inspected and amended by the user!</p>
 </section>
@@ -225,8 +165,8 @@ a mapping xml-file. The created template file needs to be inspected and amended 
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h4>OPTIONS<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<section id="options">
+<h4>OPTIONS<a class="headerlink" href="#options" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
     -h [ --help ]            display this help and exit
@@ -247,21 +187,21 @@ a mapping xml-file. The created template file needs to be inspected and amended 
 </section>
 <section id="csg-dump">
 <h3>csg_dump<a class="headerlink" href="#csg-dump" title="Link to this heading">¶</a></h3>
-<section id="id5">
-<h4>NAME<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<section id="id1">
+<h4>NAME<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <p><strong>csg_dump</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id6">
-<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<section id="id2">
+<h4>SYNOPSIS<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <p><strong>csg_dump</strong> [OPTIONS]</p>
 <p><strong>csg_dump</strong> [–help]</p>
 </section>
-<section id="id7">
-<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<section id="id3">
+<h4>DESCRIPTION<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <p>Print atoms that are read from topology file to help debugging atom naming.</p>
 </section>
-<section id="id8">
-<h4>OPTIONS<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<section id="id4">
+<h4>OPTIONS<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]            display this help and exit
@@ -288,21 +228,21 @@ Specific options:
 </section>
 <section id="csg-fmatch">
 <h3>csg_fmatch<a class="headerlink" href="#csg-fmatch" title="Link to this heading">¶</a></h3>
-<section id="id9">
-<h4>NAME<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<section id="id5">
+<h4>NAME<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fmatch</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id10">
-<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<section id="id6">
+<h4>SYNOPSIS<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fmatch</strong> [OPTIONS]</p>
 <p><strong>csg_fmatch</strong> [–help]</p>
 </section>
-<section id="id11">
-<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<section id="id7">
+<h4>DESCRIPTION<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <p>Perform force matching (also called multiscale coarse-graining)</p>
 </section>
-<section id="id12">
-<h4>OPTIONS<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<section id="id8">
+<h4>OPTIONS<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -334,22 +274,22 @@ Trajectory options:
 </section>
 <section id="csg-gmxtopol">
 <h3>csg_gmxtopol<a class="headerlink" href="#csg-gmxtopol" title="Link to this heading">¶</a></h3>
-<section id="id13">
-<h4>NAME<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<section id="id9">
+<h4>NAME<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <p><strong>csg_gmxtopol</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id14">
-<h4>SYNOPSIS<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
+<section id="id10">
+<h4>SYNOPSIS<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <p><strong>csg_gmxtopol</strong> [OPTIONS]</p>
 <p><strong>csg_gmxtopol</strong> [–help]</p>
 </section>
-<section id="id15">
-<h4>DESCRIPTION<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
+<section id="id11">
+<h4>DESCRIPTION<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
 <p>Create skeleton for gromacs topology based on atomistic topology
 and a mapping file. File still needs to be modified by the user.</p>
 </section>
-<section id="id16">
-<h4>OPTIONS<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
+<section id="id12">
+<h4>OPTIONS<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]            display this help and exit
@@ -372,21 +312,21 @@ Mapping options:
 </section>
 <section id="csg-imc-solve">
 <h3>csg_imc_solve<a class="headerlink" href="#csg-imc-solve" title="Link to this heading">¶</a></h3>
-<section id="id17">
-<h4>NAME<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
+<section id="id13">
+<h4>NAME<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
 <p><strong>csg_imc_solve</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id18">
-<h4>SYNOPSIS<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
+<section id="id14">
+<h4>SYNOPSIS<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
 <p><strong>csg_imc_solve</strong> [OPTIONS]</p>
 <p><strong>csg_imc_solve</strong> [–help]</p>
 </section>
-<section id="id19">
-<h4>DESCRIPTION<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
+<section id="id15">
+<h4>DESCRIPTION<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
 <p>Solves the linear system for IMCs</p>
 </section>
-<section id="id20">
-<h4>OPTIONS<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
+<section id="id16">
+<h4>OPTIONS<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                       display this help and exit
@@ -403,23 +343,23 @@ Mapping options:
 </section>
 <section id="csg-map">
 <h3>csg_map<a class="headerlink" href="#csg-map" title="Link to this heading">¶</a></h3>
-<section id="id21">
-<h4>NAME<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
+<section id="id17">
+<h4>NAME<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
 <p><strong>csg_map</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id22">
-<h4>SYNOPSIS<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
+<section id="id18">
+<h4>SYNOPSIS<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
 <p><strong>csg_map</strong> [OPTIONS]</p>
 <p><strong>csg_map</strong> [–help]</p>
 </section>
-<section id="id23">
-<h4>DESCRIPTION<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
+<section id="id19">
+<h4>DESCRIPTION<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
 <p>Convert a reference atomistic trajectory or configuration into a coarse-grained one
 based on a mapping xml-file. The mapping can be applied to either an entire trajectory
 or a selected set of frames only (see options).</p>
 </section>
-<section id="id24">
-<h4>EXAMPLES<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
+<section id="id20">
+<h4>EXAMPLES<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* csg_map --top FA-topol.tpr --trj FA-traj.trr --out CG-traj.xtc --cg cg-map.xml
 * csg_map --top FA-topol.tpr --trj FA-conf.gro --out CG-conf.gro --cg cg-map.xml
 * csg_map --top FA-topol.tpr --trj FA-traj.xtc --out FA-history.dlph --no-map
@@ -428,8 +368,8 @@ or a selected set of frames only (see options).</p>
 </pre></div>
 </div>
 </section>
-<section id="id25">
-<h4>OPTIONS<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h4>
+<section id="id21">
+<h4>OPTIONS<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
     -h [ --help ]             display this help and exit
@@ -461,21 +401,21 @@ or a selected set of frames only (see options).</p>
 </section>
 <section id="csg-reupdate">
 <h3>csg_reupdate<a class="headerlink" href="#csg-reupdate" title="Link to this heading">¶</a></h3>
-<section id="id26">
-<h4>NAME<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h4>
+<section id="id22">
+<h4>NAME<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
 <p><strong>csg_reupdate</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id27">
-<h4>SYNOPSIS<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h4>
+<section id="id23">
+<h4>SYNOPSIS<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
 <p><strong>csg_reupdate</strong> [OPTIONS]</p>
 <p><strong>csg_reupdate</strong> [–help]</p>
 </section>
-<section id="id28">
-<h4>DESCRIPTION<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
+<section id="id24">
+<h4>DESCRIPTION<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
 <p>computes relative entropy update.</p>
 </section>
-<section id="id29">
-<h4>OPTIONS<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
+<section id="id25">
+<h4>OPTIONS<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                       display this help and exit
@@ -516,24 +456,24 @@ Trajectory options:
 </section>
 <section id="csg-stat">
 <h3>csg_stat<a class="headerlink" href="#csg-stat" title="Link to this heading">¶</a></h3>
-<section id="id30">
-<h4>NAME<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
+<section id="id26">
+<h4>NAME<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h4>
 <p><strong>csg_stat</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id31">
-<h4>SYNOPSIS<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
+<section id="id27">
+<h4>SYNOPSIS<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h4>
 <p><strong>csg_stat</strong> [OPTIONS]</p>
 <p><strong>csg_stat</strong> [–help]</p>
 </section>
-<section id="id32">
-<h4>DESCRIPTION<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
+<section id="id28">
+<h4>DESCRIPTION<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
 <p>Calculate all distributions (bonded and non-bonded) specified in options file.
 Optionally calculates update Eigen::Matrix3d for invere Monte Carlo. This program
 is called inside the inverse scripts. Big systems
 can be treated as well as non-bonded interactions can be evaluated.</p>
 </section>
-<section id="id33">
-<h4>OPTIONS<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
+<section id="id29">
+<h4>OPTIONS<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -880,21 +820,21 @@ The following table contains the input options for CSG,</p>
 <p>Extra user-contibuted applications based on the csg application class, that aren’t needed for the normal workflows. Installable with <code class="docutils literal notranslate"><span class="pre">-DINSTALL_CSGAPPS=ON</span></code>.</p>
 <section id="csg-fluctuations">
 <h3>csg_fluctuations<a class="headerlink" href="#csg-fluctuations" title="Link to this heading">¶</a></h3>
-<section id="id34">
-<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
+<section id="id30">
+<h4>NAME<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fluctuations</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id35">
-<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
+<section id="id31">
+<h4>SYNOPSIS<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
 <p><strong>csg_fluctuations</strong> [OPTIONS]</p>
 <p><strong>csg_fluctuations</strong> [–help]</p>
 </section>
-<section id="id36">
-<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
+<section id="id32">
+<h4>DESCRIPTION<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
 <p>calculate density fluctuations in subvolumes of the simulation box.Subolumes can be either cubic slabs in dimensions (x|y|z) or sphericalslabs with respect to either the center of box or a reference molecule</p>
 </section>
-<section id="id37">
-<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
+<section id="id33">
+<h4>OPTIONS<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                        display this help and exit
@@ -936,17 +876,17 @@ Trajectory options:
 </section>
 <section id="csg-orientcorr">
 <h3>csg_orientcorr<a class="headerlink" href="#csg-orientcorr" title="Link to this heading">¶</a></h3>
-<section id="id38">
-<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
+<section id="id34">
+<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id39">
-<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
+<section id="id35">
+<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> [OPTIONS]</p>
 <p><strong>csg_orientcorr</strong> [–help]</p>
 </section>
-<section id="id40">
-<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
+<section id="id36">
+<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
 <p>Calculates the orientational correlation function
 &lt;3/2*u(0)*u(r) - 1/2&gt;
 for a polymer melt, where u is the vector pointing along a bond and
@@ -954,8 +894,8 @@ r the distance between bond segments (centered on middle of bond).</p>
 <p>The output is correlation.dat (with intra-molecular contributions) and
 correlation_excl.dat, where inter-molecular contributions are excluded.</p>
 </section>
-<section id="id41">
-<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
+<section id="id37">
+<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]               display this help and exit
@@ -987,23 +927,23 @@ Trajectory options:
 </section>
 <section id="csg-part-dist">
 <h3>csg_part_dist<a class="headerlink" href="#csg-part-dist" title="Link to this heading">¶</a></h3>
-<section id="id42">
-<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
+<section id="id38">
+<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id43">
-<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
+<section id="id39">
+<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> [OPTIONS]</p>
 <p><strong>csg_part_dist</strong> [–help]</p>
 </section>
-<section id="id44">
-<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
+<section id="id40">
+<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
 <p>This program reads a topology and (set of) trajectory(ies). For every
 binned value of a chosen coordinate, it outputs the time-averaged number of
 particles, listed by particle types.</p>
 </section>
-<section id="id45">
-<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
+<section id="id41">
+<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   --top arg             topology file
@@ -1025,21 +965,21 @@ particles, listed by particle types.</p>
 </section>
 <section id="csg-partial-rdf">
 <h3>csg_partial_rdf<a class="headerlink" href="#csg-partial-rdf" title="Link to this heading">¶</a></h3>
-<section id="id46">
-<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
+<section id="id42">
+<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id47">
-<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
+<section id="id43">
+<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> [OPTIONS]</p>
 <p><strong>csg_partial_rdf</strong> [–help]</p>
 </section>
-<section id="id48">
-<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
+<section id="id44">
+<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
 <p>Calculate spatially confined rdfs</p>
 </section>
-<section id="id49">
-<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
+<section id="id45">
+<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1085,21 +1025,21 @@ Trajectory options:
 </section>
 <section id="csg-radii">
 <h3>csg_radii<a class="headerlink" href="#csg-radii" title="Link to this heading">¶</a></h3>
-<section id="id50">
-<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
+<section id="id46">
+<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id51">
-<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
+<section id="id47">
+<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> [OPTIONS]</p>
 <p><strong>csg_radii</strong> [–help]</p>
 </section>
-<section id="id52">
-<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
+<section id="id48">
+<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
 <p>calculate gyration- and hydrodynamic radius for a specific molecule or molecule type</p>
 </section>
-<section id="id53">
-<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
+<section id="id49">
+<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1126,24 +1066,24 @@ Trajectory options:
 </section>
 <section id="csg-sphericalorder">
 <h3>csg_sphericalorder<a class="headerlink" href="#csg-sphericalorder" title="Link to this heading">¶</a></h3>
-<section id="id54">
-<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
+<section id="id50">
+<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id55">
-<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
+<section id="id51">
+<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> [OPTIONS]</p>
 <p><strong>csg_sphericalorder</strong> [–help]</p>
 </section>
-<section id="id56">
-<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
+<section id="id52">
+<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>!! EXPERIMENTAL !! Calculate spherical order parameter.</dt><dd><p>Needs non-spherical beads in mapping.</p>
 </dd>
 </dl>
 </section>
-<section id="id57">
-<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
+<section id="id53">
+<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1179,21 +1119,21 @@ Trajectory options:
 </section>
 <section id="csg-traj-force">
 <h3>csg_traj_force<a class="headerlink" href="#csg-traj-force" title="Link to this heading">¶</a></h3>
-<section id="id58">
-<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
+<section id="id54">
+<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id59">
-<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
+<section id="id55">
+<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> [OPTIONS]</p>
 <p><strong>csg_traj_force</strong> [–help]</p>
 </section>
-<section id="id60">
-<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
+<section id="id56">
+<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
 <p>Adds/subtracts forces from given atomistic trajectories</p>
 </section>
-<section id="id61">
-<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
+<section id="id57">
+<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1205,6 +1145,66 @@ Trajectory options:
   --trj-force arg           atomistic reference trajectory containing forces to
                           add/subtract
   --out arg                 output trajectory file with resultant forces
+
+Trajectory options:
+
+  --trj arg                 atomistic trajectory file
+  --begin arg (=0)          skip frames before this time (only works for
+                          Gromacs files)
+  --first-frame arg (=0)    start with this frame
+  --nframes arg             process the given number of frames
+</pre></div>
+</div>
+</section>
+</section>
+<section id="csg-density">
+<h3>csg_density<a class="headerlink" href="#csg-density" title="Link to this heading">¶</a></h3>
+<section id="id58">
+<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
+<p><strong>csg_density</strong> - Part of the VOTCA package</p>
+</section>
+<section id="id59">
+<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
+<p><strong>csg_density</strong> [OPTIONS]</p>
+<p><strong>csg_density</strong> [–help]</p>
+</section>
+<section id="id60">
+<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
+<p>Calculates the mass density distribution along a box axis or radial density profile from reference point</p>
+</section>
+<section id="id61">
+<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+  -h [ --help ]             display this help and exit
+  --verbose                 be loud and noisy
+  --verbose1                be very loud and noisy
+  -v [ --verbose2 ]         be extremly loud and noisy
+  --top arg                 atomistic topology file
+
+Mapping options:
+
+  --cg arg                  [OPTIONAL] coarse graining mapping and bond
+                          definitions
+                            (xml-file). If no file is given, program acts on
+                          original trajectory
+  --map-ignore arg          list of molecules to ignore if mapping is done
+                          separated by ;
+
+Specific options::
+
+  --type arg (=mass)      density type: mass or number
+  --axis arg (=r)         [x|y|z|r] density axis (r=spherical)
+  --step arg (=0.01)      spacing of density
+  --block-length arg        write blocks of this length, the averages are
+                          cleared after every write
+  --out arg               Output file
+  --rmax arg              rmax (default for [r] =min of all box vectors/2, else
+                          l )
+  --scale arg (=1)        scale factor for the density
+  --molname arg (=*)      molname
+  --filter arg (=*)       filter bead names
+  --ref arg               reference zero point
 
 Trajectory options:
 
