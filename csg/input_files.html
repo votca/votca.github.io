@@ -59,7 +59,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#advanced-topology-handling">Advanced topology handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#trajectories">Trajectories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-files">Setting files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#table-formats">Table formats</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="preparing.html">Preparing coarse-grained runs</a></li>
@@ -131,7 +130,7 @@ in a list separated by a semicolon, e. g.
 <figure class="align-center" id="id2">
 <span id="input-files-fig-mapping"></span><img alt="../_images/mapping.png" src="../_images/mapping.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Atom labeling and mapping from an all-atom to a united atom representation of a propane molecule.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Atom labeling and mapping from an all-atom to a united atom representation of a propane molecule.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Each mapping file contains a <em>topology</em> of the coarse-grained molecule
@@ -376,8 +375,8 @@ mapping disabled by default (e.g. <code class="docutils literal notranslate"><sp
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
-<p>Abstract of a <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file. See secs. <span class="xref std std-ref">methods_fm_program_input</span>,
-<span class="xref std std-ref">methods_fm_threebody</span> or <a class="reference internal" href="methods.html#methods-preparing-the-run"><span class="std std-ref">Preparing the run</span></a> for full versions.</p>
+<p>Abstract of a <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file. See secs. <a class="reference internal" href="methods.html#methods-fm-program-input"><span class="std std-ref">Program input</span></a>,
+<a class="reference internal" href="methods.html#methods-fm-threebody"><span class="std std-ref">Three-body Stillinger-Weber interactions</span></a> or <span class="xref std std-ref">methods_preparing_the_run</span> for full versions.</p>
 <p>A setting file is written in the format <code class="docutils literal notranslate"><span class="pre">.xml</span></code>. It consists of a
 general section displayed above, and a specific section depending on the
 program used for simulations. The setting displayed above is later
@@ -432,24 +431,6 @@ The settings file has to contain the additional option:</p>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
-</section>
-<section id="table-formats">
-<span id="input-files-table-formats"></span><h2>Table formats<a class="headerlink" href="#table-formats" title="Link to this heading">¶</a></h2>
-<p>In the iterative framework distribution functions, potentials and forces
-are returned as tables and saved in a file. Those tables generally have
-the format</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x y [error] flag
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">x</span></code> is input quantity (e.g. radius <span class="math notranslate nohighlight">\(r\)</span>, angles
-<span class="math notranslate nohighlight">\(\theta\)</span> or <span class="math notranslate nohighlight">\(\phi\)</span>), <code class="docutils literal notranslate"><span class="pre">y</span></code> is the computed quantity (e.g. a
-potential) and <code class="docutils literal notranslate"><span class="pre">[error]</span></code> is an optional error for <code class="docutils literal notranslate"><span class="pre">y</span></code>. The token
-<code class="docutils literal notranslate"><span class="pre">flag</span></code> can take the values <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code> or <code class="docutils literal notranslate"><span class="pre">u</span></code>. In the first case,
-<code class="docutils literal notranslate"><span class="pre">i</span></code> (<code class="docutils literal notranslate"><span class="pre">in</span> <span class="pre">range</span></code>) describes a value that lies within the data range,
-<code class="docutils literal notranslate"><span class="pre">o</span></code> (<code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>) symbolises a value out of the data range and
-<code class="docutils literal notranslate"><span class="pre">u</span></code> stands for an <code class="docutils literal notranslate"><span class="pre">undefined</span></code> value.</p>
-<p>The token <code class="docutils literal notranslate"><span class="pre">flag</span></code> will be important when extrapolating the table as
-described in <a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a>.</p>
 </section>
 </section>
 
