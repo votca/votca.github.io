@@ -121,11 +121,11 @@
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.14/site-packages (0.13.2)
 Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.4)
-Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.2.3)
+Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.3)
 Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in /usr/lib64/python3.14/site-packages (from seaborn) (3.10.6)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.3.3)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.60.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.60.1)
 Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.4.9)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (25.0)
 Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (11.3.0)
@@ -169,7 +169,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov  7 2025, 05:26:08)
+xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov 14 2025, 05:27:05)
 
 Initializing calculator
 ... eanalyze
@@ -237,46 +237,13 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_7872/2362228021.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_7876/2362228021.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
 The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 
   func(*plot_args, **plot_kwargs)
-/usr/lib/python3.14/site-packages/seaborn/relational.py:300: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[f&#34;{other}min&#34;] = np.nan
-/usr/lib/python3.14/site-packages/seaborn/relational.py:301: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[f&#34;{other}max&#34;] = np.nan
-/usr/lib/python3.14/site-packages/seaborn/relational.py:307: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[col] = inv(sub_data[col])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -319,7 +286,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov  7 2025, 05:26:08)
+xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov 14 2025, 05:27:05)
 
 Initializing calculator
 ... ianalyze
@@ -357,46 +324,13 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 &lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_7872/886975016.py:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_7876/886975016.py:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
 The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 
   func(*plot_args, **plot_kwargs)
-/usr/lib/python3.14/site-packages/seaborn/relational.py:300: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[f&#34;{other}min&#34;] = np.nan
-/usr/lib/python3.14/site-packages/seaborn/relational.py:301: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[f&#34;{other}max&#34;] = np.nan
-/usr/lib/python3.14/site-packages/seaborn/relational.py:307: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
-You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
-A typical example is when you are setting values in a column of a DataFrame, like:
-
-df[&#34;col&#34;][row_indexer] = value
-
-Use `df.loc[row_indexer, &#34;col&#34;] = values` instead, to perform the assignment in a single step and ensure this keeps updating the original `df`.
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-  sub_data[col] = inv(sub_data[col])
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -439,7 +373,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov  7 2025, 05:26:08)
+xtp_run, version 2025.1-dev gitid: ae99527 (compiled Nov 14 2025, 05:27:05)
 
 Initializing calculator
 ... kmcmultiple
