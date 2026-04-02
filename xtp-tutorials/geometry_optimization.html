@@ -163,6 +163,9 @@
 <span class="c1"># calc.options.dftpackage.functional = &#39;PBE&#39;</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_search_mode</span> <span class="o">=</span> <span class="s1">&#39;dense&#39;</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_spacing</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_steps</span> <span class="o">=</span> <span class="mi">1001</span>
 
 <span class="c1"># set up the logger</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logging_file</span> <span class="o">=</span> <span class="s1">&#39;CO_forces.log&#39;</span>
@@ -184,58 +187,14 @@
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[-7.24753590e-10, -6.89226454e-10,  3.19440044e-01],
-       [ 7.24753590e-10,  6.89226454e-10, -3.19440044e-01]])
+array([[-7.74491582e-10, -7.24753590e-10,  3.19229777e-01],
+       [ 7.31859018e-10,  6.75015599e-10, -3.19229777e-01]])
 </pre></div></div>
 </div>
 </section>
@@ -257,518 +216,88 @@ array([[-7.24753590e-10, -6.89226454e-10,  3.19440044e-01],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml                    Step     Time          Energy          fmax
-GoodOldQuasiNewton:    0 06:21:04     -113.101204        0.319440
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlnew radius 0.012247
+                    Step     Time          Energy          fmax
+GoodOldQuasiNewton:    0 05:41:39     -113.101204        0.319230
+new radius 0.012247
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.04276932980238802
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    1 06:21:51     -113.098913        0.319440
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.09891342922477 -113.10120446793198
+Abs Gbar estimate 0.04264642269221222
+GoodOldQuasiNewton:    1 05:42:26     -113.098913        0.319230
+energies -113.09891342922468 -113.101204467932
 reject step
 new radius 0.006124
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.10842660626643877
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    2 06:22:38     -113.100204        0.248363
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10020359454666 -113.10120446793198
+Abs Gbar estimate 0.10823086276296884
+GoodOldQuasiNewton:    2 05:43:14     -113.100204        0.248237
+energies -113.10020359454661 -113.101204467932
 reject step
 new radius 0.003062
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.15250524485582462
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    3 06:23:27     -113.100741        0.282673
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.1007413294429 -113.10120446793198
+Abs Gbar estimate 0.1522730817133835
+GoodOldQuasiNewton:    3 05:44:03     -113.100741        0.282892
+energies -113.10074132944277 -113.101204467932
 reject step
 new radius 0.001531
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.1773570642068088
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    4 06:24:14     -113.100982        0.300959
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10098236796318 -113.10120446793198
+Abs Gbar estimate 0.17710669108056434
+GoodOldQuasiNewton:    4 05:44:51     -113.100982        0.300816
+energies -113.1009823679631 -113.101204467932
 reject step
 new radius 0.000765
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.1904860988339735
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    5 06:25:01     -113.101096        0.310037
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10109580257742 -113.10120446793198
+Abs Gbar estimate 0.19022662087204772
+GoodOldQuasiNewton:    5 05:45:38     -113.101096        0.310054
+energies -113.10109580257748 -113.101204467932
 reject step
 new radius 0.000383
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.02
-Abs Gbar estimate 0.19722639741950215
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    6 06:25:48     -113.101151        0.314725
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10115073499158 -113.10120446793198
+Abs Gbar estimate 0.196962367018324
+GoodOldQuasiNewton:    6 05:46:25     -113.101151        0.314829
+energies -113.10115073499159 -113.101204467932
 energy change; actual: 0.000054 estimated: -0.000171
-Energy prediction factor 1.3134264644138955
-Force prediction factor -1.454263580093323
+Energy prediction factor 1.3136346743581535
+Force prediction factor -1.6250791248767344
 Scale factors 0.364431 0.364431
 new radius 0.000139
-eigenvalues 8.15 20.00 20.00
+eigenvalues 7.62 20.00 20.00
 Corrected Newton step: abs(D) = 0.06
-Abs Gbar estimate 0.20025704473783704
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    7 06:26:35     -113.101131        0.317235
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10113085427956 -113.10115073499158
+Abs Gbar estimate 0.20023874118427837
+GoodOldQuasiNewton:    7 05:47:12     -113.101131        0.317168
+energies -113.10113085427969 -113.10115073499159
 energy change; actual: 0.000020 estimated: -0.000062
-Energy prediction factor 1.3181085147193217
-Force prediction factor 0.1256862086102094
+Energy prediction factor 1.3181492922004603
+Force prediction factor 0.1283849574496881
 Scale factors 0.364431 0.510204
 new radius 0.000100
-eigenvalues 9.32 20.00 20.00
+eigenvalues 8.74 20.00 20.00
 Corrected Newton step: abs(D) = 0.05
-Abs Gbar estimate 0.19927781457133076
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    8 06:27:23     -113.101117        0.316315
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10111650360605 -113.10113085427956
+Abs Gbar estimate 0.199317429596765
+GoodOldQuasiNewton:    8 05:47:59     -113.101117        0.316306
+energies -113.10111650360602 -113.10113085427969
 energy change; actual: 0.000014 estimated: -0.000045
-Energy prediction factor 1.3211364931113176
-Force prediction factor 0.09444601279311975
+Energy prediction factor 1.3211254348921129
+Force prediction factor 0.2542247163324701
 Scale factors 0.364431 0.510204
 new radius 0.000100
-eigenvalues 10.29 20.00 20.00
+eigenvalues 11.72 20.00 20.00
 Corrected Newton step: abs(D) = 0.04
-Abs Gbar estimate 0.19827335461237972
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:    9 06:28:10     -113.101102        0.315588
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlenergies -113.10110207138328 -113.10111650360605
+Abs Gbar estimate 0.19800698916215484
+GoodOldQuasiNewton:    9 05:48:46     -113.101102        0.315477
+energies -113.10110207138328 -113.10111650360602
 energy change; actual: 0.000014 estimated: -0.000045
-Energy prediction factor 1.3237422638563556
-Force prediction factor -0.3123596933194114
+Energy prediction factor 1.3239077765588876
+Force prediction factor -0.9962373408743943
 Scale factors 0.364431 0.364431
 new radius 0.000100
-eigenvalues 7.84 20.00 20.00
-Corrected Newton step: abs(D) = 0.06
-Abs Gbar estimate 0.19779336189209498
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xmlGoodOldQuasiNewton:   10 06:28:56     -113.101088        0.315033
- Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml Using 2 threads
-... ... Reading structure from CO.xyz
-... ... Saving data to CO.orb
-... ... Writing output to CO_summary.xml
+eigenvalues 5.87 20.00 20.00
+Corrected Newton step: abs(D) = 0.08
+Abs Gbar estimate 0.19800502305690132
+GoodOldQuasiNewton:   10 05:49:32     -113.101088        0.315062
 </pre></div></div>
 </div>
 </section>

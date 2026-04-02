@@ -339,17 +339,100 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
+<tr class="row-even"><td><p>gwbse.gw.qp_grid_search_mode</p></td>
+<td><p>adaptive_with_dense_fallback</p></td>
+<td><p>grid-search backend for QP root detection</p></td>
+<td><div class="line-block">
+<div class="line">adaptive</div>
+<div class="line">dense</div>
+<div class="line">adaptive_with_dense_fallback</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_root_finder</p></td>
+<td><p>bisection</p></td>
+<td><p>rootfinder used to refine a sign-change interval</p></td>
+<td><div class="line-block">
+<div class="line">bisection</div>
+<div class="line">brent</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qp_full_window_half_width</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">half-width of the full QP search window around the reference</div>
+<div class="line">energy</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_dense_spacing</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">spacing of the dense QP scan used for robust sign-change</div>
+<div class="line">detection</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qp_adaptive_shell_width</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>radial shell width of the adaptive QP scan</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_adaptive_shell_count</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">number of adaptive shell layers per side; if &gt; 0 it overrides</div>
+<div class="line">qp_adaptive_shell_width</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
 <tr class="row-even"><td><p>gwbse.gw.qp_grid_steps</p></td>
-<td><p>1001</p></td>
-<td><p>number of QP grid points</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">DEPRECATED: legacy number of QP grid points; maps to qp_full_window_half_width</div>
+<div class="line">and qp_adaptive_shell_width together with qp_grid_spacing</div>
+</div>
+</td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>gwbse.gw.qp_grid_spacing</p></td>
-<td><p>0.001</p></td>
-<td><p>spacing of QP grid points</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">DEPRECATED: legacy QP grid spacing; maps to qp_dense_spacing</div>
+<div class="line">and contributes to qp_full_window_half_width together</div>
+<div class="line">with qp_grid_steps</div>
+</div>
+</td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.qp_sc_max_iter</p></td>
+<tr class="row-even"><td><p>gwbse.gw.qp_restrict_search</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">restrict occupied and virtual QP scans away from the zero-energy</div>
+<div class="line">crossing region before retrying the full window</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_zero_margin</p></td>
+<td><p>1e-6</p></td>
+<td><div class="line-block">
+<div class="line">margin below zero used as upper bound for occupied restricted</div>
+<div class="line">scans</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qp_virtual_min_energy</p></td>
+<td><p>-0.1</p></td>
+<td><p>lower bound for virtual restricted scans</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_sc_max_iter</p></td>
 <td><p>100</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for quasiparticle equation</div>
@@ -358,17 +441,17 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.gw.qp_sc_limit</p></td>
+<tr class="row-even"><td><p>gwbse.gw.qp_sc_limit</p></td>
 <td><p>1e-5</p></td>
 <td><p>quasiparticle equation solver convergence</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.sc_max_iter</p></td>
+<tr class="row-odd"><td><p>gwbse.gw.sc_max_iter</p></td>
 <td><p>50</p></td>
 <td><p>Maximum number of iterations in eVGW</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.gw.mixing_order</p></td>
+<tr class="row-even"><td><p>gwbse.gw.mixing_order</p></td>
 <td><p>20</p></td>
 <td><div class="line-block">
 <div class="line">Mixing of QP energies in evGW - 0: plain, 1: linear, &gt;1:</div>
@@ -377,52 +460,52 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.sc_limit</p></td>
+<tr class="row-odd"><td><p>gwbse.gw.sc_limit</p></td>
 <td><p>1e-5</p></td>
 <td><p>evGW convergence criteria</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.gw.mixing_alpha</p></td>
+<tr class="row-even"><td><p>gwbse.gw.mixing_alpha</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing alpha, also linear mixing</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.rebuild_3c_freq</p></td>
+<tr class="row-odd"><td><p>gwbse.gw.rebuild_3c_freq</p></td>
 <td><p>5</p></td>
 <td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.gw.sigma_plot.states</p></td>
+<tr class="row-even"><td><p>gwbse.gw.sigma_plot.states</p></td>
 <td></td>
 <td><p>plot sigma(omega) for the following states, e.g 1 3 5</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.sigma_plot.steps</p></td>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_plot.steps</p></td>
 <td><p>201</p></td>
 <td><p>points to plot</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.gw.sigma_plot.spacing</p></td>
+<tr class="row-even"><td><p>gwbse.gw.sigma_plot.spacing</p></td>
 <td><p>1e-2</p></td>
 <td><p>spacing of points units</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.gw.sigma_plot.filename</p></td>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_plot.filename</p></td>
 <td><p>QPenergies_sigma.dat</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.exctotal</p></td>
+<tr class="row-even"><td><p>gwbse.bse.exctotal</p></td>
 <td><p>10</p></td>
 <td><p>maximum number of BSE states to calculate</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.useTDA</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.useTDA</p></td>
 <td><p>false</p></td>
 <td><p>use TDA for BSE</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.dyn_screen_max_iter</p></td>
+<tr class="row-even"><td><p>gwbse.bse.dyn_screen_max_iter</p></td>
 <td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for perturbative dynamical</div>
@@ -431,7 +514,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.dyn_screen_tol</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.dyn_screen_tol</p></td>
 <td><p>1e-5</p></td>
 <td><div class="line-block">
 <div class="line">convergence tolerance for perturbative dynamical screening</div>
@@ -440,7 +523,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.davidson.correction</p></td>
+<tr class="row-even"><td><p>gwbse.bse.davidson.correction</p></td>
 <td><p>DPR</p></td>
 <td><p>Davidson correction method</p></td>
 <td><div class="line-block">
@@ -449,7 +532,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.davidson.tolerance</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.davidson.tolerance</p></td>
 <td><p>normal</p></td>
 <td><p>Numerical tolerance</p></td>
 <td><div class="line-block">
@@ -460,7 +543,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.davidson.update</p></td>
+<tr class="row-even"><td><p>gwbse.bse.davidson.update</p></td>
 <td><p>safe</p></td>
 <td><p>how large the search space</p></td>
 <td><div class="line-block">
@@ -470,12 +553,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.davidson.maxiter</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.davidson.maxiter</p></td>
 <td><p>50</p></td>
 <td><p>max iterations</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.use_Hqp_offdiag</p></td>
+<tr class="row-even"><td><p>gwbse.bse.use_Hqp_offdiag</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Using symmetrized off-diagonal elements of QP Hamiltonian</div>
@@ -484,17 +567,17 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.print_weight</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.print_weight</p></td>
 <td><p>0.5</p></td>
 <td><p>print exciton WF composition weight larger than minimum</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.fragments.fragment.indices</p></td>
+<tr class="row-even"><td><p>gwbse.bse.fragments.fragment.indices</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>indices of atoms in this fragment, e.g. 1 3 13:17</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling.spin</p></td>
+<tr class="row-odd"><td><p>bsecoupling.spin</p></td>
 <td><p>all</p></td>
 <td><p>Spin type for couplings</p></td>
 <td><div class="line-block">
@@ -504,52 +587,52 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling.degeneracy</p></td>
+<tr class="row-even"><td><p>bsecoupling.degeneracy</p></td>
 <td><p>0</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling.use_perturbation</p></td>
+<tr class="row-odd"><td><p>bsecoupling.use_perturbation</p></td>
 <td><p>true</p></td>
 <td><p>Output coupling via perturbation theory as value</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling.moleculeA.states</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeA.states</p></td>
 <td><p>5</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling.moleculeA.occLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeA.occLevels</p></td>
 <td><p>5</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling.moleculeA.unoccLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeA.unoccLevels</p></td>
 <td><p>5</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling.moleculeB.states</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeB.states</p></td>
 <td><p>5</p></td>
 <td><p>Number of excitons considered</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>bsecoupling.moleculeB.occLevels</p></td>
+<tr class="row-even"><td><p>bsecoupling.moleculeB.occLevels</p></td>
 <td><p>5</p></td>
 <td><p>occupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>bsecoupling.moleculeB.unoccLevels</p></td>
+<tr class="row-odd"><td><p>bsecoupling.moleculeB.unoccLevels</p></td>
 <td><p>5</p></td>
 <td><p>unoccupied levels for CTstates</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling.degeneracy</p></td>
+<tr class="row-even"><td><p>dftcoupling.degeneracy</p></td>
 <td><p>0.0</p></td>
 <td><p>Criterium for the degeneracy of two levels</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftcoupling.levA</p></td>
+<tr class="row-odd"><td><p>dftcoupling.levA</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -558,7 +641,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftcoupling.levB</p></td>
+<tr class="row-even"><td><p>dftcoupling.levB</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
 <div class="line">Output HOMO, …, HOMO-levels; LUMO, …, LUMO+levels,</div>
@@ -567,7 +650,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.name</p></td>
+<tr class="row-odd"><td><p>dftpackage.name</p></td>
 <td><p>xtp</p></td>
 <td><p>Name of the DFT package</p></td>
 <td><div class="line-block">
@@ -576,47 +659,47 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.charge</p></td>
+<tr class="row-even"><td><p>dftpackage.charge</p></td>
 <td><p>0</p></td>
 <td><p>Molecular charge</p></td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.spin</p></td>
+<tr class="row-odd"><td><p>dftpackage.spin</p></td>
 <td><p>1</p></td>
 <td><p>Molecular multiplicity</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.basisset</p></td>
+<tr class="row-even"><td><p>dftpackage.basisset</p></td>
 <td><p>def2-tzvp</p></td>
 <td><p>Basis set for MOs</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.auxbasisset</p></td>
+<tr class="row-odd"><td><p>dftpackage.auxbasisset</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Auxiliary basis set for RI</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.externalfield</p></td>
+<tr class="row-even"><td><p>dftpackage.externalfield</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Field given in x y z components</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.executable</p></td>
+<tr class="row-odd"><td><p>dftpackage.executable</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Path to executable for dftpackage</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.ecp</p></td>
+<tr class="row-even"><td><p>dftpackage.ecp</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Effective Core Potentials for DFT Calculations</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.optimize</p></td>
+<tr class="row-odd"><td><p>dftpackage.optimize</p></td>
 <td><p>false</p></td>
 <td><p>Perform a molecular geometry optimization</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.functional</p></td>
+<tr class="row-even"><td><p>dftpackage.functional</p></td>
 <td><p>XC_HYB_GGA_XC_PBEH</p></td>
 <td><div class="line-block">
 <div class="line">Exchange correlation functional used. You can also specify</div>
@@ -625,27 +708,27 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.scratch</p></td>
+<tr class="row-odd"><td><p>dftpackage.scratch</p></td>
 <td><p>/tmp/qmpackage</p></td>
 <td><p>path to the scratch folder</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.polarization</p></td>
+<tr class="row-even"><td><p>dftpackage.polarization</p></td>
 <td><p>false</p></td>
 <td><p>Calculate polarisation</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.dipole_spacing</p></td>
+<tr class="row-odd"><td><p>dftpackage.dipole_spacing</p></td>
 <td><p>0.1</p></td>
 <td><p>Spacing for splitting multipoles into charges</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.temporary_file</p></td>
+<tr class="row-even"><td><p>dftpackage.temporary_file</p></td>
 <td><p>temp</p></td>
 <td><p>Filename for temporary files without extension</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.convergence_tightness</p></td>
+<tr class="row-odd"><td><p>dftpackage.convergence_tightness</p></td>
 <td><p>tight</p></td>
 <td><p>How accurate the dft self-consistency has to be</p></td>
 <td><div class="line-block">
@@ -656,7 +739,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.cleanup</p></td>
+<tr class="row-even"><td><p>dftpackage.cleanup</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">files to remove after the calculation. Specify the fileextensions</div>
@@ -665,7 +748,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.initial_guess</p></td>
+<tr class="row-odd"><td><p>dftpackage.initial_guess</p></td>
 <td><p>atom</p></td>
 <td><div class="line-block">
 <div class="line">Method to use to make initial guess, independent(electrons)</div>
@@ -681,7 +764,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.orca</p></td>
+<tr class="row-even"><td><p>dftpackage.orca</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">orca specific keywords can be added here, where the xml</div>
@@ -691,12 +774,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
 <td></td>
 <td><p>Indices of atoms in active region</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
 <td><p>0.4</p></td>
 <td><div class="line-block">
 <div class="line">Mulliken population above which orbital is considered</div>
@@ -705,32 +788,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
 <td><p>10000.0</p></td>
 <td><p>Levelshift energy for the projection operator</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.truncate_basis</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.truncate_basis</p></td>
 <td><p>false</p></td>
 <td><p>Truncate the basis-set to active atoms only</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.truncation_threshold</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.truncation_threshold</p></td>
 <td><p>1e-4</p></td>
 <td><p>Threshold to convert an inactive atom to a border atom</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.screening_eps</p></td>
 <td><p>1e-9</p></td>
 <td><p>screening eps</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -742,17 +825,17 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
 <td><p>false</p></td>
 <td><p>forcing UKS path</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -761,22 +844,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -785,32 +868,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.singlet</p></td>
+<tr class="row-odd"><td><p>readjobfile.singlet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -819,7 +902,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.triplet</p></td>
+<tr class="row-even"><td><p>readjobfile.triplet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -828,7 +911,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.electron</p></td>
+<tr class="row-odd"><td><p>readjobfile.electron</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -837,7 +920,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.hole</p></td>
+<tr class="row-even"><td><p>readjobfile.hole</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -846,7 +929,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>linker_names</p></td>
+<tr class="row-odd"><td><p>linker_names</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Name of molecules that should serve as a transition between</div>
@@ -856,7 +939,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>store</p></td>
+<tr class="row-even"><td><p>store</p></td>
 <td></td>
 <td><p>Which kind of data to keep after each run</p></td>
 <td><div class="line-block">
