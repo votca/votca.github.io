@@ -1,0 +1,80 @@
+
+NAME
+****
+**xtp_tightbinding** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**xtp_tightbinding** [OPTIONS]
+
+**xtp_tightbinding** [--help]
+
+
+
+DESCRIPTION
+***********
+                        [--init-state-idx INIT_STATE_IDX]
+                        [--init-sigma INIT_SIGMA] [--noise-sigma NOISE_SIGMA]
+                        [--noise-tau NOISE_TAU]
+                        [--n-realisations N_REALISATIONS]
+                        [--thermal-T THERMAL_T] [--noise-couplings]
+                        [--noise-sigma-coupling NOISE_SIGMA_COUPLING]
+
+VOTCA TB Hamiltonian assembler
+
+
+
+
+
+
+OPTIONS
+*******
+.. highlight:: none
+
+::
+
+  options:
+  
+    -h, --help            show this help message and exit
+    --input INPUT         Path to VOTCA jobs XML file
+    --model {hole,electron,singlet,triplet,transport}
+                          Model type. 'transport' combines hole+electron
+    --n-states N_STATES   Number of lowest eigenstates (default: all)
+    --dense               Use dense matrices (default: sparse)
+    --explicit-ct         Keep CT states for ALL BSE pairs, never downfold
+                          (recommended when optical spectra matter)
+    --qp-energies         Use GW QPpert energies as MO site energies instead of
+                          KS eigenvalues (hole/electron/transport only; falls
+                          back to KS with warning if unavailable)
+    --output FILE.h5      Write all results to an HDF5 file for postprocessing
+                          (requires h5py)
+    --dynamics            Run wavepacket dynamics after solving the TB problem
+    --t-max T_MAX         Propagation time [fs] (default: 500)
+    --dt DT               Output timestep [fs] (default: 1)
+    --init-state {site,gaussian,thermal}
+                          Initial state type (default: site)
+    --init-frag INIT_FRAG
+                          Fragment ID for initial excitation (default: first)
+    --init-state-idx INIT_STATE_IDX
+                          State index within fragment (default: 0)
+    --init-sigma INIT_SIGMA
+                          Gaussian wavepacket width in fragment units (default:
+  
+                          1)
+    --noise-sigma NOISE_SIGMA
+                          Site energy noise amplitude [meV] (0=noiseless,
+                          default: 0)
+    --noise-tau NOISE_TAU
+                          Noise correlation time [fs] (default: 50)
+    --n-realisations N_REALISATIONS
+                          Stochastic realisations (default: 200)
+    --thermal-T THERMAL_T
+                          Temperature for thermal initial state [K] (default:
+  
+                          300)
+    --noise-couplings     Also apply OU noise to off-diagonal coupling elements.
+                          Physical origin: intermolecular motions modulating J.
+                          More expensive than site-energy-only noise.
+    --noise-sigma-coupling NOISE_SIGMA_COUPLING
+                          Coupling noise amplitude [meV] (default: noise-
+                          sigma/3). Only used when --noise-couplings is set.
