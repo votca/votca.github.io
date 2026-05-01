@@ -17,6 +17,8 @@
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -120,15 +122,15 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Requirement already satisfied: seaborn in /usr/lib/python3.14/site-packages (0.13.2)
-Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.5)
+Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.4.4)
 Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.3)
 Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in /usr/lib64/python3.14/site-packages (from seaborn) (3.10.8)
 Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.3.3)
 Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.61.0)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.62.1)
 Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.5.0)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (25.0)
-Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (11.3.0)
+Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (12.2.0)
 Requirement already satisfied: pyparsing&gt;=3 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.1.2)
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.14/site-packages (from pandas&gt;=1.2-&gt;seaborn) (2026.1)
@@ -169,7 +171,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 8a1455c (compiled Apr 30 2026, 01:12:31)
+xtp_run, version 2026-dev gitid: 8a1455c (compiled May  1 2026, 08:02:50)
 
 Initializing calculator
 ... eanalyze
@@ -237,7 +239,7 @@ eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_10079/2362228021.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_8048/2362228021.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
@@ -286,7 +288,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 8a1455c (compiled Apr 30 2026, 01:12:31)
+xtp_run, version 2026-dev gitid: 8a1455c (compiled May  1 2026, 08:02:50)
 
 Initializing calculator
 ... ianalyze
@@ -324,7 +326,7 @@ Changes have not been written to state file.
 <div class="highlight"><pre>
 &lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_10079/886975016.py:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_8048/886975016.py:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
@@ -373,7 +375,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 8a1455c (compiled Apr 30 2026, 01:12:31)
+xtp_run, version 2026-dev gitid: 8a1455c (compiled May  1 2026, 08:02:50)
 
 Initializing calculator
 ... kmcmultiple
