@@ -394,6 +394,23 @@ The following table contains the defaults input options for the calculator, The 
      - 0.7
      - mixing alpha, also linear mixing
      - float+
+   * - gwbse.gw.do_qsgw
+     - false
+     - Run Quasiparticle self-consistent GW after evGW or G0W0
+     - bool
+   * - gwbse.gw.qsgw_max_iterations
+     - 20
+     - maximum number of iterations is QSGW
+     - int+
+   * - gwbse.gw.qsgw_sc_limit
+     - 1e-5
+     - QSGW convergence threshold on QP energies
+     - float+
+   * - gwbse.gw.qsgw_max_virt_correction
+     - 0.5
+     - | QSGW: pertGW energy threshold for inclusion of virtual
+       | states
+     - float+
    * - gwbse.gw.rebuild_3c_freq
      - 5
      - how often the 3c integrals in iterate should be rebuilt

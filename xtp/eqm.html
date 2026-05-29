@@ -469,6 +469,30 @@ The following table contains the defaults input options for the calculator, The 
 <td><p>mixing alpha, also linear mixing</p></td>
 <td><p>float+</p></td>
 </tr>
+<tr class="row-odd"><td><p>gwbse.gw.do_qsgw</p></td>
+<td><p>false</p></td>
+<td><p>Run Quasiparticle self-consistent GW after evGW or G0W0</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qsgw_max_iterations</p></td>
+<td><p>20</p></td>
+<td><p>maximum number of iterations is QSGW</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qsgw_sc_limit</p></td>
+<td><p>1e-5</p></td>
+<td><p>QSGW convergence threshold on QP energies</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qsgw_max_virt_correction</p></td>
+<td><p>0.5</p></td>
+<td><div class="line-block">
+<div class="line">QSGW: pertGW energy threshold for inclusion of virtual</div>
+<div class="line">states</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
 <tr class="row-odd"><td><p>gwbse.gw.rebuild_3c_freq</p></td>
 <td><p>5</p></td>
 <td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
