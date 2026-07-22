@@ -430,6 +430,13 @@ The following table contains the defaults input options for the calculator, The 
      - false
      - forcing UKS path
      - bool
+   * - dftpackage.xtpdft.compute_forces
+     - false
+     - | Compute analytic ground-state DFT nuclear forces (RI,
+       | and hybrid-exchange for UKS) and store them in the orb
+       | (HDF5) file. Adds real cost to every converged SCF, so
+       | this is opt-in.
+     - bool
    * - dftpackage.xtpdft.convergence.energy
      - 1E-7
      - DeltaE at which calculation is converged
