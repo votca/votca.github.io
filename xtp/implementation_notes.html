@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Implementation Notes &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Charge and Energy Transfer Theory" href="transfer_theory.html" />
+    <link rel="prev" title="2. Electronic Structure Theories" href="elstruc_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Implementation Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dft-self-consistent-field-convergence">3.1. DFT: self-consistent field convergence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#direct-minimization-fallback">3.1.1. Direct-minimization fallback</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constrained-dft">3.2. Constrained DFT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hirshfeld-weight-function-and-forces">3.2.1. Hirshfeld weight function and forces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gw-bse">3.3. GW-BSE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">6. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">7. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">8. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">9. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Implementation Notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/implementation_notes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="implementation-notes">
+<h1><span class="section-number">3. </span>Implementation Notes<a class="headerlink" href="#implementation-notes" title="Link to this heading">¶</a></h1>
+<p>This page collects practical, code-level notes on the internal DFT, CDFT, and GW-BSE
+implementations that go beyond the level of detail in <a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>. It is aimed
+at developers and users who need to understand <em>why</em> a calculation behaves the way it
+does, not just the underlying theory.</p>
+<section id="dft-self-consistent-field-convergence">
+<h2><span class="section-number">3.1. </span>DFT: self-consistent field convergence<a class="headerlink" href="#dft-self-consistent-field-convergence" title="Link to this heading">¶</a></h2>
+<p>The internal DFT engine dispatches to one of two convergence-acceleration classes
+depending on the system: a restricted-Kohn-Sham (RKS) class for closed-shell systems
+with equal numbers of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> electrons, and a separate,
+unrestricted-Kohn-Sham (UKS) class for everything else. The two share the same set of
+convergence options, but are otherwise independent implementations; nothing described
+below for the UKS path affects RKS calculations.</p>
+<p>Each SCF iteration builds a Fock matrix guess by one of three mutually-exclusive
+methods, in order of preference:</p>
+<ul class="simple">
+<li><p><strong>A-DIIS</strong> (energy-based DIIS), used while the SCF error is still relatively large,
+and switching to</p></li>
+<li><p><strong>plain (commutator) DIIS</strong> <a class="reference internal" href="bibliography.html#pulay-1980" id="id1"><span>[Pulay:1980]</span></a> once the error is small, both extrapolating
+a new Fock matrix guess from a short history of previous Fock and density matrices,
+or</p></li>
+<li><p><strong>linear mixing</strong> of the current density with that of the previous iteration, used
+whenever DIIS-family extrapolation is judged to be unreliable for the current
+iteration.</p></li>
+</ul>
+<p>Independently of which of these is chosen, two further, always-available corrections
+are applied to the resulting Fock matrix before it is diagonalized: level shifting of
+the virtual-orbital block, and (for the mixing branch specifically) an <em>adaptive</em>
+damping parameter that ramps from a base value toward a configurable ceiling as
+consecutive convergence failures accumulate, and relaxes back toward the base value as
+readily as it climbed once the SCF starts succeeding again. Both the damping ramp and
+a trailing-average stall detector (see below) are modeled directly on the equivalent
+mechanisms in ORCA’s own SCF converger, whose behavior was compared against directly
+during development of this feature.</p>
+<section id="direct-minimization-fallback">
+<h3><span class="section-number">3.1.1. </span>Direct-minimization fallback<a class="headerlink" href="#direct-minimization-fallback" title="Link to this heading">¶</a></h3>
+<p>DIIS-family extrapolation is well known to struggle for open-shell systems with a
+small HOMO-LUMO gap, or for systems whose physically correct electronic configuration
+is not obviously the lowest-energy solution DIIS would otherwise converge to. When
+either</p>
+<ul class="simple">
+<li><p>DIIS-family extrapolation has failed for several consecutive iterations, or</p></li>
+<li><p>the SCF error is failing to improve by more than a set tolerance, on average, over a
+trailing window of iterations (evaluated only after a minimum number of total
+iterations, so that this check is not triggered spuriously early in a calculation),</p></li>
+</ul>
+<p>the UKS engine falls back to direct energy minimization in orbital-rotation space,
+rather than continuing to rely on DIIS-family extrapolation or plain mixing alone. This
+mirrors the automatic switch to a Trust-Region Augmented-Hessian (TRAH) converger found
+in mature quantum-chemistry codes such as ORCA.</p>
+<p>The fallback solves the augmented-Hessian eigenvalue problem of <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id2"><span>[Helmich-Paris:2021]</span></a>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} 0 &amp; \alpha\, \mathbf{g}^T \\ \alpha\, \mathbf{g} &amp; \mathbf{H} \end{pmatrix}
+\begin{pmatrix} 1 \\ \boldsymbol{\kappa}(\alpha) \end{pmatrix}
+= \mu \begin{pmatrix} 1 \\ \boldsymbol{\kappa}(\alpha) \end{pmatrix} ,\end{split}\]</div>
+<p>for its lowest eigenpair, which simultaneously yields a level shift <span class="math notranslate nohighlight">\(\mu\)</span> and an
+orbital-rotation vector <span class="math notranslate nohighlight">\(\boldsymbol{\kappa}\)</span>. Unlike a fixed, diagonal Hessian
+approximation, this correctly handles the indefinite Hessian directions that occur near
+genuine electronic near-degeneracies, at the cost of needing an iterative solve (via a
+Davidson eigensolver) rather than a single diagonalization. The scalar <span class="math notranslate nohighlight">\(\alpha\)</span> is
+adjusted by bisection so that the resulting step stays within an adaptive trust radius,
+following the same step-control logic (accept, shrink, or grow the trust radius
+depending on how well the step’s predicted energy change matches the energy change
+actually observed) described in <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id3"><span>[Helmich-Paris:2021]</span></a>.</p>
+<p>The Hessian-vector product required by the Davidson solver (“sigma vector”) is
+evaluated by a <em>central</em> finite difference of the orbital gradient, rather than the
+exact, analytic coupled-perturbed response. This is a deliberate simplification:
+implementing the exact response would require a second, coupled-perturbed Fock build
+using the second functional derivative of the exchange-correlation energy, which has
+not been implemented. A central (rather than one-sided) finite difference is used
+specifically because a one-sided difference does not preserve the exact symmetry of the
+true Hessian, which was found in practice to break the Davidson solver’s own
+convergence.</p>
+<p>For open-shell systems, the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> spin channels can either be
+treated independently – solving two separate augmented-Hessian problems, one per
+channel, holding the other channel’s density fixed – or as a single, coupled problem
+over the combined rotation space of both channels together. The coupled treatment is
+generally more robust, since it accounts for the coupling between the two channels
+through the shared Coulomb potential and the exchange-correlation kernel’s cross-spin
+terms; the independent treatment is cheaper per step, since each of the two smaller
+eigenvalue problems is faster to solve than the one, larger combined problem. Both are
+available; the coupled treatment is preferred whenever the necessary Fock-matrix-build
+callback has been supplied.</p>
+</section>
+</section>
+<section id="constrained-dft">
+<h2><span class="section-number">3.2. </span>Constrained DFT<a class="headerlink" href="#constrained-dft" title="Link to this heading">¶</a></h2>
+<p>CDFT is implemented as two nested loops around the ordinary UKS SCF machinery described
+above: an inner loop that runs an ordinary UKS SCF for a fixed value of the constraint
+potential <span class="math notranslate nohighlight">\(V_c\)</span>, and an outer bisection loop that adjusts <span class="math notranslate nohighlight">\(V_c\)</span> until the
+constrained population, evaluated once the inner SCF has converged, matches the
+requested target to within a set tolerance. The constraint potential itself,
+<span class="math notranslate nohighlight">\(V_c\, w_c(\mathbf{r})\)</span>, is added directly to the Fock matrix inside the inner
+SCF, so it participates in DIIS-family extrapolation exactly like the rest of the Fock
+matrix; no special handling is needed there.</p>
+<p>Each new inner SCF is warm-started from the previous one’s converged orbitals, since
+neighboring values of <span class="math notranslate nohighlight">\(V_c\)</span> along the bisection typically have similar,
+neighboring solutions. This is generally beneficial, but is not guaranteed to be: if a
+bisection step is large (for example, during the initial bracket-expansion phase, before
+the root has been localized to a narrow interval) and the electronic structure changes
+character across that interval, warm-starting from the previous, qualitatively
+different solution can bias the new inner SCF toward the wrong electronic state rather
+than simply providing a mildly imperfect starting point.</p>
+<section id="hirshfeld-weight-function-and-forces">
+<h3><span class="section-number">3.2.1. </span>Hirshfeld weight function and forces<a class="headerlink" href="#hirshfeld-weight-function-and-forces" title="Link to this heading">¶</a></h3>
+<p>The Hirshfeld partitioning of <a class="reference internal" href="elstruc_theory.html#equation-equ-hirshfeld-weight">Eq.2.3</a> is evaluated on the same
+real-space integration grid used for the exchange-correlation energy, using free-atom
+reference densities computed once per element at the start of the calculation. Because
+this weight function depends on the nuclear positions, the CDFT contribution to the
+nuclear forces requires several terms beyond the ordinary Hellmann-Feynman force,
+following <a class="reference internal" href="bibliography.html#oberhofer-2009" id="id4"><span>[Oberhofer:2009]</span></a>:</p>
+<ul class="simple">
+<li><p>the derivative of the weight function itself with respect to the nuclear positions,</p></li>
+<li><p>the derivative of the grid point weights (from the space-partitioning scheme
+underlying the numerical integration) with respect to the nuclear positions,</p></li>
+<li><p>a Pulay-type term from the basis functions themselves moving with the nuclei, and</p></li>
+<li><p>a term from the translation of the integration grid points as the nuclei move.</p></li>
+</ul>
+<p>All four terms are evaluated explicitly and summed, and have been validated against
+finite-difference forces on constrained systems.</p>
+</section>
+</section>
+<section id="gw-bse">
+<h2><span class="section-number">3.3. </span>GW-BSE<a class="headerlink" href="#gw-bse" title="Link to this heading">¶</a></h2>
+<p>The <span class="math notranslate nohighlight">\(GW\)</span> and Bethe-Salpeter equation implementations, described theoretically in
+<a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>, are built on top of the ground-state DFT orbitals and Fock matrix
+produced by the machinery above – either from the internal DFT engine or from the
+ORCA interface – and do not themselves depend on which SCF convergence path (ordinary
+DIIS-family, direct-minimization, or CDFT) produced that reference. Consult the code
+reference for implementation-level detail on the GW self-energy and BSE Hamiltonian
+construction; this page focuses specifically on the ground-state SCF machinery that
+CDFT and difficult open-shell systems most directly exercise.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="elstruc_theory.html" class="btn btn-neutral float-left" title="2. Electronic Structure Theories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transfer_theory.html" class="btn btn-neutral float-right" title="4. Charge and Energy Transfer Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
