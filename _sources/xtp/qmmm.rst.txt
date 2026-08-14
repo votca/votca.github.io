@@ -507,6 +507,24 @@ The following table contains the defaults input options for the calculator, The 
      - | Maximum number of outer (Lagrange-multiplier, bisection)
        | iterations -- each one is a full, warm-started inner SCF
      - int+
+   * - regions.qmregion.dftpackage.xtpdft.cdft.guess_strategy
+     - warmstart
+     - | How each outer bisection trial's own inner SCF is started,
+       | after the very first trial. 'warmstart' (default) reuses
+       | the immediately PRECEDING trial's own converged MOs (initial_guess
+       | is forced to 'orbfile' internally) for every subsequent
+       | trial -- usually helps, since consecutive lambda values
+       | are often close. 'fresh' instead re-uses the calculation's
+       | own original, top-level initial_guess setting for every
+       | trial, never warm-starting from a previous lambda's own
+       | MOs at all -- worth trying if warm-starting itself seems
+       | to be part of a convergence difficulty (e.g. if consecutive
+       | lambda trials correspond to substantially different electronic
+       | structures, a previous trial's own converged density could
+       | be a worse starting point than a fresh guess, not a better
+       | one).
+     - | warmstart
+       | fresh
    * - regions.qmregion.dftpackage.xtpdft.convergence.energy
      - 1E-7
      - DeltaE at which calculation is converged
@@ -575,6 +593,18 @@ The following table contains the defaults input options for the calculator, The 
        | by default) up to this ceiling only when actually needed,
        | rather than paying the cost of heavy damping throughout.
      - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.davidson_max_iter
+     - 50
+     - | Maximum iterations for the Davidson eigensolver used by
+       | the direct-minimization (augmented-Hessian) fallback,
+       | engaged when ADIIS/DIIS themselves are struggling. A genuinely
+       | difficult system (e.g. a strong constraint spanning a
+       | large fragment) can leave this solver still short of its
+       | own convergence tolerance at the default -- confirmed
+       | directly, from a real run, that the previous, hardcoded
+       | 50 was not always enough. Not CDFT-specific: this fallback
+       | can also engage for an ordinary, non-CDFT UKS calculation.
+     - int+
    * - regions.qmregion.localize.max_iterations
      - 10000
      - Maximum number of iterations for PM Localization

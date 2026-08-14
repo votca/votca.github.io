@@ -959,12 +959,37 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
+<td><p>warmstart</p></td>
+<td><div class="line-block">
+<div class="line">How each outer bisection trial’s own inner SCF is started,</div>
+<div class="line">after the very first trial. ‘warmstart’ (default) reuses</div>
+<div class="line">the immediately PRECEDING trial’s own converged MOs (initial_guess</div>
+<div class="line">is forced to ‘orbfile’ internally) for every subsequent</div>
+<div class="line">trial – usually helps, since consecutive lambda values</div>
+<div class="line">are often close. ‘fresh’ instead re-uses the calculation’s</div>
+<div class="line">own original, top-level initial_guess setting for every</div>
+<div class="line">trial, never warm-starting from a previous lambda’s own</div>
+<div class="line">MOs at all – worth trying if warm-starting itself seems</div>
+<div class="line">to be part of a convergence difficulty (e.g. if consecutive</div>
+<div class="line">lambda trials correspond to substantially different electronic</div>
+<div class="line">structures, a previous trial’s own converged density could</div>
+<div class="line">be a worse starting point than a fresh guess, not a better</div>
+<div class="line">one).</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">warmstart</div>
+<div class="line">fresh</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -973,22 +998,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -997,32 +1022,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
 <td><p>0.8</p></td>
 <td><div class="line-block">
 <div class="line">DIIS error below which mixing is disabled – independent</div>
@@ -1037,7 +1062,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
 <td><p>0.98</p></td>
 <td><div class="line-block">
 <div class="line">Ceiling mixing can adaptively ramp up toward as the SCF</div>
@@ -1051,6 +1076,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 <td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
+<td><p>50</p></td>
+<td><div class="line-block">
+<div class="line">Maximum iterations for the Davidson eigensolver used by</div>
+<div class="line">the direct-minimization (augmented-Hessian) fallback,</div>
+<div class="line">engaged when ADIIS/DIIS themselves are struggling. A genuinely</div>
+<div class="line">difficult system (e.g. a strong constraint spanning a</div>
+<div class="line">large fragment) can leave this solver still short of its</div>
+<div class="line">own convergence tolerance at the default – confirmed</div>
+<div class="line">directly, from a real run, that the previous, hardcoded</div>
+<div class="line">50 was not always enough. Not CDFT-specific: this fallback</div>
+<div class="line">can also engage for an ordinary, non-CDFT UKS calculation.</div>
+</div>
+</td>
+<td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>readjobfile.singlet</p></td>
 <td><p>OPTIONAL</p></td>
