@@ -43,3 +43,18 @@ OPTIONS
     -i [ --first-frame ] arg (=0)    start from this frame
     -b [ --begin ] arg (=0)          start time in simulation
     -n [ --nframes ] arg (=1)        number of frames to process
+    --guess-bonds                    guess real bond connectivity from atom 
+                                   positions alone (a simple, 
+                                   van-der-Waals-radii-based heuristic, matching 
+                                   the one VMD itself uses for visualization -- 
+                                   restricted to atom pairs within the same real 
+                                   MD molecule only) -- ONLY if the loaded 
+                                   topology genuinely has no real bond 
+                                   connectivity of its own at all; never used if 
+                                   real bonds are already present. Writes a real,
+                                   direct, inspectable report of every guessed 
+                                   bond to guessed_bonds_report.txt -- always 
+                                   review this before trusting the guessed 
+                                   connectivity for anything at all, since this 
+                                   heuristic can be genuinely wrong (see VMD's 
+                                   own developers' documented caveats about it).

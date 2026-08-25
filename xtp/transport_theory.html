@@ -58,14 +58,15 @@
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">5. Charge and Energy Transport Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#partitioning-of-the-system">5.1. Partitioning of the system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#site-energies">5.2. Site Energies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electronic-couplings">5.3. Electronic Couplings</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dipro">5.3.1. DIPRO</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pod2">5.3.2. POD2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#h-saturation-of-cut-segment-boundaries">5.2. H-Saturation of Cut Segment Boundaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-energies">5.3. Site Energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electronic-couplings">5.4. Electronic Couplings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dipro">5.4.1. DIPRO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pod2">5.4.2. POD2</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#reorganization-energies">5.4. Reorganization energies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#directed-graphs">5.5. Directed Graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reorganization-energies">5.5. Reorganization energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directed-graphs">5.6. Directed Graphs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyxtp.html">6. XTP ASE Interface</a></li>
@@ -139,8 +140,44 @@
 <p>In small molecule systems each molecule is typically chosen as a single conjugated segment, because electronic structure calculations typically show complete delocalization of electronic states over the individual molecules. In polymeric systems this simple approach may fail, as torsion of the backbone and electron-phonon interaction may lead to localization on polymeric subunits instead of delocalization over the whole polymer chain. In these cases quantum mechanical calculations of the whole chain are necessary to determine localization sites.</p>
 <p>After the system is partitioned into segments, these segments are additionally separated into rigid fragments, as depicted in <a class="reference internal" href="#fig-theory-fragment-def"><span class="std std-numref">Fig. 5.1</span></a>. These fragments are typically insensitive to thermal fluctuations, e.g., a thiophene or benzene ring stays planar even at elevated temperatures. Although the fragment definitions are theoretically not necessary for the calculation of rates, the molecular dynamics configurations of the rigid fragments are often replaced with quantum mechanically optimized rigid fragments, in order to <em>integrate out</em> fast degrees of freedom, e.g. the promoting modes, which are already described in the rate models. This has the additional benefit of removing some of the mismatch between quantum mechanically obtained geometries and molecular dynamics results.</p>
 </section>
+<section id="h-saturation-of-cut-segment-boundaries">
+<h2><span class="section-number">5.2. </span>H-Saturation of Cut Segment Boundaries<a class="headerlink" href="#h-saturation-of-cut-segment-boundaries" title="Link to this heading">¶</a></h2>
+<p>Cutting a polymer chain into segments, as in <a class="reference internal" href="#fig-theory-fragment-def"><span class="std std-numref">Fig. 5.1</span></a> (c), necessarily
+cuts through one or more real, covalent bonds wherever a segment boundary falls between two
+bonded atoms – e.g. between consecutive repeat units of a backbone, or between a backbone and a
+side chain mapped as its own, separate segment. Left alone, this leaves the corresponding
+boundary atom with a genuine dangling valence, which is not a physically meaningful starting
+point for a quantum calculation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ipodcoupling</span></code> calculator (an <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code> job calculator, computing an electronic
+coupling between two neighbor-list segments via POD2, Projection Operator Diabatization)
+addresses this the same way standard QM/MM link-atom schemes do: every cut bond is automatically
+capped with a new hydrogen atom, placed along the original bond’s own direction at a typical C-H
+bond length, then relaxed (holding every original, heavy atom fixed) via a constrained molecular-
+mechanics optimization, so the new atom’s own local geometry is reasonable rather than merely
+geometrically placed. This saturation is applied only where a cut bond’s own partner segment is
+not already part of the same calculation – a bond to a segment that is genuinely included on
+both sides (e.g. the direct bond between the two neighbor-list segments themselves) is left
+untouched, since it is not actually cut within that specific pair’s own supermolecule at all.</p>
+<p>Where the two neighbor-list segments are not directly bonded, but are instead connected through
+one or more intermediate segments along the same real, covalent chain (for instance, a polymer
+repeat unit bridging two segments that are themselves further apart along the backbone), these
+linking segments can optionally be included in the calculation too, positioned periodic-boundary-
+correctly along the real bond chain connecting them; their own atoms are not assigned to either
+of the two, principal donor/acceptor fragments used in the POD2 coupling itself.</p>
+<p>This whole mechanism depends entirely on the underlying MD topology actually carrying real bond
+connectivity of its own – not every topology reader does: one that only ever provides atom
+positions (for instance, a structure sourced from elsewhere with only a “fake” topology attached)
+leaves <code class="docutils literal notranslate"><span class="pre">ipodcoupling</span></code> unable to detect any external bonds at all, and H-saturation silently
+does nothing. Both <code class="docutils literal notranslate"><span class="pre">xtp_map</span></code> and <code class="docutils literal notranslate"><span class="pre">ipodcoupling</span></code> warn directly if this is the case. For a
+topology that genuinely has no bond data of its own, <code class="docutils literal notranslate"><span class="pre">xtp_map</span></code>’s <code class="docutils literal notranslate"><span class="pre">--guess-bonds</span></code> option can
+infer one instead: atom pairs within the same molecule are considered bonded if their separation
+is less than 60% of the sum of their van der Waals radii, the same simple heuristic VMD itself
+uses for visualization. This is never applied automatically, and every guessed bond is written to
+a real, inspectable report – the heuristic is a known-imperfect approximation, and its result
+should be checked before being trusted for anything at all.</p>
+</section>
 <section id="site-energies">
-<h2><span class="section-number">5.2. </span>Site Energies<a class="headerlink" href="#site-energies" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Site Energies<a class="headerlink" href="#site-energies" title="Link to this heading">¶</a></h2>
 <p>The site energy, <span class="math notranslate nohighlight">\(\Delta E_a\)</span>, of a molecule <span class="math notranslate nohighlight">\(a\)</span> is basically defined via <a class="reference internal" href="transfer_theory.html#equation-equ-coarsesitee">Eq.4.7</a>. Although this is a simple definition it is frayed with computational difficulties as the energy <span class="math notranslate nohighlight">\(U_a\)</span> not only depends on the isolated molecule but also the chemical environment it is located in. As discussed before, the electronic state also must be sufficiently localized on the molecule to even make the definition of a site energy valid. Sufficient localization entails weaker coupling to the surrounding, allowing us to treat the chemical environment as a small perturbation to the electronic state.</p>
 <p>Although there are exchange, dispersion, and electrostatic inrteractions between molecules, we focues only on the last, electrostatic interaction. There are a couple of reasons for this approximation. Firstly, we are not really interested in the absolute values of site energies but in differences between different electronic states, e.g. <span class="math notranslate nohighlight">\(\Delta E_a=U^1_a-U^0_a\)</span>. Consequently, all interactions, which influence both states nearly equally, e.g. dispersion interaction, cancel out. Secondly, electrostatic interaction is very directional, thus it is very sensitive to changes in the charge distribution on the molecules. Thirdly, and most importantly it is typically the strongest interaction present, due to its slow decay with distance. So the site energy of a molecule <span class="math notranslate nohighlight">\(a\)</span> in state <span class="math notranslate nohighlight">\(i\)</span> is decomposed into the energy from the internal degrees of freedom <span class="math notranslate nohighlight">\(E_\text{int}\)</span> and the electrostatic contribution from the environment <span class="math notranslate nohighlight">\(E_\text{estat}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-equ-coarse-siteenergydiff">
@@ -209,10 +246,10 @@ Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule
 <p>where <span class="math notranslate nohighlight">\(j\)</span> runs over all grid points, <span class="math notranslate nohighlight">\(\phi_{el}(\mathbf{g}_j)\)</span> is the respective potential at that grid point and <span class="math notranslate nohighlight">\(N\)</span> is the number of atomic sites. <span class="math notranslate nohighlight">\(\lambda\)</span> is a Lagrange multiplier to constrain the optimization to the desired total charge of the molecule <span class="math notranslate nohighlight">\(q_{\text{mol}}\)</span>.</p>
 </section>
 <section id="electronic-couplings">
-<h2><span class="section-number">5.3. </span>Electronic Couplings<a class="headerlink" href="#electronic-couplings" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">5.4. </span>Electronic Couplings<a class="headerlink" href="#electronic-couplings" title="Link to this heading">¶</a></h2>
 <p>The electronic coupling <span class="math notranslate nohighlight">\(J_{AB}\)</span> between two diabatic states <span class="math notranslate nohighlight">\(\ket{A}\)</span> and <span class="math notranslate nohighlight">\(\ket{B}\)</span>, introduced in <a class="reference internal" href="transfer_theory.html#equation-equ-theory-electroniccoupling">Eq.4.3</a>, cannot be evaluated directly, as the diabatic states themselves are, in general, not accessible from an ordinary electronic structure calculation. In practice <span class="math notranslate nohighlight">\(J_{AB}\)</span> has to be approximated from quantities that quantum-chemistry codes do provide: the molecular orbitals and Fock/Kohn-Sham matrices of one or more auxiliary calculations. VOTCA provides two such projective schemes, DIPRO and POD2, differing in which auxiliary calculations they require and, consequently, in which pairs of fragments they are suited for.</p>
 <section id="dipro">
-<h3><span class="section-number">5.3.1. </span>DIPRO<a class="headerlink" href="#dipro" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">5.4.1. </span>DIPRO<a class="headerlink" href="#dipro" title="Link to this heading">¶</a></h3>
 <p>DIPRO (dimer projection) <a class="reference internal" href="bibliography.html#baumeier-2010" id="id5"><span>[Baumeier:2010]</span></a> approximates the diabatic states <span class="math notranslate nohighlight">\(\ket{A}\)</span>, <span class="math notranslate nohighlight">\(\ket{B}\)</span> by the frontier molecular orbitals <span class="math notranslate nohighlight">\(\phi^A\)</span>, <span class="math notranslate nohighlight">\(\phi^B\)</span> of the two, separately converged monomers <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. Because the monomers are calculated in isolation, this approximation is only meaningful if the two fragments are not covalently bonded to each other, e.g. two neighboring molecules in a morphology.</p>
 <p>Since <span class="math notranslate nohighlight">\(\phi^A\)</span> and <span class="math notranslate nohighlight">\(\phi^B\)</span> are not eigenfunctions of the combined, dimer Hamiltonian <span class="math notranslate nohighlight">\(\hat{H}^{AB}\)</span>, they are first projected onto the manifold of dimer molecular orbitals <span class="math notranslate nohighlight">\(\{\psi_i^D\}\)</span>, obtained from a third, combined calculation on the dimer <span class="math notranslate nohighlight">\(AB\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-equ-theory-dipro-projection">
@@ -226,7 +263,7 @@ Every atom <span class="math notranslate nohighlight">\(a\)</span> of a molecule
 <p>where <span class="math notranslate nohighlight">\(e_{A(B)}=\braket{\phi^{A(B)}|\hat{H}^{AB}|\phi^{A(B)}}\)</span> are the site energies of the (raw, not yet orthogonalized) monomer states within the dimer. DIPRO thus requires three separate quantum-chemical calculations per pair (monomer <span class="math notranslate nohighlight">\(A\)</span>, monomer <span class="math notranslate nohighlight">\(B\)</span>, dimer <span class="math notranslate nohighlight">\(AB\)</span>), which is the origin of its main practical limitation: it cannot represent a covalent bond crossing the boundary between fragments <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, since such a bond does not exist in either isolated monomer calculation at all.</p>
 </section>
 <section id="pod2">
-<h3><span class="section-number">5.3.2. </span>POD2<a class="headerlink" href="#pod2" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">5.4.2. </span>POD2<a class="headerlink" href="#pod2" title="Link to this heading">¶</a></h3>
 <p>Projection Operator Diabatization, in its POD2 variant <a class="reference internal" href="bibliography.html#ghan-2020" id="id6"><span>[Ghan:2020]</span></a>, addresses exactly this limitation. Rather than combining two, separately converged monomer calculations, POD2 starts from a single, already self-consistent calculation on the intact, combined system, e.g. a single molecule containing both fragments <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> connected by a covalent bond. The converged Fock matrix <span class="math notranslate nohighlight">\(F\)</span> of this single calculation, expressed in the atomic orbital (AO) basis, is partitioned into fragment blocks according to which fragment each AO basis function belongs to:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}F=
@@ -249,7 +286,7 @@ S_{BA} &amp; S_{BB}
 </section>
 </section>
 <section id="reorganization-energies">
-<h2><span class="section-number">5.4. </span>Reorganization energies<a class="headerlink" href="#reorganization-energies" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">5.5. </span>Reorganization energies<a class="headerlink" href="#reorganization-energies" title="Link to this heading">¶</a></h2>
 <p>In Marcus theory the nuclear rearrangement on excitation and deexcitation of a molecule are expressed in the two reorganization energies:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
@@ -274,7 +311,7 @@ S_{BA} &amp; S_{BB}
 <p>The calculation of <span class="math notranslate nohighlight">\(U^1(\xi^1)\)</span> requires a geometry optimization to find the nuclear configuration with the lowest energy. Especially for excited states, these geometry optimizations are extremely costly. As a further approximation the reorganization is assumed to be independent of the molecular environment. In doing so, the value <span class="math notranslate nohighlight">\(\lambda\)</span> only has to be calculated once for each molecular species in the system at hand, instead of for every molecule.</p>
 </section>
 <section id="directed-graphs">
-<h2><span class="section-number">5.5. </span>Directed Graphs<a class="headerlink" href="#directed-graphs" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">5.6. </span>Directed Graphs<a class="headerlink" href="#directed-graphs" title="Link to this heading">¶</a></h2>
 <p>After calculating all rates between the segments we have reduced the real system of molecules to a discrete irregular lattice of sites, which are connected (<a class="reference internal" href="#fig-theory-directedgraph"><span class="std std-numref">Fig. 5.4</span></a>). These connections are also called edges. The combination of vertices and edges is called a graph. The graph that results from transfer rate theory is weighted, as the edges connecting vertices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> have different rates for each pair, and also directed as the weights differ in both directions:</p>
 <div class="math notranslate nohighlight">
 \[\omega_{A\rightarrow B}\neq \omega_{B\rightarrow A}.\]</div>
