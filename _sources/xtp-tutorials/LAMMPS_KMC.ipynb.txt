@@ -35,10 +35,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:08.034890Z",
-     "iopub.status.busy": "2026-09-18T09:33:08.034461Z",
-     "iopub.status.idle": "2026-09-18T09:33:08.637668Z",
-     "shell.execute_reply": "2026-09-18T09:33:08.637147Z"
+     "iopub.execute_input": "2026-09-25T10:24:57.655476Z",
+     "iopub.status.busy": "2026-09-25T10:24:57.655299Z",
+     "iopub.status.idle": "2026-09-25T10:24:58.187577Z",
+     "shell.execute_reply": "2026-09-25T10:24:58.186726Z"
     }
    },
    "outputs": [
@@ -46,17 +46,17 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Requirement already satisfied: seaborn in /usr/lib/python3.14/site-packages (0.13.2)\r\n",
-      "Requirement already satisfied: numpy!=1.24.0,>=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.4.6)\r\n",
-      "Requirement already satisfied: pandas>=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.3)\r\n",
-      "Requirement already satisfied: matplotlib!=3.6.1,>=3.4 in /usr/lib64/python3.14/site-packages (from seaborn) (3.10.8)\r\n"
+      "Requirement already satisfied: seaborn in /usr/lib/python3.14/site-packages (0.13.2)\r\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Requirement already satisfied: contourpy>=1.0.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.3.3)\r\n",
+      "Requirement already satisfied: numpy!=1.24.0,>=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.4.6)\r\n",
+      "Requirement already satisfied: pandas>=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.3)\r\n",
+      "Requirement already satisfied: matplotlib!=3.6.1,>=3.4 in /usr/lib64/python3.14/site-packages (from seaborn) (3.10.8)\r\n",
+      "Requirement already satisfied: contourpy>=1.0.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.4.0)\r\n",
       "Requirement already satisfied: cycler>=0.10 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (0.11.0)\r\n",
       "Requirement already satisfied: fonttools>=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (4.62.1)\r\n",
       "Requirement already satisfied: kiwisolver>=1.3.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.5.1)\r\n",
@@ -96,10 +96,10 @@
    "execution_count": 2,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:08.640289Z",
-     "iopub.status.busy": "2026-09-18T09:33:08.640083Z",
-     "iopub.status.idle": "2026-09-18T09:33:09.132012Z",
-     "shell.execute_reply": "2026-09-18T09:33:09.131434Z"
+     "iopub.execute_input": "2026-09-25T10:24:58.190705Z",
+     "iopub.status.busy": "2026-09-25T10:24:58.190155Z",
+     "iopub.status.idle": "2026-09-25T10:24:58.597440Z",
+     "shell.execute_reply": "2026-09-25T10:24:58.596899Z"
     }
    },
    "outputs": [
@@ -114,7 +114,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 18 2026, 09:30:16)\r\n",
+      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 25 2026, 10:22:21)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... eanalyze\r\n",
@@ -128,20 +128,13 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      ".... \r\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
+      ".... \r\n",
       "... eanalyze\r\n",
       " Using 1 threads\r\n",
       "... ... Short-listed 1000 segments (pattern='*')\r\n",
       "... ... ... NOTE Statistics of site energies and spatial correlations thereof are based on the short-listed segments only. \r\n",
       "... ... ...      Statistics of site-energy differences operate on the full list.\r\n",
-      "... ... excited state e\r\n",
-      "... ... excited state h"
+      "... ... excited state e"
      ]
     },
     {
@@ -149,8 +142,8 @@
      "output_type": "stream",
      "text": [
       "\r\n",
-      "... ... excited state s\r\n",
-      "... ... excited state t"
+      "... ... excited state h\r\n",
+      "... ... excited state s"
      ]
     },
     {
@@ -158,6 +151,7 @@
      "output_type": "stream",
      "text": [
       "\r\n",
+      "... ... excited state t\r\n",
       "Changes have not been written to state file.\r\n"
      ]
     }
@@ -178,10 +172,10 @@
    "execution_count": 3,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:09.134618Z",
-     "iopub.status.busy": "2026-09-18T09:33:09.134396Z",
-     "iopub.status.idle": "2026-09-18T09:33:09.246393Z",
-     "shell.execute_reply": "2026-09-18T09:33:09.245807Z"
+     "iopub.execute_input": "2026-09-25T10:24:58.600129Z",
+     "iopub.status.busy": "2026-09-25T10:24:58.599812Z",
+     "iopub.status.idle": "2026-09-25T10:24:58.710292Z",
+     "shell.execute_reply": "2026-09-25T10:24:58.709691Z"
     }
    },
    "outputs": [
@@ -215,10 +209,10 @@
    "execution_count": 4,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:09.249130Z",
-     "iopub.status.busy": "2026-09-18T09:33:09.248913Z",
-     "iopub.status.idle": "2026-09-18T09:33:10.463673Z",
-     "shell.execute_reply": "2026-09-18T09:33:10.462971Z"
+     "iopub.execute_input": "2026-09-25T10:24:58.712833Z",
+     "iopub.status.busy": "2026-09-25T10:24:58.712628Z",
+     "iopub.status.idle": "2026-09-25T10:24:59.722430Z",
+     "shell.execute_reply": "2026-09-25T10:24:59.721735Z"
     }
    },
    "outputs": [
@@ -228,7 +222,7 @@
      "text": [
       "<>:5: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
       "<>:5: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
-      "/tmp/ipykernel_8483/2362228021.py:5: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
+      "/tmp/ipykernel_8475/2362228021.py:5: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
       "  df = pd.read_table(\"eanalyze.pairhist_e.out\", comment=\"#\", sep='\\s+',names=columns, skiprows=2)\n"
      ]
     },
@@ -287,10 +281,10 @@
    "execution_count": 5,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:10.466750Z",
-     "iopub.status.busy": "2026-09-18T09:33:10.466533Z",
-     "iopub.status.idle": "2026-09-18T09:33:10.861340Z",
-     "shell.execute_reply": "2026-09-18T09:33:10.860756Z"
+     "iopub.execute_input": "2026-09-25T10:24:59.725037Z",
+     "iopub.status.busy": "2026-09-25T10:24:59.724653Z",
+     "iopub.status.idle": "2026-09-25T10:25:00.042160Z",
+     "shell.execute_reply": "2026-09-25T10:25:00.041471Z"
     }
    },
    "outputs": [
@@ -305,7 +299,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 18 2026, 09:30:16)\r\n",
+      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 25 2026, 10:22:21)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... ianalyze\r\n",
@@ -319,13 +313,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      ".... \r\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
+      ".... \r\n",
       "... ianalyze\r\n",
       " Using 1 threads\r\n",
       "Calculating for state e now.\r\n",
@@ -351,10 +339,10 @@
    "execution_count": 6,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:10.864135Z",
-     "iopub.status.busy": "2026-09-18T09:33:10.863926Z",
-     "iopub.status.idle": "2026-09-18T09:33:11.034449Z",
-     "shell.execute_reply": "2026-09-18T09:33:11.033605Z"
+     "iopub.execute_input": "2026-09-25T10:25:00.045105Z",
+     "iopub.status.busy": "2026-09-25T10:25:00.044571Z",
+     "iopub.status.idle": "2026-09-25T10:25:00.189268Z",
+     "shell.execute_reply": "2026-09-25T10:25:00.188753Z"
     }
    },
    "outputs": [
@@ -364,7 +352,7 @@
      "text": [
       "<>:2: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
       "<>:2: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
-      "/tmp/ipykernel_8483/886975016.py:2: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
+      "/tmp/ipykernel_8475/886975016.py:2: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n",
       "  df = pd.read_table(\"ianalyze.ihist_h.out\", comment=\"#\", sep='\\s+',names=columns, skiprows=2)\n",
       "/usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning: \n",
       "\n",
@@ -414,10 +402,10 @@
    "execution_count": 7,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-09-18T09:33:11.038923Z",
-     "iopub.status.busy": "2026-09-18T09:33:11.038702Z",
-     "iopub.status.idle": "2026-09-18T09:33:11.443367Z",
-     "shell.execute_reply": "2026-09-18T09:33:11.442770Z"
+     "iopub.execute_input": "2026-09-25T10:25:00.191423Z",
+     "iopub.status.busy": "2026-09-25T10:25:00.191018Z",
+     "iopub.status.idle": "2026-09-25T10:25:00.519769Z",
+     "shell.execute_reply": "2026-09-25T10:25:00.519058Z"
     }
    },
    "outputs": [
@@ -432,7 +420,7 @@
       "please read and cite: https://doi.org/10.21105/joss.06864\r\n",
       "and submit bugs to https://github.com/votca/votca/issues\r\n",
       "\r\n",
-      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 18 2026, 09:30:16)\r\n",
+      "xtp_run, version 2026-dev gitid: 72bc535 (compiled Sep 25 2026, 10:22:21)\r\n",
       "\r\n",
       "Initializing calculator\r\n",
       "... kmcmultiple\r\n",
@@ -446,13 +434,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      ".... \r\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
+      ".... \r\n",
       "... kmcmultiple\r\n",
       " Using 1 threads\r\n",
       " ... \r\n",
@@ -471,7 +453,14 @@
       " ...     carriertype: electron\r\n",
       " ...     Rates for 1000 sites are computed.\r\n",
       " ... \r\n",
-      "Rates are written to rates.dat\r\n",
+      "Rates are written to rates.dat"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\r\n",
       " ... Nblist has 10151 pairs. Nodes contain 20302 jump events\r\n",
       "with avg=20.302 std=2.07913 max=28 min=14 jumps per site\r\n",
       "Minimum jumpdistance =0.366063 nm Maximum distance =1.10167 nm\r\n",
