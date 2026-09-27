@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Polarizable Ewald Embedding &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. XTP ASE Interface" href="pyxtp.html" />
+    <link rel="prev" title="5. Charge and Energy Transport Model" href="transport_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Polarizable Ewald Embedding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-ewald-decomposition">6.1. The Ewald decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-alpha-invariant">6.1.1. The <span class="math notranslate nohighlight">\(\alpha\)</span> invariant</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#segments-fragments-and-charge-states">6.2. Segments, fragments and charge states</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-polarizable-background">6.3. The polarizable background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-three-region-qm-mm-setup">6.4. The three-region QM/MM setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#foreground-declaration-and-suppression">6.4.1. Foreground declaration and suppression</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#energy-accounting">6.5. Energy accounting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#site-energies">6.5.1. Site energies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#coupling-to-the-qm-region">6.6. Coupling to the QM region</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-probe-and-thole-damping">6.6.1. The probe and Thole damping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-k-0-term-and-the-potential-s-gauge">6.6.2. The <span class="math notranslate nohighlight">\(k = 0\)</span> term and the potential’s gauge</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-notes">6.7. Practical notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-inheritance">6.7.1. Parameter inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#choosing-alpha">6.7.2. Choosing <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost">6.7.3. Cost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diagnostics">6.7.4. Diagnostics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">7. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">8. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">9. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Polarizable Ewald Embedding</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/ewald_embedding.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polarizable-ewald-embedding">
+<h1><span class="section-number">6. </span>Polarizable Ewald Embedding<a class="headerlink" href="#polarizable-ewald-embedding" title="Link to this heading">¶</a></h1>
+<p>A charge carrier in a molecular solid does not sit in vacuum. Its energy is
+shifted by the electrostatic potential of every other molecule in the
+sample, and by the polarization those molecules undergo in response to the
+carrier’s own field. Both contributions are long ranged: the electrostatic
+one falls off only as <span class="math notranslate nohighlight">\(1/r\)</span> for a charged carrier, and the
+polarization response is itself driven by that slowly decaying field. A
+calculation that simply truncates the environment at some radius does not
+converge to the right answer, it converges to an answer that depends on
+where the truncation was placed.</p>
+<p>The machinery described here computes those shifts for a periodic sample,
+by combining an Ewald lattice sum over a self-consistently polarized
+background with an explicit, quantum-mechanical treatment of the molecule
+carrying the charge. It is used in two ways:</p>
+<ul class="simple">
+<li><p>as a purely classical calculation, in which every molecule including the
+central one is represented by distributed multipoles, and</p></li>
+<li><p>as a three-region QM/MM calculation, in which the central molecule is
+described by DFT, a shell of neighbours is treated as explicitly
+polarizable point multipoles, and everything beyond that is the periodic
+Ewald background.</p></li>
+</ul>
+<p>The two share all of their machinery below the level of the central
+molecule’s description, which is deliberate: it means the classical
+calculation is a reference for the QM/MM one, and a disagreement between
+them is a statement about the description of that molecule rather than
+about the environment.</p>
+<section id="the-ewald-decomposition">
+<h2><span class="section-number">6.1. </span>The Ewald decomposition<a class="headerlink" href="#the-ewald-decomposition" title="Link to this heading">¶</a></h2>
+<p>The quantity to be summed is the electrostatic interaction between a set of
+multipoles in a periodic cell and all of their periodic images,</p>
+<div class="math notranslate nohighlight" id="equation-equ-ewald-latticesum">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-equ-ewald-latticesum" title="Link to this equation">¶</a></span>\[E = \frac{1}{2}\sum_{\mathbf{T}}\ {\sum_{i,j}}'
+    Q_i \, \hat{T}(\mathbf{r}_i - \mathbf{r}_j - \mathbf{T}) \, Q_j ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> runs over lattice translations, <span class="math notranslate nohighlight">\(Q_i\)</span>
+denotes the multipole moments of site <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\hat{T}\)</span> is the
+interaction tensor, and the prime excludes <span class="math notranslate nohighlight">\(i = j\)</span> in the
+<span class="math notranslate nohighlight">\(\mathbf{T} = 0\)</span> cell. This sum is only <em>conditionally</em> convergent:
+its value depends on the order in which the terms are taken, which is
+another way of saying it depends on the shape of the macroscopic sample and
+on the boundary condition applied at its surface.</p>
+<p>The Ewald construction splits the <span class="math notranslate nohighlight">\(1/r\)</span> kernel with the error
+function,</p>
+<div class="math notranslate nohighlight" id="equation-equ-ewald-split">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-equ-ewald-split" title="Link to this equation">¶</a></span>\[\frac{1}{r} = \underbrace{\frac{\mathrm{erfc}(\alpha r)}{r}}_{\text{short ranged}}
+            + \underbrace{\frac{\mathrm{erf}(\alpha r)}{r}}_{\text{smooth}} ,\]</div>
+<p>and evaluates the two pieces in the spaces where each converges quickly.
+The screened part is summed directly over neighbouring images in real
+space; the smooth part is summed in reciprocal space, where its Fourier
+transform decays as <span class="math notranslate nohighlight">\(\exp(-k^2/4\alpha^2)\)</span>. The result is assembled
+from four contributions:</p>
+<dl>
+<dt>Real space</dt><dd><p>The erfc-screened interaction, summed over all pairs and lattice
+translations within a distance cutoff. Implemented by
+<code class="docutils literal notranslate"><span class="pre">EwaldRealSpaceSum</span></code>.</p>
+</dd>
+<dt>Reciprocal space</dt><dd><p>The erf-screened interaction, as a sum over reciprocal lattice vectors
+weighted by <span class="math notranslate nohighlight">\(\exp(-k^2/4\alpha^2)/k^2\)</span>. Implemented by
+<code class="docutils literal notranslate"><span class="pre">EwaldReciprocalSpaceSum</span></code>, which builds a structure factor once per
+call and replays it against every target. The <span class="math notranslate nohighlight">\(k = 0\)</span> term is
+omitted; see <a class="reference internal" href="#the-k-0-term-and-the-potential-s-gauge">The k = 0 term and the potential’s gauge</a>.</p>
+</dd>
+<dt>Shape (surface) term</dt><dd><p>The uniform depolarizing field that encodes the boundary condition of
+<a class="reference internal" href="#equation-equ-ewald-latticesum">Eq.6.1</a>, expressed through the total dipole moment
+<span class="math notranslate nohighlight">\(\mathbf{M} = \sum_j (q_j \mathbf{r}_j + \boldsymbol{\mu}_j)\)</span> of
+the cell <a class="reference internal" href="bibliography.html#deleeuw-1980" id="id1"><span>[DeLeeuw:1980]</span></a>. Under vacuum boundary conditions,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{E} = -\frac{4\pi}{3V}\mathbf{M} \quad\text{(cube or sphere)},
+\qquad
+\mathbf{E} = -\frac{4\pi}{V}M_z\,\hat{\mathbf{z}} \quad\text{(slab)} .\]</div>
+<p>Implemented by <code class="docutils literal notranslate"><span class="pre">EwaldShapeCorrection</span></code>. This is not a pairwise sum: it
+is a mean-field property of the whole sample’s surface polarization
+acting back on itself, so it includes the target’s own segment.</p>
+</dd>
+<dt>Self-interaction removal</dt><dd><p>The reciprocal sum, being a sum over the full periodic density, includes
+each site’s interaction with itself. For a point charge this term
+vanishes by symmetry. For a <em>static dipole</em> it does not: a dipole’s own
+erf-screened field at its own position is finite and equals
+<span class="math notranslate nohighlight">\(\tfrac{4}{3}\alpha^3/\sqrt{\pi}\)</span>. Omitting it makes the total
+depend on <span class="math notranslate nohighlight">\(\alpha\)</span>, and this was a real defect in an earlier
+version of this code.</p>
+</dd>
+</dl>
+<section id="the-alpha-invariant">
+<span id="ewald-alpha-invariant"></span><h3><span class="section-number">6.1.1. </span>The <span class="math notranslate nohighlight">\(\alpha\)</span> invariant<a class="headerlink" href="#the-alpha-invariant" title="Link to this heading">¶</a></h3>
+<p>The splitting parameter <span class="math notranslate nohighlight">\(\alpha\)</span> in <a class="reference internal" href="#equation-equ-ewald-split">Eq.6.2</a> is
+arbitrary. It controls how work is divided between the real- and
+reciprocal-space sums, and nothing else. <strong>The total must therefore be
+independent of it</strong>, and any dependence is a bug rather than a tolerance.</p>
+<p>This is the single most useful diagnostic in the whole implementation,
+because it is sensitive to a <em>missing term</em> rather than to a wrong factor.
+A term that is absent from one sum but present in the other will leave a
+residue that grows or shrinks as the split moves, even when every
+individual number looks plausible. Both defects mentioned above — the
+dipole self-term, and an omitted erf correction — were found this way, and
+the current implementation is flat to the tenth digit across a factor of
+two in <span class="math notranslate nohighlight">\(\alpha\)</span> while the individual channels move by factors of
+twenty to sixty.</p>
+<p>Anyone changing this code should run an <span class="math notranslate nohighlight">\(\alpha\)</span> scan before
+believing a result. Convergence parameters must be held <em>fixed</em> while
+<span class="math notranslate nohighlight">\(\alpha\)</span> varies, not scaled with it: a truncation error that tracks
+<span class="math notranslate nohighlight">\(\alpha\)</span> imitates exactly the failure the test is looking for.</p>
+</section>
+</section>
+<section id="segments-fragments-and-charge-states">
+<h2><span class="section-number">6.2. </span>Segments, fragments and charge states<a class="headerlink" href="#segments-fragments-and-charge-states" title="Link to this heading">¶</a></h2>
+<p>The classical representation of a molecule is a <code class="docutils literal notranslate"><span class="pre">PolarSegment</span></code>: a list of
+<code class="docutils literal notranslate"><span class="pre">PolarSite</span></code> objects, each carrying a position, a set of permanent
+multipole moments up to the requested rank, a polarizability tensor, and an
+induced dipole. Segments are built from the mapping file by the polar
+mapper, which associates each coarse-grained segment with a <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file
+per charge state.</p>
+<p>Multipoles are read from <code class="docutils literal notranslate"><span class="pre">.mps</span></code> files, in the format used by GDMA and
+related tools. Two conventions in that format are worth stating explicitly
+because they are easy to get wrong:</p>
+<ul class="simple">
+<li><p>the dipole line is ordered <strong>z x y</strong>, not x y z;</p></li>
+<li><p>multipoles are in <span class="math notranslate nohighlight">\(e\,a_0\)</span> and polarizabilities in
+<span class="math notranslate nohighlight">\(\mathrm{\AA}^3\)</span>, while the code works internally in atomic units
+throughout (bohr, Hartree).</p></li>
+</ul>
+<p>Each segment is registered for the charge states it is needed in —
+<code class="docutils literal notranslate"><span class="pre">Neutral</span></code>, <code class="docutils literal notranslate"><span class="pre">Electron</span></code>, <code class="docutils literal notranslate"><span class="pre">Hole</span></code> — and these are held in an
+<code class="docutils literal notranslate"><span class="pre">EwaldRegistry</span></code>, keyed by segment id and state. The registry is the single
+source of truth for the periodic density: it replaces the legacy design in
+which several containers shared raw pointers to the same segments and their
+charge state depended on which container had most recently been asked.</p>
+<p>A site’s permanent and induced moments are kept separate throughout, and
+they enter the energy through different channels. This matters for the
+bookkeeping described in <a class="reference internal" href="#energy-accounting">Energy accounting</a>, and for the Thole damping
+described next, which applies to induced-dipole interactions and not to
+permanent ones.</p>
+</section>
+<section id="the-polarizable-background">
+<h2><span class="section-number">6.3. </span>The polarizable background<a class="headerlink" href="#the-polarizable-background" title="Link to this heading">¶</a></h2>
+<p>Before any job is run, the periodic environment must be polarized
+self-consistently. This is the job of the <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> calculator,
+which is run once per frame:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_run<span class="w"> </span>-e<span class="w"> </span>ewaldbackground<span class="w"> </span>-o<span class="w"> </span>ewaldbackground.xml<span class="w"> </span>-f<span class="w"> </span>state.hdf5
+</pre></div>
+</div>
+<p>Each site <span class="math notranslate nohighlight">\(i\)</span> carries an induced dipole
+<span class="math notranslate nohighlight">\(\boldsymbol{\mu}_i\)</span> responding to the total field at its position,</p>
+<div class="math notranslate nohighlight" id="equation-equ-ewald-induction">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-equ-ewald-induction" title="Link to this equation">¶</a></span>\[\boldsymbol{\mu}_i = \boldsymbol{\alpha}_i \Big(
+    \mathbf{F}^{\text{perm}}_i
+    + \sum_{j \neq i} \mathbf{T}^{\text{Thole}}_{ij}\,\boldsymbol{\mu}_j
+  \Big) ,\]</div>
+<p>which is a linear system in the induced dipoles, solved to
+self-consistency. The field <span class="math notranslate nohighlight">\(\mathbf{F}^{\text{perm}}\)</span> is the full
+periodic Ewald field of the permanent multipoles; the coupling
+<span class="math notranslate nohighlight">\(\mathbf{T}^{\text{Thole}}\)</span> between induced dipoles is damped at
+short range by the exponential Thole model <a class="reference internal" href="bibliography.html#thole-1981" id="id2"><span>[Thole:1981]</span></a>, which prevents
+the polarization catastrophe that an undamped point-dipole model suffers
+when two polarizable sites approach each other.</p>
+<p>The damping factors depend on both sites’ polarizabilities through
+<span class="math notranslate nohighlight">\(u^3 = a\,r^3 \sqrt{\alpha_i \alpha_j}^{-1}\)</span>, so a site with no
+polarizability is read as <em>complete</em> overlap and damped maximally. That is
+the correct limit for two real sites and the wrong one for a field
+evaluation point; see <a class="reference internal" href="#coupling-to-the-qm-region">Coupling to the QM region</a>.</p>
+<p>Two solvers are available. The default is a preconditioned conjugate
+gradient; a Jacobi over-relaxation scheme reproducing the legacy SOR
+iteration is retained for direct comparison. The PCG solver additionally
+reports a Lanczos estimate of the smallest eigenvalue of the interaction
+operator, which is a direct algebraic certificate of whether the system is
+positive definite rather than an inference from residual behaviour.</p>
+<p>The result is written to a checkpoint, by default
+<code class="docutils literal notranslate"><span class="pre">ewaldbackground.hdf5</span></code>, containing</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">EwaldRegistry</span></code> — every segment, in every registered charge state,
+with its converged induced dipoles, and</p></li>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">ewald_parameters</span></code> group holding
+<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(k_\text{max}\)</span>, <span class="math notranslate nohighlight">\(r_\text{min}\)</span>, the field
+tolerance, the Thole parameter <span class="math notranslate nohighlight">\(a\)</span>, the screening factor, the
+shape, and the simulation box.</p></li>
+</ul>
+<p><strong>The parameters are part of the checkpoint on purpose.</strong> See
+<a class="reference internal" href="#parameter-inheritance">Parameter inheritance</a>.</p>
+</section>
+<section id="the-three-region-qm-mm-setup">
+<h2><span class="section-number">6.4. </span>The three-region QM/MM setup<a class="headerlink" href="#the-three-region-qm-mm-setup" title="Link to this heading">¶</a></h2>
+<p>A QM/MM job is built from three regions, which must be enumerated in this
+order:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8.0%" />
+<col style="width: 22.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qmregion</span></code></p></td>
+<td><p>The molecule carrying the charge, described by DFT. Holds the
+segment whose site energy is wanted, in the charge state the job
+specifies.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polarregion</span></code></p></td>
+<td><p>An explicit shell of neighbours, as polarizable point multipoles.
+These respond to the QM density and to the background, and they
+polarize each other.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code></p></td>
+<td><p>The periodic background, read from the <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code>
+checkpoint. <strong>Frozen</strong>: nothing in the job repolarizes it.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> may not be region 0. It owns no segments carved out of
+the job’s topology — it represents the whole periodic cell — so the
+recentring that <code class="docutils literal notranslate"><span class="pre">JobTopology</span></code> applies has no segment of its own to key
+on.</p>
+<p>Because the background is frozen, <code class="docutils literal notranslate"><span class="pre">EwaldRegion</span></code> is always <code class="docutils literal notranslate"><span class="pre">Converged()</span></code>
+and its <code class="docutils literal notranslate"><span class="pre">Reset()</span></code> is a no-op. Including it can never prevent the
+inter-region SCF loop from terminating. Its <code class="docutils literal notranslate"><span class="pre">Interactwith*</span></code> methods return
+zero, and this is the correct physics rather than a stub: no other region
+polarizes it. The influence in the other direction is implemented by <em>that</em>
+region’s own <code class="docutils literal notranslate"><span class="pre">InteractwithEwaldRegion</span></code>, following the receiver-pull
+convention used throughout <code class="docutils literal notranslate"><span class="pre">Region::ApplyInfluenceOfOtherRegions</span></code>.</p>
+<p>A two-region <code class="docutils literal notranslate"><span class="pre">qmregion</span></code> + <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> job is also valid and is useful
+as a diagnostic, since it removes the classical coupling entirely.</p>
+<section id="foreground-declaration-and-suppression">
+<span id="ewald-foreground"></span><h3><span class="section-number">6.4.1. </span>Foreground declaration and suppression<a class="headerlink" href="#foreground-declaration-and-suppression" title="Link to this heading">¶</a></h3>
+<p>The segments treated explicitly — by the QM region and by the polar region
+together — are also present in the background, since the background is the
+whole cell. They must not be counted twice. Removing them is not simply a
+matter of dropping them from the sums:</p>
+<ul class="simple">
+<li><p>in <strong>real space</strong> the coincident copy of each explicit segment is
+suppressed, while its periodic <em>images</em> are kept. Deleting the images too
+would replace one carved-out cavity with a lattice of vacancies.</p></li>
+<li><p>in <strong>reciprocal space</strong> nothing is held out. A <span class="math notranslate nohighlight">\(k\)</span>-space sum runs
+over the whole periodic density and cannot have a hole cut in it.
+Instead, the <em>erf-screened</em> energy of exactly those coincident copies is
+subtracted afterwards, which removes precisely what the reciprocal sum
+put back.</p></li>
+</ul>
+<p>The copies to be suppressed are the union over <em>all</em> regions that own
+segments, and no single region knows that union. <code class="docutils literal notranslate"><span class="pre">JobTopology</span></code> therefore
+calls <code class="docutils literal notranslate"><span class="pre">EwaldRegion::RegisterForeground</span></code> once, after building every region
+and before evaluating any of them. Without this, a QM/MM job would leave the
+QM segment’s neutral background copy sitting underneath the QM density — a
+ghost molecule in every sum, with no symptom to notice it by. The suppressed
+count is reported per job and checked against the expected total.</p>
+<p>The erf correction uses the background’s <em>own</em> multipoles and induced
+dipoles, not the job’s charge state, because that is what the reciprocal sum
+actually placed there. Using the job’s state would remove something that was
+never added.</p>
+</section>
+</section>
+<section id="energy-accounting">
+<h2><span class="section-number">6.5. </span>Energy accounting<a class="headerlink" href="#energy-accounting" title="Link to this heading">¶</a></h2>
+<p>Each pairwise contribution is computed exactly once, and which region books
+it follows a single rule: <strong>the region further inside owns the energy</strong>. A
+site accumulates the field from regions further out in <code class="docutils literal notranslate"><span class="pre">V()</span></code>, which
+carries energy, and from regions further in in <code class="docutils literal notranslate"><span class="pre">V_noE()</span></code>, which does not.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>contribution</p></th>
+<th class="head"><p>where it is booked</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QM internal</p></td>
+<td><p>the DFT total energy</p></td>
+</tr>
+<tr class="row-odd"><td><p>QM ↔ polar</p></td>
+<td><p>the DFT total, via the external multipole matrix (electrons) and
+<code class="docutils literal notranslate"><span class="pre">ExternalRepulsion</span></code> (nuclei). <code class="docutils literal notranslate"><span class="pre">PolarRegion::InteractwithQMRegion</span></code>
+returns zero by this convention.</p></td>
+</tr>
+<tr class="row-even"><td><p>QM ↔ background</p></td>
+<td><p>the DFT total, via the potential on the integration grid (electrons)
+and a scalar added to <span class="math notranslate nohighlight">\(E_0\)</span> (nuclei)</p></td>
+</tr>
+<tr class="row-odd"><td><p>polar internal (permanent)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E_static_static</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>polar ↔ background, permanent × permanent and permanent × induced</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E_static_ext</span></code>, returned by <code class="docutils literal notranslate"><span class="pre">EwaldRegion::ApplyFieldTo</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>polar induced × background</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E_polar_ext</span></code>, as <span class="math notranslate nohighlight">\(\sum \boldsymbol{\mu}\cdot\mathbf{V}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>polar induction self-energy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E_polar_internal</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>background internal</p></td>
+<td><p><strong>not computed</strong> — see below</p></td>
+</tr>
+</tbody>
+</table>
+<p>The background’s own internal energy is deliberately absent. It is a
+constant, independent of the job’s charge state, so it cancels exactly in
+any charge-state difference. Site energies are therefore correct; an
+absolute total energy is not, and should not be quoted as one.</p>
+<p>One sign convention deserves attention. The Ewald code and the region
+framework store <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> with <em>opposite</em> signs — the background
+solver builds its right-hand side as <span class="math notranslate nohighlight">\(+\mathbf{V}\)</span>, the polar region
+as <span class="math notranslate nohighlight">\(-(\mathbf{V} + \mathbf{V}_{\text{noE}})\)</span>. <code class="docutils literal notranslate"><span class="pre">ApplyFieldTo</span></code>
+negates its own contribution at the boundary so that the polar region’s
+induction runs in the right direction. Both conventions are internally
+consistent; only the boundary between them needs care.</p>
+<section id="site-energies">
+<h3><span class="section-number">6.5.1. </span>Site energies<a class="headerlink" href="#site-energies" title="Link to this heading">¶</a></h3>
+<p>The quantity of interest is the difference between charge states, referenced
+to the same molecule in vacuum:</p>
+<div class="math notranslate nohighlight" id="equation-equ-ewald-siteenergy">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-equ-ewald-siteenergy" title="Link to this equation">¶</a></span>\[\Delta E_{\text{env}} =
+  \big[E(h) - E(n)\big]_{\text{embedded}} -
+  \big[E(h) - E(n)\big]_{\text{vacuum}} .\]</div>
+<p>Using the same geometries in both brackets makes the intramolecular
+relaxation cancel exactly, leaving the environment’s response to the charge
+at its own geometry. In practice this means running the same job file
+against a <code class="docutils literal notranslate"><span class="pre">qmregion</span></code>-only setup to obtain the vacuum reference.</p>
+</section>
+</section>
+<section id="coupling-to-the-qm-region">
+<h2><span class="section-number">6.6. </span>Coupling to the QM region<a class="headerlink" href="#coupling-to-the-qm-region" title="Link to this heading">¶</a></h2>
+<p>The background reaches the QM region as a <em>potential</em>, evaluated on the
+same numerical integration grid the DFT calculation already uses:</p>
+<div class="math notranslate nohighlight">
+\[E_{\text{QM-bg}} =
+  -\int \rho(\mathbf{r})\,\phi(\mathbf{r})\,\mathrm{d}\mathbf{r}
+  + \sum_A Z_A \phi(\mathbf{R}_A) .\]</div>
+<p>The first term enters the one-electron Hamiltonian as a matrix built by
+<code class="docutils literal notranslate"><span class="pre">Ewald_Potential::IntegrateEwald</span></code>; the second is a scalar added to
+<span class="math notranslate nohighlight">\(E_0\)</span>. The minus sign on the electronic term is the electron charge,
+and matches what <code class="docutils literal notranslate"><span class="pre">AOMultipole::FillPotential</span></code> does for the nuclei and for
+external multipoles.</p>
+<p>That sign is worth flagging because getting it wrong is nearly invisible.
+For a neutral QM region the two terms differ only through the <em>shape</em> of the
+density, not its total charge, so they very nearly cancel; flipping one
+turns a near-cancellation into a near-doubling, and the result still looks
+like a plausible small number. On a neutral methane in a methane
+background, the difference is <span class="math notranslate nohighlight">\(-13.5\)</span> meV against a correct
+<span class="math notranslate nohighlight">\(+0.13\)</span> meV.</p>
+<p>The grid must be the one <code class="docutils literal notranslate"><span class="pre">DFTEngine</span></code> uses, since the potential values have
+to land on exactly the quadrature points that form
+<span class="math notranslate nohighlight">\(\langle\rho|\phi\rangle\)</span>. <code class="docutils literal notranslate"><span class="pre">PrepareEwaldPotentialGrid</span></code> therefore
+reads <code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.integration_grid</span></code>, not the <code class="docutils literal notranslate"><span class="pre">grid_for_potential</span></code>
+option — the latter governs the opposite direction, the QM density’s
+influence outward on the classical regions. The coupling between the two
+grids is a constraint rather than a preference, and it costs nothing:
+the Ewald contribution is converged at the <code class="docutils literal notranslate"><span class="pre">medium</span></code> default to below
+<span class="math notranslate nohighlight">\(10^{-10}\)</span> Ha.</p>
+<p>Because the background is frozen, the QM geometry is fixed for the job, and
+the QM density does not enter <span class="math notranslate nohighlight">\(\phi\)</span>, the potential is evaluated once
+per job and reused across inter-region SCF iterations.</p>
+<section id="the-probe-and-thole-damping">
+<h3><span class="section-number">6.6.1. </span>The probe and Thole damping<a class="headerlink" href="#the-probe-and-thole-damping" title="Link to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\phi\)</span> at a point is obtained by placing a unit test charge there and
+calling the same validated energy routines the classical channels use, so
+that the result is in the same gauge by construction. That probe is a
+<code class="docutils literal notranslate"><span class="pre">PolarSite</span></code>, whose constructor unavoidably assigns a polarizability from
+the element table — which would otherwise feed a meaningless number into the
+Thole damping of the induced-dipole term.</p>
+<p>The field-point path therefore requests an <strong>undamped</strong> induced-dipole
+interaction explicitly. This is not a preference: <code class="docutils literal notranslate"><span class="pre">AOMultipole</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DFTEngine::ExternalRepulsion</span></code> already deliver induced dipoles to a QM
+density undamped, so damping here would give one job two different
+conventions for the same physical interaction depending on which route the
+dipole arrived through.</p>
+<p>Note that this cannot be expressed by giving the probe <em>no</em> polarizability.
+The Thole factor would then be formed from <span class="math notranslate nohighlight">\(u^3 = 0\)</span>, which the model
+reads as complete overlap and damps maximally — the opposite of the intended
+limit.</p>
+<p>An analytic alternative, in which the background’s moments are handed to the
+DFT engine as operators rather than as a sampled potential, is partially
+present in the code but not reachable. It is blocked on the
+operator-centre derivatives a rank-1 source requires, which stock <code class="docutils literal notranslate"><span class="pre">libint2</span></code>
+builds do not provide.</p>
+</section>
+<section id="the-k-0-term-and-the-potential-s-gauge">
+<span id="ewald-gauge"></span><h3><span class="section-number">6.6.2. </span>The <span class="math notranslate nohighlight">\(k = 0\)</span> term and the potential’s gauge<a class="headerlink" href="#the-k-0-term-and-the-potential-s-gauge" title="Link to this heading">¶</a></h3>
+<p>The reciprocal sum omits the <span class="math notranslate nohighlight">\(k = 0\)</span> term, which corresponds to
+embedding the cell in a uniform neutralizing background. As a consequence
+<span class="math notranslate nohighlight">\(\phi\)</span> is defined only up to an additive constant <span class="math notranslate nohighlight">\(\phi_0\)</span>, and
+a region of net charge <span class="math notranslate nohighlight">\(q\)</span> shifts by <span class="math notranslate nohighlight">\(q\,\phi_0\)</span>.</p>
+<p>For a neutral region this drops out identically:
+<span class="math notranslate nohighlight">\(\phi_0\)</span> multiplies <span class="math notranslate nohighlight">\(Z_{\text{total}} - N_{\text{electrons}} = 0\)</span>
+for the QM region, and <span class="math notranslate nohighlight">\(\sum q = 0\)</span> for each neutral classical
+segment. For a charged region it does not, and the resulting energy carries
+the usual charged-periodic-cell convention. This is a physical statement
+about the model, not a numerical artefact, and it is the same convention the
+classical channel uses — every term in <code class="docutils literal notranslate"><span class="pre">PotentialAt</span></code> is evaluated through
+the same energy routines, so the two halves of a QM/MM job share one gauge
+by construction rather than by coincidence.</p>
+</section>
+</section>
+<section id="practical-notes">
+<h2><span class="section-number">6.7. </span>Practical notes<a class="headerlink" href="#practical-notes" title="Link to this heading">¶</a></h2>
+<section id="parameter-inheritance">
+<span id="ewald-parameter-inheritance"></span><h3><span class="section-number">6.7.1. </span>Parameter inheritance<a class="headerlink" href="#parameter-inheritance" title="Link to this heading">¶</a></h3>
+<p><strong>An</strong> <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> <strong>takes every Ewald parameter from the background
+checkpoint, and none from the job’s own options.</strong> <span class="math notranslate nohighlight">\(\alpha\)</span>,
+<span class="math notranslate nohighlight">\(k_\text{max}\)</span>, <span class="math notranslate nohighlight">\(r_\text{min}\)</span>, the field tolerance, the Thole
+parameter, the screening factor, the shape and the box are all read from the
+<code class="docutils literal notranslate"><span class="pre">ewald_parameters</span></code> group written by <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code>. The job’s XML
+cannot override them, and does not offer the option.</p>
+<p>This is deliberate. The background’s induced dipoles were converged <em>with</em>
+a particular splitting and particular cutoffs; the foreground’s interaction
+with that background is only meaningful if it is evaluated the same way. A
+job that re-specified <span class="math notranslate nohighlight">\(\alpha\)</span> would be adding a foreground computed
+under one decomposition to a background computed under another, and the
+<span class="math notranslate nohighlight">\(\alpha\)</span> invariance of <a class="reference internal" href="#ewald-alpha-invariant"><span class="std std-ref">The \alpha invariant</span></a> would no longer
+hold — silently, since each half would look internally consistent.</p>
+<p>The practical consequence is that <strong>changing any Ewald parameter means
+re-running</strong> <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code>. The checkpoint is the unit of
+configuration, not the job file.</p>
+</section>
+<section id="choosing-alpha">
+<h3><span class="section-number">6.7.2. </span>Choosing <span class="math notranslate nohighlight">\(\alpha\)</span><a class="headerlink" href="#choosing-alpha" title="Link to this heading">¶</a></h3>
+<p>Since the total is independent of <span class="math notranslate nohighlight">\(\alpha\)</span>, the choice is purely
+one of cost. Real-space work scales as <span class="math notranslate nohighlight">\((s/\alpha)^3\)</span> with the
+screening factor <span class="math notranslate nohighlight">\(s\)</span>; reciprocal work scales as
+<span class="math notranslate nohighlight">\(k_\text{max}^3\)</span>, and the derived default <span class="math notranslate nohighlight">\(k_\text{max} = 6\alpha\)</span>
+makes that <span class="math notranslate nohighlight">\(\alpha^3\)</span>. Balancing the two gives</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{\text{opt}} \approx \left(\frac{8\pi^3 N}{V^2}\right)^{1/6} ,\]</div>
+<p>with <span class="math notranslate nohighlight">\(N\)</span> the number of sites and <span class="math notranslate nohighlight">\(V\)</span> the cell volume, which for
+a few thousand sites in a few hundred thousand <span class="math notranslate nohighlight">\(a_0^3\)</span> is of order
+<span class="math notranslate nohighlight">\(3\,\text{nm}^{-1}\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(k_\text{max}\)</span> is set explicitly rather than derived, the balance
+changes: reciprocal work becomes independent of <span class="math notranslate nohighlight">\(\alpha\)</span> and larger
+<span class="math notranslate nohighlight">\(\alpha\)</span> is monotonically cheaper, up to the point where
+<span class="math notranslate nohighlight">\(k_\text{max}\)</span> is no longer large enough to converge the
+<span class="math notranslate nohighlight">\(\exp(-k^2/4\alpha^2)\)</span> weight. A ratio
+<span class="math notranslate nohighlight">\(k_\text{max}/\alpha = 6\)</span> corresponds to a truncation of
+<span class="math notranslate nohighlight">\(e^{-9}\)</span>; much beyond that is wasted work.</p>
+</section>
+<section id="cost">
+<h3><span class="section-number">6.7.3. </span>Cost<a class="headerlink" href="#cost" title="Link to this heading">¶</a></h3>
+<p>Evaluating the background potential over a DFT integration grid is the
+dominant cost of a QM/MM job, and scales as the product of the number of
+grid points, the number of background segments within the real-space cutoff,
+and the number of <span class="math notranslate nohighlight">\(k\)</span>-vectors. Those three numbers are logged before
+the evaluation starts, along with periodic progress, so that a long run can
+be distinguished from a hung one. The evaluation is parallelized over grid
+points and happens once per job.</p>
+</section>
+<section id="diagnostics">
+<h3><span class="section-number">6.7.4. </span>Diagnostics<a class="headerlink" href="#diagnostics" title="Link to this heading">¶</a></h3>
+<p>Two checks are worth running whenever this code is changed.</p>
+<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> <strong>scan</strong> described in <a class="reference internal" href="#ewald-alpha-invariant"><span class="std std-ref">The \alpha invariant</span></a>: run
+the same job against backgrounds converged at several <span class="math notranslate nohighlight">\(\alpha\)</span>, with
+all other convergence parameters held fixed, and confirm the total does not
+move while the individual channels do.</p>
+<p>The <strong>with/without comparison</strong>: run a job with and without the
+<code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code>, at otherwise identical settings, and difference the QM
+energies at the first inter-region iteration, before any induced dipoles
+exist. That difference is the QM–background interaction and nothing else. It
+is the sharpest instrument available on this code path, and it is what
+exposed the electron-charge sign described above — which the
+zeroed-background test, the unit tests, and the <span class="math notranslate nohighlight">\(\alpha\)</span> scan had all
+missed.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transport_theory.html" class="btn btn-neutral float-left" title="5. Charge and Energy Transport Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyxtp.html" class="btn btn-neutral float-right" title="7. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -798,5 +798,14 @@ The following table contains the defaults input options for the calculator, The 
        | be only towards segments specified explicitly using the
        | `segments` tag
      - bool
+   * - regions.ewaldregion.id
+     - REQUIRED
+     - | id of the region, first region has to have id 0, ids must
+       | be consecutive
+     - int
+   * - regions.ewaldregion.checkpoint
+     - ewaldbackground.hdf5
+     - checkpoint file written by the ewaldbackground calculator
+     - 
 .. note::
    An *xml* file containing the defaults for the `qmmm` calculator can be created via `-p qmmm -o FILENAME` command line options `

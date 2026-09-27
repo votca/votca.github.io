@@ -16,6 +16,8 @@
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -55,10 +57,11 @@
 <li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">6. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">7. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">8. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">9. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">7. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">8. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">9. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a></li>
@@ -159,136 +162,165 @@ software and manual versions match.</p>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html#directed-graphs">5.6. Directed Graphs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">6. XTP ASE Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">6.1. Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">6.1.1. Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-ewald-decomposition">6.1. The Ewald decomposition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-alpha-invariant">6.1.1. The <span class="math notranslate nohighlight">\(\alpha\)</span> invariant</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">6.2. Option parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">6.3. XTP calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">6.4. Single Point Caclulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">6.5. Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#segments-fragments-and-charge-states">6.2. Segments, fragments and charge states</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-polarizable-background">6.3. The polarizable background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-three-region-qm-mm-setup">6.4. The three-region QM/MM setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#foreground-declaration-and-suppression">6.4.1. Foreground declaration and suppression</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">7. Workflow and Calculator Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">7.1. xtp_map</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">7.1.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">7.1.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">7.1.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">7.1.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">7.1.1.4. OPTIONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#energy-accounting">6.5. Energy accounting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#site-energies">6.5.1. Site energies</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#coupling-to-the-qm-region">6.6. Coupling to the QM region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-probe-and-thole-damping">6.6.1. The probe and Thole damping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-k-0-term-and-the-potential-s-gauge">6.6.2. The <span class="math notranslate nohighlight">\(k = 0\)</span> term and the potential’s gauge</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">7.2. xtp_parallel</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">7.2.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">7.2.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">7.2.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">7.2.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">7.2.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eqm.html">7.2.1.4.1. eqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">7.2.1.4.2. iexcitoncl</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ipodcoupling.html">7.2.1.4.3. ipodcoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iqm.html">7.2.1.4.4. iqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="qmmm.html">7.2.1.4.5. qmmm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#practical-notes">6.7. Practical notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#parameter-inheritance">6.7.1. Parameter inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#choosing-alpha">6.7.2. Choosing <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#cost">6.7.3. Cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#diagnostics">6.7.4. Diagnostics</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">7. XTP ASE Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">7.1. Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">7.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">7.3. xtp_run</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">7.3.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">7.3.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">7.3.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">7.3.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">7.3.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">7.3.1.4.1. eanalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="einternal.html">7.3.1.4.2. einternal</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">7.3.1.4.3. ianalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">7.3.1.4.4. kmclifetime</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">7.3.1.4.5. kmcmultiple</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">7.3.1.4.6. mapchecker</a></li>
-<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">7.3.1.4.7. neighborlist</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vaverage.html">7.3.1.4.8. vaverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">7.2. Option parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">7.3. XTP calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">7.4. Single Point Caclulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">7.5. Geometry Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">8. Workflow and Calculator Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">8.1. xtp_map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">8.1.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">8.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">8.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">8.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">8.1.1.4. OPTIONS</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">7.4. xtp_tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">7.4.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">7.4.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">7.4.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">7.4.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">7.4.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="apdft.html">7.4.1.4.1. apdft</a></li>
-<li class="toctree-l5"><a class="reference internal" href="coupling.html">7.4.1.4.2. coupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">7.4.1.4.3. densityanalysis</a></li>
-<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">7.4.1.4.4. dftgwbse</a></li>
-<li class="toctree-l5"><a class="reference internal" href="diabatization.html">7.4.1.4.5. diabatization</a></li>
-<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">7.4.1.4.6. excitoncoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gencube.html">7.4.1.4.7. gencube</a></li>
-<li class="toctree-l5"><a class="reference internal" href="log2mps.html">7.4.1.4.8. log2mps</a></li>
-<li class="toctree-l5"><a class="reference internal" href="molpol.html">7.4.1.4.9. molpol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">7.4.1.4.10. partialcharges</a></li>
-<li class="toctree-l5"><a class="reference internal" href="spectrum.html">7.4.1.4.11. spectrum</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">7.4.1.4.12. orb2fchk</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">7.4.1.4.13. orb2mol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">7.4.1.4.14. mol2orb</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gpu_benchmark.html">7.4.1.4.15. gpu_benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">8.2. xtp_parallel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">8.2.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">8.2.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">8.2.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">8.2.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">8.2.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eqm.html">8.2.1.4.1. eqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">8.2.1.4.2. iexcitoncl</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ipodcoupling.html">8.2.1.4.3. ipodcoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iqm.html">8.2.1.4.4. iqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="qmmm.html">8.2.1.4.5. qmmm</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">8. Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">8.1. Programs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">8.1.1. xtp_basisset</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#name">8.1.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">8.1.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#description">8.1.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#options">8.1.1.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">8.1.2. xtp_update_mapfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">8.1.2.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">8.1.2.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">8.1.2.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">8.1.2.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">8.1.3. xtp_modify_jobfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">8.1.3.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">8.1.3.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">8.1.3.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">8.1.3.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">8.1.4. xtp_qmmm2qm</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">8.1.4.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">8.1.4.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">8.1.4.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">8.1.4.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-tightbinding">8.1.5. xtp_tightbinding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id13">8.1.5.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id14">8.1.5.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id15">8.1.5.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id16">8.1.5.4. OPTIONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">8.3. xtp_run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">8.3.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">8.3.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">8.3.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">8.3.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">8.3.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">8.3.1.4.1. eanalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="einternal.html">8.3.1.4.2. einternal</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">8.3.1.4.3. ianalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">8.3.1.4.4. kmclifetime</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">8.3.1.4.5. kmcmultiple</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">8.3.1.4.6. mapchecker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">8.3.1.4.7. neighborlist</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vaverage.html">8.3.1.4.8. vaverage</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">9. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">8.4. xtp_tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">8.4.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">8.4.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">8.4.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">8.4.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">8.4.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="apdft.html">8.4.1.4.1. apdft</a></li>
+<li class="toctree-l5"><a class="reference internal" href="coupling.html">8.4.1.4.2. coupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">8.4.1.4.3. densityanalysis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">8.4.1.4.4. dftgwbse</a></li>
+<li class="toctree-l5"><a class="reference internal" href="diabatization.html">8.4.1.4.5. diabatization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">8.4.1.4.6. excitoncoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gencube.html">8.4.1.4.7. gencube</a></li>
+<li class="toctree-l5"><a class="reference internal" href="log2mps.html">8.4.1.4.8. log2mps</a></li>
+<li class="toctree-l5"><a class="reference internal" href="molpol.html">8.4.1.4.9. molpol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">8.4.1.4.10. partialcharges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spectrum.html">8.4.1.4.11. spectrum</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">8.4.1.4.12. orb2fchk</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">8.4.1.4.13. orb2mol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">8.4.1.4.14. mol2orb</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gpu_benchmark.html">8.4.1.4.15. gpu_benchmark</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">9. Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">9.1. Programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">9.1.1. xtp_basisset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#name">9.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">9.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#description">9.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#options">9.1.1.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">9.1.2. xtp_update_mapfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">9.1.2.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">9.1.2.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">9.1.2.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">9.1.2.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">9.1.3. xtp_modify_jobfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">9.1.3.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">9.1.3.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">9.1.3.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">9.1.3.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">9.1.4. xtp_qmmm2qm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">9.1.4.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">9.1.4.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">9.1.4.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">9.1.4.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-tightbinding">9.1.5. xtp_tightbinding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id13">9.1.5.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id14">9.1.5.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id15">9.1.5.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id16">9.1.5.4. OPTIONS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
 </ul>
 </div>
 <section id="citations">
