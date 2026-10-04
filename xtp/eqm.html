@@ -705,8 +705,9 @@ The following table contains the defaults input options for the calculator, The 
 <td><div class="line-block">
 <div class="line">Method to use to make initial guess, independent(electrons)</div>
 <div class="line">or atom(densities) or previous calculation keyword orbfile</div>
-<div class="line">or dimer_guess (combine two monomer .orb files of independently</div>
-<div class="line">arbitrary charge/spin – see dimer_guess_orbA/orbB below)</div>
+<div class="line">or dimer_guess (combine two monomer .orb files, see dimer_guess_orbA/orbB</div>
+<div class="line">below; closed-shell monomers work for restricted and unrestricted</div>
+<div class="line">runs, open-shell monomers need the unrestricted path)</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -787,12 +788,24 @@ The following table contains the defaults input options for the calculator, The 
 <td><p>screening eps</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.overlap_tolerance</p></td>
+<td><p>1e-8</p></td>
+<td><div class="line-block">
+<div class="line">Eigenvalues of the AO overlap matrix below this value</div>
+<div class="line">are removed from the orthogonalization (near linear dependencies;</div>
+<div class="line">the removed directions become zero orbitals at the top</div>
+<div class="line">of the spectrum). Raise to 1e-7 to 1e-6 if the log reports</div>
+<div class="line">a nearly singular overlap and the SCF is unstable.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -804,12 +817,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
 <td><p>false</p></td>
 <td><p>forcing UKS path</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.compute_forces</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.compute_forces</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Compute analytic ground-state DFT nuclear forces (RI,</div>
@@ -820,12 +833,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.enabled</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.enabled</p></td>
 <td><p>false</p></td>
 <td><p>Enable a CDFT charge constraint on this calculation</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.indices</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.indices</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Indices of atoms in the constrained fragment (0-based),</div>
@@ -835,7 +848,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.charge</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.charge</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Target charge on the fragment, RELATIVE to its neutral</div>
@@ -848,7 +861,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.initial_lambda</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.initial_lambda</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Initial guess for the Lagrange multiplier lambda, used</div>
@@ -857,7 +870,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.population_tolerance</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.population_tolerance</p></td>
 <td><p>1e-4</p></td>
 <td><div class="line-block">
 <div class="line">Outer-loop convergence criterion: the CDFT calculation</div>
@@ -867,7 +880,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.max_iterations</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.max_iterations</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
 <div class="line">Maximum number of outer (Lagrange-multiplier, bisection)</div>
@@ -876,7 +889,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
 <td><p>warmstart</p></td>
 <td><div class="line-block">
 <div class="line">How each outer bisection trial’s own inner SCF is started,</div>
@@ -901,12 +914,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -915,22 +928,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -939,32 +952,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
 <td><p>0.8</p></td>
 <td><div class="line-block">
 <div class="line">DIIS error below which mixing is disabled – independent</div>
@@ -979,7 +992,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
 <td><p>0.98</p></td>
 <td><div class="line-block">
 <div class="line">Ceiling mixing can adaptively ramp up toward as the SCF</div>
@@ -990,6 +1003,17 @@ The following table contains the defaults input options for the calculator, The 
 <div class="line">ramps its own damping factor from a base (DampFac, 0.7</div>
 <div class="line">by default) up to this ceiling only when actually needed,</div>
 <div class="line">rather than paying the cost of heavy damping throughout.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy_reset</p></td>
+<td><p>1.0</p></td>
+<td><div class="line-block">
+<div class="line">If the energy rises by more than this above the lowest</div>
+<div class="line">energy reached so far, the (A)DIIS history is discarded</div>
+<div class="line">and the SCF restarts, damped, from the lowest-energy density.</div>
+<div class="line">0 disables.</div>
 </div>
 </td>
 <td><p>float+</p></td>

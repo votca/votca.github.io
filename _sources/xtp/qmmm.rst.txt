@@ -394,8 +394,9 @@ The following table contains the defaults input options for the calculator, The 
      - atom
      - | Method to use to make initial guess, independent(electrons)
        | or atom(densities) or previous calculation keyword orbfile
-       | or dimer_guess (combine two monomer .orb files of independently
-       | arbitrary charge/spin -- see dimer_guess_orbA/orbB below)
+       | or dimer_guess (combine two monomer .orb files, see dimer_guess_orbA/orbB
+       | below; closed-shell monomers work for restricted and unrestricted
+       | runs, open-shell monomers need the unrestricted path)
      - | independent
        | atom
        | orbfile
@@ -448,6 +449,14 @@ The following table contains the defaults input options for the calculator, The 
    * - regions.qmregion.dftpackage.xtpdft.screening_eps
      - 1e-9
      - screening eps
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.overlap_tolerance
+     - 1e-8
+     - | Eigenvalues of the AO overlap matrix below this value
+       | are removed from the orthogonalization (near linear dependencies;
+       | the removed directions become zero orbitals at the top
+       | of the spectrum). Raise to 1e-7 to 1e-6 if the log reports
+       | a nearly singular overlap and the SCF is unstable.
      - float+
    * - regions.qmregion.dftpackage.xtpdft.fock_matrix_reset
      - 5
@@ -593,6 +602,13 @@ The following table contains the defaults input options for the calculator, The 
        | by default) up to this ceiling only when actually needed,
        | rather than paying the cost of heavy damping throughout.
      - float+
+   * - regions.qmregion.dftpackage.xtpdft.convergence.energy_reset
+     - 1.0
+     - | If the energy rises by more than this above the lowest
+       | energy reached so far, the (A)DIIS history is discarded
+       | and the SCF restarts, damped, from the lowest-energy density.
+       | 0 disables.
+     - float+
    * - regions.qmregion.dftpackage.xtpdft.convergence.davidson_max_iter
      - 50
      - | Maximum iterations for the Davidson eigensolver used by
@@ -651,6 +667,30 @@ The following table contains the defaults input options for the calculator, The 
      - | Tracks state by calculating the overlap with an earlier
        | state, you have to specify a minimum threshold, which
        | can be zero
+     - float+
+   * - regions.qmregion.environment_screening.include_kreac
+     - true
+     - | include the reaction field of the transition density in
+       | the BSE (linear-response part, moves bright singlets)
+     - bool
+   * - regions.qmregion.environment_screening.shell_regions
+     - 
+     - | ids of polar regions that respond as an uncoupled shell
+       | with polarizability alpha/shell_dielectric (legacy radial_dielectric)
+       | instead of as a coupled Thole system; empty for none
+     - 
+   * - regions.qmregion.environment_screening.shell_dielectric
+     - 4.0
+     - | dielectric constant that stands in for the mutual induction
+       | the shell leaves out
+     - float+
+   * - regions.qmregion.environment_screening.site_width
+     - 0.5
+     - | width of the polar sites seen by the QM density, in units
+       | of alpha^(1/3): each site responds to the QM field averaged
+       | over a Gaussian of that width, which keeps point dipoles
+       | inside the tails of diffuse auxiliary functions from over-screening;
+       | 0 for point sites
      - float+
    * - regions.qmregion.grid_for_potential
      - medium

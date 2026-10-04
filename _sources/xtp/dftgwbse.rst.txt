@@ -93,8 +93,9 @@ The following table contains the defaults input options for the calculator, The 
      - atom
      - | Method to use to make initial guess, independent(electrons)
        | or atom(densities) or previous calculation keyword orbfile
-       | or dimer_guess (combine two monomer .orb files of independently
-       | arbitrary charge/spin -- see dimer_guess_orbA/orbB below)
+       | or dimer_guess (combine two monomer .orb files, see dimer_guess_orbA/orbB
+       | below; closed-shell monomers work for restricted and unrestricted
+       | runs, open-shell monomers need the unrestricted path)
      - | independent
        | atom
        | orbfile
@@ -147,6 +148,14 @@ The following table contains the defaults input options for the calculator, The 
    * - dftpackage.xtpdft.screening_eps
      - 1e-9
      - screening eps
+     - float+
+   * - dftpackage.xtpdft.overlap_tolerance
+     - 1e-8
+     - | Eigenvalues of the AO overlap matrix below this value
+       | are removed from the orthogonalization (near linear dependencies;
+       | the removed directions become zero orbitals at the top
+       | of the spectrum). Raise to 1e-7 to 1e-6 if the log reports
+       | a nearly singular overlap and the SCF is unstable.
      - float+
    * - dftpackage.xtpdft.fock_matrix_reset
      - 5
@@ -291,6 +300,13 @@ The following table contains the defaults input options for the calculator, The 
        | ramps its own damping factor from a base (DampFac, 0.7
        | by default) up to this ceiling only when actually needed,
        | rather than paying the cost of heavy damping throughout.
+     - float+
+   * - dftpackage.xtpdft.convergence.energy_reset
+     - 1.0
+     - | If the energy rises by more than this above the lowest
+       | energy reached so far, the (A)DIIS history is discarded
+       | and the SCF restarts, damped, from the lowest-energy density.
+       | 0 disables.
      - float+
    * - dftpackage.xtpdft.convergence.davidson_max_iter
      - 50
