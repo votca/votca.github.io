@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8.2.1.4.4. iqm &mdash; VOTCA 2026-dev documentation</title>
+  <title>9.2.1.4.4. iqm &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8.2.1.4.5. qmmm" href="qmmm.html" />
-    <link rel="prev" title="8.2.1.4.3. ipodcoupling" href="ipodcoupling.html" /> 
+    <link rel="next" title="9.2.1.4.5. qmmm" href="qmmm.html" />
+    <link rel="prev" title="9.2.1.4.3. ipodcoupling" href="ipodcoupling.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,19 +56,20 @@
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">7. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">8. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">8.1. xtp_map</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">8.2. xtp_parallel</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">8.2.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">7. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">8. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">9. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">9.1. xtp_map</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">9.2. xtp_parallel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">9.2.1. help</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">8.3. xtp_run</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">8.4. xtp_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">9.3. xtp_run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">9.4. xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">9. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">10. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">11. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -110,9 +111,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">8. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">8.2. </span>xtp_parallel</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">8.2.1.4.4. </span>iqm</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">9. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">9.2. </span>xtp_parallel</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9.2.1.4.4. </span>iqm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/iqm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="iqm">
-<h1><span class="section-number">8.2.1.4.4. </span>iqm<a class="headerlink" href="#iqm" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">9.2.1.4.4. </span>iqm<a class="headerlink" href="#iqm" title="Link to this heading">¶</a></h1>
 <p>QM calculator for pairs
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -884,12 +885,24 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.ri_pair_threshold</p></td>
+<td><p>1e-10</p></td>
+<td><div class="line-block">
+<div class="line">RI only: basis-function shell pairs whose three-centre</div>
+<div class="line">integrals (P|ab) are bounded by less than this (Schwarz</div>
+<div class="line">bound) are not stored. Reduces the memory of the stored</div>
+<div class="line">RI tensor substantially for large molecules; energies</div>
+<div class="line">change at the level of the threshold. 0 stores all pairs.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -901,12 +914,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
 <td><p>false</p></td>
 <td><p>forcing UKS path</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.compute_forces</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.compute_forces</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Compute analytic ground-state DFT nuclear forces (RI,</div>
@@ -917,12 +930,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.enabled</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.enabled</p></td>
 <td><p>false</p></td>
 <td><p>Enable a CDFT charge constraint on this calculation</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.indices</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.indices</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Indices of atoms in the constrained fragment (0-based),</div>
@@ -932,7 +945,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.charge</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.charge</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Target charge on the fragment, RELATIVE to its neutral</div>
@@ -945,7 +958,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.initial_lambda</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.initial_lambda</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Initial guess for the Lagrange multiplier lambda, used</div>
@@ -954,7 +967,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.population_tolerance</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.population_tolerance</p></td>
 <td><p>1e-4</p></td>
 <td><div class="line-block">
 <div class="line">Outer-loop convergence criterion: the CDFT calculation</div>
@@ -964,7 +977,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.max_iterations</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.max_iterations</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
 <div class="line">Maximum number of outer (Lagrange-multiplier, bisection)</div>
@@ -973,7 +986,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
 <td><p>warmstart</p></td>
 <td><div class="line-block">
 <div class="line">How each outer bisection trial’s own inner SCF is started,</div>
@@ -998,12 +1011,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -1012,22 +1025,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -1036,32 +1049,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
 <td><p>0.8</p></td>
 <td><div class="line-block">
 <div class="line">DIIS error below which mixing is disabled – independent</div>
@@ -1076,7 +1089,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
 <td><p>0.98</p></td>
 <td><div class="line-block">
 <div class="line">Ceiling mixing can adaptively ramp up toward as the SCF</div>
@@ -1091,7 +1104,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy_reset</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy_reset</p></td>
 <td><p>1.0</p></td>
 <td><div class="line-block">
 <div class="line">If the energy rises by more than this above the lowest</div>
@@ -1102,7 +1115,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
 <div class="line">Maximum iterations for the Davidson eigensolver used by</div>
@@ -1118,7 +1131,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.singlet</p></td>
+<tr class="row-odd"><td><p>readjobfile.singlet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1127,7 +1140,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.triplet</p></td>
+<tr class="row-even"><td><p>readjobfile.triplet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1136,7 +1149,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.electron</p></td>
+<tr class="row-odd"><td><p>readjobfile.electron</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1145,7 +1158,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.hole</p></td>
+<tr class="row-even"><td><p>readjobfile.hole</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1154,7 +1167,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>linker_names</p></td>
+<tr class="row-odd"><td><p>linker_names</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Name of molecules that should serve as a transition between</div>
@@ -1164,7 +1177,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>store</p></td>
+<tr class="row-even"><td><p>store</p></td>
 <td></td>
 <td><p>Which kind of data to keep after each run</p></td>
 <td><div class="line-block">
@@ -1185,8 +1198,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ipodcoupling.html" class="btn btn-neutral float-left" title="8.2.1.4.3. ipodcoupling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="qmmm.html" class="btn btn-neutral float-right" title="8.2.1.4.5. qmmm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipodcoupling.html" class="btn btn-neutral float-left" title="9.2.1.4.3. ipodcoupling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qmmm.html" class="btn btn-neutral float-right" title="9.2.1.4.5. qmmm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

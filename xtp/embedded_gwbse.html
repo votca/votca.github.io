@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7. Embedded GW-BSE: Screening by a Polarizable Environment &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. XTP ASE Interface" href="pyxtp.html" />
+    <link rel="prev" title="6. Polarizable Ewald Embedding" href="ewald_embedding.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Embedded GW-BSE: Screening by a Polarizable Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-reaction-field">7.1. The reaction field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quasiparticle-energies-gw">7.2. Quasiparticle energies (GW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neutral-excitations-bse">7.3. Neutral excitations (BSE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-widths-and-stability">7.4. Site widths and stability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shell-regions">7.5. Shell regions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relation-to-the-iterative-scheme">7.6. Relation to the iterative scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">7.7. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">7.8. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">8. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">9. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">10. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">11. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Embedded GW-BSE: Screening by a Polarizable Environment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/embedded_gwbse.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="embedded-gw-bse-screening-by-a-polarizable-environment">
+<h1><span class="section-number">7. </span>Embedded GW-BSE: Screening by a Polarizable Environment<a class="headerlink" href="#embedded-gw-bse-screening-by-a-polarizable-environment" title="Link to this heading">¶</a></h1>
+<p>An electronic excitation of a molecule in a solid is screened by its
+surroundings. When the excitation rearranges charge, the neighbouring
+molecules polarize in response, and that response acts back on the
+excitation. For charged excitations (electron or hole) the effect is of the
+order of an electronvolt; for neutral excitations it is smaller, but large
+enough to reorder states or to shift them by more than the accuracy one
+expects of GW-BSE.</p>
+<p>VOTCA-XTP offers two ways to include this response in a QM/MM job with
+polarizable regions:</p>
+<ul class="simple">
+<li><p><strong>Iteratively</strong>, by treating the excited state like a ground state: the
+QM/MM loop converges the environment’s induced dipoles self-consistently
+against the density of the excited state, with a GW-BSE calculation in
+every outer iteration. This is the default for a job whose QM region is
+in an excited state.</p></li>
+<li><p><strong>Embedded</strong>, by folding the environment’s response into the screened
+Coulomb interaction of GW-BSE itself, following
+<a class="reference internal" href="bibliography.html#li-2016" id="id1"><span>[Li:2016]</span></a> and <a class="reference internal" href="bibliography.html#li-2018" id="id2"><span>[Li:2018]</span></a>. The QM/MM loop converges only the ground state;
+one GW-BSE calculation then runs with the environment as an additional,
+static screening medium. This is switched on with
+<code class="docutils literal notranslate"><span class="pre">environment_screening</span></code> in the <code class="docutils literal notranslate"><span class="pre">qmregion</span></code> options.</p></li>
+</ul>
+<p>The embedded scheme is cheaper, since it needs one GW-BSE calculation
+instead of one per outer iteration. It also contains two contributions that
+the iterative scheme cannot represent (see <a class="reference internal" href="#embedded-vs-iterative"><span class="std std-ref">Relation to the iterative scheme</span></a>).
+The <code class="docutils literal notranslate"><span class="pre">radial_dielectric</span></code> correction of the legacy code is available within
+it as shell regions.</p>
+<section id="the-reaction-field">
+<h2><span class="section-number">7.1. </span>The reaction field<a class="headerlink" href="#the-reaction-field" title="Link to this heading">¶</a></h2>
+<p>The environment is the set of polarizable sites of the job’s polar
+regions: Thole-damped inducible point dipoles <a class="reference internal" href="bibliography.html#thole-1981" id="id3"><span>[Thole:1981]</span></a>. A change
+<span class="math notranslate nohighlight">\(\delta\rho\)</span> of the QM charge density produces a field
+<span class="math notranslate nohighlight">\(\mathbf{E} = F\,\delta\rho\)</span> at the sites, the sites respond with
+induced dipoles <span class="math notranslate nohighlight">\(\boldsymbol{\mu} = A^{-1}\mathbf{E}\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[A = \alpha^{-1} + T_\text{Thole}\]</div>
+<p>is the same operator the polar region solves in the QM/MM loop, and the
+induced dipoles act back on the QM subsystem. The resulting additional
+interaction between two QM charge distributions is the reaction field</p>
+<div class="math notranslate nohighlight" id="equation-equ-embedded-vreac">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-equ-embedded-vreac" title="Link to this equation">¶</a></span>\[v_\text{reac} = -F A^{-1} F^{T},\]</div>
+<p>and the QM electrons interact through</p>
+<div class="math notranslate nohighlight">
+\[u = v + v_\text{reac}\]</div>
+<p>instead of the bare Coulomb interaction <span class="math notranslate nohighlight">\(v\)</span>. <span class="math notranslate nohighlight">\(v_\text{reac}\)</span> is
+negative semidefinite: the environment screens.</p>
+<p>In the resolution-of-identity representation used by GW-BSE, a product
+density <span class="math notranslate nohighlight">\(\rho_{mn}\)</span> is expanded in auxiliary functions,
+<span class="math notranslate nohighlight">\(F\)</span> becomes the field at the sites of each auxiliary function taken as
+a charge density, and <a class="reference internal" href="#equation-equ-embedded-vreac">Eq.7.1</a> turns into a matrix
+<span class="math notranslate nohighlight">\(B = -F A^{-1} F^{T}\)</span> over the auxiliary basis. In the metric of the
+stored three-centre integrals <span class="math notranslate nohighlight">\(M_{mn}\)</span> (in which the bare <span class="math notranslate nohighlight">\(v\)</span> is
+the identity) it becomes</p>
+<div class="math notranslate nohighlight">
+\[R = T^{T} B\, T, \qquad
+(mn|v_\text{reac}|kl) = M_{mn}\, R\, M_{kl}^{T},\]</div>
+<p>with <span class="math notranslate nohighlight">\(T\)</span> the inverse square root of the auxiliary Coulomb metric that
+is folded into <span class="math notranslate nohighlight">\(M\)</span>. <span class="math notranslate nohighlight">\(R\)</span> is built once per job: it depends only
+on the QM atoms, their auxiliary basis and the polar sites, not on the
+orbitals.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> is assembled and factorized densely, which is far cheaper than
+iterating a linear solve for every auxiliary function, and <span class="math notranslate nohighlight">\(B\)</span> is
+formed from its Cholesky factor, so it is symmetric and negative
+semidefinite by construction. The field <span class="math notranslate nohighlight">\(F\)</span> is obtained from
+nuclear-attraction (or, for smeared sites, two-centre Coulomb) integrals
+of each auxiliary function by a four-point central difference.</p>
+</section>
+<section id="quasiparticle-energies-gw">
+<h2><span class="section-number">7.2. </span>Quasiparticle energies (GW)<a class="headerlink" href="#quasiparticle-energies-gw" title="Link to this heading">¶</a></h2>
+<p>With the environment, the screened interaction is</p>
+<div class="math notranslate nohighlight">
+\[W = \left[u^{-1} - \chi_0\right]^{-1},\]</div>
+<p>which is split as <span class="math notranslate nohighlight">\(W = v + v_\text{reac} + (W - u)\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> gives the exchange self-energy <span class="math notranslate nohighlight">\(\Sigma^\text{x}\)</span>, as
+without an environment.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_\text{reac}\)</span> gives a static COH+SEX self-energy,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Sigma^\text{reac}_{mn} = \tfrac{1}{2} \sum_{l} s_l\,
+    (ml|v_\text{reac}|ln), \qquad
+s_l = \begin{cases} -1 &amp; l \text{ occupied} \\
+                    +1 &amp; l \text{ virtual,} \end{cases}\end{split}\]</div>
+<p>that is, a Coulomb hole <span class="math notranslate nohighlight">\(\tfrac{1}{2}\sum_l (ml|v_\text{reac}|ln)\)</span>
+plus a screened exchange <span class="math notranslate nohighlight">\(-\sum_{l\in\text{occ}} (ml|v_\text{reac}|ln)\)</span>.
+It is part of the correlation (it belongs to <span class="math notranslate nohighlight">\(W - v\)</span>) and enters
+wherever <span class="math notranslate nohighlight">\(\Sigma^\text{c}\)</span> does: the quasiparticle equation, evGW
+and QSGW. It is printed as <code class="docutils literal notranslate"><span class="pre">S-R</span></code> next to <code class="docutils literal notranslate"><span class="pre">S-X</span></code> and <code class="docutils literal notranslate"><span class="pre">S-C</span></code>, and the
+log lists its diagonal together with the resulting HOMO, LUMO and gap
+shifts.</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(W - u\)</span> is the correlation of the QM electrons, which now interact
+through <span class="math notranslate nohighlight">\(u\)</span> and are screened by the environment as well. With
+<span class="math notranslate nohighlight">\(S = (1 + R)^{1/2}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[W = S \left[1 - S\chi_0 S\right]^{-1} S ,\]</div>
+<p>so the unchanged RPA and correlation machinery runs on the <em>dressed</em>
+integrals <span class="math notranslate nohighlight">\(M S\)</span>.</p>
+</li>
+</ul>
+<p>For an electron added to or removed from the molecule,
+<span class="math notranslate nohighlight">\(\Sigma^\text{reac}\)</span> contains the polarization energy of the
+environment by that charge. The HOMO and LUMO quasiparticle energies
+therefore include it directly, which is how the embedded scheme provides
+hole and electron site energies (see <a class="reference internal" href="#embedded-usage"><span class="std std-ref">Usage</span></a>).</p>
+</section>
+<section id="neutral-excitations-bse">
+<h2><span class="section-number">7.3. </span>Neutral excitations (BSE)<a class="headerlink" href="#neutral-excitations-bse" title="Link to this heading">¶</a></h2>
+<p>The BSE kernel becomes</p>
+<div class="math notranslate nohighlight">
+\[K = K^\text{x}[v] + K^\text{reac}[v_\text{reac}] + K^\text{d}[W_\text{tot}],
+\qquad
+W_\text{tot} = \left[(1 + R)^{-1} + \varepsilon - 1\right]^{-1},\]</div>
+<p>with <span class="math notranslate nohighlight">\(\varepsilon\)</span> the RPA dielectric matrix of the QM subsystem in
+the same metric.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K^\text{d}[W_\text{tot}]\)</span> is the direct (electron-hole) term with
+the environment-screened interaction. It describes the environment’s
+response to the charge that the excitation rearranges: a state-specific
+effect, in the language of solvation models <a class="reference internal" href="bibliography.html#duchemin-2018" id="id4"><span>[Duchemin:2018]</span></a>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\text{reac} = (ia|v_\text{reac}|jb)\)</span> has the index structure of
+the exchange term. It is the environment’s response to the <em>transition</em>
+density, i.e. a linear-response effect, and it mainly moves bright
+singlets. Triplets have no exchange term and therefore no
+<span class="math notranslate nohighlight">\(K^\text{reac}\)</span>.</p></li>
+</ul>
+<p>With <code class="docutils literal notranslate"><span class="pre">include_kreac</span></code> (the default), the whole kernel runs on dressed
+integrals, where <span class="math notranslate nohighlight">\(K^\text{x} + K^\text{reac}\)</span> and
+<span class="math notranslate nohighlight">\(K^\text{d}[W_\text{tot}]\)</span> come out of the unchanged BSE operators.
+Without it, the integrals stay bare and <span class="math notranslate nohighlight">\(W_\text{tot}\)</span> is
+diagonalized in place of <span class="math notranslate nohighlight">\(\varepsilon\)</span>, so that <span class="math notranslate nohighlight">\(K^\text{x}\)</span>
+keeps the bare <span class="math notranslate nohighlight">\(v\)</span>. In both cases the first-order shift
+<span class="math notranslate nohighlight">\(\langle K^\text{reac}\rangle = 2\,(X+Y)^{T} K^\text{reac} (X+Y)\)</span> of
+each singlet is logged after the BSE is solved, as an estimate of the
+linear-response contribution. With <code class="docutils literal notranslate"><span class="pre">include_kreac</span></code> the exchange column of
+the state analysis is labelled <code class="docutils literal notranslate"><span class="pre">&lt;K_x+K_reac&gt;</span></code>.</p>
+</section>
+<section id="site-widths-and-stability">
+<h2><span class="section-number">7.4. </span>Site widths and stability<a class="headerlink" href="#site-widths-and-stability" title="Link to this heading">¶</a></h2>
+<p>For a charge density and inducible points <em>outside</em> it, the reaction
+energy <span class="math notranslate nohighlight">\(\langle\rho|v_\text{reac}|\rho\rangle\)</span> is bounded by the
+dielectric limit, above <span class="math notranslate nohighlight">\(-\langle\rho|v|\rho\rangle\)</span>. In the metric of
+<span class="math notranslate nohighlight">\(M\)</span> this means that all eigenvalues of <span class="math notranslate nohighlight">\(R\)</span> lie above
+<span class="math notranslate nohighlight">\(-1\)</span>, i.e. that <span class="math notranslate nohighlight">\(1 + R\)</span> is positive definite. A point dipole
+<em>inside</em> the tail of a diffuse auxiliary function is not bounded in this
+way, and in dense molecular solids the closest sites of neighbouring
+molecules do sit in those tails. An eigenvalue of <span class="math notranslate nohighlight">\(R\)</span> at or below
+<span class="math notranslate nohighlight">\(-1\)</span> would mean that the environment screens a charge fluctuation by
+more than the fluctuation itself; the dressing <span class="math notranslate nohighlight">\(S = (1+R)^{1/2}\)</span> then
+does not exist.</p>
+<p>Each site therefore responds to the QM field averaged over a normalized
+Gaussian of width</p>
+<div class="math notranslate nohighlight">
+\[R_j = w\,\alpha_{\text{iso},j}^{1/3},
+\qquad \alpha_{\text{iso},j} = \tfrac{1}{3}\operatorname{tr}\alpha_j ,\]</div>
+<p>with <span class="math notranslate nohighlight">\(w\)</span> the option <code class="docutils literal notranslate"><span class="pre">site_width</span></code> – the length scale that Thole
+damping itself uses. Outside the auxiliary functions a spherical charge
+acts as a point, so this changes the response only where point sites
+over-respond. In a production QM/MM job (55 QM atoms, def2-TZVP with
+aux-def2-TZVP, 3900 Thole sites) the lowest eigenvalue of <span class="math notranslate nohighlight">\(R\)</span> was
+<span class="math notranslate nohighlight">\(-1.056\)</span> with point sites, carried by three carbon atoms of a
+neighbouring C<sub>60</sub> at 3.05–3.3 Å; with the default
+<code class="docutils literal notranslate"><span class="pre">site_width</span></code> of 0.5 it was <span class="math notranslate nohighlight">\(-0.755\)</span>, while the reaction energies of
+the HOMO, LUMO and HOMO-LUMO densities changed by <span class="math notranslate nohighlight">\(10^{-4}\)</span> relative.</p>
+<p>Because <span class="math notranslate nohighlight">\(R\)</span> does not depend on the orbitals, a job checks
+<span class="math notranslate nohighlight">\(1 + R\)</span> <em>before</em> the QM/MM loop starts. If it is not positive
+definite, the job fails right away with a report of the lowest modes: where
+their charge sits on the QM side and which polar sites carry their
+reaction, with distances.</p>
+</section>
+<section id="shell-regions">
+<h2><span class="section-number">7.5. </span>Shell regions<a class="headerlink" href="#shell-regions" title="Link to this heading">¶</a></h2>
+<p>Polar regions listed in <code class="docutils literal notranslate"><span class="pre">shell_regions</span></code> respond without mutual
+induction, each site with the polarizability
+<span class="math notranslate nohighlight">\(\alpha_j/\varepsilon_\text{shell}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[B_\text{shell} = -\sum_{j} F_j\,
+    \frac{\alpha_j}{\varepsilon_\text{shell}}\, F_j^{T} .\]</div>
+<p>This needs no linear solve, so it is a cheap treatment of an outer shell
+beyond the explicit Thole region. The factor
+<span class="math notranslate nohighlight">\(1/\varepsilon_\text{shell}\)</span> (<code class="docutils literal notranslate"><span class="pre">shell_dielectric</span></code>) stands in for the
+mutual induction that is left out. It is the <code class="docutils literal notranslate"><span class="pre">radial_dielectric</span></code>
+correction of the legacy code in this framework. Because
+the sum runs over actual sites, the geometry is that of the morphology (a
+slab simply has no sites in the vacuum), which is why this rather than an
+analytic continuum term is used for the tail. The shell and the explicit
+regions do not couple to each other.</p>
+<p>The explicit (non-shell) polar regions respond together, as one coupled
+Thole system, and must therefore use the same <code class="docutils literal notranslate"><span class="pre">exp_damp</span></code>.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> contributes the electrostatic potential of the periodic
+background to the ground state, as in any QM/MM job (see
+<a class="reference internal" href="ewald_embedding.html"><span class="doc">Polarizable Ewald Embedding</span></a>). It is frozen and does not respond to the
+excitation, so it is not part of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</section>
+<section id="relation-to-the-iterative-scheme">
+<span id="embedded-vs-iterative"></span><h2><span class="section-number">7.6. </span>Relation to the iterative scheme<a class="headerlink" href="#relation-to-the-iterative-scheme" title="Link to this heading">¶</a></h2>
+<p>With a linear environment response, the total energy of the QM/MM system
+in a state <span class="math notranslate nohighlight">\(X\)</span> with QM density <span class="math notranslate nohighlight">\(\rho_X\)</span> is, at
+self-consistency,</p>
+<div class="math notranslate nohighlight">
+\[E_X = E_\text{QM}[\rho_X] + \langle\rho_X|\phi_\text{p}\rangle
+    + \tfrac{1}{2}\langle\rho_X|v_\text{reac}|\rho_X\rangle ,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\phi_\text{p}\)</span> the potential of the permanent multipoles. The
+excitation energy of the iterative scheme is then</p>
+<div class="math notranslate nohighlight">
+\[\Delta E = E_X - E_g = \Omega_g
+    + \tfrac{1}{2}\langle\Delta\rho|v_\text{reac}|\Delta\rho\rangle ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Omega_g\)</span> is the excitation energy in the environment
+polarized by the ground state and <span class="math notranslate nohighlight">\(\Delta\rho = \rho_X - \rho_g\)</span> is
+the density change of the excitation. The iterative scheme thus sees the
+environment’s response to the <em>mean</em> density change of the excitation.</p>
+<p>The embedded scheme starts from the same ground state, so its
+<span class="math notranslate nohighlight">\(\Omega_g\)</span> is the same, and through <span class="math notranslate nohighlight">\(K^\text{d}[W_\text{tot}]\)</span>
+it contains the mean-field response as well. In addition, it contains</p>
+<ul class="simple">
+<li><p>the response to the correlated motion of electron and hole: the
+environment responds to where the electron and the hole are relative to
+each other, not only to their averaged densities; and</p></li>
+<li><p><span class="math notranslate nohighlight">\(K^\text{reac}\)</span>, the response to the transition density.</p></li>
+</ul>
+<p>Neither can be represented by a density that is iterated against the
+environment. Conversely, both schemes treat the environment’s response as
+static (instantaneous); see <a class="reference internal" href="bibliography.html#amblard-2024" id="id5"><span>[Amblard:2024]</span></a> for when a dynamically
+polarizable environment matters.</p>
+<p>The same distinction applies to charged excitations. In a charged QM/MM
+job (state <code class="docutils literal notranslate"><span class="pre">e</span></code> or <code class="docutils literal notranslate"><span class="pre">h</span></code>) the environment polarizes against the averaged
+density of the extra electron or hole. The static self-energy
+<span class="math notranslate nohighlight">\(\Sigma^\text{reac}\)</span> responds to the carrier as an instantaneous
+point charge in each orbital it occupies. The two can differ noticeably
+for orbitals spread over several separated parts of a molecule.</p>
+</section>
+<section id="usage">
+<span id="embedded-usage"></span><h2><span class="section-number">7.7. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>The embedded scheme is switched on per QM region:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;qmregion&gt;</span>
+<span class="w">  </span><span class="nt">&lt;id&gt;</span>0<span class="nt">&lt;/id&gt;</span>
+<span class="w">  </span><span class="nt">&lt;state&gt;</span>jobfile<span class="nt">&lt;/state&gt;</span>
+<span class="w">  </span><span class="nt">&lt;segments&gt;</span>jobfile<span class="nt">&lt;/segments&gt;</span>
+<span class="w">  </span><span class="nt">&lt;dftpackage&gt;</span><span class="w"> </span>...<span class="w"> </span><span class="nt">&lt;/dftpackage&gt;</span>
+<span class="w">  </span><span class="nt">&lt;gwbse&gt;</span><span class="w"> </span>...<span class="w"> </span><span class="nt">&lt;/gwbse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;statetracker&gt;</span><span class="w"> </span>...<span class="w"> </span><span class="nt">&lt;/statetracker&gt;</span>
+<span class="w">  </span><span class="nt">&lt;environment_screening&gt;</span>
+<span class="w">    </span><span class="nt">&lt;include_kreac&gt;</span>true<span class="nt">&lt;/include_kreac&gt;</span>
+<span class="w">    </span><span class="nt">&lt;shell_regions&gt;</span>2<span class="nt">&lt;/shell_regions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;shell_dielectric&gt;</span>4.0<span class="nt">&lt;/shell_dielectric&gt;</span>
+<span class="w">    </span><span class="nt">&lt;site_width&gt;</span>0.5<span class="nt">&lt;/site_width&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/environment_screening&gt;</span>
+<span class="nt">&lt;/qmregion&gt;</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 12.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">include_kreac</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Include <span class="math notranslate nohighlight">\(K^\text{reac}\)</span> in the BSE kernel. Without it,
+<span class="math notranslate nohighlight">\(K^\text{reac}\)</span> is only estimated to first order and logged.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shell_regions</span></code></p></td>
+<td><p>(none)</p></td>
+<td><p>Ids of polar regions that respond as an uncoupled shell, with
+polarizabilities <span class="math notranslate nohighlight">\(\alpha/\varepsilon_\text{shell}\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shell_dielectric</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4.0</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\varepsilon_\text{shell}\)</span> for the shell regions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">site_width</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+<td><p>Width of the polar sites as seen by the QM density, in units of
+<span class="math notranslate nohighlight">\(\alpha_\text{iso}^{1/3}\)</span>; 0 gives point sites.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The state of the QM region must be a GW-BSE state:</p>
+<ul class="simple">
+<li><p>an exciton (<code class="docutils literal notranslate"><span class="pre">s1</span></code>, <code class="docutils literal notranslate"><span class="pre">t2</span></code>, …), tracked with the <code class="docutils literal notranslate"><span class="pre">statetracker</span></code> as
+usual, or</p></li>
+<li><p>a quasiparticle level (<code class="docutils literal notranslate"><span class="pre">pqpN</span></code> or <code class="docutils literal notranslate"><span class="pre">dqpN</span></code>, with <code class="docutils literal notranslate"><span class="pre">N</span></code> the HOMO or
+LUMO index), for hole and electron site energies.</p></li>
+</ul>
+<p>Charged DFT states (<code class="docutils literal notranslate"><span class="pre">e</span></code>, <code class="docutils literal notranslate"><span class="pre">h</span></code>) are refused. Their extra charge would be
+polarized in the QM/MM loop and screened a second time in GW. Unrestricted
+excitons and truncated (DFT-in-DFT) active regions are not supported.</p>
+<p>A job proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p>The screening environment is assembled from the job’s polar regions,
+and <span class="math notranslate nohighlight">\(1 + R\)</span> is checked.</p></li>
+<li><p>The QM/MM loop converges the <strong>ground state</strong>: DFT and the polar
+regions, as in an <code class="docutils literal notranslate"><span class="pre">n</span></code> job.</p></li>
+<li><p>One GW-BSE calculation runs on top of it, screened by the environment.
+The tracked state’s energy replaces the QM region’s energy.</p></li>
+<li><p>The job writes <code class="docutils literal notranslate"><span class="pre">checkpoint_screened.hdf5</span></code> and reports, in its
+output, the ground-state total energy <code class="docutils literal notranslate"><span class="pre">E_ground</span></code> and the site energies
+<code class="docutils literal notranslate"><span class="pre">screened_site_energies</span></code>, all relative to its own ground state, in eV:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">h</span></code> <span class="math notranslate nohighlight">\(= -\varepsilon_\text{HOMO}\)</span> and
+<code class="docutils literal notranslate"><span class="pre">e</span></code> <span class="math notranslate nohighlight">\(= \varepsilon_\text{LUMO}\)</span>, the quasiparticle energies
+(diagonalized ones if available),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> or <code class="docutils literal notranslate"><span class="pre">t</span></code>, the excitation energy of the tracked exciton, if the
+job’s state is one.</p></li>
+</ul>
+</li>
+</ol>
+<p>A screened job therefore needs no separate ground-state job. When writing
+jobs (<code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">write</span></code>) no <code class="docutils literal notranslate"><span class="pre">n</span></code> job is added for the segments, and <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">read</span></code>
+takes the site energies of screened jobs directly. Several screened jobs of
+the same segment (an <code class="docutils literal notranslate"><span class="pre">s1</span></code> and a quasiparticle job, say) report the same
+<code class="docutils literal notranslate"><span class="pre">e</span></code> and <code class="docutils literal notranslate"><span class="pre">h</span></code>; <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">read</span></code> checks that they agree to 1 meV.</p>
+<p>The auxiliary basis of the screening is the one GW-BSE uses: the DFT
+auxiliary basis if one is set, otherwise <code class="docutils literal notranslate"><span class="pre">gwbse.auxbasisset</span></code>, otherwise
+<code class="docutils literal notranslate"><span class="pre">aux-&lt;basisset&gt;</span></code>.</p>
+</section>
+<section id="example">
+<h2><span class="section-number">7.8. </span>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p>For a dicyanovinyl-oligothiophene donor in a morphology with C<sub>60</sub>
+(55 QM atoms,
+def2-TZVP/aux-def2-TZVP, evGW, full BSE; polar region of 2.4 nm with 68
+segments and 3900 Thole sites, <code class="docutils literal notranslate"><span class="pre">exp_damp</span></code> 0.39; optionally a periodic
+Ewald background of 1212 segments; <code class="docutils literal notranslate"><span class="pre">site_width</span></code> 0.5, no shell regions),
+the lowest singlet excitation energy (eV) is</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46.0%" />
+<col style="width: 22.0%" />
+<col style="width: 32.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>scheme</p></th>
+<th class="head"><p>cut-off</p></th>
+<th class="head"><p>with Ewald background</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QM only (vacuum)</p></td>
+<td><p>2.378</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>iterative QM/MM, <span class="math notranslate nohighlight">\(E_{s_1} - E_n\)</span></p></td>
+<td><p>2.319</p></td>
+<td><p>2.286</p></td>
+</tr>
+<tr class="row-even"><td><p>embedded, without <span class="math notranslate nohighlight">\(K^\text{reac}\)</span></p></td>
+<td><p>2.218</p></td>
+<td><p>2.186</p></td>
+</tr>
+<tr class="row-odd"><td><p>embedded, with <span class="math notranslate nohighlight">\(K^\text{reac}\)</span></p></td>
+<td><p>2.102</p></td>
+<td><p>2.068</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Ewald background shifts all three schemes by the same
+<span class="math notranslate nohighlight">\(-0.033\)</span> eV: it acts through the ground state only. Relative to the
+QM-only value (cut-off environment), the ground-state embedding contributes
+<span class="math notranslate nohighlight">\(+0.027\)</span> eV and the mean-field response to the density change
+<span class="math notranslate nohighlight">\(-0.087\)</span> eV in the iterative and <span class="math notranslate nohighlight">\(-0.083\)</span> eV in the embedded
+scheme. These two are common to both schemes. The embedded scheme adds <span class="math notranslate nohighlight">\(-0.104\)</span> eV from the correlated electron-hole pair and
+<span class="math notranslate nohighlight">\(-0.116\)</span> eV from <span class="math notranslate nohighlight">\(K^\text{reac}\)</span>, which the logged first-order
+estimate reproduces to about 10%.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ewald_embedding.html" class="btn btn-neutral float-left" title="6. Polarizable Ewald Embedding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyxtp.html" class="btn btn-neutral float-right" title="8. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

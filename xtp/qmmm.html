@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8.2.1.4.5. qmmm &mdash; VOTCA 2026-dev documentation</title>
+  <title>9.2.1.4.5. qmmm &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8.3. xtp_run" href="xtp_run_overview.html" />
-    <link rel="prev" title="8.2.1.4.4. iqm" href="iqm.html" /> 
+    <link rel="next" title="9.3. xtp_run" href="xtp_run_overview.html" />
+    <link rel="prev" title="9.2.1.4.4. iqm" href="iqm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,19 +56,20 @@
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">7. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">8. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">8.1. xtp_map</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">8.2. xtp_parallel</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">8.2.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">7. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">8. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">9. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">9.1. xtp_map</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">9.2. xtp_parallel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">9.2.1. help</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">8.3. xtp_run</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">8.4. xtp_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">9.3. xtp_run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">9.4. xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">9. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">10. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">11. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -110,9 +111,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">8. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">8.2. </span>xtp_parallel</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">8.2.1.4.5. </span>qmmm</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">9. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">9.2. </span>xtp_parallel</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9.2.1.4.5. </span>qmmm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/qmmm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="qmmm">
-<h1><span class="section-number">8.2.1.4.5. </span>qmmm<a class="headerlink" href="#qmmm" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">9.2.1.4.5. </span>qmmm<a class="headerlink" href="#qmmm" title="Link to this heading">¶</a></h1>
 <p>Executes qmmm calculations for individual molecules and clusters
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -818,12 +819,24 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.ri_pair_threshold</p></td>
+<td><p>1e-10</p></td>
+<td><div class="line-block">
+<div class="line">RI only: basis-function shell pairs whose three-centre</div>
+<div class="line">integrals (P|ab) are bounded by less than this (Schwarz</div>
+<div class="line">bound) are not stored. Reduces the memory of the stored</div>
+<div class="line">RI tensor substantially for large molecules; energies</div>
+<div class="line">change at the level of the threshold. 0 stores all pairs.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -835,12 +848,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.force_uks_path</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.force_uks_path</p></td>
 <td><p>false</p></td>
 <td><p>forcing UKS path</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.compute_forces</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.compute_forces</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Compute analytic ground-state DFT nuclear forces (RI,</div>
@@ -851,12 +864,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.enabled</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.enabled</p></td>
 <td><p>false</p></td>
 <td><p>Enable a CDFT charge constraint on this calculation</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.indices</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.indices</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Indices of atoms in the constrained fragment (0-based),</div>
@@ -866,7 +879,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.charge</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.charge</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Target charge on the fragment, RELATIVE to its neutral</div>
@@ -879,7 +892,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.initial_lambda</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.initial_lambda</p></td>
 <td><p>0.0</p></td>
 <td><div class="line-block">
 <div class="line">Initial guess for the Lagrange multiplier lambda, used</div>
@@ -888,7 +901,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.population_tolerance</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.population_tolerance</p></td>
 <td><p>1e-4</p></td>
 <td><div class="line-block">
 <div class="line">Outer-loop convergence criterion: the CDFT calculation</div>
@@ -898,7 +911,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.max_iterations</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.max_iterations</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
 <div class="line">Maximum number of outer (Lagrange-multiplier, bisection)</div>
@@ -907,7 +920,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.guess_strategy</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.cdft.guess_strategy</p></td>
 <td><p>warmstart</p></td>
 <td><div class="line-block">
 <div class="line">How each outer bisection trial’s own inner SCF is started,</div>
@@ -932,12 +945,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.energy</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.energy</p></td>
 <td><p>1E-7</p></td>
 <td><p>DeltaE at which calculation is converged</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.method</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.method</p></td>
 <td><p>DIIS</p></td>
 <td><p>Main method to use for convergence accelertation</p></td>
 <td><div class="line-block">
@@ -946,22 +959,22 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_start</p></td>
 <td><p>0.002</p></td>
 <td><p>DIIS error at which DIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.ADIIS_start</p></td>
 <td><p>0.8</p></td>
 <td><p>DIIS error at which ADIIS takes over</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_length</p></td>
 <td><p>20</p></td>
 <td><p>old hamiltonians to keep in history</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">if true remove the maximum element in the history if DIIS_length</div>
@@ -970,32 +983,32 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift</p></td>
 <td><p>0.0</p></td>
 <td><p>levelshift to apply to hamiltonian</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.levelshift_end</p></td>
 <td><p>0.2</p></td>
 <td><p>DIIS error at levelshifting is disabled</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.max_iterations</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.max_iterations</p></td>
 <td><p>100</p></td>
 <td><p>max iterations to use</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.error</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.error</p></td>
 <td><p>1e-7</p></td>
 <td><p>convergence error</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing</p></td>
 <td><p>0.7</p></td>
 <td><p>mixing parameter for linear mixing of density matrices</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing_end</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing_end</p></td>
 <td><p>0.8</p></td>
 <td><div class="line-block">
 <div class="line">DIIS error below which mixing is disabled – independent</div>
@@ -1010,7 +1023,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing_max</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.mixing_max</p></td>
 <td><p>0.98</p></td>
 <td><div class="line-block">
 <div class="line">Ceiling mixing can adaptively ramp up toward as the SCF</div>
@@ -1025,7 +1038,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.energy_reset</p></td>
+<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.energy_reset</p></td>
 <td><p>1.0</p></td>
 <td><div class="line-block">
 <div class="line">If the energy rises by more than this above the lowest</div>
@@ -1036,7 +1049,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
 <div class="line">Maximum iterations for the Davidson eigensolver used by</div>
@@ -1052,17 +1065,17 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.localize.max_iterations</p></td>
+<tr class="row-even"><td><p>regions.qmregion.localize.max_iterations</p></td>
 <td><p>10000</p></td>
 <td><p>Maximum number of iterations for PM Localization</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.localize.convergence_limit</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.localize.convergence_limit</p></td>
 <td><p>1e-5</p></td>
 <td><p>Convergence criteria for PM localization</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.localize.method</p></td>
+<tr class="row-even"><td><p>regions.qmregion.localize.method</p></td>
 <td><p>unitary-optimizer</p></td>
 <td><p>Method for the localization optimization</p></td>
 <td><div class="line-block">
@@ -1071,12 +1084,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.statetracker.oscillatorstrength</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.oscillatorstrength</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>picks first state above a threshold</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.statetracker.localisation.fragment</p></td>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.localisation.fragment</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Fragment definiton using atomids, can be a combination</div>
@@ -1085,12 +1098,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.statetracker.localisation.threshold</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.localisation.threshold</p></td>
 <td><p>0.1</p></td>
 <td><p>Threshold above which a state is considered localized</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.statetracker.chargetransfer.fragment</p></td>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.chargetransfer.fragment</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Fragment definiton using atomids, can be a combination</div>
@@ -1099,12 +1112,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.statetracker.chargetransfer.threshold</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.chargetransfer.threshold</p></td>
 <td><p>0.8</p></td>
 <td><p>Threshold above which a state is considered a CT state</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.statetracker.density</p></td>
+<tr class="row-even"><td><p>regions.qmregion.statetracker.density</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Tracks state by comparing the density to an earlier state,</div>
@@ -1114,7 +1127,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.statetracker.overlap</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.statetracker.overlap</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Tracks state by calculating the overlap with an earlier</div>
@@ -1124,7 +1137,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.environment_screening.include_kreac</p></td>
+<tr class="row-even"><td><p>regions.qmregion.environment_screening.include_kreac</p></td>
 <td><p>true</p></td>
 <td><div class="line-block">
 <div class="line">include the reaction field of the transition density in</div>
@@ -1133,7 +1146,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.environment_screening.shell_regions</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.environment_screening.shell_regions</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">ids of polar regions that respond as an uncoupled shell</div>
@@ -1143,7 +1156,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.environment_screening.shell_dielectric</p></td>
+<tr class="row-even"><td><p>regions.qmregion.environment_screening.shell_dielectric</p></td>
 <td><p>4.0</p></td>
 <td><div class="line-block">
 <div class="line">dielectric constant that stands in for the mutual induction</div>
@@ -1152,7 +1165,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.environment_screening.site_width</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.environment_screening.site_width</p></td>
 <td><p>0.5</p></td>
 <td><div class="line-block">
 <div class="line">width of the polar sites seen by the QM density, in units</div>
@@ -1164,7 +1177,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.grid_for_potential</p></td>
+<tr class="row-even"><td><p>regions.qmregion.grid_for_potential</p></td>
 <td><p>medium</p></td>
 <td><p>Grid to integrate influence of qm density om other regions</p></td>
 <td><div class="line-block">
@@ -1176,7 +1189,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.extgrid</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.extgrid</p></td>
 <td><p>medium</p></td>
 <td><div class="line-block">
 <div class="line">grid on which the interaction with classical regions is</div>
@@ -1192,7 +1205,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.tolerance_energy</p></td>
+<tr class="row-even"><td><p>regions.qmregion.tolerance_energy</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
 <div class="line">if energy difference for this region is below this value</div>
@@ -1201,25 +1214,30 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.tolerance_density</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.tolerance_density</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
-<div class="line">if RMS difference of density matrix is below this value</div>
-<div class="line">it is considered converged</div>
+<div class="line">if the RMS change of the density matrix is below this</div>
+<div class="line">value it is considered converged; measured in the Loewdin-orthonormalised</div>
+<div class="line">basis (S^1/2 dD S^1/2), where near-linear dependencies</div>
+<div class="line">of the AO basis do not inflate it</div>
 </div>
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.tolerance_density_max</p></td>
-<td><p>5e-5</p></td>
+<tr class="row-even"><td><p>regions.qmregion.tolerance_density_max</p></td>
+<td><p>1e-3</p></td>
 <td><div class="line-block">
-<div class="line">if Max difference of density matrix is below this value</div>
-<div class="line">it is considered converged</div>
+<div class="line">if the largest change of a density-matrix element is below</div>
+<div class="line">this value it is considered converged; measured in the</div>
+<div class="line">Loewdin-orthonormalised basis. The largest element change</div>
+<div class="line">is typically tens of times the RMS change, so this is</div>
+<div class="line">looser than tolerance_density</div>
 </div>
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.id</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
@@ -1228,7 +1246,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.segments</p></td>
+<tr class="row-even"><td><p>regions.qmregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -1239,12 +1257,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.cutoff.radius</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.cutoff.geometry</p></td>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -1253,7 +1271,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.qmregion.cutoff.region</p></td>
+<tr class="row-odd"><td><p>regions.qmregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -1262,7 +1280,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.qmregion.cutoff.explicit_segs</p></td>
+<tr class="row-even"><td><p>regions.qmregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>
@@ -1272,7 +1290,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.id</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
@@ -1281,7 +1299,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.segments</p></td>
+<tr class="row-even"><td><p>regions.polarregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -1292,12 +1310,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.cutoff.radius</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.cutoff.geometry</p></td>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -1306,7 +1324,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.cutoff.region</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -1315,7 +1333,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.cutoff.explicit_segs</p></td>
+<tr class="row-even"><td><p>regions.polarregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>
@@ -1325,7 +1343,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.tolerance_energy</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.tolerance_energy</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
 <div class="line">if energy difference for this region is below this value</div>
@@ -1334,7 +1352,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.tolerance_dipole</p></td>
+<tr class="row-even"><td><p>regions.polarregion.tolerance_dipole</p></td>
 <td><p>5e-5</p></td>
 <td><div class="line-block">
 <div class="line">convergence for interior iterations to converge polarisation</div>
@@ -1343,17 +1361,17 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.polarregion.max_iter</p></td>
+<tr class="row-odd"><td><p>regions.polarregion.max_iter</p></td>
 <td><p>500</p></td>
 <td><p>Maximum number of iterations for interior iteration</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>regions.polarregion.exp_damp</p></td>
+<tr class="row-even"><td><p>regions.polarregion.exp_damp</p></td>
 <td><p>0.39</p></td>
 <td><p>Thole sharpness parameter</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.id</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
@@ -1362,7 +1380,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.segments</p></td>
+<tr class="row-even"><td><p>regions.staticregion.segments</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of segments to include in the region separated by</div>
@@ -1373,12 +1391,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.cutoff.radius</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.radius</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>radius</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.cutoff.geometry</p></td>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.geometry</p></td>
 <td><p>n</p></td>
 <td><div class="line-block">
 <div class="line">geometry that should be used for mapping all the segments</div>
@@ -1387,7 +1405,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>regions.staticregion.cutoff.region</p></td>
+<tr class="row-odd"><td><p>regions.staticregion.cutoff.region</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">Id of the region the cutoff should refer to, can be the</div>
@@ -1396,7 +1414,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.staticregion.cutoff.explicit_segs</p></td>
+<tr class="row-even"><td><p>regions.staticregion.cutoff.explicit_segs</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">specifies if cutoff with respect to other region should</div>
@@ -1406,7 +1424,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>regions.ewaldregion.id</p></td>
+<tr class="row-odd"><td><p>regions.ewaldregion.id</p></td>
 <td><p>REQUIRED</p></td>
 <td><div class="line-block">
 <div class="line">id of the region, first region has to have id 0, ids must</div>
@@ -1415,7 +1433,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>regions.ewaldregion.checkpoint</p></td>
+<tr class="row-even"><td><p>regions.ewaldregion.checkpoint</p></td>
 <td><p>ewaldbackground.hdf5</p></td>
 <td><p>checkpoint file written by the ewaldbackground calculator</p></td>
 <td></td>
@@ -1432,8 +1450,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="iqm.html" class="btn btn-neutral float-left" title="8.2.1.4.4. iqm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="xtp_run_overview.html" class="btn btn-neutral float-right" title="8.3. xtp_run" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="iqm.html" class="btn btn-neutral float-left" title="9.2.1.4.4. iqm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xtp_run_overview.html" class="btn btn-neutral float-right" title="9.3. xtp_run" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

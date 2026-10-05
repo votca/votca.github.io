@@ -157,6 +157,14 @@ The following table contains the defaults input options for the calculator, The 
        | of the spectrum). Raise to 1e-7 to 1e-6 if the log reports
        | a nearly singular overlap and the SCF is unstable.
      - float+
+   * - dftpackage.xtpdft.ri_pair_threshold
+     - 1e-10
+     - | RI only: basis-function shell pairs whose three-centre
+       | integrals (P|ab) are bounded by less than this (Schwarz
+       | bound) are not stored. Reduces the memory of the stored
+       | RI tensor substantially for large molecules; energies
+       | change at the level of the threshold. 0 stores all pairs.
+     - float+
    * - dftpackage.xtpdft.fock_matrix_reset
      - 5
      - how often the fock matrix is reset
