@@ -154,7 +154,7 @@
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: a765348 (compiled Oct  9 2026, 11:44:44)
+xtp_tools, version 2026-dev gitid: c7a1745 (compiled Oct 11 2026, 21:19:25)
 
 Runs excitation/charge transport tools
 
@@ -167,6 +167,9 @@ Allowed options:
   -v [ --verbose2 ]             be extremly loud and noisy
   -o [ --options ] arg          Tool user options.
   -t [ --nthreads ] arg (=1)    number of threads to create
+  -M [ --memory ] arg (=0)      memory in GB for the whole process, used to
+                              choose caches and batch sizes (shared equally by
+                              concurrent jobs; 0: built-in defaults)
   -e [ --execute ] arg        Name of Tool to run
   -l [ --list ]               Lists all available Tools
   -d [ --description ] arg    Short description of a Tools
@@ -306,19 +309,19 @@ Done - stopping here
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: a765348 (compiled Oct  9 2026, 11:44:44)
+xtp_tools, version 2026-dev gitid: c7a1745 (compiled Oct 11 2026, 21:19:25)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2026-10-9 11:48:38 Calculated Densities at Numerical Grid, Number of electrons is -2.37439e-08
-... ... 2026-10-9 11:48:38 Calculating ESP at CHELPG grid points
-... ... 2026-10-9 11:48:40 Netcharge constrained to 0
-... ...  Sum of fitted charges: 2.41231e-14
-... ...  RMSE of fit:  0.0022159
-... ...  RRMSE of fit: 0.107182
+... ... 2026-10-11 21:39:2 Calculated Densities at Numerical Grid, Number of electrons is -2.37464e-08
+... ... 2026-10-11 21:39:2 Calculating ESP at CHELPG grid points
+... ... 2026-10-11 21:39:4 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41474e-14
+... ...  RMSE of fit:  0.00221585
+... ...  RRMSE of fit: 0.10718
 ... ... El Dipole from fitted charges [e*bohr]:
                  dx = +0.7278 dy = -0.4713 dz = +0.4706 |d|^2 = +0.9733
 ... ... El Dipole from exact qm density [e*bohr]:
@@ -351,7 +354,7 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: a765348 (compiled Oct  9 2026, 11:44:44)
+xtp_tools, version 2026-dev gitid: c7a1745 (compiled Oct 11 2026, 21:19:25)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -417,7 +420,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_8999/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_9819/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;methane_spectrum.dat&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 

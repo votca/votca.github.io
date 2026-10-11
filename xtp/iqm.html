@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9.2.1.4.4. iqm &mdash; VOTCA 2026-dev documentation</title>
+  <title>10.2.1.4.4. iqm &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9.2.1.4.5. qmmm" href="qmmm.html" />
-    <link rel="prev" title="9.2.1.4.3. ipodcoupling" href="ipodcoupling.html" /> 
+    <link rel="next" title="10.2.1.4.5. qmmm" href="qmmm.html" />
+    <link rel="prev" title="10.2.1.4.3. ipodcoupling" href="ipodcoupling.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,23 +53,24 @@
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">7. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">8. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">9. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">9.1. xtp_map</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">9.2. xtp_parallel</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">9.2.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">8. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">9. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">10. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">10.1. xtp_map</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">10.2. xtp_parallel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">10.2.1. help</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">9.3. xtp_run</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">9.4. xtp_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">10.3. xtp_run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">10.4. xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">10. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">11. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">11. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">12. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -111,9 +112,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">9. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">9.2. </span>xtp_parallel</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">9.2.1.4.4. </span>iqm</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">10. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">10.2. </span>xtp_parallel</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10.2.1.4.4. </span>iqm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/iqm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -124,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="iqm">
-<h1><span class="section-number">9.2.1.4.4. </span>iqm<a class="headerlink" href="#iqm" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">10.2.1.4.4. </span>iqm<a class="headerlink" href="#iqm" title="Link to this heading">¶</a></h1>
 <p>QM calculator for pairs
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -238,6 +239,43 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 <td></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.qp_emax</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">cap on the GW window: highest QP level at most this many</div>
+<div class="line">eV above the DFT LUMO (a degenerate set is kept whole);</div>
+<div class="line">applied on top of ranges, 0 = off</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.qp_emin</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">cap on the GW window: lowest QP level at most this many</div>
+<div class="line">eV below the DFT HOMO; 0 = off</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.bse_emax</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">cap on the BSE window: highest virtual level at most this</div>
+<div class="line">many eV above the DFT LUMO; 0 = off</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.bse_emin</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">cap on the BSE window: lowest occupied level at most this</div>
+<div class="line">many eV below the DFT HOMO; 0 = off</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.ignore_corelevels</p></td>
 <td><p>none</p></td>
@@ -353,8 +391,14 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 </tr>
 <tr class="row-odd"><td><p>gwbse.gw.qp_root_finder</p></td>
-<td><p>bisection</p></td>
-<td><p>rootfinder used to refine a sign-change interval</p></td>
+<td><p>brent</p></td>
+<td><div class="line-block">
+<div class="line">method to refine a sign-change interval of the QP equation</div>
+<div class="line">to a root: brent (inverse quadratic interpolation with</div>
+<div class="line">bisection safeguard, fewer Sigma evaluations) or bisection;</div>
+<div class="line">both stop when the QP residual is below qp_sc_limit</div>
+</div>
+</td>
 <td><div class="line-block">
 <div class="line">bisection</div>
 <div class="line">brent</div>
@@ -421,6 +465,84 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_root_continuity</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">evGW: from the second iteration on keep each QP level</div>
+<div class="line">on the root closest to its previous solution instead of</div>
+<div class="line">choosing the root with the largest weight again (stabilises</div>
+<div class="line">levels with two roots of comparable weight)</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.core_exchange</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">with ignore_corelevels=RPA (frozen core): include the</div>
+<div class="line">exchange with the core levels in Sigma_x, which Vxc also</div>
+<div class="line">contains through the core density. Without it the occupied</div>
+<div class="line">QP energies are shifted up by the missing core exchange</div>
+<div class="line">(0.6 eV on average for a QM9 molecule)</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qp_root_tracking</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">evGW: from the second iteration on search each QP level</div>
+<div class="line">only near its root of the previous iteration (window of</div>
+<div class="line">a few times its last change, 0.01 to 0.1 Ha) and keep</div>
+<div class="line">the closest accepted root unless its weight drops below</div>
+<div class="line">half; otherwise, and for levels without such a root, the</div>
+<div class="line">full search is used. After convergence one QP solve with</div>
+<div class="line">the full search checks the roots, so the result is a fixed</div>
+<div class="line">point of the full search. If a level has several such</div>
+<div class="line">fixed points (strong satellites), tracking may end on</div>
+<div class="line">another one than iterating with the full search does</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.screening_update</p></td>
+<td><p>adaptive</p></td>
+<td><div class="line-block">
+<div class="line">evGW: when the screening W is rebuilt. every: in every</div>
+<div class="line">iteration. adaptive: the energies in G are iterated with</div>
+<div class="line">W fixed and W is rebuilt once their last change is below</div>
+<div class="line">screening_update_ratio times their change since W was</div>
+<div class="line">built (or after screening_update_max_inner iterations);</div>
+<div class="line">converged when the energies change by less than gw_sc_limit</div>
+<div class="line">and differ from those of the last W by less than gw_sc_limit,</div>
+<div class="line">the same evGW solution</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">every</div>
+<div class="line">adaptive</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.screening_update_ratio</p></td>
+<td><p>0.1</p></td>
+<td><div class="line-block">
+<div class="line">adaptive screening_update: rebuild W once the last change</div>
+<div class="line">of the energies is below this fraction of their change</div>
+<div class="line">since W was built</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.screening_update_max_inner</p></td>
+<td><p>10</p></td>
+<td><div class="line-block">
+<div class="line">adaptive screening_update: rebuild W at the latest after</div>
+<div class="line">this many iterations with the same W</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
 <tr class="row-odd"><td><p>gwbse.gw.qp_zero_margin</p></td>
 <td><p>1e-6</p></td>
 <td><div class="line-block">
@@ -445,7 +567,7 @@ The following table contains the defaults input options for the calculator, The 
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.gw.qp_sc_limit</p></td>
-<td><p>1e-5</p></td>
+<td><p>1e-6</p></td>
 <td><p>quasiparticle equation solver convergence</p></td>
 <td><p>float+</p></td>
 </tr>
@@ -455,7 +577,7 @@ The following table contains the defaults input options for the calculator, The 
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.gw.mixing_order</p></td>
-<td><p>20</p></td>
+<td><p>3</p></td>
 <td><div class="line-block">
 <div class="line">Mixing of QP energies in evGW - 0: plain, 1: linear, &gt;1:</div>
 <div class="line">Anderson</div>
@@ -479,7 +601,7 @@ The following table contains the defaults input options for the calculator, The 
 <td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.gw.qsgw_max_iterations</p></td>
-<td><p>20</p></td>
+<td><p>50</p></td>
 <td><p>maximum number of iterations is QSGW</p></td>
 <td><p>int+</p></td>
 </tr>
@@ -497,9 +619,43 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
+<tr class="row-odd"><td><p>gwbse.gw.out_of_window_shift</p></td>
+<td><p>max</p></td>
+<td><div class="line-block">
+<div class="line">Shift of the RPA energies of levels outside the GW window</div>
+<div class="line">(evGW, QSGW): max - largest correction of the occupied/virtual</div>
+<div class="line">window levels; nearest - correction of the window boundary</div>
+<div class="line">level; linear - linear fit of the corrections near the</div>
+<div class="line">boundary, extrapolated at most over the fitted energy</div>
+<div class="line">span</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">max</div>
+<div class="line">nearest</div>
+<div class="line">linear</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.out_of_window_fit_fraction</p></td>
+<td><p>0.3</p></td>
+<td><div class="line-block">
+<div class="line">linear out_of_window_shift: fraction of the occupied/virtual</div>
+<div class="line">window levels next to the boundary used in the fit (at</div>
+<div class="line">least 2 levels)</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
 <tr class="row-odd"><td><p>gwbse.gw.rebuild_3c_freq</p></td>
-<td><p>5</p></td>
-<td><p>how often the 3c integrals in iterate should be rebuilt</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">rebuild the 3c integrals from scratch every this many</div>
+<div class="line">evGW iterations; 0 (default) never. The integrals are</div>
+<div class="line">only rotated by orthogonal matrices between iterations,</div>
+<div class="line">so a rebuild resets rounding at the 1e-12 Ha level</div>
+</div>
+</td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.gw.sigma_plot.states</p></td>
@@ -1198,8 +1354,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ipodcoupling.html" class="btn btn-neutral float-left" title="9.2.1.4.3. ipodcoupling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="qmmm.html" class="btn btn-neutral float-right" title="9.2.1.4.5. qmmm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipodcoupling.html" class="btn btn-neutral float-left" title="10.2.1.4.3. ipodcoupling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qmmm.html" class="btn btn-neutral float-right" title="10.2.1.4.5. qmmm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

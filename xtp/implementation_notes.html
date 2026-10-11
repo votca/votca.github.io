@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Charge and Energy Transfer Theory" href="transfer_theory.html" />
+    <link rel="next" title="4. GW-BSE in Practice: Methods, Numerics and Settings" href="gwbse_numerics.html" />
     <link rel="prev" title="2. Electronic Structure Theories" href="elstruc_theory.html" /> 
 </head>
 
@@ -66,14 +66,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#gw-bse">3.3. GW-BSE</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">4. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">5. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">6. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">7. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">8. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">9. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">10. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">11. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">8. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">9. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">10. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">11. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">12. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -254,10 +255,10 @@ finite-difference forces on constrained systems.</p>
 <a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>, are built on top of the ground-state DFT orbitals and Fock matrix
 produced by the machinery above – either from the internal DFT engine or from the
 ORCA interface – and do not themselves depend on which SCF convergence path (ordinary
-DIIS-family, direct-minimization, or CDFT) produced that reference. Consult the code
-reference for implementation-level detail on the GW self-energy and BSE Hamiltonian
-construction; this page focuses specifically on the ground-state SCF machinery that
-CDFT and difficult open-shell systems most directly exercise.</p>
+DIIS-family, direct-minimization, or CDFT) produced that reference. The methods,
+numerics and settings of the GW and BSE steps – level windows, self-energy models,
+the solution of the quasiparticle equation, evGW self-consistency and its pitfalls –
+are described in detail in <a class="reference internal" href="gwbse_numerics.html"><span class="doc">GW-BSE in Practice: Methods, Numerics and Settings</span></a>.</p>
 </section>
 </section>
 
@@ -266,7 +267,7 @@ CDFT and difficult open-shell systems most directly exercise.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="elstruc_theory.html" class="btn btn-neutral float-left" title="2. Electronic Structure Theories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="transfer_theory.html" class="btn btn-neutral float-right" title="4. Charge and Energy Transfer Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gwbse_numerics.html" class="btn btn-neutral float-right" title="4. GW-BSE in Practice: Methods, Numerics and Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

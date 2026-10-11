@@ -64,7 +64,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-electronic-structure-calculations-are-run">How electronic structure calculations are run</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-options-are-parsed-in-xtp">How options are parsed in xtp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-statefiles-are-parsed-in">How statefiles are parsed in</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-the-cuda-support-works">How the cuda support works</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-code-is-executed">How code is executed</a></li>
 </ul>
 </li>
@@ -127,10 +126,6 @@ First the optionhandler loads the default option file for that calculator, e.g. 
 <section id="how-statefiles-are-parsed-in">
 <h2>How statefiles are parsed in<a class="headerlink" href="#how-statefiles-are-parsed-in" title="Link to this heading">¶</a></h2>
 <p>Statefiles are only used in the <strong>xtp_parallel</strong> and <strong>xtp_run</strong> executables, which derive from <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/stateapplication.h">stateapplication</a>, which again derives from the above mentioned <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/xtpapplication.cc">xtp application</a>. Their parsing is implemented in <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/src/libxtp/statesaver.cc">statesaver</a>. Underlying all statefiles are the hdf5interfaces that are also used for the orbitals file and are implemented in <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/checkpointwriter.h">checkpointwriter</a> and <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/checkpointreader.h">checkpointreader</a>.</p>
-</section>
-<section id="how-the-cuda-support-works">
-<h2>How the cuda support works<a class="headerlink" href="#how-the-cuda-support-works" title="Link to this heading">¶</a></h2>
-<p>CUDA support is optional and is enabled via <code class="code docutils literal notranslate"><span class="pre">-DUSE_CUDA=ON</span></code> in cmake and then enabled via <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/votca_xtp_config.h.in">votca_xtp_config</a>. CUDA is basically only used for matrix multiplication. The matrix class which wraps the <a class="reference external" href="https://docs.nvidia.com/cuda/cublas/index.html">CUBLAS</a> class is <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/cudamatrix.h">CudaMatrix</a>, which has ownwership of gpumemory. Calling the CUDA code inside openmp is handled via <a class="reference external" href="https://github.com/votca/votca/blob/master/xtp/include/votca/xtp/openmp_cuda.h">OpenMP_CUDA class</a>, which also implements the specific commands for CPU and GPU calls.</p>
 </section>
 <section id="how-code-is-executed">
 <h2>How code is executed<a class="headerlink" href="#how-code-is-executed" title="Link to this heading">¶</a></h2>

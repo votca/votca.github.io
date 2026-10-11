@@ -399,6 +399,27 @@ The following table contains the defaults input options for the calculator, The 
      - | only needed, if ranges is factor or explicit, highest
        | MO to be used in BSE
      - 
+   * - gwbse.qp_emax
+     - 0
+     - | cap on the GW window: highest QP level at most this many
+       | eV above the DFT LUMO (a degenerate set is kept whole);
+       | applied on top of ranges, 0 = off
+     - float+
+   * - gwbse.qp_emin
+     - 0
+     - | cap on the GW window: lowest QP level at most this many
+       | eV below the DFT HOMO; 0 = off
+     - float+
+   * - gwbse.bse_emax
+     - 0
+     - | cap on the BSE window: highest virtual level at most this
+       | many eV above the DFT LUMO; 0 = off
+     - float+
+   * - gwbse.bse_emin
+     - 0
+     - | cap on the BSE window: lowest occupied level at most this
+       | many eV below the DFT HOMO; 0 = off
+     - float+
    * - gwbse.ignore_corelevels
      - none
      - | exclude core MO level from calculation on RPA,GW or BSE
@@ -467,8 +488,11 @@ The following table contains the defaults input options for the calculator, The 
        | dense
        | adaptive_with_dense_fallback
    * - gwbse.gw.qp_root_finder
-     - bisection
-     - rootfinder used to refine a sign-change interval
+     - brent
+     - | method to refine a sign-change interval of the QP equation
+       | to a root: brent (inverse quadratic interpolation with
+       | bisection safeguard, fewer Sigma evaluations) or bisection;
+       | both stop when the QP residual is below qp_sc_limit
      - | bisection
        | brent
    * - gwbse.gw.qp_full_window_half_width
@@ -506,6 +530,57 @@ The following table contains the defaults input options for the calculator, The 
      - | restrict occupied and virtual QP scans away from the zero-energy
        | crossing region before retrying the full window
      - bool
+   * - gwbse.gw.qp_root_continuity
+     - true
+     - | evGW: from the second iteration on keep each QP level
+       | on the root closest to its previous solution instead of
+       | choosing the root with the largest weight again (stabilises
+       | levels with two roots of comparable weight)
+     - bool
+   * - gwbse.gw.core_exchange
+     - true
+     - | with ignore_corelevels=RPA (frozen core): include the
+       | exchange with the core levels in Sigma_x, which Vxc also
+       | contains through the core density. Without it the occupied
+       | QP energies are shifted up by the missing core exchange
+       | (0.6 eV on average for a QM9 molecule)
+     - bool
+   * - gwbse.gw.qp_root_tracking
+     - false
+     - | evGW: from the second iteration on search each QP level
+       | only near its root of the previous iteration (window of
+       | a few times its last change, 0.01 to 0.1 Ha) and keep
+       | the closest accepted root unless its weight drops below
+       | half; otherwise, and for levels without such a root, the
+       | full search is used. After convergence one QP solve with
+       | the full search checks the roots, so the result is a fixed
+       | point of the full search. If a level has several such
+       | fixed points (strong satellites), tracking may end on
+       | another one than iterating with the full search does
+     - bool
+   * - gwbse.gw.screening_update
+     - adaptive
+     - | evGW: when the screening W is rebuilt. every: in every
+       | iteration. adaptive: the energies in G are iterated with
+       | W fixed and W is rebuilt once their last change is below
+       | screening_update_ratio times their change since W was
+       | built (or after screening_update_max_inner iterations);
+       | converged when the energies change by less than gw_sc_limit
+       | and differ from those of the last W by less than gw_sc_limit,
+       | the same evGW solution
+     - | every
+       | adaptive
+   * - gwbse.gw.screening_update_ratio
+     - 0.1
+     - | adaptive screening_update: rebuild W once the last change
+       | of the energies is below this fraction of their change
+       | since W was built
+     - float+
+   * - gwbse.gw.screening_update_max_inner
+     - 10
+     - | adaptive screening_update: rebuild W at the latest after
+       | this many iterations with the same W
+     - int+
    * - gwbse.gw.qp_zero_margin
      - 1e-6
      - | margin below zero used as upper bound for occupied restricted
@@ -521,7 +596,7 @@ The following table contains the defaults input options for the calculator, The 
        | solution
      - int+
    * - gwbse.gw.qp_sc_limit
-     - 1e-5
+     - 1e-6
      - quasiparticle equation solver convergence
      - float+
    * - gwbse.gw.sc_max_iter
@@ -529,7 +604,7 @@ The following table contains the defaults input options for the calculator, The 
      - Maximum number of iterations in eVGW
      - int+
    * - gwbse.gw.mixing_order
-     - 20
+     - 3
      - | Mixing of QP energies in evGW - 0: plain, 1: linear, >1:
        | Anderson
      - int+
@@ -546,7 +621,7 @@ The following table contains the defaults input options for the calculator, The 
      - Run Quasiparticle self-consistent GW after evGW or G0W0
      - bool
    * - gwbse.gw.qsgw_max_iterations
-     - 20
+     - 50
      - maximum number of iterations is QSGW
      - int+
    * - gwbse.gw.qsgw_sc_limit
@@ -558,9 +633,29 @@ The following table contains the defaults input options for the calculator, The 
      - | QSGW: pertGW energy threshold for inclusion of virtual
        | states
      - float+
+   * - gwbse.gw.out_of_window_shift
+     - max
+     - | Shift of the RPA energies of levels outside the GW window
+       | (evGW, QSGW): max - largest correction of the occupied/virtual
+       | window levels; nearest - correction of the window boundary
+       | level; linear - linear fit of the corrections near the
+       | boundary, extrapolated at most over the fitted energy
+       | span
+     - | max
+       | nearest
+       | linear
+   * - gwbse.gw.out_of_window_fit_fraction
+     - 0.3
+     - | linear out_of_window_shift: fraction of the occupied/virtual
+       | window levels next to the boundary used in the fit (at
+       | least 2 levels)
+     - float+
    * - gwbse.gw.rebuild_3c_freq
-     - 5
-     - how often the 3c integrals in iterate should be rebuilt
+     - 0
+     - | rebuild the 3c integrals from scratch every this many
+       | evGW iterations; 0 (default) never. The integrals are
+       | only rotated by orthogonal matrices between iterations,
+       | so a rebuild resets rounding at the 1e-12 Ha level
      - int+
    * - gwbse.gw.sigma_plot.states
      - 
