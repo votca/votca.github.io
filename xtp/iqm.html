@@ -630,6 +630,33 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
+<tr class="row-even"><td><p>gwbse.gw.qsgw_regularization</p></td>
+<td><p>eta</p></td>
+<td><div class="line-block">
+<div class="line">QSGW static self-energy: eta = symmetrised 1/2 Re[Sigma(e_p)</div>
+<div class="line">+ Sigma(e_q)] with the broadening eta; srg = similarity-renormalization-group</div>
+<div class="line">form (Marie and Loos), Hermitian by construction, terms</div>
+<div class="line">damped by 1 - exp(-s (D_p^2 + D_q^2)) with D the distance</div>
+<div class="line">from their pole (exact and ppm Sigma)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">eta</div>
+<div class="line">srg</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.qsgw_srg_s</p></td>
+<td><p>500</p></td>
+<td><div class="line-block">
+<div class="line">QSGW with qsgw_regularization=srg: flow parameter s; s</div>
+<div class="line">= 1/(2 eta^2) matches the eta form to first order (s =</div>
+<div class="line">200 for eta = 0.05 Ha); Marie and Loos recommend 500 to</div>
+<div class="line">1000</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
 <tr class="row-even"><td><p>gwbse.gw.qsgw_hartree_screened</p></td>
 <td><p>true</p></td>
 <td><div class="line-block">

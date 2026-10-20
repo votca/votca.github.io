@@ -647,6 +647,22 @@ The following table contains the defaults input options for the calculator, The 
        | of the active occupied levels (false: keep J of the DFT
        | density, the behaviour before)
      - bool
+   * - gwbse.gw.qsgw_regularization
+     - eta
+     - | QSGW static self-energy: eta = symmetrised 1/2 Re[Sigma(e_p)
+       | + Sigma(e_q)] with the broadening eta; srg = similarity-renormalization-group
+       | form (Marie and Loos), Hermitian by construction, terms
+       | damped by 1 - exp(-s (D_p^2 + D_q^2)) with D the distance
+       | from their pole (exact and ppm Sigma)
+     - | eta
+       | srg
+   * - gwbse.gw.qsgw_srg_s
+     - 500
+     - | QSGW with qsgw_regularization=srg: flow parameter s; s
+       | = 1/(2 eta^2) matches the eta form to first order (s =
+       | 200 for eta = 0.05 Ha); Marie and Loos recommend 500 to
+       | 1000
+     - float+
    * - gwbse.gw.qsgw_hartree_screened
      - true
      - | QSGW with environment screening: the Hartree update uses

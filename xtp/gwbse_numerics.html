@@ -91,24 +91,31 @@
 <li class="toctree-l4"><a class="reference internal" href="#root-tracking-qp-root-tracking-optional">4.5.5. Root tracking (<code class="docutils literal notranslate"><span class="pre">qp_root_tracking</span></code>, optional)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#levels-in-the-satellite-region">4.6. Levels in the satellite region</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bethe-salpeter-equation">4.7. Bethe-Salpeter equation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hamiltonian-and-solvers">4.7.1. Hamiltonian and solvers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#caches-for-the-direct-term">4.7.2. Caches for the direct term</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dynamical-screening">4.7.3. Dynamical screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quasiparticle-self-consistent-gw-qsgw">4.6. Quasiparticle self-consistent GW (QSGW)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-qsgw-hamiltonian">4.6.1. The QSGW Hamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-loop">4.6.2. The loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-static-self-energy-and-its-regularization">4.6.3. The static self-energy and its regularization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recommended-settings">4.6.4. Recommended settings</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#performance-and-memory">4.8. Performance and memory</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#where-the-time-goes">4.8.1. Where the time goes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#memory">4.8.2. Memory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#platforms">4.8.3. Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#levels-in-the-satellite-region">4.7. Levels in the satellite region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bethe-salpeter-equation">4.8. Bethe-Salpeter equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hamiltonian-and-solvers">4.8.1. Hamiltonian and solvers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#caches-for-the-direct-term">4.8.2. Caches for the direct term</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dynamical-screening">4.8.3. Dynamical screening</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">4.9. Troubleshooting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#reproducing-results-of-older-versions">4.9.1. Reproducing results of older versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-and-memory">4.9. Performance and memory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#where-the-time-goes">4.9.1. Where the time goes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory">4.9.2. Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#platforms">4.9.3. Platforms</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#reference-evgw-and-qp-settings">4.10. Reference: evGW and QP settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">4.10. Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reproducing-results-of-older-versions">4.10.1. Reproducing results of older versions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference-evgw-and-qp-settings">4.11. Reference: evGW and QP settings</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
@@ -187,70 +194,78 @@ current version.</p>
 <nav class="contents local" id="contents-of-this-chapter">
 <p class="topic-title">Contents of this chapter</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview-of-a-gw-bse-calculation" id="id10">Overview of a GW-BSE calculation</a></p></li>
-<li><p><a class="reference internal" href="#level-windows" id="id11">Level windows</a></p>
+<li><p><a class="reference internal" href="#overview-of-a-gw-bse-calculation" id="id14">Overview of a GW-BSE calculation</a></p></li>
+<li><p><a class="reference internal" href="#level-windows" id="id15">Level windows</a></p>
 <ul>
-<li><p><a class="reference internal" href="#ranges-by-index" id="id12">Ranges by index</a></p></li>
-<li><p><a class="reference internal" href="#energy-caps" id="id13">Energy caps</a></p></li>
-<li><p><a class="reference internal" href="#core-levels" id="id14">Core levels</a></p></li>
-<li><p><a class="reference internal" href="#levels-outside-the-gw-window" id="id15">Levels outside the GW window</a></p></li>
+<li><p><a class="reference internal" href="#ranges-by-index" id="id16">Ranges by index</a></p></li>
+<li><p><a class="reference internal" href="#energy-caps" id="id17">Energy caps</a></p></li>
+<li><p><a class="reference internal" href="#core-levels" id="id18">Core levels</a></p></li>
+<li><p><a class="reference internal" href="#levels-outside-the-gw-window" id="id19">Levels outside the GW window</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#the-correlation-self-energy" id="id16">The correlation self-energy</a></p>
+<li><p><a class="reference internal" href="#the-correlation-self-energy" id="id20">The correlation self-energy</a></p>
 <ul>
-<li><p><a class="reference internal" href="#pole-structure" id="id17">Pole structure</a></p></li>
-<li><p><a class="reference internal" href="#plasmon-pole-model-sigma-integrator-ppm-default" id="id18">Plasmon-pole model (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=ppm</span></code>, default)</a></p></li>
-<li><p><a class="reference internal" href="#exact-rpa-screening-sigma-integrator-exact" id="id19">Exact RPA screening (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=exact</span></code>)</a></p></li>
-<li><p><a class="reference internal" href="#contour-deformation-sigma-integrator-cda" id="id20">Contour deformation (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=cda</span></code>)</a></p></li>
-<li><p><a class="reference internal" href="#batched-evaluation-and-far-pole-interpolation" id="id21">Batched evaluation and far-pole interpolation</a></p></li>
-<li><p><a class="reference internal" href="#off-diagonal-elements" id="id22">Off-diagonal elements</a></p></li>
+<li><p><a class="reference internal" href="#pole-structure" id="id21">Pole structure</a></p></li>
+<li><p><a class="reference internal" href="#plasmon-pole-model-sigma-integrator-ppm-default" id="id22">Plasmon-pole model (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=ppm</span></code>, default)</a></p></li>
+<li><p><a class="reference internal" href="#exact-rpa-screening-sigma-integrator-exact" id="id23">Exact RPA screening (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=exact</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#contour-deformation-sigma-integrator-cda" id="id24">Contour deformation (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=cda</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#batched-evaluation-and-far-pole-interpolation" id="id25">Batched evaluation and far-pole interpolation</a></p></li>
+<li><p><a class="reference internal" href="#off-diagonal-elements" id="id26">Off-diagonal elements</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#solving-the-quasiparticle-equation" id="id23">Solving the quasiparticle equation</a></p>
+<li><p><a class="reference internal" href="#solving-the-quasiparticle-equation" id="id27">Solving the quasiparticle equation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-qp-equation-and-its-roots" id="id24">The QP equation and its roots</a></p></li>
-<li><p><a class="reference internal" href="#qp-solver" id="id25"><code class="docutils literal notranslate"><span class="pre">qp_solver</span></code></a></p></li>
-<li><p><a class="reference internal" href="#the-grid-search" id="id26">The grid search</a></p></li>
-<li><p><a class="reference internal" href="#refinement-and-acceptance" id="id27">Refinement and acceptance</a></p></li>
-<li><p><a class="reference internal" href="#choosing-among-several-roots" id="id28">Choosing among several roots</a></p></li>
-<li><p><a class="reference internal" href="#accuracy-of-the-roots-and-the-evgw-limit" id="id29">Accuracy of the roots and the evGW limit</a></p></li>
-<li><p><a class="reference internal" href="#cost-of-the-qp-step" id="id30">Cost of the QP step</a></p></li>
+<li><p><a class="reference internal" href="#the-qp-equation-and-its-roots" id="id28">The QP equation and its roots</a></p></li>
+<li><p><a class="reference internal" href="#qp-solver" id="id29"><code class="docutils literal notranslate"><span class="pre">qp_solver</span></code></a></p></li>
+<li><p><a class="reference internal" href="#the-grid-search" id="id30">The grid search</a></p></li>
+<li><p><a class="reference internal" href="#refinement-and-acceptance" id="id31">Refinement and acceptance</a></p></li>
+<li><p><a class="reference internal" href="#choosing-among-several-roots" id="id32">Choosing among several roots</a></p></li>
+<li><p><a class="reference internal" href="#accuracy-of-the-roots-and-the-evgw-limit" id="id33">Accuracy of the roots and the evGW limit</a></p></li>
+<li><p><a class="reference internal" href="#cost-of-the-qp-step" id="id34">Cost of the QP step</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#eigenvalue-self-consistency-evgw" id="id31">Eigenvalue self-consistency (evGW)</a></p>
+<li><p><a class="reference internal" href="#eigenvalue-self-consistency-evgw" id="id35">Eigenvalue self-consistency (evGW)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-fixed-point-problem" id="id32">The fixed-point problem</a></p></li>
-<li><p><a class="reference internal" href="#convergence-criterion" id="id33">Convergence criterion</a></p></li>
-<li><p><a class="reference internal" href="#mixing" id="id34">Mixing</a></p></li>
-<li><p><a class="reference internal" href="#adaptive-screening-update" id="id35">Adaptive screening update</a></p></li>
-<li><p><a class="reference internal" href="#root-tracking-qp-root-tracking-optional" id="id36">Root tracking (<code class="docutils literal notranslate"><span class="pre">qp_root_tracking</span></code>, optional)</a></p></li>
+<li><p><a class="reference internal" href="#the-fixed-point-problem" id="id36">The fixed-point problem</a></p></li>
+<li><p><a class="reference internal" href="#convergence-criterion" id="id37">Convergence criterion</a></p></li>
+<li><p><a class="reference internal" href="#mixing" id="id38">Mixing</a></p></li>
+<li><p><a class="reference internal" href="#adaptive-screening-update" id="id39">Adaptive screening update</a></p></li>
+<li><p><a class="reference internal" href="#root-tracking-qp-root-tracking-optional" id="id40">Root tracking (<code class="docutils literal notranslate"><span class="pre">qp_root_tracking</span></code>, optional)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#levels-in-the-satellite-region" id="id37">Levels in the satellite region</a></p></li>
-<li><p><a class="reference internal" href="#bethe-salpeter-equation" id="id38">Bethe-Salpeter equation</a></p>
+<li><p><a class="reference internal" href="#quasiparticle-self-consistent-gw-qsgw" id="id41">Quasiparticle self-consistent GW (QSGW)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#hamiltonian-and-solvers" id="id39">Hamiltonian and solvers</a></p></li>
-<li><p><a class="reference internal" href="#caches-for-the-direct-term" id="id40">Caches for the direct term</a></p></li>
-<li><p><a class="reference internal" href="#dynamical-screening" id="id41">Dynamical screening</a></p></li>
+<li><p><a class="reference internal" href="#the-qsgw-hamiltonian" id="id42">The QSGW Hamiltonian</a></p></li>
+<li><p><a class="reference internal" href="#the-loop" id="id43">The loop</a></p></li>
+<li><p><a class="reference internal" href="#the-static-self-energy-and-its-regularization" id="id44">The static self-energy and its regularization</a></p></li>
+<li><p><a class="reference internal" href="#recommended-settings" id="id45">Recommended settings</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#performance-and-memory" id="id42">Performance and memory</a></p>
+<li><p><a class="reference internal" href="#levels-in-the-satellite-region" id="id46">Levels in the satellite region</a></p></li>
+<li><p><a class="reference internal" href="#bethe-salpeter-equation" id="id47">Bethe-Salpeter equation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#where-the-time-goes" id="id43">Where the time goes</a></p></li>
-<li><p><a class="reference internal" href="#memory" id="id44">Memory</a></p></li>
-<li><p><a class="reference internal" href="#platforms" id="id45">Platforms</a></p></li>
+<li><p><a class="reference internal" href="#hamiltonian-and-solvers" id="id48">Hamiltonian and solvers</a></p></li>
+<li><p><a class="reference internal" href="#caches-for-the-direct-term" id="id49">Caches for the direct term</a></p></li>
+<li><p><a class="reference internal" href="#dynamical-screening" id="id50">Dynamical screening</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#troubleshooting" id="id46">Troubleshooting</a></p>
+<li><p><a class="reference internal" href="#performance-and-memory" id="id51">Performance and memory</a></p>
 <ul>
-<li><p><a class="reference internal" href="#reproducing-results-of-older-versions" id="id47">Reproducing results of older versions</a></p></li>
+<li><p><a class="reference internal" href="#where-the-time-goes" id="id52">Where the time goes</a></p></li>
+<li><p><a class="reference internal" href="#memory" id="id53">Memory</a></p></li>
+<li><p><a class="reference internal" href="#platforms" id="id54">Platforms</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#reference-evgw-and-qp-settings" id="id48">Reference: evGW and QP settings</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id55">Troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#reproducing-results-of-older-versions" id="id56">Reproducing results of older versions</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#reference-evgw-and-qp-settings" id="id57">Reference: evGW and QP settings</a></p></li>
 </ul>
 </nav>
 <section id="overview-of-a-gw-bse-calculation">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">4.1. </span>Overview of a GW-BSE calculation</a><a class="headerlink" href="#overview-of-a-gw-bse-calculation" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">4.1. </span>Overview of a GW-BSE calculation</a><a class="headerlink" href="#overview-of-a-gw-bse-calculation" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> or QM/MM GW-BSE job runs through the following steps:</p>
 <ol class="arabic simple">
 <li><p><strong>Level windows.</strong> From the DFT orbitals, three ranges of molecular
@@ -289,9 +304,9 @@ iteration summary, the QP and BSE energies and a timing
 summary of the GW part.</p>
 </section>
 <section id="level-windows">
-<span id="gwbse-windows"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">4.2. </span>Level windows</a><a class="headerlink" href="#level-windows" title="Link to this heading">¶</a></h2>
+<span id="gwbse-windows"></span><h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">4.2. </span>Level windows</a><a class="headerlink" href="#level-windows" title="Link to this heading">¶</a></h2>
 <section id="ranges-by-index">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">4.2.1. </span>Ranges by index</a><a class="headerlink" href="#ranges-by-index" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">4.2.1. </span>Ranges by index</a><a class="headerlink" href="#ranges-by-index" title="Link to this heading">¶</a></h3>
 <p>The option <code class="docutils literal notranslate"><span class="pre">ranges</span></code> sets the windows by orbital index:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">default</span></code></dt><dd><p>all levels in the RPA; GW and BSE from the lowest level up to
@@ -312,7 +327,7 @@ solves the QP equation for each of them – and they lie in the energy range
 where the QP picture becomes ambiguous (see <a class="reference internal" href="#gwbse-satellites"><span class="std std-ref">Levels in the satellite region</span></a>).</p>
 </section>
 <section id="energy-caps">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">4.2.2. </span>Energy caps</a><a class="headerlink" href="#energy-caps" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">4.2.2. </span>Energy caps</a><a class="headerlink" href="#energy-caps" title="Link to this heading">¶</a></h3>
 <p>The options <code class="docutils literal notranslate"><span class="pre">qp_emax</span></code>, <code class="docutils literal notranslate"><span class="pre">qp_emin</span></code>, <code class="docutils literal notranslate"><span class="pre">bse_emax</span></code> and <code class="docutils literal notranslate"><span class="pre">bse_emin</span></code> (in eV;
 0 means off, the default) shrink the windows set by <code class="docutils literal notranslate"><span class="pre">ranges</span></code> to the levels
 within the given energy above the DFT LUMO (<code class="docutils literal notranslate"><span class="pre">*_emax</span></code>) or below the DFT HOMO
@@ -332,7 +347,7 @@ within 10–15 eV of the LUMO; the trouble with satellites described below
 typically starts 20 eV or more above it.</p>
 </section>
 <section id="core-levels">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">4.2.3. </span>Core levels</a><a class="headerlink" href="#core-levels" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">4.2.3. </span>Core levels</a><a class="headerlink" href="#core-levels" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ignore_corelevels</span></code> removes the chemical core levels (counted per element)
 from parts of the calculation:</p>
 <dl class="simple">
@@ -361,7 +376,7 @@ exchange the occupied QP energies are too high by 0.6 eV on average (up to
 that behaviour for comparison with old results.</p>
 </section>
 <section id="levels-outside-the-gw-window">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">4.2.4. </span>Levels outside the GW window</a><a class="headerlink" href="#levels-outside-the-gw-window" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">4.2.4. </span>Levels outside the GW window</a><a class="headerlink" href="#levels-outside-the-gw-window" title="Link to this heading">¶</a></h3>
 <p>Levels in the RPA (or BSE) window but outside the GW window have no QP
 energy of their own. In evGW their energies in <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are
 the DFT energies shifted according to <code class="docutils literal notranslate"><span class="pre">out_of_window_shift</span></code>:</p>
@@ -385,9 +400,9 @@ trend of the corrections near the edge.</p>
 </section>
 </section>
 <section id="the-correlation-self-energy">
-<span id="gwbse-sigma"></span><h2><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">4.3. </span>The correlation self-energy</a><a class="headerlink" href="#the-correlation-self-energy" title="Link to this heading">¶</a></h2>
+<span id="gwbse-sigma"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">4.3. </span>The correlation self-energy</a><a class="headerlink" href="#the-correlation-self-energy" title="Link to this heading">¶</a></h2>
 <section id="pole-structure">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">4.3.1. </span>Pole structure</a><a class="headerlink" href="#pole-structure" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">4.3.1. </span>Pole structure</a><a class="headerlink" href="#pole-structure" title="Link to this heading">¶</a></h3>
 <p>All self-energy models used for the QP equation give the diagonal
 correlation self-energy of a level <span class="math notranslate nohighlight">\(n\)</span> as a sum over poles,</p>
 <div class="math notranslate nohighlight" id="equation-equ-gwbse-polesum">
@@ -405,7 +420,7 @@ excitation energy of the screening. This structure determines how the QP
 equation behaves (<a class="reference internal" href="#gwbse-qp"><span class="std std-ref">Solving the quasiparticle equation</span></a>).</p>
 </section>
 <section id="plasmon-pole-model-sigma-integrator-ppm-default">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">4.3.2. </span>Plasmon-pole model (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=ppm</span></code>, default)</a><a class="headerlink" href="#plasmon-pole-model-sigma-integrator-ppm-default" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">4.3.2. </span>Plasmon-pole model (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=ppm</span></code>, default)</a><a class="headerlink" href="#plasmon-pole-model-sigma-integrator-ppm-default" title="Link to this heading">¶</a></h3>
 <p>The PPM represents the inverse dielectric matrix in the auxiliary basis by
 one pole per eigenmode, fitted at a real and an imaginary frequency in the
 spirit of <a class="reference internal" href="bibliography.html#godby-1989" id="id4"><span>[Godby:1989]</span></a>. The dielectric matrix is computed in the RPA at two
@@ -426,7 +441,7 @@ functions, 995 GW levels) it takes about 600 s per build on 28 cores, of a
 total of about 900 s.</p>
 </section>
 <section id="exact-rpa-screening-sigma-integrator-exact">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">4.3.3. </span>Exact RPA screening (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=exact</span></code>)</a><a class="headerlink" href="#exact-rpa-screening-sigma-integrator-exact" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">4.3.3. </span>Exact RPA screening (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=exact</span></code>)</a><a class="headerlink" href="#exact-rpa-screening-sigma-integrator-exact" title="Link to this heading">¶</a></h3>
 <p>The poles of <span class="math notranslate nohighlight">\(W\)</span> are the RPA excitation energies, obtained from the
 symmetric pair eigenproblem</p>
 <div class="math notranslate nohighlight">
@@ -442,7 +457,7 @@ build); it limits the method to molecules of a few dozen atoms. In exchange
 there is no model error.</p>
 </section>
 <section id="contour-deformation-sigma-integrator-cda">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">4.3.4. </span>Contour deformation (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=cda</span></code>)</a><a class="headerlink" href="#contour-deformation-sigma-integrator-cda" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">4.3.4. </span>Contour deformation (<code class="docutils literal notranslate"><span class="pre">sigma_integrator=cda</span></code>)</a><a class="headerlink" href="#contour-deformation-sigma-integrator-cda" title="Link to this heading">¶</a></h3>
 <p>The frequency integral of <span class="math notranslate nohighlight">\(G W\)</span> is deformed into residues of the
 poles of <span class="math notranslate nohighlight">\(G\)</span> enclosed by the contour plus an integral along the
 imaginary axis, evaluated with a Gauss quadrature (<code class="docutils literal notranslate"><span class="pre">quadrature_scheme</span></code>,
@@ -451,7 +466,7 @@ and tail terms are computed once per screening build. CDA has no
 off-diagonal elements of <span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
 </section>
 <section id="batched-evaluation-and-far-pole-interpolation">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">4.3.5. </span>Batched evaluation and far-pole interpolation</a><a class="headerlink" href="#batched-evaluation-and-far-pole-interpolation" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">4.3.5. </span>Batched evaluation and far-pole interpolation</a><a class="headerlink" href="#batched-evaluation-and-far-pole-interpolation" title="Link to this heading">¶</a></h3>
 <p>The QP search (next section) evaluates <span class="math notranslate nohighlight">\(\Sigma^\mathrm{c}_{nn}\)</span> of one
 level at many frequencies at once – the 60 or so points of the coarse scan
 of a window of <span class="math notranslate nohighlight">\(\pm0.75\)</span> Ha. For PPM and exact screening these batches
@@ -477,7 +492,7 @@ therefore differ at the <span class="math notranslate nohighlight">\(10^{-12}\)<
 depending on compiler and vectorisation.</p>
 </section>
 <section id="off-diagonal-elements">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">4.3.6. </span>Off-diagonal elements</a><a class="headerlink" href="#off-diagonal-elements" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">4.3.6. </span>Off-diagonal elements</a><a class="headerlink" href="#off-diagonal-elements" title="Link to this heading">¶</a></h3>
 <p>The off-diagonal elements needed for <span class="math notranslate nohighlight">\(H^\mathrm{QP}\)</span> are
 evaluated as blocked matrix products for all pairs at once (PPM, exact).
 They are only needed for the diagonalised QP energies and for the BSE with
@@ -486,9 +501,9 @@ of the order of ten minutes with PPM.</p>
 </section>
 </section>
 <section id="solving-the-quasiparticle-equation">
-<span id="gwbse-qp"></span><h2><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">4.4. </span>Solving the quasiparticle equation</a><a class="headerlink" href="#solving-the-quasiparticle-equation" title="Link to this heading">¶</a></h2>
+<span id="gwbse-qp"></span><h2><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">4.4. </span>Solving the quasiparticle equation</a><a class="headerlink" href="#solving-the-quasiparticle-equation" title="Link to this heading">¶</a></h2>
 <section id="the-qp-equation-and-its-roots">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">4.4.1. </span>The QP equation and its roots</a><a class="headerlink" href="#the-qp-equation-and-its-roots" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">4.4.1. </span>The QP equation and its roots</a><a class="headerlink" href="#the-qp-equation-and-its-roots" title="Link to this heading">¶</a></h3>
 <p>For each level <span class="math notranslate nohighlight">\(n\)</span> of the GW window the perturbative QP energy is a
 root of</p>
 <div class="math notranslate nohighlight" id="equation-equ-gwbse-qpfunc">
@@ -516,7 +531,7 @@ steep but finite rise through zero with <em>positive</em> slope. These crossings
 not QP solutions (they have <span class="math notranslate nohighlight">\(Z&lt;0\)</span>) and are rejected.</p>
 </section>
 <section id="qp-solver">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">4.4.2. </span><code class="docutils literal notranslate"><span class="pre">qp_solver</span></code></a><a class="headerlink" href="#qp-solver" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink"><span class="section-number">4.4.2. </span><code class="docutils literal notranslate"><span class="pre">qp_solver</span></code></a><a class="headerlink" href="#qp-solver" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">grid</span></code> (default)</dt><dd><p>a search for sign changes of <span class="math notranslate nohighlight">\(f_n\)</span> over a window, refinement of the
 roots found, and selection of one of them; described in the following;</p>
@@ -532,7 +547,7 @@ and is mainly useful for well-behaved levels.</p>
 reported in the log.</p>
 </section>
 <section id="the-grid-search">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">4.4.3. </span>The grid search</a><a class="headerlink" href="#the-grid-search" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id30" role="doc-backlink"><span class="section-number">4.4.3. </span>The grid search</a><a class="headerlink" href="#the-grid-search" title="Link to this heading">¶</a></h3>
 <p>For each level the search covers the window
 <span class="math notranslate nohighlight">\([\omega_0-h, \omega_0+h]\)</span> around the current energy
 <span class="math notranslate nohighlight">\(\omega_0\)</span> (the DFT energy in the first iteration, the previous QP
@@ -560,7 +575,7 @@ window is scanned uniformly with spacing <code class="docutils literal notransla
 uses only this scan, <code class="docutils literal notranslate"><span class="pre">adaptive</span></code> only the adaptive one.</p>
 </section>
 <section id="refinement-and-acceptance">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">4.4.4. </span>Refinement and acceptance</a><a class="headerlink" href="#refinement-and-acceptance" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink"><span class="section-number">4.4.4. </span>Refinement and acceptance</a><a class="headerlink" href="#refinement-and-acceptance" title="Link to this heading">¶</a></h3>
 <p>Each sign-change interval is refined to a root by <code class="docutils literal notranslate"><span class="pre">qp_root_finder</span></code>:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">brent</span></code> (default)</dt><dd><p>inverse quadratic interpolation with bisection as safeguard <a class="reference internal" href="bibliography.html#brent-1973" id="id6"><span>[Brent:1973]</span></a>;
@@ -587,7 +602,7 @@ case one member of a triply degenerate level ended on another root that
 way.)</p>
 </section>
 <section id="choosing-among-several-roots">
-<h3><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">4.4.5. </span>Choosing among several roots</a><a class="headerlink" href="#choosing-among-several-roots" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink"><span class="section-number">4.4.5. </span>Choosing among several roots</a><a class="headerlink" href="#choosing-among-several-roots" title="Link to this heading">¶</a></h3>
 <p>If several roots are accepted, one is chosen:</p>
 <ul class="simple">
 <li><p>by <strong>weight</strong> (first iteration, and always with
@@ -611,7 +626,7 @@ chosen one are listed at the end of the GW step as <em>competing roots</em>
 whose QP energy depends on the choice of rule.</p>
 </section>
 <section id="accuracy-of-the-roots-and-the-evgw-limit">
-<h3><a class="toc-backref" href="#id29" role="doc-backlink"><span class="section-number">4.4.6. </span>Accuracy of the roots and the evGW limit</a><a class="headerlink" href="#accuracy-of-the-roots-and-the-evgw-limit" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id33" role="doc-backlink"><span class="section-number">4.4.6. </span>Accuracy of the roots and the evGW limit</a><a class="headerlink" href="#accuracy-of-the-roots-and-the-evgw-limit" title="Link to this heading">¶</a></h3>
 <p>The roots are located to within about <span class="math notranslate nohighlight">\(Z\,\)</span> <code class="docutils literal notranslate"><span class="pre">qp_sc_limit</span></code>. This
 error enters the evGW residual (next section), so <code class="docutils literal notranslate"><span class="pre">qp_sc_limit</span></code> must be
 clearly smaller than the evGW limit <code class="docutils literal notranslate"><span class="pre">sc_limit</span></code>. With equal values (both
@@ -624,7 +639,7 @@ cost of the extra digit is small (QM9 molecule, exact <span class="math notransl
 step 6.5 s of 134 s).</p>
 </section>
 <section id="cost-of-the-qp-step">
-<h3><a class="toc-backref" href="#id30" role="doc-backlink"><span class="section-number">4.4.7. </span>Cost of the QP step</a><a class="headerlink" href="#cost-of-the-qp-step" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id34" role="doc-backlink"><span class="section-number">4.4.7. </span>Cost of the QP step</a><a class="headerlink" href="#cost-of-the-qp-step" title="Link to this heading">¶</a></h3>
 <p>Per level and iteration the grid search needs about 60 evaluations for the
 coarse scan (in one batch) and a few per refined root. The scan dominates.
 With the batched evaluation, the QP step is a minor part of the cost of an
@@ -635,14 +650,14 @@ total time.</p>
 </section>
 </section>
 <section id="eigenvalue-self-consistency-evgw">
-<span id="gwbse-evgw"></span><h2><a class="toc-backref" href="#id31" role="doc-backlink"><span class="section-number">4.5. </span>Eigenvalue self-consistency (evGW)</a><a class="headerlink" href="#eigenvalue-self-consistency-evgw" title="Link to this heading">¶</a></h2>
+<span id="gwbse-evgw"></span><h2><a class="toc-backref" href="#id35" role="doc-backlink"><span class="section-number">4.5. </span>Eigenvalue self-consistency (evGW)</a><a class="headerlink" href="#eigenvalue-self-consistency-evgw" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">mode=evGW</span></code> (default) replaces the orbital energies in <span class="math notranslate nohighlight">\(G\)</span> and
 <span class="math notranslate nohighlight">\(W\)</span> by the QP energies and iterates until they are consistent;
 <code class="docutils literal notranslate"><span class="pre">mode=G0W0</span></code> stops after the first QP solve. Only the energies are updated,
 the orbitals stay the DFT ones (for orbital self-consistency see
-<code class="docutils literal notranslate"><span class="pre">do_qsgw</span></code>).</p>
+<a class="reference internal" href="#gwbse-qsgw"><span class="std std-ref">Quasiparticle self-consistent GW (QSGW)</span></a>).</p>
 <section id="the-fixed-point-problem">
-<h3><a class="toc-backref" href="#id32" role="doc-backlink"><span class="section-number">4.5.1. </span>The fixed-point problem</a><a class="headerlink" href="#the-fixed-point-problem" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id36" role="doc-backlink"><span class="section-number">4.5.1. </span>The fixed-point problem</a><a class="headerlink" href="#the-fixed-point-problem" title="Link to this heading">¶</a></h3>
 <p>Write <span class="math notranslate nohighlight">\(\mathbf{E}\)</span> for the vector of energies of the GW window and
 <span class="math notranslate nohighlight">\(\mathbf{Q}(\mathbf{E}_G,\mathbf{E}_W)\)</span> for the QP energies obtained
 with the energies <span class="math notranslate nohighlight">\(\mathbf{E}_G\)</span> in <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(\mathbf{E}_W\)</span> in
@@ -656,7 +671,7 @@ dielectric matrices and the rotation of the integrals; exact: the RPA pair
 eigenproblem).</p>
 </section>
 <section id="convergence-criterion">
-<h3><a class="toc-backref" href="#id33" role="doc-backlink"><span class="section-number">4.5.2. </span>Convergence criterion</a><a class="headerlink" href="#convergence-criterion" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id37" role="doc-backlink"><span class="section-number">4.5.2. </span>Convergence criterion</a><a class="headerlink" href="#convergence-criterion" title="Link to this heading">¶</a></h3>
 <p>An iteration is judged by its <strong>QP residual</strong></p>
 <div class="math notranslate nohighlight">
 \[r = \max_n \left| Q_n - E_n^\mathrm{in}\right| ,\]</div>
@@ -674,7 +689,7 @@ creep towards their solution, levels that jump between two values, or core
 levels that change after every rebuild of <span class="math notranslate nohighlight">\(W\)</span>.</p>
 </section>
 <section id="mixing">
-<h3><a class="toc-backref" href="#id34" role="doc-backlink"><span class="section-number">4.5.3. </span>Mixing</a><a class="headerlink" href="#mixing" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id38" role="doc-backlink"><span class="section-number">4.5.3. </span>Mixing</a><a class="headerlink" href="#mixing" title="Link to this heading">¶</a></h3>
 <p>The input of the next iteration is obtained from the history of inputs and
 QP solutions by <code class="docutils literal notranslate"><span class="pre">mixing_order</span></code>:</p>
 <dl class="simple">
@@ -696,7 +711,7 @@ were clearly elsewhere. On a QM9 molecule histories of 3, 5 and 20 give
 identical results and iteration counts.</p>
 </section>
 <section id="adaptive-screening-update">
-<h3><a class="toc-backref" href="#id35" role="doc-backlink"><span class="section-number">4.5.4. </span>Adaptive screening update</a><a class="headerlink" href="#adaptive-screening-update" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id39" role="doc-backlink"><span class="section-number">4.5.4. </span>Adaptive screening update</a><a class="headerlink" href="#adaptive-screening-update" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">screening_update</span></code> decides when <span class="math notranslate nohighlight">\(W\)</span> is rebuilt:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">every</span></code></dt><dd><p>in every iteration (the classic scheme);</p>
@@ -737,7 +752,7 @@ nothing near the gap moved any more. <code class="docutils literal notranslate">
 remove such levels from the GW window.</p>
 </section>
 <section id="root-tracking-qp-root-tracking-optional">
-<h3><a class="toc-backref" href="#id36" role="doc-backlink"><span class="section-number">4.5.5. </span>Root tracking (<code class="docutils literal notranslate"><span class="pre">qp_root_tracking</span></code>, optional)</a><a class="headerlink" href="#root-tracking-qp-root-tracking-optional" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id40" role="doc-backlink"><span class="section-number">4.5.5. </span>Root tracking (<code class="docutils literal notranslate"><span class="pre">qp_root_tracking</span></code>, optional)</a><a class="headerlink" href="#root-tracking-qp-root-tracking-optional" title="Link to this heading">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">qp_root_tracking=true</span></code> the QP search of a level after the first
 iteration covers only a window around its root of the previous iteration
 (four times its last change, between 0.01 and 0.1 Ha) and keeps the nearest
@@ -757,14 +772,282 @@ full window in every iteration but chooses the root nearest the current
 input, a function of the current energies only.</p>
 </section>
 </section>
+<section id="quasiparticle-self-consistent-gw-qsgw">
+<span id="gwbse-qsgw"></span><h2><a class="toc-backref" href="#id41" role="doc-backlink"><span class="section-number">4.6. </span>Quasiparticle self-consistent GW (QSGW)</a><a class="headerlink" href="#quasiparticle-self-consistent-gw-qsgw" title="Link to this heading">¶</a></h2>
+<p>evGW updates only the energies; the orbitals stay those of the DFT start, and
+so does the dependence of the result on the functional. QSGW
+<a class="reference internal" href="bibliography.html#vanschilfgaarde-2006" id="id8"><span>[vanSchilfgaarde:2006]</span></a> also updates the orbitals: it replaces the
+exchange-correlation potential by a static, Hermitian approximation of the
+self-energy and iterates until the orbitals and energies of that
+Hamiltonian reproduce themselves. <code class="docutils literal notranslate"><span class="pre">do_qsgw=true</span></code> runs QSGW after the
+perturbative step (<code class="docutils literal notranslate"><span class="pre">mode=G0W0</span></code> or <code class="docutils literal notranslate"><span class="pre">evGW</span></code>), whose QP energies are the
+starting point. The QSGW energies replace the perturbative ones, and the
+BSE is set up in the QSGW orbitals.</p>
+<p>QSGW is available for closed shells (RKS) with <code class="docutils literal notranslate"><span class="pre">sigma_integrator=ppm</span></code> or
+<code class="docutils literal notranslate"><span class="pre">exact</span></code>. With <code class="docutils literal notranslate"><span class="pre">cda</span></code> it stops with an error: the quadrature becomes
+ill-conditioned as the orbitals rotate.</p>
+<section id="the-qsgw-hamiltonian">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink"><span class="section-number">4.6.1. </span>The QSGW Hamiltonian</a><a class="headerlink" href="#the-qsgw-hamiltonian" title="Link to this heading">¶</a></h3>
+<p>In the DFT orbitals of the GW window the QSGW Hamiltonian is</p>
+<div class="math notranslate nohighlight" id="equation-equ-gwbse-hqsgw">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-equ-gwbse-hqsgw" title="Link to this equation">¶</a></span>\[H^\mathrm{QSGW} = \operatorname{diag}(\varepsilon^\mathrm{DFT})
+  - V^\mathrm{xc} - a\,K[\rho^\mathrm{DFT}]
+  + \Delta J
+  + U\,\tilde\Sigma\,U^\mathsf{T} ,\]</div>
+<p>with <span class="math notranslate nohighlight">\(U\)</span> the current QP orbitals (columns, expanded in the DFT
+orbitals) and <span class="math notranslate nohighlight">\(\tilde\Sigma\)</span> the static self-energy in those orbitals.
+Its eigenvalues are the QP energies, its eigenvectors the new QP orbitals.
+The terms:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tilde\Sigma = \Sigma^\mathrm{x} + \tilde\Sigma^\mathrm{c}\)</span>
+(+ <span class="math notranslate nohighlight">\(\Sigma^\mathrm{reac}\)</span> in a polarizable environment, see
+<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>). <span class="math notranslate nohighlight">\(\Sigma^\mathrm{x}\)</span> is the full exchange of
+the QP orbitals, with the frozen-core exchange if <code class="docutils literal notranslate"><span class="pre">core_exchange=true</span></code>.
+<span class="math notranslate nohighlight">\(\tilde\Sigma^\mathrm{c}\)</span> is the static correlation part, see
+<a class="reference internal" href="#gwbse-qsgw-static"><span class="std std-ref">The static self-energy and its regularization</span></a>.</p></li>
+<li><p><strong>Hybrid starts.</strong> <span class="math notranslate nohighlight">\(V^\mathrm{xc}\)</span> holds only the semilocal part of
+a hybrid functional with exact-exchange fraction <span class="math notranslate nohighlight">\(a\)</span>; the term
+<span class="math notranslate nohighlight">\(-a K[\rho^\mathrm{DFT}]\)</span> removes the hybrid’s exchange (including
+the frozen core) once, so that QSGW from PBE and from PBE0 solve the same
+equations. With a frozen core and <code class="docutils literal notranslate"><span class="pre">core_exchange=false</span></code> the core
+exchange would stay at <span class="math notranslate nohighlight">\(a\)</span> times its value and the result would
+depend on the functional; the log warns about it. Range-separated hybrids
+are refused.</p></li>
+<li><p><strong>Hartree update</strong> (<code class="docutils literal notranslate"><span class="pre">qsgw_hartree_update</span></code>, default true).
+<span class="math notranslate nohighlight">\(H^\mathrm{KS}\)</span> holds the Hartree potential of the DFT density;
+<span class="math notranslate nohighlight">\(\Delta J = J[\rho^\mathrm{QP}] - J[\rho^\mathrm{DFT}]\)</span> replaces it
+by that of the QP density of the active occupied levels (the frozen core
+does not change). Without it the occupied orbitals rotate in a fixed
+Hartree potential, which is not self-consistent.</p></li>
+<li><p><strong>Screened Hartree update</strong> (<code class="docutils literal notranslate"><span class="pre">qsgw_hartree_screened</span></code>, default true). In
+a polarizable environment <span class="math notranslate nohighlight">\(H^\mathrm{KS}\)</span> also holds the potential
+of the dipoles the DFT density induced. The update then uses
+<span class="math notranslate nohighlight">\(u = v + v^\mathrm{reac}\)</span>, the interaction <span class="math notranslate nohighlight">\(W\)</span> is built
+from, so the induced dipoles follow the QP density. <code class="docutils literal notranslate"><span class="pre">false</span></code> keeps the
+environment’s response to the DFT density, a control: with it the fixed
+point still depends on the start (6–40 meV median spread for methane in
+five Thole sites, depending on how far the starts are apart).</p></li>
+</ul>
+</section>
+<section id="the-loop">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink"><span class="section-number">4.6.2. </span>The loop</a><a class="headerlink" href="#the-loop" title="Link to this heading">¶</a></h3>
+<p>Each iteration</p>
+<ol class="arabic simple">
+<li><p>rotates the three-centre integrals to the current QP orbitals (both
+orbital indices) and rebuilds <span class="math notranslate nohighlight">\(W\)</span> with the current QP energies;</p></li>
+<li><p>evaluates <span class="math notranslate nohighlight">\(\tilde\Sigma\)</span> and <span class="math notranslate nohighlight">\(\Delta J\)</span> in these orbitals
+and transforms them to the DFT orbitals;</p></li>
+<li><p>mixes <span class="math notranslate nohighlight">\(\tilde\Sigma\)</span> (the whole matrix) with the history of
+previous iterations: Anderson mixing over <code class="docutils literal notranslate"><span class="pre">mixing_order</span></code> previous
+iterations followed by linear mixing with <code class="docutils literal notranslate"><span class="pre">mixing_alpha</span></code>;
+<code class="docutils literal notranslate"><span class="pre">mixing_order=0</span></code> is linear mixing alone;</p></li>
+<li><p>diagonalises <a class="reference internal" href="#equation-equ-gwbse-hqsgw">Eq.4.3</a> for the next QP energies and
+orbitals.</p></li>
+</ol>
+<p>The loop has converged when the self-energy it produces differs from the one
+it was given by less than <code class="docutils literal notranslate"><span class="pre">qsgw_sc_limit</span></code> (largest matrix element) and the
+QP energies change by less than <code class="docutils literal notranslate"><span class="pre">qsgw_sc_limit</span></code>; the result is then the
+eigensystem of the produced Hamiltonian. After <code class="docutils literal notranslate"><span class="pre">qsgw_max_iterations</span></code>
+without convergence the log warns and the last iterate is kept.</p>
+<p>Every iteration logs <code class="docutils literal notranslate"><span class="pre">max|dE_QP|</span></code> and <code class="docutils literal notranslate"><span class="pre">max|Sigma_out</span> <span class="pre">-</span> <span class="pre">Sigma_in|</span></code>. With
+the Hartree update or an environment a second line gives the largest change
+of the Hartree potential (bare and environment parts), the change of
+<span class="math notranslate nohighlight">\(\Sigma^\mathrm{reac}\)</span> for HOMO and LUMO, and the largest rotation
+between the occupied DFT and QP spaces in degrees.</p>
+<p><strong>Virtual levels far from their DFT energy.</strong> High virtual levels often have
+perturbative corrections of several eV and destabilise the loop. Before the
+loop, the GW window is cut below the first virtual level whose perturbative
+correction exceeds <code class="docutils literal notranslate"><span class="pre">qsgw_max_virt_correction</span></code> (default 0.5 Ha); the
+levels above keep their perturbative energies and DFT orbitals. The log
+reports the cut.</p>
+</section>
+<section id="the-static-self-energy-and-its-regularization">
+<span id="gwbse-qsgw-static"></span><h3><a class="toc-backref" href="#id44" role="doc-backlink"><span class="section-number">4.6.3. </span>The static self-energy and its regularization</a><a class="headerlink" href="#the-static-self-energy-and-its-regularization" title="Link to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\tilde\Sigma^\mathrm{c}\)</span> has to be static and Hermitian, but the
+correlation self-energy is neither. Off the diagonal it generalises the pole
+sum <a class="reference internal" href="#equation-equ-gwbse-polesum">Eq.4.1</a> to</p>
+<div class="math notranslate nohighlight">
+\[\Sigma^\mathrm{c}_{nn'}(\omega) = \sum_{p}
+  \frac{b_{nn'p}\,(\omega - z_{p})}{(\omega - z_{p})^2 + \eta^2},
+\qquad b_{nn'p} = c_p\, r_{np}\, r_{n'p} ,\]</div>
+<p>with <span class="math notranslate nohighlight">\(p = (m,s)\)</span> running over the poles, <span class="math notranslate nohighlight">\(r_{np}\)</span> the residues
+and <span class="math notranslate nohighlight">\(c_p\)</span> the mode weights of the self-energy model. Two static forms
+are implemented (<code class="docutils literal notranslate"><span class="pre">qsgw_regularization</span></code>).</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">eta</span></code> (default)</dt><dd><p>the symmetrised self-energy at the QP energies,</p>
+<div class="math notranslate nohighlight">
+\[\tilde\Sigma^\mathrm{c}_{nn'} = \tfrac12\left[
+  \Sigma^\mathrm{c}_{nn'}(E_n) + \Sigma^\mathrm{c}_{nn'}(E_{n'})\right] ,\]</div>
+<p>with the broadening <code class="docutils literal notranslate"><span class="pre">eta</span></code>. A pole <span class="math notranslate nohighlight">\(z_p\)</span> close to a QP energy
+gives a term up to <span class="math notranslate nohighlight">\(1/(2\eta)\)</span> in size, so with the default
+<span class="math notranslate nohighlight">\(\eta = 10^{-3}\)</span> Ha the Hamiltonian changes abruptly as levels
+move past poles.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">srg</span></code></dt><dd><p>the form of the similarity-renormalization-group derivation of Marie
+and Loos <a class="reference internal" href="bibliography.html#marie-2023" id="id9"><span>[Marie:2023]</span></a> (their eq. 44): with
+<span class="math notranslate nohighlight">\(\Delta_{np} = E_n - z_p\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\tilde\Sigma^\mathrm{c}_{nn'} = \sum_p b_{nn'p}\,
+  \frac{\Delta_{np} + \Delta_{n'p}}{\Delta_{np}^2 + \Delta_{n'p}^2}
+  \left[1 - e^{-s(\Delta_{np}^2 + \Delta_{n'p}^2)}\right] ,\]</div>
+<p>on the diagonal
+<span class="math notranslate nohighlight">\(b_{nnp}\,(1 - e^{-2s\Delta_{np}^2})/\Delta_{np}\)</span>. It is
+Hermitian without symmetrisation, and every term stays finite: a pole at
+distance <span class="math notranslate nohighlight">\(\Delta\)</span> from both levels contributes at most
+<span class="math notranslate nohighlight">\(\sim\sqrt{s}\)</span>, and terms with <span class="math notranslate nohighlight">\(|\Delta| \gg s^{-1/2}\)</span>
+are the undamped <span class="math notranslate nohighlight">\(1/\Delta\)</span>. The flow parameter
+<code class="docutils literal notranslate"><span class="pre">qsgw_srg_s</span></code> (in Ha<sup>-2</sup>, default 500) plays the role of
+<span class="math notranslate nohighlight">\(1/(2\eta^2)\)</span>: <span class="math notranslate nohighlight">\(s = 200\)</span> corresponds to
+<span class="math notranslate nohighlight">\(\eta = 0.05\)</span> Ha, the default 500 to <span class="math notranslate nohighlight">\(\eta \approx 0.032\)</span> Ha.
+For <span class="math notranslate nohighlight">\(s \to \infty\)</span> the diagonal becomes that of the <code class="docutils literal notranslate"><span class="pre">eta</span></code> form at
+<span class="math notranslate nohighlight">\(\eta \to 0\)</span>; for <span class="math notranslate nohighlight">\(s \to 0\)</span> the correlation part vanishes
+(Hartree-Fock). Marie and Loos recommend <span class="math notranslate nohighlight">\(s\)</span> = 500 or 1000; in their
+molecular test set qsGW did not converge for larger <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd>
+</dl>
+<p><strong>Why the regularization matters.</strong> QSGW is a nonlinear fixed-point problem
+and can have several solutions. With small <span class="math notranslate nohighlight">\(\eta\)</span> it often does: for
+methane/3-21G with exact <span class="math notranslate nohighlight">\(\Sigma\)</span> and all levels in the window, starts
+from 20 randomly rotated orbital sets reach another fixed point in 3–10
+cases, with HOMO or LUMO up to 0.18 eV apart; 10–25 % of the runs do not
+converge in 100 iterations, and the others need 45–90. A start-dependent result is then not
+a property of the method but of the solution the run happened to find. Both
+regularizations remove this, at a price that differs:</p>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">QSGW of methane/3-21G in vacuum, exact <span class="math notranslate nohighlight">\(\Sigma\)</span> (eV)</span><a class="headerlink" href="#id12" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Setting</p></th>
+<th class="head"><p>HOMO</p></th>
+<th class="head"><p>Gap</p></th>
+<th class="head"><p>Unique fixed point</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eta</span></code>, <span class="math notranslate nohighlight">\(\eta = 10^{-3}\)</span> Ha</p></td>
+<td><p>-17.6708</p></td>
+<td><p>24.9863</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eta</span></code>, <span class="math notranslate nohighlight">\(\eta = 0.05\)</span> Ha</p></td>
+<td><p>-17.6623</p></td>
+<td><p>24.9711</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">srg</span></code>, <span class="math notranslate nohighlight">\(s = 100\)</span></p></td>
+<td><p>-17.6654</p></td>
+<td><p>24.9814</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">srg</span></code>, <span class="math notranslate nohighlight">\(s = 20000\)</span></p></td>
+<td><p>-17.6654</p></td>
+<td><p>24.9819</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>With <code class="docutils literal notranslate"><span class="pre">eta</span></code>, a fixed point is unique only once <span class="math notranslate nohighlight">\(\eta\)</span> is large, and
+then the QP energies depend on <span class="math notranslate nohighlight">\(\eta\)</span> (here 15 meV in the gap between
+<span class="math notranslate nohighlight">\(10^{-3}\)</span> and 0.05 Ha). With <code class="docutils literal notranslate"><span class="pre">srg</span></code>, the energies change by less than
+1 meV between <span class="math notranslate nohighlight">\(s\)</span> = 100 and 20000, every converged start reaches the
+same fixed point for <span class="math notranslate nohighlight">\(s\)</span> = 200–1000 (in vacuum and in an
+environment), and the loop needs 10–50 iterations, fewer for smaller
+<span class="math notranslate nohighlight">\(s\)</span>. The two forms also differ off the diagonal, so <code class="docutils literal notranslate"><span class="pre">srg</span></code> and
+<code class="docutils literal notranslate"><span class="pre">eta</span></code> at small <span class="math notranslate nohighlight">\(\eta\)</span> differ by a few meV (5 meV in the HOMO here).</p>
+<p>The disabled unit tests <code class="docutils literal notranslate"><span class="pre">qsgw_fixed_point_seed_scan</span></code> and
+<code class="docutils literal notranslate"><span class="pre">qsgw_regularization_scan</span></code> (<code class="docutils literal notranslate"><span class="pre">test_gw</span></code>) reproduce these numbers; run
+them with <code class="docutils literal notranslate"><span class="pre">--run_test=gw_test/&lt;name&gt;</span></code>.</p>
+</section>
+<section id="recommended-settings">
+<h3><a class="toc-backref" href="#id45" role="doc-backlink"><span class="section-number">4.6.4. </span>Recommended settings</a><a class="headerlink" href="#recommended-settings" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">qsgw_regularization=srg</span></code> with the default <code class="docutils literal notranslate"><span class="pre">qsgw_srg_s=500</span></code>, and
+report <span class="math notranslate nohighlight">\(s\)</span>. To quote a regularization uncertainty, repeat with
+<span class="math notranslate nohighlight">\(s\)</span> = 200 and 1000.</p></li>
+<li><p>Check that the fixed point does not depend on the start before
+interpreting a starting-point dependence – for instance QSGW from PBE and
+from PBE0 should agree to within <code class="docutils literal notranslate"><span class="pre">qsgw_sc_limit</span></code>.</p></li>
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">core_exchange=true</span></code> with a frozen core, in particular from hybrid
+starts.</p></li>
+<li><p>With environment screening keep <code class="docutils literal notranslate"><span class="pre">qsgw_hartree_screened=true</span></code>.</p></li>
+<li><p>If the loop does not converge, check the virtual cut
+(<code class="docutils literal notranslate"><span class="pre">qsgw_max_virt_correction</span></code>) and the mixing first; <code class="docutils literal notranslate"><span class="pre">mixing_order=0</span></code>
+with a small <code class="docutils literal notranslate"><span class="pre">mixing_alpha</span></code> shows whether the problem is the mixing or
+the fixed point.</p></li>
+</ul>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">QSGW options (<code class="docutils literal notranslate"><span class="pre">gwbse.gw</span></code>)</span><a class="headerlink" href="#id13" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">do_qsgw</span></code></p></td>
+<td><p>false</p></td>
+<td><p>run QSGW after G0W0 or evGW</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_regularization</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eta</span></code></p></td>
+<td><p>static self-energy: <code class="docutils literal notranslate"><span class="pre">eta</span></code> or <code class="docutils literal notranslate"><span class="pre">srg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_srg_s</span></code></p></td>
+<td><p>500</p></td>
+<td><p>SRG flow parameter (Ha<sup>-2</sup>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eta</span></code></p></td>
+<td><p>1e-3</p></td>
+<td><p>broadening of the <code class="docutils literal notranslate"><span class="pre">eta</span></code> form (Ha); also used by the perturbative
+step</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_hartree_update</span></code></p></td>
+<td><p>true</p></td>
+<td><p>Hartree potential of the QP density</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_hartree_screened</span></code></p></td>
+<td><p>true</p></td>
+<td><p>with environment screening: update with <span class="math notranslate nohighlight">\(v + v^\mathrm{reac}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_sc_limit</span></code></p></td>
+<td><p>1e-5</p></td>
+<td><p>convergence threshold (Ha)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_max_iterations</span></code></p></td>
+<td><p>50</p></td>
+<td><p>maximum number of iterations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qsgw_max_virt_correction</span></code></p></td>
+<td><p>0.5</p></td>
+<td><p>cut of the window above the first virtual level with a larger
+perturbative correction (Ha)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mixing_order</span></code>, <code class="docutils literal notranslate"><span class="pre">mixing_alpha</span></code></p></td>
+<td><p>3, 0.7</p></td>
+<td><p>mixing of <span class="math notranslate nohighlight">\(\tilde\Sigma\)</span> (shared with evGW)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="levels-in-the-satellite-region">
-<span id="gwbse-satellites"></span><h2><a class="toc-backref" href="#id37" role="doc-backlink"><span class="section-number">4.6. </span>Levels in the satellite region</a><a class="headerlink" href="#levels-in-the-satellite-region" title="Link to this heading">¶</a></h2>
+<span id="gwbse-satellites"></span><h2><a class="toc-backref" href="#id46" role="doc-backlink"><span class="section-number">4.7. </span>Levels in the satellite region</a><a class="headerlink" href="#levels-in-the-satellite-region" title="Link to this heading">¶</a></h2>
 <p>Far enough above the gap (or below it, for deep occupied levels), the poles
 of <a class="reference internal" href="#equation-equ-gwbse-polesum">Eq.4.1</a> become dense and some carry large residues. A
 level there can have two or more roots of comparable weight, and the QP
 picture of that level breaks down; multiple solutions of the QP equation and
-the discontinuities they cause are well documented <a class="reference internal" href="bibliography.html#vansetten-2015" id="id8"><span>[vanSetten:2015]</span></a>
-<a class="reference internal" href="bibliography.html#veril-2018" id="id9"><span>[Veril:2018]</span></a>. Three things can then happen in evGW.</p>
+the discontinuities they cause are well documented <a class="reference internal" href="bibliography.html#vansetten-2015" id="id10"><span>[vanSetten:2015]</span></a>
+<a class="reference internal" href="bibliography.html#veril-2018" id="id11"><span>[Veril:2018]</span></a>. Three things can then happen in evGW.</p>
 <p><strong>Root switching.</strong> If the root is chosen by weight in every iteration, a
 level with two roots of similar <span class="math notranslate nohighlight">\(Z\)</span> takes whichever is ahead at the
 moment; small changes of <span class="math notranslate nohighlight">\(G\)</span> or, after a rebuild, of <span class="math notranslate nohighlight">\(W\)</span> move it
@@ -793,9 +1076,9 @@ window their energies follow <code class="docutils literal notranslate"><span cl
 lines and the competing-roots list identify them.</p>
 </section>
 <section id="bethe-salpeter-equation">
-<span id="gwbse-bse"></span><h2><a class="toc-backref" href="#id38" role="doc-backlink"><span class="section-number">4.7. </span>Bethe-Salpeter equation</a><a class="headerlink" href="#bethe-salpeter-equation" title="Link to this heading">¶</a></h2>
+<span id="gwbse-bse"></span><h2><a class="toc-backref" href="#id47" role="doc-backlink"><span class="section-number">4.8. </span>Bethe-Salpeter equation</a><a class="headerlink" href="#bethe-salpeter-equation" title="Link to this heading">¶</a></h2>
 <section id="hamiltonian-and-solvers">
-<h3><a class="toc-backref" href="#id39" role="doc-backlink"><span class="section-number">4.7.1. </span>Hamiltonian and solvers</a><a class="headerlink" href="#hamiltonian-and-solvers" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id48" role="doc-backlink"><span class="section-number">4.8.1. </span>Hamiltonian and solvers</a><a class="headerlink" href="#hamiltonian-and-solvers" title="Link to this heading">¶</a></h3>
 <p>The BSE is built in the product space of the BSE window, with the QP
 energies of the GW window (diagonal unless <code class="docutils literal notranslate"><span class="pre">use_Hqp_offdiag</span></code>), the exchange
 term with the bare Coulomb interaction and the direct term with the static
@@ -813,7 +1096,7 @@ prints every Davidson iteration with the largest residual and the number of
 converged roots; the solver stops once the requested roots are converged.</p>
 </section>
 <section id="caches-for-the-direct-term">
-<h3><a class="toc-backref" href="#id40" role="doc-backlink"><span class="section-number">4.7.2. </span>Caches for the direct term</a><a class="headerlink" href="#caches-for-the-direct-term" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id49" role="doc-backlink"><span class="section-number">4.8.2. </span>Caches for the direct term</a><a class="headerlink" href="#caches-for-the-direct-term" title="Link to this heading">¶</a></h3>
 <p>The direct term needs <span class="math notranslate nohighlight">\(W(0)\)</span> between electron-electron and hole-hole
 products. It can be applied from the three-centre integrals in every Davidson
 iteration or from a precomputed matrix. The precomputed matrices are kept as
@@ -824,7 +1107,7 @@ line); the log reports the decision, e.g. <code class="docutils literal notransl
 <span class="pre">triangle,</span> <span class="pre">0.0171</span> <span class="pre">GB</span> <span class="pre">each):</span> <span class="pre">Hd</span> <span class="pre">kept;</span> <span class="pre">Hd2</span> <span class="pre">kept</span></code>.</p>
 </section>
 <section id="dynamical-screening">
-<h3><a class="toc-backref" href="#id41" role="doc-backlink"><span class="section-number">4.7.3. </span>Dynamical screening</a><a class="headerlink" href="#dynamical-screening" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id50" role="doc-backlink"><span class="section-number">4.8.3. </span>Dynamical screening</a><a class="headerlink" href="#dynamical-screening" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">dyn_screen_max_iter</span></code> &gt; 0 adds a perturbative correction for the frequency
 dependence of <span class="math notranslate nohighlight">\(W\)</span> to each BSE state, iterated to <code class="docutils literal notranslate"><span class="pre">dyn_screen_tol</span></code>.
 The corrected energies are printed after the static ones (in the order of the
@@ -832,9 +1115,9 @@ static roots).</p>
 </section>
 </section>
 <section id="performance-and-memory">
-<h2><a class="toc-backref" href="#id42" role="doc-backlink"><span class="section-number">4.8. </span>Performance and memory</a><a class="headerlink" href="#performance-and-memory" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id51" role="doc-backlink"><span class="section-number">4.9. </span>Performance and memory</a><a class="headerlink" href="#performance-and-memory" title="Link to this heading">¶</a></h2>
 <section id="where-the-time-goes">
-<h3><a class="toc-backref" href="#id43" role="doc-backlink"><span class="section-number">4.8.1. </span>Where the time goes</a><a class="headerlink" href="#where-the-time-goes" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id52" role="doc-backlink"><span class="section-number">4.9.1. </span>Where the time goes</a><a class="headerlink" href="#where-the-time-goes" title="Link to this heading">¶</a></h3>
 <p>The log ends the GW step with a timing summary. Typical shares:</p>
 <ul class="simple">
 <li><p><strong>PPM, large system</strong> (D5M dimer, 995 GW levels, 11 builds): rotation of
@@ -851,7 +1134,7 @@ peak on many threads; running several molecules in parallel with fewer
 threads each gives more molecules per hour than one molecule on all threads.</p>
 </section>
 <section id="memory">
-<h3><a class="toc-backref" href="#id44" role="doc-backlink"><span class="section-number">4.8.2. </span>Memory</a><a class="headerlink" href="#memory" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id53" role="doc-backlink"><span class="section-number">4.9.2. </span>Memory</a><a class="headerlink" href="#memory" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">--memory</span></code> (GB) is the budget for choices that trade memory for speed
 (BSE caches, batch sizes); it does not limit what a calculation needs
 anyway. The log reports the resident and peak memory after the three-centre
@@ -861,14 +1144,14 @@ Exact <span class="math notranslate nohighlight">\(\Sigma\)</span> needs the RPA
 (<span class="math notranslate nohighlight">\((N_\mathrm{occ}N_\mathrm{virt})^2\)</span>) and the residues.</p>
 </section>
 <section id="platforms">
-<h3><a class="toc-backref" href="#id45" role="doc-backlink"><span class="section-number">4.8.3. </span>Platforms</a><a class="headerlink" href="#platforms" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id54" role="doc-backlink"><span class="section-number">4.9.3. </span>Platforms</a><a class="headerlink" href="#platforms" title="Link to this heading">¶</a></h3>
 <p>The dense linear algebra uses MKL where available (<code class="docutils literal notranslate"><span class="pre">dsyevd</span></code>, threaded
 <code class="docutils literal notranslate"><span class="pre">dsyrk</span></code>), Apple Accelerate’s LAPACK on macOS 13.3 and later, and Eigen
 otherwise; the log names the backend. CUDA support has been removed.</p>
 </section>
 </section>
 <section id="troubleshooting">
-<h2><a class="toc-backref" href="#id46" role="doc-backlink"><span class="section-number">4.9. </span>Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id55" role="doc-backlink"><span class="section-number">4.10. </span>Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 30.0%" />
@@ -929,7 +1212,7 @@ or to a level pulled across the gap (environment)</p></td>
 </tbody>
 </table>
 <section id="reproducing-results-of-older-versions">
-<h3><a class="toc-backref" href="#id47" role="doc-backlink"><span class="section-number">4.9.1. </span>Reproducing results of older versions</a><a class="headerlink" href="#reproducing-results-of-older-versions" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id56" role="doc-backlink"><span class="section-number">4.10.1. </span>Reproducing results of older versions</a><a class="headerlink" href="#reproducing-results-of-older-versions" title="Link to this heading">¶</a></h3>
 <p>The defaults changed in this version. To reproduce earlier numbers, set the
 previous values explicitly:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">gw</span><span class="o">&gt;</span>
@@ -949,7 +1232,7 @@ core (the old frozen-core Σx was incomplete).</p>
 </section>
 </section>
 <section id="reference-evgw-and-qp-settings">
-<h2><a class="toc-backref" href="#id48" role="doc-backlink"><span class="section-number">4.10. </span>Reference: evGW and QP settings</a><a class="headerlink" href="#reference-evgw-and-qp-settings" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id57" role="doc-backlink"><span class="section-number">4.11. </span>Reference: evGW and QP settings</a><a class="headerlink" href="#reference-evgw-and-qp-settings" title="Link to this heading">¶</a></h2>
 <p>All in the <code class="docutils literal notranslate"><span class="pre">gw</span></code> subsection unless noted.</p>
 <table class="docutils align-default">
 <colgroup>
