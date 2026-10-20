@@ -957,8 +957,22 @@ then the QP energies depend on <span class="math notranslate nohighlight">\(\eta
 1 meV between <span class="math notranslate nohighlight">\(s\)</span> = 100 and 20000, every converged start reaches the
 same fixed point for <span class="math notranslate nohighlight">\(s\)</span> = 200–1000 (in vacuum and in an
 environment), and the loop needs 10–50 iterations, fewer for smaller
-<span class="math notranslate nohighlight">\(s\)</span>. The two forms also differ off the diagonal, so <code class="docutils literal notranslate"><span class="pre">srg</span></code> and
-<code class="docutils literal notranslate"><span class="pre">eta</span></code> at small <span class="math notranslate nohighlight">\(\eta\)</span> differ by a few meV (5 meV in the HOMO here).</p>
+<span class="math notranslate nohighlight">\(s\)</span>. For water (def2-TZVP, exact <span class="math notranslate nohighlight">\(\Sigma\)</span>) the picture is the
+same: PBE and PBE0 starts agree within 0.7 meV for <span class="math notranslate nohighlight">\(s\)</span> = 200–1000,
+against 32 meV at <span class="math notranslate nohighlight">\(\eta = 0.01\)</span> Ha.</p>
+<p><strong>SRG and the</strong> <code class="docutils literal notranslate"><span class="pre">eta</span></code> <strong>form are different methods.</strong> Off the diagonal the
+two static operators differ even where no regularization acts: for a pole
+far from both levels, <code class="docutils literal notranslate"><span class="pre">srg</span></code> gives
+<span class="math notranslate nohighlight">\((\Delta_{np} + \Delta_{n'p})/(\Delta_{np}^2 + \Delta_{n'p}^2)\)</span>, the
+<code class="docutils literal notranslate"><span class="pre">eta</span></code> form <span class="math notranslate nohighlight">\(\tfrac12(1/\Delta_{np} + 1/\Delta_{n'p})\)</span>. The QP energies
+therefore differ, by an amount that depends on the system: 5 meV in the HOMO
+of methane, but 0.18 eV for water (HOMO <span class="math notranslate nohighlight">\(-12.71\)</span> eV with <code class="docutils literal notranslate"><span class="pre">srg</span></code> for
+any <span class="math notranslate nohighlight">\(s\)</span> from 50 to 20000, <span class="math notranslate nohighlight">\(-12.89\)</span> to <span class="math notranslate nohighlight">\(-12.91\)</span> eV with
+<code class="docutils literal notranslate"><span class="pre">eta</span></code> for <span class="math notranslate nohighlight">\(\eta\)</span> = 0.005–0.05 Ha). Marie and Loos find the same
+direction over 50 molecules: SRG-qsGW ionization potentials are 0.06 eV
+lower on average than qsGW ones (water: 0.10 eV) and closer to
+<span class="math notranslate nohighlight">\(\Delta\)</span>CCSD(T). Do not mix results of the two forms in one
+comparison.</p>
 <p>The disabled unit tests <code class="docutils literal notranslate"><span class="pre">qsgw_fixed_point_seed_scan</span></code> and
 <code class="docutils literal notranslate"><span class="pre">qsgw_regularization_scan</span></code> (<code class="docutils literal notranslate"><span class="pre">test_gw</span></code>) reproduce these numbers; run
 them with <code class="docutils literal notranslate"><span class="pre">--run_test=gw_test/&lt;name&gt;</span></code>.</p>
@@ -967,14 +981,22 @@ them with <code class="docutils literal notranslate"><span class="pre">--run_tes
 <h3><a class="toc-backref" href="#id45" role="doc-backlink"><span class="section-number">4.6.4. </span>Recommended settings</a><a class="headerlink" href="#recommended-settings" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">qsgw_regularization=srg</span></code> with the default <code class="docutils literal notranslate"><span class="pre">qsgw_srg_s=500</span></code>, and
-report <span class="math notranslate nohighlight">\(s\)</span>. To quote a regularization uncertainty, repeat with
-<span class="math notranslate nohighlight">\(s\)</span> = 200 and 1000.</p></li>
+report <span class="math notranslate nohighlight">\(s\)</span> and the form. To quote a regularization uncertainty,
+repeat with <span class="math notranslate nohighlight">\(s\)</span> = 200 and 1000. Much larger <span class="math notranslate nohighlight">\(s\)</span> brings back
+near-singular terms: for water the loop needs 74–172 iterations at
+<span class="math notranslate nohighlight">\(s = 20000\)</span>, and the two starts differ by 1.3–1.5 meV for
+<span class="math notranslate nohighlight">\(s\)</span> = 5000–20000; Marie and Loos
+report failed convergence for 11 of 50 molecules at <span class="math notranslate nohighlight">\(s = 5000\)</span>.</p></li>
 <li><p>Check that the fixed point does not depend on the start before
 interpreting a starting-point dependence – for instance QSGW from PBE and
 from PBE0 should agree to within <code class="docutils literal notranslate"><span class="pre">qsgw_sc_limit</span></code>.</p></li>
 <li><p>Keep <code class="docutils literal notranslate"><span class="pre">core_exchange=true</span></code> with a frozen core, in particular from hybrid
 starts.</p></li>
 <li><p>With environment screening keep <code class="docutils literal notranslate"><span class="pre">qsgw_hartree_screened=true</span></code>.</p></li>
+<li><p>Keep the default mixing (<code class="docutils literal notranslate"><span class="pre">mixing_order=3</span></code>, <code class="docutils literal notranslate"><span class="pre">mixing_alpha=0.7</span></code>). A long
+Anderson history stalls: for water with <code class="docutils literal notranslate"><span class="pre">srg</span></code>, order 20 with
+<span class="math notranslate nohighlight">\(\alpha = 0.2\)</span> left a residual of 0.3 eV after 200 iterations where
+the default converges in 20.</p></li>
 <li><p>If the loop does not converge, check the virtual cut
 (<code class="docutils literal notranslate"><span class="pre">qsgw_max_virt_correction</span></code>) and the mixing first; <code class="docutils literal notranslate"><span class="pre">mixing_order=0</span></code>
 with a small <code class="docutils literal notranslate"><span class="pre">mixing_alpha</span></code> shows whether the problem is the mixing or
