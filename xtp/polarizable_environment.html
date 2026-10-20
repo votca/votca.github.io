@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8. Polarizable Environments: Thole and Charge-Response Models &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" />
+    <link rel="prev" title="7. Polarizable Ewald Embedding" href="ewald_embedding.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. Polarizable Environments: Thole and Charge-Response Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-ground">8.1. Common ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sites-and-moments">8.1.1. Sites and moments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fields-and-potentials">8.1.2. Fields and potentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#energies">8.1.3. Energies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-thole-model">8.2. The Thole model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-charge-response-model">8.3. The charge-response model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#response-of-one-molecule">8.3.1. Response of one molecule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smearing">8.3.2. Smearing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear-system">8.3.3. Linear system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coupling-with-the-qm-region">8.3.4. Coupling with the QM region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reaction-field-of-embedded-gw-bse">8.3.5. Reaction field of embedded GW-BSE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parametrization-of-charge-response-molecules">8.4. Parametrization of charge-response molecules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#files">8.4.1. Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tools">8.4.2. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#accuracy-and-choice-of-model">8.5. Accuracy and choice of model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#periodic-background">8.6. Periodic background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">8.7. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>Polarizable Environments: Thole and Charge-Response Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/polarizable_environment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="polarizable-environments-thole-and-charge-response-models">
+<h1><span class="section-number">8. </span>Polarizable Environments: Thole and Charge-Response Models<a class="headerlink" href="#polarizable-environments-thole-and-charge-response-models" title="Link to this heading">¶</a></h1>
+<p>In a QM/MM job the classical environment of the QM region is divided into
+regions (<code class="docutils literal notranslate"><span class="pre">staticregion</span></code>, <code class="docutils literal notranslate"><span class="pre">polarregion</span></code>, <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code>). Static regions
+carry permanent multipoles only. Polar regions also respond to electric
+fields, and this chapter describes how. A polar region can contain
+molecules of two kinds, which can be mixed in one region:</p>
+<ul class="simple">
+<li><p><strong>Thole molecules</strong>: inducible point dipoles on the atoms, coupled to each
+other inside and between molecules with Thole damping <a class="reference internal" href="bibliography.html#thole-1981" id="id1"><span>[Thole:1981]</span></a>. This
+has been XTP’s model so far.</p></li>
+<li><p><strong>Charge-response molecules</strong>: induced atomic charges from a
+charge-response matrix <span class="math notranslate nohighlight">\(\Pi\)</span> of the molecule, plus residual induced
+dipoles, both smeared over Gaussians, with no couplings inside the
+molecule <a class="reference internal" href="bibliography.html#morita-1997" id="id2"><span>[Morita:1997]</span></a> <a class="reference internal" href="bibliography.html#davino-2014" id="id3"><span>[DAvino:2014]</span></a>.</p></li>
+</ul>
+<p>Both models give the same molecular polarizability tensor when they are
+parametrized to it. They differ in <em>where</em> on the molecule the response
+sits, which matters close to the QM region: at van der Waals contacts the
+QM charge density probes the response atom by atom. In conjugated
+molecules most of the in-plane polarizability is intramolecular charge flow
+<a class="reference internal" href="bibliography.html#tsiper-2001" id="id4"><span>[Tsiper:2001]</span></a>, which induced charges describe directly and atomic dipoles
+only effectively.</p>
+<p>The same model, with the same smearing, is used in the ground-state QM/MM
+loop and in the reaction field of environment-screened GW-BSE
+(<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>).</p>
+<section id="common-ground">
+<h2><span class="section-number">8.1. </span>Common ground<a class="headerlink" href="#common-ground" title="Link to this heading">¶</a></h2>
+<section id="sites-and-moments">
+<h3><span class="section-number">8.1.1. </span>Sites and moments<a class="headerlink" href="#sites-and-moments" title="Link to this heading">¶</a></h3>
+<p>Every polar site carries the permanent multipoles of its <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file (up
+to quadrupoles) and a polarizability tensor <span class="math notranslate nohighlight">\(\alpha_i\)</span> (the <code class="docutils literal notranslate"><span class="pre">P</span></code>
+line, in Å<sup>3</sup>, isotropic or as the six components
+<code class="docutils literal notranslate"><span class="pre">xx</span> <span class="pre">xy</span> <span class="pre">xz</span> <span class="pre">yy</span> <span class="pre">yz</span> <span class="pre">zz</span></code>). The site responds with an induced dipole
+<span class="math notranslate nohighlight">\(\boldsymbol{\mu}_i\)</span>; a charge-response site in addition with an
+induced charge <span class="math notranslate nohighlight">\(\delta q_i\)</span>.</p>
+</section>
+<section id="fields-and-potentials">
+<h3><span class="section-number">8.1.2. </span>Fields and potentials<a class="headerlink" href="#fields-and-potentials" title="Link to this heading">¶</a></h3>
+<p>During an outer QM/MM iteration every other region adds its field (and, at
+charge-response sites, its potential) to the sites of a polar region:</p>
+<ul class="simple">
+<li><p>permanent multipoles of static regions and of the other molecules of the
+same or other polar regions, as point multipoles;</p></li>
+<li><p>the induced moments of other polar regions;</p></li>
+<li><p>the QM region: the field of its electron density and nuclei;</p></li>
+<li><p>the periodic background of an <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code>: its field, and on
+charge-response sites also its potential (see <a class="reference internal" href="#periodic-background">Periodic background</a>).</p></li>
+</ul>
+<p>Two accumulators per site keep apart what is counted in the polar region’s
+energy (sources in outer regions) and what is counted in the other region’s
+energy (for example the QM region, whose Hamiltonian contains the induced
+moments).</p>
+</section>
+<section id="energies">
+<h3><span class="section-number">8.1.3. </span>Energies<a class="headerlink" href="#energies" title="Link to this heading">¶</a></h3>
+<p>A polar region reports</p>
+<div class="math notranslate nohighlight">
+\[E_\text{static} = E_\text{static-static} + E_\text{static,ext}, \qquad
+E_\text{polar} = E_\text{indu-indu} + E_\text{indu-stat}
+                 + E_\text{internal} + E_\text{polar,ext},\]</div>
+<p>with the interactions among induced moments of different sites
+(<span class="math notranslate nohighlight">\(E_\text{indu-indu}\)</span>), of induced moments with the permanent
+multipoles of other molecules of the region (<span class="math notranslate nohighlight">\(E_\text{indu-stat}\)</span>),
+the internal (polarization) energy
+<span class="math notranslate nohighlight">\(E_\text{internal} = \tfrac12 \sum_i \boldsymbol{\mu}_i^T
+\alpha_i^{-1} \boldsymbol{\mu}_i\)</span> (plus the charge term below for
+charge-response molecules), and the interaction with the fields of outer
+regions. At self-consistency <span class="math notranslate nohighlight">\(E_\text{polar}\)</span> is the polarization
+energy <span class="math notranslate nohighlight">\(\tfrac12 x^T b\)</span> of the region in the fields it is counted
+with.</p>
+</section>
+</section>
+<section id="the-thole-model">
+<h2><span class="section-number">8.2. </span>The Thole model<a class="headerlink" href="#the-thole-model" title="Link to this heading">¶</a></h2>
+<p>Each site responds to the total field, external plus that of all other
+induced dipoles,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\mu}_i = \alpha_i \Big( \mathbf{E}_i^\text{ext}
+   - \sum_{j \neq i} T_{ij}\, \boldsymbol{\mu}_j \Big)
+\quad\Leftrightarrow\quad
+(\alpha^{-1} + T)\, \boldsymbol{\mu} = \mathbf{E}^\text{ext},\]</div>
+<p>where the sum runs over <em>all</em> other sites, inside the molecule as well. The
+dipole tensor is damped at short range,</p>
+<div class="math notranslate nohighlight">
+\[T_{ij} = \frac{\lambda_3}{r^3}\,\mathbb{1}
+         - \frac{3\lambda_5}{r^5}\,\mathbf{r}\mathbf{r}^T, \qquad
+\lambda_3 = 1 - e^{-a u^3}, \quad
+\lambda_5 = 1 - (1 + a u^3)\, e^{-a u^3}, \quad
+a u^3 = \frac{a\, r^3}{\sqrt{\alpha_i \alpha_j}},\]</div>
+<p>with <span class="math notranslate nohighlight">\(a\)</span> the option <code class="docutils literal notranslate"><span class="pre">exp_damp</span></code> (default 0.39) and <span class="math notranslate nohighlight">\(\alpha_i\)</span>
+the largest eigenvalue of the site’s polarizability tensor. Without the
+damping, two point dipoles closer than <span class="math notranslate nohighlight">\((4 \alpha_i \alpha_j)^{1/6}\)</span>
+polarize each other without bound (the polarization catastrophe).</p>
+<p>Because the intramolecular couplings are part of the model, the site
+polarizabilities are not the molecule’s polarizability divided among its
+atoms: <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">molpol</span></code> adjusts them until the coupled molecule
+reproduces a target polarizability tensor, usually from a DFT calculation.
+The target is read from an ORCA log (<code class="docutils literal notranslate"><span class="pre">qmpackage=orca</span></code>) or computed by
+xtpdft itself: with <code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.polarizability=true</span></code> the static
+polarizability is obtained analytically after the SCF (coupled-perturbed
+Kohn–Sham; closed shells, LDA/GGA/global hybrids) and stored in the orb
+file, which <code class="docutils literal notranslate"><span class="pre">molpol</span></code> reads with <code class="docutils literal notranslate"><span class="pre">qmpackage=xtp</span> <span class="pre">logfile=system.orb</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xtp_tools</span> <span class="o">-</span><span class="n">e</span> <span class="n">dftgwbse</span> <span class="o">-</span><span class="n">c</span> <span class="n">job_name</span><span class="o">=</span><span class="n">system</span> <span class="n">tasks</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span><span class="n">dft</span><span class="p">,</span><span class="n">parse</span> \
+  <span class="n">dftpackage</span><span class="o">.</span><span class="n">xtpdft</span><span class="o">.</span><span class="n">polarizability</span><span class="o">=</span><span class="n">true</span>
+<span class="n">xtp_tools</span> <span class="o">-</span><span class="n">e</span> <span class="n">molpol</span> <span class="o">-</span><span class="n">c</span> <span class="n">job_name</span><span class="o">=</span><span class="n">system</span> <span class="n">qmpackage</span><span class="o">=</span><span class="n">xtp</span> <span class="n">logfile</span><span class="o">=</span><span class="n">system</span><span class="o">.</span><span class="n">orb</span>
+</pre></div>
+</div>
+<p><strong>Solver.</strong> <span class="math notranslate nohighlight">\((\alpha^{-1} + T)\,\boldsymbol{\mu} = \mathbf{E}\)</span> is
+solved by preconditioned conjugate gradients (<code class="docutils literal notranslate"><span class="pre">tolerance_dipole</span></code>,
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), starting from the solution of the previous outer iteration;
+a region of one molecule is solved directly.</p>
+<p><strong>Coupling with the QM region.</strong> The sites see the field of the QM
+electrons integrated on the DFT grid at the site position and that of the
+nuclei, both as points. The QM region sees the induced dipoles as point
+dipoles in its Hamiltonian. In the reaction field of embedded GW-BSE the
+sites are instead smeared over Gaussians of width
+<code class="docutils literal notranslate"><span class="pre">site_width</span></code> <span class="math notranslate nohighlight">\(\cdot\,\alpha^{1/3}\)</span> to keep <span class="math notranslate nohighlight">\(1 + R\)</span> positive
+definite (<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>).</p>
+</section>
+<section id="the-charge-response-model">
+<h2><span class="section-number">8.3. </span>The charge-response model<a class="headerlink" href="#the-charge-response-model" title="Link to this heading">¶</a></h2>
+<section id="response-of-one-molecule">
+<h3><span class="section-number">8.3.1. </span>Response of one molecule<a class="headerlink" href="#response-of-one-molecule" title="Link to this heading">¶</a></h3>
+<p>A charge-response molecule <span class="math notranslate nohighlight">\(I\)</span> responds to the external potential
+<span class="math notranslate nohighlight">\(\boldsymbol{\phi}_I\)</span> at its atoms with induced atomic charges and
+to the field with residual induced dipoles,</p>
+<div class="math notranslate nohighlight">
+\[\delta\mathbf{q}_I = -\Pi_I\, \boldsymbol{\phi}_I, \qquad
+\boldsymbol{\mu}_i = \alpha_i^\text{res}\, \mathbf{E}_i .\]</div>
+<p><span class="math notranslate nohighlight">\(\Pi_I\)</span> (<span class="math notranslate nohighlight">\(N \times N\)</span>, in e<sup>2</sup>/Hartree) is the
+charge-response matrix of the molecule type: symmetric, positive
+semidefinite, and charge conserving (each row sums to zero, so a uniform
+potential induces nothing and every molecule stays neutral).
+<span class="math notranslate nohighlight">\(\alpha_i^\text{res}\)</span> carries what induced charges cannot: the
+out-of-plane response of a planar molecule and a small in-plane residual.
+In a uniform field <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> the potential is
+<span class="math notranslate nohighlight">\(\phi_k = -\mathbf{F}\cdot\mathbf{R}_k\)</span>, so the molecular
+polarizability is</p>
+<div class="math notranslate nohighlight">
+\[\alpha_\text{mol} = X^T \Pi\, X + \sum_i \alpha_i^\text{res},\]</div>
+<p>with <span class="math notranslate nohighlight">\(X\)</span> the atomic positions. The residual polarizabilities are fitted
+so that this equals the DFT polarizability of the molecule exactly.</p>
+<p><span class="math notranslate nohighlight">\(\Pi\)</span> is a linear-response property of the whole molecule and already
+contains its own Coulomb screening. The induced charges and dipoles of one
+molecule therefore do <strong>not</strong> interact with each other; they interact only
+with other molecules and with the QM region.</p>
+</section>
+<section id="smearing">
+<h3><span class="section-number">8.3.2. </span>Smearing<a class="headerlink" href="#smearing" title="Link to this heading">¶</a></h3>
+<p>The induced charge and the residual dipole of a charge-response site are
+Gaussians: the charge density <span class="math notranslate nohighlight">\(\delta q\, g(\mathbf{r})\)</span> with
+<span class="math notranslate nohighlight">\(g(\mathbf{r}) = (\pi s^2)^{-3/2} e^{-r^2/s^2}\)</span>, and the dipole as
+<span class="math notranslate nohighlight">\(-\boldsymbol{\mu}\cdot\nabla g\)</span>. The width <span class="math notranslate nohighlight">\(s\)</span> is the option
+<code class="docutils literal notranslate"><span class="pre">cr_width</span></code> (default 0.7 Å). Two Gaussians of widths <span class="math notranslate nohighlight">\(s_i\)</span> and
+<span class="math notranslate nohighlight">\(s_j\)</span> interact through <span class="math notranslate nohighlight">\(\operatorname{erf}(r/S)/r\)</span> with
+<span class="math notranslate nohighlight">\(S = \sqrt{s_i^2 + s_j^2}\)</span> and its derivatives,</p>
+<div class="math notranslate nohighlight">
+\[B_0 = \frac{\operatorname{erf}(r/S)}{r}, \quad
+B_1 = \frac{B_0 - \frac{2}{\sqrt\pi\, S} e^{-r^2/S^2}}{r^2}, \quad
+B_2 = \frac{3 B_1 - \frac{4}{\sqrt\pi\, S^3} e^{-r^2/S^2}}{r^2},\]</div>
+<p>so that, with <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> from the source to the receiving site, a
+charge <span class="math notranslate nohighlight">\(q\)</span> produces the potential <span class="math notranslate nohighlight">\(q B_0\)</span> and the field
+<span class="math notranslate nohighlight">\(q B_1 \mathbf{r}\)</span>, and a dipole the potential
+<span class="math notranslate nohighlight">\(B_1\, \boldsymbol{\mu}\cdot\mathbf{r}\)</span> and the field
+<span class="math notranslate nohighlight">\((B_2\, \mathbf{r}\mathbf{r}^T - B_1 \mathbb{1})\, \boldsymbol{\mu}\)</span>.
+For <span class="math notranslate nohighlight">\(S = 0\)</span> these are the bare Coulomb kernels. Thole sites are
+points (<span class="math notranslate nohighlight">\(s = 0\)</span>).</p>
+<ul class="simple">
+<li><p>Charge–charge and charge–dipole couplings always use these kernels.</p></li>
+<li><p>Dipole–dipole couplings between molecules, when at least one site is a
+charge-response site, use them as well (<code class="docutils literal notranslate"><span class="pre">cr_dipole_damping</span></code>
+<code class="docutils literal notranslate"><span class="pre">gaussian</span></code>, the default) or the Thole damping above (<code class="docutils literal notranslate"><span class="pre">thole</span></code>).
+Between two Thole sites the Thole model is unchanged.</p></li>
+<li><p>Permanent multipoles act on charge-response sites as points. The
+Gaussian correction would be below <span class="math notranslate nohighlight">\(3\cdot 10^{-4}\)</span> relative at the
+shortest intermolecular distances (1.7 Å for <span class="math notranslate nohighlight">\(s = 0.7\)</span> Å).</p></li>
+</ul>
+<p>The smearing is what makes the induced charges usable at contact
+distances: a point charge right next to a hydrogen bond over-responds in the
+same way a point dipole does. The QM/MM loop and the reaction field of
+embedded GW-BSE use the same width, so the environment responds to the QM
+density in the same way in both.</p>
+</section>
+<section id="linear-system">
+<h3><span class="section-number">8.3.3. </span>Linear system<a class="headerlink" href="#linear-system" title="Link to this heading">¶</a></h3>
+<p>With the unknowns <span class="math notranslate nohighlight">\(x = (\delta\mathbf{q}, \boldsymbol{\mu})\)</span> (induced
+charges of all charge-response sites, induced dipoles of all sites), the
+sources <span class="math notranslate nohighlight">\(c = (-\boldsymbol{\phi}, \mathbf{E})\)</span> and
+<span class="math notranslate nohighlight">\(M = \operatorname{blockdiag}(\Pi_I, \alpha_i)\)</span>, the response of the
+region is</p>
+<div class="math notranslate nohighlight">
+\[x = M\,(c - T x)
+\quad\Leftrightarrow\quad
+(\mathbb{1} + M^{1/2}\, T\, M^{1/2})\, y = M^{1/2} c, \qquad
+x = M^{1/2} y,\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> contains the couplings above: none inside a
+charge-response molecule, the Thole couplings inside a Thole molecule, and
+all couplings between molecules. <span class="math notranslate nohighlight">\(T\)</span> is built so that <span class="math notranslate nohighlight">\((Tx)_q\)</span>
+is the potential and <span class="math notranslate nohighlight">\((Tx)_\mu\)</span> minus the field of the induced moments.
+The symmetric operator is positive definite for a stable environment and is
+solved by conjugate gradients (<code class="docutils literal notranslate"><span class="pre">tolerance_dipole</span></code>, <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>). The null
+space of <span class="math notranslate nohighlight">\(\Pi\)</span> (charge conservation) is handled by <span class="math notranslate nohighlight">\(M^{1/2}\)</span>.
+A non-positive curvature during the iterations stops the job with a message
+(polarization catastrophe). Regions without charge-response molecules use
+the Thole solver unchanged.</p>
+<p>The internal energy of the induced charges,
+<span class="math notranslate nohighlight">\(\tfrac12\, \delta\mathbf{q}^T \Pi^{+} \delta\mathbf{q}\)</span> with the
+pseudo-inverse of <span class="math notranslate nohighlight">\(\Pi\)</span>, is added to <span class="math notranslate nohighlight">\(E_\text{internal}\)</span>.</p>
+</section>
+<section id="coupling-with-the-qm-region">
+<h3><span class="section-number">8.3.4. </span>Coupling with the QM region<a class="headerlink" href="#coupling-with-the-qm-region" title="Link to this heading">¶</a></h3>
+<p>The induced charge and dipole of a charge-response site enter the QM
+Hamiltonian as the Gaussian charge and dipole above. The matrix elements are
+three-centre Coulomb integrals of an AO pair with an s- and a p-type
+primitive Gaussian at the site, normalized to a unit charge and a unit
+dipole; their interaction with the QM nuclei uses the kernels <span class="math notranslate nohighlight">\(B_0\)</span>
+and <span class="math notranslate nohighlight">\(B_1\)</span>. The potential and field of the QM density at the site,
+seen by the same Gaussian, are traces of the density matrix with the same
+integrals, and the nuclei again enter through <span class="math notranslate nohighlight">\(B_0\)</span> and <span class="math notranslate nohighlight">\(B_1\)</span>.
+The coupling is therefore exactly symmetric, without grid errors. Only the
+<code class="docutils literal notranslate"><span class="pre">xtp</span></code> DFT package supports this; with other packages a job with
+charge-response molecules stops at the first outer iteration.</p>
+</section>
+<section id="reaction-field-of-embedded-gw-bse">
+<h3><span class="section-number">8.3.5. </span>Reaction field of embedded GW-BSE<a class="headerlink" href="#reaction-field-of-embedded-gw-bse" title="Link to this heading">¶</a></h3>
+<p>With charge-response molecules among the explicit polar regions, the
+reaction-field kernel over the auxiliary basis becomes</p>
+<div class="math notranslate nohighlight">
+\[B = -(M^{1/2} C)^T\, (\mathbb{1} + M^{1/2} T M^{1/2})^{-1}\, (M^{1/2} C),
+\qquad C = (-\Phi^T, F^T),\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Phi\)</span> the potential of each auxiliary function at the
+charge-response sites (Gaussian-averaged with width <code class="docutils literal notranslate"><span class="pre">cr_width</span></code>) and
+<span class="math notranslate nohighlight">\(F\)</span> its field at all sites (Thole sites smeared with <code class="docutils literal notranslate"><span class="pre">site_width</span></code>
+<span class="math notranslate nohighlight">\(\cdot\,\alpha^{1/3}\)</span> as before). For Thole molecules alone it reduces
+to <span class="math notranslate nohighlight">\(-F (\alpha^{-1} + T)^{-1} F^T\)</span>. It is formed with a Cholesky
+factor of the dense operator, as the Thole kernel. Charge-response molecules
+cannot be part of a dielectric shell region (<code class="docutils literal notranslate"><span class="pre">shell_regions</span></code>), which
+responds with <span class="math notranslate nohighlight">\(\alpha/\varepsilon\)</span> per site.</p>
+</section>
+</section>
+<section id="parametrization-of-charge-response-molecules">
+<h2><span class="section-number">8.4. </span>Parametrization of charge-response molecules<a class="headerlink" href="#parametrization-of-charge-response-molecules" title="Link to this heading">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\Pi\)</span> is the static linear response of the molecule, obtained once
+per molecule type from a DFT calculation, like the target polarizability of
+<code class="docutils literal notranslate"><span class="pre">molpol</span></code>: natively with <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">crfit</span></code> (xtpdft), or with the
+python tool <code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code> (PySCF); see <a class="reference internal" href="#tools">Tools</a> below. The procedure:</p>
+<ol class="arabic simple">
+<li><p><strong>Perturbations.</strong> An external potential localized on atom <span class="math notranslate nohighlight">\(k\)</span>
+with Hirshfeld weights <a class="reference internal" href="bibliography.html#hirshfeld-1977" id="id5"><span>[Hirshfeld:1977]</span></a>, <span class="math notranslate nohighlight">\(v_k(\mathbf{r}) =
+w_k(\mathbf{r})\)</span> with <span class="math notranslate nohighlight">\(\sum_k w_k = 1\)</span> (free spherical atoms in the
+same basis), plus three uniform fields.</p></li>
+<li><p><strong>Response.</strong> The first-order density matrices of all <span class="math notranslate nohighlight">\(N + 3\)</span>
+perturbations from analytic coupled-perturbed Kohn–Sham (<code class="docutils literal notranslate"><span class="pre">crfit</span></code>,
+<code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code>) or central finite differences of SCFs (<code class="docutils literal notranslate"><span class="pre">crfit</span></code>
+<code class="docutils literal notranslate"><span class="pre">method=finite_differences</span></code>); with diffuse
+functions in the basis (for example def2-SVPD or def2-TZVPD) and the
+functional of the QM region.</p></li>
+<li><p><strong>Induced charges.</strong> Measured with the same Hirshfeld weights:
+<span class="math notranslate nohighlight">\(\Pi_{jk} = -\langle w_j | \chi | w_k \rangle\)</span>, which is symmetric,
+positive semidefinite and charge conserving by construction.
+(ESP-fitted charges, as in the original charge-response kernel
+<a class="reference internal" href="bibliography.html#morita-1997" id="id6"><span>[Morita:1997]</span></a>, give a non-symmetric, more ill-conditioned matrix with
+amplified short-wavelength modes; they were less accurate in the tests
+below.)</p></li>
+<li><p><strong>Residual dipoles.</strong>
+<span class="math notranslate nohighlight">\(\alpha^\text{res} = \alpha_\text{DFT} - X^T \Pi X\)</span> from the field
+response, distributed over the atoms as one tensor scaled by the trace of
+the Hirshfeld atomic dipole polarizabilities. <span class="math notranslate nohighlight">\(\alpha^\text{res}\)</span>
+must be positive definite.</p></li>
+</ol>
+<section id="files">
+<h3><span class="section-number">8.4.1. </span>Files<a class="headerlink" href="#files" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.crm</span></code>: the charge-response matrix in the atom order of the molecule
+type’s <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file. Lines starting with <code class="docutils literal notranslate"><span class="pre">!</span></code> are comments; then the
+number of atoms <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(N\)</span> lines <code class="docutils literal notranslate"><span class="pre">element</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code> (Å, the
+geometry of the fit, for information), and <span class="math notranslate nohighlight">\(N\)</span> lines of <span class="math notranslate nohighlight">\(N\)</span>
+numbers (e<sup>2</sup>/Hartree). On reading, XTP checks that it is
+symmetric, charge conserving and positive semidefinite to
+<span class="math notranslate nohighlight">\(10^{-6}\)</span> relative, and removes the rounding of the file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.mps</span></code>: the permanent multipoles as for any polar molecule, with the
+residual polarizabilities <span class="math notranslate nohighlight">\(\alpha_i^\text{res}\)</span> on the <code class="docutils literal notranslate"><span class="pre">P</span></code> lines
+(six components <code class="docutils literal notranslate"><span class="pre">xx</span> <span class="pre">xy</span> <span class="pre">xz</span> <span class="pre">yy</span> <span class="pre">yz</span> <span class="pre">zz</span></code> in Å<sup>3</sup>), in the frame of the
+template geometry.</p></li>
+<li><p>map file: next to <code class="docutils literal notranslate"><span class="pre">&lt;multipoles_n&gt;</span></code> of the segment,</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;multipoles_n&gt;</span>MP_FILES/water_cr_n.mps<span class="nt">&lt;/multipoles_n&gt;</span>
+<span class="nt">&lt;chargeresponse_n&gt;</span>MP_FILES/water_cr_n.crm<span class="nt">&lt;/chargeresponse_n&gt;</span>
+</pre></div>
+</div>
+<p>(and likewise for other states). The matrix is reordered to the order of
+<code class="docutils literal notranslate"><span class="pre">mpoles</span></code> in the fragments. Every atom of the molecule must be mapped: a
+part of <span class="math notranslate nohighlight">\(\Pi\)</span> does not conserve charge. Segments mapped from an
+explicit <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file name in the job file get no charge response.</p>
+</li>
+<li><p>polar region options: <code class="docutils literal notranslate"><span class="pre">cr_width</span></code> and <code class="docutils literal notranslate"><span class="pre">cr_dipole_damping</span></code> (above);
+they apply to the charge-response molecules of the region.</p></li>
+</ul>
+<p>Residual polarizabilities are in general anisotropic. Use <code class="docutils literal notranslate"><span class="pre">map2md</span></code> 0:
+with <code class="docutils literal notranslate"><span class="pre">map2md</span></code> 1 the sites are placed on the MD atoms without rotating
+site tensors.</p>
+<p>Checkpoints store <span class="math notranslate nohighlight">\(\Pi\)</span>, the induced charges and the options with the
+region; checkpoints without them read as Thole molecules.</p>
+</section>
+<section id="tools">
+<h3><span class="section-number">8.4.2. </span>Tools<a class="headerlink" href="#tools" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">crfit</span></code> is part of XTP and needs nothing else. It reads
+<code class="docutils literal notranslate"><span class="pre">job_name.xyz</span></code> and the <code class="docutils literal notranslate"><span class="pre">dftpackage</span></code> options (xtpdft; closed-shell
+molecules; LDA, GGA or global hybrid functionals), runs the ground state
+(converged to at least <code class="docutils literal notranslate"><span class="pre">scf_error</span></code>, default <span class="math notranslate nohighlight">\(10^{-9}\)</span>) and obtains
+the first-order density matrices of all perturbations at once by
+coupled-perturbed Kohn–Sham (<code class="docutils literal notranslate"><span class="pre">method=analytic</span></code>, the default; see
+<code class="docutils literal notranslate"><span class="pre">DFTEngine::StaticResponse</span></code>), solved to a relative residual
+<code class="docutils literal notranslate"><span class="pre">tolerance</span></code> (default <span class="math notranslate nohighlight">\(10^{-7}\)</span>). With <code class="docutils literal notranslate"><span class="pre">method=finite_differences</span></code>
+it runs instead two SCFs per perturbation at <span class="math notranslate nohighlight">\(\pm\)</span> <code class="docutils literal notranslate"><span class="pre">step</span></code>
+(default <span class="math notranslate nohighlight">\(10^{-3}\)</span> Hartree, resp. Hartree/bohr), warm-started from the
+ground state, and takes <span class="math notranslate nohighlight">\(\Delta P = (P_+ - P_-)/(2s)\)</span> with <span class="math notranslate nohighlight">\(s\)</span>
+= <code class="docutils literal notranslate"><span class="pre">step</span></code>. If the geometry has an inversion centre (<code class="docutils literal notranslate"><span class="pre">inversion</span></code>, default
+on), only one atom of each pair is perturbed. The free-atom references of the Hirshfeld weights
+are those of xtpdft’s CDFT (spherically averaged, Hund’s-rule spin, the
+functional of the calculation). It writes <code class="docutils literal notranslate"><span class="pre">output.crm</span></code>, <code class="docutils literal notranslate"><span class="pre">output.json</span></code>
+(the keys of <code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code>) and, with <code class="docutils literal notranslate"><span class="pre">mpsfile</span></code> (a template <code class="docutils literal notranslate"><span class="pre">.mps</span></code>
+with the permanent multipoles), <code class="docutils literal notranslate"><span class="pre">output.mps</span></code> with the residual
+polarizabilities on the <code class="docutils literal notranslate"><span class="pre">P</span></code> lines, rotated into the template frame as
+<code class="docutils literal notranslate"><span class="pre">xtp_cr_mps</span></code> does. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xtp_tools</span> <span class="o">-</span><span class="n">e</span> <span class="n">crfit</span> <span class="o">-</span><span class="n">c</span> <span class="n">job_name</span><span class="o">=</span><span class="n">water</span> <span class="n">output</span><span class="o">=</span><span class="n">water_cr_n</span> \
+  <span class="n">mpsfile</span><span class="o">=</span><span class="n">water_n</span><span class="o">.</span><span class="n">mps</span> <span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span><span class="o">=</span><span class="n">def2</span><span class="o">-</span><span class="n">svpd</span> \
+  <span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span><span class="o">=</span><span class="n">aux</span><span class="o">-</span><span class="n">def2</span><span class="o">-</span><span class="n">svpd</span> \
+  <span class="n">dftpackage</span><span class="o">.</span><span class="n">functional</span><span class="o">=</span><span class="n">XC_HYB_GGA_XC_PBEH</span>
+</pre></div>
+</div>
+<p>Both methods agree: for pentacene (PBE0/def2-SVPD) <span class="math notranslate nohighlight">\(\Pi\)</span> to
+<span class="math notranslate nohighlight">\(10^{-6}\)</span>; the polarizability differs by <span class="math notranslate nohighlight">\(2 \times 10^{-4}\)</span>,
+the hyperpolarizability contribution of the finite field step (the analytic
+response agrees with SCFs at step <span class="math notranslate nohighlight">\(10^{-4}\)</span> to <span class="math notranslate nohighlight">\(10^{-7}\)</span>).
+Compared with <code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code> at the same functional and basis, the
+polarizability agrees to a few <span class="math notranslate nohighlight">\(10^{-4}\)</span>, and the elements of
+<span class="math notranslate nohighlight">\(\Pi\)</span> are 3 % (water) to 5–7 % (pentacene) larger; the difference in
+<span class="math notranslate nohighlight">\(\Pi\)</span> is the choice of free-atom references (<code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code> uses
+spherical Hartree–Fock atoms). Pentacene on two cores: 23 min analytic, 44
+min with finite differences, 2 h with <code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code>.</p>
+<p>The python tools are installed with XTP when their modules are found at
+configure time: <code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span></code> needs PySCF and numpy, <code class="docutils literal notranslate"><span class="pre">xtp_cr_mps</span></code> numpy
+only.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_cr_fit</span> <span class="pre">-x</span> <span class="pre">mol.xyz</span> <span class="pre">-o</span> <span class="pre">mol</span></code> runs steps 1–4 for one molecule
+(restricted Kohn–Sham, i.e. closed shell; <code class="docutils literal notranslate"><span class="pre">--charge</span></code> for closed-shell
+ions) and writes <code class="docutils literal notranslate"><span class="pre">mol_cr.json</span></code> (<span class="math notranslate nohighlight">\(\Pi\)</span>,
+<span class="math notranslate nohighlight">\(\alpha_\text{DFT}\)</span>, the charge-flow and residual parts, the
+residual tensors per atom, the settings) and <code class="docutils literal notranslate"><span class="pre">mol.crm</span></code>. Defaults:
+<code class="docutils literal notranslate"><span class="pre">--xc</span> <span class="pre">pbe0</span></code>, <code class="docutils literal notranslate"><span class="pre">--basis</span> <span class="pre">def2-svpd</span></code>, density fitting with
+<code class="docutils literal notranslate"><span class="pre">--auxbasis</span> <span class="pre">def2-universal-jkfit</span></code>; <code class="docutils literal notranslate"><span class="pre">--grid</span></code> sets the DFT grid and
+<code class="docutils literal notranslate"><span class="pre">--response-grid</span></code> (default 1) the coarser grid of the response kernel.
+An inversion centre of the geometry, if present, is used to halve the
+number of responses (<code class="docutils literal notranslate"><span class="pre">--no-inversion</span></code> switches this off). The fit stops
+with an error if <span class="math notranslate nohighlight">\(\Pi\)</span> is not positive semidefinite or
+<span class="math notranslate nohighlight">\(\alpha^\text{res}\)</span> not positive definite. Use the same functional
+as the QM region and a basis with diffuse functions; the geometry should
+be that of the <code class="docutils literal notranslate"><span class="pre">.mps</span></code> template (e.g. the <code class="docutils literal notranslate"><span class="pre">molpol</span></code> input).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_cr_mps</span> <span class="pre">-m</span> <span class="pre">template.mps</span> <span class="pre">-j</span> <span class="pre">mol_cr.json</span> <span class="pre">-o</span> <span class="pre">mol_cr_n</span></code> writes the pair
+of files for the map file: <code class="docutils literal notranslate"><span class="pre">mol_cr_n.mps</span></code> keeps the permanent
+multipoles of the template and replaces its <code class="docutils literal notranslate"><span class="pre">P</span></code> lines by the residual
+polarizabilities, <code class="docutils literal notranslate"><span class="pre">mol_cr_n.crm</span></code> holds <span class="math notranslate nohighlight">\(\Pi\)</span>. The template must
+list the same atoms in the same order as the fit; if it is in another
+frame, the residual tensors are rotated into it (a warning is printed if
+the geometries differ by more than 0.05 Å rms after alignment).</p></li>
+</ul>
+<p>For water in def2-SVPD either fit takes seconds. The permanent
+multipoles of other states come from the template <code class="docutils literal notranslate"><span class="pre">.mps</span></code> files of those
+states as usual.</p>
+</section>
+</section>
+<section id="accuracy-and-choice-of-model">
+<h2><span class="section-number">8.5. </span>Accuracy and choice of model<a class="headerlink" href="#accuracy-and-choice-of-model" title="Link to this heading">¶</a></h2>
+<p>The induction energy
+<span class="math notranslate nohighlight">\(P = \tfrac12 \langle \rho | \chi_\text{env} | \rho \rangle\)</span> of one
+electron in a frontier orbital of a molecule A next to a molecule B (B the
+environment), compared with B’s DFT finite-field response (PBE0;
+charge-response parameters at the same level):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>A, B, contact</p></th>
+<th class="head"><p>DFT (eV)</p></th>
+<th class="head"><p>Thole</p></th>
+<th class="head"><p>charge response, <span class="math notranslate nohighlight">\(s = 0.7\)</span> Å</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pentacene pairs (bulk, 2.6–2.8 Å)</p></td>
+<td><p>−0.10 to −0.17</p></td>
+<td><p>+8 to +9 %</p></td>
+<td><p>−4 to −10 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>pyridine lone pair + H-bonded water (1.76 Å)</p></td>
+<td><p>−0.318</p></td>
+<td><p>+84 %</p></td>
+<td><p>+5 %</p></td>
+</tr>
+<tr class="row-even"><td><p>pyridine + 6 waters (coupled cluster of waters)</p></td>
+<td><p>−0.449</p></td>
+<td><p>+62 %</p></td>
+<td><p>+5 %</p></td>
+</tr>
+<tr class="row-odd"><td><p>phenol + 6 waters</p></td>
+<td><p>−0.178</p></td>
+<td><p>+8 %</p></td>
+<td><p>−3 %</p></td>
+</tr>
+</tbody>
+</table>
+<p>For pentacene the Thole model was used with its <code class="docutils literal notranslate"><span class="pre">molpol</span></code> polarizabilities;
+scaled to the DFT polarizability it is +15 to +17 %. Isotropic Thole sites
+cannot follow the anisotropy of an acene (eigenvalues 21/41/68 Å<sup>3</sup>
+vs. 18/37/91 Å<sup>3</sup> in DFT), while the charge-response model reproduces
+the DFT tensor by construction. The width matters at hydrogen bonds (point
+sites: +29 % for the pyridine pair) and hardly at all between π-stacked
+acenes.</p>
+<p>The charge-response model is the better choice for the molecules in direct
+contact with the QM region when they are conjugated or hydrogen-bonded to
+it. It costs one DFT linear-response calculation per molecule type; the
+QM/MM loop itself is about as expensive as with Thole sites. Thole molecules
+remain appropriate further out and can be mixed into the same region.</p>
+</section>
+<section id="periodic-background">
+<h2><span class="section-number">8.6. </span>Periodic background<a class="headerlink" href="#periodic-background" title="Link to this heading">¶</a></h2>
+<p>An <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> is a frozen periodic background, converged beforehand by
+the <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> calculator with Thole molecules; the molecules of
+the job’s regions are cut out of it. A polar region in it may hold
+charge-response molecules: the background acts on them like the static
+environment of the other regions, with the field on every site and the
+potential on the charge-response sites, both of its permanent multipoles
+and its induced dipoles (real-space, reciprocal-space and shape terms, minus
+the cut-out copies). The background itself stays a Thole model and does
+not respond to the job.</p>
+<p>Two details differ from the coupling between polar regions:</p>
+<ul class="simple">
+<li><p>the field of the background’s induced dipoles is Thole-damped (the Ewald
+real-space convention), also on charge-response sites with
+<code class="docutils literal notranslate"><span class="pre">cr_dipole_damping</span></code> <code class="docutils literal notranslate"><span class="pre">gaussian</span></code>; and</p></li>
+<li><p>the potential is that at the site as a point, not averaged over the
+Gaussian of width <code class="docutils literal notranslate"><span class="pre">cr_width</span></code>.</p></li>
+</ul>
+<p>Both matter only for background molecules at contact distance from the
+polar region; with <span class="math notranslate nohighlight">\(s = 0.7\)</span> Å the Gaussian average of a point source
+3 Å away differs from the point value by less than <span class="math notranslate nohighlight">\(10^{-6}\)</span>. The
+potential carries the additive constant of the Ewald sum (the omitted
+<span class="math notranslate nohighlight">\(k = 0\)</span> term); it cancels, since the induced charges of each molecule
+sum to zero. The energy terms are those of Thole molecules in the
+background, with <span class="math notranslate nohighlight">\(\delta q_i \phi_i\)</span> added to the external polar
+energy.</p>
+</section>
+<section id="limitations">
+<h2><span class="section-number">8.7. </span>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Charge-response molecules need the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> DFT package.</p></li>
+<li><p>They cannot be part of a dielectric shell region of embedded GW-BSE.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> background is always made of Thole molecules (see
+<a class="reference internal" href="#periodic-background">Periodic background</a>).</p></li>
+<li><p>Whole molecules only (see <a class="reference internal" href="#files">Files</a>), and <code class="docutils literal notranslate"><span class="pre">map2md</span></code> 0 for anisotropic
+residual polarizabilities.</p></li>
+<li><p>The dense reaction-field kernel of embedded GW-BSE has the dimension
+<span class="math notranslate nohighlight">\(N_\text{CR} + 3 N_\text{sites}\)</span>, slightly more than the
+<span class="math notranslate nohighlight">\(3 N_\text{sites}\)</span> of the Thole model.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ewald_embedding.html" class="btn btn-neutral float-left" title="7. Polarizable Ewald Embedding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="embedded_gwbse.html" class="btn btn-neutral float-right" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

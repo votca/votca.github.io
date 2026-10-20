@@ -181,6 +181,14 @@ The following table contains the defaults input options for the calculator, The 
      - false
      - forcing UKS path
      - bool
+   * - dftpackage.xtpdft.polarizability
+     - false
+     - | After the SCF, compute the static dipole polarizability
+       | tensor analytically (coupled-perturbed Kohn-Sham with
+       | the three dipole operators; closed-shell states, LDA/GGA/global
+       | hybrids) and store it in the orb (HDF5) file, e.g. as
+       | the target for molpol (qmpackage xtp).
+     - bool
    * - dftpackage.xtpdft.compute_forces
      - false
      - | Compute analytic ground-state DFT nuclear forces (RI,
@@ -633,6 +641,20 @@ The following table contains the defaults input options for the calculator, The 
      - | QSGW: pertGW energy threshold for inclusion of virtual
        | states
      - float+
+   * - gwbse.gw.qsgw_hartree_update
+     - true
+     - | QSGW: update the Hartree potential with the QP density
+       | of the active occupied levels (false: keep J of the DFT
+       | density, the behaviour before)
+     - bool
+   * - gwbse.gw.qsgw_hartree_screened
+     - true
+     - | QSGW with environment screening: the Hartree update uses
+       | u = v + v_reac, so the dipoles induced in the environment
+       | follow the QP density (false: bare v, the environment
+       | keeps the response to the DFT density). No effect without
+       | environment screening or with qsgw_hartree_update=false
+     - bool
    * - gwbse.gw.out_of_window_shift
      - max
      - | Shift of the RPA energies of levels outside the GW window
@@ -663,7 +685,7 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - gwbse.gw.sigma_plot.steps
      - 201
-     - points to plot
+     - points to plot, centred on the DFT energy of each state
      - int+
    * - gwbse.gw.sigma_plot.spacing
      - 1e-2
@@ -671,8 +693,47 @@ The following table contains the defaults input options for the calculator, The 
      - float+
    * - gwbse.gw.sigma_plot.filename
      - QPenergies_sigma.dat
+     - File with the sigma plot data
      - 
+   * - gwbse.gw.sigma_dump.filename
+     - sigma_dump.h5
+     - HDF5 output file
      - 
+   * - gwbse.gw.sigma_dump.levels_emax
+     - 20
+     - | pole spectra and imaginary-axis Sigma_c only for levels
+       | up to this energy above the DFT LUMO; 0 = all QP levels
+     - float+
+   * - gwbse.gw.sigma_dump.imag_points
+     - 24
+     - number of Gauss-Legendre points on the imaginary axis
+     - int+
+   * - gwbse.gw.sigma_dump.imag_scale
+     - 0.5
+     - scale s of the imaginary grid nu = s(1+x)/(1-x)
+     - float+
+   * - gwbse.gw.sigma_dump.spectral_min
+     - -3.0
+     - lower edge of the pole histogram (absolute energy)
+     - float
+   * - gwbse.gw.sigma_dump.spectral_max
+     - 3.0
+     - upper edge of the pole histogram (absolute energy)
+     - float
+   * - gwbse.gw.sigma_dump.spectral_binwidth
+     - 0.02
+     - bin width of the pole histogram
+     - float+
+   * - gwbse.gw.sigma_dump.plot_steps
+     - 201
+     - | Sigma_c(omega) of all QP levels on this many points around
+       | their DFT energies (as sigma_plot, stored as float32);
+       | 0 = off
+     - int+
+   * - gwbse.gw.sigma_dump.plot_spacing
+     - 0.01
+     - spacing of the Sigma_c(omega) grid
+     - float+
    * - gwbse.bse.exctotal
      - 10
      - maximum number of BSE states to calculate

@@ -1,0 +1,381 @@
+
+crfit
+*****
+Charge-response parametrization of a molecule with xtpdft: the charge-response matrix Pi (Hirshfeld charges), the molecular polarizability and the residual polarizabilities, from the static response to Hirshfeld-localized potentials and uniform fields (coupled-perturbed Kohn-Sham, or finite differences of SCFs). Reads job_name.xyz; closed-shell molecules.
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
+   * - dftpackage.name
+     - xtp
+     - Name of the DFT package
+     - | xtp
+       | orca
+   * - dftpackage.charge
+     - 0
+     - Molecular charge
+     - int
+   * - dftpackage.spin
+     - 1
+     - Molecular multiplicity
+     - int+
+   * - dftpackage.basisset
+     - def2-tzvp
+     - Basis set for MOs
+     - 
+   * - dftpackage.auxbasisset
+     - OPTIONAL
+     - Auxiliary basis set for RI
+     - 
+   * - dftpackage.externalfield
+     - OPTIONAL
+     - Field given in x y z components
+     - 
+   * - dftpackage.executable
+     - OPTIONAL
+     - Path to executable for dftpackage
+     - 
+   * - dftpackage.ecp
+     - OPTIONAL
+     - Effective Core Potentials for DFT Calculations
+     - 
+   * - dftpackage.optimize
+     - false
+     - Perform a molecular geometry optimization
+     - bool
+   * - dftpackage.functional
+     - XC_HYB_GGA_XC_PBEH
+     - | Exchange correlation functional used. You can also specify
+       | an exchange and a correlation functional
+     - 
+   * - dftpackage.scratch
+     - /tmp/qmpackage
+     - path to the scratch folder
+     - 
+   * - dftpackage.polarization
+     - false
+     - Calculate polarisation
+     - bool
+   * - dftpackage.dipole_spacing
+     - 0.1
+     - Spacing for splitting multipoles into charges
+     - float+
+   * - dftpackage.temporary_file
+     - temp
+     - Filename for temporary files without extension
+     - 
+   * - dftpackage.convergence_tightness
+     - tight
+     - How accurate the dft self-consistency has to be
+     - | low
+       | normal
+       | tight
+       | verytight
+   * - dftpackage.cleanup
+     - 
+     - | files to remove after the calculation. Specify the fileextensions
+       | 
+     - 
+   * - dftpackage.initial_guess
+     - atom
+     - | Method to use to make initial guess, independent(electrons)
+       | or atom(densities) or previous calculation keyword orbfile
+       | or dimer_guess (combine two monomer .orb files, see dimer_guess_orbA/orbB
+       | below; closed-shell monomers work for restricted and unrestricted
+       | runs, open-shell monomers need the unrestricted path)
+     - | independent
+       | atom
+       | orbfile
+       | huckel
+       | huckel_dft
+       | dimer_guess
+   * - dftpackage.dimer_guess_orbA
+     - 
+     - | Path to monomer A's own, already-converged .orb file --
+       | only read when initial_guess=dimer_guess. Monomer A's
+       | atoms must be an exact internal-geometry match (bond lengths/angles,
+       | NOT absolute position -- translation/rotation between
+       | the standalone monomer and its placement in the dimer
+       | is expected and fine) for the first N_A atoms of this
+       | calculation's own molecule.
+     - 
+   * - dftpackage.dimer_guess_orbB
+     - 
+     - | Same as dimer_guess_orbA, for monomer B -- expected to
+       | match this calculation's own remaining atoms (after monomer
+       | A's own N_A atoms).
+     - 
+   * - dftpackage.orca
+     - 
+     - | orca specific keywords can be added here, where the xml
+       | tag corresponds to the option and the value to the option's
+       | value
+     - 
+   * - dftpackage.xtpdft.dft_in_dft.activeatoms
+     - 
+     - Indices of atoms in active region
+     - 
+   * - dftpackage.xtpdft.dft_in_dft.threshold
+     - 0.4
+     - | Mulliken population above which orbital is considered
+       | in the active region
+     - 
+   * - dftpackage.xtpdft.dft_in_dft.levelshift
+     - 10000.0
+     - Levelshift energy for the projection operator
+     - 
+   * - dftpackage.xtpdft.dft_in_dft.truncate_basis
+     - false
+     - Truncate the basis-set to active atoms only
+     - bool
+   * - dftpackage.xtpdft.dft_in_dft.truncation_threshold
+     - 1e-4
+     - Threshold to convert an inactive atom to a border atom
+     - float+
+   * - dftpackage.xtpdft.screening_eps
+     - 1e-9
+     - screening eps
+     - float+
+   * - dftpackage.xtpdft.overlap_tolerance
+     - 1e-8
+     - | Eigenvalues of the AO overlap matrix below this value
+       | are removed from the orthogonalization (near linear dependencies;
+       | the removed directions become zero orbitals at the top
+       | of the spectrum). Raise to 1e-7 to 1e-6 if the log reports
+       | a nearly singular overlap and the SCF is unstable.
+     - float+
+   * - dftpackage.xtpdft.ri_pair_threshold
+     - 1e-10
+     - | RI only: basis-function shell pairs whose three-centre
+       | integrals (P|ab) are bounded by less than this (Schwarz
+       | bound) are not stored. Reduces the memory of the stored
+       | RI tensor substantially for large molecules; energies
+       | change at the level of the threshold. 0 stores all pairs.
+     - float+
+   * - dftpackage.xtpdft.fock_matrix_reset
+     - 5
+     - how often the fock matrix is reset
+     - int+
+   * - dftpackage.xtpdft.integration_grid
+     - medium
+     - vxc grid quality
+     - | xcoarse
+       | coarse
+       | medium
+       | fine
+       | xfine
+   * - dftpackage.xtpdft.force_uks_path
+     - false
+     - forcing UKS path
+     - bool
+   * - dftpackage.xtpdft.polarizability
+     - false
+     - | After the SCF, compute the static dipole polarizability
+       | tensor analytically (coupled-perturbed Kohn-Sham with
+       | the three dipole operators; closed-shell states, LDA/GGA/global
+       | hybrids) and store it in the orb (HDF5) file, e.g. as
+       | the target for molpol (qmpackage xtp).
+     - bool
+   * - dftpackage.xtpdft.compute_forces
+     - false
+     - | Compute analytic ground-state DFT nuclear forces (RI,
+       | and hybrid-exchange for UKS) and store them in the orb
+       | (HDF5) file. Adds real cost to every converged SCF, so
+       | this is opt-in.
+     - bool
+   * - dftpackage.xtpdft.cdft.enabled
+     - false
+     - Enable a CDFT charge constraint on this calculation
+     - bool
+   * - dftpackage.xtpdft.cdft.indices
+     - 
+     - | Indices of atoms in the constrained fragment (0-based),
+       | using the same range syntax already used for diabatization.xml's
+       | own fragment indices, e.g. '1 3 13:17'
+     - 
+   * - dftpackage.xtpdft.cdft.charge
+     - 0.0
+     - | Target charge on the fragment, RELATIVE to its neutral
+       | reference state (the sum of the fragment atoms' own nuclear
+       | charges) -- e.g. +1.0 means one electron REMOVED from
+       | the fragment (a cation), -1.0 means one electron ADDED
+       | (an anion). Converted internally to an absolute target
+       | electron count once, at setup time.
+     - float
+   * - dftpackage.xtpdft.cdft.initial_lambda
+     - 0.0
+     - | Initial guess for the Lagrange multiplier lambda, used
+       | as the center of the outer loop's own bisection bracket
+     - float
+   * - dftpackage.xtpdft.cdft.population_tolerance
+     - 1e-4
+     - | Outer-loop convergence criterion: the CDFT calculation
+       | is considered converged once the achieved fragment population
+       | is within this many electrons of the target
+     - float+
+   * - dftpackage.xtpdft.cdft.max_iterations
+     - 50
+     - | Maximum number of outer (Lagrange-multiplier, bisection)
+       | iterations -- each one is a full, warm-started inner SCF
+     - int+
+   * - dftpackage.xtpdft.cdft.guess_strategy
+     - warmstart
+     - | How each outer bisection trial's own inner SCF is started,
+       | after the very first trial. 'warmstart' (default) reuses
+       | the immediately PRECEDING trial's own converged MOs (initial_guess
+       | is forced to 'orbfile' internally) for every subsequent
+       | trial -- usually helps, since consecutive lambda values
+       | are often close. 'fresh' instead re-uses the calculation's
+       | own original, top-level initial_guess setting for every
+       | trial, never warm-starting from a previous lambda's own
+       | MOs at all -- worth trying if warm-starting itself seems
+       | to be part of a convergence difficulty (e.g. if consecutive
+       | lambda trials correspond to substantially different electronic
+       | structures, a previous trial's own converged density could
+       | be a worse starting point than a fresh guess, not a better
+       | one).
+     - | warmstart
+       | fresh
+   * - dftpackage.xtpdft.convergence.energy
+     - 1E-7
+     - DeltaE at which calculation is converged
+     - float+
+   * - dftpackage.xtpdft.convergence.method
+     - DIIS
+     - Main method to use for convergence accelertation
+     - | DIIS
+       | mixing
+   * - dftpackage.xtpdft.convergence.DIIS_start
+     - 0.002
+     - DIIS error at which DIIS takes over
+     - float+
+   * - dftpackage.xtpdft.convergence.ADIIS_start
+     - 0.8
+     - DIIS error at which ADIIS takes over
+     - float+
+   * - dftpackage.xtpdft.convergence.DIIS_length
+     - 20
+     - old hamiltonians to keep in history
+     - int+
+   * - dftpackage.xtpdft.convergence.DIIS_maxout
+     - false
+     - | if true remove the maximum element in the history if DIIS_length
+       | is exceeded.Otherwise, the oldest element is removed.
+     - bool
+   * - dftpackage.xtpdft.convergence.levelshift
+     - 0.0
+     - levelshift to apply to hamiltonian 
+     - float+
+   * - dftpackage.xtpdft.convergence.levelshift_end
+     - 0.2
+     - DIIS error at levelshifting is disabled
+     - float+
+   * - dftpackage.xtpdft.convergence.max_iterations
+     - 100
+     - max iterations to use
+     - int+
+   * - dftpackage.xtpdft.convergence.error
+     - 1e-7
+     - convergence error
+     - float+
+   * - dftpackage.xtpdft.convergence.mixing
+     - 0.7
+     - mixing parameter for linear mixing of density matrices
+     - float+
+   * - dftpackage.xtpdft.convergence.mixing_end
+     - 0.8
+     - | DIIS error below which mixing is disabled -- independent
+       | of ADIIS_start (see ORCA's own DampErr, kept independent
+       | of DIISStart for the same reason: difficult systems benefit
+       | from keeping mixing active well past the point where ADIIS/DIIS
+       | themselves start being tried, not exactly until that same
+       | point). Defaults to match ADIIS_start's own default (0.8)
+       | for backward compatibility -- existing configurations
+       | see identical behavior unless this is set explicitly.
+     - float+
+   * - dftpackage.xtpdft.convergence.mixing_max
+     - 0.98
+     - | Ceiling mixing can adaptively ramp up toward as the SCF
+       | struggles (see consecutive ADIIS failures), rather than
+       | staying fixed at the base mixing value for an entire run.
+       | Matches ORCA's own DampMax (default 0.98, confirmed directly
+       | from a real ORCA log's own resolved SCF settings) -- ORCA
+       | ramps its own damping factor from a base (DampFac, 0.7
+       | by default) up to this ceiling only when actually needed,
+       | rather than paying the cost of heavy damping throughout.
+     - float+
+   * - dftpackage.xtpdft.convergence.energy_reset
+     - 1.0
+     - | If the energy rises by more than this above the lowest
+       | energy reached so far, the (A)DIIS history is discarded
+       | and the SCF restarts, damped, from the lowest-energy density.
+       | 0 disables.
+     - float+
+   * - dftpackage.xtpdft.convergence.davidson_max_iter
+     - 50
+     - | Maximum iterations for the Davidson eigensolver used by
+       | the direct-minimization (augmented-Hessian) fallback,
+       | engaged when ADIIS/DIIS themselves are struggling. A genuinely
+       | difficult system (e.g. a strong constraint spanning a
+       | large fragment) can leave this solver still short of its
+       | own convergence tolerance at the default -- confirmed
+       | directly, from a real run, that the previous, hardcoded
+       | 50 was not always enough. Not CDFT-specific: this fallback
+       | can also engage for an ordinary, non-CDFT UKS calculation.
+     - int+
+   * - method
+     - analytic
+     - | analytic: coupled-perturbed Kohn-Sham (LDA, GGA, global
+       | hybrids); finite_differences: two SCFs per perturbation
+     - | analytic
+       | finite_differences
+   * - tolerance
+     - 1e-7
+     - | analytic: relative residual of the coupled-perturbed equations
+       | 
+     - float+
+   * - step
+     - 1e-3
+     - | finite_differences: strength of each perturbation: Hirshfeld-localized
+       | potential in Hartree, uniform field in Hartree/bohr
+     - float+
+   * - scf_error
+     - 1e-9
+     - | Every SCF is converged to at least this DIIS error (and
+       | 1/100 of it in the energy): the ground state for both
+       | methods, and the perturbed SCFs, whose densities are differenced,
+       | for finite_differences
+     - float+
+   * - inversion
+     - true
+     - | If the geometry has an inversion centre (equivalent atoms
+       | within 1e-4 bohr), perturb only one atom of each pair
+       | and obtain the other response by symmetry
+     - bool
+   * - mpsfile
+     - OPTIONAL
+     - | Template .mps of the molecule with the permanent multipoles
+       | (same atoms in the same order); if given, output.mps is
+       | written with the residual polarizabilities on its P lines,
+       | rotated into the template frame
+     - 
+   * - output
+     - OPTIONAL
+     - | Output prefix: output.crm, output.json (the keys of xtp_cr_fit,
+       | readable by xtp_cr_mps) and, with mpsfile, output.mps
+     - 
+.. note::
+   An *xml* file containing the defaults for the `crfit` calculator can be created via `-p crfit -o FILENAME` command line options `

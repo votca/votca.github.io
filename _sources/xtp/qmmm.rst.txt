@@ -322,6 +322,20 @@ The following table contains the defaults input options for the calculator, The 
      - | QSGW: pertGW energy threshold for inclusion of virtual
        | states
      - float+
+   * - regions.qmregion.gwbse.gw.qsgw_hartree_update
+     - true
+     - | QSGW: update the Hartree potential with the QP density
+       | of the active occupied levels (false: keep J of the DFT
+       | density, the behaviour before)
+     - bool
+   * - regions.qmregion.gwbse.gw.qsgw_hartree_screened
+     - true
+     - | QSGW with environment screening: the Hartree update uses
+       | u = v + v_reac, so the dipoles induced in the environment
+       | follow the QP density (false: bare v, the environment
+       | keeps the response to the DFT density). No effect without
+       | environment screening or with qsgw_hartree_update=false
+     - bool
    * - regions.qmregion.gwbse.gw.out_of_window_shift
      - max
      - | Shift of the RPA energies of levels outside the GW window
@@ -352,7 +366,7 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - regions.qmregion.gwbse.gw.sigma_plot.steps
      - 201
-     - points to plot
+     - points to plot, centred on the DFT energy of each state
      - int+
    * - regions.qmregion.gwbse.gw.sigma_plot.spacing
      - 1e-2
@@ -360,8 +374,47 @@ The following table contains the defaults input options for the calculator, The 
      - float+
    * - regions.qmregion.gwbse.gw.sigma_plot.filename
      - QPenergies_sigma.dat
+     - File with the sigma plot data
      - 
+   * - regions.qmregion.gwbse.gw.sigma_dump.filename
+     - sigma_dump.h5
+     - HDF5 output file
      - 
+   * - regions.qmregion.gwbse.gw.sigma_dump.levels_emax
+     - 20
+     - | pole spectra and imaginary-axis Sigma_c only for levels
+       | up to this energy above the DFT LUMO; 0 = all QP levels
+     - float+
+   * - regions.qmregion.gwbse.gw.sigma_dump.imag_points
+     - 24
+     - number of Gauss-Legendre points on the imaginary axis
+     - int+
+   * - regions.qmregion.gwbse.gw.sigma_dump.imag_scale
+     - 0.5
+     - scale s of the imaginary grid nu = s(1+x)/(1-x)
+     - float+
+   * - regions.qmregion.gwbse.gw.sigma_dump.spectral_min
+     - -3.0
+     - lower edge of the pole histogram (absolute energy)
+     - float
+   * - regions.qmregion.gwbse.gw.sigma_dump.spectral_max
+     - 3.0
+     - upper edge of the pole histogram (absolute energy)
+     - float
+   * - regions.qmregion.gwbse.gw.sigma_dump.spectral_binwidth
+     - 0.02
+     - bin width of the pole histogram
+     - float+
+   * - regions.qmregion.gwbse.gw.sigma_dump.plot_steps
+     - 201
+     - | Sigma_c(omega) of all QP levels on this many points around
+       | their DFT energies (as sigma_plot, stored as float32);
+       | 0 = off
+     - int+
+   * - regions.qmregion.gwbse.gw.sigma_dump.plot_spacing
+     - 0.01
+     - spacing of the Sigma_c(omega) grid
+     - float+
    * - regions.qmregion.gwbse.bse.exctotal
      - 10
      - maximum number of BSE states to calculate
@@ -576,6 +629,14 @@ The following table contains the defaults input options for the calculator, The 
    * - regions.qmregion.dftpackage.xtpdft.force_uks_path
      - false
      - forcing UKS path
+     - bool
+   * - regions.qmregion.dftpackage.xtpdft.polarizability
+     - false
+     - | After the SCF, compute the static dipole polarizability
+       | tensor analytically (coupled-perturbed Kohn-Sham with
+       | the three dipole operators; closed-shell states, LDA/GGA/global
+       | hybrids) and store it in the orb (HDF5) file, e.g. as
+       | the target for molpol (qmpackage xtp).
      - bool
    * - regions.qmregion.dftpackage.xtpdft.compute_forces
      - false
@@ -914,6 +975,21 @@ The following table contains the defaults input options for the calculator, The 
      - 0.39
      - Thole sharpness parameter
      - 
+   * - regions.polarregion.cr_width
+     - 0.7
+     - | Charge-response segments (chargeresponse_ files in the
+       | map file): width s of their Gaussian induced charges and
+       | dipoles, density ~ exp(-r^2/s^2), for the couplings between
+       | molecules and with the QM region. Not used by Thole segments
+     - float+
+   * - regions.polarregion.cr_dipole_damping
+     - gaussian
+     - | Charge-response segments: dipole-dipole coupling between
+       | molecules when one site is a charge-response site; gaussian:
+       | Gaussian dipoles of width cr_width; thole: Thole damping
+       | with exp_damp
+     - | gaussian
+       | thole
    * - regions.staticregion.id
      - REQUIRED
      - | id of the region, first region has to have id 0, ids must

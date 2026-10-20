@@ -1,0 +1,36 @@
+
+NAME
+****
+**xtp_cr_mps** - Part of the VOTCA package
+
+SYNOPSIS
+********
+**xtp_cr_mps** [OPTIONS]
+
+**xtp_cr_mps** [--help]
+
+
+
+DESCRIPTION
+***********
+
+Write the .mps (permanent multipoles + residual polarizabilities) and .crm
+files of a charge-response molecule from an xtp_cr_fit result
+
+
+
+
+
+
+OPTIONS
+*******
+.. highlight:: none
+
+::
+
+  options:
+  
+    -h, --help           show this help message and exit
+    -m, --mps MPS        Template .mps of the molecule type
+    -j, --json JSON      Result of xtp_cr_fit (PREFIX_cr.json)
+    -o, --output OUTPUT  Output prefix (PREFIX.mps, PREFIX.crm)

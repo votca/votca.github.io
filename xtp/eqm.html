@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10.2.1.4.1. eqm &mdash; VOTCA 2026-dev documentation</title>
+  <title>11.2.1.4.1. eqm &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.2.1.4.2. iexcitoncl" href="iexcitoncl.html" />
-    <link rel="prev" title="10.2. xtp_parallel" href="xtp_parallel_overview.html" /> 
+    <link rel="next" title="11.2.1.4.2. iexcitoncl" href="iexcitoncl.html" />
+    <link rel="prev" title="11.2. xtp_parallel" href="xtp_parallel_overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,20 +57,21 @@
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">8. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">9. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">10. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">10.1. xtp_map</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">10.2. xtp_parallel</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">10.2.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">11.1. xtp_map</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_parallel_overview.html">11.2. xtp_parallel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_parallel_overview.html#help">11.2.1. help</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">10.3. xtp_run</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">10.4. xtp_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html">11.3. xtp_run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">11.4. xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">11. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">12. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -112,9 +113,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">10. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">10.2. </span>xtp_parallel</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">10.2.1.4.1. </span>eqm</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">11. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_parallel_overview.html"><span class="section-number">11.2. </span>xtp_parallel</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">11.2.1.4.1. </span>eqm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/eqm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -125,7 +126,7 @@
            <div itemprop="articleBody">
              
   <section id="eqm">
-<h1><span class="section-number">10.2.1.4.1. </span>eqm<a class="headerlink" href="#eqm" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">11.2.1.4.1. </span>eqm<a class="headerlink" href="#eqm" title="Link to this heading">¶</a></h1>
 <p>Executes qm calculations for individual molecules
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -618,6 +619,28 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
+<tr class="row-odd"><td><p>gwbse.gw.qsgw_hartree_update</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">QSGW: update the Hartree potential with the QP density</div>
+<div class="line">of the active occupied levels (false: keep J of the DFT</div>
+<div class="line">density, the behaviour before)</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.qsgw_hartree_screened</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">QSGW with environment screening: the Hartree update uses</div>
+<div class="line">u = v + v_reac, so the dipoles induced in the environment</div>
+<div class="line">follow the QP density (false: bare v, the environment</div>
+<div class="line">keeps the response to the DFT density). No effect without</div>
+<div class="line">environment screening or with qsgw_hartree_update=false</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
 <tr class="row-odd"><td><p>gwbse.gw.out_of_window_shift</p></td>
 <td><p>max</p></td>
 <td><div class="line-block">
@@ -664,7 +687,7 @@ The following table contains the defaults input options for the calculator, The 
 </tr>
 <tr class="row-odd"><td><p>gwbse.gw.sigma_plot.steps</p></td>
 <td><p>201</p></td>
-<td><p>points to plot</p></td>
+<td><p>points to plot, centred on the DFT energy of each state</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>gwbse.gw.sigma_plot.spacing</p></td>
@@ -674,20 +697,74 @@ The following table contains the defaults input options for the calculator, The 
 </tr>
 <tr class="row-odd"><td><p>gwbse.gw.sigma_plot.filename</p></td>
 <td><p>QPenergies_sigma.dat</p></td>
-<td></td>
+<td><p>File with the sigma plot data</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.exctotal</p></td>
+<tr class="row-even"><td><p>gwbse.gw.sigma_dump.filename</p></td>
+<td><p>sigma_dump.h5</p></td>
+<td><p>HDF5 output file</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_dump.levels_emax</p></td>
+<td><p>20</p></td>
+<td><div class="line-block">
+<div class="line">pole spectra and imaginary-axis Sigma_c only for levels</div>
+<div class="line">up to this energy above the DFT LUMO; 0 = all QP levels</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.sigma_dump.imag_points</p></td>
+<td><p>24</p></td>
+<td><p>number of Gauss-Legendre points on the imaginary axis</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_dump.imag_scale</p></td>
+<td><p>0.5</p></td>
+<td><p>scale s of the imaginary grid nu = s(1+x)/(1-x)</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.sigma_dump.spectral_min</p></td>
+<td><p>-3.0</p></td>
+<td><p>lower edge of the pole histogram (absolute energy)</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_dump.spectral_max</p></td>
+<td><p>3.0</p></td>
+<td><p>upper edge of the pole histogram (absolute energy)</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.sigma_dump.spectral_binwidth</p></td>
+<td><p>0.02</p></td>
+<td><p>bin width of the pole histogram</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.gw.sigma_dump.plot_steps</p></td>
+<td><p>201</p></td>
+<td><div class="line-block">
+<div class="line">Sigma_c(omega) of all QP levels on this many points around</div>
+<div class="line">their DFT energies (as sigma_plot, stored as float32);</div>
+<div class="line">0 = off</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>gwbse.gw.sigma_dump.plot_spacing</p></td>
+<td><p>0.01</p></td>
+<td><p>spacing of the Sigma_c(omega) grid</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>gwbse.bse.exctotal</p></td>
 <td><p>10</p></td>
 <td><p>maximum number of BSE states to calculate</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.useTDA</p></td>
+<tr class="row-even"><td><p>gwbse.bse.useTDA</p></td>
 <td><p>false</p></td>
 <td><p>use TDA for BSE</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.dyn_screen_max_iter</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.dyn_screen_max_iter</p></td>
 <td><p>0</p></td>
 <td><div class="line-block">
 <div class="line">maximum number of iterations for perturbative dynamical</div>
@@ -696,7 +773,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.dyn_screen_tol</p></td>
+<tr class="row-even"><td><p>gwbse.bse.dyn_screen_tol</p></td>
 <td><p>1e-5</p></td>
 <td><div class="line-block">
 <div class="line">convergence tolerance for perturbative dynamical screening</div>
@@ -705,7 +782,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.davidson.correction</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.davidson.correction</p></td>
 <td><p>DPR</p></td>
 <td><p>Davidson correction method</p></td>
 <td><div class="line-block">
@@ -714,7 +791,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.davidson.tolerance</p></td>
+<tr class="row-even"><td><p>gwbse.bse.davidson.tolerance</p></td>
 <td><p>normal</p></td>
 <td><p>Numerical tolerance</p></td>
 <td><div class="line-block">
@@ -725,7 +802,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.davidson.update</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.davidson.update</p></td>
 <td><p>safe</p></td>
 <td><p>how large the search space</p></td>
 <td><div class="line-block">
@@ -735,12 +812,12 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.davidson.maxiter</p></td>
+<tr class="row-even"><td><p>gwbse.bse.davidson.maxiter</p></td>
 <td><p>50</p></td>
 <td><p>max iterations</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.use_Hqp_offdiag</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.use_Hqp_offdiag</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
 <div class="line">Using symmetrized off-diagonal elements of QP Hamiltonian</div>
@@ -749,17 +826,17 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>gwbse.bse.print_weight</p></td>
+<tr class="row-even"><td><p>gwbse.bse.print_weight</p></td>
 <td><p>0.5</p></td>
 <td><p>print exciton WF composition weight larger than minimum</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>gwbse.bse.fragments.fragment.indices</p></td>
+<tr class="row-odd"><td><p>gwbse.bse.fragments.fragment.indices</p></td>
 <td><p>REQUIRED</p></td>
 <td><p>indices of atoms in this fragment, e.g. 1 3 13:17</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.name</p></td>
+<tr class="row-even"><td><p>dftpackage.name</p></td>
 <td><p>xtp</p></td>
 <td><p>Name of the DFT package</p></td>
 <td><div class="line-block">
@@ -768,47 +845,47 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.charge</p></td>
+<tr class="row-odd"><td><p>dftpackage.charge</p></td>
 <td><p>0</p></td>
 <td><p>Molecular charge</p></td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.spin</p></td>
+<tr class="row-even"><td><p>dftpackage.spin</p></td>
 <td><p>1</p></td>
 <td><p>Molecular multiplicity</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.basisset</p></td>
+<tr class="row-odd"><td><p>dftpackage.basisset</p></td>
 <td><p>def2-tzvp</p></td>
 <td><p>Basis set for MOs</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.auxbasisset</p></td>
+<tr class="row-even"><td><p>dftpackage.auxbasisset</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Auxiliary basis set for RI</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.externalfield</p></td>
+<tr class="row-odd"><td><p>dftpackage.externalfield</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Field given in x y z components</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.executable</p></td>
+<tr class="row-even"><td><p>dftpackage.executable</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Path to executable for dftpackage</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.ecp</p></td>
+<tr class="row-odd"><td><p>dftpackage.ecp</p></td>
 <td><p>OPTIONAL</p></td>
 <td><p>Effective Core Potentials for DFT Calculations</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.optimize</p></td>
+<tr class="row-even"><td><p>dftpackage.optimize</p></td>
 <td><p>false</p></td>
 <td><p>Perform a molecular geometry optimization</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.functional</p></td>
+<tr class="row-odd"><td><p>dftpackage.functional</p></td>
 <td><p>XC_HYB_GGA_XC_PBEH</p></td>
 <td><div class="line-block">
 <div class="line">Exchange correlation functional used. You can also specify</div>
@@ -817,27 +894,27 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.scratch</p></td>
+<tr class="row-even"><td><p>dftpackage.scratch</p></td>
 <td><p>/tmp/qmpackage</p></td>
 <td><p>path to the scratch folder</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.polarization</p></td>
+<tr class="row-odd"><td><p>dftpackage.polarization</p></td>
 <td><p>false</p></td>
 <td><p>Calculate polarisation</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.dipole_spacing</p></td>
+<tr class="row-even"><td><p>dftpackage.dipole_spacing</p></td>
 <td><p>0.1</p></td>
 <td><p>Spacing for splitting multipoles into charges</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.temporary_file</p></td>
+<tr class="row-odd"><td><p>dftpackage.temporary_file</p></td>
 <td><p>temp</p></td>
 <td><p>Filename for temporary files without extension</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.convergence_tightness</p></td>
+<tr class="row-even"><td><p>dftpackage.convergence_tightness</p></td>
 <td><p>tight</p></td>
 <td><p>How accurate the dft self-consistency has to be</p></td>
 <td><div class="line-block">
@@ -848,7 +925,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.cleanup</p></td>
+<tr class="row-odd"><td><p>dftpackage.cleanup</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">files to remove after the calculation. Specify the fileextensions</div>
@@ -857,7 +934,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.initial_guess</p></td>
+<tr class="row-even"><td><p>dftpackage.initial_guess</p></td>
 <td><p>atom</p></td>
 <td><div class="line-block">
 <div class="line">Method to use to make initial guess, independent(electrons)</div>
@@ -877,7 +954,7 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.dimer_guess_orbA</p></td>
+<tr class="row-odd"><td><p>dftpackage.dimer_guess_orbA</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Path to monomer A’s own, already-converged .orb file –</div>
@@ -891,7 +968,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.dimer_guess_orbB</p></td>
+<tr class="row-even"><td><p>dftpackage.dimer_guess_orbB</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Same as dimer_guess_orbA, for monomer B – expected to</div>
@@ -901,7 +978,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.orca</p></td>
+<tr class="row-odd"><td><p>dftpackage.orca</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">orca specific keywords can be added here, where the xml</div>
@@ -911,12 +988,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
 <td></td>
 <td><p>Indices of atoms in active region</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
 <td><p>0.4</p></td>
 <td><div class="line-block">
 <div class="line">Mulliken population above which orbital is considered</div>
@@ -925,27 +1002,27 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
 <td><p>10000.0</p></td>
 <td><p>Levelshift energy for the projection operator</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.truncate_basis</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.truncate_basis</p></td>
 <td><p>false</p></td>
 <td><p>Truncate the basis-set to active atoms only</p></td>
 <td><p>bool</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.truncation_threshold</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.truncation_threshold</p></td>
 <td><p>1e-4</p></td>
 <td><p>Threshold to convert an inactive atom to a border atom</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.screening_eps</p></td>
 <td><p>1e-9</p></td>
 <td><p>screening eps</p></td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.overlap_tolerance</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.overlap_tolerance</p></td>
 <td><p>1e-8</p></td>
 <td><div class="line-block">
 <div class="line">Eigenvalues of the AO overlap matrix below this value</div>
@@ -957,7 +1034,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.ri_pair_threshold</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.ri_pair_threshold</p></td>
 <td><p>1e-10</p></td>
 <td><div class="line-block">
 <div class="line">RI only: basis-function shell pairs whose three-centre</div>
@@ -969,12 +1046,12 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
 <td><p>5</p></td>
 <td><p>how often the fock matrix is reset</p></td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.integration_grid</p></td>
 <td><p>medium</p></td>
 <td><p>vxc grid quality</p></td>
 <td><div class="line-block">
@@ -986,9 +1063,21 @@ The following table contains the defaults input options for the calculator, The 
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
 <td><p>false</p></td>
 <td><p>forcing UKS path</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.polarizability</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">After the SCF, compute the static dipole polarizability</div>
+<div class="line">tensor analytically (coupled-perturbed Kohn-Sham with</div>
+<div class="line">the three dipole operators; closed-shell states, LDA/GGA/global</div>
+<div class="line">hybrids) and store it in the orb (HDF5) file, e.g. as</div>
+<div class="line">the target for molpol (qmpackage xtp).</div>
+</div>
+</td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>dftpackage.xtpdft.compute_forces</p></td>
@@ -1270,8 +1359,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="xtp_parallel_overview.html" class="btn btn-neutral float-left" title="10.2. xtp_parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="iexcitoncl.html" class="btn btn-neutral float-right" title="10.2.1.4.2. iexcitoncl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="xtp_parallel_overview.html" class="btn btn-neutral float-left" title="11.2. xtp_parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="iexcitoncl.html" class="btn btn-neutral float-right" title="11.2.1.4.2. iexcitoncl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

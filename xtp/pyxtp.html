@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
+  <title>10. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
-    <link rel="prev" title="8. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
+    <link rel="next" title="11. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
+    <link rel="prev" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,21 +57,22 @@
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">8. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">9. XTP ASE Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation">9.1. Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#environment-variables">9.1.1. Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. XTP ASE Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">10.1. Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">10.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#option-parser">9.2. Option parser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">9.3. XTP calculator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">9.4. Single Point Caclulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">9.5. Geometry Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-parser">10.2. Option parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">10.3. XTP calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">10.4. Single Point Caclulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">10.5. Geometry Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">10. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">11. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">12. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -113,7 +114,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">9. </span>XTP ASE Interface</li>
+      <li class="breadcrumb-item active"><span class="section-number">10. </span>XTP ASE Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/pyxtp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -124,11 +125,11 @@
            <div itemprop="articleBody">
              
   <section id="xtp-ase-interface">
-<h1><span class="section-number">9. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">10. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
 <section id="installation">
-<h2><span class="section-number">9.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <section id="environment-variables">
-<h3><span class="section-number">9.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">10.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
 <p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
 interface to find the default xml files and create the options data structure.
 You can set this environment variable in your shell configuration file:</p>
@@ -142,11 +143,11 @@ You can set this environment variable in your shell configuration file:</p>
 </section>
 </section>
 <section id="option-parser">
-<h2><span class="section-number">9.2. </span>Option parser<a class="headerlink" href="#option-parser" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.2. </span>Option parser<a class="headerlink" href="#option-parser" title="Link to this heading">¶</a></h2>
 <p>The <cite>XTPOptions</cite> class is the preferred handler for setting all the options of the xtp calculator.</p>
 </section>
 <section id="xtp-calculator">
-<h2><span class="section-number">9.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
 <p>Frequently used options can be specified using
 the calculator’s <cite>set</cite> routine.</p>
 <table class="docutils align-default">
@@ -182,7 +183,7 @@ the calculator’s <cite>set</cite> routine.</p>
 </table>
 </section>
 <section id="single-point-caclulation">
-<h2><span class="section-number">9.4. </span>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.4. </span>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
 <p>Here is an example of setting up a calculation on a water molecule:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
@@ -207,7 +208,7 @@ the calculator’s <cite>set</cite> routine.</p>
 </div>
 </section>
 <section id="geometry-optimization">
-<h2><span class="section-number">9.5. </span>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.5. </span>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Link to this heading">¶</a></h2>
 <p>Here is an example of setting up a geometry of a carbon monoxide
 molecule using forces calculated on the first singlet state:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
@@ -245,8 +246,8 @@ molecule using forces calculated on the first singlet state:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="8. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="10. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="11. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

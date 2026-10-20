@@ -32,6 +32,21 @@ The following table contains the defaults input options for the calculator, The 
      - 0.39
      - Thole sharpness parameter
      - 
+   * - polar.cr_width
+     - 0.7
+     - | Charge-response segments (chargeresponse_ files in the
+       | map file): width s of their Gaussian induced charges and
+       | dipoles, density ~ exp(-r^2/s^2), for the couplings between
+       | molecules and with the QM region. Not used by Thole segments
+     - float+
+   * - polar.cr_dipole_damping
+     - gaussian
+     - | Charge-response segments: dipole-dipole coupling between
+       | molecules when one site is a charge-response site; gaussian:
+       | Gaussian dipoles of width cr_width; thole: Thole damping
+       | with exp_damp
+     - | gaussian
+       | thole
    * - job_name
      - system
      - | Input file name without extension, also used for intermediate
@@ -56,12 +71,15 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - qmpackage
      - orca
-     - qmpackage name if mode is qmpackage
-     - orca
+     - | qmpackage name if mode is qmpackage: orca (polarizability
+       | tensor in the ORCA log) or xtp (the orb file of an xtpdft
+       | run with dftpackage.xtpdft.polarizability=true)
+     - | orca
+       | xtp
    * - logfile
      - system.log
      - | logfile of qmpackage to read Target polarisability from
-       | if mode is qmpackage
+       | if mode is qmpackage (for xtp the orb file)
      - 
    * - tolerance
      - 1e-4

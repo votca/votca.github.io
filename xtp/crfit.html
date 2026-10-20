@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>crfit &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">crfit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/crfit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crfit">
+<h1>crfit<a class="headerlink" href="#crfit" title="Link to this heading">¶</a></h1>
+<p>Charge-response parametrization of a molecule with xtpdft: the charge-response matrix Pi (Hirshfeld charges), the molecular polarizability and the residual polarizabilities, from the static response to Hirshfeld-localized potentials and uniform fields (coupled-perturbed Kohn-Sham, or finite differences of SCFs). Reads job_name.xyz; closed-shell molecules.
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 37.5%" />
+<col style="width: 25.0%" />
+<col style="width: 18.8%" />
+<col style="width: 18.8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Valid Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>job_name</p></td>
+<td><p>system</p></td>
+<td><div class="line-block">
+<div class="line">Input file name without extension, also used for intermediate</div>
+<div class="line">files</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.name</p></td>
+<td><p>xtp</p></td>
+<td><p>Name of the DFT package</p></td>
+<td><div class="line-block">
+<div class="line">xtp</div>
+<div class="line">orca</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.charge</p></td>
+<td><p>0</p></td>
+<td><p>Molecular charge</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.spin</p></td>
+<td><p>1</p></td>
+<td><p>Molecular multiplicity</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.basisset</p></td>
+<td><p>def2-tzvp</p></td>
+<td><p>Basis set for MOs</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.auxbasisset</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Auxiliary basis set for RI</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.externalfield</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Field given in x y z components</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.executable</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Path to executable for dftpackage</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.ecp</p></td>
+<td><p>OPTIONAL</p></td>
+<td><p>Effective Core Potentials for DFT Calculations</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.optimize</p></td>
+<td><p>false</p></td>
+<td><p>Perform a molecular geometry optimization</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.functional</p></td>
+<td><p>XC_HYB_GGA_XC_PBEH</p></td>
+<td><div class="line-block">
+<div class="line">Exchange correlation functional used. You can also specify</div>
+<div class="line">an exchange and a correlation functional</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.scratch</p></td>
+<td><p>/tmp/qmpackage</p></td>
+<td><p>path to the scratch folder</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.polarization</p></td>
+<td><p>false</p></td>
+<td><p>Calculate polarisation</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.dipole_spacing</p></td>
+<td><p>0.1</p></td>
+<td><p>Spacing for splitting multipoles into charges</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.temporary_file</p></td>
+<td><p>temp</p></td>
+<td><p>Filename for temporary files without extension</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.convergence_tightness</p></td>
+<td><p>tight</p></td>
+<td><p>How accurate the dft self-consistency has to be</p></td>
+<td><div class="line-block">
+<div class="line">low</div>
+<div class="line">normal</div>
+<div class="line">tight</div>
+<div class="line">verytight</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.cleanup</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">files to remove after the calculation. Specify the fileextensions</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.initial_guess</p></td>
+<td><p>atom</p></td>
+<td><div class="line-block">
+<div class="line">Method to use to make initial guess, independent(electrons)</div>
+<div class="line">or atom(densities) or previous calculation keyword orbfile</div>
+<div class="line">or dimer_guess (combine two monomer .orb files, see dimer_guess_orbA/orbB</div>
+<div class="line">below; closed-shell monomers work for restricted and unrestricted</div>
+<div class="line">runs, open-shell monomers need the unrestricted path)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">independent</div>
+<div class="line">atom</div>
+<div class="line">orbfile</div>
+<div class="line">huckel</div>
+<div class="line">huckel_dft</div>
+<div class="line">dimer_guess</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.dimer_guess_orbA</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Path to monomer A’s own, already-converged .orb file –</div>
+<div class="line">only read when initial_guess=dimer_guess. Monomer A’s</div>
+<div class="line">atoms must be an exact internal-geometry match (bond lengths/angles,</div>
+<div class="line">NOT absolute position – translation/rotation between</div>
+<div class="line">the standalone monomer and its placement in the dimer</div>
+<div class="line">is expected and fine) for the first N_A atoms of this</div>
+<div class="line">calculation’s own molecule.</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.dimer_guess_orbB</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Same as dimer_guess_orbA, for monomer B – expected to</div>
+<div class="line">match this calculation’s own remaining atoms (after monomer</div>
+<div class="line">A’s own N_A atoms).</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.orca</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">orca specific keywords can be added here, where the xml</div>
+<div class="line">tag corresponds to the option and the value to the option’s</div>
+<div class="line">value</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.activeatoms</p></td>
+<td></td>
+<td><p>Indices of atoms in active region</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.threshold</p></td>
+<td><p>0.4</p></td>
+<td><div class="line-block">
+<div class="line">Mulliken population above which orbital is considered</div>
+<div class="line">in the active region</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.levelshift</p></td>
+<td><p>10000.0</p></td>
+<td><p>Levelshift energy for the projection operator</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.dft_in_dft.truncate_basis</p></td>
+<td><p>false</p></td>
+<td><p>Truncate the basis-set to active atoms only</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.dft_in_dft.truncation_threshold</p></td>
+<td><p>1e-4</p></td>
+<td><p>Threshold to convert an inactive atom to a border atom</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.screening_eps</p></td>
+<td><p>1e-9</p></td>
+<td><p>screening eps</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.overlap_tolerance</p></td>
+<td><p>1e-8</p></td>
+<td><div class="line-block">
+<div class="line">Eigenvalues of the AO overlap matrix below this value</div>
+<div class="line">are removed from the orthogonalization (near linear dependencies;</div>
+<div class="line">the removed directions become zero orbitals at the top</div>
+<div class="line">of the spectrum). Raise to 1e-7 to 1e-6 if the log reports</div>
+<div class="line">a nearly singular overlap and the SCF is unstable.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.ri_pair_threshold</p></td>
+<td><p>1e-10</p></td>
+<td><div class="line-block">
+<div class="line">RI only: basis-function shell pairs whose three-centre</div>
+<div class="line">integrals (P|ab) are bounded by less than this (Schwarz</div>
+<div class="line">bound) are not stored. Reduces the memory of the stored</div>
+<div class="line">RI tensor substantially for large molecules; energies</div>
+<div class="line">change at the level of the threshold. 0 stores all pairs.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.fock_matrix_reset</p></td>
+<td><p>5</p></td>
+<td><p>how often the fock matrix is reset</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.integration_grid</p></td>
+<td><p>medium</p></td>
+<td><p>vxc grid quality</p></td>
+<td><div class="line-block">
+<div class="line">xcoarse</div>
+<div class="line">coarse</div>
+<div class="line">medium</div>
+<div class="line">fine</div>
+<div class="line">xfine</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.force_uks_path</p></td>
+<td><p>false</p></td>
+<td><p>forcing UKS path</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.polarizability</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">After the SCF, compute the static dipole polarizability</div>
+<div class="line">tensor analytically (coupled-perturbed Kohn-Sham with</div>
+<div class="line">the three dipole operators; closed-shell states, LDA/GGA/global</div>
+<div class="line">hybrids) and store it in the orb (HDF5) file, e.g. as</div>
+<div class="line">the target for molpol (qmpackage xtp).</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.compute_forces</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">Compute analytic ground-state DFT nuclear forces (RI,</div>
+<div class="line">and hybrid-exchange for UKS) and store them in the orb</div>
+<div class="line">(HDF5) file. Adds real cost to every converged SCF, so</div>
+<div class="line">this is opt-in.</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.enabled</p></td>
+<td><p>false</p></td>
+<td><p>Enable a CDFT charge constraint on this calculation</p></td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.indices</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Indices of atoms in the constrained fragment (0-based),</div>
+<div class="line">using the same range syntax already used for diabatization.xml’s</div>
+<div class="line">own fragment indices, e.g. ‘1 3 13:17’</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.charge</p></td>
+<td><p>0.0</p></td>
+<td><div class="line-block">
+<div class="line">Target charge on the fragment, RELATIVE to its neutral</div>
+<div class="line">reference state (the sum of the fragment atoms’ own nuclear</div>
+<div class="line">charges) – e.g. +1.0 means one electron REMOVED from</div>
+<div class="line">the fragment (a cation), -1.0 means one electron ADDED</div>
+<div class="line">(an anion). Converted internally to an absolute target</div>
+<div class="line">electron count once, at setup time.</div>
+</div>
+</td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.initial_lambda</p></td>
+<td><p>0.0</p></td>
+<td><div class="line-block">
+<div class="line">Initial guess for the Lagrange multiplier lambda, used</div>
+<div class="line">as the center of the outer loop’s own bisection bracket</div>
+</div>
+</td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.population_tolerance</p></td>
+<td><p>1e-4</p></td>
+<td><div class="line-block">
+<div class="line">Outer-loop convergence criterion: the CDFT calculation</div>
+<div class="line">is considered converged once the achieved fragment population</div>
+<div class="line">is within this many electrons of the target</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.cdft.max_iterations</p></td>
+<td><p>50</p></td>
+<td><div class="line-block">
+<div class="line">Maximum number of outer (Lagrange-multiplier, bisection)</div>
+<div class="line">iterations – each one is a full, warm-started inner SCF</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.cdft.guess_strategy</p></td>
+<td><p>warmstart</p></td>
+<td><div class="line-block">
+<div class="line">How each outer bisection trial’s own inner SCF is started,</div>
+<div class="line">after the very first trial. ‘warmstart’ (default) reuses</div>
+<div class="line">the immediately PRECEDING trial’s own converged MOs (initial_guess</div>
+<div class="line">is forced to ‘orbfile’ internally) for every subsequent</div>
+<div class="line">trial – usually helps, since consecutive lambda values</div>
+<div class="line">are often close. ‘fresh’ instead re-uses the calculation’s</div>
+<div class="line">own original, top-level initial_guess setting for every</div>
+<div class="line">trial, never warm-starting from a previous lambda’s own</div>
+<div class="line">MOs at all – worth trying if warm-starting itself seems</div>
+<div class="line">to be part of a convergence difficulty (e.g. if consecutive</div>
+<div class="line">lambda trials correspond to substantially different electronic</div>
+<div class="line">structures, a previous trial’s own converged density could</div>
+<div class="line">be a worse starting point than a fresh guess, not a better</div>
+<div class="line">one).</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">warmstart</div>
+<div class="line">fresh</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.energy</p></td>
+<td><p>1E-7</p></td>
+<td><p>DeltaE at which calculation is converged</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.method</p></td>
+<td><p>DIIS</p></td>
+<td><p>Main method to use for convergence accelertation</p></td>
+<td><div class="line-block">
+<div class="line">DIIS</div>
+<div class="line">mixing</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_start</p></td>
+<td><p>0.002</p></td>
+<td><p>DIIS error at which DIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.ADIIS_start</p></td>
+<td><p>0.8</p></td>
+<td><p>DIIS error at which ADIIS takes over</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.DIIS_length</p></td>
+<td><p>20</p></td>
+<td><p>old hamiltonians to keep in history</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.DIIS_maxout</p></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">if true remove the maximum element in the history if DIIS_length</div>
+<div class="line">is exceeded.Otherwise, the oldest element is removed.</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.levelshift</p></td>
+<td><p>0.0</p></td>
+<td><p>levelshift to apply to hamiltonian</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.levelshift_end</p></td>
+<td><p>0.2</p></td>
+<td><p>DIIS error at levelshifting is disabled</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.max_iterations</p></td>
+<td><p>100</p></td>
+<td><p>max iterations to use</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.error</p></td>
+<td><p>1e-7</p></td>
+<td><p>convergence error</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing</p></td>
+<td><p>0.7</p></td>
+<td><p>mixing parameter for linear mixing of density matrices</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.mixing_end</p></td>
+<td><p>0.8</p></td>
+<td><div class="line-block">
+<div class="line">DIIS error below which mixing is disabled – independent</div>
+<div class="line">of ADIIS_start (see ORCA’s own DampErr, kept independent</div>
+<div class="line">of DIISStart for the same reason: difficult systems benefit</div>
+<div class="line">from keeping mixing active well past the point where ADIIS/DIIS</div>
+<div class="line">themselves start being tried, not exactly until that same</div>
+<div class="line">point). Defaults to match ADIIS_start’s own default (0.8)</div>
+<div class="line">for backward compatibility – existing configurations</div>
+<div class="line">see identical behavior unless this is set explicitly.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.mixing_max</p></td>
+<td><p>0.98</p></td>
+<td><div class="line-block">
+<div class="line">Ceiling mixing can adaptively ramp up toward as the SCF</div>
+<div class="line">struggles (see consecutive ADIIS failures), rather than</div>
+<div class="line">staying fixed at the base mixing value for an entire run.</div>
+<div class="line">Matches ORCA’s own DampMax (default 0.98, confirmed directly</div>
+<div class="line">from a real ORCA log’s own resolved SCF settings) – ORCA</div>
+<div class="line">ramps its own damping factor from a base (DampFac, 0.7</div>
+<div class="line">by default) up to this ceiling only when actually needed,</div>
+<div class="line">rather than paying the cost of heavy damping throughout.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.energy_reset</p></td>
+<td><p>1.0</p></td>
+<td><div class="line-block">
+<div class="line">If the energy rises by more than this above the lowest</div>
+<div class="line">energy reached so far, the (A)DIIS history is discarded</div>
+<div class="line">and the SCF restarts, damped, from the lowest-energy density.</div>
+<div class="line">0 disables.</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
+<td><p>50</p></td>
+<td><div class="line-block">
+<div class="line">Maximum iterations for the Davidson eigensolver used by</div>
+<div class="line">the direct-minimization (augmented-Hessian) fallback,</div>
+<div class="line">engaged when ADIIS/DIIS themselves are struggling. A genuinely</div>
+<div class="line">difficult system (e.g. a strong constraint spanning a</div>
+<div class="line">large fragment) can leave this solver still short of its</div>
+<div class="line">own convergence tolerance at the default – confirmed</div>
+<div class="line">directly, from a real run, that the previous, hardcoded</div>
+<div class="line">50 was not always enough. Not CDFT-specific: this fallback</div>
+<div class="line">can also engage for an ordinary, non-CDFT UKS calculation.</div>
+</div>
+</td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>method</p></td>
+<td><p>analytic</p></td>
+<td><div class="line-block">
+<div class="line">analytic: coupled-perturbed Kohn-Sham (LDA, GGA, global</div>
+<div class="line">hybrids); finite_differences: two SCFs per perturbation</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">analytic</div>
+<div class="line">finite_differences</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>tolerance</p></td>
+<td><p>1e-7</p></td>
+<td><div class="line-block">
+<div class="line">analytic: relative residual of the coupled-perturbed equations</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>step</p></td>
+<td><p>1e-3</p></td>
+<td><div class="line-block">
+<div class="line">finite_differences: strength of each perturbation: Hirshfeld-localized</div>
+<div class="line">potential in Hartree, uniform field in Hartree/bohr</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>scf_error</p></td>
+<td><p>1e-9</p></td>
+<td><div class="line-block">
+<div class="line">Every SCF is converged to at least this DIIS error (and</div>
+<div class="line">1/100 of it in the energy): the ground state for both</div>
+<div class="line">methods, and the perturbed SCFs, whose densities are differenced,</div>
+<div class="line">for finite_differences</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>inversion</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">If the geometry has an inversion centre (equivalent atoms</div>
+<div class="line">within 1e-4 bohr), perturb only one atom of each pair</div>
+<div class="line">and obtain the other response by symmetry</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpsfile</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Template .mps of the molecule with the permanent multipoles</div>
+<div class="line">(same atoms in the same order); if given, output.mps is</div>
+<div class="line">written with the residual polarizabilities on its P lines,</div>
+<div class="line">rotated into the template frame</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>output</p></td>
+<td><p>OPTIONAL</p></td>
+<td><div class="line-block">
+<div class="line">Output prefix: output.crm, output.json (the keys of xtp_cr_fit,</div>
+<div class="line">readable by xtp_cr_mps) and, with mpsfile, output.mps</div>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An <em>xml</em> file containing the defaults for the <cite>crfit</cite> calculator can be created via <cite>-p crfit -o FILENAME</cite> command line options `</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

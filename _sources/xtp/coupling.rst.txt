@@ -181,6 +181,14 @@ The following table contains the defaults input options for the calculator, The 
      - false
      - forcing UKS path
      - bool
+   * - dftpackage.xtpdft.polarizability
+     - false
+     - | After the SCF, compute the static dipole polarizability
+       | tensor analytically (coupled-perturbed Kohn-Sham with
+       | the three dipole operators; closed-shell states, LDA/GGA/global
+       | hybrids) and store it in the orb (HDF5) file, e.g. as
+       | the target for molpol (qmpackage xtp).
+     - bool
    * - dftpackage.xtpdft.compute_forces
      - false
      - | Compute analytic ground-state DFT nuclear forces (RI,

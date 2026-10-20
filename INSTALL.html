@@ -46,7 +46,10 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#macos-homebrew">macOS (Homebrew)</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-your-build">Testing your build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resolving-the-not-found-dependency-errors">Resolving the ‘not found’ dependency errors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-cmake-flags">Common CMake Flags</a></li>
@@ -54,6 +57,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#performance-advice">Performance advice</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#intel-processors">Intel Processors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#amd-processors">AMD Processors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apple-silicon">Apple Silicon</a></li>
 </ul>
 </li>
 </ul>
@@ -153,6 +157,33 @@ cmake --build builddir --target install
 <p>If you have an older version of a distribution, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flag to automatically install the correct libint version.</p>
 <p>On Ubuntu 20.10 and older you will not get version 1.0.5 of the libecpint package. So in this case run <a class="reference external" href="https://github.com/votca/buildenv/blob/55c88641046dbb6152cf7d9e536e17f29205479f/ubuntu#L30-L33">this</a> or
 download the package from <a class="reference external" href="http://ftp.us.debian.org/debian/pool/main/libe/libecpint/">here</a>.</p>
+<section id="macos-homebrew">
+<h4>macOS (Homebrew)<a class="headerlink" href="#macos-homebrew" title="Link to this heading">¶</a></h4>
+<p>On macOS (Apple silicon, macOS 13.3 or newer) use Apple’s <code class="docutils literal notranslate"><span class="pre">clang</span></code> from the
+Xcode command line tools and the dependencies from <a class="reference external" href="https://brew.sh">Homebrew</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>xcode-select --install
+brew install cmake eigen boost libint libecpint libxc hdf5 fftw libomp gromacs open-babel pybind11
+cmake -B builddir -S votca -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} \
+      -DCMAKE_PREFIX_PATH=&quot;$(brew --prefix libint)&quot;
+cmake --build builddir --parallel $(sysctl -n hw.ncpu)
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Linear algebra uses Apple’s Accelerate framework, which <code class="docutils literal notranslate"><span class="pre">CMake</span></code> finds
+by itself (<code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">Found</span> <span class="pre">APPLE_ACCELERATE</span></code>). Do <strong>not</strong> install Homebrew’s
+<code class="docutils literal notranslate"><span class="pre">lapack</span></code> or <code class="docutils literal notranslate"><span class="pre">lapacke</span></code> for VOTCA: they are not needed.</p></li>
+<li><p>Apple’s <code class="docutils literal notranslate"><span class="pre">clang</span></code> has no OpenMP runtime of its own. <code class="docutils literal notranslate"><span class="pre">CMake</span></code> takes
+Homebrew’s <code class="docutils literal notranslate"><span class="pre">libomp</span></code> automatically (<code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">Using</span> <span class="pre">Homebrew</span> <span class="pre">libomp:</span> <span class="pre">...</span></code>),
+so <code class="docutils literal notranslate"><span class="pre">OpenMP_ROOT</span></code> does not need to be set. To use another OpenMP
+runtime, set <code class="docutils literal notranslate"><span class="pre">OpenMP_ROOT</span></code> (as a CMake or environment variable) to its
+prefix. Without any OpenMP runtime VOTCA builds, but runs single-threaded.</p></li>
+<li><p>Python packages used by some tests and tools (<code class="docutils literal notranslate"><span class="pre">lxml</span> <span class="pre">h5py</span> <span class="pre">rdkit</span> <span class="pre">scipy</span>
+<span class="pre">pytest</span> <span class="pre">ase</span> <span class="pre">xmltodict</span></code>) are best installed in a virtual environment made
+with Homebrew’s <code class="docutils literal notranslate"><span class="pre">python3</span></code>.</p></li>
+</ul>
+<p>See <a class="reference internal" href="#apple-silicon">Apple Silicon</a> below for how to check that Accelerate is used.</p>
+</section>
 </section>
 <section id="testing-your-build">
 <h3>Testing your build<a class="headerlink" href="#testing-your-build" title="Link to this heading">¶</a></h3>
@@ -250,6 +281,27 @@ This can be affected by a <a class="reference external" href="https://en.wikiped
 and work-arounds are documented <a class="reference external" href="https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html">for Intel MKL on AMD Zen</a>
 and <a class="reference external" href="https://documentation.sigma2.no/jobs/mkl.html#using-mkl-efficiently">in general</a>.
 We advise that you test this on your specific architecture.</p>
+</section>
+<section id="apple-silicon">
+<h4>Apple Silicon<a class="headerlink" href="#apple-silicon" title="Link to this heading">¶</a></h4>
+<p>On macOS, Eigen’s matrix products go to Apple’s Accelerate framework, and the
+symmetric eigensolvers and Cholesky factorizations call Accelerate’s LAPACK
+directly. Accelerate reaches the CPU’s matrix unit, which Eigen’s own kernels
+(NEON, two doubles wide) cannot use. No flags are needed; <code class="docutils literal notranslate"><span class="pre">-march=native</span></code>
+(or <code class="docutils literal notranslate"><span class="pre">-mcpu=native</span></code> if the compiler rejects it) is injected as on Linux.</p>
+<p>Every DFT and GW-BSE log names the backend. A correct build prints</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">Apple</span> <span class="n">Accelerate</span> <span class="n">BLAS</span> <span class="n">overload</span> <span class="k">for</span> <span class="n">Eigen</span><span class="p">,</span> <span class="n">Accelerate</span> <span class="n">LAPACK</span> <span class="k">for</span> <span class="n">eigensolvers</span> <span class="ow">and</span> <span class="n">Cholesky</span>
+</pre></div>
+</div>
+<p>If the log says <code class="docutils literal notranslate"><span class="pre">Using</span> <span class="pre">native</span> <span class="pre">Eigen</span> <span class="pre">implementation,</span> <span class="pre">no</span> <span class="pre">BLAS</span> <span class="pre">overload</span></code>,
+Accelerate was not found, and large GW-BSE runs are several times slower:
+delete the build directory and configure again.</p>
+<p>Use all cores (the default, or <code class="docutils literal notranslate"><span class="pre">-t</span></code> equal to <code class="docutils literal notranslate"><span class="pre">sysctl</span> <span class="pre">-n</span> <span class="pre">hw.ncpu</span></code>).
+Limiting <code class="docutils literal notranslate"><span class="pre">xtp</span></code> to the performance cores did not make it faster on M1 and
+M1 Pro machines: the efficiency cores still add to the threaded loops, and
+Accelerate’s speed does not depend on the thread count. Do not set
+<code class="docutils literal notranslate"><span class="pre">VECLIB_MAXIMUM_THREADS</span></code>.</p>
+<p>Apple GPUs cannot be used: they have no double-precision arithmetic.</p>
 </section>
 </section>
 </section>
