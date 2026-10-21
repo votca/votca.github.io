@@ -56,7 +56,7 @@
 <li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Implementation Notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dft-self-consistent-field-convergence">3.1. DFT: self-consistent field convergence</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#direct-minimization-fallback">3.1.1. Direct-minimization fallback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#second-order-trah-steps">3.1.1. Second-order (TRAH) steps</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#constrained-dft">3.2. Constrained DFT</a><ul>
@@ -137,16 +137,15 @@ does, not just the underlying theory.</p>
 <h2><span class="section-number">3.1. </span>DFT: self-consistent field convergence<a class="headerlink" href="#dft-self-consistent-field-convergence" title="Link to this heading">¶</a></h2>
 <p>The internal DFT engine dispatches to one of two convergence-acceleration classes
 depending on the system: a restricted-Kohn-Sham (RKS) class for closed-shell systems
-with equal numbers of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> electrons, and a separate,
+with equal numbers of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> electrons, and an
 unrestricted-Kohn-Sham (UKS) class for everything else. The two share the same set of
-convergence options, but are otherwise independent implementations; nothing described
-below for the UKS path affects RKS calculations.</p>
+convergence options and the same second-order (TRAH) solver described below.</p>
 <p>Each SCF iteration builds a Fock matrix guess by one of three mutually-exclusive
 methods, in order of preference:</p>
 <ul class="simple">
-<li><p><strong>A-DIIS</strong> (energy-based DIIS), used while the SCF error is still relatively large,
-and switching to</p></li>
-<li><p><strong>plain (commutator) DIIS</strong> <a class="reference internal" href="bibliography.html#pulay-1980" id="id1"><span>[Pulay:1980]</span></a> once the error is small, both extrapolating
+<li><p><strong>A-DIIS</strong> (energy-based DIIS) <a class="reference internal" href="bibliography.html#hu-2010" id="id1"><span>[Hu:2010]</span></a>, used while the SCF error is still
+relatively large, and switching to</p></li>
+<li><p><strong>plain (commutator) DIIS</strong> <a class="reference internal" href="bibliography.html#pulay-1980" id="id2"><span>[Pulay:1980]</span></a> once the error is small, both extrapolating
 a new Fock matrix guess from a short history of previous Fock and density matrices,
 or</p></li>
 <li><p><strong>linear mixing</strong> of the current density with that of the previous iteration, used
@@ -160,57 +159,101 @@ damping parameter that ramps from a base value toward a configurable ceiling as
 consecutive convergence failures accumulate, and relaxes back toward the base value as
 readily as it climbed once the SCF starts succeeding again. Both the damping ramp and
 a trailing-average stall detector (see below) are modeled directly on the equivalent
-mechanisms in ORCA’s own SCF converger, whose behavior was compared against directly
-during development of this feature.</p>
-<section id="direct-minimization-fallback">
-<h3><span class="section-number">3.1.1. </span>Direct-minimization fallback<a class="headerlink" href="#direct-minimization-fallback" title="Link to this heading">¶</a></h3>
+mechanisms in ORCA’s own SCF converger.</p>
+<section id="second-order-trah-steps">
+<h3><span class="section-number">3.1.1. </span>Second-order (TRAH) steps<a class="headerlink" href="#second-order-trah-steps" title="Link to this heading">¶</a></h3>
 <p>DIIS-family extrapolation is well known to struggle for open-shell systems with a
 small HOMO-LUMO gap, or for systems whose physically correct electronic configuration
-is not obviously the lowest-energy solution DIIS would otherwise converge to. When
-either</p>
+is not the solution DIIS happens to converge to; DIIS can also come to rest on a
+stationary point of the energy that is not a minimum. For these cases the engine can
+minimize the energy directly in orbital-rotation space with trust-region
+augmented-Hessian (TRAH) steps <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id3"><span>[Helmich-Paris:2021]</span></a>. The option
+<code class="docutils literal notranslate"><span class="pre">xtpdft.convergence.second_order</span></code> selects when:</p>
 <ul class="simple">
-<li><p>DIIS-family extrapolation has failed for several consecutive iterations, or</p></li>
-<li><p>the SCF error is failing to improve by more than a set tolerance, on average, over a
-trailing window of iterations (evaluated only after a minimum number of total
-iterations, so that this check is not triggered spuriously early in a calculation),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> (default): DIIS-family extrapolation and mixing as above, switching to TRAH
+steps once (A)DIIS has failed five times in a row, or once, after at least 50
+iterations, the DIIS error over the last 10 iterations has on average shrunk by less
+than a factor 1.125 per iteration. The second criterion is checked in every
+iteration, also when the error never falls below <code class="docutils literal notranslate"><span class="pre">ADIIS_start</span></code> and (A)DIIS is never
+tried.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">always</span></code>: TRAH steps from the first iteration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">off</span></code>: never.</p></li>
 </ul>
-<p>the UKS engine falls back to direct energy minimization in orbital-rotation space,
-rather than continuing to rely on DIIS-family extrapolation or plain mixing alone. This
-mirrors the automatic switch to a Trust-Region Augmented-Hessian (TRAH) converger found
-in mature quantum-chemistry codes such as ORCA.</p>
-<p>The fallback solves the augmented-Hessian eigenvalue problem of <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id2"><span>[Helmich-Paris:2021]</span></a>,</p>
+<p>Once switched on, TRAH steps are used for the rest of the SCF. They are taken for
+closed-shell RKS and for UKS calculations; restricted open-shell and fractional
+occupations are not covered.</p>
+<p><strong>Parametrization.</strong> The orbitals are rotated as <span class="math notranslate nohighlight">\(\mathbf{C}' = \mathbf{C}\,
+\exp(\boldsymbol{\kappa})\)</span> with <span class="math notranslate nohighlight">\(\kappa_{ia} = x_{ia}\)</span> and <span class="math notranslate nohighlight">\(\kappa_{ai} =
+-x_{ia}\)</span> (<span class="math notranslate nohighlight">\(i\)</span> occupied, <span class="math notranslate nohighlight">\(a\)</span> virtual; one block per spin channel for UKS).
+The exponential is evaluated exactly from the singular value decomposition of the
+occupied-virtual block, so orthonormal orbitals stay orthonormal. With <span class="math notranslate nohighlight">\(F\)</span> the
+Fock matrix in the current orbitals, the energy gradient is</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{pmatrix} 0 &amp; \alpha\, \mathbf{g}^T \\ \alpha\, \mathbf{g} &amp; \mathbf{H} \end{pmatrix}
-\begin{pmatrix} 1 \\ \boldsymbol{\kappa}(\alpha) \end{pmatrix}
-= \mu \begin{pmatrix} 1 \\ \boldsymbol{\kappa}(\alpha) \end{pmatrix} ,\end{split}\]</div>
-<p>for its lowest eigenpair, which simultaneously yields a level shift <span class="math notranslate nohighlight">\(\mu\)</span> and an
-orbital-rotation vector <span class="math notranslate nohighlight">\(\boldsymbol{\kappa}\)</span>. Unlike a fixed, diagonal Hessian
-approximation, this correctly handles the indefinite Hessian directions that occur near
-genuine electronic near-degeneracies, at the cost of needing an iterative solve (via a
-Davidson eigensolver) rather than a single diagonalization. The scalar <span class="math notranslate nohighlight">\(\alpha\)</span> is
-adjusted by bisection so that the resulting step stays within an adaptive trust radius,
-following the same step-control logic (accept, shrink, or grow the trust radius
-depending on how well the step’s predicted energy change matches the energy change
-actually observed) described in <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id3"><span>[Helmich-Paris:2021]</span></a>.</p>
-<p>The Hessian-vector product required by the Davidson solver (“sigma vector”) is
-evaluated by a <em>central</em> finite difference of the orbital gradient, rather than the
-exact, analytic coupled-perturbed response. This is a deliberate simplification:
-implementing the exact response would require a second, coupled-perturbed Fock build
-using the second functional derivative of the exchange-correlation energy, which has
-not been implemented. A central (rather than one-sided) finite difference is used
-specifically because a one-sided difference does not preserve the exact symmetry of the
-true Hessian, which was found in practice to break the Davidson solver’s own
-convergence.</p>
-<p>For open-shell systems, the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> spin channels can either be
-treated independently – solving two separate augmented-Hessian problems, one per
-channel, holding the other channel’s density fixed – or as a single, coupled problem
-over the combined rotation space of both channels together. The coupled treatment is
-generally more robust, since it accounts for the coupling between the two channels
-through the shared Coulomb potential and the exchange-correlation kernel’s cross-spin
-terms; the independent treatment is cheaper per step, since each of the two smaller
-eigenvalue problems is faster to solve than the one, larger combined problem. Both are
-available; the coupled treatment is preferred whenever the necessary Fock-matrix-build
-callback has been supplied.</p>
+\[\frac{\partial E}{\partial x_{ia}} = -4 F_{ia} \quad \textrm{(RKS)}, \qquad
+\frac{\partial E}{\partial x^\sigma_{ia}} = -2 F^\sigma_{ia} \quad \textrm{(UKS)}.\]</div>
+<p><strong>Hessian.</strong> The Hessian is never stored; the solver only needs its product with trial
+vectors, which is computed analytically. For RKS, with <span class="math notranslate nohighlight">\(X_{ai} = x_{ia}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[(\mathbf{H}\mathbf{x}) = 4 \left[ F_{vv} X - X F_{oo}
+  + C_v^T\, G[\delta P]\, C_o \right], \qquad
+\delta P = 2 \left( C_v X C_o^T + C_o X^T C_v^T \right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(G[\delta P] = J[\delta P] + \tfrac{1}{2} a_x K[\delta P] + \delta V_{xc}\)</span>
+is the linear response of the Coulomb, exact-exchange and exchange-correlation
+potentials, the latter from the second functional derivative <span class="math notranslate nohighlight">\(f_{xc}\)</span> of the
+exchange-correlation energy (the same response kernel as in the static
+coupled-perturbed Kohn-Sham calculation of the polarizability). For UKS,</p>
+<div class="math notranslate nohighlight">
+\[(\mathbf{H}\mathbf{x})_\sigma = 2 \left[ F^\sigma_{vv} X_\sigma - X_\sigma F^\sigma_{oo}
+  + C^{\sigma\,T}_v\, G_\sigma\, C^\sigma_o \right], \qquad
+G_\sigma = J[\delta P_\alpha + \delta P_\beta] + a_x K[\delta P_\sigma]
+  + \delta V_{xc,\sigma}[\delta P_\alpha, \delta P_\beta],\]</div>
+<p>with <span class="math notranslate nohighlight">\(\delta P_\sigma = C^\sigma_v X_\sigma C^{\sigma\,T}_o + \textrm{h.c.}\)</span> and the
+spin-polarized <span class="math notranslate nohighlight">\(f_{xc}\)</span>, so that the two spin channels are coupled through the
+Coulomb and exchange-correlation response. Both work with RI and with four-center
+integrals, for LDA, GGA and global hybrid functionals. If a functional has no second
+derivatives in libxc, the UKS Hessian products fall back to central finite differences
+of the Fock matrix (two Fock builds per product); the CDFT constraint potential is part
+of <span class="math notranslate nohighlight">\(F\)</span> and has no response term.</p>
+<p><strong>Step.</strong> Each step minimizes the quadratic model <span class="math notranslate nohighlight">\(\mathbf{g}^T\mathbf{x} +
+\tfrac{1}{2}\mathbf{x}^T\mathbf{H}\mathbf{x}\)</span> within a trust radius <span class="math notranslate nohighlight">\(R\)</span>. The
+lowest eigenpair <span class="math notranslate nohighlight">\((\mu, [v_0; \mathbf{v}])\)</span> of the scaled augmented Hessian</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} 0 &amp; \alpha\, \mathbf{g}^T \\ \alpha\, \mathbf{g} &amp; \mathbf{H} \end{pmatrix}\end{split}\]</div>
+<p>gives the step <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{v} / (\alpha v_0)\)</span>, which satisfies
+<span class="math notranslate nohighlight">\((\mathbf{H} - \mu)\mathbf{x} = -\mathbf{g}\)</span>. It is found with a Davidson
+iteration (preconditioned by the diagonal <span class="math notranslate nohighlight">\(4(F_{aa} - F_{ii})\)</span>, respectively
+<span class="math notranslate nohighlight">\(2(F^\sigma_{aa} - F^\sigma_{ii})\)</span>). Since only the first row and column of the
+projected matrix depend on <span class="math notranslate nohighlight">\(\alpha\)</span>, all values of <span class="math notranslate nohighlight">\(\alpha\)</span> are handled in
+the same subspace without further Hessian products: <span class="math notranslate nohighlight">\(\alpha = 1\)</span> is used if its
+step lies inside the trust radius, otherwise <span class="math notranslate nohighlight">\(\alpha\)</span> is increased by bisection in
+<span class="math notranslate nohighlight">\(\log\alpha\)</span> until <span class="math notranslate nohighlight">\(|\mathbf{x}|\)</span> lies between <span class="math notranslate nohighlight">\(0.8R\)</span> and <span class="math notranslate nohighlight">\(R\)</span>.
+The micro-iterations stop when the residual <span class="math notranslate nohighlight">\(|(\mathbf{H}-\mu)\mathbf{x} +
+\mathbf{g}|\)</span> falls below <span class="math notranslate nohighlight">\(\min(0.1, |\mathbf{g}|)\,|\mathbf{g}|\)</span>, which makes the
+SCF converge quadratically close to the solution; <code class="docutils literal notranslate"><span class="pre">davidson_max_iter</span></code> limits their
+number.</p>
+<p><strong>Trust radius.</strong> A step is checked in the next iteration, once the energy of its
+density is known, by the ratio <span class="math notranslate nohighlight">\(r\)</span> of actual to predicted energy change
+<a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id4"><span>[Helmich-Paris:2021]</span></a>. It is rejected if <span class="math notranslate nohighlight">\(r &lt; 0\)</span>; otherwise the radius is reduced
+by 0.7 for <span class="math notranslate nohighlight">\(r \le 0.25\)</span> and increased by 1.2 for <span class="math notranslate nohighlight">\(r &gt; 0.75\)</span> (initial radius
+0.5, at most 1.0). After a rejection, the energy along the step,
+<span class="math notranslate nohighlight">\(E(t) = E_0 + (\mathbf{g}^T\mathbf{x})\, t + c\, t^2\)</span>, is fitted to the actual
+change, and the new radius is set to its minimum <span class="math notranslate nohighlight">\(t^*|\mathbf{x}|\)</span>, with
+<span class="math notranslate nohighlight">\(t^*\)</span> kept between 0.1 and 0.7. The rejected step is undone and repeated at once
+from the stored Fock matrix and Davidson subspace, so it costs neither an additional
+Fock build nor, usually, any Hessian products. If the radius falls below
+<span class="math notranslate nohighlight">\(3\times10^{-3}\)</span> without an accepted step, the SCF continues without TRAH steps.
+If the density handed to the converger is not the density of the current orbitals
+(after a damped iteration, or a guess density), the orbital density is returned first
+and the step is taken in the following iteration.</p>
+<p><strong>What to expect.</strong> TRAH steps converge to a stationary point by lowering the energy in
+every accepted step. In difficult cases (for example a stretched O<sub>2</sub> triplet or
+an iron(II) complex) this is often a lower state than the one DIIS converges to, which
+can be a saddle point. The end point is not guaranteed to be a minimum, however:
+directions of negative curvature that break a symmetry of the starting orbitals carry
+no gradient and are not followed, since no stability analysis is performed. Per
+iteration a TRAH step costs more than a DIIS step (several Hessian products), so
+<code class="docutils literal notranslate"><span class="pre">auto</span></code> remains the default; <code class="docutils literal notranslate"><span class="pre">always</span></code> is useful for systems that are known to be
+difficult.</p>
 </section>
 </section>
 <section id="constrained-dft">
@@ -238,7 +281,7 @@ real-space integration grid used for the exchange-correlation energy, using free
 reference densities computed once per element at the start of the calculation. Because
 this weight function depends on the nuclear positions, the CDFT contribution to the
 nuclear forces requires several terms beyond the ordinary Hellmann-Feynman force,
-following <a class="reference internal" href="bibliography.html#oberhofer-2009" id="id4"><span>[Oberhofer:2009]</span></a>:</p>
+following <a class="reference internal" href="bibliography.html#oberhofer-2009" id="id5"><span>[Oberhofer:2009]</span></a>:</p>
 <ul class="simple">
 <li><p>the derivative of the weight function itself with respect to the nuclear positions,</p></li>
 <li><p>the derivative of the grid point weights (from the space-partitioning scheme

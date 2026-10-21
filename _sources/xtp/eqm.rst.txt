@@ -773,17 +773,24 @@ The following table contains the defaults input options for the calculator, The 
        | and the SCF restarts, damped, from the lowest-energy density.
        | 0 disables.
      - float+
+   * - dftpackage.xtpdft.convergence.second_order
+     - auto
+     - | Second-order (trust-region augmented Hessian, TRAH) SCF
+       | steps. auto: switch to them when (A)DIIS fails repeatedly
+       | or the DIIS error stalls, then use them until convergence;
+       | always: use them from the first iteration; off: never.
+       | Exact analytic orbital Hessian for RKS and UKS (LDA/GGA
+       | and global hybrids; spin-polarized f_xc for UKS); for
+       | UKS with a functional without second derivatives in libxc,
+       | finite differences of the Fock matrix (two Fock builds
+       | per Hessian product).
+     - | auto
+       | always
+       | off
    * - dftpackage.xtpdft.convergence.davidson_max_iter
      - 50
-     - | Maximum iterations for the Davidson eigensolver used by
-       | the direct-minimization (augmented-Hessian) fallback,
-       | engaged when ADIIS/DIIS themselves are struggling. A genuinely
-       | difficult system (e.g. a strong constraint spanning a
-       | large fragment) can leave this solver still short of its
-       | own convergence tolerance at the default -- confirmed
-       | directly, from a real run, that the previous, hardcoded
-       | 50 was not always enough. Not CDFT-specific: this fallback
-       | can also engage for an ordinary, non-CDFT UKS calculation.
+     - | Maximum number of micro-iterations (Hessian products)
+       | per second-order (TRAH) step.
      - int+
    * - esp_options.state
      - n2s1

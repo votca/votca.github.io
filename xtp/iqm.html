@@ -1387,23 +1387,37 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td><p>float+</p></td>
 </tr>
-<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
+<tr class="row-even"><td><p>dftpackage.xtpdft.convergence.second_order</p></td>
+<td><p>auto</p></td>
+<td><div class="line-block">
+<div class="line">Second-order (trust-region augmented Hessian, TRAH) SCF</div>
+<div class="line">steps. auto: switch to them when (A)DIIS fails repeatedly</div>
+<div class="line">or the DIIS error stalls, then use them until convergence;</div>
+<div class="line">always: use them from the first iteration; off: never.</div>
+<div class="line">Exact analytic orbital Hessian for RKS and UKS (LDA/GGA</div>
+<div class="line">and global hybrids; spin-polarized f_xc for UKS); for</div>
+<div class="line">UKS with a functional without second derivatives in libxc,</div>
+<div class="line">finite differences of the Fock matrix (two Fock builds</div>
+<div class="line">per Hessian product).</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">auto</div>
+<div class="line">always</div>
+<div class="line">off</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>dftpackage.xtpdft.convergence.davidson_max_iter</p></td>
 <td><p>50</p></td>
 <td><div class="line-block">
-<div class="line">Maximum iterations for the Davidson eigensolver used by</div>
-<div class="line">the direct-minimization (augmented-Hessian) fallback,</div>
-<div class="line">engaged when ADIIS/DIIS themselves are struggling. A genuinely</div>
-<div class="line">difficult system (e.g. a strong constraint spanning a</div>
-<div class="line">large fragment) can leave this solver still short of its</div>
-<div class="line">own convergence tolerance at the default – confirmed</div>
-<div class="line">directly, from a real run, that the previous, hardcoded</div>
-<div class="line">50 was not always enough. Not CDFT-specific: this fallback</div>
-<div class="line">can also engage for an ordinary, non-CDFT UKS calculation.</div>
+<div class="line">Maximum number of micro-iterations (Hessian products)</div>
+<div class="line">per second-order (TRAH) step.</div>
 </div>
 </td>
 <td><p>int+</p></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.singlet</p></td>
+<tr class="row-even"><td><p>readjobfile.singlet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1412,7 +1426,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.triplet</p></td>
+<tr class="row-odd"><td><p>readjobfile.triplet</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1421,7 +1435,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>readjobfile.electron</p></td>
+<tr class="row-even"><td><p>readjobfile.electron</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1430,7 +1444,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>readjobfile.hole</p></td>
+<tr class="row-odd"><td><p>readjobfile.hole</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">List of molecule names with the corresponding state that</div>
@@ -1439,7 +1453,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>linker_names</p></td>
+<tr class="row-even"><td><p>linker_names</p></td>
 <td><p>OPTIONAL</p></td>
 <td><div class="line-block">
 <div class="line">Name of molecules that should serve as a transition between</div>
@@ -1449,7 +1463,7 @@ The following table contains the defaults input options for the calculator, The 
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>store</p></td>
+<tr class="row-odd"><td><p>store</p></td>
 <td></td>
 <td><p>Which kind of data to keep after each run</p></td>
 <td><div class="line-block">
