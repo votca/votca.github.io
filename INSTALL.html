@@ -83,6 +83,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#linking-error-undefined-reference-to">Linking Error: Undefined reference to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mkl-and-openmp-thread-pinning">MKL and OpenMP thread pinning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gcc-and-mkl-undefined-symbol">GCC and MKL : undefined symbol:</a></li>
 </ul>
 </li>
@@ -260,7 +261,7 @@ as backend, which is automatically detected by <code class="docutils literal not
 for different architectures:</p>
 <section id="intel-processors">
 <h4>Intel Processors<a class="headerlink" href="#intel-processors" title="Link to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipcx</span></code> from the Intel OneAPI basekit give similar performance
+<p><code class="docutils literal notranslate"><span class="pre">g++</span></code>, <code class="docutils literal notranslate"><span class="pre">clang</span></code>, and <code class="docutils literal notranslate"><span class="pre">icpx</span></code> from the Intel OneAPI basekit give similar performance
 when used with the MKL. No special flags have to be supplied to <code class="docutils literal notranslate"><span class="pre">CMake</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> are used, the compiler option <code class="docutils literal notranslate"><span class="pre">-march=native</span></code> is automatically injected
 into the build. If you compile VOTCA on a heterogeneous cluster with different instruction sets,
@@ -274,13 +275,42 @@ vectorization. Use of <code class="docutils literal notranslate"><span class="pr
 <h4>AMD Processors<a class="headerlink" href="#amd-processors" title="Link to this heading">¶</a></h4>
 <p>We recommend using <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> rather than an Intel compiler on AMD. Vectorization
 in <code class="docutils literal notranslate"><span class="pre">Eigen</span></code> is automatically enabled by injection of <code class="docutils literal notranslate"><span class="pre">-march=native</span></code>. See above comment
-about heterogeneous envionments.</p>
-<p>If you have Intel’s MKL installed, and it is found by <code class="docutils literal notranslate"><span class="pre">CMake</span></code>, performance will be helped
-but by how much idepends on which architecture-specific implementation MKL picks at runtime.
-This can be affected by a <a class="reference external" href="https://en.wikipedia.org/wiki/Math_Kernel_Library">vendor lock-in</a>,
-and work-arounds are documented <a class="reference external" href="https://danieldk.eu/Posts/2020-08-31-MKL-Zen.html">for Intel MKL on AMD Zen</a>
-and <a class="reference external" href="https://documentation.sigma2.no/jobs/mkl.html#using-mkl-efficiently">in general</a>.
-We advise that you test this on your specific architecture.</p>
+about heterogeneous environments.</p>
+<p>Intel’s MKL also works on AMD processors and is found by <code class="docutils literal notranslate"><span class="pre">CMake</span></code> in the same way. Every DFT
+and GW-BSE log names the backend; a build with MKL prints</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">MKL</span> <span class="n">overload</span> <span class="k">for</span> <span class="n">Eigen</span> <span class="p">(</span><span class="n">BLAS</span> <span class="ow">and</span> <span class="n">LAPACK</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The largest gain is in the symmetric eigensolvers and the multithreaded rank-k updates, which
+Eigen’s own implementation runs on a single core. On an 8-core AMD EPYC 7262 (Zen 2) with
+oneMKL 2026.2, MKL’s <code class="docutils literal notranslate"><span class="pre">dsyevd</span></code> diagonalized a 3000 x 3000 matrix in 1.1 s, against 25 s for
+Eigen’s own solver.</p>
+<p>At runtime, MKL checks whether it runs on an Intel processor and otherwise takes slower code
+paths. This check can be overridden by preloading a small library. Save as <code class="docutils literal notranslate"><span class="pre">mkl_cpu_trick.c</span></code></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">mkl_serv_intel_cpu_true</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="cm">/* MKL 2025.0 and later call this function instead */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">fakeintel_fptr</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+<span class="n">fakeintel_fptr</span><span class="w"> </span><span class="nf">mkl_serv_get_cpu_true</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mkl_serv_intel_cpu_true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>then compile it and preload it when running VOTCA:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="o">-</span><span class="n">O2</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">o</span> <span class="n">libmkl_cpu_trick</span><span class="o">.</span><span class="n">so</span> <span class="n">mkl_cpu_trick</span><span class="o">.</span><span class="n">c</span>
+<span class="n">LD_PRELOAD</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">libmkl_cpu_trick</span><span class="o">.</span><span class="n">so</span> <span class="n">xtp_tools</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>On the system above, this made MKL’s matrix products 18-48% faster and its eigensolvers
+1.5 times faster. A naphthalene def2-TZVP evGW-BSE calculation took 5% less time
+(DFT 11%, BSE 20%, GW 2%) with unchanged results. Older recipes that define only
+<code class="docutils literal notranslate"><span class="pre">mkl_serv_intel_cpu_true</span></code>, or that set <code class="docutils literal notranslate"><span class="pre">MKL_DEBUG_CPU_TYPE=5</span></code>, have no effect with current
+MKL versions. The override relies on MKL internals that Intel does not document or support,
+so it may stop working with a future release; check the MKL license terms before using it.
+Background: <a class="reference external" href="https://danieldk.eu/software/misc/intel-mkl-on-amd-zen">Intel MKL on AMD Zen</a>
+and <a class="reference external" href="https://documentation.sigma2.no/jobs/mkl.html#using-mkl-efficiently">Using MKL efficiently</a>.
+We have only measured Zen 2, so we advise that you test this on your specific architecture.</p>
+<p>AMD’s own AOCL libraries are currently not supported as a backend by VOTCA. In the same
+benchmark, they matched the patched MKL for matrix products but were 4-11 times slower in the
+eigensolvers.</p>
 </section>
 <section id="apple-silicon">
 <h4>Apple Silicon<a class="headerlink" href="#apple-silicon" title="Link to this heading">¶</a></h4>
@@ -430,6 +460,17 @@ another cause might be ABI incompability between libraries due to
 different libraries being compiled with different compilers or compiler
 versions. Click <a class="reference external" href="https://github.com/ICRAR/shark/issues/1">here</a> for
 an example.</p>
+</section>
+<section id="mkl-and-openmp-thread-pinning">
+<h2>MKL and OpenMP thread pinning<a class="headerlink" href="#mkl-and-openmp-thread-pinning" title="Link to this heading">¶</a></h2>
+<p>With <code class="docutils literal notranslate"><span class="pre">g++</span></code>, VOTCA links MKL’s GNU threading layer (<code class="docutils literal notranslate"><span class="pre">MKL_THREADING=gnu_thread</span></code>), so only
+GCC’s OpenMP runtime <code class="docutils literal notranslate"><span class="pre">libgomp</span></code> is loaded. If MKL’s Intel threading layer is used with <code class="docutils literal notranslate"><span class="pre">g++</span></code>
+instead (<code class="docutils literal notranslate"><span class="pre">-DMKL_THREADING=intel_thread</span></code>, or a build directory configured with an older VOTCA
+version), Intel’s OpenMP runtime <code class="docutils literal notranslate"><span class="pre">libiomp5</span></code> is loaded next to <code class="docutils literal notranslate"><span class="pre">libgomp</span></code>. This works, but do
+not set <code class="docutils literal notranslate"><span class="pre">OMP_PROC_BIND</span></code> or <code class="docutils literal notranslate"><span class="pre">OMP_PLACES</span></code> with such a build: <code class="docutils literal notranslate"><span class="pre">libgomp</span></code> then pins the main
+thread to one core, and all of MKL’s threads end up on that core (visible in <code class="docutils literal notranslate"><span class="pre">htop</span></code> as one
+core at 100% and the rest idle). <code class="docutils literal notranslate"><span class="pre">ldd</span> <span class="pre">$(which</span> <span class="pre">xtp_tools)</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">iomp5</span></code> shows whether
+<code class="docutils literal notranslate"><span class="pre">libiomp5</span></code> is linked; configure a new build directory to switch.</p>
 </section>
 <section id="gcc-and-mkl-undefined-symbol">
 <h2>GCC and MKL : undefined symbol:<a class="headerlink" href="#gcc-and-mkl-undefined-symbol" title="Link to this heading">¶</a></h2>
