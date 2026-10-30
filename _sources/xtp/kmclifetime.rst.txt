@@ -1,7 +1,7 @@
 
 kmclifetime
 ***********
-Perform Kinetic Monte Carlo simulations of singlets with decay
+Kinetic Monte Carlo of excitons (or other carriers) with site-dependent lifetimes and site exclusion in periodic boundary conditions: lifetime, diffusion length, decay sites, occupations; for one exciton also the exact values
 The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
 `REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
@@ -16,19 +16,34 @@ The following table contains the defaults input options for the calculator, The 
      - Valid Input
    * - lifetimefile
      - lifetimes.xml
-     - File from which lifetimes are read in.
+     - | XML file with the lifetime of every site: <lifetimes><site
+       | id="0">1e-9</site>...</lifetimes> (seconds; ignored segment
+       | types may be left out)
      - 
+   * - carriertype
+     - singlet
+     - State of the hopping carriers
+     - | electron
+       | hole
+       | singlet
+       | triplet
    * - ratefile
      - rates.dat
-     - File containing the rates
+     - File to write the rates
      - 
    * - trajectoryfile
      - trajectory.csv
-     - Name of the trajectory file
+     - | File with one line per decay: time, lifetime, hops, decay
+       | segment, displacement (empty: none)
      - 
    * - numberofinsertions
      - 4000
-     - number of decays to simulate
+     - Number of decays to simulate in total (0: exact values only)
+     - int+
+   * - runs
+     - 1
+     - | Number of independent runs, in parallel with OpenMP; the
+       | decays are distributed over them
      - int+
    * - seed
      - 23
@@ -36,35 +51,58 @@ The following table contains the defaults input options for the calculator, The 
      - int+
    * - numberofcarriers
      - 1
-     - Number of electrons/holes in the simulation box
+     - | Number of carriers present at a time; a decayed carrier
+       | is replaced at once
      - int+
    * - injectionpattern
      - *
-     - | Name pattern that specifies on which sites injection is
-       | possible. Use the wildcard '*' to inject on any site.
+     - | Name pattern that specifies on which sites carriers are
+       | created. Use the wildcard '*' to create them on any site.
      - 
    * - injectionmethod
      - random
-     - | random: injection sites are selected randomly (generally
-       | the recommended option); equilibrated: sites are chosen
-       | such that the expected energy per carrier is matched,
-       | possibly speeding up convergence
+     - | random: creation sites are selected randomly among the
+       | free ones
      - random
    * - temperature
      - 300
      - Temperature in Kelvin.
-     - int+
+     - float+
    * - occfile
      - occupation.dat
-     - File with the occupations
+     - | File with the occupation probabilities (summed over carriers)
+       | 
      - 
+   * - decayprobfile
+     - 
+     - | Optional file with per-site decay probabilities: local
+       | ratios k/(k+out), k/(k+in), the KMC decay fractions and
+       | the exact ones for one carrier
+     - 
+   * - resultfile
+     - kmclifetime_results.dat
+     - | Main results as 'key value unit' lines in SI units (empty:
+       | none)
+     - 
+   * - exact
+     - true
+     - | Also compute the exact lifetime, diffusion length and
+       | decay probabilities of one carrier (sparse linear systems)
+     - bool
+   * - waitingtime
+     - exponential
+     - | Waiting-time method: exponential (static rates) or thinning
+       | (time-dependent rates with upper bounds)
+     - | exponential
+       | thinning
    * - maxrealtime
      - 1E10
-     - Maximum clocktime allow to the calculation
+     - Maximum wall-clock time of each run
      - float+
    * - ignoresegments
      - 
-     - Segment types to be ignored in KMC
+     - | Segment types (wildcards, separated by commas or spaces)
+       | without hops to or from them
      - 
    * - carrierenergy.run
      - false
@@ -76,11 +114,11 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - carrierenergy.alpha
      - 0.05
-     - Smoothing energy profile
+     - Weight of the newest value in the exponential average
      - float+
    * - carrierenergy.outputsteps
      - 10
-     - Write to file every x steps
+     - Write after every x hops
      - int+
 .. note::
    An *xml* file containing the defaults for the `kmclifetime` calculator can be created via `-p kmclifetime -o FILENAME` command line options `

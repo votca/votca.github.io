@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Larger systems with the stochastic network model &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Charge transport in an amorphous thiophene morphology" href="LAMMPS_KMC.html" />
+    <link rel="prev" title="Charge and exciton transport on a model lattice" href="TRANSPORT.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Larger systems with the stochastic network model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#The-morphologies">The morphologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Fitting-the-model-to-MADN">Fitting the model to MADN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Transport:-morphology,-model-boxes,-larger-networks">Transport: morphology, model boxes, larger networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#BCP:-strong-disorder-and-a-trap">BCP: strong disorder and a trap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Many-small-boxes-are-not-one-large-box">Many small boxes are not one large box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">Larger systems with the stochastic network model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/STOCHASTIC_NETWORK.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Larger-systems-with-the-stochastic-network-model">
+<h1>Larger systems with the stochastic network model<a class="headerlink" href="#Larger-systems-with-the-stochastic-network-model" title="Link to this heading">¶</a></h1>
+<p>A morphology from molecular dynamics holds a few thousand molecules. For charge transport in a disordered material this is often far too small: a carrier in equilibrium sits in the low-energy tail of the density of states (DOS), and a small box samples that tail badly. The mobility of a small box then depends on its few deepest sites and changes by orders of magnitude from one box to the next.</p>
+<p>The stochastic network model (Baumeier, Stenzel, Poelking, Andrienko, Schmidt, Phys. Rev. B 86, 184202 (2012)) is a random hopping network with the statistics of the morphology that can be generated at any size. This tutorial</p>
+<ol class="arabic simple">
+<li><p>fits the model to two morphologies of 1000 molecules with <code class="docutils literal notranslate"><span class="pre">networkfit</span></code>: MADN (moderate disorder) and bathocuproine, BCP (strong disorder and a trap),</p></li>
+<li><p>checks the fit against the morphology, including the transport,</p></li>
+<li><p>generates larger networks with <code class="docutils literal notranslate"><span class="pre">networkgen</span></code> and follows the mobility with system size,</p></li>
+<li><p>looks at the trap in BCP and how much the result depends on the trap density,</p></li>
+<li><p>shows why averaging over many small boxes does not replace a large one.</p></li>
+</ol>
+<p>The theory is in the XTP manual, section <em>Finite systems and the stochastic network model</em>; the options in <em>Transport Simulations</em>.</p>
+<section id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>VOTCA installed and the environment activated with <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code>.</p></li>
+<li><p>Python with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p></li>
+</ul>
+<p>The calculations take about 15 minutes in total. In Jupyter, <code class="docutils literal notranslate"><span class="pre">!</span></code> runs a shell command.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gzip</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">kT</span> <span class="o">=</span> <span class="mf">8.617333e-5</span> <span class="o">*</span> <span class="mi">300</span>  <span class="c1"># eV</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+    <span class="c1"># run a VOTCA command, return its output (raises if it fails)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># read a &#39;key value unit&#39; result file into a dictionary</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="k">continue</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">values</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_log</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="s2">&quot;Read &quot;</span><span class="p">):</span>
+    <span class="c1"># print the log of a tool from the line starting with `first`, without the banner</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="k">if</span> <span class="n">first</span> <span class="ow">in</span> <span class="n">l</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;... ... &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">start</span><span class="p">:]</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">and</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;....&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mobility</span><span class="p">(</span><span class="n">statefile</span><span class="p">,</span> <span class="n">carrier</span><span class="o">=</span><span class="s2">&quot;hole&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">1e7</span><span class="p">):</span>
+    <span class="c1"># exact mobility (cm^2/Vs) of one carrier in a periodic box (kmcmultiple, master equation)</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">statefile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">carrier</span>
+    <span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;xtp_run -e kmcmultiple -c carriertype=</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s1"> &quot;field=</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s1"> 0 0&quot; runtime=1000 outputtime=0 &#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;ratefile=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">_rates.dat occfile=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">_occ.dat resultfile=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">.res -f </span><span class="si">{</span><span class="n">statefile</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">_rates.dat&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">_occ.dat&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">statefile</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;model_&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">statefile</span><span class="p">)</span>  <span class="c1"># model networks are large; keep the disk clean</span>
+    <span class="k">return</span> <span class="n">results</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">.res&quot;</span><span class="p">)[</span><span class="s2">&quot;exact_mobility&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sites</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">trapfactor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">energyfile</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># write a model network with networkgen; returns the state file name</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.hdf5&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.hdf5&quot;</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;job_name=</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> parameters=</span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s2"> seed=</span><span class="si">{</span><span class="n">seed</span><span class="si">}</span><span class="s2"> trapfactor=</span><span class="si">{</span><span class="n">trapfactor</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">sites</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">options</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; sites=</span><span class="si">{</span><span class="n">sites</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">energyfile</span><span class="p">:</span>
+        <span class="n">options</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; energyfile=</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_E.txt&quot;</span>
+    <span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;xtp_tools -e networkgen -c </span><span class="si">{</span><span class="n">options</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.hdf5&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">stats_blocks</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># the blocks of a networkfit statsfile: {title: array}</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">block</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">blocks</span><span class="p">[</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">:]])</span>
+    <span class="k">return</span> <span class="n">blocks</span>
+
+
+<span class="c1"># the morphologies are shipped compressed</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;MADN&quot;</span><span class="p">,</span> <span class="s2">&quot;BCP&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.hdf5.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">fout</span><span class="p">)</span>
+<span class="c1"># networkgen does not overwrite state files: remove those of a previous run</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;model_*.hdf5&quot;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="The-morphologies">
+<h2>The morphologies<a class="headerlink" href="#The-morphologies" title="Link to this heading">¶</a></h2>
+<p>Both state files contain 1000 molecules in a cubic box (MADN 8.8 nm, BCP 8.1 nm) with everything the transport calculators need: centers of mass, site energies (electrostatic and polarization contributions from polarizable force fields, plus internal energies), electronic couplings <span class="math notranslate nohighlight">\(|J|^2\)</span> for holes and electrons in a neighbor list, and reorganization energies. For MADN only the holes have site energies. To keep the files small, each molecule is represented by one pseudo atom at its center
+of mass.</p>
+</section>
+<section id="Fitting-the-model-to-MADN">
+<h2>Fitting the model to MADN<a class="headerlink" href="#Fitting-the-model-to-MADN" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">networkfit</span></code> determines all parameters of the model:</p>
+<ul class="simple">
+<li><p>the <strong>point process</strong> of the sites, from the nearest-neighbor distance distribution <span class="math notranslate nohighlight">\(D(r)\)</span>, the spherical contact distribution <span class="math notranslate nohighlight">\(H(r)\)</span> and the pair correlation function <span class="math notranslate nohighlight">\(g(r)\)</span>,</p></li>
+<li><p>the <strong>site energies</strong>: mean, width <span class="math notranslate nohighlight">\(\sigma\)</span> and the spatial correlation <span class="math notranslate nohighlight">\(\kappa(r)\)</span>, described by a moving average over the <span class="math notranslate nohighlight">\(l_b\)</span> and <span class="math notranslate nohighlight">\(l_c\)</span> nearest sites,</p></li>
+<li><p>the <strong>connection probability</strong> <span class="math notranslate nohighlight">\(f(r)\)</span> of two sites at distance <span class="math notranslate nohighlight">\(r\)</span>,</p></li>
+<li><p>the <strong>couplings</strong>: mean and variance of <span class="math notranslate nohighlight">\(\log_{10}|J|^2\)</span> against <span class="math notranslate nohighlight">\(r\)</span> and the distribution of the residuals,</p></li>
+<li><p><strong>traps</strong> from the slow modes of the master equation,</p></li>
+<li><p>for two carriers, the correlation of their site energies and couplings.</p></li>
+</ul>
+<p>It then generates <code class="docutils literal notranslate"><span class="pre">validate</span></code> (4) model boxes of the same size and compares their statistics with the morphology. The fit of the point process takes about two minutes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_tools -e networkfit -c job_name=MADN statefile=MADN.hdf5 &#39;carriers=h e&#39; &quot;</span>
+          <span class="s2">&quot;statsfile=MADN_stats.dat energyfile=MADN_E.txt&quot;</span><span class="p">)</span>
+<span class="n">show_log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Read MADN.hdf5 frame 0: 1000 sites, 8764 pairs, box 8.80658 x 8.80658 x 8.80658 nm^3
+Traps for h (slow modes of the master equation at 300 K): largest eigenvalue ratio 2.28 after 1 slow mode(s): no traps
+Traps for e (slow modes of the master equation at 300 K): largest eigenvalue ratio 1.15 after 1 slow mode(s): no traps
+Point process: r_h = 0.374102 nm, radius mean = 0.150445 nm, variance = 0.00803475 nm^2 (objective 0.00165453, 90 evaluations)
+Connection probability tabulated up to 2.25 nm
+Carrier h: site energies mean 5.54854 eV, sigma 0.0866746 eV (sample), 0.0945774 eV = 3.65842 kT (model, corrected for the finite system)
+    moving average w_a = 0.283967, w_b = 0.219236 (l_b = 4), w_c = 0.496797 (l_c = 320), rms of kappa 0.0208622, mean correlation over all pairs 0.160136
+    log10(J^2/eV^2) = -0.305017 + -5.10259 r/nm, variance 0.449331 + 1.51769 r/nm; residual skewness -0.813854, excess kurtosis 1.3627; 8764 couplings
+    lambda = 0.307031 eV (U_nX_nN 0.120751, U_xN_xX 0.18628), internal energy U_xX_nN 6.40378 eV
+    the density of occupied states at 300 K needs about 7.82e+07 sites
+Carrier e: site energies mean -0.973816 eV, sigma 0 eV (sample), 0 eV = 0 kT (model, corrected for the finite system); no energy disorder (all site energies equal)
+    log10(J^2/eV^2) = -0.572674 + -4.54076 r/nm, variance 0.593436 + 1.43016 r/nm; residual skewness -0.613832, excess kurtosis 1.36039; 8764 couplings
+    lambda = 0.377785 eV (U_nX_nN 0.157541, U_xN_xX 0.220244), internal energy U_xX_nN -0.973816 eV
+    the density of occupied states at 300 K needs about 2.28e+02 sites
+Correlation of the site energies of h and e: 0, of the coupling residuals: 0.499939
+Wrote MADN_network.xml
+Wrote MADN_E.txt
+Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard deviation over the networks; 0 trap(s) inserted in total:
+    quantity                              microscopic   model         sd
+    pairs per site                        17.53         17.91         0.1576
+    mean nearest neighbour distance (nm)  0.6833        0.6923        0.002636
+    sigma h (eV)                          0.08667       0.08438       0.001866
+    mean log10(J^2/eV^2) h                -6.373        -6.301        0.02827
+    sd log10(J^2/eV^2) h                  2.128         2.139         0.005257
+    kappa h at 0.75 nm                    0.3844        0.4496        0.08872
+    kappa h at 1.00 nm                    0.319         0.2891        0.1051
+    kappa h at 1.50 nm                    0.2155        0.2191        0.08526
+    kappa h at 2.00 nm                    0.2145        0.1441        0.05248
+    sigma e (eV)                          9.252e-15     0             0
+    mean log10(J^2/eV^2) e                -5.973        -5.919        0.01626
+    sd log10(J^2/eV^2) e                  2.024         2.027         0.006802
+    log10 D zero field h (m^2/s)          -8.794        -8.719        0.1721
+    traps found h                         0             0             0
+    log10 D zero field e (m^2/s)          -7.022        -7.063        0.01399
+    traps found e                         0             0             0
+Wrote MADN_stats.dat
+</pre></div></div>
+</div>
+<p>The model has no traps for MADN. The width of the hole DOS is about <span class="math notranslate nohighlight">\(3.7\,k_BT\)</span> (after correcting the sample value for the finite box, see the manual). The validation table compares the morphology with the model boxes: geometry, energies, couplings, the energy correlation at a few distances and the exact zero-field diffusion coefficient of one hole. The morphology lies within the spread of the model boxes.</p>
+<p>The parameter file is plain XML and can be edited:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;MADN_network.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;?xml version=&#34;1.0&#34;?&gt;
+&lt;!-- stochastic network model; lengths nm, energies eV, couplings log10(J^2/eV^2) with r in nm --&gt;
+&lt;stochasticnetwork&gt;
+  &lt;sites&gt;1000&lt;/sites&gt;
+  &lt;box&gt;8.806579366 8.806579366 8.806579366&lt;/box&gt;
+  &lt;seed&gt;1&lt;/seed&gt;
+  &lt;segmentname&gt;site&lt;/segmentname&gt;
+  &lt;points&gt;
+    &lt;hardcore&gt;0.374102362&lt;/hardcore&gt;
+    &lt;radiusmean&gt;0.1504448321&lt;/radiusmean&gt;
+    &lt;radiusvariance&gt;0.008034751324&lt;/radiusvariance&gt;
+    &lt;candidates&gt;3&lt;/candidates&gt;
+    &lt;maxiterations&gt;200&lt;/maxiterations&gt;
+  &lt;/points&gt;
+  &lt;connection&gt;
+    &lt;r&gt;0.0249999982 0.0749999946 0.124999991 0.1749999874 0.2249999838 0.2749999802 0.3249999766 0.374999973 0.4249999694 0.4749999658 0.5249999622 0.5749999586 0.624999955 0.6749999514 0.7249999478 0.7749999442 0.8249999406 0.874999937 0.9249999334 0.9749999298 1.024999926 1.074999923 1.124999919 1.174999915 1.224999912 1.274999908 1.324999905 1.374999901 1.424999897 1.474999894 1.52499989 1.574999887 1.624999883 1.674999879 1.724999876 1.774999872 1.824999869 1.874999865 1.924999861 1.974999858 2.024999854 2.074999851 2.124999847 2.174999844 2.22499984 2.249999838&lt;/r&gt;
+    &lt;p&gt;1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.9976247031 0.9888888889 0.9727095517 0.9350877193 0.8989726027 0.8215339233 0.7546099291 0.7124010554 0.6395209581 0.5413870246 0.4651898734 0.3446852425 0.284729064 0.199285076 0.1817434211 0.1335428123 0.09370529328 0.0685483871 0.04347826087 0.03107165504 0.01865889213 0.007900677201 0.007107709131 0.004573170732 0.003360537686 0.0004424778761 0.0004184100418 0&lt;/p&gt;
+  &lt;/connection&gt;
+  &lt;energycorrelation&gt;0&lt;/energycorrelation&gt;
+  &lt;couplingcorrelation&gt;0.4999393332&lt;/couplingcorrelation&gt;
+  &lt;carrier&gt;
+    &lt;state&gt;h&lt;/state&gt;
+    &lt;energy&gt;
+      &lt;mean&gt;-0.855232802&lt;/mean&gt;
+      &lt;sigma&gt;0.0945774285&lt;/sigma&gt;
+      &lt;w_a&gt;0.2839667738&lt;/w_a&gt;
+      &lt;w_b&gt;0.2192357483&lt;/w_b&gt;
+      &lt;l_b&gt;4&lt;/l_b&gt;
+      &lt;l_c&gt;320&lt;/l_c&gt;
+    &lt;/energy&gt;
+    &lt;coupling&gt;
+      &lt;meanoffset&gt;-0.3050167335&lt;/meanoffset&gt;
+      &lt;meanslope&gt;-5.102594431&lt;/meanslope&gt;
+      &lt;varoffset&gt;0.4493308662&lt;/varoffset&gt;
+      &lt;varslope&gt;1.517685839&lt;/varslope&gt;
+      &lt;quantiles&gt;-3.420121743 -2.637935168 -2.303488165 -2.093817843 -1.914211405 -1.806731319 -1.656580187 -1.534664686 -1.42529787 -1.331089531 -1.26618667 -1.182166496 -1.115826326 -1.058626816 -1.003037862 -0.9461941003 -0.8997000934 -0.8607168974 -0.8215968043 -0.7731326343 -0.7227289764 -0.6842595441 -0.6484713735 -0.6093153565 -0.5716427732 -0.5416754553 -0.5102307911 -0.4767094971 -0.4436469088 -0.4096935959 -0.3821298367 -0.3508875744 -0.3230685588 -0.2978219491 -0.2712625341 -0.2434024378 -0.2140584673 -0.1854267889 -0.1545693677 -0.1303622793 -0.102229902 -0.07865509707 -0.05644764608 -0.03181859111 0.0003354005276 0.02456304849 0.04606325258 0.06846111185 0.09208423877 0.1125874317 0.1366063245 0.1595519738 0.1852524914 0.2052686025 0.2286434498 0.256272584 0.2792270308 0.2990963419 0.3217181629 0.3434401665 0.3660460541 0.3871567998 0.4119165091 0.4357022876 0.4545999226 0.4767134975 0.4993714918 0.5204487183 0.5416988603 0.5638084629 0.5864318519 0.6124003791 0.6350906322 0.6566116618 0.6794067688 0.7021269771 0.7201191155 0.7467774661 0.7726600669 0.8014904574 0.8289215241 0.8598009326 0.8851296918 0.9127315122 0.9468718739 0.9772040102 1.002602816 1.033009739 1.060909165 1.095112443 1.142644063 1.202570084 1.244904916 1.303180664 1.369837251 1.436303458 1.514333396 1.618332274 1.779828203 2.068772324&lt;/quantiles&gt;
+    &lt;/coupling&gt;
+    &lt;U_xX_nN&gt;6.403777367&lt;/U_xX_nN&gt;
+    &lt;U_nX_nN&gt;0.1207508793&lt;/U_nX_nN&gt;
+    &lt;U_xN_xX&gt;0.1862802309&lt;/U_xN_xX&gt;
+  &lt;/carrier&gt;
+  &lt;carrier&gt;
+    &lt;state&gt;e&lt;/state&gt;
+    &lt;energy&gt;
+      &lt;mean&gt;-7.363859902e-15&lt;/mean&gt;
+      &lt;sigma&gt;0&lt;/sigma&gt;
+      &lt;w_a&gt;1&lt;/w_a&gt;
+      &lt;w_b&gt;0&lt;/w_b&gt;
+      &lt;l_b&gt;1&lt;/l_b&gt;
+      &lt;l_c&gt;1&lt;/l_c&gt;
+    &lt;/energy&gt;
+    &lt;coupling&gt;
+      &lt;meanoffset&gt;-0.5726738342&lt;/meanoffset&gt;
+      &lt;meanslope&gt;-4.540762141&lt;/meanslope&gt;
+      &lt;varoffset&gt;0.5934362375&lt;/varoffset&gt;
+      &lt;varslope&gt;1.430155713&lt;/varslope&gt;
+      &lt;quantiles&gt;-3.270761592 -2.518371092 -2.218640505 -2.012158393 -1.884803247 -1.724743304 -1.603330842 -1.484989195 -1.395995007 -1.309659636 -1.241890878 -1.175319334 -1.117877439 -1.045838033 -0.9936357149 -0.9484612026 -0.9097259413 -0.8588974351 -0.8166627038 -0.7760851797 -0.7328152898 -0.6885948595 -0.6519572111 -0.6148038296 -0.5837971669 -0.5476658273 -0.5091654728 -0.4820212455 -0.4492284434 -0.4160126412 -0.395611642 -0.3653803654 -0.3361533167 -0.311835723 -0.2799754546 -0.2550081101 -0.2305442382 -0.2056499708 -0.1811839018 -0.1602006343 -0.136578794 -0.1125979804 -0.08405545778 -0.06036556363 -0.0354347584 -0.01378947147 0.01184038673 0.03356875624 0.05769673729 0.0827590655 0.1073150747 0.128667251 0.1523652939 0.1713834994 0.1928778575 0.2122303152 0.2378098208 0.2587653249 0.2785546362 0.2979440231 0.3211192496 0.3424446173 0.3618077872 0.3848763938 0.4065152926 0.4273790559 0.4494480404 0.4698678366 0.4926235964 0.5174184384 0.5448283913 0.5673311892 0.591030109 0.6123844277 0.6313182528 0.6558802199 0.6798739168 0.7085168407 0.7342885342 0.770011529 0.7984282912 0.8321629095 0.8618212317 0.8954778055 0.9334699635 0.960833925 0.9993652533 1.0427388 1.086548629 1.137539015 1.196823113 1.246579621 1.304762626 1.387684571 1.443025147 1.538317982 1.654929243 1.798270573 1.99355875 2.346311823&lt;/quantiles&gt;
+    &lt;/coupling&gt;
+    &lt;U_xX_nN&gt;-0.9738158922&lt;/U_xX_nN&gt;
+    &lt;U_nX_nN&gt;0.1575413626&lt;/U_nX_nN&gt;
+    &lt;U_xN_xX&gt;0.2202440377&lt;/U_xN_xX&gt;
+  &lt;/carrier&gt;
+&lt;/stochasticnetwork&gt;
+
+</pre></div></div>
+</div>
+<p>The fitted functions from the <code class="docutils literal notranslate"><span class="pre">statsfile</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">stats_blocks</span><span class="p">(</span><span class="s2">&quot;MADN_stats.dat&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">ylabel</span> <span class="ow">in</span> <span class="p">((</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;nearest neighbour distance distribution D(r)&quot;</span><span class="p">,</span> <span class="s2">&quot;D(r)&quot;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;spherical contact distribution H(r)&quot;</span><span class="p">,</span> <span class="s2">&quot;H(r)&quot;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;pair correlation function g(r)&quot;</span><span class="p">,</span> <span class="s2">&quot;g(r)&quot;</span><span class="p">)):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model (mean of boxes)&quot;</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;r (nm)&quot;</span><span class="p">);</span> <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">);</span> <span class="n">a</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;pairs per site in distance bins&quot;</span><span class="p">]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;connection probability f(r)&quot;</span><span class="p">]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">f</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;f(r)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;r (nm)&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;pairs per site / f(r)&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;energy correlation kappa(r), carrier h&quot;</span><span class="p">]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;moving average&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;r (nm)&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\kappa(r)$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;mean log10(J^2/eV^2), carrier h&quot;</span><span class="p">]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;r (nm)&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;mean $\log_</span><span class="si">{10}</span><span class="s2">(|J|^2/\mathrm</span><span class="si">{eV}</span><span class="s2">^2)$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_7_0.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_7_0.png" />
+</div>
+</div>
+<p>The correlation of the site energies reaches far: the best long-range average uses <span class="math notranslate nohighlight">\(l_c\approx 300\)</span> sites, a third of the box. How well this range is determined shows the quality of the fit for every <span class="math notranslate nohighlight">\(l_c\)</span>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scan</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;rms of the best kappa fit for each l_c, carrier h&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scan</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">scan</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$l_c$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;rms deviation of $\kappa(r)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_9_0.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_9_0.png" />
+</div>
+</div>
+<p>The minimum is shallow: correlations over distances comparable to the box are not well determined by a box of 1000 molecules.</p>
+</section>
+<section id="Transport:-morphology,-model-boxes,-larger-networks">
+<h2>Transport: morphology, model boxes, larger networks<a class="headerlink" href="#Transport:-morphology,-model-boxes,-larger-networks" title="Link to this heading">¶</a></h2>
+<p>We compare the exact mobility of one hole at <span class="math notranslate nohighlight">\(10^7\)</span> V/m (from the master equation, computed by <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code>; no sampling noise) in the morphology with model boxes of the same size, and then with larger networks. Each model box is a new realization (<code class="docutils literal notranslate"><span class="pre">seed</span></code>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_madn</span> <span class="o">=</span> <span class="n">mobility</span><span class="p">(</span><span class="s2">&quot;MADN.hdf5&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MADN morphology: </span><span class="si">{</span><span class="n">mu_madn</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2"> cm^2/Vs&quot;</span><span class="p">)</span>
+
+<span class="n">madn</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">seeds</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)),</span> <span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))):</span>
+    <span class="n">madn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">mobility</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;MADN_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_madn_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sites</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seeds</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;sites:&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">madn</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MADN morphology: 7.702e-04 cm^2/Vs
+1000 sites: 3.72e-04 8.35e-04 1.02e-03 1.16e-03 7.45e-04 5.87e-04 7.51e-04 7.54e-04 1.97e-03 7.35e-05 6.59e-04 5.47e-04
+8000 sites: 3.80e-04 2.51e-04 4.25e-04
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">madn</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">([</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="n">values</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">values</span><span class="p">))),</span> <span class="s2">&quot;k_&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mu_madn</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology (1000 molecules)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;sites&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mu$ (cm$^2$/Vs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;MADN holes: model networks (black: geometric mean)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_12_0.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_12_0.png" />
+</div>
+</div>
+<p>The morphology lies within the spread of the model boxes of the same size: the model reproduces its transport. The boxes of 1000 sites scatter by a factor of a few, single boxes by more than an order of magnitude; boxes of 8000 sites scatter less, and their mean is lower. Even 8000 sites are not converged: for <span class="math notranslate nohighlight">\(\sigma\approx3.7\,k_BT\)</span> the criterion of Baumeier et al., <span class="math notranslate nohighlight">\((\sigma/k_BT)^2\le-5.7+1.05\ln N\)</span>, asks for about <span class="math notranslate nohighlight">\(10^8\)</span> sites. In a study one would continue to
+<span class="math notranslate nohighlight">\(10^5\)</span>–<span class="math notranslate nohighlight">\(10^6\)</span> sites (the exact solution takes minutes for <span class="math notranslate nohighlight">\(10^5\)</span> sites; beyond that, use the kinetic Monte Carlo results) and extrapolate.</p>
+</section>
+<section id="BCP:-strong-disorder-and-a-trap">
+<h2>BCP: strong disorder and a trap<a class="headerlink" href="#BCP:-strong-disorder-and-a-trap" title="Link to this heading">¶</a></h2>
+<p>BCP has a much broader DOS. The fit also looks for traps:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_tools -e networkfit -c job_name=BCP statefile=BCP.hdf5 &#39;carriers=h e&#39; &quot;</span>
+          <span class="s2">&quot;statsfile=BCP_stats.dat energyfile=BCP_E.txt&quot;</span><span class="p">)</span>
+<span class="n">show_log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Read BCP.hdf5 frame 0: 1000 sites, 9040 pairs, box 8.1484 x 8.1484 x 8.1484 nm^3
+Traps for h (slow modes of the master equation at 300 K): largest eigenvalue ratio 658 after 1 slow mode(s)
+    trap of 1 site(s): 66 (-0.913 eV)
+      equilibrium weight 1; release rate 0.000635 1/s, capture rate 2.67 1/s (slow mode 2.68 1/s); hops out 1.24e+03 1/s
+Traps for e (slow modes of the master equation at 300 K): largest eigenvalue ratio 14.8 after 1 slow mode(s)
+    trap of 1 site(s): 922 (-0.768 eV)
+      equilibrium weight 0.998; release rate 79.1 1/s, capture rate 4.18e+04 1/s (slow mode 4.19e+04 1/s); hops out 1.84e+06 1/s
+Point process: r_h = 0.323292 nm, radius mean = 0.149429 nm, variance = 0.00928965 nm^2 (objective 0.00357693, 89 evaluations)
+Connection probability tabulated up to 1.9 nm
+Carrier h: site energies mean 6.23058 eV, sigma 0.190251 eV (sample), 0.193911 eV = 7.50081 kT (model, corrected for the finite system)
+    moving average w_a = 0.278266, w_b = 0.450593 (l_b = 10), w_c = 0.271141 (l_c = 120), rms of kappa 0.0181197, mean correlation over all pairs 0.0373959
+    log10(J^2/eV^2) = -1.13814 + -4.81721 r/nm, variance 0.555497 + 2.09411 r/nm; residual skewness -0.532485, excess kurtosis 0.541252; 9040 couplings
+    lambda = 0.493971 eV (U_nX_nN 0.252321, U_xN_xX 0.241649), internal energy U_xX_nN 7.20386 eV
+    the density of occupied states at 300 K needs about 4.25e+25 sites
+Carrier e: site energies mean -0.670845 eV, sigma 0.1956 eV (sample), 0.200109 eV = 7.74056 kT (model, corrected for the finite system)
+    moving average w_a = 0.251142, w_b = 0.545231 (l_b = 2), w_c = 0.203626 (l_c = 360), rms of kappa 0.0172329, mean correlation over all pairs 0.044557
+    log10(J^2/eV^2) = -1.04847 + -4.66106 r/nm, variance 0.500034 + 1.75677 r/nm; residual skewness -0.620295, excess kurtosis 0.911702; 9040 couplings
+    lambda = 0.5702 eV (U_nX_nN 0.290565, U_xN_xX 0.279635), internal energy U_xX_nN -0.194843 eV
+    the density of occupied states at 300 K needs about 1.38e+27 sites
+Correlation of the site energies of h and e: -0.899183, of the coupling residuals: 0.569213
+Wrote BCP_network.xml
+Wrote BCP_E.txt
+Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard deviation over the networks; 8 trap(s) inserted in total:
+    quantity                              microscopic   model         sd
+    pairs per site                        18.08         18.52         0.08562
+    mean nearest neighbour distance (nm)  0.6264        0.634         0.003033
+    sigma h (eV)                          0.1923        0.1918        0.004267
+    mean log10(J^2/eV^2) h                -6.434        -6.366        0.01519
+    sd log10(J^2/eV^2) h                  2.106         2.138         0.001556
+    kappa h at 0.75 nm                    0.4619        0.4259        0.08725
+    kappa h at 1.00 nm                    0.3663        0.3462        0.05554
+    kappa h at 1.50 nm                    0.1754        0.1949        0.0451
+    kappa h at 2.00 nm                    0.0822        0.09835       0.05064
+    sigma e (eV)                          0.1985        0.1977        0.005532
+    mean log10(J^2/eV^2) e                -6.173        -6.115        0.02196
+    sd log10(J^2/eV^2) e                  1.977         2.004         0.02672
+    kappa e at 0.75 nm                    0.4583        0.3775        0.088
+    kappa e at 1.00 nm                    0.3233        0.3147        0.06236
+    kappa e at 1.50 nm                    0.1624        0.1917        0.06001
+    kappa e at 2.00 nm                    0.08519       0.1017        0.06399
+    site energy correlation               -0.8966       -0.9041       0.01014
+    log10 D zero field h (m^2/s)          -19.03        -18.72        0.4978
+    traps found h                         1             1.5           0.866
+    log10 D zero field e (m^2/s)          -16           -16.33        1.752
+    traps found e                         1             1.25          0.433
+Wrote BCP_stats.dat
+</pre></div></div>
+</div>
+<p>For holes <code class="docutils literal notranslate"><span class="pre">networkfit</span></code> finds a single-molecule trap: one molecule 0.9 eV below the mean holds practically all of the equilibrium weight. A hole leaves it at a rate of about <span class="math notranslate nohighlight">\(10^{-3}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>, although it hops out at about <span class="math notranslate nohighlight">\(10^3\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>: almost every hop out is followed by a hop back. For electrons there is a trap, too. The trap is far outside the Gaussian DOS of the rest of the morphology:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;BCP_E.txt&quot;</span><span class="p">)</span>  <span class="c1"># id, x, y, z, E_h, E_e, hole trap, electron trap</span>
+<span class="n">eh</span><span class="p">,</span> <span class="n">trap</span> <span class="o">=</span> <span class="n">E</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">E</span><span class="p">[:,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">bulk</span> <span class="o">=</span> <span class="n">eh</span><span class="p">[</span><span class="n">trap</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">eh</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">eh</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">eh</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">bulk</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="s2">&quot;k-&quot;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Gaussian, $</span><span class="se">\\</span><span class="s2">sigma$ = </span><span class="si">{</span><span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> eV = </span><span class="si">{</span><span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">kT</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> $k_BT$&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eh</span><span class="p">[</span><span class="n">trap</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;hole trap&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">bulk</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">kT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;equilibrium energy $-\sigma^2/k_BT$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;hole site energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">bulk</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">kT</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sigma/kT = </span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">; sites needed by the criterion: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5.7</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1.05</span><span class="p">)</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_16_0.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_16_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+sigma/kT = 7.36; sites needed by the criterion: 5.6e+24
+</pre></div></div>
+</div>
+<p>In an infinite Gaussian DOS of this width a hole would sit around <span class="math notranslate nohighlight">\(-\sigma^2/k_BT\)</span>, far below every site of the box. With <span class="math notranslate nohighlight">\(\sigma/k_BT\approx7.5\)</span> the criterion asks for about <span class="math notranslate nohighlight">\(10^{25}\)</span> sites, which no simulation reaches.</p>
+<p>The trap is stored as a template in the parameter file (its energies for both carriers relative to the bulk mean) with the density of the morphology, one per 1000 sites; <code class="docutils literal notranslate"><span class="pre">networkgen</span></code> inserts it at random places. How much does it matter?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_bcp</span> <span class="o">=</span> <span class="n">mobility</span><span class="p">(</span><span class="s2">&quot;BCP.hdf5&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BCP morphology: </span><span class="si">{</span><span class="n">mu_bcp</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2"> cm^2/Vs&quot;</span><span class="p">)</span>
+<span class="n">bcp_traps</span> <span class="o">=</span> <span class="p">[</span><span class="n">mobility</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;BCP_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_bcp_t</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
+<span class="n">bcp_plain</span> <span class="o">=</span> <span class="p">[</span><span class="n">mobility</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;BCP_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_bcp_p</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">trapfactor</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;without traps:&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">bcp_plain</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;with traps:   &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">bcp_traps</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">bcp_plain</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model, Gaussian only&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">([</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">bcp_traps</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model with the trap template&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mu_bcp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;no traps&quot;</span><span class="p">,</span> <span class="s2">&quot;with traps&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mu$ (cm$^2$/Vs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;BCP holes, boxes of 1000 sites&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+BCP morphology: 2.664e-14 cm^2/Vs
+without traps: 1.0e-08 1.5e-06 5.1e-08 3.0e-07 1.1e-08 7.3e-08 7.8e-08 7.7e-10
+with traps:    7.1e-14 2.9e-12 5.1e-14 5.6e-14 2.4e-13 2.7e-14 4.7e-14 1.7e-14
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_18_1.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_18_1.png" />
+</div>
+</div>
+<p>Without the trap the model boxes are four to eight orders of magnitude faster than the morphology; with one trap per box most come within a factor of a few (the trap template is the same, its surroundings differ). A Gaussian model alone cannot describe BCP.</p>
+<p>The trap density, however, is the least certain parameter: one trap in 1000 molecules fixes it only to between 0.025 and 5.6 times <span class="math notranslate nohighlight">\(10^{-3}\)</span> per site (95 % Poisson interval). <code class="docutils literal notranslate"><span class="pre">trapfactor</span></code> multiplies the density; a scan with networks of 8000 sites:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">scan</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="p">[</span><span class="n">mobility</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;BCP_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_bcp8k_</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sites</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">trapfactor</span><span class="o">=</span><span class="n">f</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">factors</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">([</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scan</span><span class="p">[</span><span class="n">f</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mu_bcp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;morphology (1000 molecules)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">factors</span><span class="p">)),</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="si">}</span><span class="s2"> traps)&quot;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;trapfactor (hole traps in 8000 sites)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mu$ (cm$^2$/Vs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_STOCHASTIC_NETWORK_20_0.png" src="../_images/xtp-tutorials_STOCHASTIC_NETWORK_20_0.png" />
+</div>
+</div>
+<p>The mobility is set by the trap density over many orders of magnitude. A prediction for BCP therefore needs the trap density from a larger or independent source (more morphologies, or the chemistry of the trap); the model makes this dependence explicit instead of hiding it in one box.</p>
+</section>
+<section id="Many-small-boxes-are-not-one-large-box">
+<h2>Many small boxes are not one large box<a class="headerlink" href="#Many-small-boxes-are-not-one-large-box" title="Link to this heading">¶</a></h2>
+<p>With such broad distributions it is tempting to average over many small boxes. We generate 24 boxes of 1000 sites and 4 of 8000 sites of the Gaussian BCP model (no traps; two of the large ones are reused from the scan above) and compare averages of groups of 8 small boxes with the large boxes:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small</span><span class="p">,</span> <span class="n">lnZ</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">generate</span><span class="p">(</span><span class="s2">&quot;BCP_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_bcp_small_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">100</span> <span class="o">+</span> <span class="n">s</span><span class="p">,</span> <span class="n">trapfactor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">energyfile</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">small</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mobility</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_bcp_small_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_E.txt&quot;</span><span class="p">)[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">/</span> <span class="n">kT</span>      <span class="c1"># hole energies</span>
+    <span class="n">lnZ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>         <span class="c1"># ln of the Boltzmann sum</span>
+<span class="n">small</span><span class="p">,</span> <span class="n">lnZ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">small</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lnZ</span><span class="p">)</span>
+<span class="n">large</span> <span class="o">=</span> <span class="n">scan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">mobility</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;BCP_network.xml&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;model_bcp8k_0_</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sites</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">trapfactor</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+                   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">means</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;arithmetic&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;geometric&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;harmonic&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;Boltzmann-weighted&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">small</span><span class="p">),</span> <span class="mi">8</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lnZ</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">lnZ</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">means</span><span class="p">[</span><span class="s2">&quot;arithmetic&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">small</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+    <span class="n">means</span><span class="p">[</span><span class="s2">&quot;geometric&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">small</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">means</span><span class="p">[</span><span class="s2">&quot;harmonic&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">small</span><span class="p">[</span><span class="n">k</span><span class="p">])))</span>
+    <span class="n">means</span><span class="p">[</span><span class="s2">&quot;Boltzmann-weighted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">w</span> <span class="o">*</span> <span class="n">small</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;log10 mobility (cm^2/Vs), mean +- standard deviation&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  single boxes of 1000 sites   </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">small</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">small</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  boxes of 8000 sites          </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">large</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">large</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">means</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">key</span><span class="si">:</span><span class="s2">19s</span><span class="si">}</span><span class="s2"> of 8 small </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+log10 mobility (cm^2/Vs), mean +- standard deviation
+  single boxes of 1000 sites    -7.93 +- 1.18
+  boxes of 8000 sites           -8.67 +- 0.65
+  arithmetic          of 8 small  -7.12 +- 0.40
+  geometric           of 8 small  -7.93 +- 0.35
+  harmonic            of 8 small  -9.21 +- 0.74
+  Boltzmann-weighted  of 8 small  -8.83 +- 0.66
+</pre></div></div>
+</div>
+<p>The mobilities of the small boxes spread over orders of magnitude, and their plain means do not agree with the large boxes: the arithmetic mean is dominated by rare fast boxes, the harmonic mean by rare slow ones, and the geometric mean describes a typical box, which is not what a large system does.</p>
+<p>The reason is the equilibrium of a single carrier. In a large system made of sub-boxes <span class="math notranslate nohighlight">\(k\)</span> the carrier is found in sub-box <span class="math notranslate nohighlight">\(k\)</span> with the probability <span class="math notranslate nohighlight">\(P_k = Z_k/\sum_l Z_l\)</span>, with the Boltzmann sum <span class="math notranslate nohighlight">\(Z_k=\sum_{A\in k}e^{-E_A/k_BT}\)</span>, and the drift velocity is <span class="math notranslate nohighlight">\(\mathbf v=\sum_k P_k\mathbf v_k\)</span>. If the sub-boxes behave as isolated boxes, the mobility of the large system is the Boltzmann-weighted mean <span class="math notranslate nohighlight">\(\sum_k Z_k\mu_k/\sum_k Z_k\)</span>, which agrees with the boxes of 8000
+sites much better. It is still an approximation: carriers also leave a deep region across the boundaries of a sub-box, which isolated boxes do not have.</p>
+<p>For a Gaussian DOS, <span class="math notranslate nohighlight">\(Z/N\)</span> fluctuates from box to box unless <span class="math notranslate nohighlight">\(N\gg e^{(\sigma/k_BT)^2}\)</span>. Below that, <span class="math notranslate nohighlight">\(Z\)</span> is dominated by the deepest site of the box, and so is the mobility. Many realizations of small boxes are therefore, at best, one larger box in pieces: they do not converge to the mobility of a large system. Converged values need large enough networks, or an extrapolation in size or temperature (Kordt et al., J. Chem. Theory Comput. 10, 2508 (2014)).</p>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">networkfit</span></code> turns a morphology into a stochastic network model; check the validation table, the fitted functions and the transport of model boxes of the same size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">networkgen</span></code> generates networks of any size; follow the mobility with size until it stops changing, using several realizations per size.</p></li>
+<li><p>For broad DOS, finite boxes are dominated by their deepest sites; plain averages over many small boxes are biased.</p></li>
+<li><p>Traps found in the morphology are inserted as templates; their density is uncertain and should be scanned with <code class="docutils literal notranslate"><span class="pre">trapfactor</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="TRANSPORT.html" class="btn btn-neutral float-left" title="Charge and exciton transport on a model lattice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="LAMMPS_KMC.html" class="btn btn-neutral float-right" title="Charge transport in an amorphous thiophene morphology" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

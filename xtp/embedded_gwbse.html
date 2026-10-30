@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. Embedded GW-BSE: Screening by a Polarizable Environment &mdash; VOTCA 2026-dev documentation</title>
+  <title>10. Embedded GW-BSE: Screening by a Polarizable Environment &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. XTP ASE Interface" href="pyxtp.html" />
-    <link rel="prev" title="8. Polarizable Environments: Thole and Charge-Response Models" href="polarizable_environment.html" /> 
+    <link rel="next" title="11. XTP ASE Interface" href="pyxtp.html" />
+    <link rel="prev" title="9. Polarizable Environments: Thole and Charge-Response Models" href="polarizable_environment.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,23 +58,24 @@
 <li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">9. Embedded GW-BSE: Screening by a Polarizable Environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#the-reaction-field">9.1. The reaction field</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quasiparticle-energies-gw">9.2. Quasiparticle energies (GW)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#neutral-excitations-bse">9.3. Neutral excitations (BSE)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#site-widths-and-stability">9.4. Site widths and stability</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#shell-regions">9.5. Shell regions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#relation-to-the-iterative-scheme">9.6. Relation to the iterative scheme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#usage">9.7. Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example">9.8. Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. Embedded GW-BSE: Screening by a Polarizable Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-reaction-field">10.1. The reaction field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quasiparticle-energies-gw">10.2. Quasiparticle energies (GW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neutral-excitations-bse">10.3. Neutral excitations (BSE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-widths-and-stability">10.4. Site widths and stability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shell-regions">10.5. Shell regions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relation-to-the-iterative-scheme">10.6. Relation to the iterative scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">10.7. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">10.8. Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -116,7 +117,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">9. </span>Embedded GW-BSE: Screening by a Polarizable Environment</li>
+      <li class="breadcrumb-item active"><span class="section-number">10. </span>Embedded GW-BSE: Screening by a Polarizable Environment</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/embedded_gwbse.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -127,7 +128,7 @@
            <div itemprop="articleBody">
              
   <section id="embedded-gw-bse-screening-by-a-polarizable-environment">
-<h1><span class="section-number">9. </span>Embedded GW-BSE: Screening by a Polarizable Environment<a class="headerlink" href="#embedded-gw-bse-screening-by-a-polarizable-environment" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">10. </span>Embedded GW-BSE: Screening by a Polarizable Environment<a class="headerlink" href="#embedded-gw-bse-screening-by-a-polarizable-environment" title="Link to this heading">¶</a></h1>
 <p>An electronic excitation of a molecule in a solid is screened by its
 surroundings. When the excitation rearranges charge, the neighbouring
 molecules polarize in response, and that response acts back on the
@@ -156,7 +157,7 @@ the iterative scheme cannot represent (see <a class="reference internal" href="#
 The <code class="docutils literal notranslate"><span class="pre">radial_dielectric</span></code> correction of the legacy code is available within
 it as shell regions.</p>
 <section id="the-reaction-field">
-<h2><span class="section-number">9.1. </span>The reaction field<a class="headerlink" href="#the-reaction-field" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.1. </span>The reaction field<a class="headerlink" href="#the-reaction-field" title="Link to this heading">¶</a></h2>
 <p>The environment is the set of polarizable sites of the job’s polar
 regions: Thole-damped inducible point dipoles <a class="reference internal" href="bibliography.html#thole-1981" id="id3"><span>[Thole:1981]</span></a>. Polar regions
 with charge-response molecules respond with induced charges as well; the
@@ -172,7 +173,7 @@ induced dipoles <span class="math notranslate nohighlight">\(\boldsymbol{\mu} = 
 induced dipoles act back on the QM subsystem. The resulting additional
 interaction between two QM charge distributions is the reaction field</p>
 <div class="math notranslate nohighlight" id="equation-equ-embedded-vreac">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-equ-embedded-vreac" title="Link to this equation">¶</a></span>\[v_\text{reac} = -F A^{-1} F^{T},\]</div>
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-equ-embedded-vreac" title="Link to this equation">¶</a></span>\[v_\text{reac} = -F A^{-1} F^{T},\]</div>
 <p>and the QM electrons interact through</p>
 <div class="math notranslate nohighlight">
 \[u = v + v_\text{reac}\]</div>
@@ -181,7 +182,7 @@ negative semidefinite: the environment screens.</p>
 <p>In the resolution-of-identity representation used by GW-BSE, a product
 density <span class="math notranslate nohighlight">\(\rho_{mn}\)</span> is expanded in auxiliary functions,
 <span class="math notranslate nohighlight">\(F\)</span> becomes the field at the sites of each auxiliary function taken as
-a charge density, and <a class="reference internal" href="#equation-equ-embedded-vreac">Eq.9.1</a> turns into a matrix
+a charge density, and <a class="reference internal" href="#equation-equ-embedded-vreac">Eq.10.1</a> turns into a matrix
 <span class="math notranslate nohighlight">\(B = -F A^{-1} F^{T}\)</span> over the auxiliary basis. In the metric of the
 stored three-centre integrals <span class="math notranslate nohighlight">\(M_{mn}\)</span> (in which the bare <span class="math notranslate nohighlight">\(v\)</span> is
 the identity) it becomes</p>
@@ -200,7 +201,7 @@ nuclear-attraction (or, for smeared sites, two-centre Coulomb) integrals
 of each auxiliary function by a four-point central difference.</p>
 </section>
 <section id="quasiparticle-energies-gw">
-<h2><span class="section-number">9.2. </span>Quasiparticle energies (GW)<a class="headerlink" href="#quasiparticle-energies-gw" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.2. </span>Quasiparticle energies (GW)<a class="headerlink" href="#quasiparticle-energies-gw" title="Link to this heading">¶</a></h2>
 <p>With the environment, the screened interaction is</p>
 <div class="math notranslate nohighlight">
 \[W = \left[u^{-1} - \chi_0\right]^{-1},\]</div>
@@ -238,7 +239,7 @@ therefore include it directly, which is how the embedded scheme provides
 hole and electron site energies (see <a class="reference internal" href="#embedded-usage"><span class="std std-ref">Usage</span></a>).</p>
 </section>
 <section id="neutral-excitations-bse">
-<h2><span class="section-number">9.3. </span>Neutral excitations (BSE)<a class="headerlink" href="#neutral-excitations-bse" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.3. </span>Neutral excitations (BSE)<a class="headerlink" href="#neutral-excitations-bse" title="Link to this heading">¶</a></h2>
 <p>The BSE kernel becomes</p>
 <div class="math notranslate nohighlight">
 \[K = K^\text{x}[v] + K^\text{reac}[v_\text{reac}] + K^\text{d}[W_\text{tot}],
@@ -269,7 +270,7 @@ linear-response contribution. With <code class="docutils literal notranslate"><s
 the state analysis is labelled <code class="docutils literal notranslate"><span class="pre">&lt;K_x+K_reac&gt;</span></code>.</p>
 </section>
 <section id="site-widths-and-stability">
-<h2><span class="section-number">9.4. </span>Site widths and stability<a class="headerlink" href="#site-widths-and-stability" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.4. </span>Site widths and stability<a class="headerlink" href="#site-widths-and-stability" title="Link to this heading">¶</a></h2>
 <p>For a charge density and inducible points <em>outside</em> it, the reaction
 energy <span class="math notranslate nohighlight">\(\langle\rho|v_\text{reac}|\rho\rangle\)</span> is bounded by the
 dielectric limit, above <span class="math notranslate nohighlight">\(-\langle\rho|v|\rho\rangle\)</span>. In the metric of
@@ -302,7 +303,7 @@ their charge sits on the QM side and which polar sites carry their
 reaction, with distances.</p>
 </section>
 <section id="shell-regions">
-<h2><span class="section-number">9.5. </span>Shell regions<a class="headerlink" href="#shell-regions" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.5. </span>Shell regions<a class="headerlink" href="#shell-regions" title="Link to this heading">¶</a></h2>
 <p>Polar regions listed in <code class="docutils literal notranslate"><span class="pre">shell_regions</span></code> respond without mutual
 induction, each site with the polarizability
 <span class="math notranslate nohighlight">\(\alpha_j/\varepsilon_\text{shell}\)</span>:</p>
@@ -326,7 +327,7 @@ background to the ground state, as in any QM/MM job (see
 excitation, so it is not part of <span class="math notranslate nohighlight">\(R\)</span>.</p>
 </section>
 <section id="relation-to-the-iterative-scheme">
-<span id="embedded-vs-iterative"></span><h2><span class="section-number">9.6. </span>Relation to the iterative scheme<a class="headerlink" href="#relation-to-the-iterative-scheme" title="Link to this heading">¶</a></h2>
+<span id="embedded-vs-iterative"></span><h2><span class="section-number">10.6. </span>Relation to the iterative scheme<a class="headerlink" href="#relation-to-the-iterative-scheme" title="Link to this heading">¶</a></h2>
 <p>With a linear environment response, the total energy of the QM/MM system
 in a state <span class="math notranslate nohighlight">\(X\)</span> with QM density <span class="math notranslate nohighlight">\(\rho_X\)</span> is, at
 self-consistency,</p>
@@ -363,7 +364,7 @@ point charge in each orbital it occupies. The two can differ noticeably
 for orbitals spread over several separated parts of a molecule.</p>
 </section>
 <section id="usage">
-<span id="embedded-usage"></span><h2><span class="section-number">9.7. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<span id="embedded-usage"></span><h2><span class="section-number">10.7. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>The embedded scheme is switched on per QM region:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;qmregion&gt;</span>
 <span class="w">  </span><span class="nt">&lt;id&gt;</span>0<span class="nt">&lt;/id&gt;</span>
@@ -455,7 +456,7 @@ auxiliary basis if one is set, otherwise <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">aux-&lt;basisset&gt;</span></code>.</p>
 </section>
 <section id="example">
-<h2><span class="section-number">9.8. </span>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">10.8. </span>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>For a dicyanovinyl-oligothiophene donor in a morphology with C<sub>60</sub>
 (55 QM atoms,
 def2-TZVP/aux-def2-TZVP, evGW, full BSE; polar region of 2.4 nm with 68
@@ -508,8 +509,8 @@ estimate reproduces to about 10%.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="polarizable_environment.html" class="btn btn-neutral float-left" title="8. Polarizable Environments: Thole and Charge-Response Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pyxtp.html" class="btn btn-neutral float-right" title="10. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="polarizable_environment.html" class="btn btn-neutral float-left" title="9. Polarizable Environments: Thole and Charge-Response Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyxtp.html" class="btn btn-neutral float-right" title="11. XTP ASE Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

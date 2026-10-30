@@ -1,0 +1,112 @@
+
+latticegen
+**********
+Writes a state file with a surrogate simple cubic lattice hopping model (sites at (i+1/2)a, periodic box, pairs with Marcus parameters), e.g. to test time-of-flight methods. Setup as in Chen, van der Hoorn, Baumeier, arXiv:2405.15836.
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for the default
+       | state file name
+     - 
+   * - statefile
+     - OPTIONAL
+     - State file to create, if not given job_name.hdf5
+     - 
+   * - energyfile
+     - OPTIONAL
+     - Optional ASCII file with positions and site energies
+     - 
+   * - dims
+     - 8 8 8
+     - Number of sites along x, y and z
+     - 
+   * - spacing
+     - 1.0
+     - Lattice constant a
+     - float+
+   * - cutoff
+     - 1.5
+     - | Pairs are created for distances smaller than this (1.5
+       | a: 6 nearest and 12 next-nearest neighbours)
+     - float+
+   * - J2
+     - 1.79e-4
+     - | Squared coupling |J|^2 at distance a; |J|^2(r) = J2 exp(-(r-a)/decaylength)
+       | 
+     - float+
+   * - decaylength
+     - 1.0
+     - Decay length of |J|^2
+     - float+
+   * - reorganization
+     - 0.23
+     - Reorganization energy of every pair
+     - float+
+   * - states
+     - e h
+     - Carrier types for which the parameters are written
+     - 
+   * - segmentname
+     - site
+     - Segment type name of the sites
+     - 
+   * - energy.disorder
+     - uncorrelated
+     - | none: all equal to mean; uncorrelated: Gaussian iid; correlated:
+       | moving average of three Gaussian fields over the l_b and
+       | l_c nearest sites
+     - | none
+       | uncorrelated
+       | correlated
+   * - energy.mean
+     - -0.76
+     - Mean site energy
+     - float
+   * - energy.sigma
+     - 0.19
+     - Standard deviation of the site energies
+     - float+
+   * - energy.eta_a
+     - 0.2
+     - Correlated disorder: weight of the uncorrelated part
+     - float+
+   * - energy.eta_b
+     - 0.4
+     - | Correlated disorder: weight of the short-range average
+       | (the long-range part has 1-eta_a-eta_b)
+     - float+
+   * - energy.l_b
+     - 9
+     - | Correlated disorder: number of neighbours in the short-range
+       | average
+     - int+
+   * - energy.l_c
+     - 280
+     - | Correlated disorder: number of neighbours in the long-range
+       | average
+     - int+
+   * - energy.includeself
+     - true
+     - | Correlated disorder: the l_b and l_c sites of the averages
+       | include the site itself (Baumeier et al., Phys. Rev. B
+       | 86, 184202 (2012)); false: the l_b and l_c nearest other
+       | sites (eq. 2.5 of Chen et al., arXiv:2405.15836)
+     - bool
+   * - energy.seed
+     - 1
+     - | Seed of the random numbers (the same lattice on every
+       | platform)
+     - int+
+.. note::
+   An *xml* file containing the defaults for the `latticegen` calculator can be created via `-p latticegen -o FILENAME` command line options `

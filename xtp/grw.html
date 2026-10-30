@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12.3.1.4.3. grw &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.3.1.4.4. ianalyze" href="ianalyze.html" />
+    <link rel="prev" title="12.3.1.4.2. einternal" href="einternal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">12.1. xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">12.2. xtp_parallel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_run_overview.html">12.3. xtp_run</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_run_overview.html#help">12.3.1. help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">12.4. xtp_tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">12. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_run_overview.html"><span class="section-number">12.3. </span>xtp_run</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.3.1.4.3. </span>grw</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/grw.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="grw">
+<h1><span class="section-number">12.3.1.4.3. </span>grw<a class="headerlink" href="#grw" title="Link to this heading">¶</a></h1>
+<p>Time of flight and mobility from the graph random walk: mean hitting times of the sink region from a sparse linear solve (no sampling), Chen, van der Hoorn, Baumeier, arXiv:2405.15836
+The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
+<cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 37.5%" />
+<col style="width: 25.0%" />
+<col style="width: 18.8%" />
+<col style="width: 18.8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Valid Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>carriertype</p></td>
+<td><p>electron</p></td>
+<td><p>Carrier type</p></td>
+<td><div class="line-block">
+<div class="line">electron</div>
+<div class="line">hole</div>
+<div class="line">singlet</div>
+<div class="line">triplet</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>temperature</p></td>
+<td><p>300</p></td>
+<td><p>Temperature</p></td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-even"><td><p>field</p></td>
+<td><p>0.0 0.0 0.0</p></td>
+<td><div class="line-block">
+<div class="line">External electric field; for detailed balance (symmetric</div>
+<div class="line">solver) it must be along the transport normal</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tof.axis</p></td>
+<td><p>a</p></td>
+<td><div class="line-block">
+<div class="line">Box vector across which the periodicity is cut; transport</div>
+<div class="line">runs along the normal of the face spanned by the other</div>
+<div class="line">two box vectors, from fractional coordinate 0 (source</div>
+<div class="line">side) to 1 (sink side)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">a</div>
+<div class="line">b</div>
+<div class="line">c</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>tof.source.thickness</p></td>
+<td><p>1.0</p></td>
+<td><div class="line-block">
+<div class="line">Thickness of the source slab at the face with fractional</div>
+<div class="line">coordinate 0, measured along the normal (0: no slab criterion)</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>tof.source.pattern</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Segment type wildcard, e.g. ‘Alq3*’ (empty: no pattern</div>
+<div class="line">criterion)</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tof.sink.thickness</p></td>
+<td><p>1.0</p></td>
+<td><div class="line-block">
+<div class="line">Thickness of the sink slab at the face with fractional</div>
+<div class="line">coordinate 1, measured along the normal (0: no slab criterion)</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>tof.sink.pattern</p></td>
+<td></td>
+<td><p>Segment type wildcard (empty: no pattern criterion)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tof.ignoretypes</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Segment types (wildcards, separated by commas or spaces)</div>
+<div class="line">that take no part in transport: no hops to or from them</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>numberofcarriers</p></td>
+<td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">Number of carriers with site exclusion; the state space</div>
+<div class="line">has n^N/N! states, so 1 or 2</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">1</div>
+<div class="line">2</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>observable</p></td>
+<td><p>first</p></td>
+<td><div class="line-block">
+<div class="line">Two carriers: first = time until the first carrier reaches</div>
+<div class="line">the sink (as in arXiv:2405.15836); transit = mean transit</div>
+<div class="line">time per carrier, carriers removed at the sink (ToF transient).</div>
+<div class="line">Identical for one carrier</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">first</div>
+<div class="line">transit</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>maxstates</p></td>
+<td><p>50000000</p></td>
+<td><p>Two carriers: largest number of pair states (memory guard)</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>solver</p></td>
+<td><p>auto</p></td>
+<td><div class="line-block">
+<div class="line">Linear solver. auto: with detailed balance Cholesky (up</div>
+<div class="line">to directlimit unknowns) or conjugate gradients on the</div>
+<div class="line">symmetrized generator, otherwise LU or BiCGSTAB</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">auto</div>
+<div class="line">cholesky</div>
+<div class="line">lu</div>
+<div class="line">cg</div>
+<div class="line">bicgstab</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>directlimit</p></td>
+<td><p>5000</p></td>
+<td><p>auto: largest number of unknowns for the direct solvers</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>tolerance</p></td>
+<td><p>1e-14</p></td>
+<td><div class="line-block">
+<div class="line">Relative residual of the iterative solvers; must be tight</div>
+<div class="line">because trap modes dominate the hitting times</div>
+</div>
+</td>
+<td><p>float+</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxiterations</p></td>
+<td><p>100000</p></td>
+<td><p>Iteration limit of the iterative solvers</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-even"><td><p>sourcefile</p></td>
+<td><p>grw_sources.dat</p></td>
+<td><div class="line-block">
+<div class="line">Output: mean hitting time and its standard deviation per</div>
+<div class="line">source segment (empty: none)</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>resultfile</p></td>
+<td><p>grw_results.dat</p></td>
+<td><p>Output: main results as ‘key value unit’ lines (empty: none)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>occupationfile</p></td>
+<td><p>grw_occupation.dat</p></td>
+<td><div class="line-block">
+<div class="line">Output: expected time spent on each segment (where the</div>
+<div class="line">time of flight is spent; empty: none)</div>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An <em>xml</em> file containing the defaults for the <cite>grw</cite> calculator can be created via <cite>-p grw -o FILENAME</cite> command line options `</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="einternal.html" class="btn btn-neutral float-left" title="12.3.1.4.2. einternal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ianalyze.html" class="btn btn-neutral float-right" title="12.3.1.4.4. ianalyze" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

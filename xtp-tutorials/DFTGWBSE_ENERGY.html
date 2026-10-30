@@ -74,6 +74,9 @@
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
 </ul>
 </li>
 </ul>
@@ -154,7 +157,7 @@
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Runs excitation/charge transport tools
 
@@ -309,17 +312,17 @@ Done - stopping here
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2026-10-30 11:52:1 Calculated Densities at Numerical Grid, Number of electrons is -2.37464e-08
-... ... 2026-10-30 11:52:1 Calculating ESP at CHELPG grid points
-... ... 2026-10-30 11:52:4 Netcharge constrained to 0
-... ...  Sum of fitted charges: 2.43e-14
+... ... 2026-10-30 20:38:14 Calculated Densities at Numerical Grid, Number of electrons is -2.37464e-08
+... ... 2026-10-30 20:38:14 Calculating ESP at CHELPG grid points
+... ... 2026-10-30 20:38:16 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41543e-14
 ... ...  RMSE of fit:  0.00221585
 ... ...  RRMSE of fit: 0.10718
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -354,7 +357,7 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -420,7 +423,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_9473/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_9996/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;methane_spectrum.dat&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 

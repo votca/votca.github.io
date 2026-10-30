@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7. Transport Simulations &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Polarizable Ewald Embedding" href="ewald_embedding.html" />
+    <link rel="prev" title="6. Charge and Energy Transport Model" href="transport_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Transport Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#which-calculator">7.1. Which calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input">7.2. Input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-options">7.2.1. Common options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#time-of-flight-grw-and-kmctof">7.3. Time of flight: <code class="docutils literal notranslate"><span class="pre">grw</span></code> and <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#grw-graph-random-walk">7.3.1. <code class="docutils literal notranslate"><span class="pre">grw</span></code> (graph random walk)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kmctof">7.3.2. <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bulk-transport-kmcmultiple">7.4. Bulk transport: <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excitons-kmclifetime">7.5. Excitons: <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-quantities">7.6. Output quantities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#grw">7.6.1. <code class="docutils literal notranslate"><span class="pre">grw</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">7.6.2. <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kmcmultiple">7.6.3. <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kmclifetime">7.6.4. <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#larger-systems-stochastic-network-model">7.7. Larger systems: stochastic network model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#workflow">7.7.1. Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recommendations">7.7.2. Recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#checklist">7.8. Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Transport Simulations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/transport_simulations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="transport-simulations">
+<span id="sec-transport-simulations"></span><h1><span class="section-number">7. </span>Transport Simulations<a class="headerlink" href="#transport-simulations" title="Link to this heading">¶</a></h1>
+<p>This chapter describes how to compute mobilities, times of flight and exciton diffusion lengths from a state file with rates, which calculator answers which question, and what to watch out for. The theory is in <a class="reference internal" href="transport_theory.html#sec-transport-theory"><span class="std std-ref">the transport chapter</span></a>; the tutorial notebook <code class="docutils literal notranslate"><span class="pre">xtp-tutorials/tools/transport_lattice/TRANSPORT.ipynb</span></code> goes through all calculators on a small model system.</p>
+<section id="which-calculator">
+<h2><span class="section-number">7.1. </span>Which calculator<a class="headerlink" href="#which-calculator" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Question</p></th>
+<th class="head"><p>Calculator</p></th>
+<th class="head"><p>Method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mobility and diffusion tensor in the bulk, at a given carrier density</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code></p></td>
+<td><p>KMC in a periodic box with a fixed number of carriers; exact single-carrier values from the master equation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Time of flight through a slab, mobility from it</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">grw</span></code></p></td>
+<td><p>Exact mean hitting times (no sampling), one or two carriers</p></td>
+</tr>
+<tr class="row-even"><td><p>The same with many carriers, pulses, the transient current or the distribution of transit times</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kmctof</span></code></p></td>
+<td><p>KMC with source and sink regions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exciton lifetime, diffusion length, where excitons decay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code></p></td>
+<td><p>KMC with site-dependent decay; exact single-exciton values</p></td>
+</tr>
+<tr class="row-even"><td><p>A model system to test methods and settings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">latticegen</span></code> (<code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>)</p></td>
+<td><p>Cubic lattice with Gaussian site energies, written as a state file</p></td>
+</tr>
+<tr class="row-odd"><td><p>A larger system with the statistics of a morphology (finite-size effects)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">networkfit</span></code>, <code class="docutils literal notranslate"><span class="pre">networkgen</span></code> (<code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>)</p></td>
+<td><p>Stochastic network model fitted to a state file, generated at any size</p></td>
+</tr>
+</tbody>
+</table>
+<p>All four transport calculators run with <code class="docutils literal notranslate"><span class="pre">xtp_run</span></code>, for example <code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">grw</span> <span class="pre">-o</span> <span class="pre">grw.xml</span> <span class="pre">-f</span> <span class="pre">state.hdf5</span></code>; options can also be set on the command line with <code class="docutils literal notranslate"><span class="pre">-c</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">carriertype=hole</span> <span class="pre">field=&quot;1e7</span> <span class="pre">0</span> <span class="pre">0&quot;</span></code>. They read the state file and never write to it.</p>
+</section>
+<section id="input">
+<h2><span class="section-number">7.2. </span>Input<a class="headerlink" href="#input" title="Link to this heading">¶</a></h2>
+<p>The rates are Marcus rates <a class="reference internal" href="transfer_theory.html#equation-equ-theory-marcus">Eq.5.5</a> computed from the state file, so it must contain for the carrier type in question (<code class="docutils literal notranslate"><span class="pre">electron</span></code>, <code class="docutils literal notranslate"><span class="pre">hole</span></code>, <code class="docutils literal notranslate"><span class="pre">singlet</span></code> or <code class="docutils literal notranslate"><span class="pre">triplet</span></code>):</p>
+<ul class="simple">
+<li><p>site energies of the segments (internal energies from <code class="docutils literal notranslate"><span class="pre">einternal</span></code> plus electrostatic and polarization contributions, see the corresponding chapters),</p></li>
+<li><p>a neighbor list (<code class="docutils literal notranslate"><span class="pre">neighborlist</span></code>) with electronic couplings <span class="math notranslate nohighlight">\(|J|^2\)</span> (e.g. from <code class="docutils literal notranslate"><span class="pre">iqm</span></code> or <code class="docutils literal notranslate"><span class="pre">ipodcoupling</span></code>),</p></li>
+<li><p>reorganization energies (<code class="docutils literal notranslate"><span class="pre">einternal</span></code>) and, if wanted, outer-sphere contributions.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> and <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> show the distributions of site energy differences and couplings and are worth a look before any transport calculation: the width of the density of states controls trapping, and pairs with tiny couplings hardly contribute.</p>
+<section id="common-options">
+<h3><span class="section-number">7.2.1. </span>Common options<a class="headerlink" href="#common-options" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">carriertype</span></code>, <code class="docutils literal notranslate"><span class="pre">temperature</span></code> (K) and <code class="docutils literal notranslate"><span class="pre">field</span></code> (V/m, three components) define the rates. 1e7 V/m equals 100 kV/cm or 0.01 V/nm. Fields far above 1e8 V/m (1 MV/cm) are usually unphysical for organic semiconductors.</p>
+<p>Segment types that should take no part in transport (e.g. an insulating matrix) are listed in <code class="docutils literal notranslate"><span class="pre">ignoresegments</span></code> (<code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code>, <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code>) or <code class="docutils literal notranslate"><span class="pre">tof.ignoretypes</span></code> (<code class="docutils literal notranslate"><span class="pre">grw</span></code>, <code class="docutils literal notranslate"><span class="pre">kmctof</span></code>): these segments get no hops.</p>
+<p>Every calculator writes a short result file (<code class="docutils literal notranslate"><span class="pre">&lt;calculator&gt;_results.dat</span></code>) with <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">value</span> <span class="pre">unit</span></code> lines in SI units (mobilities in cm<sup>2</sup>/Vs), meant for scripts and parameter scans, in addition to its log output.</p>
+</section>
+</section>
+<section id="time-of-flight-grw-and-kmctof">
+<h2><span class="section-number">7.3. </span>Time of flight: <code class="docutils literal notranslate"><span class="pre">grw</span></code> and <code class="docutils literal notranslate"><span class="pre">kmctof</span></code><a class="headerlink" href="#time-of-flight-grw-and-kmctof" title="Link to this heading">¶</a></h2>
+<p>Both use the same slab geometry, set in the <code class="docutils literal notranslate"><span class="pre">tof</span></code> block:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">axis</span></code>: the box vector (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> or <code class="docutils literal notranslate"><span class="pre">c</span></code>) across which the periodicity is cut. Transport runs along the normal of the face spanned by the other two box vectors; the sample stays periodic in those two directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source.thickness</span></code> and <code class="docutils literal notranslate"><span class="pre">sink.thickness</span></code> (nm): slabs at the two faces; and/or <code class="docutils literal notranslate"><span class="pre">source.pattern</span></code>, <code class="docutils literal notranslate"><span class="pre">sink.pattern</span></code>: segment type wildcards (both criteria must hold if both are given). Use patterns for explicit electrode or interface molecules.</p></li>
+</ul>
+<p>The log reports the number of source and sink sites, the transport length <span class="math notranslate nohighlight">\(L\)</span> and how many sources have no path to a sink (they are left out). The field should point along the normal so that it drives the carriers to the sink; a component along the periodic directions makes the rates violate detailed balance, which <code class="docutils literal notranslate"><span class="pre">grw</span></code> reports and handles with a non-symmetric solver.</p>
+<section id="grw-graph-random-walk">
+<h3><span class="section-number">7.3.1. </span><code class="docutils literal notranslate"><span class="pre">grw</span></code> (graph random walk)<a class="headerlink" href="#grw-graph-random-walk" title="Link to this heading">¶</a></h3>
+<p>Solves for the mean hitting time of the sink without random numbers. <code class="docutils literal notranslate"><span class="pre">numberofcarriers</span></code> is 1 or 2; for two carriers <code class="docutils literal notranslate"><span class="pre">observable</span></code> selects <code class="docutils literal notranslate"><span class="pre">first</span></code> (time until the first carrier arrives) or <code class="docutils literal notranslate"><span class="pre">transit</span></code> (mean transit time per carrier). Results: the mean over a uniform injection on the source sites (<code class="docutils literal notranslate"><span class="pre">tau_mean</span></code>), its harmonic mean, the standard deviation of the hitting time, and the mobility <a class="reference internal" href="transport_theory.html#equation-equ-theory-tofmobility">Eq.6.18</a>. <code class="docutils literal notranslate"><span class="pre">sourcefile</span></code> lists the time per source site or pair, <code class="docutils literal notranslate"><span class="pre">occupationfile</span></code> the expected time spent on every segment, which shows where the carriers are held up.</p>
+<p>Solver settings rarely need changes. <code class="docutils literal notranslate"><span class="pre">solver</span> <span class="pre">auto</span></code> picks a direct factorization up to <code class="docutils literal notranslate"><span class="pre">directlimit</span></code> unknowns and an iterative solver above. The log reports the backward error; a warning means the solution is not reliable. Two carriers need about <span class="math notranslate nohighlight">\(n^2/2\)</span> unknowns (<code class="docutils literal notranslate"><span class="pre">maxstates</span></code> guards the memory): a few thousand sites are fine, <span class="math notranslate nohighlight">\(10^5\)</span> are not.</p>
+</section>
+<section id="kmctof">
+<h3><span class="section-number">7.3.2. </span><code class="docutils literal notranslate"><span class="pre">kmctof</span></code><a class="headerlink" href="#kmctof" title="Link to this heading">¶</a></h3>
+<p>Simulates <code class="docutils literal notranslate"><span class="pre">runs</span></code> independent experiments. In each, <code class="docutils literal notranslate"><span class="pre">injection.pulses</span></code> pulses of <code class="docutils literal notranslate"><span class="pre">injection.carriers</span></code> carriers each are placed on free source sites, <code class="docutils literal notranslate"><span class="pre">injection.period</span></code> apart, with a <code class="docutils literal notranslate"><span class="pre">delta</span></code>, <code class="docutils literal notranslate"><span class="pre">gaussian</span></code> or <code class="docutils literal notranslate"><span class="pre">rectangular</span></code> time profile of <code class="docutils literal notranslate"><span class="pre">injection.width</span></code>. Results:</p>
+<ul class="simple">
+<li><p>first arrival and mean transit time per carrier, with standard errors over the runs and the share of the slowest 1 % of runs in the sum,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">runfile</span></code>: one line per run,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current.file</span></code>: transient current and collected fraction on a logarithmic time axis (<code class="docutils literal notranslate"><span class="pre">current.tmin</span></code>, <code class="docutils literal notranslate"><span class="pre">current.tmax</span></code>, <code class="docutils literal notranslate"><span class="pre">current.binsperdecade</span></code>).</p></li>
+</ul>
+<p>Runs that reach <code class="docutils literal notranslate"><span class="pre">maxtime</span></code> or <code class="docutils literal notranslate"><span class="pre">maxevents</span></code> before all carriers arrived are <em>censored</em>: they are counted and left out of the means, which biases the times low. Raise the limits if any are reported. For one or two carriers, compare with <code class="docutils literal notranslate"><span class="pre">grw</span></code> on the same system: the two must agree within the standard errors.</p>
+</section>
+</section>
+<section id="bulk-transport-kmcmultiple">
+<h2><span class="section-number">7.4. </span>Bulk transport: <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code><a class="headerlink" href="#bulk-transport-kmcmultiple" title="Link to this heading">¶</a></h2>
+<p>Places <code class="docutils literal notranslate"><span class="pre">numberofcarriers</span></code> carriers on random sites (<code class="docutils literal notranslate"><span class="pre">injectionpattern</span></code>) of the periodic box and follows them.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">runtime</span></code>: simulated time in seconds if at most 100, otherwise a number of KMC events (hops and attempts into occupied sites); <code class="docutils literal notranslate"><span class="pre">outputtime</span></code> is read in the same unit and sets the sampling of the trajectory (<code class="docutils literal notranslate"><span class="pre">trajectoryfile</span></code>, unwrapped positions of run 0) and of the <code class="docutils literal notranslate"><span class="pre">timefile</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">runs</span></code>: independent runs in parallel; with more than one run the errors are standard errors over the runs, otherwise they come from the time blocks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">equilibration</span></code>: simulated time at the start of each run left out of all averages. The carriers start on random sites and relax into the low-energy tail of the density of states; the <code class="docutils literal notranslate"><span class="pre">timefile</span></code> shows the mean energy per carrier over time and tells how long this takes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>: the minimum number of time blocks for the diffusion tensor. Blocks must be longer than the trapping times; if the diffusion tensor changes when <code class="docutils literal notranslate"><span class="pre">blocks</span></code> is reduced, the runs are too short.</p></li>
+</ul>
+<p>Results: drift velocity, mobility <a class="reference internal" href="transport_theory.html#equation-equ-theory-mobility">Eq.6.14</a> along the field, the diffusion tensor with its eigenvalues and, without field, the Einstein mobility. With <code class="docutils literal notranslate"><span class="pre">exact</span></code> (default) the drift velocity, mobility and diffusion tensor of a single carrier are also computed from the master equation; for one carrier they are the reference for the KMC, for several carriers the difference shows the effect of exclusion. <code class="docutils literal notranslate"><span class="pre">occfile</span></code> contains the occupation probability of every site, <code class="docutils literal notranslate"><span class="pre">ratefile</span></code> all rates.</p>
+<p>The mobility from <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> is the stationary bulk mobility. A time-of-flight mobility from a thin slab can be considerably higher when the carriers cross the sample before they have relaxed into the tail of the density of states (dispersive transport); comparing both, and ToF results for different thicknesses, shows whether the sample is thick enough.</p>
+</section>
+<section id="excitons-kmclifetime">
+<h2><span class="section-number">7.5. </span>Excitons: <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code><a class="headerlink" href="#excitons-kmclifetime" title="Link to this heading">¶</a></h2>
+<p>Needs the lifetime of every site in <code class="docutils literal notranslate"><span class="pre">lifetimefile</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;lifetimes&gt;</span>
+<span class="w">  </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>1.2e-9<span class="nt">&lt;/site&gt;</span>
+<span class="w">  </span><span class="nt">&lt;site</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>0.9e-9<span class="nt">&lt;/site&gt;</span>
+<span class="w">  </span>...
+<span class="nt">&lt;/lifetimes&gt;</span>
+</pre></div>
+</div>
+<p>(seconds; ids are segment ids; segments of ignored types may be left out). <code class="docutils literal notranslate"><span class="pre">numberofcarriers</span></code> excitons are present at any time; whenever one decays, a new one is created on a random free site (<code class="docutils literal notranslate"><span class="pre">injectionpattern</span></code>). The simulation stops after <code class="docutils literal notranslate"><span class="pre">numberofinsertions</span></code> decays in total, distributed over <code class="docutils literal notranslate"><span class="pre">runs</span></code>. <code class="docutils literal notranslate"><span class="pre">carriertype</span></code> is <code class="docutils literal notranslate"><span class="pre">singlet</span></code> by default.</p>
+<p>Results: mean lifetime, hops per exciton, mean distance, diffusion length <span class="math notranslate nohighlight">\(\sqrt{\langle|\mathbf{R}|^2\rangle}\)</span> and its components, and <span class="math notranslate nohighlight">\(D=\langle|\mathbf{R}|^2\rangle/(6\langle\tau\rangle)\)</span>. With <code class="docutils literal notranslate"><span class="pre">exact</span></code> (default) lifetime and diffusion length of a single exciton are also computed from <a class="reference internal" href="transport_theory.html#equation-equ-theory-lifetime">Eq.6.20</a>; <code class="docutils literal notranslate"><span class="pre">numberofinsertions=0</span></code> gives only these. <code class="docutils literal notranslate"><span class="pre">trajectoryfile</span></code> lists every decay, <code class="docutils literal notranslate"><span class="pre">decayprobfile</span></code> the local decay ratios <span class="math notranslate nohighlight">\(k/(k+W)\)</span>, the fraction of the KMC decays and the exact decay probability per site, <code class="docutils literal notranslate"><span class="pre">carrierenergy</span></code> writes the mean energy of the excitons over time.</p>
+</section>
+<section id="output-quantities">
+<h2><span class="section-number">7.6. </span>Output quantities<a class="headerlink" href="#output-quantities" title="Link to this heading">¶</a></h2>
+<p>Times are in s, lengths in nm in the text files (m in the result files), energies in eV and mobilities in cm<sup>2</sup>/Vs unless stated otherwise. <span class="math notranslate nohighlight">\(N_\mathrm{inj}\)</span> is the number of injected carriers, <span class="math notranslate nohighlight">\(L\)</span> the transport length and <span class="math notranslate nohighlight">\(F_n\)</span> the field component along the transport normal.</p>
+<section id="grw">
+<h3><span class="section-number">7.6.1. </span><code class="docutils literal notranslate"><span class="pre">grw</span></code><a class="headerlink" href="#grw" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tau_mean</span></code></p></td>
+<td><p>Mean hitting time <span class="math notranslate nohighlight">\(\langle T\rangle = \frac{1}{N_s}\sum_s \tau_s\)</span> for uniform injection on the <span class="math notranslate nohighlight">\(N_s\)</span> source sites (two carriers: source pairs). For <code class="docutils literal notranslate"><span class="pre">observable=transit</span></code> the mean transit time per carrier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tau_harmonic</span></code></p></td>
+<td><p>Harmonic mean <span class="math notranslate nohighlight">\(N_s/\sum_s \tau_s^{-1}\)</span> over the injection states, as used in <a class="reference internal" href="bibliography.html#chen-2024" id="id1"><span>[Chen:2024]</span></a>. It weights fast sources more; the difference to <code class="docutils literal notranslate"><span class="pre">tau_mean</span></code> shows how much single sources matter.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tau_std</span></code></p></td>
+<td><p>Standard deviation of the hitting time <span class="math notranslate nohighlight">\(T\)</span> itself (not of its mean) for uniform injection, <span class="math notranslate nohighlight">\(\sqrt{\langle T^2\rangle-\langle T\rangle^2}\)</span>, from the second moments. Not available for <code class="docutils literal notranslate"><span class="pre">observable=transit</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mobility_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">mobility_harmonic</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(L/(\tau |F_n|)\)</span> with <code class="docutils literal notranslate"><span class="pre">tau_mean</span></code> or <code class="docutils literal notranslate"><span class="pre">tau_harmonic</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sourcefile</span></code></p></td>
+<td><p>One line per injection state: segment id, position along the normal and site energy of each carrier, then <span class="math notranslate nohighlight">\(\tau_s\)</span> and the standard deviation of <span class="math notranslate nohighlight">\(T\)</span> from this state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">occupationfile</span></code></p></td>
+<td><p>Per segment: id, position along the normal, site energy, role (source, bulk, sink), expected time <span class="math notranslate nohighlight">\(g_A\)</span> the segment is occupied before absorption (uniform injection), and the <em>fraction of the time of flight</em> <span class="math notranslate nohighlight">\(g_A/(N_c\langle T\rangle)\)</span> with the number of carriers <span class="math notranslate nohighlight">\(N_c\)</span>. The fractions add up to 1; sinks have 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h3><span class="section-number">7.6.2. </span><code class="docutils literal notranslate"><span class="pre">kmctof</span></code><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">first_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">first_error</span></code>, <code class="docutils literal notranslate"><span class="pre">first_std</span></code></p></td>
+<td><p>Time until the first carrier of a run reaches a sink: mean over the uncensored runs, its standard error and the standard deviation over runs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transit_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">transit_error</span></code>, <code class="docutils literal notranslate"><span class="pre">transit_std</span></code></p></td>
+<td><p>Per run the mean of (absorption time - injection time) over its absorbed carriers; then mean, standard error and standard deviation over the uncensored runs. Equal to <code class="docutils literal notranslate"><span class="pre">first</span></code> for one carrier per run.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transit_top_percent_share</span></code></p></td>
+<td><p>Sum of the per-run transit times of the slowest 1 % of the runs (at least one run) divided by the sum over all runs. For exponentially distributed transit times it is about 0.06 (<span class="math notranslate nohighlight">\((1+\ln 100)/100\)</span>); <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> warns above 0.2, when a few runs dominate the mean.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mobility_transit</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(L/(\texttt{transit\_mean}\,|F_n|)\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">censored</span></code></p></td>
+<td><p>Runs stopped by <code class="docutils literal notranslate"><span class="pre">maxtime</span></code> or <code class="docutils literal notranslate"><span class="pre">maxevents</span></code> before all carriers arrived; they are left out of the means.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">runfile</span></code></p></td>
+<td><p>Per run: run number, injected and absorbed carriers, censored (0/1), first arrival, mean transit time, hops, null events (attempts into occupied sites), time of the last event.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">current.file</span></code>: <em>current</em></p></td>
+<td><p>Transient current per injected carrier,</p>
+<div class="math notranslate nohighlight">
+\[I(t)=\frac{1}{L\,N_\mathrm{inj}\,\Delta t}\sum_{\text{hops in }[t,t+\Delta t)}\Delta x ,\]</div>
+<p>in 1/s, with <span class="math notranslate nohighlight">\(\Delta x\)</span> the displacement of a hop along the transport normal (Ramo-Shockley). For <span class="math notranslate nohighlight">\(N_\mathrm{inj}\)</span> injected carriers of charge <span class="math notranslate nohighlight">\(q\)</span> the current in the external circuit is <span class="math notranslate nohighlight">\(q\,N_\mathrm{inj}\,I(t)\)</span>. The integral <span class="math notranslate nohighlight">\(\int I\,dt\)</span> is the mean displacement per injected carrier in units of <span class="math notranslate nohighlight">\(L\)</span>; the parts before the first and after the last bin are given in the file header. It is close to 1 when all carriers cross the sample, but not exactly, since carriers start anywhere in the source slab and <span class="math notranslate nohighlight">\(L\)</span> is measured from the mean source position to the first sink layer. Columns: lower and upper bin edge, geometric bin center, <span class="math notranslate nohighlight">\(I\)</span>, collected fraction.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">current.file</span></code>: <em>collected fraction</em></p></td>
+<td><p>Number of carriers absorbed up to the upper edge of the bin, divided by <span class="math notranslate nohighlight">\(N_\mathrm{inj}\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kmcmultiple">
+<h3><span class="section-number">7.6.3. </span><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code><a class="headerlink" href="#kmcmultiple" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">velocity_*</span></code>, <code class="docutils literal notranslate"><span class="pre">velocity_error_*</span></code></p></td>
+<td><p>Drift velocity <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>: unwrapped displacement per carrier over the observation window (after <code class="docutils literal notranslate"><span class="pre">equilibration</span></code>) divided by its length, averaged over runs; standard error over runs, or from the time blocks for one run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mobility</span></code>, <code class="docutils literal notranslate"><span class="pre">mobility_error</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu=q\,\mathbf{v}\cdot\mathbf{F}/|\mathbf{F}|^2\)</span> with <span class="math notranslate nohighlight">\(q=\pm1\)</span>: positive when the carriers drift along the force on them, for electrons and holes alike.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">D_**</span></code>, <code class="docutils literal notranslate"><span class="pre">D_error_**</span></code></p></td>
+<td><p>Diffusion tensor <span class="math notranslate nohighlight">\(D=\mathrm{Cov}(\Delta\mathbf{r}_\tau)/(2\tau)\)</span> from the displacements <span class="math notranslate nohighlight">\(\Delta\mathbf{r}_\tau\)</span> of all carriers over time blocks of length <span class="math notranslate nohighlight">\(\tau\)</span> (between <code class="docutils literal notranslate"><span class="pre">blocks</span></code> and twice as many blocks per run), with the drift removed; averaged over runs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">einstein_mobility</span></code></p></td>
+<td><p>Without field: <span class="math notranslate nohighlight">\(\mathrm{tr}(D)/(3k_BT)\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exact_*</span></code></p></td>
+<td><p>The same for one carrier from the master equation, <a class="reference internal" href="transport_theory.html#equation-equ-theory-exactdrift">Eq.6.16</a> and <a class="reference internal" href="transport_theory.html#equation-equ-theory-exactdiffusion">Eq.6.17</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">occfile</span></code></p></td>
+<td><p>Per site the probability that it is occupied, i.e. the occupied time divided by the window, summed over carriers and averaged over runs; the sum over sites is the number of carriers.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trajectoryfile</span></code></p></td>
+<td><p>Run 0: time, accepted hops so far, and the unwrapped position (nm) of every carrier, sampled every <code class="docutils literal notranslate"><span class="pre">outputtime</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timefile</span></code></p></td>
+<td><p>Run 0 at the same times: hops, mean site energy of the carriers, mobility from the mean displacement since the first sample, mean displacement per carrier along the field, and the length of the mean displacement vector.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kmclifetime">
+<h3><span class="section-number">7.6.4. </span><code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code><a class="headerlink" href="#kmclifetime" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lifetime</span></code>, <code class="docutils literal notranslate"><span class="pre">lifetime_error</span></code></p></td>
+<td><p>Mean time from creation to decay over all decays, and its standard error (assuming independent decays, exact for one carrier).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean_distance</span></code>, <code class="docutils literal notranslate"><span class="pre">msd</span></code>, <code class="docutils literal notranslate"><span class="pre">msd_*</span></code></p></td>
+<td><p>Mean of <span class="math notranslate nohighlight">\(|\mathbf{R}|\)</span>, of <span class="math notranslate nohighlight">\(|\mathbf{R}|^2\)</span> and of <span class="math notranslate nohighlight">\(R_\alpha^2\)</span>, with <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> the unwrapped displacement from creation to decay.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">diffusion_length</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(L_D=\sqrt{\langle|\mathbf{R}|^2\rangle}\)</span>; always at least <code class="docutils literal notranslate"><span class="pre">mean_distance</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">diffusion_coefficient</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\langle|\mathbf{R}|^2\rangle/(6\langle\tau\rangle)\)</span>; equal to <span class="math notranslate nohighlight">\(D\)</span> for uniform decay rates in an isotropic medium.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exact_*</span></code></p></td>
+<td><p>The same for one carrier from <a class="reference internal" href="transport_theory.html#equation-equ-theory-lifetime">Eq.6.20</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">trajectoryfile</span></code></p></td>
+<td><p>One line per decay: time of the decay, running number, carrier number, lifetime, hops, segment of the decay, displacement (nm), run.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">decayprobfile</span></code></p></td>
+<td><p>Per site: <span class="math notranslate nohighlight">\(k/(k+W_\mathrm{out})\)</span> and <span class="math notranslate nohighlight">\(k/(k+W_\mathrm{in})\)</span> with the sums of the outgoing and incoming hop rates (local measures of how likely an exciton decays there), the fraction of the KMC decays on the site, and the exact decay probability <span class="math notranslate nohighlight">\(k_Ag_A\)</span> for one exciton.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">carrierenergy.outputfile</span></code></p></td>
+<td><p>Run 0, every <code class="docutils literal notranslate"><span class="pre">outputsteps</span></code> hops: time, hops, mean site energy of the excitons present, and its exponential average with weight <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="larger-systems-stochastic-network-model">
+<h2><span class="section-number">7.7. </span>Larger systems: stochastic network model<a class="headerlink" href="#larger-systems-stochastic-network-model" title="Link to this heading">¶</a></h2>
+<p>A morphology of a few thousand molecules is often too small for transport: a box samples the occupied part of a Gaussian density of states of width <span class="math notranslate nohighlight">\(\sigma\)</span> only if <span class="math notranslate nohighlight">\((\sigma/k_\mathrm{B}T)^2 \lesssim -5.7 + 1.05 \ln N\)</span> <a class="reference internal" href="bibliography.html#baumeier-2012" id="id3"><span>[Baumeier:2012]</span></a>, i.e. <span class="math notranslate nohighlight">\(N\approx10^8\)</span> sites for <span class="math notranslate nohighlight">\(\sigma = 3.7\,k_\mathrm{B}T\)</span> and more than <span class="math notranslate nohighlight">\(10^{25}\)</span> for <span class="math notranslate nohighlight">\(7.5\,k_\mathrm{B}T\)</span>. Below this size the mobility of a box depends on its deepest sites and changes by orders of magnitude from one box to the next. The stochastic network model generates hopping networks of any size with the statistics of the morphology. The model, the fit and the finite-size mathematics are described in <a class="reference internal" href="transport_theory.html#sec-stochastic-network-theory"><span class="std std-ref">Finite systems and the stochastic network model</span></a>; the tutorial <code class="docutils literal notranslate"><span class="pre">xtp-tutorials/tools/stochastic_network/STOCHASTIC_NETWORK.ipynb</span></code> goes through the workflow for MADN and bathocuproine (BCP).</p>
+<section id="workflow">
+<h3><span class="section-number">7.7.1. </span>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. fit the model to a state file with site energies, couplings and reorganization energies</span>
+xtp_tools<span class="w"> </span>-e<span class="w"> </span>networkfit<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>morph<span class="w"> </span><span class="nv">statefile</span><span class="o">=</span>morph.hdf5<span class="w"> </span><span class="s2">&quot;carriers=h e&quot;</span><span class="w"> </span><span class="nv">statsfile</span><span class="o">=</span>morph_stats.dat
+<span class="c1"># 2. generate a network of any size (and as many realizations as needed, seed=1,2,...)</span>
+xtp_tools<span class="w"> </span>-e<span class="w"> </span>networkgen<span class="w"> </span>-c<span class="w"> </span><span class="nv">job_name</span><span class="o">=</span>big<span class="w"> </span><span class="nv">parameters</span><span class="o">=</span>morph_network.xml<span class="w"> </span><span class="nv">sites</span><span class="o">=</span><span class="m">64000</span><span class="w"> </span><span class="nv">seed</span><span class="o">=</span><span class="m">1</span>
+<span class="c1"># 3. any transport calculator, e.g. the exact single-carrier mobility</span>
+xtp_run<span class="w"> </span>-e<span class="w"> </span>kmcmultiple<span class="w"> </span>-c<span class="w"> </span><span class="nv">carriertype</span><span class="o">=</span>hole<span class="w"> </span><span class="nv">field</span><span class="o">=</span><span class="s2">&quot;1e7 0 0&quot;</span><span class="w"> </span><span class="nv">runtime</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span>-f<span class="w"> </span>big.hdf5
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">networkfit</span></code> writes the parameter file (<code class="docutils literal notranslate"><span class="pre">parameterfile</span></code>, default <code class="docutils literal notranslate"><span class="pre">&lt;job_name&gt;_network.xml</span></code>; lengths in nm, energies in eV, readable and editable), prints the fitted parameters, the traps it found and a validation table, and with <code class="docutils literal notranslate"><span class="pre">statsfile</span></code> writes all fitted functions for plots: <span class="math notranslate nohighlight">\(D(r)\)</span>, <span class="math notranslate nohighlight">\(H(r)\)</span>, <span class="math notranslate nohighlight">\(g(r)\)</span> (morphology and model), <span class="math notranslate nohighlight">\(f(r)\)</span>, pairs per site, <span class="math notranslate nohighlight">\(\kappa(r)\)</span> with the fitted moving average, the fit quality for every <span class="math notranslate nohighlight">\(l_c\)</span>, and the mean <span class="math notranslate nohighlight">\(\log_{10}|J|^2\)</span> against distance. The fit of the point process takes about two minutes for 1000 sites; <code class="docutils literal notranslate"><span class="pre">points.fit=false</span></code> uses given values instead.</p>
+<p>Important options of <code class="docutils literal notranslate"><span class="pre">networkfit</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">carriers</span></code>: carrier types to fit; the first two are correlated (site energies and coupling residuals). Carriers without energetic disorder in the state file get <span class="math notranslate nohighlight">\(\sigma=0\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l_b</span></code>, <code class="docutils literal notranslate"><span class="pre">l_c</span></code>: grids (first, last, step) of the short- and long-range moving averages. A warning is printed if the best value is at the end of a grid.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traps.find</span></code> (default true), <code class="docutils literal notranslate"><span class="pre">traps.threshold</span></code>, <code class="docutils literal notranslate"><span class="pre">traps.mass</span></code>, <code class="docutils literal notranslate"><span class="pre">traps.maxsize</span></code>, <code class="docutils literal notranslate"><span class="pre">traps.gap</span></code>: identification of traps from the slow modes of the master equation at <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and zero field. Each trap is listed with its sites, energies, equilibrium weight, release and capture rates. Trap sites are left out of the bulk statistics and become templates. The dense eigenvalue problem limits this to <code class="docutils literal notranslate"><span class="pre">traps.maxsites</span></code> (5000) sites.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate</span></code> (default 4): model boxes of the size of the morphology, compared with the morphology (pairs per site, nearest-neighbor distance, <span class="math notranslate nohighlight">\(\sigma\)</span>, moments of <span class="math notranslate nohighlight">\(\log_{10}|J|^2\)</span>, <span class="math notranslate nohighlight">\(\kappa(r)\)</span>, energy correlation of the carriers, the exact zero-field diffusion coefficient of one carrier, traps found), as mean and standard deviation over the boxes. The transport of the morphology should lie within the spread of the boxes.</p></li>
+</ul>
+<p>Important options of <code class="docutils literal notranslate"><span class="pre">networkgen</span></code>: <code class="docutils literal notranslate"><span class="pre">sites</span></code> and <code class="docutils literal notranslate"><span class="pre">box</span></code> (by default the density and shape of the fitted box are kept), <code class="docutils literal notranslate"><span class="pre">seed</span></code> (the same network on every platform, up to the last digits of the math library), <code class="docutils literal notranslate"><span class="pre">trapfactor</span></code> (multiplies the trap densities; 0: no traps), <code class="docutils literal notranslate"><span class="pre">energyfile</span></code> (positions and site energies). It prints whether the network is large enough for the density of occupied states.</p>
+</section>
+<section id="recommendations">
+<h3><span class="section-number">7.7.2. </span>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Check the validation table and the plots of the <code class="docutils literal notranslate"><span class="pre">statsfile</span></code> first. With about a thousand molecules, correlations of the energies over more than a third of the box are uncertain; the <span class="math notranslate nohighlight">\(l_c\)</span> scan shows how well they are determined.</p></li>
+<li><p>Increase the size of the networks until the mobility stops changing, with several realizations per size; the box-to-box spread shrinks with size, the mean drifts as long as the network is too small.</p></li>
+<li><p>Do not average many small networks instead: plain means of their mobilities are biased, and a Boltzmann-weighted mean (<a class="reference internal" href="transport_theory.html#equation-equ-theory-boltzmannmean">Eq.6.27</a>) only stands in for one larger network.</p></li>
+<li><p>One trap in a morphology fixes its density only to between 0.025 and 5.6 times the observed value (95 % Poisson interval): scan <code class="docutils literal notranslate"><span class="pre">trapfactor</span></code>, including 0, to see how much the result depends on traps.</p></li>
+<li><p>The exact single-carrier values of <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> take seconds for <span class="math notranslate nohighlight">\(10^4\)</span> sites and minutes for <span class="math notranslate nohighlight">\(10^5\)</span>; beyond that use the kinetic Monte Carlo results.</p></li>
+</ul>
+<p>Limits of the model: traps are inserted with the couplings of the bulk model, so traps that act through their couplings or reorganization energies are reproduced only through their energies; the energies of a site and its number of neighbors are independent in the model (in morphologies they are weakly correlated), so are couplings and energy differences; the mean of <span class="math notranslate nohighlight">\(\log_{10}|J|^2\)</span> is linear in <span class="math notranslate nohighlight">\(r\)</span>, which overestimates the couplings of the closest pairs slightly.</p>
+</section>
+</section>
+<section id="checklist">
+<h2><span class="section-number">7.8. </span>Checklist<a class="headerlink" href="#checklist" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Statistical errors assume independent samples. For <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> they are over runs; check the share of the slowest runs as well. For <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> with one run they come from time blocks; prefer several runs.</p></li>
+<li><p>Compare KMC with the exact single-carrier values whenever they are available: they agree within a few standard errors for one carrier. Larger differences point to too short runs, too few blocks or a missing equilibration.</p></li>
+<li><p>Results do not depend on the number of threads (<code class="docutils literal notranslate"><span class="pre">-t</span></code>), only on <code class="docutils literal notranslate"><span class="pre">seed</span></code> and <code class="docutils literal notranslate"><span class="pre">runs</span></code>.</p></li>
+<li><p>At high occupancy most KMC events are attempts into occupied sites; the fraction is printed. The results stay exact, but the simulation gets slower.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latticegen</span></code> writes model systems with known parameters (<code class="docutils literal notranslate"><span class="pre">dims</span></code>, <code class="docutils literal notranslate"><span class="pre">spacing</span></code>, <code class="docutils literal notranslate"><span class="pre">cutoff</span></code>, <code class="docutils literal notranslate"><span class="pre">J2</span></code>, <code class="docutils literal notranslate"><span class="pre">reorganization</span></code>, Gaussian site energies with <code class="docutils literal notranslate"><span class="pre">energy.sigma</span></code>, uncorrelated or correlated). They are useful to test settings and to understand trends before running a real morphology.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transport_theory.html" class="btn btn-neutral float-left" title="6. Charge and Energy Transport Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ewald_embedding.html" class="btn btn-neutral float-right" title="8. Polarizable Ewald Embedding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

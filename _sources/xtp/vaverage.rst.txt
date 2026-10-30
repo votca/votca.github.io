@@ -1,7 +1,7 @@
 
 vaverage
 ********
-Writes a file containing the positions of molecules and the average carrier velocity on this molecule
+Writes the positions of the segments and the average carrier velocity on each: the net flux p_i w_ij - p_j w_ji of every pair times its vector, split equally between the two segments, from the rates and occupation probabilities written by kmcmultiple. The sum over all segments is the total drift velocity (number of carriers x velocity per carrier). Exact for one carrier; with several carriers the occupation of the destination is not taken into account (site exclusion).
 The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
 `REQUIRED` arguments have to be specified, otherwise an error is thrown.
 

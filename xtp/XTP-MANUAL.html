@@ -58,13 +58,14 @@
 <li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a></li>
@@ -226,210 +227,255 @@ software and manual versions match.</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html#reorganization-energies">6.5. Reorganization energies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html#directed-graphs">6.6. Directed Graphs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-ewald-decomposition">7.1. The Ewald decomposition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-alpha-invariant">7.1.1. The <span class="math notranslate nohighlight">\(\alpha\)</span> invariant</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#segments-fragments-and-charge-states">7.2. Segments, fragments and charge states</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-polarizable-background">7.3. The polarizable background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-three-region-qm-mm-setup">7.4. The three-region QM/MM setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#foreground-declaration-and-suppression">7.4.1. Foreground declaration and suppression</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#energy-accounting">7.5. Energy accounting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#site-energies">7.5.1. Site energies</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#coupling-to-the-qm-region">7.6. Coupling to the QM region</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-probe-and-thole-damping">7.6.1. The probe and Thole damping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-k-0-term-and-the-potential-s-gauge">7.6.2. The <span class="math notranslate nohighlight">\(k = 0\)</span> term and the potential’s gauge</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#practical-notes">7.7. Practical notes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#parameter-inheritance">7.7.1. Parameter inheritance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#choosing-alpha">7.7.2. Choosing <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#cost">7.7.3. Cost</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#diagnostics">7.7.4. Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html#kinetic-monte-carlo">6.7. Kinetic Monte Carlo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html#bulk-transport-in-a-periodic-box">6.8. Bulk transport in a periodic box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html#time-of-flight">6.9. Time of flight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html#excitons-with-finite-lifetimes">6.10. Excitons with finite lifetimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html#finite-systems-and-the-stochastic-network-model">6.11. Finite systems and the stochastic network model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transport_theory.html#finite-size-effects-in-disordered-systems">6.11.1. Finite-size effects in disordered systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_theory.html#the-stochastic-network-model">6.11.2. The stochastic network model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_theory.html#parameters-from-a-morphology">6.11.3. Parameters from a morphology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_theory.html#traps">6.11.4. Traps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_theory.html#ensembles-of-small-systems">6.11.5. Ensembles of small systems</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#common-ground">8.1. Common ground</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#sites-and-moments">8.1.1. Sites and moments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#fields-and-potentials">8.1.2. Fields and potentials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#energies">8.1.3. Energies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#which-calculator">7.1. Which calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#input">7.2. Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#common-options">7.2.1. Common options</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#the-thole-model">8.2. The Thole model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#the-charge-response-model">8.3. The charge-response model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#response-of-one-molecule">8.3.1. Response of one molecule</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#smearing">8.3.2. Smearing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#linear-system">8.3.3. Linear system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#coupling-with-the-qm-region">8.3.4. Coupling with the QM region</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#reaction-field-of-embedded-gw-bse">8.3.5. Reaction field of embedded GW-BSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#time-of-flight-grw-and-kmctof">7.3. Time of flight: <code class="docutils literal notranslate"><span class="pre">grw</span></code> and <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#grw-graph-random-walk">7.3.1. <code class="docutils literal notranslate"><span class="pre">grw</span></code> (graph random walk)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#kmctof">7.3.2. <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#parametrization-of-charge-response-molecules">8.4. Parametrization of charge-response molecules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#files">8.4.1. Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#tools">8.4.2. Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#bulk-transport-kmcmultiple">7.4. Bulk transport: <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#excitons-kmclifetime">7.5. Excitons: <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#output-quantities">7.6. Output quantities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#grw">7.6.1. <code class="docutils literal notranslate"><span class="pre">grw</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#id2">7.6.2. <code class="docutils literal notranslate"><span class="pre">kmctof</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#kmcmultiple">7.6.3. <code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#kmclifetime">7.6.4. <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#accuracy-and-choice-of-model">8.5. Accuracy and choice of model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#periodic-background">8.6. Periodic background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#limitations">8.7. Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#larger-systems-stochastic-network-model">7.7. Larger systems: stochastic network model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#workflow">7.7.1. Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transport_simulations.html#recommendations">7.7.2. Recommendations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#the-reaction-field">9.1. The reaction field</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#quasiparticle-energies-gw">9.2. Quasiparticle energies (GW)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#neutral-excitations-bse">9.3. Neutral excitations (BSE)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#site-widths-and-stability">9.4. Site widths and stability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#shell-regions">9.5. Shell regions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#relation-to-the-iterative-scheme">9.6. Relation to the iterative scheme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#usage">9.7. Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#example">9.8. Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html#checklist">7.8. Checklist</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">10.1. Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">10.1.1. Environment variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-ewald-decomposition">8.1. The Ewald decomposition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-alpha-invariant">8.1.1. The <span class="math notranslate nohighlight">\(\alpha\)</span> invariant</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">10.2. Option parser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">10.3. XTP calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">10.4. Single Point Caclulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">10.5. Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#segments-fragments-and-charge-states">8.2. Segments, fragments and charge states</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-polarizable-background">8.3. The polarizable background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#the-three-region-qm-mm-setup">8.4. The three-region QM/MM setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#foreground-declaration-and-suppression">8.4.1. Foreground declaration and suppression</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">11.1. xtp_map</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">11.1.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">11.1.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">11.1.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">11.1.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">11.1.1.4. OPTIONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#energy-accounting">8.5. Energy accounting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#site-energies">8.5.1. Site energies</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#coupling-to-the-qm-region">8.6. Coupling to the QM region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-probe-and-thole-damping">8.6.1. The probe and Thole damping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#the-k-0-term-and-the-potential-s-gauge">8.6.2. The <span class="math notranslate nohighlight">\(k = 0\)</span> term and the potential’s gauge</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">11.2. xtp_parallel</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">11.2.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">11.2.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">11.2.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">11.2.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">11.2.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eqm.html">11.2.1.4.1. eqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">11.2.1.4.2. iexcitoncl</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ipodcoupling.html">11.2.1.4.3. ipodcoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="iqm.html">11.2.1.4.4. iqm</a></li>
-<li class="toctree-l5"><a class="reference internal" href="qmmm.html">11.2.1.4.5. qmmm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html#practical-notes">8.7. Practical notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#parameter-inheritance">8.7.1. Parameter inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#choosing-alpha">8.7.2. Choosing <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#cost">8.7.3. Cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ewald_embedding.html#diagnostics">8.7.4. Diagnostics</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#common-ground">9.1. Common ground</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#sites-and-moments">9.1.1. Sites and moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#fields-and-potentials">9.1.2. Fields and potentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#energies">9.1.3. Energies</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">11.3. xtp_run</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">11.3.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">11.3.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">11.3.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">11.3.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">11.3.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">11.3.1.4.1. eanalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="einternal.html">11.3.1.4.2. einternal</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">11.3.1.4.3. ianalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">11.3.1.4.4. kmclifetime</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">11.3.1.4.5. kmcmultiple</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">11.3.1.4.6. mapchecker</a></li>
-<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">11.3.1.4.7. neighborlist</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vaverage.html">11.3.1.4.8. vaverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#the-thole-model">9.2. The Thole model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#the-charge-response-model">9.3. The charge-response model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#response-of-one-molecule">9.3.1. Response of one molecule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#smearing">9.3.2. Smearing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#linear-system">9.3.3. Linear system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#coupling-with-the-qm-region">9.3.4. Coupling with the QM region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#reaction-field-of-embedded-gw-bse">9.3.5. Reaction field of embedded GW-BSE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#parametrization-of-charge-response-molecules">9.4. Parametrization of charge-response molecules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#files">9.4.1. Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarizable_environment.html#tools">9.4.2. Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#accuracy-and-choice-of-model">9.5. Accuracy and choice of model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#periodic-background">9.6. Periodic background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html#limitations">9.7. Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#the-reaction-field">10.1. The reaction field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#quasiparticle-energies-gw">10.2. Quasiparticle energies (GW)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#neutral-excitations-bse">10.3. Neutral excitations (BSE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#site-widths-and-stability">10.4. Site widths and stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#shell-regions">10.5. Shell regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#relation-to-the-iterative-scheme">10.6. Relation to the iterative scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#usage">10.7. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html#example">10.8. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#installation">11.1. Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">11.1.1. Environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">11.2. Option parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">11.3. XTP calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">11.4. Single Point Caclulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">11.5. Geometry Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xtp_map_overview.html">12.1. xtp_map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html#help">12.1.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#name">12.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#synopsis">12.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#description">12.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_map_overview.html#options">12.1.1.4. OPTIONS</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">11.4. xtp_tools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">11.4.1. help</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">11.4.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">11.4.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">11.4.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">11.4.1.4. OPTIONS</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="apdft.html">11.4.1.4.1. apdft</a></li>
-<li class="toctree-l5"><a class="reference internal" href="coupling.html">11.4.1.4.2. coupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">11.4.1.4.3. densityanalysis</a></li>
-<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">11.4.1.4.4. dftgwbse</a></li>
-<li class="toctree-l5"><a class="reference internal" href="diabatization.html">11.4.1.4.5. diabatization</a></li>
-<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">11.4.1.4.6. excitoncoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gencube.html">11.4.1.4.7. gencube</a></li>
-<li class="toctree-l5"><a class="reference internal" href="log2mps.html">11.4.1.4.8. log2mps</a></li>
-<li class="toctree-l5"><a class="reference internal" href="molpol.html">11.4.1.4.9. molpol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">11.4.1.4.10. partialcharges</a></li>
-<li class="toctree-l5"><a class="reference internal" href="spectrum.html">11.4.1.4.11. spectrum</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">11.4.1.4.12. orb2fchk</a></li>
-<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">11.4.1.4.13. orb2mol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">11.4.1.4.14. mol2orb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_parallel_overview.html">12.2. xtp_parallel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html#help">12.2.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#name">12.2.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#synopsis">12.2.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#description">12.2.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_parallel_overview.html#options">12.2.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eqm.html">12.2.1.4.1. eqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iexcitoncl.html">12.2.1.4.2. iexcitoncl</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ipodcoupling.html">12.2.1.4.3. ipodcoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="iqm.html">12.2.1.4.4. iqm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="qmmm.html">12.2.1.4.5. qmmm</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">12. Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">12.1. Programs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">12.1.1. xtp_basisset</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#name">12.1.1.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">12.1.1.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#description">12.1.1.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#options">12.1.1.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">12.1.2. xtp_update_mapfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">12.1.2.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">12.1.2.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">12.1.2.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">12.1.2.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">12.1.3. xtp_modify_jobfile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">12.1.3.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">12.1.3.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">12.1.3.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">12.1.3.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">12.1.4. xtp_qmmm2qm</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">12.1.4.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">12.1.4.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">12.1.4.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">12.1.4.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-tightbinding">12.1.5. xtp_tightbinding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id13">12.1.5.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id14">12.1.5.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id15">12.1.5.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id16">12.1.5.4. OPTIONS</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-cr-mps">12.1.6. xtp_cr_mps</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id17">12.1.6.1. NAME</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id18">12.1.6.2. SYNOPSIS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id19">12.1.6.3. DESCRIPTION</a></li>
-<li class="toctree-l4"><a class="reference internal" href="reference.html#id20">12.1.6.4. OPTIONS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_run_overview.html">12.3. xtp_run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#help">12.3.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#name">12.3.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#synopsis">12.3.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#description">12.3.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">12.3.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="eanalyze.html">12.3.1.4.1. eanalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="einternal.html">12.3.1.4.2. einternal</a></li>
+<li class="toctree-l5"><a class="reference internal" href="grw.html">12.3.1.4.3. grw</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">12.3.1.4.4. ianalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">12.3.1.4.5. kmclifetime</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">12.3.1.4.6. kmcmultiple</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmctof.html">12.3.1.4.7. kmctof</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">12.3.1.4.8. mapchecker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">12.3.1.4.9. neighborlist</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vaverage.html">12.3.1.4.10. vaverage</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xtp_tools_overview.html">12.4. xtp_tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#help">12.4.1. help</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#name">12.4.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#synopsis">12.4.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#description">12.4.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">12.4.1.4. OPTIONS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="apdft.html">12.4.1.4.1. apdft</a></li>
+<li class="toctree-l5"><a class="reference internal" href="coupling.html">12.4.1.4.2. coupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">12.4.1.4.3. densityanalysis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">12.4.1.4.4. dftgwbse</a></li>
+<li class="toctree-l5"><a class="reference internal" href="diabatization.html">12.4.1.4.5. diabatization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">12.4.1.4.6. excitoncoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gencube.html">12.4.1.4.7. gencube</a></li>
+<li class="toctree-l5"><a class="reference internal" href="latticegen.html">12.4.1.4.8. latticegen</a></li>
+<li class="toctree-l5"><a class="reference internal" href="log2mps.html">12.4.1.4.9. log2mps</a></li>
+<li class="toctree-l5"><a class="reference internal" href="molpol.html">12.4.1.4.10. molpol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="networkfit.html">12.4.1.4.11. networkfit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="networkgen.html">12.4.1.4.12. networkgen</a></li>
+<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">12.4.1.4.13. partialcharges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spectrum.html">12.4.1.4.14. spectrum</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">12.4.1.4.15. orb2fchk</a></li>
+<li class="toctree-l5"><a class="reference internal" href="orb2mol.html">12.4.1.4.16. orb2mol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">12.4.1.4.17. mol2orb</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">13. Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference.html#programs">13.1. Programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-basisset">13.1.1. xtp_basisset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#name">13.1.1.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#synopsis">13.1.1.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#description">13.1.1.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#options">13.1.1.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-update-mapfile">13.1.2. xtp_update_mapfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id1">13.1.2.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id2">13.1.2.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id3">13.1.2.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id4">13.1.2.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-modify-jobfile">13.1.3. xtp_modify_jobfile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id5">13.1.3.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id6">13.1.3.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id7">13.1.3.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id8">13.1.3.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-qmmm2qm">13.1.4. xtp_qmmm2qm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id9">13.1.4.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id10">13.1.4.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id11">13.1.4.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id12">13.1.4.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-tightbinding">13.1.5. xtp_tightbinding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id13">13.1.5.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id14">13.1.5.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id15">13.1.5.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id16">13.1.5.4. OPTIONS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html#xtp-cr-mps">13.1.6. xtp_cr_mps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id17">13.1.6.1. NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id18">13.1.6.2. SYNOPSIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id19">13.1.6.3. DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference.html#id20">13.1.6.4. OPTIONS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 </ul>
 </div>
 <section id="citations">

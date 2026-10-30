@@ -1,7 +1,7 @@
 
 kmcmultiple
 ***********
-Kinetic Monte Carlo simulations of multiple holes or electrons in periodic boundary conditions
+Kinetic Monte Carlo simulations of multiple holes or electrons with site exclusion in periodic boundary conditions: drift velocity, mobility, diffusion tensor and site occupations
 The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
 `REQUIRED` arguments have to be specified, otherwise an error is thrown.
 
@@ -16,18 +16,26 @@ The following table contains the defaults input options for the calculator, The 
      - Valid Input
    * - runtime
      - 1e-4
-     - | Simulated time in seconds (if a number smaller than 100
-       | is given) or number of KMC steps (if a number larger than
-       | 100 is given)
+     - | Simulated time in seconds (if a number of at most 100
+       | is given) or number of KMC events (if a number larger
+       | than 100 is given; events are hops and attempts into occupied
+       | sites)
      - float+
    * - outputtime
      - 1E-8
-     - | Time difference between outputs into the trajectory file.
-       | Set to 0 if you wish to have no trajectory written out.
+     - | Interval between outputs into the trajectory and time
+       | files, in the unit of runtime (seconds or accepted hops).
+       | Set to 0 for no trajectory.
      - float+
    * - trajectoryfile
      - trajectory.csv
-     - Name of the trajectory file
+     - | Name of the trajectory file (run 0): unwrapped carrier
+       | positions in nm
+     - 
+   * - timefile
+     - 
+     - | Optional file with mean energy per carrier, mobility and
+       | distance travelled versus time (run 0)
      - 
    * - ratefile
      - rates.dat
@@ -35,23 +43,50 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - occfile
      - occupation.dat
-     - File to write occupation
+     - | File to write occupation probabilities (summed over carriers,
+       | averaged over runs)
      - 
+   * - resultfile
+     - kmcmultiple_results.dat
+     - | Main results as 'key value unit' lines in SI units (empty:
+       | none)
+     - 
+   * - exact
+     - true
+     - | Also compute drift velocity, mobility and diffusion tensor
+       | of one carrier without sampling (master equation; sparse
+       | linear systems)
+     - bool
    * - seed
      - 123
      - Integer to initialise the random number generator
      - int+
+   * - runs
+     - 1
+     - | Number of independent runs (in parallel with OpenMP);
+       | with more than one, the errors are standard errors over
+       | the runs
+     - int+
+   * - equilibration
+     - 0
+     - | Simulated time at the start of each run that is left out
+       | of velocity, diffusion and occupations
+     - float+
+   * - blocks
+     - 50
+     - | Minimum number of time blocks for the diffusion tensor
+       | (between blocks and 2 blocks are used); the blocks must
+       | be longer than the memory of the motion
+     - int+
    * - injectionpattern
      - *
-     - | Name pattern that specifies on which sites injection is
-       | possible. Use the wildcard '*' to inject on any site.
+     - | Name pattern that specifies on which sites carriers are
+       | placed at the start. Use the wildcard '*' to place them
+       | on any site.
      - 
    * - injectionmethod
      - random
-     - | random: injection sites are selected randomly (generally
-       | the recommended option); equilibrated: sites are chosen
-       | such that the expected energy per carrier is matched,
-       | possibly speeding up convergence
+     - random: start sites are selected randomly
      - random
    * - numberofcarriers
      - 1
@@ -73,13 +108,20 @@ The following table contains the defaults input options for the calculator, The 
      - 300
      - Temperature in Kelvin.
      - float+
+   * - waitingtime
+     - exponential
+     - | Waiting-time method: exponential (static rates) or thinning
+       | (time-dependent rates with upper bounds)
+     - | exponential
+       | thinning
    * - maxrealtime
      - 1E10
-     - Maximum clocktime allow to the calculation(Seconds)
+     - Maximum wall-clock time of each run
      - float+
    * - ignoresegments
      - 
-     - Segment types to be ignored in KMC
+     - | Segment types (wildcards, separated by commas or spaces)
+       | without hops to or from them
      - 
 .. note::
    An *xml* file containing the defaults for the `kmcmultiple` calculator can be created via `-p kmcmultiple -o FILENAME` command line options `

@@ -1,0 +1,122 @@
+
+grw
+***
+Time of flight and mobility from the graph random walk: mean hitting times of the sink region from a sparse linear solve (no sampling), Chen, van der Hoorn, Baumeier, arXiv:2405.15836
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - carriertype
+     - electron
+     - Carrier type
+     - | electron
+       | hole
+       | singlet
+       | triplet
+   * - temperature
+     - 300
+     - Temperature
+     - float+
+   * - field
+     - 0.0 0.0 0.0
+     - | External electric field; for detailed balance (symmetric
+       | solver) it must be along the transport normal
+     - 
+   * - tof.axis
+     - a
+     - | Box vector across which the periodicity is cut; transport
+       | runs along the normal of the face spanned by the other
+       | two box vectors, from fractional coordinate 0 (source
+       | side) to 1 (sink side)
+     - | a
+       | b
+       | c
+   * - tof.source.thickness
+     - 1.0
+     - | Thickness of the source slab at the face with fractional
+       | coordinate 0, measured along the normal (0: no slab criterion)
+     - float+
+   * - tof.source.pattern
+     - 
+     - | Segment type wildcard, e.g. 'Alq3*' (empty: no pattern
+       | criterion)
+     - 
+   * - tof.sink.thickness
+     - 1.0
+     - | Thickness of the sink slab at the face with fractional
+       | coordinate 1, measured along the normal (0: no slab criterion)
+     - float+
+   * - tof.sink.pattern
+     - 
+     - Segment type wildcard (empty: no pattern criterion)
+     - 
+   * - tof.ignoretypes
+     - 
+     - | Segment types (wildcards, separated by commas or spaces)
+       | that take no part in transport: no hops to or from them
+     - 
+   * - numberofcarriers
+     - 1
+     - | Number of carriers with site exclusion; the state space
+       | has n^N/N! states, so 1 or 2
+     - | 1
+       | 2
+   * - observable
+     - first
+     - | Two carriers: first = time until the first carrier reaches
+       | the sink (as in arXiv:2405.15836); transit = mean transit
+       | time per carrier, carriers removed at the sink (ToF transient).
+       | Identical for one carrier
+     - | first
+       | transit
+   * - maxstates
+     - 50000000
+     - Two carriers: largest number of pair states (memory guard)
+     - int+
+   * - solver
+     - auto
+     - | Linear solver. auto: with detailed balance Cholesky (up
+       | to directlimit unknowns) or conjugate gradients on the
+       | symmetrized generator, otherwise LU or BiCGSTAB
+     - | auto
+       | cholesky
+       | lu
+       | cg
+       | bicgstab
+   * - directlimit
+     - 5000
+     - auto: largest number of unknowns for the direct solvers
+     - int+
+   * - tolerance
+     - 1e-14
+     - | Relative residual of the iterative solvers; must be tight
+       | because trap modes dominate the hitting times
+     - float+
+   * - maxiterations
+     - 100000
+     - Iteration limit of the iterative solvers
+     - int+
+   * - sourcefile
+     - grw_sources.dat
+     - | Output: mean hitting time and its standard deviation per
+       | source segment (empty: none)
+     - 
+   * - resultfile
+     - grw_results.dat
+     - Output: main results as 'key value unit' lines (empty: none)
+     - 
+   * - occupationfile
+     - grw_occupation.dat
+     - | Output: expected time spent on each segment (where the
+       | time of flight is spent; empty: none)
+     - 
+.. note::
+   An *xml* file containing the defaults for the `grw` calculator can be created via `-p grw -o FILENAME` command line options `

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinect Monte Carlo Simulations Using LAMMPS &mdash; VOTCA 2026-dev documentation</title>
+  <title>Charge transport in an amorphous thiophene morphology &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,7 +21,9 @@
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer and Contributor Guide" href="../DEVELOPERS_GUIDE.html" />
+    <link rel="prev" title="Larger systems with the stochastic network model" href="STOCHASTIC_NETWORK.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,8 +55,24 @@
 <li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Charge transport in an amorphous thiophene morphology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Site-energies-and-couplings">Site energies and couplings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Bulk-mobility">Bulk mobility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Time-of-flight-and-trap-sites">Time of flight and trap sites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -86,7 +104,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Kinect Monte Carlo Simulations Using LAMMPS</li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">Charge transport in an amorphous thiophene morphology</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp-tutorials/LAMMPS_KMC.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,66 +115,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Kinect-Monte-Carlo-Simulations-Using-LAMMPS">
-<h1>Kinect Monte Carlo Simulations Using LAMMPS<a class="headerlink" href="#Kinect-Monte-Carlo-Simulations-Using-LAMMPS" title="Link to this heading">¶</a></h1>
+  <section id="Charge-transport-in-an-amorphous-thiophene-morphology">
+<h1>Charge transport in an amorphous thiophene morphology<a class="headerlink" href="#Charge-transport-in-an-amorphous-thiophene-morphology" title="Link to this heading">¶</a></h1>
+<p>This tutorial applies the transport calculators of VOTCA-XTP to a real morphology: 1000 thiophene molecules from a LAMMPS simulation, with site energies, electronic couplings and reorganization energies already in the state file <code class="docutils literal notranslate"><span class="pre">state.hdf5</span></code> (the workflow that produces them is shown in the QMMM tutorials). We look at the energy landscape and the couplings, compute bulk mobilities of electrons and holes, and run a time-of-flight calculation that shows where the carriers are held up.</p>
+<p>For the methods and their options on a controlled model system, see the tutorial <em>Charge and exciton transport on a model lattice</em> and the chapter <em>Transport Simulations</em> of the manual.</p>
 <section id="Requirements">
 <h2>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>You will need to install <strong>VOTCA</strong> using the instructions described <a class="reference external" href="https://github.com/votca/votca/blob/master/share/sphinx/INSTALL.rst">here</a></p></li>
-<li><p>Once the installation is completed you need to activate the VOTCA enviroment by running the <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> script that has been installed at the <code class="docutils literal notranslate"><span class="pre">bin</span></code> subfolder for the path that you have provided for the installation step above</p></li>
+<li><p>VOTCA installed and the environment activated with <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> (see the <a class="reference external" href="https://github.com/votca/votca/blob/master/share/sphinx/INSTALL.rst">installation instructions</a>).</p></li>
+<li><p>Python with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p></li>
 </ul>
-</section>
-<section id="Setting-the-environment">
-<h2>Setting the environment<a class="headerlink" href="#Setting-the-environment" title="Link to this heading">¶</a></h2>
-<p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://seaborn.pydata.org/">seaborn</a> and <a class="reference external" href="https://pandas.pydata.org/">pandas</a> libraries for plotting. You can install it using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> like</p>
-<div class="nbinput docutils container">
+<p>In Jupyter, <code class="docutils literal notranslate"><span class="pre">!</span></code> runs a shell command.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>seaborn<span class="w"> </span>--user
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+    <span class="c1"># run a VOTCA command quietly (raises if it fails)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># read a &#39;key value unit&#39; result file into a dictionary</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="k">continue</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">values</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Requirement already satisfied: seaborn in /usr/lib/python3.14/site-packages (0.13.2)
-Requirement already satisfied: numpy!=1.24.0,&gt;=1.20 in /usr/lib64/python3.14/site-packages (from seaborn) (2.4.6)
-Requirement already satisfied: pandas&gt;=1.2 in /usr/lib64/python3.14/site-packages (from seaborn) (2.3.3)
-Requirement already satisfied: matplotlib!=3.6.1,&gt;=3.4 in /usr/lib64/python3.14/site-packages (from seaborn) (3.10.8)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.4.0)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (4.62.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.5.1)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (25.0)
-Requirement already satisfied: pillow&gt;=8 in /usr/lib64/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (12.3.0)
-Requirement already satisfied: pyparsing&gt;=3 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (3.1.2)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/lib/python3.14/site-packages (from matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3.14/site-packages (from pandas&gt;=1.2-&gt;seaborn) (2026.5)
-Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib!=3.6.1,&gt;=3.4-&gt;seaborn) (1.17.0)
-</pre></div></div>
-</div>
-<section id="Notes">
-<h3>Notes<a class="headerlink" href="#Notes" title="Link to this heading">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">${VOTCASHARE}</span></code> environmental variable is set to the path that you provided during the VOTCA installation, by the default is set to <code class="docutils literal notranslate"><span class="pre">/usr/local/votca</span></code>.</p></li>
-<li><p>In Jupyter the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol means: <em>run the following command as a standard unix command</em></p></li>
-<li><p>In Jupyter the command <code class="docutils literal notranslate"><span class="pre">%env</span></code> set an environmental variable</p></li>
-</ul>
-</div></blockquote>
 </section>
-</section>
-<section id="Site-energies-and-pair-energy-differences">
-<h2>Site energies and pair energy differences<a class="headerlink" href="#Site-energies-and-pair-energy-differences" title="Link to this heading">¶</a></h2>
-<p>We will compute the histrogram using <code class="docutils literal notranslate"><span class="pre">resolution_sites</span></code> of 0.03 eV. See <a class="reference external" href="https://votca.github.io/xtp/eanalyze.html">eanalyze options and defaults</a> for more information.</p>
+<section id="Site-energies-and-couplings">
+<h2>Site energies and couplings<a class="headerlink" href="#Site-energies-and-couplings" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> writes histograms of the site energies and of the site energy differences of neighbouring pairs (here with a resolution of 0.03 eV); <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> writes the distribution of the couplings <span class="math notranslate nohighlight">\(\log_{10}|J|^2\)</span>. See <a class="reference external" href="https://www.votca.org/xtp/eanalyze.html">eanalyze</a> and <a class="reference external" href="https://www.votca.org/xtp/ianalyze.html">ianalyze</a> for the options.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>eanalyze<span class="w"> </span>-c<span class="w"> </span><span class="nv">resolution_sites</span><span class="o">=</span><span class="m">0</span>.03<span class="w"> </span>-f<span class="w"> </span>state.hdf5
+<span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>ianalyze<span class="w"> </span>-c<span class="w"> </span><span class="nv">resolution_logJ2</span><span class="o">=</span><span class="m">0</span>.1<span class="w"> </span><span class="nv">states</span><span class="o">=</span>e,h<span class="w"> </span>-f<span class="w"> </span>state.hdf5
 </pre></div>
 </div>
 </div>
@@ -171,7 +181,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_run, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Initializing calculator
 ... eanalyze
@@ -190,97 +200,6 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 ... ... excited state s
 ... ... excited state t
 Changes have not been written to state file.
-</pre></div></div>
-</div>
-<p>In the current work directoy you can see the resulting files,</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>eanalyze*
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-eanalyze.pairhist_e.out  eanalyze.pairlist_s.out  eanalyze.sitehist_e.out
-eanalyze.pairhist_h.out  eanalyze.pairlist_t.out  eanalyze.sitehist_h.out
-eanalyze.pairhist_s.out  eanalyze.sitecorr_e.out  eanalyze.sitehist_s.out
-eanalyze.pairhist_t.out  eanalyze.sitecorr_h.out  eanalyze.sitehist_t.out
-eanalyze.pairlist_e.out  eanalyze.sitecorr_s.out
-eanalyze.pairlist_h.out  eanalyze.sitecorr_t.out
-</pre></div></div>
-</div>
-</section>
-<section id="Plotting-the-energies">
-<h2>Plotting the energies<a class="headerlink" href="#Plotting-the-energies" title="Link to this heading">¶</a></h2>
-<p>We will the previously installed <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library to plot the electron histrogram computed in the previous step,</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;eanalyze.pairhist_e.out&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-&lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-&lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_9512/2362228021.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-  df = pd.read_table(&#34;eanalyze.pairhist_e.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
-/usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
-
-The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
-
-  func(*plot_args, **plot_kwargs)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_11_2.png" src="../_images/xtp-tutorials_LAMMPS_KMC_11_2.png" />
-</div>
-</div>
-</section>
-<section id="Couplings-histrogram">
-<h2>Couplings histrogram<a class="headerlink" href="#Couplings-histrogram" title="Link to this heading">¶</a></h2>
-<p>In this step we will analyze the electron/hole couplings, using the <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> calculator using the <code class="docutils literal notranslate"><span class="pre">resolution_logJ2</span></code> parameter of 0.1 units. See the <a class="reference external" href="https://votca.github.io/xtp/ianalyze.html">ianalyze options and defaults</a> for more information about the calculator.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>ianalyze<span class="w"> </span>-c<span class="w"> </span><span class="nv">resolution_logJ2</span><span class="o">=</span><span class="m">0</span>.1<span class="w"> </span><span class="nv">states</span><span class="o">=</span>e,h<span class="w"> </span>-f<span class="w"> </span>state.hdf5
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
 ==================================================
 ========   VOTCA (http://www.votca.org)   ========
 ==================================================
@@ -288,7 +207,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_run, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Initializing calculator
 ... ianalyze
@@ -304,62 +223,43 @@ Calculating for state h now.
 Changes have not been written to state file.
 </pre></div></div>
 </div>
-</section>
-<section id="Plotting-the-coupling-histogram">
-<h2>Plotting the coupling histogram<a class="headerlink" href="#Plotting-the-coupling-histogram" title="Link to this heading">¶</a></h2>
-<p>We can now plot the logarithm of the squared coupling for the hole,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="s2">&quot;counts&quot;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;ianalyze.ihist_h.out&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;logJ2&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">carrier</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;electrons&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;holes&quot;</span><span class="p">)]:</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eanalyze.sitehist_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">.out&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">hist</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">coupling</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ianalyze.ihist_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">.out&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coupling</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coupling</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;site energy - mean (eV)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sites&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">(|J|^2/\mathrm</span><span class="si">{eV}</span><span class="s2">^2)$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;pairs&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-&lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-&lt;&gt;:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_9512/886975016.py:2: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-  df = pd.read_table(&#34;ianalyze.ihist_h.out&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns, skiprows=2)
-/usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
-
-The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
-
-  func(*plot_args, **plot_kwargs)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[]
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_2.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_2.png" />
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_4_0.png" src="../_images/xtp-tutorials_LAMMPS_KMC_4_0.png" />
 </div>
 </div>
+<p>The width of the site energy distribution (energetic disorder) controls how strongly carriers are trapped; the couplings span many orders of magnitude, so a few well-coupled pairs carry most of the current.</p>
 </section>
-<section id="KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions">
-<h2>KMC simulations of multiple holes or electrons in periodic boundary conditions<a class="headerlink" href="#KMC-simulations-of-multiple-holes-or-electrons-in-periodic-boundary-conditions" title="Link to this heading">¶</a></h2>
-<p>Finally, lets do a 1000 seconds KMC simulation for the electron, with a 10 seconds window between output and a field of 10 <em>V/m</em> along the x-axis,</p>
+<section id="Bulk-mobility">
+<h2>Bulk mobility<a class="headerlink" href="#Bulk-mobility" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> follows carriers in the periodic box. With one carrier, the exact single-carrier mobility from the master equation (printed with <code class="docutils literal notranslate"><span class="pre">exact</span></code>, the default) is the reference. Electrons drift against the field; the reported mobility is positive when carriers drift along the force on them. We use 8 independent runs of <span class="math notranslate nohighlight">\(10^7\)</span> KMC events each.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>kmcmultiple<span class="w"> </span>-c<span class="w"> </span><span class="nv">runtime</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="nv">outputtime</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">field</span><span class="o">=</span><span class="m">10</span>,0,0<span class="w"> </span><span class="nv">carriertype</span><span class="o">=</span>electron<span class="w"> </span>-f<span class="w"> </span>state.hdf5
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>kmcmultiple<span class="w"> </span>-c<span class="w"> </span><span class="nv">carriertype</span><span class="o">=</span>electron<span class="w"> </span><span class="nv">field</span><span class="o">=</span><span class="s2">&quot;1e7 0 0&quot;</span><span class="w"> </span><span class="nv">numberofcarriers</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">runs</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">runtime</span><span class="o">=</span><span class="m">10000000</span><span class="w"> </span><span class="nv">outputtime</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>-f<span class="w"> </span>state.hdf5
 </pre></div>
 </div>
 </div>
@@ -375,7 +275,7 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_run, version 2026-dev gitid: 80c3098 (compiled Oct 30 2026, 11:21:58)
+xtp_run, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
 
 Initializing calculator
 ... kmcmultiple
@@ -390,71 +290,230 @@ Import MD Topology (i.e. frame 10000) from state.hdf5
 -----------------------------------
       KMC FOR MULTIPLE CHARGES
 -----------------------------------
-
- ...
-Calculating initial rates.
- ... Rate engine initialized:
- Ratetype:marcus
- Temperature T[k] = 300
- Electric field[V/nm](x,y,z) =1e-08 0 0 ||F|| 1e-08
-
- ...
- ...     carriertype: electron
- ...     Rates for 1000 sites are computed.
- ...
-Rates are written to rates.dat
- ... Nblist has 10151 pairs. Nodes contain 20302 jump events
-with avg=20.302 std=2.07913 max=28 min=14 jumps per site
-Minimum jumpdistance =0.366063 nm Maximum distance =1.10167 nm
-
- ... spatial carrier density: 0.00729374 nm^-3
- ...
-Algorithm: VSSM for Multiple Charges
- ... number of carriers: 1
- ... number of nodes: 1000
- ... stop condition: 1000 steps.
- ... output frequency: every 10 steps.
- ... (If you specify runtimes larger than 100 kmcmultiple assumes that you are specifying the number of steps for both runtime and outputtime.)
- ... Writing trajectory to trajectory.csv.
- ... looking for injectable nodes...
- ... starting position for charge 0: segment 697
- ...
-Occupations are written to occupation.dat
- ...
-finished KMC simulation after 1000 steps.
-simulated time 5.92255e-09 seconds.
-
- ...     carrier 1: 1.205058e+08 5.671523e+07 1.959596e+07
- ...   Overall average velocity (nm/s): 1.205058e+08 5.671523e+07 1.959596e+07
- ...
-Distances travelled (nm):
- ...     carrier 1: 7.137019e-01 3.358990e-01 1.160581e-01
- ...
-Mobilities (nm^2/Vs):
- ...     carrier 1: mu=1.205058e+16
- ...   Overall average mobility in field direction &lt;mu&gt;=1.205058e+16 nm^2/Vs
- ...
-Eigenvalues:
-
- ... Eigenvalue: 2.670560e-09
- ... Eigenvector: 1.317081e-01   6.198754e-02   -9.893485e-01
-
- ... Eigenvalue: 2.670560e-09
- ... Eigenvector: 4.258378e-01   -9.047995e-01   0.000000e+00
-
- ... Eigenvalue: 5.366503e+07
- ... Eigenvector: -8.951621e-01   -4.213020e-01   -1.455661e-01
-Changes have not been written to state file.
+ ... Bulk hopping graph (periodic in a, b and c, no sinks) for electrons
+  sites: 1000 (0 of ignored types), hops: 20302
+  injection sites: 1000
+  detailed balance: no (max deviation of ln(w_ij/w_ji) 1.9946)
+ ... Rates written to rates.dat
+ ... 1 electron(s), density 0.00729374 nm^-3, 8 run(s), 1 thread(s)
+ ... Each run stops after 10000000 KMC events (hops and attempts into occupied sites)
+ ... Waiting times: exponential
+ ... 80000000 hops, 0 attempts into occupied sites (0 %), 3.75525 s
+ ... Observation window of run 0: 0 s to 2.37198e-05 s, 75 blocks of 3.13642e-07 s
+ ... Drift velocity (nm/s): -7.988725e+06  2.235114e+06  1.460862e+06
+    +- 6.466042e+05 7.033715e+05 6.789512e+05 (standard error over runs)
+ ... Mobility along the field: 7.988725e-06 +- 6.466042e-07 cm^2/Vs (7.988725e+08 nm^2/Vs)
+ ... Diffusion tensor (nm^2/s):
+ 3.316687e+07 -6.591711e+06 -1.206046e+06
+-6.591711e+06  2.275115e+07  7.211564e+06
+-1.206046e+06  7.211564e+06  2.073618e+07
+ ...   +- (standard error over runs)
+2.160451e+06 1.548844e+06 1.006109e+06
+1.548844e+06 2.450047e+06 1.605369e+06
+1.006109e+06 1.605369e+06 2.579289e+06
+ ...   eigenvalue 1.378348e+07 nm^2/s, direction -1.942780e-01 -6.974892e-01  6.897571e-01
+ ...   eigenvalue 2.530671e+07 nm^2/s, direction -5.343305e-01 -5.144376e-01 -6.707047e-01
+ ...   eigenvalue 3.756402e+07 nm^2/s, direction  8.226463e-01 -4.988615e-01 -2.727458e-01
+ ... Exact for one carrier (master equation, sparse LU, 1000 sites, backward error 1.750526e-15):
+  drift velocity (nm/s): -8.398750e+06  2.339211e+06  6.119456e+05
+  diffusion tensor (nm^2/s):
+ 3.033214e+07 -8.848943e+06 -2.237831e+06
+-8.848943e+06  2.035675e+07  5.820395e+06
+-2.237831e+06  5.820395e+06  2.226720e+07
+ ...   mobility along the field: 8.398750e-06 cm^2/Vs
+ ...   KMC - exact mobility: -6.341195e-01 standard errors
+ ... Occupation probabilities written to occupation.datChanges have not been written to state file.
 </pre></div></div>
 </div>
-<p>You can find both the <em>occupation data</em> and the <em>rates</em> for the electron at 300 K, on files <code class="docutils literal notranslate"><span class="pre">occupation.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">rates.dat</span></code>, respectively.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;kmcmultiple_results.dat&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KMC </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;mobility&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;mobility_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> cm^2/Vs, exact </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;exact_mobility&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> cm^2/Vs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+KMC 7.99e-06 +- 6.5e-07 cm^2/Vs, exact 8.40e-06 cm^2/Vs
+</pre></div></div>
+</div>
+<p>The statistical error of the KMC is large: the carrier spends most of its time on a few low-energy molecules and leaves them rarely, so even <span class="math notranslate nohighlight">\(8\cdot10^7\)</span> events contain few independent escapes. The exact value needs no sampling and is cheap; with a very short KMC part (<code class="docutils literal notranslate"><span class="pre">runtime=1000</span></code>) we use it to compare electrons and holes and to scan the field:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e7</span>  <span class="c1"># V/m</span>
+<span class="k">for</span> <span class="n">carrier</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;electron&quot;</span><span class="p">,</span> <span class="s2">&quot;hole&quot;</span><span class="p">]:</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;xtp_run -e kmcmultiple -c carriertype=</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s1"> field=&quot;</span><span class="si">{</span><span class="n">F</span><span class="si">}</span><span class="s1"> 0 0&quot; runtime=1000 outputtime=0 resultfile=scan.dat ratefile=x occfile=x -f state.hdf5&#39;</span><span class="p">)</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">(</span><span class="s2">&quot;scan.dat&quot;</span><span class="p">)[</span><span class="s2">&quot;exact_mobility&quot;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fields</span> <span class="o">/</span> <span class="mf">1e2</span><span class="p">),</span> <span class="n">mu</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">carrier</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\sqrt</span><span class="si">{F}</span><span class="s2">$ ($\sqrt{\mathrm{V/cm}}$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;bulk mobility (cm$^2$/Vs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_9_0.png" src="../_images/xtp-tutorials_LAMMPS_KMC_9_0.png" />
+</div>
+</div>
+<p>Electrons are about two orders of magnitude more mobile than holes in this morphology. The irregular field dependence reflects the few low-energy sites that dominate transport in such a small box.</p>
+</section>
+<section id="Time-of-flight-and-trap-sites">
+<h2>Time of flight and trap sites<a class="headerlink" href="#Time-of-flight-and-trap-sites" title="Link to this heading">¶</a></h2>
+<p>For a time-of-flight calculation the periodicity is cut across the box vector <code class="docutils literal notranslate"><span class="pre">a</span></code>; electrons are injected in a 1 nm slab at one face and collected at the other (the box is only about 5 nm long, so this is a very thin “sample”). Electrons move against the field, so the field points in <span class="math notranslate nohighlight">\(-x\)</span>. <code class="docutils literal notranslate"><span class="pre">grw</span></code> gives the mean time of flight exactly and, in <code class="docutils literal notranslate"><span class="pre">grw_occupation.dat</span></code>, the expected time <span class="math notranslate nohighlight">\(g_A\)</span> each molecule holds the electron before it reaches the sink, and the <em>fraction of the time of
+flight</em> <span class="math notranslate nohighlight">\(g_A/\langle T\rangle\)</span> (adding up to 1 over all molecules). All output quantities are defined in the section <em>Output quantities</em> of the manual chapter <em>Transport Simulations</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>xtp_run<span class="w"> </span>-e<span class="w"> </span>grw<span class="w"> </span>-c<span class="w"> </span><span class="nv">carriertype</span><span class="o">=</span>electron<span class="w"> </span><span class="nv">field</span><span class="o">=</span><span class="s2">&quot;-1e7 0 0&quot;</span><span class="w"> </span>-f<span class="w"> </span>state.hdf5
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+==================================================
+========   VOTCA (http://www.votca.org)   ========
+==================================================
+
+please read and cite: https://doi.org/10.21105/joss.06864
+and submit bugs to https://github.com/votca/votca/issues
+
+xtp_run, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
+
+Initializing calculator
+... grw
+1 frames in statefile, Ids are: 10000
+Starting at frame 10000
+Evaluating frame 10000
+Import MD Topology (i.e. frame 10000) from state.hdf5
+....
+... grw
+ Using 1 threads
+ ...
+-----------------------------------
+  GRAPH RANDOM WALK TIME OF FLIGHT
+-----------------------------------
+ ... ToF graph for electrons
+  periodicity cut across box vector a, normal (1 0 0), thickness 5.15644 nm
+  sites: 1000 (0 of ignored types), hops: 18838, pairs cut at the periodic boundary: 732
+  sources: 204 connected, 0 without path to a sink (excluded)
+  sinks: 194, sites without path to a sink: 0
+  transport length (mean source to first sink): 3.6727 nm
+  detailed balance: yes (max deviation of ln(w_ij/w_ji) 1.42109e-14)
+ ... Solver: cholesky (LDLT of the symmetrized generator), 806 unknowns, 0 iterations, backward error 2.3318e-15 after 0 refinement steps
+ ... Time of flight (uniform injection over 204 source sites): mean 3.92887e-07 s
+ ... Standard deviation of the hitting time: 4.90684e-07 s
+ ... Harmonic mean over the injection states: 3.62636e-07 s
+ ... Mobility L/(tau F): 9.34797e-06 cm^2/Vs (mean), 1.01278e-05 cm^2/Vs (harmonic), with L = 3.6727 nm and F = -1e+07 V/m along the normalChanges have not been written to state file.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grw</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;grw_results.dat&quot;</span><span class="p">)</span>
+<span class="n">occ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;grw_occupation.dat&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">segment</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">occ</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">fraction</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)),</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">$ of the fraction of the time of flight $g_A/\langle T\rangle$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;position along the transport direction (nm)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;site energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">fraction</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time of flight </span><span class="si">{</span><span class="n">grw</span><span class="p">[</span><span class="s1">&#39;tau_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;segment </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">segment</span><span class="p">[</span><span class="n">s</span><span class="p">])</span><span class="si">}</span><span class="s2">: x = </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> nm, energy </span><span class="si">{</span><span class="n">energy</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> eV, </span><span class="si">{</span><span class="n">fraction</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2"> of the time of flight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_13_0.png" src="../_images/xtp-tutorials_LAMMPS_KMC_13_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+time of flight 3.93e-07 s
+segment 19: x = 0.84 nm, energy 0.395 eV, 50% of the time of flight
+segment 909: x = 0.27 nm, energy 0.403 eV, 30% of the time of flight
+segment 995: x = 0.31 nm, energy 0.446 eV, 6% of the time of flight
+segment 353: x = 2.32 nm, energy 0.402 eV, 3% of the time of flight
+segment 70: x = 1.14 nm, energy 0.462 eV, 3% of the time of flight
+</pre></div></div>
+</div>
+<p>A handful of molecules hold the electron for most of the time of flight. These trap sites can be analysed further, e.g. by their conformation or environment; their identification from the occupation map needs no sampling.</p>
+<p><code class="docutils literal notranslate"><span class="pre">kmctof</span></code> simulates the same experiment; its mean transit time agrees with <code class="docutils literal notranslate"><span class="pre">grw</span></code> within the statistical error, and the distribution over runs shows how broad the transit times are:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;xtp_run -e kmctof -c carriertype=electron field=&quot;-1e7 0 0&quot; runs=2000 -f state.hdf5&#39;</span><span class="p">)</span>
+<span class="n">tof</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;kmctof_results.dat&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KMC </span><span class="si">{</span><span class="n">tof</span><span class="p">[</span><span class="s1">&#39;transit_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">tof</span><span class="p">[</span><span class="s1">&#39;transit_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> s, grw </span><span class="si">{</span><span class="n">grw</span><span class="p">[</span><span class="s1">&#39;tau_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="n">transit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;kmctof_runs.dat&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">transit</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">transit</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">transit</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mi">40</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;transit time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;runs&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+KMC 3.71e-07 +- 1.0e-08 s, grw 3.93e-07 s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" src="../_images/xtp-tutorials_LAMMPS_KMC_15_1.png" />
+</div>
+</div>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The energy landscape and the couplings of a morphology determine where carriers are trapped; <code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> and <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> give a first impression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> gives bulk mobilities; its exact single-carrier values are cheap and free of statistical errors, and they are the reference for the KMC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grw</span></code> and <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> give times of flight; the occupation map of <code class="docutils literal notranslate"><span class="pre">grw</span></code> identifies the molecules that act as traps.</p></li>
+</ul>
+<p>This morphology is small (1000 molecules, about 5 nm): mobilities from it are dominated by a few sites and should be taken as an illustration. Production calculations need larger systems and several snapshots.</p>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="STOCHASTIC_NETWORK.html" class="btn btn-neutral float-left" title="Larger systems with the stochastic network model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

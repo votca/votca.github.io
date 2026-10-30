@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11.3.1.4.4. kmclifetime &mdash; VOTCA 2026-dev documentation</title>
+  <title>12.3.1.4.5. kmclifetime &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11.3.1.4.5. kmcmultiple" href="kmcmultiple.html" />
-    <link rel="prev" title="11.3.1.4.3. ianalyze" href="ianalyze.html" /> 
+    <link rel="next" title="12.3.1.4.6. kmcmultiple" href="kmcmultiple.html" />
+    <link rel="prev" title="12.3.1.4.4. ianalyze" href="ianalyze.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,22 +56,23 @@
 <li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">8. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">11.1. xtp_map</a></li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">11.2. xtp_parallel</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="xtp_run_overview.html">11.3. xtp_run</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="xtp_run_overview.html#help">11.3.1. help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">12.1. xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">12.2. xtp_parallel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_run_overview.html">12.3. xtp_run</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_run_overview.html#help">12.3.1. help</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">11.4. xtp_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">12.4. xtp_tools</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -113,9 +114,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">11. </span>Workflow and Calculator Structure</a></li>
-          <li class="breadcrumb-item"><a href="xtp_run_overview.html"><span class="section-number">11.3. </span>xtp_run</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">11.3.1.4.4. </span>kmclifetime</li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">12. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_run_overview.html"><span class="section-number">12.3. </span>xtp_run</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.3.1.4.5. </span>kmclifetime</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/kmclifetime.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,8 +127,8 @@
            <div itemprop="articleBody">
              
   <section id="kmclifetime">
-<h1><span class="section-number">11.3.1.4.4. </span>kmclifetime<a class="headerlink" href="#kmclifetime" title="Link to this heading">¶</a></h1>
-<p>Perform Kinetic Monte Carlo simulations of singlets with decay
+<h1><span class="section-number">12.3.1.4.5. </span>kmclifetime<a class="headerlink" href="#kmclifetime" title="Link to this heading">¶</a></h1>
+<p>Kinetic Monte Carlo of excitons (or other carriers) with site-dependent lifetimes and site exclusion in periodic boundary conditions: lifetime, diffusion length, decay sites, occupations; for one exciton also the exact values
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="docutils align-center">
@@ -147,22 +148,51 @@ The following table contains the defaults input options for the calculator, The 
 <tbody>
 <tr class="row-even"><td><p>lifetimefile</p></td>
 <td><p>lifetimes.xml</p></td>
-<td><p>File from which lifetimes are read in.</p></td>
+<td><div class="line-block">
+<div class="line">XML file with the lifetime of every site: &lt;lifetimes&gt;&lt;site</div>
+<div class="line">id=”0”&gt;1e-9&lt;/site&gt;…&lt;/lifetimes&gt; (seconds; ignored segment</div>
+<div class="line">types may be left out)</div>
+</div>
+</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>ratefile</p></td>
+<tr class="row-odd"><td><p>carriertype</p></td>
+<td><p>singlet</p></td>
+<td><p>State of the hopping carriers</p></td>
+<td><div class="line-block">
+<div class="line">electron</div>
+<div class="line">hole</div>
+<div class="line">singlet</div>
+<div class="line">triplet</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>ratefile</p></td>
 <td><p>rates.dat</p></td>
-<td><p>File containing the rates</p></td>
+<td><p>File to write the rates</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>trajectoryfile</p></td>
+<tr class="row-odd"><td><p>trajectoryfile</p></td>
 <td><p>trajectory.csv</p></td>
-<td><p>Name of the trajectory file</p></td>
+<td><div class="line-block">
+<div class="line">File with one line per decay: time, lifetime, hops, decay</div>
+<div class="line">segment, displacement (empty: none)</div>
+</div>
+</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>numberofinsertions</p></td>
+<tr class="row-even"><td><p>numberofinsertions</p></td>
 <td><p>4000</p></td>
-<td><p>number of decays to simulate</p></td>
+<td><p>Number of decays to simulate in total (0: exact values only)</p></td>
+<td><p>int+</p></td>
+</tr>
+<tr class="row-odd"><td><p>runs</p></td>
+<td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">Number of independent runs, in parallel with OpenMP; the</div>
+<div class="line">decays are distributed over them</div>
+</div>
+</td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>seed</p></td>
@@ -172,7 +202,11 @@ The following table contains the defaults input options for the calculator, The 
 </tr>
 <tr class="row-odd"><td><p>numberofcarriers</p></td>
 <td><p>1</p></td>
-<td><p>Number of electrons/holes in the simulation box</p></td>
+<td><div class="line-block">
+<div class="line">Number of carriers present at a time; a decayed carrier</div>
+<div class="line">is replaced at once</div>
+</div>
+</td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>injectionpattern</p></td>
@@ -181,8 +215,8 @@ The following table contains the defaults input options for the calculator, The 
 </ul>
 </td>
 <td><div class="line-block">
-<div class="line">Name pattern that specifies on which sites injection is</div>
-<div class="line">possible. Use the wildcard ‘*’ to inject on any site.</div>
+<div class="line">Name pattern that specifies on which sites carriers are</div>
+<div class="line">created. Use the wildcard ‘*’ to create them on any site.</div>
 </div>
 </td>
 <td></td>
@@ -190,10 +224,8 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-odd"><td><p>injectionmethod</p></td>
 <td><p>random</p></td>
 <td><div class="line-block">
-<div class="line">random: injection sites are selected randomly (generally</div>
-<div class="line">the recommended option); equilibrated: sites are chosen</div>
-<div class="line">such that the expected energy per carrier is matched,</div>
-<div class="line">possibly speeding up convergence</div>
+<div class="line">random: creation sites are selected randomly among the</div>
+<div class="line">free ones</div>
 </div>
 </td>
 <td><p>random</p></td>
@@ -201,21 +233,70 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>temperature</p></td>
 <td><p>300</p></td>
 <td><p>Temperature in Kelvin.</p></td>
-<td><p>int+</p></td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>occfile</p></td>
 <td><p>occupation.dat</p></td>
-<td><p>File with the occupations</p></td>
+<td><div class="line-block">
+<div class="line">File with the occupation probabilities (summed over carriers)</div>
+<div class="line"><br /></div>
+</div>
+</td>
 <td></td>
+</tr>
+<tr class="row-even"><td><p>decayprobfile</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Optional file with per-site decay probabilities: local</div>
+<div class="line">ratios k/(k+out), k/(k+in), the KMC decay fractions and</div>
+<div class="line">the exact ones for one carrier</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>resultfile</p></td>
+<td><p>kmclifetime_results.dat</p></td>
+<td><div class="line-block">
+<div class="line">Main results as ‘key value unit’ lines in SI units (empty:</div>
+<div class="line">none)</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>exact</p></td>
+<td><p>true</p></td>
+<td><div class="line-block">
+<div class="line">Also compute the exact lifetime, diffusion length and</div>
+<div class="line">decay probabilities of one carrier (sparse linear systems)</div>
+</div>
+</td>
+<td><p>bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>waitingtime</p></td>
+<td><p>exponential</p></td>
+<td><div class="line-block">
+<div class="line">Waiting-time method: exponential (static rates) or thinning</div>
+<div class="line">(time-dependent rates with upper bounds)</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">exponential</div>
+<div class="line">thinning</div>
+</div>
+</td>
 </tr>
 <tr class="row-even"><td><p>maxrealtime</p></td>
 <td><p>1E10</p></td>
-<td><p>Maximum clocktime allow to the calculation</p></td>
+<td><p>Maximum wall-clock time of each run</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>ignoresegments</p></td>
 <td></td>
-<td><p>Segment types to be ignored in KMC</p></td>
+<td><div class="line-block">
+<div class="line">Segment types (wildcards, separated by commas or spaces)</div>
+<div class="line">without hops to or from them</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>carrierenergy.run</p></td>
@@ -230,12 +311,12 @@ The following table contains the defaults input options for the calculator, The 
 </tr>
 <tr class="row-even"><td><p>carrierenergy.alpha</p></td>
 <td><p>0.05</p></td>
-<td><p>Smoothing energy profile</p></td>
+<td><p>Weight of the newest value in the exponential average</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>carrierenergy.outputsteps</p></td>
 <td><p>10</p></td>
-<td><p>Write to file every x steps</p></td>
+<td><p>Write after every x hops</p></td>
 <td><p>int+</p></td>
 </tr>
 </tbody>
@@ -250,8 +331,8 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ianalyze.html" class="btn btn-neutral float-left" title="11.3.1.4.3. ianalyze" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="kmcmultiple.html" class="btn btn-neutral float-right" title="11.3.1.4.5. kmcmultiple" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ianalyze.html" class="btn btn-neutral float-left" title="12.3.1.4.4. ianalyze" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kmcmultiple.html" class="btn btn-neutral float-right" title="12.3.1.4.6. kmcmultiple" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

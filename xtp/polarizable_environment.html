@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. Polarizable Environments: Thole and Charge-Response Models &mdash; VOTCA 2026-dev documentation</title>
+  <title>9. Polarizable Environments: Thole and Charge-Response Models &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" />
-    <link rel="prev" title="7. Polarizable Ewald Embedding" href="ewald_embedding.html" /> 
+    <link rel="next" title="10. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" />
+    <link rel="prev" title="8. Polarizable Ewald Embedding" href="ewald_embedding.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,38 +58,39 @@
 <li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">7. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">8. Polarizable Environments: Thole and Charge-Response Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#common-ground">8.1. Common ground</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sites-and-moments">8.1.1. Sites and moments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fields-and-potentials">8.1.2. Fields and potentials</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#energies">8.1.3. Energies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. Polarizable Environments: Thole and Charge-Response Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-ground">9.1. Common ground</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sites-and-moments">9.1.1. Sites and moments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fields-and-potentials">9.1.2. Fields and potentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#energies">9.1.3. Energies</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#the-thole-model">8.2. The Thole model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-charge-response-model">8.3. The charge-response model</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#response-of-one-molecule">8.3.1. Response of one molecule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#smearing">8.3.2. Smearing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear-system">8.3.3. Linear system</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#coupling-with-the-qm-region">8.3.4. Coupling with the QM region</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reaction-field-of-embedded-gw-bse">8.3.5. Reaction field of embedded GW-BSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-thole-model">9.2. The Thole model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-charge-response-model">9.3. The charge-response model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#response-of-one-molecule">9.3.1. Response of one molecule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smearing">9.3.2. Smearing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear-system">9.3.3. Linear system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coupling-with-the-qm-region">9.3.4. Coupling with the QM region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reaction-field-of-embedded-gw-bse">9.3.5. Reaction field of embedded GW-BSE</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#parametrization-of-charge-response-molecules">8.4. Parametrization of charge-response molecules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#files">8.4.1. Files</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tools">8.4.2. Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parametrization-of-charge-response-molecules">9.4. Parametrization of charge-response molecules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#files">9.4.1. Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tools">9.4.2. Tools</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#accuracy-and-choice-of-model">8.5. Accuracy and choice of model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#periodic-background">8.6. Periodic background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#limitations">8.7. Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accuracy-and-choice-of-model">9.5. Accuracy and choice of model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#periodic-background">9.6. Periodic background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">9.7. Limitations</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">9. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">10. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">11. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">12. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">13. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -131,7 +132,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">8. </span>Polarizable Environments: Thole and Charge-Response Models</li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>Polarizable Environments: Thole and Charge-Response Models</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/polarizable_environment.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -142,7 +143,7 @@
            <div itemprop="articleBody">
              
   <section id="polarizable-environments-thole-and-charge-response-models">
-<h1><span class="section-number">8. </span>Polarizable Environments: Thole and Charge-Response Models<a class="headerlink" href="#polarizable-environments-thole-and-charge-response-models" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">9. </span>Polarizable Environments: Thole and Charge-Response Models<a class="headerlink" href="#polarizable-environments-thole-and-charge-response-models" title="Link to this heading">¶</a></h1>
 <p>In a QM/MM job the classical environment of the QM region is divided into
 regions (<code class="docutils literal notranslate"><span class="pre">staticregion</span></code>, <code class="docutils literal notranslate"><span class="pre">polarregion</span></code>, <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code>). Static regions
 carry permanent multipoles only. Polar regions also respond to electric
@@ -168,9 +169,9 @@ only effectively.</p>
 loop and in the reaction field of environment-screened GW-BSE
 (<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>).</p>
 <section id="common-ground">
-<h2><span class="section-number">8.1. </span>Common ground<a class="headerlink" href="#common-ground" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.1. </span>Common ground<a class="headerlink" href="#common-ground" title="Link to this heading">¶</a></h2>
 <section id="sites-and-moments">
-<h3><span class="section-number">8.1.1. </span>Sites and moments<a class="headerlink" href="#sites-and-moments" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.1.1. </span>Sites and moments<a class="headerlink" href="#sites-and-moments" title="Link to this heading">¶</a></h3>
 <p>Every polar site carries the permanent multipoles of its <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file (up
 to quadrupoles) and a polarizability tensor <span class="math notranslate nohighlight">\(\alpha_i\)</span> (the <code class="docutils literal notranslate"><span class="pre">P</span></code>
 line, in Å<sup>3</sup>, isotropic or as the six components
@@ -179,7 +180,7 @@ line, in Å<sup>3</sup>, isotropic or as the six components
 induced charge <span class="math notranslate nohighlight">\(\delta q_i\)</span>.</p>
 </section>
 <section id="fields-and-potentials">
-<h3><span class="section-number">8.1.2. </span>Fields and potentials<a class="headerlink" href="#fields-and-potentials" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.1.2. </span>Fields and potentials<a class="headerlink" href="#fields-and-potentials" title="Link to this heading">¶</a></h3>
 <p>During an outer QM/MM iteration every other region adds its field (and, at
 charge-response sites, its potential) to the sites of a polar region:</p>
 <ul class="simple">
@@ -196,7 +197,7 @@ energy (for example the QM region, whose Hamiltonian contains the induced
 moments).</p>
 </section>
 <section id="energies">
-<h3><span class="section-number">8.1.3. </span>Energies<a class="headerlink" href="#energies" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.1.3. </span>Energies<a class="headerlink" href="#energies" title="Link to this heading">¶</a></h3>
 <p>A polar region reports</p>
 <div class="math notranslate nohighlight">
 \[E_\text{static} = E_\text{static-static} + E_\text{static,ext}, \qquad
@@ -215,7 +216,7 @@ with.</p>
 </section>
 </section>
 <section id="the-thole-model">
-<h2><span class="section-number">8.2. </span>The Thole model<a class="headerlink" href="#the-thole-model" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.2. </span>The Thole model<a class="headerlink" href="#the-thole-model" title="Link to this heading">¶</a></h2>
 <p>Each site responds to the total field, external plus that of all other
 induced dipoles,</p>
 <div class="math notranslate nohighlight">
@@ -262,9 +263,9 @@ sites are instead smeared over Gaussians of width
 definite (<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>).</p>
 </section>
 <section id="the-charge-response-model">
-<h2><span class="section-number">8.3. </span>The charge-response model<a class="headerlink" href="#the-charge-response-model" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.3. </span>The charge-response model<a class="headerlink" href="#the-charge-response-model" title="Link to this heading">¶</a></h2>
 <section id="response-of-one-molecule">
-<h3><span class="section-number">8.3.1. </span>Response of one molecule<a class="headerlink" href="#response-of-one-molecule" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.3.1. </span>Response of one molecule<a class="headerlink" href="#response-of-one-molecule" title="Link to this heading">¶</a></h3>
 <p>A charge-response molecule <span class="math notranslate nohighlight">\(I\)</span> responds to the external potential
 <span class="math notranslate nohighlight">\(\boldsymbol{\phi}_I\)</span> at its atoms with induced atomic charges and
 to the field with residual induced dipoles,</p>
@@ -290,7 +291,7 @@ molecule therefore do <strong>not</strong> interact with each other; they intera
 with other molecules and with the QM region.</p>
 </section>
 <section id="smearing">
-<h3><span class="section-number">8.3.2. </span>Smearing<a class="headerlink" href="#smearing" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.3.2. </span>Smearing<a class="headerlink" href="#smearing" title="Link to this heading">¶</a></h3>
 <p>The induced charge and the residual dipole of a charge-response site are
 Gaussians: the charge density <span class="math notranslate nohighlight">\(\delta q\, g(\mathbf{r})\)</span> with
 <span class="math notranslate nohighlight">\(g(\mathbf{r}) = (\pi s^2)^{-3/2} e^{-r^2/s^2}\)</span>, and the dipole as
@@ -326,7 +327,7 @@ embedded GW-BSE use the same width, so the environment responds to the QM
 density in the same way in both.</p>
 </section>
 <section id="linear-system">
-<h3><span class="section-number">8.3.3. </span>Linear system<a class="headerlink" href="#linear-system" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.3.3. </span>Linear system<a class="headerlink" href="#linear-system" title="Link to this heading">¶</a></h3>
 <p>With the unknowns <span class="math notranslate nohighlight">\(x = (\delta\mathbf{q}, \boldsymbol{\mu})\)</span> (induced
 charges of all charge-response sites, induced dipoles of all sites), the
 sources <span class="math notranslate nohighlight">\(c = (-\boldsymbol{\phi}, \mathbf{E})\)</span> and
@@ -352,7 +353,7 @@ the Thole solver unchanged.</p>
 pseudo-inverse of <span class="math notranslate nohighlight">\(\Pi\)</span>, is added to <span class="math notranslate nohighlight">\(E_\text{internal}\)</span>.</p>
 </section>
 <section id="coupling-with-the-qm-region">
-<h3><span class="section-number">8.3.4. </span>Coupling with the QM region<a class="headerlink" href="#coupling-with-the-qm-region" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.3.4. </span>Coupling with the QM region<a class="headerlink" href="#coupling-with-the-qm-region" title="Link to this heading">¶</a></h3>
 <p>The induced charge and dipole of a charge-response site enter the QM
 Hamiltonian as the Gaussian charge and dipole above. The matrix elements are
 three-centre Coulomb integrals of an AO pair with an s- and a p-type
@@ -366,7 +367,7 @@ The coupling is therefore exactly symmetric, without grid errors. Only the
 charge-response molecules stops at the first outer iteration.</p>
 </section>
 <section id="reaction-field-of-embedded-gw-bse">
-<h3><span class="section-number">8.3.5. </span>Reaction field of embedded GW-BSE<a class="headerlink" href="#reaction-field-of-embedded-gw-bse" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.3.5. </span>Reaction field of embedded GW-BSE<a class="headerlink" href="#reaction-field-of-embedded-gw-bse" title="Link to this heading">¶</a></h3>
 <p>With charge-response molecules among the explicit polar regions, the
 reaction-field kernel over the auxiliary basis becomes</p>
 <div class="math notranslate nohighlight">
@@ -383,7 +384,7 @@ responds with <span class="math notranslate nohighlight">\(\alpha/\varepsilon\)<
 </section>
 </section>
 <section id="parametrization-of-charge-response-molecules">
-<h2><span class="section-number">8.4. </span>Parametrization of charge-response molecules<a class="headerlink" href="#parametrization-of-charge-response-molecules" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.4. </span>Parametrization of charge-response molecules<a class="headerlink" href="#parametrization-of-charge-response-molecules" title="Link to this heading">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(\Pi\)</span> is the static linear response of the molecule, obtained once
 per molecule type from a DFT calculation, like the target polarizability of
 <code class="docutils literal notranslate"><span class="pre">molpol</span></code>: natively with <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">crfit</span></code> (xtpdft), or with the
@@ -413,7 +414,7 @@ the Hirshfeld atomic dipole polarizabilities. <span class="math notranslate nohi
 must be positive definite.</p></li>
 </ol>
 <section id="files">
-<h3><span class="section-number">8.4.1. </span>Files<a class="headerlink" href="#files" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.4.1. </span>Files<a class="headerlink" href="#files" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">.crm</span></code>: the charge-response matrix in the atom order of the molecule
 type’s <code class="docutils literal notranslate"><span class="pre">.mps</span></code> file. Lines starting with <code class="docutils literal notranslate"><span class="pre">!</span></code> are comments; then the
@@ -446,7 +447,7 @@ site tensors.</p>
 region; checkpoints without them read as Thole molecules.</p>
 </section>
 <section id="tools">
-<h3><span class="section-number">8.4.2. </span>Tools<a class="headerlink" href="#tools" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">9.4.2. </span>Tools<a class="headerlink" href="#tools" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">crfit</span></code> is part of XTP and needs nothing else. It reads
 <code class="docutils literal notranslate"><span class="pre">job_name.xyz</span></code> and the <code class="docutils literal notranslate"><span class="pre">dftpackage</span></code> options (xtpdft; closed-shell
 molecules; LDA, GGA or global hybrid functionals), runs the ground state
@@ -514,7 +515,7 @@ states as usual.</p>
 </section>
 </section>
 <section id="accuracy-and-choice-of-model">
-<h2><span class="section-number">8.5. </span>Accuracy and choice of model<a class="headerlink" href="#accuracy-and-choice-of-model" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.5. </span>Accuracy and choice of model<a class="headerlink" href="#accuracy-and-choice-of-model" title="Link to this heading">¶</a></h2>
 <p>The induction energy
 <span class="math notranslate nohighlight">\(P = \tfrac12 \langle \rho | \chi_\text{env} | \rho \rangle\)</span> of one
 electron in a frontier orbital of a molecule A next to a molecule B (B the
@@ -565,7 +566,7 @@ QM/MM loop itself is about as expensive as with Thole sites. Thole molecules
 remain appropriate further out and can be mixed into the same region.</p>
 </section>
 <section id="periodic-background">
-<h2><span class="section-number">8.6. </span>Periodic background<a class="headerlink" href="#periodic-background" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.6. </span>Periodic background<a class="headerlink" href="#periodic-background" title="Link to this heading">¶</a></h2>
 <p>An <code class="docutils literal notranslate"><span class="pre">ewaldregion</span></code> is a frozen periodic background, converged beforehand by
 the <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> calculator with Thole molecules; the molecules of
 the job’s regions are cut out of it. A polar region in it may hold
@@ -593,7 +594,7 @@ background, with <span class="math notranslate nohighlight">\(\delta q_i \phi_i\
 energy.</p>
 </section>
 <section id="limitations">
-<h2><span class="section-number">8.7. </span>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">9.7. </span>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Charge-response molecules need the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> DFT package.</p></li>
 <li><p>They cannot be part of a dielectric shell region of embedded GW-BSE.</p></li>
@@ -612,8 +613,8 @@ residual polarizabilities.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ewald_embedding.html" class="btn btn-neutral float-left" title="7. Polarizable Ewald Embedding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="embedded_gwbse.html" class="btn btn-neutral float-right" title="9. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ewald_embedding.html" class="btn btn-neutral float-left" title="8. Polarizable Ewald Embedding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="embedded_gwbse.html" class="btn btn-neutral float-right" title="10. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,61 @@
+
+networkgen
+**********
+Writes a state file with a stochastic network model of any size (Baumeier et al., Phys. Rev. B 86, 184202 (2012)) from a parameter file written by networkfit: sites from a dominance-competition point process, correlated Gaussian site energies, distance dependent connection probability and couplings
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for the default
+       | state file name
+     - 
+   * - statefile
+     - OPTIONAL
+     - State file to create, if not given job_name.hdf5
+     - 
+   * - energyfile
+     - OPTIONAL
+     - Optional ASCII file with positions and site energies
+     - 
+   * - parameters
+     - REQUIRED
+     - | Parameter file of the model (root element stochasticnetwork,
+       | written by networkfit)
+     - 
+   * - sites
+     - 0
+     - Number of sites; 0: as in the parameter file
+     - int+
+   * - box
+     - OPTIONAL
+     - | Box lengths along x, y and z; if not given, the box of
+       | the parameter file scaled to keep its density and shape
+     - 
+   * - seed
+     - 0
+     - | Seed of the random numbers (the same network on every
+       | platform); 0: the seed of the parameter file
+     - int+
+   * - trapfactor
+     - 1
+     - | Multiplies the densities of the trap templates of the
+       | parameter file (0: no traps; the density of one trap in
+       | the fitted system is uncertain, so scan it)
+     - float+
+   * - temperature
+     - 300
+     - | Temperature for the finite-size check of the density of
+       | states (only printed)
+     - float+
+.. note::
+   An *xml* file containing the defaults for the `networkgen` calculator can be created via `-p networkgen -o FILENAME` command line options `

@@ -1,0 +1,152 @@
+
+networkfit
+**********
+Fits a stochastic network model (Baumeier et al., Phys. Rev. B 86, 184202 (2012)) to the sites, site energies and couplings of a state file and writes the parameter file for networkgen
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for the default
+       | file names
+     - 
+   * - statefile
+     - OPTIONAL
+     - | State file with site energies and couplings, if not given
+       | job_name.hdf5
+     - 
+   * - frame
+     - -1
+     - Frame of the state file; -1: the first
+     - int
+   * - carriers
+     - e h
+     - | Carrier types to fit (at most two are correlated with
+       | each other)
+     - 
+   * - parameterfile
+     - OPTIONAL
+     - Parameter file to write, if not given job_name_network.xml
+     - 
+   * - energyfile
+     - OPTIONAL
+     - | Optional ASCII file with positions and site energies of
+       | the microscopic system, and for each carrier whether the
+       | site belongs to one of its traps
+     - 
+   * - statsfile
+     - OPTIONAL
+     - | Optional ASCII file with the fitted functions (microscopic,
+       | model) for plots
+     - 
+   * - bin
+     - 0.05
+     - | Width of the distance bins of all distance dependent functions
+       | 
+     - float+
+   * - correlationcutoff
+     - 0
+     - | Largest distance for the energy correlation fit; 0: half
+       | the box
+     - float+
+   * - l_b
+     - 2 20 1
+     - Grid of the short-range moving average: first, last, step
+     - 
+   * - l_c
+     - 20 500 20
+     - | Grid of the long-range moving average: first, last, step
+       | (values above the number of sites are skipped)
+     - 
+   * - quantiles
+     - 100
+     - | Number of quantiles of the standardized coupling residuals;
+       | 0: Gaussian
+     - int+
+   * - points.fit
+     - true
+     - Fit the point process; false: use the values below
+     - bool
+   * - points.realizations
+     - 4
+     - Realizations averaged per evaluation of the fit
+     - int+
+   * - points.evaluations
+     - 150
+     - Largest number of evaluations of the fit
+     - int+
+   * - points.candidates
+     - 3
+     - | Candidate points per iteration, in units of the number
+       | of sites
+     - float+
+   * - points.maxiterations
+     - 200
+     - Largest number of iterations of the point process
+     - int+
+   * - points.hardcore
+     - 0.35
+     - Hard-core radius if not fitted
+     - float+
+   * - points.radiusmean
+     - 0.15
+     - Mean of the random part of the radii if not fitted
+     - float+
+   * - points.radiusvariance
+     - 0.004
+     - Variance of the random part of the radii if not fitted
+     - float+
+   * - traps.find
+     - true
+     - Identify traps; false: all sites are bulk
+     - bool
+   * - traps.threshold
+     - 0.9
+     - | Sites whose normalized density-mode entry exceeds this
+       | belong to a trap (the parameter a of the paper)
+     - float+
+   * - traps.gap
+     - 10
+     - | A trap releases a carrier at least this many times slower
+       | than the first fast mode of the network relaxes
+     - float+
+   * - traps.mass
+     - 0.5
+     - | A trap carries at least this fraction of the weight of
+       | its side of the slow density mode
+     - float+
+   * - traps.maxsize
+     - 20
+     - Largest number of sites of a trap
+     - int+
+   * - traps.maxsites
+     - 5000
+     - Largest number of sites for the dense eigenvalue problem
+     - int+
+   * - seed
+     - 1
+     - | Seed of the random numbers of the fit and of the parameter
+       | file
+     - int+
+   * - validate
+     - 4
+     - | Number of model networks of the same size whose statistics
+       | are compared with the microscopic system (mean and standard
+       | deviation over the networks); 0: none
+     - int+
+   * - temperature
+     - 300
+     - | Temperature of the rates for the trap identification and
+       | of the finite-size check of the density of states
+     - float+
+.. note::
+   An *xml* file containing the defaults for the `networkfit` calculator can be created via `-p networkfit -o FILENAME` command line options `
