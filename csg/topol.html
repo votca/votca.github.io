@@ -93,7 +93,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>The XML topology root element, the base for the topology can be defined by the “name” attribute
+  <p>The XML topology root element, the base for the topology (another topology file which is read first) can be defined by the “base” attribute
 The following table contains the input options for CSG,</p>
 <table class="docutils align-center">
 <thead>
@@ -103,7 +103,15 @@ The following table contains the input options for CSG,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>h5md_particle_group</p></td>
+<tr class="row-even"><td><p>box</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Rectangular simulation box, attributes xx, yy and zz (box</div>
+<div class="line">lengths in nm)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>h5md_particle_group</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Attribute name holds the name of particles group in H5MD</div>
@@ -111,7 +119,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>molecules</p></td>
+<tr class="row-even"><td><p>molecules</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The the molecules in the trajectory or other operation</div>
@@ -119,7 +127,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.molecule</p></td>
+<tr class="row-odd"><td><p>molecules.molecule</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Definition of the molecule, with attributes: name, nmols</div>
@@ -130,7 +138,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>molecules.molecule.bead</p></td>
+<tr class="row-even"><td><p>molecules.molecule.bead</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the bead in the molecule. Attributes are: name</div>
@@ -140,11 +148,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.clear</p></td>
+<tr class="row-odd"><td><p>molecules.clear</p></td>
 <td></td>
 <td><p>Clear the information about the molecules</p></td>
 </tr>
-<tr class="row-odd"><td><p>molecules.rename</p></td>
+<tr class="row-even"><td><p>molecules.rename</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Rename the molecules; attributes: “name” - the new name,</div>
@@ -153,7 +161,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.define</p></td>
+<tr class="row-odd"><td><p>molecules.define</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the molecules; attributes: “name” - the name of</div>
@@ -163,7 +171,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded</p></td>
+<tr class="row-even"><td><p>bonded</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">This section defines the topology of the molecules, it</div>
@@ -172,15 +180,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.bond</p></td>
+<tr class="row-odd"><td><p>bonded.bond</p></td>
 <td></td>
 <td><p>Describes the bond</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.bond.name</p></td>
+<tr class="row-even"><td><p>bonded.bond.name</p></td>
 <td></td>
 <td><p>The name of the bond</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.bond.beads</p></td>
+<tr class="row-odd"><td><p>bonded.bond.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The pair of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -188,15 +196,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded.angle</p></td>
+<tr class="row-even"><td><p>bonded.angle</p></td>
 <td></td>
 <td><p>Describes the angle</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.angle.name</p></td>
+<tr class="row-odd"><td><p>bonded.angle.name</p></td>
 <td></td>
 <td><p>The name of the angle</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.angle.beads</p></td>
+<tr class="row-even"><td><p>bonded.angle.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -204,15 +212,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.dihedral</p></td>
+<tr class="row-odd"><td><p>bonded.dihedral</p></td>
 <td></td>
 <td><p>Describes the dihedrals</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.dihedral.name</p></td>
+<tr class="row-even"><td><p>bonded.dihedral.name</p></td>
 <td></td>
 <td><p>The name of the dihedral</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.dihedral.beads</p></td>
+<tr class="row-odd"><td><p>bonded.dihedral.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -220,11 +228,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>beadtypes</p></td>
+<tr class="row-even"><td><p>beadtypes</p></td>
 <td></td>
 <td><p>Allows defining bead types</p></td>
 </tr>
-<tr class="row-even"><td><p>beadtypes.rename</p></td>
+<tr class="row-odd"><td><p>beadtypes.rename</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Rename the bead type; attributes: “name” - the old name,</div>
@@ -232,7 +240,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>beadtypes.mass</p></td>
+<tr class="row-even"><td><p>beadtypes.mass</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the mass of the bead type; attributes: “name” -</div>
@@ -251,7 +259,7 @@ The following table contains the input options for CSG,</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

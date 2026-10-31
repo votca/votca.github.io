@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Atomic Forces and Geometry Optimizaiton" href="geometry_optimization.html" />
+    <link rel="next" title="Atomic Forces and Geometry Optimization" href="geometry_optimization.html" />
     <link rel="prev" title="XTP Tutorials" href="XTP-TUTORIAL.html" /> 
 </head>
 
@@ -71,9 +71,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
@@ -157,7 +158,7 @@
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
+xtp_tools, version 2026-dev gitid: 07b3eb1 (compiled Oct 31 2026, 18:18:49)
 
 Runs excitation/charge transport tools
 
@@ -176,6 +177,8 @@ Allowed options:
   -e [ --execute ] arg        Name of Tool to run
   -l [ --list ]               Lists all available Tools
   -d [ --description ] arg    Short description of a Tools
+  --cite arg                  References to cite for a Tool (the end of each
+                              run lists those actually used)
   -c [ --cmdoptions ] arg     Modify options via command line by e.g. &#39;-c
                               xmltag.subtag=value&#39;. Use whitespace to separate
                               multiple options
@@ -312,17 +315,17 @@ Done - stopping here
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
+xtp_tools, version 2026-dev gitid: 07b3eb1 (compiled Oct 31 2026, 18:18:49)
 
 Initializing tool
 ... partialcharges Evaluating tool
 ... partialcharges  Using 1 threads
 ... ...  Loading QM data from methane.orb
 ... ... ===== Running on 1 threads =====
-... ... 2026-10-30 20:38:14 Calculated Densities at Numerical Grid, Number of electrons is -2.37464e-08
-... ... 2026-10-30 20:38:14 Calculating ESP at CHELPG grid points
-... ... 2026-10-30 20:38:16 Netcharge constrained to 0
-... ...  Sum of fitted charges: 2.41543e-14
+... ... 2026-10-31 18:22:55 Calculated Densities at Numerical Grid, Number of electrons is -2.37464e-08
+... ... 2026-10-31 18:22:55 Calculating ESP at CHELPG grid points
+... ... 2026-10-31 18:22:58 Netcharge constrained to 0
+... ...  Sum of fitted charges: 2.41439e-14
 ... ...  RMSE of fit:  0.00221585
 ... ...  RRMSE of fit: 0.10718
 ... ... El Dipole from fitted charges [e*bohr]:
@@ -330,6 +333,11 @@ Initializing tool
 ... ... El Dipole from exact qm density [e*bohr]:
                  dx = +0.7620 dy = -0.4941 dz = +0.4932 |d|^2 = +1.0681
 ... ... Written charges to methane.mps
+==============================================================================
+Please cite the methods used in this run:
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
+  [2] Breneman and Wiberg, Determining atom-centered monopoles from molecular electrostatic potentials, J. Comput. Chem. 11, 361 (1990), doi:10.1002/jcc.540110311
+==============================================================================
 </pre></div></div>
 </div>
 </section>
@@ -357,7 +365,7 @@ then read them in using the <code class="docutils literal notranslate"><span cla
 please read and cite: https://doi.org/10.21105/joss.06864
 and submit bugs to https://github.com/votca/votca/issues
 
-xtp_tools, version 2026-dev gitid: 73011e4 (compiled Oct 30 2026, 20:06:53)
+xtp_tools, version 2026-dev gitid: 07b3eb1 (compiled Oct 31 2026, 18:18:49)
 
 Initializing tool
 ... spectrum Evaluating tool
@@ -366,6 +374,10 @@ Initializing tool
 ... ...  Loading QM data from methane.orb
 ... ...  Considering 10 excitation with max energy 14.6581 eV / min wave length 84.7406 nm
 ... ...  Spectrum in energy range from  9 to 25 eV and with broadening of FWHM 0.2 eV written to file  methane_spectrum.dat
+==============================================================================
+Please cite the methods used in this run:
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
+==============================================================================
 </pre></div></div>
 </div>
 <p>The results are stored in the <code class="docutils literal notranslate"><span class="pre">methane_spectrum.dat</span></code> file.</p>
@@ -423,7 +435,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/lib/python3.14/site-packages 
 <div class="highlight"><pre>
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
-/tmp/ipykernel_9996/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
+/tmp/ipykernel_7566/3151737206.py:5: SyntaxWarning: &#34;\s&#34; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &#34;\\s&#34;? A raw string is also an option.
   df = pd.read_table(&#34;methane_spectrum.dat&#34;, comment=&#34;#&#34;, sep=&#39;\s+&#39;,names=columns)
 /usr/lib/python3.14/site-packages/seaborn/axisgrid.py:854: FutureWarning:
 
@@ -464,13 +476,13 @@ The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="XTP-TUTORIAL.html" class="btn btn-neutral float-left" title="XTP Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="geometry_optimization.html" class="btn btn-neutral float-right" title="Atomic Forces and Geometry Optimizaiton" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="geometry_optimization.html" class="btn btn-neutral float-right" title="Atomic Forces and Geometry Optimization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

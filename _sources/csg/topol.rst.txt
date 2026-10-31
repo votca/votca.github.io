@@ -1,5 +1,5 @@
 
-The XML topology root element, the base for the topology can be defined by the "name" attribute
+The XML topology root element, the base for the topology (another topology file which is read first) can be defined by the "base" attribute
 The following table contains the input options for CSG,
 
 .. list-table::
@@ -9,6 +9,10 @@ The following table contains the input options for CSG,
    * - Property Name
      - Default Value
      - Description
+   * - box
+     - 
+     - | Rectangular simulation box, attributes xx, yy and zz (box
+       | lengths in nm)
    * - h5md_particle_group
      - 
      - | Attribute name holds the name of particles group in H5MD

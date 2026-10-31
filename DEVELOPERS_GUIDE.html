@@ -163,8 +163,9 @@ Please be sure to provide as much information as possible such as:</p>
 <section id="formatting-code">
 <h2>Formatting code<a class="headerlink" href="#formatting-code" title="Link to this heading">¶</a></h2>
 <p>VOTCA uses <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> to format the code, code that is not
-properly formatted is automatically rejected. The style files can be
-found in each repo. CMake provides a format target which you can run to format your code.
+properly formatted is automatically rejected. The style file <code class="docutils literal notranslate"><span class="pre">.clang-format</span></code> is in the
+root of the repository. CMake provides a <code class="docutils literal notranslate"><span class="pre">format</span></code> target (it currently covers only
+<code class="docutils literal notranslate"><span class="pre">*.c</span></code> and <code class="docutils literal notranslate"><span class="pre">*.h</span></code> files).
 The easiest way to format your code is just a <code class="docutils literal notranslate"><span class="pre">&#64;votca-bot</span> <span class="pre">format</span></code> comment in the PR, which then will automatically format your code.</p>
 </section>
 <section id="doxygen-documentation">
@@ -182,8 +183,9 @@ automate this.</p>
 <h2>VOTCA Continuous Integration (GitHub Actions)<a class="headerlink" href="#votca-continuous-integration-github-actions" title="Link to this heading">¶</a></h2>
 <p>Each pull request to master in the votca repository
 is built on a machine in the cloud using <a class="reference external" href="https://docs.github.com/en/actions">GitHub actions</a></p>
-<p>VOTCA can be built on various linux distributions, which are not all natively supported by GitHub actions. For non natively supported distributions,
-instead of using the default virtual machines, VOTCA first builds and then runs a <a class="reference external" href="https://www.docker.com/resources/what-container">docker container</a> for each Pull Request. The container contains all the necessary dependencies of VOTCA (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below)</p>
+<p>VOTCA is built on various linux distributions, which are not all natively supported by GitHub actions. The builds therefore run inside
+prebuilt <a class="reference external" href="https://www.docker.com/resources/what-container">docker containers</a> (<code class="docutils literal notranslate"><span class="pre">ghcr.io/votca/buildenv/&lt;distribution&gt;</span></code>), which contain all
+dependencies of VOTCA (see <code class="code docutils literal notranslate"><span class="pre">buildenv</span></code> below).</p>
 <p>The docker images can be found at <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a>. The <strong>votca/buildenv</strong> containers are the basic containers, which contain all the dependencies VOTCA requires; VOTCA code itself is not included. The <strong>votca/buildenv</strong> can be found on <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.
 The actual containers used for running the test builds are built on top of the <strong>votca/buildenv</strong> containers, the resulting <strong>votca/votca</strong> container can be found on <a class="reference external" href="https://hub.docker.com/u/votca">Docker Hub</a> as well as <a class="reference external" href="https://github.com/orgs/votca/packages">VOTCA’s GitHub Container registry</a>.</p>
 <p>More information can be found in the <a class="reference external" href="https://github.com/votca/votca/tree/master/.github/workflows">GitHub workflow files</a>.</p>
@@ -193,7 +195,7 @@ The actual containers used for running the test builds are built on top of the <
 <p>Similar to the VOTCA containers, releases are also handled by GitHub actions. <code class="code docutils literal notranslate"><span class="pre">votca/votca</span></code> has a <code class="code docutils literal notranslate"><span class="pre">release</span></code> workflow that can only be triggered manually.
 To trigger it go <a class="reference external" href="https://github.com/votca/votca/actions?query=workflow%3Arelease">this GitHub Action</a>. The release can only be made from the
 <code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, but testing the creation of a release can be triggered on any branch. To make a release, trigger the action from the
-<code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box (all CHANGELOG files should already contain a section with the tag, but the date will be updated) and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. A new release will trigger the creation of the release tag.</p>
+<code class="code docutils literal notranslate"><span class="pre">master</span></code> branch, pick a new release tag in the <code class="code docutils literal notranslate"><span class="pre">release</span> <span class="pre">tag</span></code> box and type <code class="code docutils literal notranslate"><span class="pre">yesyesyes</span></code> into the deploy box. <code class="code docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> must contain a section for the current development version (e.g. <code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">2026-dev</span></code>) with at least one item; the release script renames it to the new version with the release date. A new release will trigger the creation of the release tag.</p>
 <section id="release-names">
 <h3>Release names<a class="headerlink" href="#release-names" title="Link to this heading">¶</a></h3>
 <p>Some releases have names, so far we have:</p>
@@ -214,7 +216,7 @@ To trigger it go <a class="reference external" href="https://github.com/votca/vo
 code has not always consistently followed the cpp standard we now make
 an effort to really enforce it and follow best practices.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.gitbook.com/book/lefticus/cpp-best-practices/details">Best
+<li><p><a class="reference external" href="https://github.com/cpp-best-practices/cppbestpractices">Best
 Practices1</a></p></li>
 <li><p><a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Best
 Practices2</a></p></li>
@@ -279,7 +281,7 @@ what a variable is meant to be used for.</p></li>
 -  then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> all member variables
 -  then <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code> member functions</p></li>
 <li><p>There is no rule as to where to define a <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">typedef</span></code> in the class.</p></li>
-<li><p>All member variables are <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">public</span></code>.</p></li>
+<li><p>All member variables are <code class="docutils literal notranslate"><span class="pre">private</span></code>/<code class="docutils literal notranslate"><span class="pre">protected</span></code>.</p></li>
 <li><p>The body of class methods should be placed in a source file or inlined at the end of the header if it exceeds a single line.</p></li>
 </ul>
 </section>
@@ -300,7 +302,7 @@ functions which should directly <code class="docutils literal notranslate"><span
 <li><p><code class="docutils literal notranslate"><span class="pre">get</span></code> must return a constant reference and keep the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">const</span></code>:
 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">int</span> <span class="pre">&amp;getId()</span> <span class="pre">const;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set</span></code> only sets the member, e.g.
-<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setId(const</span> <span class="pre">int</span> <span class="pre">&amp;id)</span> <span class="pre">{</span> <span class="pre">_id</span> <span class="pre">=</span> <span class="pre">id;</span> <span class="pre">}</span></code></p></li>
+<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setId(const</span> <span class="pre">int</span> <span class="pre">&amp;id)</span> <span class="pre">{</span> <span class="pre">id_</span> <span class="pre">=</span> <span class="pre">id;</span> <span class="pre">}</span></code></p></li>
 </ul>
 </section>
 <section id="functions">
@@ -314,7 +316,7 @@ sparingly.</p></li>
 <section id="pointers">
 <h3>Pointers<a class="headerlink" href="#pointers" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>In general, use pointers sparringly. Most objects are small and a
+<li><p>In general, use pointers sparingly. Most objects are small and a
 copy does not change performance. Use references if you want to avoid copies.</p></li>
 <li><p>If your pointer owns an object (i.e. it has to delete it later) use a
 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> to it, so you do not have to call <code class="docutils literal notranslate"><span class="pre">delete</span></code> on it
@@ -348,76 +350,55 @@ functions”.</p></li>
 </section>
 <section id="votca-specifics-indexing-ids-units">
 <h3>VOTCA specifics (indexing, ids, units)<a class="headerlink" href="#votca-specifics-indexing-ids-units" title="Link to this heading">¶</a></h3>
-<p>This can all be found here <a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html"><span class="doc">VOTCA_LANGUAGE_GUIDE</span></a></p>
+<p>This can all be found in the <a class="reference internal" href="VOTCA_LANGUAGE_GUIDE.html"><span class="doc">VOTCA Internal Contributor Language Guide</span></a>.</p>
 </section>
 </section>
 <section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
 <section id="unit-testing">
 <h3>Unit Testing<a class="headerlink" href="#unit-testing" title="Link to this heading">¶</a></h3>
-<p>Each module contains a src folder. Within the src folder exists a
-library folder: libtools, libcsg etc… and a tools folder. A tests
-folder should also exist in the src folder. If it does not you should
-create one.</p>
+<p>Each module (tools, csg, xtp) contains a <code class="docutils literal notranslate"><span class="pre">src/tests</span></code> folder with the unit
+tests of its library.</p>
 <p>For every new object and algorithm created there should exist a test. We
-use the Boost libraries testing framework. Good documentation can be
-found here:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.ibm.com/developerworks/aix/library/au-ctools1_boost/">Boost
-link</a></p></li>
-</ul>
-<p>We will outline the general workflow here using the vec object in
-votca::tools. This object only has a header file it is in:
-tools/include/votca/tools/vec.h.</p>
-<p>Determine if a tests folder has already been created or not in /src. If
-it has not, take a look at what was done in the votca-tools repo.</p>
+use the Boost libraries testing framework, see the
+<a class="reference external" href="https://www.boost.org/doc/libs/release/libs/test/doc/html/index.html">Boost.Test documentation</a>.</p>
+<p>As an example, take the histogram class <code class="docutils literal notranslate"><span class="pre">votca::tools::Histogram</span></code>
+(<code class="docutils literal notranslate"><span class="pre">tools/include/votca/tools/histogram.h</span></code>):</p>
 <ol class="arabic">
-<li><p>Create a test file in
-<a class="reference external" href="https://github.com/votca/votca/tree/master/tools/src/tests">tools/src/tests/</a>test_vec.cc
-must have the same name as what appears in the foreach in the
-CMakeLists.txt file. And place the following contents:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define BOOST_TEST_MAIN</span>
+<li><p>Create a test file <code class="docutils literal notranslate"><span class="pre">test_histogram.cc</span></code> in
+<a class="reference external" href="https://github.com/votca/votca/tree/master/tools/src/tests">tools/src/tests/</a>
+and add its name (without <code class="docutils literal notranslate"><span class="pre">.cc</span></code>) to the alphabetical list of tests in
+the <code class="docutils literal notranslate"><span class="pre">foreach</span></code> of <code class="docutils literal notranslate"><span class="pre">tools/src/tests/CMakeLists.txt</span></code>. The file has the
+following structure:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define BOOST_TEST_MAIN</span>
 
-<span class="cp">#define BOOST_TEST_MODULE vec_test</span>
+<span class="cp">#define BOOST_TEST_MODULE histogram_test</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/test/unit_test.hpp&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;exception&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;votca/tools/vec.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;votca/tools/histogram.h&quot;</span>
 
-<span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="n">std</span><span class="p">;</span>
-<span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="n">votca</span><span class="o">::</span><span class="n">tools</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">votca</span><span class="o">::</span><span class="nn">tools</span><span class="p">;</span>
 
-<span class="n">BOOST_AUTO_TEST_SUITE</span><span class="p">(</span><span class="n">vec_test</span><span class="p">)</span>
+<span class="n">BOOST_AUTO_TEST_SUITE</span><span class="p">(</span><span class="n">histogram_test</span><span class="p">)</span>
 
-
-<span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test1</span><span class="p">){</span>
-<span class="w">  </span><span class="n">vecv</span><span class="p">;</span>
+<span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Histogram</span><span class="w"> </span><span class="n">hist</span><span class="p">;</span>
 <span class="w">  </span><span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
-<span class="w">  </span><span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
-<span class="w">  </span><span class="o">:</span>
 <span class="p">}</span>
-<span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">test2</span><span class="p">){</span>
-<span class="w">  </span><span class="n">vecv</span><span class="p">;</span>
-<span class="w">  </span><span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
-<span class="w">  </span><span class="n">BOOST_CHECK_EQUAL</span><span class="p">(...);</span>
-<span class="w">  </span><span class="o">:</span>
-<span class="p">}</span>
-<span class="o">:</span>
+
 <span class="n">BOOST_AUTO_TEST_SUITE_END</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>Replace the ‘…’ with the appropriate checks. For more info on which
+boost test macros to use refer to the boost documentation.</p>
 </li>
-</ol>
-<p>Replace the ‘…’ and ‘:’ with the appropriate syntax. For more info on
-which boost test macros to use refer to the boost documentation</p>
-<ol class="arabic" start="2">
-<li><p>To run the test involve following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span><span class="nb">test</span>
+<li><p>Build and run the tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>builddir
+ctest<span class="w"> </span>--test-dir<span class="w"> </span>builddir<span class="w"> </span>-R<span class="w"> </span>histogram
 </pre></div>
 </div>
 </li>
 </ol>
-<p>Ensure you have an up to date version of cmake or use cmake3.</p>
 </section>
 </section>
 <section id="cpp-coding-style-guide">
@@ -426,7 +407,7 @@ which boost test macros to use refer to the boost documentation</p>
 <section id="clang-format">
 <h3><a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><a class="headerlink" href="#clang-format" title="Link to this heading">¶</a></h3>
 <p>Automatically ensures consistent formatting for .cc and .h files. The
-style follows the google style fomatting rules. Have a look at the
+style follows the google style formatting rules. Have a look at the
 <code class="docutils literal notranslate"><span class="pre">.clang-format</span> <span class="pre">file</span></code> in the <a class="reference external" href="https://github.com/votca/votca/blob/master/.clang-format">main votca
 repository</a>
 for details.</p>
@@ -442,8 +423,8 @@ default style guide.</p>
 is preferable that spaces be used instead.</p>
 </section>
 <section id="autopep8">
-<h3><a class="reference external" href="https://pypi.org/project/autopep8/0.8/">autopep8</a><a class="headerlink" href="#autopep8" title="Link to this heading">¶</a></h3>
-<p>Automatically formats python .py files. We are useing the default format
+<h3><a class="reference external" href="https://pypi.org/project/autopep8/">autopep8</a><a class="headerlink" href="#autopep8" title="Link to this heading">¶</a></h3>
+<p>Automatically formats python .py files. We are using the default format
 rules of autopep8. To run on file.py and update the file run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>autopep8<span class="w"> </span>-i<span class="w"> </span>file.py
 </pre></div>
@@ -503,40 +484,30 @@ different requirements from the package managers. Some of the
 architectures that the package managers support can be quite varied. In
 the case that a failure occurs on an architecture, that is not available
 to you, there are different approaches for debugging the problem. As an
-example, fedora dnf has extended support to the <strong>pcc64le</strong> architecture.
-Assuming you have access to fedora you can run the following commands to
-simulate the build process on the <strong>pcc64le</strong> architecture:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf<span class="w"> </span>update
-dnf<span class="w"> </span>install<span class="w"> </span>qemu-user-static<span class="w"> </span>dnf-utils
+example, Fedora supports the <strong>ppc64le</strong> architecture. Assuming you have
+access to Fedora you can simulate the build process on <strong>ppc64le</strong> with
+<code class="docutils literal notranslate"><span class="pre">mock</span></code> and the Fedora package sources
+(<a class="reference external" href="https://src.fedoraproject.org/rpms/votca">src.fedoraproject.org/rpms/votca</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf<span class="w"> </span>install<span class="w"> </span>qemu-user-static<span class="w"> </span>mock<span class="w"> </span>fedpkg
 usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>mock<span class="w"> </span>&lt;username&gt;
-mock<span class="w"> </span>-r<span class="w"> </span>epel-7-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--dnf<span class="w"> </span>--init
-wget<span class="w"> </span>https://raw.githubusercontent.com/votca/fedora-copr/master/votca.spec
-spectool<span class="w"> </span>-g<span class="w"> </span>votca.spec
-rpmbuild<span class="w"> </span>-D<span class="s2">&quot;_sourcedir </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-D<span class="s2">&quot;_srcrpmdir </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-bs<span class="w"> </span>votca.spec
-mock<span class="w"> </span>-r<span class="w"> </span>epel-7-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--dnf<span class="w"> </span>--no-clean<span class="w"> </span>votca-1.5-1.*.src.rpm
+fedpkg<span class="w"> </span>clone<span class="w"> </span>-a<span class="w"> </span>votca<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>votca
+fedpkg<span class="w"> </span>srpm
+mock<span class="w"> </span>-r<span class="w"> </span>fedora-rawhide-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>votca-*.src.rpm
 </pre></div>
 </div>
-<p>Here, votca-1.5-1 should be replaced with the correct version. The above
-commands would setup and run the dnf installation process on the
-<strong>pcc64le</strong> enviroment. If a bug was found and the build crashes one can
-interactively intervene by issuing the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock<span class="w"> </span>-r<span class="w"> </span>epel-7-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--shell
+<p>If the build crashes one can interactively intervene with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock<span class="w"> </span>-r<span class="w"> </span>fedora-rawhide-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--shell
 </pre></div>
 </div>
 <p>You will also need to install a text editor if you want to change the
 source files before running the interactive instance.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock<span class="w"> </span>-r<span class="w"> </span>epel-7-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--install<span class="w"> </span>vim
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mock<span class="w"> </span>-r<span class="w"> </span>fedora-rawhide-ppc64le<span class="w"> </span>--forcearch<span class="w"> </span>ppc64le<span class="w"> </span>--install<span class="w"> </span>vim
 </pre></div>
 </div>
-<p>Note: we have used this process with the <strong>ppc64le</strong> architecture as an
-example, but the same procedure can be extended with different
-architectures and diferent operating systems. For example, you could use
-the <strong>aarch64</strong> or <strong>armv7hl</strong> architecture in place of <strong>pcc64le</strong>. You
-could also replace the <strong>epel-7-ppc64le</strong> os-architecure to
-<strong>fedora-28-ppc64le</strong>, <strong>fedora-27-aarch64</strong> or some other combination.
-A final point, if you simply want to build natively, for instance if you
-are running fedora on an <strong>x86_64</strong> machine, the <code class="docutils literal notranslate"><span class="pre">frocearch</span> <span class="pre">pcc64le</span></code>
-in the above case could just be dropped.</p>
+<p>The same procedure works for other architectures (e.g. <strong>aarch64</strong>) and
+other releases (e.g. <code class="docutils literal notranslate"><span class="pre">fedora-&lt;version&gt;-&lt;arch&gt;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">epel-&lt;version&gt;-&lt;arch&gt;</span></code>; <code class="docutils literal notranslate"><span class="pre">mock</span> <span class="pre">--list-chroots</span></code> shows them). If you
+simply want to build natively, drop <code class="docutils literal notranslate"><span class="pre">--forcearch</span></code>.</p>
 </section>
 </section>
 
@@ -551,7 +522,7 @@ in the above case could just be dropped.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atomic Forces and Geometry Optimizaiton &mdash; VOTCA 2026-dev documentation</title>
+  <title>Atomic Forces and Geometry Optimization &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -58,7 +58,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Atomic Forces and Geometry Optimizaiton</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Atomic Forces and Geometry Optimization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#What-this-tutorial-is-about">What this tutorial is about</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Define-the-molecular-structure">Define the molecular structure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
@@ -68,6 +68,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
@@ -105,7 +106,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
-      <li class="breadcrumb-item active">Atomic Forces and Geometry Optimizaiton</li>
+      <li class="breadcrumb-item active">Atomic Forces and Geometry Optimization</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp-tutorials/geometry_optimization.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,8 +116,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Atomic-Forces-and-Geometry-Optimizaiton">
-<h1>Atomic Forces and Geometry Optimizaiton<a class="headerlink" href="#Atomic-Forces-and-Geometry-Optimizaiton" title="Link to this heading">¶</a></h1>
+  <section id="Atomic-Forces-and-Geometry-Optimization">
+<h1>Atomic Forces and Geometry Optimization<a class="headerlink" href="#Atomic-Forces-and-Geometry-Optimization" title="Link to this heading">¶</a></h1>
 <section id="What-this-tutorial-is-about">
 <h2>What this tutorial is about<a class="headerlink" href="#What-this-tutorial-is-about" title="Link to this heading">¶</a></h2>
 <p>In this tutorial we will learn how to compute the excited state atomic forces of a molecular structure and how to use these to perform geometry optimization. Let’s start by importing the relevant modules</p>
@@ -151,7 +152,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">energy='energy'</span></code> : DFT total energy</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">energy='singlets'</span></code>: BSE singlet energy</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">energy='triplets'</span></code>: BSE triplet energy</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">energy='qp'</span></code>: Quasi particile energy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">energy='qp'</span></code>: quasiparticle energy</p></li>
 </ul>
 <p>For <code class="docutils literal notranslate"><span class="pre">singlets</span></code>, <code class="docutils literal notranslate"><span class="pre">triplets</span></code> and <code class="docutils literal notranslate"><span class="pre">qp</span></code> one can also specify which particular level to target to compute the forces. For example <code class="docutils literal notranslate"><span class="pre">energy='singlets',</span> <span class="pre">level=0</span></code> will target the lowest lying singlet state.</p>
 <div class="nbinput nblast docutils container">
@@ -169,8 +170,8 @@
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_search_mode</span> <span class="o">=</span> <span class="s1">&#39;dense&#39;</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_spacing</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_grid_steps</span> <span class="o">=</span> <span class="mi">1001</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_dense_spacing</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">gwbse</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">qp_full_window_half_width</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <span class="c1"># set up the logger</span>
 <span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">logging_file</span> <span class="o">=</span> <span class="s1">&#39;CO_forces.log&#39;</span>
@@ -198,14 +199,14 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[ 2.27373675e-09, -1.27329258e-08,  8.69231589e+00],
-       [ 6.82121026e-10,  2.72848411e-09, -8.69231588e+00]])
+array([[ 1.13686838e-09, -1.31876732e-08,  8.69231589e+00],
+       [ 2.50111043e-09,  9.09494702e-10, -8.69231588e+00]])
 </pre></div></div>
 </div>
 </section>
 <section id="Geometry-optimization">
 <h2>Geometry optimization<a class="headerlink" href="#Geometry-optimization" title="Link to this heading">¶</a></h2>
-<p>Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can for example use the QuasiNewton method implemented in ASE to relax the molecular structre in the excited states we have just specified. We here fix the number of steps to 10 to limit the computational cost.</p>
+<p>Geometry optimization can be run by leveraging the intrinsic ASE capabilities. We can for example use the QuasiNewton method implemented in ASE to relax the molecular structure in the excited states we have just specified. We here fix the number of steps to 10 to limit the computational cost.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -222,75 +223,75 @@ array([[ 2.27373675e-09, -1.27329258e-08,  8.69231589e+00],
 <div class="output_area docutils container">
 <div class="highlight"><pre>
                     Step     Time          Energy          fmax
-GoodOldQuasiNewton:    0 20:50:50    -3077.640560        8.692316
+GoodOldQuasiNewton:    0 18:35:07    -3077.640560        8.692316
 new radius 0.012247
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 145.15049772015635
-GoodOldQuasiNewton:    1 20:50:58    -3077.578217        8.692316
-energies -3077.5782173233893 -3077.640559662664
+Abs Gbar estimate 145.15049800812017
+GoodOldQuasiNewton:    1 18:35:15    -3077.578217        8.692316
+energies -3077.5782173233883 -3077.6405596626632
 reject step
 new radius 0.006124
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 148.11660427348642
-GoodOldQuasiNewton:    2 20:51:07    -3077.613325        6.758169
-energies -3077.6133245102874 -3077.640559662664
+Abs Gbar estimate 148.1166045590718
+GoodOldQuasiNewton:    2 18:35:23    -3077.613325        6.758169
+energies -3077.6133245102883 -3077.6405596626632
 reject step
 new radius 0.003062
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 149.61090754824008
-GoodOldQuasiNewton:    3 20:51:15    -3077.627957        7.693924
-energies -3077.627957022293 -3077.640559662664
+Abs Gbar estimate 149.61090783531796
+GoodOldQuasiNewton:    3 18:35:32    -3077.627957        7.693924
+energies -3077.627957022291 -3077.6405596626632
 reject step
 new radius 0.001531
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 150.36087168534056
-GoodOldQuasiNewton:    4 20:51:24    -3077.634516        8.185343
-energies -3077.634516014534 -3077.640559662664
+Abs Gbar estimate 150.36087197315862
+GoodOldQuasiNewton:    4 18:35:40    -3077.634516        8.185343
+energies -3077.634516014532 -3077.6405596626632
 reject step
 new radius 0.000765
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 150.73655687891204
-GoodOldQuasiNewton:    5 20:51:32    -3077.637603        8.436918
-energies -3077.6376027276615 -3077.640559662664
+Abs Gbar estimate 150.7365571670984
+GoodOldQuasiNewton:    5 18:35:48    -3077.637603        8.436918
+energies -3077.637602727662 -3077.6405596626632
 reject step
 new radius 0.000383
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 150.9245752569792
-GoodOldQuasiNewton:    6 20:51:40    -3077.639098        8.564132
-energies -3077.639097514816 -3077.640559662664
+Abs Gbar estimate 150.9245755453502
+GoodOldQuasiNewton:    6 18:35:56    -3077.639098        8.564132
+energies -3077.6390975148133 -3077.6405596626632
 reject step
 new radius 0.000191
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 151.0186283913184
-GoodOldQuasiNewton:    7 20:51:48    -3077.639833        8.628125
-energies -3077.639832642546 -3077.640559662664
+Abs Gbar estimate 151.01862867978417
+GoodOldQuasiNewton:    7 18:36:04    -3077.639833        8.628125
+energies -3077.6398326425497 -3077.6405596626632
 reject step
 new radius 0.000100
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 151.06354365849685
-GoodOldQuasiNewton:    8 20:51:56    -3077.640181        8.660190
-energies -3077.640180785306 -3077.640559662664
+Abs Gbar estimate 151.06354394700514
+GoodOldQuasiNewton:    8 18:36:12    -3077.640181        8.660190
+energies -3077.640180785305 -3077.6405596626632
 reject step
 new radius 0.000100
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 151.06354365849685
-GoodOldQuasiNewton:    9 20:52:04    -3077.640181        8.675513
-energies -3077.640180785306 -3077.640559662664
+Abs Gbar estimate 151.06354394700514
+GoodOldQuasiNewton:    9 18:36:20    -3077.640181        8.675513
+energies -3077.640180785305 -3077.6405596626632
 reject step
 new radius 0.000100
 eigenvalues 20.00 20.00 20.00
 Corrected Newton step: abs(D) = 0.61
-Abs Gbar estimate 151.06354365849685
-GoodOldQuasiNewton:   10 20:52:04    -3077.640181        8.675513
+Abs Gbar estimate 151.06354394700514
+GoodOldQuasiNewton:   10 18:36:20    -3077.640181        8.675513
 </pre></div></div>
 </div>
 </section>
@@ -307,7 +308,7 @@ GoodOldQuasiNewton:   10 20:52:04    -3077.640181        8.675513
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

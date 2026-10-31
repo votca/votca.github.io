@@ -58,9 +58,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Larger systems with the stochastic network model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
@@ -295,6 +296,13 @@ Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard d
     log10 D zero field e (m^2/s)          -7.022        -7.063        0.01399
     traps found e                         0             0             0
 Wrote MADN_stats.dat
+==============================================================================
+Please cite the methods used in this run:
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
+  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012), doi:10.1103/PhysRevB.86.184202
+  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of extended Gaussian disorder models from microscopic charge transport simulations, J. Chem. Theory Comput. 10, 2508 (2014), doi:10.1021/ct500269r
+  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in molecular charge transport networks of organic semiconductors, Phys. Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
+==============================================================================
 </pre></div></div>
 </div>
 <p>The model has no traps for MADN. The width of the hole DOS is about <span class="math notranslate nohighlight">\(3.7\,k_BT\)</span> (after correcting the sample value for the finite box, see the manual). The validation table compares the morphology with the model boxes: geometry, energies, couplings, the energy correlation at a few distances and the exact zero-field diffusion coefficient of one hole. The morphology lies within the spread of the model boxes.</p>
@@ -558,6 +566,13 @@ Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard d
     log10 D zero field e (m^2/s)          -16           -16.33        1.752
     traps found e                         1             1.25          0.433
 Wrote BCP_stats.dat
+==============================================================================
+Please cite the methods used in this run:
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
+  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012), doi:10.1103/PhysRevB.86.184202
+  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of extended Gaussian disorder models from microscopic charge transport simulations, J. Chem. Theory Comput. 10, 2508 (2014), doi:10.1021/ct500269r
+  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in molecular charge transport networks of organic semiconductors, Phys. Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
+==============================================================================
 </pre></div></div>
 </div>
 <p>For holes <code class="docutils literal notranslate"><span class="pre">networkfit</span></code> finds a single-molecule trap: one molecule 0.9 eV below the mean holds practically all of the equilibrium weight. A hole leaves it at a rate of about <span class="math notranslate nohighlight">\(10^{-3}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>, although it hops out at about <span class="math notranslate nohighlight">\(10^3\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>: almost every hop out is followed by a hop back. For electrons there is a trap, too. The trap is far outside the Gaussian DOS of the rest of the morphology:</p>
@@ -744,7 +759,7 @@ sites much better. It is still an approximation: carriers also leave a deep regi
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

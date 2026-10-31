@@ -143,7 +143,27 @@ The following table contains the input options for CSG,</p>
 <td><p>grid</p></td>
 <td><p>Grid search algorithm, simple (N square search) or grid</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded</p></td>
+<tr class="row-odd"><td><p>inverse</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Options for the update step of csg_reupdate (relative</div>
+<div class="line">entropy)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.kBT</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Temperature times Boltzmann constant in the energy units</div>
+<div class="line">of the potentials (e.g. kJ/mol for GROMACS)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.scale</p></td>
+<td></td>
+<td><p>Scaling (relaxation) factor of the parameter update</p></td>
+</tr>
+<tr class="row-even"><td><p>bonded</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Interaction specific option for bonded interactions, see</div>
@@ -151,21 +171,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.dlpoly</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>bonded.dlpoly.header</p></td>
-<td></td>
-<td><div class="line-block">
-<div class="line">Header of the interaction in dlpoly TABBND or TABANG file.</div>
-<div class="line">The header should be a unique set of the interaction-site</div>
-<div class="line">names, and these should match the corresponding names</div>
-<div class="line">specified in the mapping file.</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>bonded.name</p></td>
+<tr class="row-odd"><td><p>bonded.name</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Name of the bonded interaction. The name can be arbitrary</div>
@@ -174,32 +180,21 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded.periodic</p></td>
+<tr class="row-even"><td><p>bonded.fmatch</p></td>
+<td></td>
+<td><p>Force matching options (as for non-bonded interactions)</p></td>
+</tr>
+<tr class="row-odd"><td><p>bonded.fmatch.periodic</p></td>
 <td><p>0</p></td>
 <td><div class="line-block">
-<div class="line">set to 1 when calculating bond dihedral potentials with</div>
-<div class="line">csg_fmatch -&gt; enforces periodicity of potential. (default</div>
-<div class="line">is 0)</div>
+<div class="line">set to 1 when calculating dihedral potentials with csg_fmatch:</div>
+<div class="line">enforces periodicity of the potential (default is 0)</div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>non-bonded</p></td>
 <td></td>
 <td><p>Interaction specific option for non-bonded interactions</p></td>
-</tr>
-<tr class="row-odd"><td><p>non-bonded.dlpoly</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>non-bonded.dlpoly.header</p></td>
-<td></td>
-<td><div class="line-block">
-<div class="line">Header of the interaction in dlpoly TABLE file. The header</div>
-<div class="line">should be a unique pair of the interaction-site names,</div>
-<div class="line">and these should match the corresponding names specified</div>
-<div class="line">in the mapping file.</div>
-</div>
-</td>
 </tr>
 <tr class="row-odd"><td><p>non-bonded.name</p></td>
 <td></td>
@@ -218,7 +213,45 @@ The following table contains the input options for CSG,</p>
 <td></td>
 <td><p><strong>Bead</strong> type 2 of non-bonded interaction.</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.bondtype</p></td>
+<tr class="row-even"><td><p>non-bonded.type3</p></td>
+<td></td>
+<td><p><strong>Bead</strong> type 3 of a three-body interaction (threebody=1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.threebody</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">1: three-body interaction of the bead types type1-type2-type3</div>
+<div class="line">(csg_stat: angular distribution, csg_fmatch: Stillinger-Weber-type</div>
+<div class="line">three-body force); default 0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.cut</p></td>
+<td><p>0.37</p></td>
+<td><div class="line-block">
+<div class="line">csg_stat, three-body interactions: cut-off of the triple</div>
+<div class="line">neighbour list (nm, default 0.37)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.force</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">csg_stat: 1 also computes the mean force projected on</div>
+<div class="line">the pair distance (written to name.force.new); default</div>
+<div class="line">0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.max_intra</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">csg_stat –include-intra: upper bound of the interval</div>
+<div class="line">used instead of max for non-bonded interactions</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.bondtype</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Internal alias for “non-bonded” or “bonded”, set automatically</div>
@@ -226,7 +259,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.min</p></td>
+<tr class="row-even"><td><p>non-bonded.min</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Lower bound of interval for potential table in which calculations</div>
@@ -234,7 +267,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.max</p></td>
+<tr class="row-odd"><td><p>non-bonded.max</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Upper bound of interval for potential table in which calculations</div>
@@ -242,7 +275,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.step</p></td>
+<tr class="row-even"><td><p>non-bonded.step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Step size of interval for potential table in which calculations</div>
@@ -252,11 +285,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.fmatch</p></td>
+<tr class="row-odd"><td><p>non-bonded.fmatch</p></td>
 <td></td>
 <td><p>Force matching options</p></td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.fmatch.min</p></td>
+<tr class="row-even"><td><p>non-bonded.fmatch.min</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Minimum value of interval for distribution sampled in</div>
@@ -268,7 +301,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.fmatch.max</p></td>
+<tr class="row-odd"><td><p>non-bonded.fmatch.max</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Maximum value of interval for distribution sampled in</div>
@@ -278,7 +311,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.fmatch.step</p></td>
+<tr class="row-even"><td><p>non-bonded.fmatch.step</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">grid spacing for the spline, which represents the interaction.</div>
@@ -287,6 +320,30 @@ The following table contains the input options for CSG,</p>
 <div class="line">too small either, otherwise you will have unsampled bins</div>
 <div class="line">which result in an ill-defined equation system and NaNs</div>
 <div class="line">in the output.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch.a</p></td>
+<td><p>0.37</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: cut-off a (nm) of the Stillinger-Weber-type</div>
+<div class="line">form (default 0.37)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.fmatch.sigma</p></td>
+<td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: sigma (dimensionless) of the</div>
+<div class="line">Stillinger-Weber-type form (default 1)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch.gamma</p></td>
+<td><p>0.12</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: gamma (nm) of the Stillinger-Weber-type</div>
+<div class="line">form (default 0.12)</div>
 </div>
 </td>
 </tr>
@@ -301,11 +358,27 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.re</p></td>
+<tr class="row-odd"><td><p>non-bonded.inverse</p></td>
+<td></td>
+<td><p>Options for csg_stat –do-imc</p></td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.inverse.imc</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.inverse.imc.group</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Group of interactions whose inverse Monte Carlo matrices</div>
+<div class="line">are computed together (“none”: not part of IMC)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.re</p></td>
 <td></td>
 <td><p>Relative entropy options</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.re.function</p></td>
+<tr class="row-odd"><td><p>non-bonded.re.function</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Functional form for the potential. Available functional</div>
@@ -314,11 +387,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>non-bonded.re.cbspl</p></td>
+<tr class="row-even"><td><p>non-bonded.re.cbspl</p></td>
 <td></td>
 <td><p>options specific to cbspl function form</p></td>
 </tr>
-<tr class="row-even"><td><p>non-bonded.re.cbspl.nknots</p></td>
+<tr class="row-odd"><td><p>non-bonded.re.cbspl.nknots</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Number of knot values to be used for the cbspl functional</div>
@@ -343,7 +416,7 @@ The following table contains the input options for CSG,</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

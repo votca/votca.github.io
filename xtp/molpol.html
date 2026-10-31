@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12.4.1.4.10. molpol &mdash; VOTCA 2026-dev documentation</title>
+  <title>12.4.1.4.12. molpol &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.4.1.4.11. networkfit" href="networkfit.html" />
-    <link rel="prev" title="12.4.1.4.9. log2mps" href="log2mps.html" /> 
+    <link rel="next" title="12.4.1.4.13. networkfit" href="networkfit.html" />
+    <link rel="prev" title="12.4.1.4.11. mol2orb" href="mol2orb.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -116,7 +116,7 @@
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
           <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">12. </span>Workflow and Calculator Structure</a></li>
           <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">12.4. </span>xtp_tools</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">12.4.1.4.10. </span>molpol</li>
+      <li class="breadcrumb-item active"><span class="section-number">12.4.1.4.12. </span>molpol</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/molpol.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -127,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="molpol">
-<h1><span class="section-number">12.4.1.4.10. </span>molpol<a class="headerlink" href="#molpol" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">12.4.1.4.12. </span>molpol<a class="headerlink" href="#molpol" title="Link to this heading">¶</a></h1>
 <p>Tool to scale distributed polarisibilites to DFT polarisibilites
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -177,10 +177,11 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>polar.cr_width</p></td>
 <td><p>0.7</p></td>
 <td><div class="line-block">
-<div class="line">Charge-response segments (<a href="#id1"><span class="problematic" id="id2">chargeresponse_</span></a> files in the</div>
-<div class="line">map file): width s of their Gaussian induced charges and</div>
-<div class="line">dipoles, density ~ exp(-r^2/s^2), for the couplings between</div>
-<div class="line">molecules and with the QM region. Not used by Thole segments</div>
+<div class="line">Charge-response segments (files with the prefix chargeresponse</div>
+<div class="line">in the map file): width s of their Gaussian induced charges</div>
+<div class="line">and dipoles, density ~ exp(-r^2/s^2), for the couplings</div>
+<div class="line">between molecules and with the QM region. Not used by</div>
+<div class="line">Thole segments</div>
 </div>
 </td>
 <td><p>float+</p></td>
@@ -278,14 +279,14 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="log2mps.html" class="btn btn-neutral float-left" title="12.4.1.4.9. log2mps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="networkfit.html" class="btn btn-neutral float-right" title="12.4.1.4.11. networkfit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mol2orb.html" class="btn btn-neutral float-left" title="12.4.1.4.11. mol2orb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="networkfit.html" class="btn btn-neutral float-right" title="12.4.1.4.13. networkfit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -130,10 +130,10 @@ package/module is missing in the error message and simply install it with <code 
 <span class="pre">install</span> <span class="pre">&lt;packagename&gt;</span></code>.</p>
 <p>A short list of packages you probably need to install manually:</p>
 <ul class="simple">
-<li><p>cma</p></li>
 <li><p>recommonmark</p></li>
 <li><p>nbsphinx</p></li>
 <li><p>sphinx_rtd_theme</p></li>
+<li><p>jupyter (nbconvert and a Python kernel, used to execute the tutorial notebooks)</p></li>
 </ul>
 <p>Once the errors are gone, the documentation is build and a static html website is
 generated in the <code class="docutils literal notranslate"><span class="pre">sphinx.html</span></code> folder within the build folder. You can view
@@ -160,12 +160,12 @@ markup. You can find quick introductions <a class="reference external" href="htt
 <section id="writing-a-new-page">
 <h2>Writing a new page<a class="headerlink" href="#writing-a-new-page" title="Link to this heading">¶</a></h2>
 <p>To add a new page to the website, you will first need to decide where it belongs,
-in the xtp, csg or votca repo. Once you have decided that, navigate to the corresponding folder in
+in the xtp or csg manual or on the general pages. Once you have decided that, navigate to the corresponding folder in
 <code class="docutils literal notranslate"><span class="pre">share/sphinx</span></code>. There will be either an <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>
-file or something like <code class="docutils literal notranslate"><span class="pre">XTP-MANUAL.rst</span></code>. This file is the main page of that repo on the website. If you look at the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">votca</span></code> repo you will
+file or something like <code class="docutils literal notranslate"><span class="pre">XTP-MANUAL.rst</span></code>. This file is the main page of that part of the website. If you look at the <code class="docutils literal notranslate"><span class="pre">share/sphinx/index.rst</span></code> file you will
 find all the subpages listed here, you need to make sure that your new page
 can be found starting from this file.</p>
-<p>As an example, suppose we want to add a test page, called <code class="docutils literal notranslate"><span class="pre">text.rst</span></code> to the
+<p>As an example, suppose we want to add a test page, called <code class="docutils literal notranslate"><span class="pre">test.rst</span></code> to the
 developers section of the website. In <code class="docutils literal notranslate"><span class="pre">votca/share/sphinx</span></code>, we would create the
 new file. Next, we would update the file <code class="docutils literal notranslate"><span class="pre">votca/share/sphinx/index.rst</span></code>, we need
 to add our file to the table of contents of the site. Look for the table of
@@ -178,8 +178,10 @@ something like this</p>
 
  DEVELOPERS_GUIDE.rst
  VOTCA_LANGUAGE_GUIDE.rst
+ Architecture.rst
+ xtp/Architecture.rst
  CODE_OF_CONDUCT.rst
- WEBSITE_AND_DOCUMENTATION.rst
+ websiteAndDocumentation.rst
  test.rst
 </pre></div>
 </div>
@@ -188,9 +190,9 @@ something like this</p>
 </section>
 <section id="changing-the-theme">
 <h2>Changing the theme<a class="headerlink" href="#changing-the-theme" title="Link to this heading">¶</a></h2>
-<p>To change the theme, navigate to <code class="docutils literal notranslate"><span class="pre">votca/share/sphinx/_themes</span></code>, there you will
-find the <code class="docutils literal notranslate"><span class="pre">theme.css</span></code> file which you can modify to change the look and feel of
-the website.</p>
+<p>The theme is in <code class="docutils literal notranslate"><span class="pre">votca/share/sphinx/_themes/sphinx_rtd_theme</span></code>. Changes to the
+look and feel of the website go into <code class="docutils literal notranslate"><span class="pre">static/css/custom.css</span></code> there, which is
+loaded after the theme’s <code class="docutils literal notranslate"><span class="pre">theme.css</span></code>.</p>
 </section>
 <section id="publishing-your-changes">
 <h2>Publishing your changes<a class="headerlink" href="#publishing-your-changes" title="Link to this heading">¶</a></h2>
@@ -216,7 +218,7 @@ the web is applicable here. So if you need something advanced, simply google it.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

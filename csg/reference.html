@@ -69,7 +69,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#mapping-file">Mapping file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#topology-file">Topology file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings-file">Settings file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#csgapps">csgapps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#csg-density">csg_density</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-fluctuations">csg_fluctuations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-orientcorr">csg_orientcorr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-part-dist">csg_part_dist</a></li>
@@ -77,7 +79,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#csg-radii">csg_radii</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-sphericalorder">csg_sphericalorder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#csg-traj-force">csg_traj_force</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#csg-density">csg_density</a></li>
 </ul>
 </li>
 </ul>
@@ -467,9 +468,8 @@ Trajectory options:
 <section id="id28">
 <h4>DESCRIPTION<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
 <p>Calculate all distributions (bonded and non-bonded) specified in options file.
-Optionally calculates update Eigen::Matrix3d for invere Monte Carlo. This program
-is called inside the inverse scripts. Big systems
-can be treated as well as non-bonded interactions can be evaluated.</p>
+Optionally (–do-imc) writes the matrices for an inverse Monte Carlo
+update, which csg_imc_solve solves.</p>
 </section>
 <section id="id29">
 <h4>OPTIONS<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
@@ -663,8 +663,8 @@ following keywords:</p>
 </section>
 <section id="topology-file">
 <span id="reference-topology-file"></span><h2>Topology file<a class="headerlink" href="#topology-file" title="Link to this heading">¶</a></h2>
-<p>The XMLtopology file</p>
-<p>The XML topology root element, the base for the topology can be defined by the “name” attribute
+<p>The XML topology file has the following options:</p>
+<p>The XML topology root element, the base for the topology (another topology file which is read first) can be defined by the “base” attribute
 The following table contains the input options for CSG,</p>
 <table class="docutils align-center">
 <thead>
@@ -674,7 +674,15 @@ The following table contains the input options for CSG,</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>h5md_particle_group</p></td>
+<tr class="row-even"><td><p>box</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Rectangular simulation box, attributes xx, yy and zz (box</div>
+<div class="line">lengths in nm)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>h5md_particle_group</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Attribute name holds the name of particles group in H5MD</div>
@@ -682,7 +690,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>molecules</p></td>
+<tr class="row-even"><td><p>molecules</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The the molecules in the trajectory or other operation</div>
@@ -690,7 +698,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.molecule</p></td>
+<tr class="row-odd"><td><p>molecules.molecule</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Definition of the molecule, with attributes: name, nmols</div>
@@ -701,7 +709,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>molecules.molecule.bead</p></td>
+<tr class="row-even"><td><p>molecules.molecule.bead</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the bead in the molecule. Attributes are: name</div>
@@ -711,11 +719,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.clear</p></td>
+<tr class="row-odd"><td><p>molecules.clear</p></td>
 <td></td>
 <td><p>Clear the information about the molecules</p></td>
 </tr>
-<tr class="row-odd"><td><p>molecules.rename</p></td>
+<tr class="row-even"><td><p>molecules.rename</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Rename the molecules; attributes: “name” - the new name,</div>
@@ -724,7 +732,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>molecules.define</p></td>
+<tr class="row-odd"><td><p>molecules.define</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the molecules; attributes: “name” - the name of</div>
@@ -734,7 +742,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded</p></td>
+<tr class="row-even"><td><p>bonded</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">This section defines the topology of the molecules, it</div>
@@ -743,15 +751,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.bond</p></td>
+<tr class="row-odd"><td><p>bonded.bond</p></td>
 <td></td>
 <td><p>Describes the bond</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.bond.name</p></td>
+<tr class="row-even"><td><p>bonded.bond.name</p></td>
 <td></td>
 <td><p>The name of the bond</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.bond.beads</p></td>
+<tr class="row-odd"><td><p>bonded.bond.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The pair of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -759,15 +767,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>bonded.angle</p></td>
+<tr class="row-even"><td><p>bonded.angle</p></td>
 <td></td>
 <td><p>Describes the angle</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.angle.name</p></td>
+<tr class="row-odd"><td><p>bonded.angle.name</p></td>
 <td></td>
 <td><p>The name of the angle</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.angle.beads</p></td>
+<tr class="row-even"><td><p>bonded.angle.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The triplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -775,15 +783,15 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p>bonded.dihedral</p></td>
+<tr class="row-odd"><td><p>bonded.dihedral</p></td>
 <td></td>
 <td><p>Describes the dihedrals</p></td>
 </tr>
-<tr class="row-odd"><td><p>bonded.dihedral.name</p></td>
+<tr class="row-even"><td><p>bonded.dihedral.name</p></td>
 <td></td>
 <td><p>The name of the dihedral</p></td>
 </tr>
-<tr class="row-even"><td><p>bonded.dihedral.beads</p></td>
+<tr class="row-odd"><td><p>bonded.dihedral.beads</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">The quadruplet of the beads in the format MOLECULE_NAME:BEAD_NAME</div>
@@ -791,11 +799,11 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>beadtypes</p></td>
+<tr class="row-even"><td><p>beadtypes</p></td>
 <td></td>
 <td><p>Allows defining bead types</p></td>
 </tr>
-<tr class="row-even"><td><p>beadtypes.rename</p></td>
+<tr class="row-odd"><td><p>beadtypes.rename</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Rename the bead type; attributes: “name” - the old name,</div>
@@ -803,7 +811,7 @@ The following table contains the input options for CSG,</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p>beadtypes.mass</p></td>
+<tr class="row-even"><td><p>beadtypes.mass</p></td>
 <td></td>
 <td><div class="line-block">
 <div class="line">Define the mass of the bead type; attributes: “name” -</div>
@@ -814,26 +822,405 @@ The following table contains the input options for CSG,</p>
 </tbody>
 </table>
 </section>
+<section id="settings-file">
+<span id="reference-settings-file"></span><h2>Settings file<a class="headerlink" href="#settings-file" title="Link to this heading">¶</a></h2>
+<p>The settings file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>) of <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> and
+<code class="docutils literal notranslate"><span class="pre">csg_reupdate</span></code> has the following options:</p>
+<p>Section containing the all coarse-graining options
+The following table contains the input options for CSG,</p>
+<table class="docutils align-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>fmatch</p></td>
+<td></td>
+<td><p>Force matching options</p></td>
+</tr>
+<tr class="row-odd"><td><p>fmatch.constrainedLS</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">boolean variable: false - simple least squares, true -</div>
+<div class="line">constrained least squares. For details see the VOTCA paper.</div>
+<div class="line">Practically, both algorithms give the same results, but</div>
+<div class="line">simple least squares is faster. If you are a mathematician</div>
+<div class="line">and you think that a spline can only then be called a</div>
+<div class="line">spline if it has continuous first and second derivatives,</div>
+<div class="line">use constrained least squares.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>fmatch.dist</p></td>
+<td><p>1e-5</p></td>
+<td><div class="line-block">
+<div class="line">Accuracy for evaluating the difference in bead positions.</div>
+<div class="line">Default is 1e-5</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>fmatch.frames_per_block</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">number of frames, being used for block averaging. Atomistic</div>
+<div class="line">trajectory, specified with –trj option, is divided into</div>
+<div class="line">blocks and the force matching equations are solved separately</div>
+<div class="line">for each block. Coarse-grained force-field, which one</div>
+<div class="line">gets on the output is averaged over those blocks.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>nbsearch</p></td>
+<td><p>grid</p></td>
+<td><p>Grid search algorithm, simple (N square search) or grid</p></td>
+</tr>
+<tr class="row-odd"><td><p>inverse</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Options for the update step of csg_reupdate (relative</div>
+<div class="line">entropy)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>inverse.kBT</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Temperature times Boltzmann constant in the energy units</div>
+<div class="line">of the potentials (e.g. kJ/mol for GROMACS)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>inverse.scale</p></td>
+<td></td>
+<td><p>Scaling (relaxation) factor of the parameter update</p></td>
+</tr>
+<tr class="row-even"><td><p>bonded</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Interaction specific option for bonded interactions, see</div>
+<div class="line">the cg.non-bonded section for all options</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>bonded.name</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Name of the bonded interaction. The name can be arbitrary</div>
+<div class="line">but should be unique. For bonded interactions, this should</div>
+<div class="line">match the name specified in the mapping file.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>bonded.fmatch</p></td>
+<td></td>
+<td><p>Force matching options (as for non-bonded interactions)</p></td>
+</tr>
+<tr class="row-odd"><td><p>bonded.fmatch.periodic</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">set to 1 when calculating dihedral potentials with csg_fmatch:</div>
+<div class="line">enforces periodicity of the potential (default is 0)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded</p></td>
+<td></td>
+<td><p>Interaction specific option for non-bonded interactions</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.name</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Name of the interaction. The name can be arbitrary but</div>
+<div class="line">should be unique. For bonded interactions, this should</div>
+<div class="line">match the name specified in the mapping file.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.type1</p></td>
+<td></td>
+<td><p><strong>Bead</strong> type 1 of non-bonded interaction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.type2</p></td>
+<td></td>
+<td><p><strong>Bead</strong> type 2 of non-bonded interaction.</p></td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.type3</p></td>
+<td></td>
+<td><p><strong>Bead</strong> type 3 of a three-body interaction (threebody=1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.threebody</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">1: three-body interaction of the bead types type1-type2-type3</div>
+<div class="line">(csg_stat: angular distribution, csg_fmatch: Stillinger-Weber-type</div>
+<div class="line">three-body force); default 0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.cut</p></td>
+<td><p>0.37</p></td>
+<td><div class="line-block">
+<div class="line">csg_stat, three-body interactions: cut-off of the triple</div>
+<div class="line">neighbour list (nm, default 0.37)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.force</p></td>
+<td><p>0</p></td>
+<td><div class="line-block">
+<div class="line">csg_stat: 1 also computes the mean force projected on</div>
+<div class="line">the pair distance (written to name.force.new); default</div>
+<div class="line">0</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.max_intra</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">csg_stat –include-intra: upper bound of the interval</div>
+<div class="line">used instead of max for non-bonded interactions</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.bondtype</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Internal alias for “non-bonded” or “bonded”, set automatically</div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.min</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Lower bound of interval for potential table in which calculations</div>
+<div class="line">are performed. Should be set based on reference distributions.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.max</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Upper bound of interval for potential table in which calculations</div>
+<div class="line">are performed. Should be set based on reference distributions.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.step</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Step size of interval for potential table in which calculations</div>
+<div class="line">are performed. If step site is too small, lots of statistics</div>
+<div class="line">is needed ( long runs ). If it’s too big, features in</div>
+<div class="line">the distribtuion/potentials might get lost.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch</p></td>
+<td></td>
+<td><p>Force matching options</p></td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.fmatch.min</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Minimum value of interval for distribution sampled in</div>
+<div class="line">atomistic MD simulation. One can get this number by looking</div>
+<div class="line">at the distribution function for this interaction. For</div>
+<div class="line">non-bonded interactions it’s the distance to the rdf start.</div>
+<div class="line">For CG bonds and angles the variable has the similar meaning</div>
+<div class="line">( note, that for angles it is specified in radians ).</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch.max</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Maximum value of interval for distribution sampled in</div>
+<div class="line">atomistic MD simulation. One can get this number by looking</div>
+<div class="line">at the distribution function for this interaction. For</div>
+<div class="line">non-bonded interactions it’s the cut-off of the interaction.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.fmatch.step</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">grid spacing for the spline, which represents the interaction.</div>
+<div class="line">This parameter should not be too big, otherwise you might</div>
+<div class="line">lose some features of the interaction potential, and not</div>
+<div class="line">too small either, otherwise you will have unsampled bins</div>
+<div class="line">which result in an ill-defined equation system and NaNs</div>
+<div class="line">in the output.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch.a</p></td>
+<td><p>0.37</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: cut-off a (nm) of the Stillinger-Weber-type</div>
+<div class="line">form (default 0.37)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.fmatch.sigma</p></td>
+<td><p>1</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: sigma (dimensionless) of the</div>
+<div class="line">Stillinger-Weber-type form (default 1)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.fmatch.gamma</p></td>
+<td><p>0.12</p></td>
+<td><div class="line-block">
+<div class="line">Three-body interactions: gamma (nm) of the Stillinger-Weber-type</div>
+<div class="line">form (default 0.12)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.fmatch.out_step</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Grid spacing for the output grid. Normally, one wants</div>
+<div class="line">to have this parameter smaller than fmatch.step, to have</div>
+<div class="line">a smooth curve, without additional spline interpolation.</div>
+<div class="line">As a rule of thumb we normally use fmatch.out_step which</div>
+<div class="line">is approximately 5 times smaller than fmatch.step.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.inverse</p></td>
+<td></td>
+<td><p>Options for csg_stat –do-imc</p></td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.inverse.imc</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.inverse.imc.group</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Group of interactions whose inverse Monte Carlo matrices</div>
+<div class="line">are computed together (“none”: not part of IMC)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.re</p></td>
+<td></td>
+<td><p>Relative entropy options</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.re.function</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Functional form for the potential. Available functional</div>
+<div class="line">forms: lj126 (Lennard-Jones 12-6), ljg (Lennard-Jones</div>
+<div class="line">12-6 plus Gaussian), and cbspl (uniform cubic B-splines).</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>non-bonded.re.cbspl</p></td>
+<td></td>
+<td><p>options specific to cbspl function form</p></td>
+</tr>
+<tr class="row-odd"><td><p>non-bonded.re.cbspl.nknots</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">Number of knot values to be used for the cbspl functional</div>
+<div class="line">form. Uniform grid size of the CBSPL depends on this parameter;</div>
+<div class="line">for fixed potential range more the nknots smaller the</div>
+<div class="line">grid spacing. Make sure grid spacing is sufficiently large</div>
+<div class="line">and enough CG simulation steps are performed such that</div>
+<div class="line">the bins at distance greater than the minimum distance</div>
+<div class="line">are sampled sufficiently otherwise ill-defined system</div>
+<div class="line">of equation would give NaNs in the output.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="csgapps">
-<span id="reference-settings-file"></span><h2>csgapps<a class="headerlink" href="#csgapps" title="Link to this heading">¶</a></h2>
-<p>Extra user-contibuted applications based on the csg application class, that aren’t needed for the normal workflows. Installable with <code class="docutils literal notranslate"><span class="pre">-DINSTALL_CSGAPPS=ON</span></code>.</p>
-<section id="csg-fluctuations">
-<h3>csg_fluctuations<a class="headerlink" href="#csg-fluctuations" title="Link to this heading">¶</a></h3>
+<h2>csgapps<a class="headerlink" href="#csgapps" title="Link to this heading">¶</a></h2>
+<p>Extra user-contributed applications based on the csg application class, that aren’t needed for the normal workflows. Installable with <code class="docutils literal notranslate"><span class="pre">-DINSTALL_CSGAPPS=ON</span></code>.</p>
+<section id="csg-density">
+<h3>csg_density<a class="headerlink" href="#csg-density" title="Link to this heading">¶</a></h3>
 <section id="id30">
 <h4>NAME<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
-<p><strong>csg_fluctuations</strong> - Part of the VOTCA package</p>
+<p><strong>csg_density</strong> - Part of the VOTCA package</p>
 </section>
 <section id="id31">
 <h4>SYNOPSIS<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
-<p><strong>csg_fluctuations</strong> [OPTIONS]</p>
-<p><strong>csg_fluctuations</strong> [–help]</p>
+<p><strong>csg_density</strong> [OPTIONS]</p>
+<p><strong>csg_density</strong> [–help]</p>
 </section>
 <section id="id32">
 <h4>DESCRIPTION<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
-<p>calculate density fluctuations in subvolumes of the simulation box.Subolumes can be either cubic slabs in dimensions (x|y|z) or sphericalslabs with respect to either the center of box or a reference molecule</p>
+<p>Calculates the mass density distribution along a box axis or radial density profile from reference point</p>
 </section>
 <section id="id33">
 <h4>OPTIONS<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
+
+  -h [ --help ]             display this help and exit
+  --verbose                 be loud and noisy
+  --verbose1                be very loud and noisy
+  -v [ --verbose2 ]         be extremly loud and noisy
+  --top arg                 atomistic topology file
+
+Mapping options:
+
+  --cg arg                  [OPTIONAL] coarse graining mapping and bond
+                          definitions
+                            (xml-file). If no file is given, program acts on
+                          original trajectory
+  --map-ignore arg          list of molecules to ignore if mapping is done
+                          separated by ;
+
+Specific options::
+
+  --type arg (=mass)      density type: mass or number
+  --axis arg (=r)         [x|y|z|r] density axis (r=spherical)
+  --step arg (=0.01)      spacing of density
+  --block-length arg        write blocks of this length, the averages are
+                          cleared after every write
+  --out arg               Output file
+  --rmax arg              rmax (default for [r] =min of all box vectors/2, else
+                          l )
+  --scale arg (=1)        scale factor for the density
+  --molname arg (=*)      molname
+  --filter arg (=*)       filter bead names
+  --ref arg               reference zero point
+
+Trajectory options:
+
+  --trj arg                 atomistic trajectory file
+  --begin arg (=0)          skip frames before this time (only works for
+                          Gromacs files)
+  --first-frame arg (=0)    start with this frame
+  --nframes arg             process the given number of frames
+</pre></div>
+</div>
+</section>
+</section>
+<section id="csg-fluctuations">
+<h3>csg_fluctuations<a class="headerlink" href="#csg-fluctuations" title="Link to this heading">¶</a></h3>
+<section id="id34">
+<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
+<p><strong>csg_fluctuations</strong> - Part of the VOTCA package</p>
+</section>
+<section id="id35">
+<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
+<p><strong>csg_fluctuations</strong> [OPTIONS]</p>
+<p><strong>csg_fluctuations</strong> [–help]</p>
+</section>
+<section id="id36">
+<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
+<p>calculate density fluctuations in subvolumes of the simulation box.Subolumes can be either cubic slabs in dimensions (x|y|z) or sphericalslabs with respect to either the center of box or a reference molecule</p>
+</section>
+<section id="id37">
+<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]                        display this help and exit
@@ -875,17 +1262,17 @@ Trajectory options:
 </section>
 <section id="csg-orientcorr">
 <h3>csg_orientcorr<a class="headerlink" href="#csg-orientcorr" title="Link to this heading">¶</a></h3>
-<section id="id34">
-<h4>NAME<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
+<section id="id38">
+<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id35">
-<h4>SYNOPSIS<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
+<section id="id39">
+<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
 <p><strong>csg_orientcorr</strong> [OPTIONS]</p>
 <p><strong>csg_orientcorr</strong> [–help]</p>
 </section>
-<section id="id36">
-<h4>DESCRIPTION<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
+<section id="id40">
+<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
 <p>Calculates the orientational correlation function
 &lt;3/2*u(0)*u(r) - 1/2&gt;
 for a polymer melt, where u is the vector pointing along a bond and
@@ -893,8 +1280,8 @@ r the distance between bond segments (centered on middle of bond).</p>
 <p>The output is correlation.dat (with intra-molecular contributions) and
 correlation_excl.dat, where inter-molecular contributions are excluded.</p>
 </section>
-<section id="id37">
-<h4>OPTIONS<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
+<section id="id41">
+<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]               display this help and exit
@@ -926,23 +1313,23 @@ Trajectory options:
 </section>
 <section id="csg-part-dist">
 <h3>csg_part_dist<a class="headerlink" href="#csg-part-dist" title="Link to this heading">¶</a></h3>
-<section id="id38">
-<h4>NAME<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
+<section id="id42">
+<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id39">
-<h4>SYNOPSIS<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
+<section id="id43">
+<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
 <p><strong>csg_part_dist</strong> [OPTIONS]</p>
 <p><strong>csg_part_dist</strong> [–help]</p>
 </section>
-<section id="id40">
-<h4>DESCRIPTION<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
+<section id="id44">
+<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
 <p>This program reads a topology and (set of) trajectory(ies). For every
 binned value of a chosen coordinate, it outputs the time-averaged number of
 particles, listed by particle types.</p>
 </section>
-<section id="id41">
-<h4>OPTIONS<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
+<section id="id45">
+<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   --top arg             topology file
@@ -964,21 +1351,21 @@ particles, listed by particle types.</p>
 </section>
 <section id="csg-partial-rdf">
 <h3>csg_partial_rdf<a class="headerlink" href="#csg-partial-rdf" title="Link to this heading">¶</a></h3>
-<section id="id42">
-<h4>NAME<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
+<section id="id46">
+<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id43">
-<h4>SYNOPSIS<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
+<section id="id47">
+<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
 <p><strong>csg_partial_rdf</strong> [OPTIONS]</p>
 <p><strong>csg_partial_rdf</strong> [–help]</p>
 </section>
-<section id="id44">
-<h4>DESCRIPTION<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
+<section id="id48">
+<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
 <p>Calculate spatially confined rdfs</p>
 </section>
-<section id="id45">
-<h4>OPTIONS<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
+<section id="id49">
+<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1024,21 +1411,21 @@ Trajectory options:
 </section>
 <section id="csg-radii">
 <h3>csg_radii<a class="headerlink" href="#csg-radii" title="Link to this heading">¶</a></h3>
-<section id="id46">
-<h4>NAME<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
+<section id="id50">
+<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id47">
-<h4>SYNOPSIS<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
+<section id="id51">
+<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
 <p><strong>csg_radii</strong> [OPTIONS]</p>
 <p><strong>csg_radii</strong> [–help]</p>
 </section>
-<section id="id48">
-<h4>DESCRIPTION<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
+<section id="id52">
+<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
 <p>calculate gyration- and hydrodynamic radius for a specific molecule or molecule type</p>
 </section>
-<section id="id49">
-<h4>OPTIONS<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
+<section id="id53">
+<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1065,24 +1452,24 @@ Trajectory options:
 </section>
 <section id="csg-sphericalorder">
 <h3>csg_sphericalorder<a class="headerlink" href="#csg-sphericalorder" title="Link to this heading">¶</a></h3>
-<section id="id50">
-<h4>NAME<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
+<section id="id54">
+<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id51">
-<h4>SYNOPSIS<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
+<section id="id55">
+<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
 <p><strong>csg_sphericalorder</strong> [OPTIONS]</p>
 <p><strong>csg_sphericalorder</strong> [–help]</p>
 </section>
-<section id="id52">
-<h4>DESCRIPTION<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
+<section id="id56">
+<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>!! EXPERIMENTAL !! Calculate spherical order parameter.</dt><dd><p>Needs non-spherical beads in mapping.</p>
 </dd>
 </dl>
 </section>
-<section id="id53">
-<h4>OPTIONS<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
+<section id="id57">
+<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1118,21 +1505,21 @@ Trajectory options:
 </section>
 <section id="csg-traj-force">
 <h3>csg_traj_force<a class="headerlink" href="#csg-traj-force" title="Link to this heading">¶</a></h3>
-<section id="id54">
-<h4>NAME<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
+<section id="id58">
+<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> - Part of the VOTCA package</p>
 </section>
-<section id="id55">
-<h4>SYNOPSIS<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
+<section id="id59">
+<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
 <p><strong>csg_traj_force</strong> [OPTIONS]</p>
 <p><strong>csg_traj_force</strong> [–help]</p>
 </section>
-<section id="id56">
-<h4>DESCRIPTION<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
+<section id="id60">
+<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
 <p>Adds/subtracts forces from given atomistic trajectories</p>
 </section>
-<section id="id57">
-<h4>OPTIONS<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
+<section id="id61">
+<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
 
   -h [ --help ]             display this help and exit
@@ -1144,66 +1531,6 @@ Trajectory options:
   --trj-force arg           atomistic reference trajectory containing forces to
                           add/subtract
   --out arg                 output trajectory file with resultant forces
-
-Trajectory options:
-
-  --trj arg                 atomistic trajectory file
-  --begin arg (=0)          skip frames before this time (only works for
-                          Gromacs files)
-  --first-frame arg (=0)    start with this frame
-  --nframes arg             process the given number of frames
-</pre></div>
-</div>
-</section>
-</section>
-<section id="csg-density">
-<h3>csg_density<a class="headerlink" href="#csg-density" title="Link to this heading">¶</a></h3>
-<section id="id58">
-<h4>NAME<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
-<p><strong>csg_density</strong> - Part of the VOTCA package</p>
-</section>
-<section id="id59">
-<h4>SYNOPSIS<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
-<p><strong>csg_density</strong> [OPTIONS]</p>
-<p><strong>csg_density</strong> [–help]</p>
-</section>
-<section id="id60">
-<h4>DESCRIPTION<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
-<p>Calculates the mass density distribution along a box axis or radial density profile from reference point</p>
-</section>
-<section id="id61">
-<h4>OPTIONS<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Allowed options:
-
-  -h [ --help ]             display this help and exit
-  --verbose                 be loud and noisy
-  --verbose1                be very loud and noisy
-  -v [ --verbose2 ]         be extremly loud and noisy
-  --top arg                 atomistic topology file
-
-Mapping options:
-
-  --cg arg                  [OPTIONAL] coarse graining mapping and bond
-                          definitions
-                            (xml-file). If no file is given, program acts on
-                          original trajectory
-  --map-ignore arg          list of molecules to ignore if mapping is done
-                          separated by ;
-
-Specific options::
-
-  --type arg (=mass)      density type: mass or number
-  --axis arg (=r)         [x|y|z|r] density axis (r=spherical)
-  --step arg (=0.01)      spacing of density
-  --block-length arg        write blocks of this length, the averages are
-                          cleared after every write
-  --out arg               Output file
-  --rmax arg              rmax (default for [r] =min of all box vectors/2, else
-                          l )
-  --scale arg (=1)        scale factor for the density
-  --molname arg (=*)      molname
-  --filter arg (=*)       filter bead names
-  --ref arg               reference zero point
 
 Trajectory options:
 
@@ -1230,7 +1557,7 @@ Trajectory options:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

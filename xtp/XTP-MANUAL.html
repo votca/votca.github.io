@@ -340,10 +340,11 @@ software and manual versions match.</p>
 <li class="toctree-l3"><a class="reference internal" href="pyxtp.html#environment-variables">11.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#option-parser">11.2. Option parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#options">11.2. Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyxtp.html#xtp-calculator">11.3. XTP calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#single-point-caclulation">11.4. Single Point Caclulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#geometry-optimization">11.5. Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#results">11.4. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#forces">11.5. Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html#examples">11.6. Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a><ul>
@@ -382,14 +383,15 @@ software and manual versions match.</p>
 <li class="toctree-l4"><a class="reference internal" href="xtp_run_overview.html#options">12.3.1.4. OPTIONS</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="eanalyze.html">12.3.1.4.1. eanalyze</a></li>
 <li class="toctree-l5"><a class="reference internal" href="einternal.html">12.3.1.4.2. einternal</a></li>
-<li class="toctree-l5"><a class="reference internal" href="grw.html">12.3.1.4.3. grw</a></li>
-<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">12.3.1.4.4. ianalyze</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">12.3.1.4.5. kmclifetime</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">12.3.1.4.6. kmcmultiple</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kmctof.html">12.3.1.4.7. kmctof</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">12.3.1.4.8. mapchecker</a></li>
-<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">12.3.1.4.9. neighborlist</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vaverage.html">12.3.1.4.10. vaverage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ewaldbackground.html">12.3.1.4.3. ewaldbackground</a></li>
+<li class="toctree-l5"><a class="reference internal" href="grw.html">12.3.1.4.4. grw</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ianalyze.html">12.3.1.4.5. ianalyze</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmclifetime.html">12.3.1.4.6. kmclifetime</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmcmultiple.html">12.3.1.4.7. kmcmultiple</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kmctof.html">12.3.1.4.8. kmctof</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mapchecker.html">12.3.1.4.9. mapchecker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="neighborlist.html">12.3.1.4.10. neighborlist</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vaverage.html">12.3.1.4.11. vaverage</a></li>
 </ul>
 </li>
 </ul>
@@ -404,21 +406,23 @@ software and manual versions match.</p>
 <li class="toctree-l4"><a class="reference internal" href="xtp_tools_overview.html#options">12.4.1.4. OPTIONS</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="apdft.html">12.4.1.4.1. apdft</a></li>
 <li class="toctree-l5"><a class="reference internal" href="coupling.html">12.4.1.4.2. coupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">12.4.1.4.3. densityanalysis</a></li>
-<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">12.4.1.4.4. dftgwbse</a></li>
-<li class="toctree-l5"><a class="reference internal" href="diabatization.html">12.4.1.4.5. diabatization</a></li>
-<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">12.4.1.4.6. excitoncoupling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gencube.html">12.4.1.4.7. gencube</a></li>
-<li class="toctree-l5"><a class="reference internal" href="latticegen.html">12.4.1.4.8. latticegen</a></li>
-<li class="toctree-l5"><a class="reference internal" href="log2mps.html">12.4.1.4.9. log2mps</a></li>
-<li class="toctree-l5"><a class="reference internal" href="molpol.html">12.4.1.4.10. molpol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="networkfit.html">12.4.1.4.11. networkfit</a></li>
-<li class="toctree-l5"><a class="reference internal" href="networkgen.html">12.4.1.4.12. networkgen</a></li>
-<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">12.4.1.4.13. partialcharges</a></li>
-<li class="toctree-l5"><a class="reference internal" href="spectrum.html">12.4.1.4.14. spectrum</a></li>
+<li class="toctree-l5"><a class="reference internal" href="crfit.html">12.4.1.4.3. crfit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="densityanalysis.html">12.4.1.4.4. densityanalysis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dftgwbse.html">12.4.1.4.5. dftgwbse</a></li>
+<li class="toctree-l5"><a class="reference internal" href="diabatization.html">12.4.1.4.6. diabatization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="excitoncoupling.html">12.4.1.4.7. excitoncoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gencube.html">12.4.1.4.8. gencube</a></li>
+<li class="toctree-l5"><a class="reference internal" href="latticegen.html">12.4.1.4.9. latticegen</a></li>
+<li class="toctree-l5"><a class="reference internal" href="log2mps.html">12.4.1.4.10. log2mps</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">12.4.1.4.11. mol2orb</a></li>
+<li class="toctree-l5"><a class="reference internal" href="molpol.html">12.4.1.4.12. molpol</a></li>
+<li class="toctree-l5"><a class="reference internal" href="networkfit.html">12.4.1.4.13. networkfit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="networkgen.html">12.4.1.4.14. networkgen</a></li>
 <li class="toctree-l5"><a class="reference internal" href="orb2fchk.html">12.4.1.4.15. orb2fchk</a></li>
 <li class="toctree-l5"><a class="reference internal" href="orb2mol.html">12.4.1.4.16. orb2mol</a></li>
-<li class="toctree-l5"><a class="reference internal" href="mol2orb.html">12.4.1.4.17. mol2orb</a></li>
+<li class="toctree-l5"><a class="reference internal" href="partialcharges.html">12.4.1.4.17. partialcharges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="podcoupling.html">12.4.1.4.18. podcoupling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spectrum.html">12.4.1.4.19. spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -481,13 +485,69 @@ software and manual versions match.</p>
 <section id="citations">
 <h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">¶</a></h2>
 <p>Development of this software depends on academic research grants. If
-you are using the package, please cite the following papers:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../csg/bibliography.html#scherer-understanding-2018" id="id1"><span>[scherer_understanding_2018]</span></a> Force-matching with three-body interactions in VOTCA</p></li>
-<li><p><a class="reference internal" href="../csg/bibliography.html#mashayakrelative" id="id2"><span>[mashayakrelative]</span></a> Relative entropy and optimization-driven coarse-graining methods in VOTCA</p></li>
-<li><p><a class="reference internal" href="../csg/bibliography.html#ruhle2011hybrid" id="id3"><span>[ruhle2011hybrid]</span></a> Hybrid approaches to coarse-graining using the VOTCA package: liquid hexane</p></li>
-<li><p><a class="reference internal" href="../csg/bibliography.html#ruehle-2009-a" id="id4"><span>[Ruehle:2009.a]</span></a> Versatile Object-oriented Toolkit for Coarse-graining Applications</p></li>
-</ul>
+you are using VOTCA-XTP, please cite <a class="reference internal" href="bibliography.html#baumeier-2024" id="id1"><span>[Baumeier:2024]</span></a> and the papers
+of the methods you used.</p>
+<p>Every run of <code class="docutils literal notranslate"><span class="pre">xtp_run</span></code>, <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code> and <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code> ends with
+the list of references for the methods it actually used, in the order
+of first use, e.g. for a GW-BSE calculation in a polarizable
+environment</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please cite the methods used in this run:
+  [1] Baumeier, Wehner, Renaud, ..., VOTCA: multiscale frameworks ...
+  [2] Ruehle et al., Microscopic simulations of charge transport ...
+  [3] Thole, Chem. Phys. 59, 341 (1981)
+  ...
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--cite</span> <span class="pre">&lt;name&gt;</span></code> prints the references of a calculator or tool without
+running it, including those that depend on its options
+(e.g. <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">--cite</span> <span class="pre">dftgwbse</span></code>). The references are</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>References</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VOTCA (every run)</p></td>
+<td><p><a class="reference internal" href="bibliography.html#baumeier-2024" id="id2"><span>[Baumeier:2024]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Structure-based calculators, KMC</p></td>
+<td><p><a class="reference internal" href="bibliography.html#ruehle-2011" id="id3"><span>[Ruehle:2011]</span></a>; exciton KMC (<code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code>) <a class="reference internal" href="bibliography.html#wehner-2020" id="id4"><span>[Wehner:2020]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Graph random walk (<code class="docutils literal notranslate"><span class="pre">grw</span></code>, <code class="docutils literal notranslate"><span class="pre">latticegen</span></code>, KMC solvers <code class="docutils literal notranslate"><span class="pre">exact</span></code>/<code class="docutils literal notranslate"><span class="pre">grw</span></code>)</p></td>
+<td><p><a class="reference internal" href="bibliography.html#chen-2025a" id="id5"><span>[Chen:2025a]</span></a>, <a class="reference internal" href="bibliography.html#stenzel-2014" id="id6"><span>[Stenzel:2014]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Stochastic network model, traps</p></td>
+<td><p><a class="reference internal" href="bibliography.html#baumeier-2012" id="id7"><span>[Baumeier:2012]</span></a>, <a class="reference internal" href="bibliography.html#kordt-2014" id="id8"><span>[Kordt:2014]</span></a>; traps <a class="reference internal" href="bibliography.html#chen-2025b" id="id9"><span>[Chen:2025b]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>DFT couplings, projection on dimer orbitals</p></td>
+<td><p><a class="reference internal" href="bibliography.html#baumeier-2010" id="id10"><span>[Baumeier:2010]</span></a>; POD <a class="reference internal" href="bibliography.html#ghan-2020" id="id11"><span>[Ghan:2020]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>GW-BSE</p></td>
+<td><p><a class="reference internal" href="bibliography.html#wehner-2018" id="id12"><span>[Wehner:2018]</span></a>, <a class="reference internal" href="bibliography.html#tirimbo-2020a" id="id13"><span>[Tirimbo:2020a]</span></a>; QSGW <a class="reference internal" href="bibliography.html#vanschilfgaarde-2006" id="id14"><span>[vanSchilfgaarde:2006]</span></a>,
+SRG regularization <a class="reference internal" href="bibliography.html#marie-2023" id="id15"><span>[Marie:2023]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>BSE couplings, diabatization</p></td>
+<td><p><a class="reference internal" href="bibliography.html#wehner-2017" id="id16"><span>[Wehner:2017]</span></a>; <a class="reference internal" href="bibliography.html#tirimbo-2024b" id="id17"><span>[Tirimbo:2024b]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>DFT options</p></td>
+<td><p>constrained DFT <a class="reference internal" href="bibliography.html#wu-2005" id="id18"><span>[Wu:2005]</span></a>; second-order SCF <a class="reference internal" href="bibliography.html#helmich-paris-2021" id="id19"><span>[Helmich-Paris:2021]</span></a>;
+projection-based embedding <a class="reference internal" href="bibliography.html#manby-2012" id="id20"><span>[Manby:2012]</span></a>, <a class="reference internal" href="bibliography.html#sundaram-2024" id="id21"><span>[Sundaram:2024]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Embedded GW-BSE (<code class="docutils literal notranslate"><span class="pre">qmmm</span></code>)</p></td>
+<td><p><a class="reference internal" href="bibliography.html#baumeier-2014" id="id22"><span>[Baumeier:2014]</span></a>, <a class="reference internal" href="bibliography.html#tirimbo-2020b" id="id23"><span>[Tirimbo:2020b]</span></a>, <a class="reference internal" href="bibliography.html#tirimbo-2024a" id="id24"><span>[Tirimbo:2024a]</span></a>; polar region
+<a class="reference internal" href="bibliography.html#thole-1981" id="id25"><span>[Thole:1981]</span></a>; Ewald region and <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code>
+<a class="reference internal" href="bibliography.html#poelking-2016" id="id26"><span>[Poelking:2016]</span></a>, <a class="reference internal" href="bibliography.html#poelking-2015" id="id27"><span>[Poelking:2015]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>CHELPG partial charges</p></td>
+<td><p><a class="reference internal" href="bibliography.html#breneman-1990" id="id28"><span>[Breneman:1990]</span></a></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="development">
 <h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
@@ -497,7 +557,7 @@ you are using the package, please cite the following papers:</p>
 <h2>Copyright<a class="headerlink" href="#copyright" title="Link to this heading">¶</a></h2>
 <p>VOTCA is free software. The entire package is available under the Apache
 License. For details, check the LICENSE file in the source code. The
-VOTCA source code is available on our homepage, .</p>
+VOTCA source code is available on <a class="reference external" href="https://github.com/votca/votca">GitHub</a>.</p>
 </section>
 </section>
 
@@ -512,7 +572,7 @@ VOTCA source code is available on our homepage, .</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

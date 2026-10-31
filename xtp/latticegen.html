@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12.4.1.4.8. latticegen &mdash; VOTCA 2026-dev documentation</title>
+  <title>12.4.1.4.9. latticegen &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.4.1.4.9. log2mps" href="log2mps.html" />
-    <link rel="prev" title="12.4.1.4.7. gencube" href="gencube.html" /> 
+    <link rel="next" title="12.4.1.4.10. log2mps" href="log2mps.html" />
+    <link rel="prev" title="12.4.1.4.8. gencube" href="gencube.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -116,7 +116,7 @@
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
           <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">12. </span>Workflow and Calculator Structure</a></li>
           <li class="breadcrumb-item"><a href="xtp_tools_overview.html"><span class="section-number">12.4. </span>xtp_tools</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">12.4.1.4.8. </span>latticegen</li>
+      <li class="breadcrumb-item active"><span class="section-number">12.4.1.4.9. </span>latticegen</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/latticegen.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -127,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="latticegen">
-<h1><span class="section-number">12.4.1.4.8. </span>latticegen<a class="headerlink" href="#latticegen" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">12.4.1.4.9. </span>latticegen<a class="headerlink" href="#latticegen" title="Link to this heading">¶</a></h1>
 <p>Writes a state file with a surrogate simple cubic lattice hopping model (sites at (i+1/2)a, periodic box, pairs with Marcus parameters), e.g. to test time-of-flight methods. Setup as in Chen, van der Hoorn, Baumeier, arXiv:2405.15836.
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
@@ -187,7 +187,7 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>J2</p></td>
 <td><p>1.79e-4</p></td>
 <td><div class="line-block">
-<div class="line">Squared coupling <a href="#id1"><span class="problematic" id="id2">|</span></a>J|^2 at distance a; <a href="#id3"><span class="problematic" id="id4">|</span></a>J|^2(r) = J2 exp(-(r-a)/decaylength)</div>
+<div class="line">Squared coupling J^2 at distance a; J^2(r) = J2 exp(-(r-a)/decaylength)</div>
 <div class="line"><br /></div>
 </div>
 </td>
@@ -195,7 +195,7 @@ The following table contains the defaults input options for the calculator, The 
 </tr>
 <tr class="row-odd"><td><p>decaylength</p></td>
 <td><p>1.0</p></td>
-<td><p>Decay length of <a href="#id5"><span class="problematic" id="id6">|</span></a>J|^2</p></td>
+<td><p>Decay length of J^2</p></td>
 <td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>reorganization</p></td>
@@ -302,14 +302,14 @@ The following table contains the defaults input options for the calculator, The 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gencube.html" class="btn btn-neutral float-left" title="12.4.1.4.7. gencube" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="log2mps.html" class="btn btn-neutral float-right" title="12.4.1.4.9. log2mps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gencube.html" class="btn btn-neutral float-left" title="12.4.1.4.8. gencube" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="log2mps.html" class="btn btn-neutral float-right" title="12.4.1.4.10. log2mps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -58,8 +58,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#post-processing-of-the-potential">Post-processing of the potential</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#clipping-of-poorly-sampled-regions">Clipping of poorly sampled regions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extrapolation">Extrapolation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="methods.html">Methods</a></li>
@@ -154,41 +152,20 @@ be added manually.</p>
 </section>
 <section id="post-processing-of-the-potential">
 <span id="preparing-post-processing-of-the-potential"></span><h3>Post-processing of the potential<a class="headerlink" href="#post-processing-of-the-potential" title="Link to this heading">¶</a></h3>
-<p>The post-processing roughly consists of the following steps (see further
-explanations below):</p>
+<p>VOTCA no longer provides tools for post-processing potentials (the former
+<code class="docutils literal notranslate"><span class="pre">csg_resample</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_call</span></code> table scripts were removed); these steps
+have to be done with other tools. They roughly consist of</p>
 <ul class="simple">
-<li><p>(manually) clipping poorly sampled (border) regions</p></li>
-<li><p>resampling the potential in order to change the grid to the proper
-format ()</p></li>
-<li><p>extrapolation of the potential at the borders ( table extrapolate)</p></li>
-<li><p>exporting the table to xvg ( convert_potential gromacs)</p></li>
+<li><p>clipping poorly sampled (border) regions, e.g. by deleting them from the
+table or by setting their flag to <code class="docutils literal notranslate"><span class="pre">o</span></code> (out of range),</p></li>
+<li><p>resampling the potential to the grid required by the MD package,</p></li>
+<li><p>extrapolating the potential into the clipped regions,</p></li>
+<li><p>exporting the table in the format of the MD package.</p></li>
 </ul>
+<p>Tables written by <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> and <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> have the columns
+<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">[error]</span> <span class="pre">flag</span></code>, where the flag <code class="docutils literal notranslate"><span class="pre">i</span></code> marks values inside the sampled
+range and <code class="docutils literal notranslate"><span class="pre">o</span></code> values outside of it.</p>
 </section>
-</section>
-<section id="clipping-of-poorly-sampled-regions">
-<h2>Clipping of poorly sampled regions<a class="headerlink" href="#clipping-of-poorly-sampled-regions" title="Link to this heading">¶</a></h2>
-<p>Regions with an irregular distribution of samples should be deleted
-first. This is simply done by editing the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file and by deleting
-those values.</p>
-<p>Alternatively, manually check the range where the potential still looks
-good and is not to noisy and set the flags in the potential file of the
-bad parts by hand to <code class="docutils literal notranslate"><span class="pre">o</span></code> (for <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code>). Those values will
-later be extrapolated and overwritten.</p>
-</section>
-<section id="extrapolation">
-<h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Link to this heading">¶</a></h2>
-<p>After resampling, all values in the potential file that should be used
-as a basis for extrapolation are marked with an <code class="docutils literal notranslate"><span class="pre">i</span></code>, while all values
-that need extrapolation are marked by <code class="docutils literal notranslate"><span class="pre">o</span></code>. The command above now
-extrapolates all <code class="docutils literal notranslate"><span class="pre">o</span></code> values from the <code class="docutils literal notranslate"><span class="pre">i</span></code> values in the file.
-Available options include averaging over a certain number of points
-(<code class="docutils literal notranslate"><span class="pre">avgpoints</span></code>), changing the functional form (<code class="docutils literal notranslate"><span class="pre">function</span></code>, default is
-quadratic), extrapolating just the left or right region of the file
-(<code class="docutils literal notranslate"><span class="pre">region</span></code>) and setting the curvature (<code class="docutils literal notranslate"><span class="pre">curvature</span></code>).</p>
-<p>The output <code class="docutils literal notranslate"><span class="pre">table_extrapolate.pot</span></code> of the extrapolation step can now
-be used for the coarse-grained run. If GROMACS is used as a molecule
-dynamics package, the potential has to be converted and exported to a
-suitable GROMACS format as described in the final step.</p>
 </section>
 </section>
 
@@ -203,7 +180,7 @@ suitable GROMACS format as described in the final step.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -123,6 +123,34 @@
              
   <section id="workflow-and-calculator-structure">
 <h1><span class="section-number">12. </span>Workflow and Calculator Structure<a class="headerlink" href="#workflow-and-calculator-structure" title="Link to this heading">¶</a></h1>
+<p>A typical workflow for a morphology from molecular dynamics (see the
+QMMM_GROMACS tutorial) is</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-t</span> <span class="pre">topol.tpr</span> <span class="pre">-c</span> <span class="pre">conf.gro</span> <span class="pre">-s</span> <span class="pre">system.xml</span> <span class="pre">-f</span> <span class="pre">state.hdf5</span></code>: map the
+MD configuration to molecules (segments) with the mapping file
+<code class="docutils literal notranslate"><span class="pre">system.xml</span></code>, which also refers to the QM geometries and the
+multipole/polarizable (MPS) files of each segment and state;
+<code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">mapchecker</span></code> writes the mapped structures as .pdb files for
+inspection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">neighborlist</span></code>: pairs of neighbouring segments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">einternal</span></code>: reads internal (gas-phase) site energies and
+reorganization energies (e.g. <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">energies_file=system.xml</span></code>) into the
+state file.</p></li>
+<li><p>Site energies in the environment, e.g. <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span> <span class="pre">-e</span> <span class="pre">qmmm</span></code> with
+classical regions only, followed by <code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">eanalyze</span></code>.</p></li>
+<li><p>Electronic couplings: <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span> <span class="pre">-e</span> <span class="pre">eqm</span></code> (single-molecule DFT/GW-BSE),
+then <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span> <span class="pre">-e</span> <span class="pre">iqm</span></code> (couplings of all pairs), or
+<code class="docutils literal notranslate"><span class="pre">xtp_parallel</span> <span class="pre">-e</span> <span class="pre">iexcitoncl</span></code> for classical exciton couplings;
+<code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">ianalyze</span></code> summarizes them.</p></li>
+<li><p>Transport: <code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">kmcmultiple</span></code> (bulk mobility), <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> and
+<code class="docutils literal notranslate"><span class="pre">grw</span></code> (time of flight), <code class="docutils literal notranslate"><span class="pre">kmclifetime</span></code> (exciton diffusion), see
+<a class="reference internal" href="transport_simulations.html"><span class="doc">Transport Simulations</span></a>.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code> calculators work in three steps: <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">write</span></code> writes a
+job file with one job per segment or pair, <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">run</span></code> runs the jobs (<code class="docutils literal notranslate"><span class="pre">-t</span></code>
+jobs at the same time, each with <code class="docutils literal notranslate"><span class="pre">-x</span></code> OpenMP threads; several processes can
+work on the same job file, each taking <code class="docutils literal notranslate"><span class="pre">-q</span></code> jobs at a time), and <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">read</span></code>
+reads the results back into the state file.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="xtp_map_overview.html">12.1. xtp_map</a><ul>
@@ -160,14 +188,15 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_run_overview.html#options">12.3.1.4. OPTIONS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="eanalyze.html">12.3.1.4.1. eanalyze</a></li>
 <li class="toctree-l4"><a class="reference internal" href="einternal.html">12.3.1.4.2. einternal</a></li>
-<li class="toctree-l4"><a class="reference internal" href="grw.html">12.3.1.4.3. grw</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ianalyze.html">12.3.1.4.4. ianalyze</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kmclifetime.html">12.3.1.4.5. kmclifetime</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kmcmultiple.html">12.3.1.4.6. kmcmultiple</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kmctof.html">12.3.1.4.7. kmctof</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mapchecker.html">12.3.1.4.8. mapchecker</a></li>
-<li class="toctree-l4"><a class="reference internal" href="neighborlist.html">12.3.1.4.9. neighborlist</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vaverage.html">12.3.1.4.10. vaverage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ewaldbackground.html">12.3.1.4.3. ewaldbackground</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grw.html">12.3.1.4.4. grw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ianalyze.html">12.3.1.4.5. ianalyze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kmclifetime.html">12.3.1.4.6. kmclifetime</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kmcmultiple.html">12.3.1.4.7. kmcmultiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kmctof.html">12.3.1.4.8. kmctof</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapchecker.html">12.3.1.4.9. mapchecker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neighborlist.html">12.3.1.4.10. neighborlist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vaverage.html">12.3.1.4.11. vaverage</a></li>
 </ul>
 </li>
 </ul>
@@ -182,21 +211,23 @@
 <li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html#options">12.4.1.4. OPTIONS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="apdft.html">12.4.1.4.1. apdft</a></li>
 <li class="toctree-l4"><a class="reference internal" href="coupling.html">12.4.1.4.2. coupling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="densityanalysis.html">12.4.1.4.3. densityanalysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="dftgwbse.html">12.4.1.4.4. dftgwbse</a></li>
-<li class="toctree-l4"><a class="reference internal" href="diabatization.html">12.4.1.4.5. diabatization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="excitoncoupling.html">12.4.1.4.6. excitoncoupling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gencube.html">12.4.1.4.7. gencube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="latticegen.html">12.4.1.4.8. latticegen</a></li>
-<li class="toctree-l4"><a class="reference internal" href="log2mps.html">12.4.1.4.9. log2mps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="molpol.html">12.4.1.4.10. molpol</a></li>
-<li class="toctree-l4"><a class="reference internal" href="networkfit.html">12.4.1.4.11. networkfit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="networkgen.html">12.4.1.4.12. networkgen</a></li>
-<li class="toctree-l4"><a class="reference internal" href="partialcharges.html">12.4.1.4.13. partialcharges</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spectrum.html">12.4.1.4.14. spectrum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crfit.html">12.4.1.4.3. crfit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="densityanalysis.html">12.4.1.4.4. densityanalysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dftgwbse.html">12.4.1.4.5. dftgwbse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="diabatization.html">12.4.1.4.6. diabatization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="excitoncoupling.html">12.4.1.4.7. excitoncoupling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gencube.html">12.4.1.4.8. gencube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="latticegen.html">12.4.1.4.9. latticegen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="log2mps.html">12.4.1.4.10. log2mps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mol2orb.html">12.4.1.4.11. mol2orb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpol.html">12.4.1.4.12. molpol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="networkfit.html">12.4.1.4.13. networkfit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="networkgen.html">12.4.1.4.14. networkgen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orb2fchk.html">12.4.1.4.15. orb2fchk</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orb2mol.html">12.4.1.4.16. orb2mol</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mol2orb.html">12.4.1.4.17. mol2orb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="partialcharges.html">12.4.1.4.17. partialcharges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="podcoupling.html">12.4.1.4.18. podcoupling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spectrum.html">12.4.1.4.19. spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -218,7 +249,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

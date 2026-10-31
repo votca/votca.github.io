@@ -117,6 +117,41 @@
              
   <section id="introduction">
 <h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>VOTCA-XTP calculates electronic excitations of molecules and molecular
+materials and the transport of charges and excitons between them:</p>
+<ul class="simple">
+<li><p><strong>Electronic structure</strong> of single molecules and clusters: density-functional
+theory (the internal DFT engine or ORCA), quasiparticle energies in the GW
+approximation and neutral excitations from the Bethe-Salpeter equation
+(GW-BSE), see <a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>, <a class="reference internal" href="implementation_notes.html"><span class="doc">Implementation Notes</span></a> and
+<a class="reference internal" href="gwbse_numerics.html"><span class="doc">GW-BSE in Practice: Methods, Numerics and Settings</span></a>.</p></li>
+<li><p><strong>Excitations in a molecular environment</strong>: quantum-classical (QM/MM) embedding
+with polarizable classical regions (Thole or charge-response models,
+cut-off or Ewald summation) and embedded GW-BSE, see
+<a class="reference internal" href="ewald_embedding.html"><span class="doc">Polarizable Ewald Embedding</span></a>, <a class="reference internal" href="polarizable_environment.html"><span class="doc">Polarizable Environments: Thole and Charge-Response Models</span></a> and
+<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>.</p></li>
+<li><p><strong>Charge and exciton transport</strong> in morphologies from molecular dynamics:
+site energies and electronic couplings for all neighbouring molecules,
+Marcus rates, kinetic Monte Carlo, time-of-flight and graph random walks,
+and stochastic network models for large systems, see
+<a class="reference internal" href="transfer_theory.html"><span class="doc">Charge and Energy Transfer Theory</span></a>, <a class="reference internal" href="transport_theory.html"><span class="doc">Charge and Energy Transport Model</span></a> and
+<a class="reference internal" href="transport_simulations.html"><span class="doc">Transport Simulations</span></a>.</p></li>
+</ul>
+<p>The programs are</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>: calculations that do not need a morphology (e.g. <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code>
+for a single molecule),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_map</span></code>: maps an MD trajectory to a state file (<code class="docutils literal notranslate"><span class="pre">state.hdf5</span></code>) with
+the molecules (“segments”) of the morphology,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_run</span></code>: calculators that act on the whole state file (neighbour list,
+analysis, KMC and other transport calculations),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code>: job-based calculators that run many independent
+quantum-chemical or QM/MM calculations on the state file.</p></li>
+</ul>
+<p>Their options are listed in <a class="reference internal" href="workflows_and_calculators.html"><span class="doc">Workflow and Calculator Structure</span></a>; <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&lt;name&gt;</span></code>
+prints the options of a calculator and <code class="docutils literal notranslate"><span class="pre">--cite</span> <span class="pre">&lt;name&gt;</span></code> the papers to cite
+for it. A Python (ASE) interface is described in <a class="reference internal" href="pyxtp.html"><span class="doc">XTP ASE Interface</span></a>. The tutorials
+show complete workflows.</p>
 </section>
 
 
@@ -130,7 +165,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

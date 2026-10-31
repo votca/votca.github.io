@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ewaldbackground &mdash; VOTCA 2026-dev documentation</title>
+  <title>12.3.1.4.3. ewaldbackground &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -18,7 +18,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.3.1.4.4. grw" href="grw.html" />
+    <link rel="prev" title="12.3.1.4.2. einternal" href="einternal.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,9 +47,37 @@
 <li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtp_map_overview.html">12.1. xtp_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_parallel_overview.html">12.2. xtp_parallel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="xtp_run_overview.html">12.3. xtp_run</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="xtp_run_overview.html#help">12.3.1. help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="xtp_tools_overview.html">12.4. xtp_tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -83,7 +113,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ewaldbackground</li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+          <li class="breadcrumb-item"><a href="workflows_and_calculators.html"><span class="section-number">12. </span>Workflow and Calculator Structure</a></li>
+          <li class="breadcrumb-item"><a href="xtp_run_overview.html"><span class="section-number">12.3. </span>xtp_run</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12.3.1.4.3. </span>ewaldbackground</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/ewaldbackground.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,8 +127,8 @@
            <div itemprop="articleBody">
              
   <section id="ewaldbackground">
-<h1>ewaldbackground<a class="headerlink" href="#ewaldbackground" title="Link to this heading">¶</a></h1>
-<p>Converges the self-consistent polarized background of a periodic system, using the new (non-legacy) Ewald machinery
+<h1><span class="section-number">12.3.1.4.3. </span>ewaldbackground<a class="headerlink" href="#ewaldbackground" title="Link to this heading">¶</a></h1>
+<p>Converges the self-consistent polarized background of a periodic system with Ewald summation
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="docutils align-center">
@@ -114,84 +147,131 @@ The following table contains the defaults input options for the calculator, The 
 </thead>
 <tbody>
 <tr class="row-even"><td><p>multipoles</p></td>
-<td></td>
-<td></td>
+<td><p>system.xml</p></td>
+<td><p>MPS mapping file (xml) of the system</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>output.checkpoint</p></td>
-<td></td>
-<td></td>
+<td><p>ewaldbackground.hdf5</p></td>
+<td><div class="line-block">
+<div class="line">HDF5 file for the converged background (used by qmmm Ewald</div>
+<div class="line">regions)</div>
+</div>
+</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>coulombmethod.alpha</p></td>
 <td><p>OPTIONAL</p></td>
-<td></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Ewald splitting parameter; derived from the box and screening_factor</div>
+<div class="line">if not set</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>coulombmethod.k_max</p></td>
 <td><p>OPTIONAL</p></td>
-<td></td>
-<td></td>
+<td><div class="line-block">
+<div class="line">Reciprocal-space cutoff; derived from alpha and screening_factor</div>
+<div class="line">if not set</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>coulombmethod.shape</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>cube</p></td>
+<td><div class="line-block">
+<div class="line">Shape of the macroscopic sample (surface term): cube or</div>
+<div class="line">sphere (same term), or slab</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">cube</div>
+<div class="line">sphere</div>
+<div class="line">slab</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td><p>realspace.r_min</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>1.0</p></td>
+<td><div class="line-block">
+<div class="line">Real-space sum over periodic images: minimal shell radius</div>
+<div class="line">before convergence may be declared</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>realspace.field_tol</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>1e-8</p></td>
+<td><div class="line-block">
+<div class="line">Real-space sum: convergence threshold on the field contribution</div>
+<div class="line">of one shell (atomic units)</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>realspace.screening_factor</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>6.0</p></td>
+<td><div class="line-block">
+<div class="line">Accuracy of the Ewald sums (dimensionless): sets the real-space</div>
+<div class="line">cutoff screening_factor/alpha and a reciprocal cutoff</div>
+<div class="line">with the same error (erfc(screening_factor)); lower it</div>
+<div class="line">only deliberately</div>
+</div>
+</td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>polarmethod.thole_a</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>0.39</p></td>
+<td><p>Thole damping parameter</p></td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-odd"><td><p>polarmethod.induce</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>true</p></td>
+<td><p>Compute induced dipoles (false: static multipoles only)</p></td>
+<td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>polarmethod.max_iter</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>200</p></td>
+<td><p>Maximal number of iterations of the induction solver</p></td>
+<td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>polarmethod.tolerance</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>1e-8</p></td>
+<td><p>Convergence tolerance of the induction solver</p></td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>polarmethod.use_jor</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">Use Jacobi over-relaxation (as the legacy code) instead</div>
+<div class="line">of preconditioned conjugate gradients</div>
+</div>
+</td>
+<td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>polarmethod.jor_omega</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>0.35</p></td>
+<td><p>Relaxation parameter for use_jor</p></td>
+<td><p>float+</p></td>
 </tr>
 <tr class="row-even"><td><p>polarmethod.use_block_jacobi_preconditioner</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">Block-Jacobi (per segment) preconditioner for the conjugate</div>
+<div class="line">gradient solver</div>
+</div>
+</td>
+<td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>polarmethod.debug_match_legacy_first_step</p></td>
-<td></td>
-<td></td>
-<td></td>
+<td><p>false</p></td>
+<td><div class="line-block">
+<div class="line">Debugging: replicate the two-phase first step of the legacy</div>
+<div class="line">code</div>
+</div>
+</td>
+<td><p>bool</p></td>
 </tr>
 </tbody>
 </table>
@@ -204,12 +284,15 @@ The following table contains the defaults input options for the calculator, The 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="einternal.html" class="btn btn-neutral float-left" title="12.3.1.4.2. einternal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="grw.html" class="btn btn-neutral float-right" title="12.3.1.4.4. grw" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

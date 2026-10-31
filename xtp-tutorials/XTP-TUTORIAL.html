@@ -55,9 +55,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">XTP Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
@@ -106,6 +107,19 @@
              
   <section id="xtp-tutorials">
 <h1>XTP Tutorials<a class="headerlink" href="#xtp-tutorials" title="Link to this heading">¶</a></h1>
+<p>The tutorials are Jupyter notebooks in <code class="docutils literal notranslate"><span class="pre">xtp-tutorials</span></code> (installed to
+<code class="docutils literal notranslate"><span class="pre">share/votca/xtp-tutorials</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DFTGWBSE_ENERGY</span></code>: DFT and GW-BSE for a single molecule with <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">single_point</span></code> and <code class="docutils literal notranslate"><span class="pre">geometry_optimization</span></code>: the same with the Python
+(ASE) interface; they are built only if the Python bindings are.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMMM_GROMACS</span></code> and <code class="docutils literal notranslate"><span class="pre">QMMM_LAMMPS</span></code>: the full workflow for a GROMACS or
+LAMMPS morphology, from mapping to site energies, couplings and embedded
+GW-BSE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRANSPORT</span></code>, <code class="docutils literal notranslate"><span class="pre">STOCHASTIC_NETWORK</span></code> and <code class="docutils literal notranslate"><span class="pre">LAMMPS_KMC</span></code>: charge and
+exciton transport (KMC, time of flight, graph random walks, stochastic
+network models).</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a><ul>
@@ -122,7 +136,7 @@
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html#(Optional)-Plot-the-spectrum">(Optional) Plot the spectrum</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimizaiton</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#What-this-tutorial-is-about">What this tutorial is about</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Define-the-molecular-structure">Define the molecular structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
@@ -135,7 +149,7 @@
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Define-the-molecular-structure">Define the molecular structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Instantiate-the-xtp-calculator">Instantiate the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="single_point.html#Run-the-calcuation">Run the calcuation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html#Run-the-calculation">Run the calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Visualize-the-results">Visualize the results</a></li>
 </ul>
 </li>
@@ -158,6 +172,25 @@
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling">Coupling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling-analysis">Coupling analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QMMM-calculations">QMMM calculations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QMMM_LAMMPS.html#Note">Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Setting-the-environment">Setting the environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Check-the-mapping">Check the mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Read-reorganization-energies">Read reorganization energies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Compute-site-energy">Compute site energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-energy-calculation">QM energy calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QMMM-Calculations">QMMM Calculations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a><ul>
@@ -211,7 +244,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -65,10 +65,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#environment-variables">11.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#option-parser">11.2. Option parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">11.2. Options</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">11.3. XTP calculator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#single-point-caclulation">11.4. Single Point Caclulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#geometry-optimization">11.5. Geometry Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">11.4. Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forces">11.5. Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">11.6. Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
@@ -127,119 +128,129 @@
              
   <section id="xtp-ase-interface">
 <h1><span class="section-number">11. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
+<p>The Python package <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> provides an <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>
+calculator <code class="docutils literal notranslate"><span class="pre">xtp</span></code> that runs DFT and GW-BSE calculations (the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code>
+tool) on an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object.</p>
 <section id="installation">
 <h2><span class="section-number">11.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<p>The interface is built with VOTCA-XTP if <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> and the Python
+development files are found by CMake. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> installs the compiled
+bindings and, if the Python modules <code class="docutils literal notranslate"><span class="pre">ase</span></code>, <code class="docutils literal notranslate"><span class="pre">xmltodict</span></code>, <code class="docutils literal notranslate"><span class="pre">h5py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">lxml</span></code> and <code class="docutils literal notranslate"><span class="pre">rdkit</span></code> are available, the <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> package into the Python
+user site-packages directory (set <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PYTHON_LIBDIR</span></code> to choose
+another directory). The plotting functions of <code class="docutils literal notranslate"><span class="pre">Visualization</span></code> also need
+<code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <section id="environment-variables">
 <h3><span class="section-number">11.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
 <p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
 interface to find the default xml files and create the options data structure.
-You can set this environment variable in your shell configuration file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">VOTCASHARE</span><span class="o">=</span>/share/votca/
+You can set this environment variable in your shell configuration file
+(<code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> sets it, too):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">VOTCASHARE</span><span class="o">=</span>&lt;installation<span class="w"> </span>prefix&gt;/share/votca
 </pre></div>
 </div>
 <p>Or within python itself:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;VOTCASHARE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/share/votca/&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;VOTCASHARE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;installation prefix&gt;/share/votca&#39;</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="option-parser">
-<h2><span class="section-number">11.2. </span>Option parser<a class="headerlink" href="#option-parser" title="Link to this heading">¶</a></h2>
-<p>The <cite>XTPOptions</cite> class is the preferred handler for setting all the options of the xtp calculator.</p>
+<section id="options">
+<h2><span class="section-number">11.2. </span>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<p>All options of the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> tool are available in the <code class="docutils literal notranslate"><span class="pre">options</span></code>
+attribute of the calculator (an instance of <code class="docutils literal notranslate"><span class="pre">pyxtp.options.Options</span></code>),
+which mirrors the XML option files, e.g. <code class="docutils literal notranslate"><span class="pre">calc.options.dftpackage.basisset</span></code>
+or <code class="docutils literal notranslate"><span class="pre">calc.options.gwbse.gw.mode</span></code>. Options that are not changed keep their
+default values (see <a class="reference internal" href="dftgwbse.html"><span class="doc">dftgwbse</span></a>). XC functionals are given by their
+libxc names, e.g. <code class="docutils literal notranslate"><span class="pre">XC_HYB_GGA_XC_PBEH</span></code> (the default) or
+<code class="docutils literal notranslate"><span class="pre">XC_GGA_X_PBE</span> <span class="pre">XC_GGA_C_PBE</span></code>.</p>
 </section>
 <section id="xtp-calculator">
 <h2><span class="section-number">11.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
-<p>Frequently used options can be specified using
-the calculator’s <cite>set</cite> routine.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xtp(label=None,</span> <span class="pre">nthreads=1,</span> <span class="pre">options=None,</span> <span class="pre">directory='./',</span> <span class="pre">**kwargs)</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nthreads</span></code>: number of threads of the calculation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>: an <code class="docutils literal notranslate"><span class="pre">Options</span></code> object to start from (default: the defaults
+of <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code>)</p></li>
+<li><p>further keyword arguments are passed to <code class="docutils literal notranslate"><span class="pre">set</span></code></p></li>
+</ul>
+<p>Frequently used options can be specified with the calculator’s <code class="docutils literal notranslate"><span class="pre">set</span></code>
+routine (or as keyword arguments of the constructor):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>keyword</p></th>
 <th class="head"><p>type</p></th>
 <th class="head"><p>default value</p></th>
-<th class="head"><p>description</p></th>
+<th class="head"><p>option</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">label</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xc</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
-<td><p>None</p></td>
-<td><p>Name of input and output files</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XC_HYB_GGA_XC_PBEH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dftpackage.functional</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xc</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">basis</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
-<td><p>None</p></td>
-<td><p>XC functional to be used</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">def2-tzvp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dftpackage.basisset</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">basisset</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
-<td><p>None</p></td>
-<td><p>Basis set to be used</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">charge</span></code></p></td>
-<td><p>int</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">charge</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
 <td><p>0</p></td>
-<td><p>Charge of the molecule</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dftpackage.charge</span></code></p></td>
 </tr>
 </tbody>
 </table>
+<p>Other options can be set with <code class="docutils literal notranslate"><span class="pre">set</span></code> by their path, e.g.
+<code class="docutils literal notranslate"><span class="pre">calc.set(**{'dftpackage/auxbasisset':</span> <span class="pre">'aux-def2-svp'})</span></code>.</p>
 </section>
-<section id="single-point-caclulation">
-<h2><span class="section-number">11.4. </span>Single Point Caclulation<a class="headerlink" href="#single-point-caclulation" title="Link to this heading">¶</a></h2>
-<p>Here is an example of setting up a calculation on a water molecule:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
-<span class="n">wat</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
-
-<span class="c1"># Set up a XTP calculator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
-
-
-<span class="c1"># change options for the calculations</span>
-<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;water&#39;</span><span class="p">)</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">functional</span> <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
-
-<span class="c1"># attach the calculator</span>
-<span class="n">wat</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
-
-<span class="c1"># compute the energy terms</span>
-<span class="n">wat</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
-</pre></div>
-</div>
+<section id="results">
+<h2><span class="section-number">11.4. </span>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
+<p>Besides <code class="docutils literal notranslate"><span class="pre">get_potential_energy()</span></code> and <code class="docutils literal notranslate"><span class="pre">get_forces()</span></code> (ASE), the calculator
+provides e.g. <code class="docutils literal notranslate"><span class="pre">get_dft_energy()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_qp_corrections()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">get_oscillator_strengths(dynamic=False)</span></code>. <code class="docutils literal notranslate"><span class="pre">pyxtp.Visualization(atoms)</span></code>
+plots quasiparticle corrections, densities of states and absorption spectra.</p>
 </section>
-<section id="geometry-optimization">
-<h2><span class="section-number">11.5. </span>Geometry Optimization<a class="headerlink" href="#geometry-optimization" title="Link to this heading">¶</a></h2>
-<p>Here is an example of setting up a geometry of a carbon monoxide
-molecule using forces calculated on the first singlet state:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a water molecule</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
-<span class="n">co</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">)</span>
-<span class="n">co</span><span class="o">.</span><span class="n">rattle</span><span class="p">()</span>
-
-<span class="c1"># Set up a XTP calculator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
-
-<span class="c1"># change options for the calculations</span>
-<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">()</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">functional</span> <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">basisset</span> <span class="o">=</span> <span class="s1">&#39;def2-svp&#39;</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dftpackage</span><span class="o">.</span><span class="n">auxbasisset</span> <span class="o">=</span> <span class="s1">&#39;aux-def2-svp&#39;</span>
-
-<span class="c1"># specify the wich forces we want to use</span>
-<span class="n">calc</span><span class="o">.</span><span class="n">select_force</span><span class="p">(</span><span class="n">energy</span><span class="o">=</span><span class="s1">&#39;singlets&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># attach the calculator</span>
-<span class="n">co</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
-
-<span class="c1"># compute the energy terms</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuasiNewton</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write</span>
-<span class="n">dyn</span> <span class="o">=</span> <span class="n">QuasiNewton</span><span class="p">(</span><span class="n">co</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;test.traj&#39;</span><span class="p">)</span>
-<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">write</span><span class="p">(</span><span class="s1">&#39;final.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
-</pre></div>
-</div>
+<section id="forces">
+<h2><span class="section-number">11.5. </span>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">select_force(energy='energy',</span> <span class="pre">level=0,</span> <span class="pre">dynamic=False)</span></code> chooses the energy
+whose forces <code class="docutils literal notranslate"><span class="pre">get_forces</span></code> (and therefore an ASE optimizer) uses:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></th>
+<th class="head"><p>energy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'energy'</span></code></p></td>
+<td><p>DFT total energy (analytic forces if the DFT engine provides
+them, otherwise finite differences)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'ks'</span></code></p></td>
+<td><p>total energy with Kohn-Sham level <code class="docutils literal notranslate"><span class="pre">level</span></code> excited</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'qp'</span></code></p></td>
+<td><p>total energy with quasiparticle level <code class="docutils literal notranslate"><span class="pre">level</span></code> excited</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'singlets'</span></code></p></td>
+<td><p>BSE singlet <code class="docutils literal notranslate"><span class="pre">level</span></code> (<code class="docutils literal notranslate"><span class="pre">dynamic=True</span></code>: with dynamical
+screening)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'triplets'</span></code></p></td>
+<td><p>BSE triplet <code class="docutils literal notranslate"><span class="pre">level</span></code> (<code class="docutils literal notranslate"><span class="pre">dynamic</span></code> as for singlets)</p></td>
+</tr>
+</tbody>
+</table>
+<p>All energies except <code class="docutils literal notranslate"><span class="pre">'energy'</span></code> use finite differences of the total energy
+(displacement <code class="docutils literal notranslate"><span class="pre">eps=0.001</span></code> Å in <code class="docutils literal notranslate"><span class="pre">get_forces</span></code>), i.e. one full DFT and
+GW-BSE calculation per displaced coordinate.</p>
+</section>
+<section id="examples">
+<h2><span class="section-number">11.6. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<p>See the tutorials <a class="reference internal" href="../xtp-tutorials/single_point.html"><span class="doc">Single Point Energy using pyxtp</span></a> (energy and absorption
+spectrum of CO) and <a class="reference internal" href="../xtp-tutorials/geometry_optimization.html"><span class="doc">Atomic Forces and Geometry Optimization</span></a> (excited-state
+forces and geometry optimization of CO).</p>
 </section>
 </section>
 
@@ -254,7 +265,7 @@ molecule using forces calculated on the first singlet state:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

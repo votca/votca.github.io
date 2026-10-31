@@ -107,7 +107,7 @@ code consistent between repositories. In the past, there has been
 difficulty in translating functionality between repositories and within
 the same repositories because different properties have been used to
 describe the same object attribute. For general programming guidelines
-look at the <a class="reference internal" href="DEVELOPERS_GUIDE.html"><span class="doc">Developers Guide</span></a></p>
+look at the <a class="reference internal" href="DEVELOPERS_GUIDE.html"><span class="doc">Developer and Contributor Guide</span></a>.</p>
 <section id="types-and-ids">
 <h2>Types and Ids<a class="headerlink" href="#types-and-ids" title="Link to this heading">¶</a></h2>
 <p>As an example, consider the csg bead object which had at one time
@@ -148,8 +148,8 @@ parsed units to:</p>
 <p>All indices in VOTCA start at <code class="docutils literal notranslate"><span class="pre">0</span></code>. This is useful, because C++ arrays
 start at index 0.</p>
 <p>Apart from special cases all indices and integers in VOTCA should be
-<code class="docutils literal notranslate"><span class="pre">votca::Index</span></code> which is a typedef for <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>. <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
-methods of std::containers return an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code> and should be
+<code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>, which is <code class="docutils literal notranslate"><span class="pre">Eigen::Index</span></code> (a signed <code class="docutils literal notranslate"><span class="pre">std::ptrdiff_t</span></code>). <code class="docutils literal notranslate"><span class="pre">.size()</span></code>
+methods of std::containers return an unsigned <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> and should be
 cast to <code class="docutils literal notranslate"><span class="pre">votca::Index</span></code>. i.e: <code class="docutils literal notranslate"><span class="pre">votca::Index(vector.size())</span></code></p>
 </section>
 </section>
@@ -165,7 +165,7 @@ cast to <code class="docutils literal notranslate"><span class="pre">votca::Inde
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

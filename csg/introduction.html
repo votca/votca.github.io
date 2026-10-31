@@ -115,16 +115,16 @@
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
 <p>Versatile Object-oriented Toolkit for Coarse-graining Applications, or
 VOTCA, is a package which helps to systematically coarse-grain various
-systems <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id1"><span>[Ruehle:2009.a]</span></a>. This includes deriving the
+systems <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id1"><span>[Ruehle:2009.a]</span></a>. This includes deriving the
 coarse-grained potentials, assessing their quality, preparing input
 files required for coarse-grained simulations, and analyzing the latter.</p>
 <p>A typical coarse-graining workflow includes <em>sampling</em> of the system of
 interest, <em>analysis</em> of the trajectory using a specific <em>mapping</em> and a
 coarse-graining <em>method</em> to derive coarse-grained potentials.</p>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id18">
 <span id="introduction-fig-propane"></span><img alt="../_images/propane.png" src="../_images/propane.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Three-bead coarse-grained model of propane.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Three-bead coarse-grained model of propane.</span><a class="headerlink" href="#id18" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The workflow can be exemplified on coarse-graining of a propane liquid.
@@ -132,7 +132,7 @@ A single molecule of propane contains three carbon and eight hydrogen
 atoms. A united atom coarse-grained representation of a propane molecule
 has three beads and two bead types, A and B, with three and two
 hydrogens combined with the corresponding atom, as shown in
-the figure above. This representation defines the , as well as
+the figure above. This representation defines the <em>mapping</em>, as well as
 the bonded coarse-grained degrees of freedom, such as the bond <span class="math notranslate nohighlight">\(b\)</span>
 and the bond angle <span class="math notranslate nohighlight">\(\theta\)</span>. Apart from the bonded interactions,
 <span class="math notranslate nohighlight">\(u_b\)</span> and <span class="math notranslate nohighlight">\(u_\theta\)</span>, beads belonging to different molecules
@@ -145,36 +145,45 @@ the coarse-grained potentials cannot be expressed in terms of simple
 analytic functions. Instead, tabulated functions are normally used.</p>
 <p>The coarse-graining <em>method</em> defines criteria according to which the
 potential energy surface is constructed. For example, for the bond
-<span class="math notranslate nohighlight">\(b\)</span> and the angle <span class="math notranslate nohighlight">\(\theta\)</span> can be used. In this case a
+<span class="math notranslate nohighlight">\(b\)</span> and the angle <span class="math notranslate nohighlight">\(\theta\)</span> Boltzmann inversion can be used. In this case a
 coarse-grained potential will be a potential of mean force. For the
-non-bonded degrees of freedom, the package provides or methods. In this
-case the radial distribution functions of the coarse-grained model will
-match those of the atomistic model. Alternatively, (or multiscale
-coarse-graining) can be used, in which case the coarse-grained potential
+non-bonded degrees of freedom, structure-based methods such as iterative
+Boltzmann inversion or inverse Monte Carlo aim at radial distribution
+functions of the coarse-grained model that match those of the atomistic
+model; VOTCA provides the distributions (<code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>) and the update steps
+for inverse Monte Carlo (<code class="docutils literal notranslate"><span class="pre">csg_imc_solve</span></code>) and relative entropy
+(<code class="docutils literal notranslate"><span class="pre">csg_reupdate</span></code>), while the iteration has to be scripted by the user.
+For these methods and their variants see iterative Boltzmann inversion
+<a class="reference internal" href="bibliography.html#reith-2003" id="id2"><span>[Reith:2003]</span></a>, its Kirkwood-Buff <a class="reference internal" href="bibliography.html#ganguly-2012" id="id3"><span>[Ganguly:2012]</span></a>, <a class="reference internal" href="bibliography.html#kirkwood-1951" id="id4"><span>[Kirkwood:1951]</span></a> and
+cumulative-coordination <a class="reference internal" href="bibliography.html#deoliveira-2016" id="id5"><span>[deOliveira:2016]</span></a> variants, inverse Monte Carlo
+<a class="reference internal" href="bibliography.html#lyubartsev-1995" id="id6"><span>[Lyubartsev:1995]</span></a>, <a class="reference internal" href="bibliography.html#murtola-2007" id="id7"><span>[Murtola:2007]</span></a> and Newton inversion
+<a class="reference internal" href="bibliography.html#lyubartsev2010systematic" id="id8"><span>[lyubartsev2010systematic]</span></a>, Newton and integral-equation methods for the
+inverse Henderson problem <a class="reference internal" href="bibliography.html#delbary-2020" id="id9"><span>[Delbary:2020]</span></a>, <a class="reference internal" href="bibliography.html#bernhardt-2021" id="id10"><span>[Bernhardt:2021]</span></a>, and the
+comparison in <a class="reference internal" href="bibliography.html#rosenberger-2016" id="id11"><span>[Rosenberger:2016]</span></a>.
+Alternatively, force matching (or multiscale coarse-graining, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>)
+can be used, in which case the coarse-grained potential
 will approximate the many-body potential of mean force. The choice of a
 particular method is system-specific and requires a thorough consistency
 check. It is important to keep in mind that coarse-graining should be
-used with understanding and caution, methods should be crossed-checked
+used with understanding and caution <a class="reference internal" href="bibliography.html#wang-2009" id="id12"><span>[Wang:2009]</span></a>, methods should be crossed-checked
 with each other as well as with respect to the reference system.</p>
-<p>The package consists of two parts: a C++ kernel and a scripting engine.
-The kernel is capable of processing atomistic topologies and
-trajectories and offers a flexible framework for reading, manipulating
-and analyzing topologies and generated by MD/SD/MC sampling
-trajectories. It is modular: new file formats can be integrated without
-changing the existing code. Currently, an interface for
-GROMACS <a class="reference internal" href="bibliography.html#gromacs4" id="id2"><span>[gromacs4]</span></a> and LAMMPS <a class="reference internal" href="bibliography.html#lammps" id="id3"><span>[lammps]</span></a> topologies and trajectories is
-provided. The kernel also includes various coarse-graining tools, for
-example calculations of probability distributions of bonded and
-non-bonded interactions, correlation and autocorrelation functions, and
-updates for the coarse-grained pair potential.</p>
-<p>Before using the package, do not forget to initalize the variables in
+<p>The package consists of a C++ library and command-line tools. They
+process atomistic topologies and trajectories and offer a flexible
+framework for reading, manipulating and analyzing topologies and
+trajectories generated by MD/SD/MC sampling. It is modular: new file formats can be integrated without
+changing the existing code. Currently, interfaces for
+GROMACS <a class="reference internal" href="bibliography.html#gromacs4" id="id13"><span>[gromacs4]</span></a>, LAMMPS <a class="reference internal" href="bibliography.html#lammps" id="id14"><span>[lammps]</span></a> and DL_POLY topologies and trajectories
+are provided. The tools include calculations of probability distributions
+of bonded and non-bonded interactions, force matching, and updates for the
+coarse-grained pair potential.</p>
+<p>Before using the package, do not forget to initialize the variables in
 the bash</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>&lt;csg-installation&gt;/bin/VOTCARC.bash
 </pre></div>
 </div>
 <p>More details as well as several examples can be found in
-ref. <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id4"><span>[Ruehle:2009.a]</span></a>. Please cite this paper if you
-are using the package.</p>
+ref. <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id15"><span>[Ruehle:2009.a]</span></a>. If you are using the package, please cite
+<a class="reference internal" href="../xtp/bibliography.html#baumeier-2024" id="id16"><span>[Baumeier:2024]</span></a> and <a class="reference internal" href="bibliography.html#ruehle-2009-a" id="id17"><span>[Ruehle:2009.a]</span></a>.</p>
 </section>
 
 
@@ -188,7 +197,7 @@ are using the package.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

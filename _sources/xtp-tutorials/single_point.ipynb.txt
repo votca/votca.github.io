@@ -8,7 +8,7 @@
     "\n",
     "## What this tutorial is about \n",
     "\n",
-    "In this tutrial we will learn how to setup a simple single point calculation using the pyton interface to `XTP`, i.e. `pyxtp` and the Atomistic Simulation Environment (ASE). Let's first import the relevant modules:"
+    "In this tutorial we will learn how to setup a simple single point calculation using the python interface to `XTP`, i.e. `pyxtp` and the Atomistic Simulation Environment (ASE). Let's first import the relevant modules:"
    ]
   },
   {
@@ -16,10 +16,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.482445Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.482265Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.947965Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.947365Z"
+     "iopub.execute_input": "2026-10-31T18:36:22.566002Z",
+     "iopub.status.busy": "2026-10-31T18:36:22.565825Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.024120Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.023606Z"
     }
    },
    "outputs": [],
@@ -34,7 +34,7 @@
    "source": [
     "##  Define the molecular structure \n",
     "\n",
-    "The python interface is built to leverage the ASE molecular structure classes `Atoms` and `Molecule`. Therefore we cam simply define the atomistic structure we want to use via the ASE native functionalities. Let's for example define a `CO` molecule using the `Atoms` ASE class "
+    "The python interface is built to leverage the ASE molecular structure classes `Atoms` and `Molecule`. Therefore we can simply define the atomistic structure we want to use via the ASE native functionalities. Let's for example define a `CO` molecule using the `Atoms` ASE class "
    ]
   },
   {
@@ -42,10 +42,10 @@
    "execution_count": 2,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.950449Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.950157Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.953467Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.953042Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.026490Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.026166Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.029509Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.029085Z"
     }
    },
    "outputs": [],
@@ -69,10 +69,10 @@
    "execution_count": 3,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.955307Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.955140Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.963920Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.963529Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.031368Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.031008Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.039245Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.038856Z"
     }
    },
    "outputs": [],
@@ -94,10 +94,10 @@
    "execution_count": 4,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.965894Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.965565Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.967921Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.967524Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.041157Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.040775Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.043455Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.043021Z"
     }
    },
    "outputs": [],
@@ -110,7 +110,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We can also give redirect all the logging output to a dedicated file"
+    "We can also redirect all the logging output to a dedicated file"
    ]
   },
   {
@@ -118,27 +118,27 @@
    "execution_count": 5,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.969759Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.969440Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.972255Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.971810Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.045288Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.044959Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.047737Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.047314Z"
     }
    },
    "outputs": [],
    "source": [
     "calc.options.logging_file = 'CO_energy.log'\n",
     "calc.options.gwbse.gw.qp_grid_search_mode = 'dense'\n",
-    "calc.options.gwbse.gw.qp_grid_spacing = 0.001\n",
-    "calc.options.gwbse.gw.qp_grid_steps = 1001"
+    "calc.options.gwbse.gw.qp_dense_spacing = 0.001\n",
+    "calc.options.gwbse.gw.qp_full_window_half_width = 0.5"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Run the calcuation\n",
+    "## Run the calculation\n",
     "\n",
-    "As for any ASE calculator, the `xtp` calculator must be attached to the molecular structure. To do that we simply need to assign our `xtp` calculator to the `calc` attribute of or molecular structure"
+    "As for any ASE calculator, the `xtp` calculator must be attached to the molecular structure. To do that we simply need to assign our `xtp` calculator to the `calc` attribute of our molecular structure"
    ]
   },
   {
@@ -146,10 +146,10 @@
    "execution_count": 6,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.974040Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.973690Z",
-     "iopub.status.idle": "2026-10-30T20:52:06.975940Z",
-     "shell.execute_reply": "2026-10-30T20:52:06.975546Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.049395Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.049230Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.051636Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.051248Z"
     }
    },
    "outputs": [],
@@ -169,17 +169,17 @@
    "execution_count": 7,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:06.977848Z",
-     "iopub.status.busy": "2026-10-30T20:52:06.977425Z",
-     "iopub.status.idle": "2026-10-30T20:52:07.826114Z",
-     "shell.execute_reply": "2026-10-30T20:52:07.825587Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.053331Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.053125Z",
+     "iopub.status.idle": "2026-10-31T18:36:23.893396Z",
+     "shell.execute_reply": "2026-10-31T18:36:23.892854Z"
     }
    },
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "-3074.9695318827726"
+       "-3074.969531882769"
       ]
      },
      "execution_count": 7,
@@ -205,10 +205,10 @@
    "execution_count": 8,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-30T20:52:07.860088Z",
-     "iopub.status.busy": "2026-10-30T20:52:07.859522Z",
-     "iopub.status.idle": "2026-10-30T20:52:08.046227Z",
-     "shell.execute_reply": "2026-10-30T20:52:08.045754Z"
+     "iopub.execute_input": "2026-10-31T18:36:23.925500Z",
+     "iopub.status.busy": "2026-10-31T18:36:23.925077Z",
+     "iopub.status.idle": "2026-10-31T18:36:24.110528Z",
+     "shell.execute_reply": "2026-10-31T18:36:24.109951Z"
     }
    },
    "outputs": [

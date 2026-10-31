@@ -46,6 +46,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#macos-homebrew">macOS (Homebrew)</a></li>
 </ul>
@@ -64,9 +65,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#packages-for-various-linux-distributions">Packages for various Linux Distributions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Fedora</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#centos">CentOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#opensuse">openSUSE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sles">SLES</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian / Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spack">Spack</a><ul>
@@ -151,13 +150,25 @@ ctest --test-dir builddir
 cmake --build builddir --target install
 </pre></div>
 </div>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>CMake 3.16 or newer (<code class="docutils literal notranslate"><span class="pre">ctest</span> <span class="pre">--test-dir</span></code> as used above needs CMake 3.20; with
+older versions run <code class="docutils literal notranslate"><span class="pre">ctest</span></code> inside the build directory)</p></li>
+<li><p>A C++17 compiler (GCC, Clang, Apple Clang or Intel <code class="docutils literal notranslate"><span class="pre">icpx</span></code>) with OpenMP</p></li>
+<li><p>Eigen 3.4 or newer, Boost 1.71 or newer, Python 3.5 or newer</p></li>
+<li><p>GROMACS 2021 or newer (optional; needed for reading GROMACS files)</p></li>
+<li><p>HDF5 (optional for CSG, where it enables h5md trajectories; required for XTP)</p></li>
+<li><p>For XTP (<code class="docutils literal notranslate"><span class="pre">-DBUILD_XTP=ON</span></code>) additionally: libint 2.6 or newer, libecpint,
+libxc, HDF5 with C++ bindings and Open Babel 3</p></li>
+</ul>
+</section>
 <section id="dependency-installation">
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/ubuntu#L10-L13">Ubuntu</a></p>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/fedora#L10-L15">Fedora</a></p>
-<p>If you have an older version of a distribution, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flag to automatically install the correct libint version.</p>
-<p>On Ubuntu 20.10 and older you will not get version 1.0.5 of the libecpint package. So in this case run <a class="reference external" href="https://github.com/votca/buildenv/blob/55c88641046dbb6152cf7d9e536e17f29205479f/ubuntu#L30-L33">this</a> or
-download the package from <a class="reference external" href="http://ftp.us.debian.org/debian/pool/main/libe/libecpint/">here</a>.</p>
+<p>If your distribution’s libint is too old, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flag to build a suitable libint version.</p>
+<p>If your distribution has no libecpint package, build it from <a class="reference external" href="https://github.com/robashaw/libecpint">source</a>.</p>
 <section id="macos-homebrew">
 <h4>macOS (Homebrew)<a class="headerlink" href="#macos-homebrew" title="Link to this heading">¶</a></h4>
 <p>On macOS (Apple silicon, macOS 13.3 or newer) use Apple’s <code class="docutils literal notranslate"><span class="pre">clang</span></code> from the
@@ -207,7 +218,7 @@ for resolving dependency issues. In particular, an appropriate extra
 will have to rerun the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command with the relevant flag(s)
 added. For example, in the case of a locally installed version of
 GROMACS:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX=${prefix} -DGROMACS_INCLUDE_DIR=$HOME/gromacs/include -DGROMACS_LIBRARY=$HOME/gromacs/lib/libgromacs.so -S ..
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake -B builddir -S votca -DCMAKE_INSTALL_PREFIX=${prefix} -DCMAKE_PREFIX_PATH=$HOME/gromacs
 </pre></div>
 </div>
 <p>Please also ensure GROMACS was build with <code class="docutils literal notranslate"><span class="pre">-DGMX_INSTALL_LEGACY_API=ON</span></code>.</p>
@@ -235,12 +246,13 @@ related tweaks when setting <code class="docutils literal notranslate"><span cla
 <section id="common-cmake-flags">
 <h3>Common CMake Flags<a class="headerlink" href="#common-cmake-flags" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CSGAPPS</span></code> - Install the extra csg applications repo (ON/OFF,
-Default OFF)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_XTP</span></code> - Build the xtp repo (ON/OFF, Default OFF)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> - where to install the votca executables
-(Default is /usr/local/bin)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSTALL_CSGAPPS</span></code> - Install the extra csg applications in <code class="docutils literal notranslate"><span class="pre">csg/src/csgapps</span></code>
+(ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_XTP</span></code> - Build xtp (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> - where to install VOTCA (Default is /usr/local)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code> - compile tests (ON/OFF, Default ON)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INJECT_MARCH_NATIVE</span></code> - add <code class="docutils literal notranslate"><span class="pre">-march=native</span></code> to the compiler flags if
+supported (ON/OFF, Default ON)</p></li>
 </ul>
 </section>
 <section id="other-cmake-flags">
@@ -248,9 +260,14 @@ Default OFF)</p></li>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_&lt;name&gt;</span></code> - Disable using an optional
 package called <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> (ON/OFF)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_HDF5</span></code> - Disable using the optional
-package <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> (ON/OFF, Default OFF; relevant only for the
-<code class="docutils literal notranslate"><span class="pre">master</span></code> branch)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_HDF5</span></code> - Disable using <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> in CSG
+(h5md support; ON/OFF, Default OFF; not possible with <code class="docutils literal notranslate"><span class="pre">BUILD_XTP=ON</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code> - build an internal libint (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REQUIRE_MKL</span></code> - fail if Intel’s MKL is not found (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MKL_THREADING</span></code> - MKL threading layer (<code class="docutils literal notranslate"><span class="pre">sequential</span></code>, <code class="docutils literal notranslate"><span class="pre">intel_thread</span></code>,
+<code class="docutils literal notranslate"><span class="pre">gnu_thread</span></code> or <code class="docutils literal notranslate"><span class="pre">tbb_thread</span></code>; Default <code class="docutils literal notranslate"><span class="pre">gnu_thread</span></code> with <code class="docutils literal notranslate"><span class="pre">g++</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENABLE_RPATH_INJECT</span></code> - inject the link and install library directories
+into the executables (ON/OFF, Default OFF)</p></li>
 </ul>
 </section>
 <section id="performance-advice">
@@ -265,9 +282,9 @@ for different architectures:</p>
 when used with the MKL. No special flags have to be supplied to <code class="docutils literal notranslate"><span class="pre">CMake</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code> are used, the compiler option <code class="docutils literal notranslate"><span class="pre">-march=native</span></code> is automatically injected
 into the build. If you compile VOTCA on a heterogeneous cluster with different instruction sets,
-this may cause the executables to not run. Override this by specifying
-<code class="docutils literal notranslate"><span class="pre">-DCMAKE_CXX_FLAGS=-mtune=native</span></code> (at probably lower performance), or perform node-type
-specific builds.</p>
+this may cause the executables to not run. Switch it off with <code class="docutils literal notranslate"><span class="pre">-DINJECT_MARCH_NATIVE=OFF</span></code>
+(optionally adding <code class="docutils literal notranslate"><span class="pre">-DCMAKE_CXX_FLAGS=-mtune=native</span></code>, at probably lower performance), or perform
+node-type specific builds.</p>
 <p>As a rough estimate, runtimes with vectorization and  <code class="docutils literal notranslate"><span class="pre">gcc/clang</span></code> are 30% shorter than without
 vectorization. Use of <code class="docutils literal notranslate"><span class="pre">MKL</span></code> reduces them by another 50%.</p>
 </section>
@@ -347,18 +364,6 @@ Accelerate’s speed does not depend on the thread count. Do not set
 </pre></div>
 </div>
 </section>
-<section id="centos">
-<h3>CentOS<a class="headerlink" href="#centos" title="Link to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
-<span class="n">yum</span> <span class="n">update</span>
-<span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span>
-</pre></div>
-</div>
-<p>Or in older versions of CentOS:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
-</pre></div>
-</div>
-</section>
 <section id="opensuse">
 <h3>openSUSE<a class="headerlink" href="#opensuse" title="Link to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span>
@@ -369,16 +374,9 @@ Accelerate’s speed does not depend on the thread count. Do not set
 </pre></div>
 </div>
 </section>
-<section id="sles">
-<h3>SLES<a class="headerlink" href="#sles" title="Link to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUSEConnect</span> <span class="o">-</span><span class="n">p</span> <span class="n">PackageHub</span><span class="o">/</span><span class="mf">12.2</span><span class="o">/</span><span class="n">x86_64</span>
-<span class="n">zypper</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
-</pre></div>
-</div>
-</section>
 <section id="debian-ubuntu">
 <h3>Debian / Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Link to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">votca</span><span class="o">-</span><span class="n">csg</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">votca</span>
 </pre></div>
 </div>
 </section>
@@ -433,7 +431,7 @@ the following docker commands:</p>
 <section id="release-version">
 <h4>Release version<a class="headerlink" href="#release-version" title="Link to this heading">¶</a></h4>
 <p>Docker can also install the latest released version, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v2021</span><span class="mf">.2</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">votca</span><span class="o">/</span><span class="n">votca</span><span class="p">:</span><span class="n">v2026</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
 </section>
@@ -493,7 +491,7 @@ information look
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

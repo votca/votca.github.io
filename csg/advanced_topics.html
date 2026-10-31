@@ -123,40 +123,27 @@
 <h2>Used external packages<a class="headerlink" href="#used-external-packages" title="Link to this heading">¶</a></h2>
 <section id="gromacs">
 <h3>GROMACS<a class="headerlink" href="#gromacs" title="Link to this heading">¶</a></h3>
-<p><cite>Link to Homepage &lt;https://manual.gromacs.org/documentation/&gt;</cite></p>
+<p><a class="reference external" href="https://manual.gromacs.org/documentation/">Link to Homepage</a></p>
 </section>
 <section id="dl-poly">
 <h3>DL_POLY<a class="headerlink" href="#dl-poly" title="Link to this heading">¶</a></h3>
-<p><cite>Link to Homepage &lt;https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx&gt;</cite></p>
+<p><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx">Link to Homepage</a></p>
 </section>
 </section>
 <section id="dl-poly-interface">
 <h2>DL_POLY interface<a class="headerlink" href="#dl-poly-interface" title="Link to this heading">¶</a></h2>
-<p><strong>WARNING: The DL_POLY interface is still experimental (in development)
-. The Force Matching might work as well, although it has
-not been tested thoroughly.</strong></p>
-<p>The DL_POLY interface fully supports coarse-grain mapping of a full-atom
-system previuosly simulated with any version of DL_POLY, including
-DL_POLY-Classic. However, the full optimization of the effective
-potentials with the aid of iterative methods will only become possible
-when the new release of DL_POLY-4 (4.06) is made public; the reason
-being the incapability of earlier DL_POLY versions of using
-user-specified tabulated force-fields for intramolecular, aka “bonded”,
-interactions: bonds, angles, dihedral angles (torsions). Below the
-coarse-graining and CG force-field optimization with the aid of the
-latest DL_POLY-4 version (4.06+) are outlined.</p>
-<p>Running VOTCA with DL_POLY-4 as MD simulation engine is very similar to
-doing so with GROMACS. The three types of required input files in the
-case of DL_POLY are: CONTROL – containing the simulation directives and
-parameters (instead of <code class="docutils literal notranslate"><span class="pre">.mdp</span></code> file for GROMACS), FIELD – the topology
-and force-field specifications (instead of <code class="docutils literal notranslate"><span class="pre">.top</span></code> and <code class="docutils literal notranslate"><span class="pre">.tpr</span></code> files),
-and CONFIG (instead of <code class="docutils literal notranslate"><span class="pre">.gro</span></code> file) – the initial configuration file,
-containing the MD cell matrix and particle coordinates (it can also
-include initial velocities and/or forces); for details see
-DL_POLY-4 manual. Most of the VOTCA tools and scripts described above in
-the case of using GROMACS will work in the same manner, with the
-following conventional substitutions for the (default) file names used
-in options for VOTCA scripts, as necessary:</p>
+<p><strong>WARNING: The DL_POLY interface is experimental and has not been tested
+thoroughly.</strong></p>
+<p>The DL_POLY interface supports coarse-grain mapping of a full-atom
+system previously simulated with any version of DL_POLY, including
+DL_POLY-Classic. The three types of DL_POLY input files are: CONTROL –
+containing the simulation directives and parameters (instead of <code class="docutils literal notranslate"><span class="pre">.mdp</span></code>
+file for GROMACS), FIELD – the topology and force-field specifications
+(instead of <code class="docutils literal notranslate"><span class="pre">.top</span></code> and <code class="docutils literal notranslate"><span class="pre">.tpr</span></code> files), and CONFIG (instead of <code class="docutils literal notranslate"><span class="pre">.gro</span></code>
+file) – the initial configuration file, containing the MD cell matrix and
+particle coordinates (it can also include initial velocities and/or
+forces); for details see the DL_POLY-4 manual. VOTCA tools recognize
+DL_POLY files by the following extensions:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dlpf = the topology read from FIELD or written to FIELD_CGV
 .dlpc = the configuration read from CONFIG or written to CONFIG_CGV
 .dlph = the trajectory read from HISTORY or written to HISTORY_CGV
@@ -176,21 +163,10 @@ ability of these tools to read and write a plethora of different file
 formats provides means to convert input and output files between the
 simulation packages supported by VOTCA, e.g. GROMACS – DL_POLY or vice
 versa. The user is, however, strongly advised to check the resulting
-files for consistency before using them).</strong></p>
-<p>Similarly, the distribution analysis and potential/force generation
-utilities, such as <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> and VOTCA scripts, will read and write
-DL_POLY-formatted files; in particular, the tabulated force-field files
-containing the potential and force/virial data: TABLE – for short-range
-(VdW) “non-bonded” interactions, TABBND, TABANG and TABDIH – for
-“bonded” interations: bonds, bending angles and dihedrals,
-correspondingly (for the format details see DL_POLY-4 manual). Note,
-however, that the latter three files can only be used by
-DL_POLY-4 (4.06+).</p>
-<p>The user is advised to search for “dlpoly” through the
-<code class="docutils literal notranslate"><span class="pre">csg_defaults.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_table</span></code> files and in scripts located in
-<code class="docutils literal notranslate"><span class="pre">share/votca/scripts/inverse/</span></code> in order to find out about the xml-tags
-and options specific for DL_POLY; see also <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">csgapps</span></a>
-and <span class="xref std std-ref">reference_scripts</span>.</p>
+files for consistency before using them.</strong></p>
+<p>VOTCA does not write DL_POLY tabulated force-field files (TABLE, TABBND,
+TABANG, TABDIH); tables from <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> or <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> have to be
+converted with other tools.</p>
 </section>
 </section>
 
@@ -205,7 +181,7 @@ and <span class="xref std std-ref">reference_scripts</span>.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

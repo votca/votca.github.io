@@ -60,6 +60,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#three-body-stillinger-weber-interactions">Three-body Stillinger-Weber interactions</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#relative-entropy">Relative entropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inverse-monte-carlo">Inverse Monte Carlo</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="advanced_topics.html">Advanced topics</a></li>
@@ -121,15 +123,15 @@
 <h1>Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h1>
 <section id="force-matching">
 <h2>Force matching<a class="headerlink" href="#force-matching" title="Link to this heading">¶</a></h2>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id8">
 <span id="methods-fig-fm-flowchart"></span><img alt="Flowchart to perform force matching." src="../_images/force-matching.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Flowchart to perform force matching.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Flowchart to perform force matching.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The force matching algorithm with cubic spline basis is implemented in
-the utility. A list of available options can be found in the reference
-section of (command <code class="docutils literal notranslate"><span class="pre">–h</span></code>).</p>
+the utility <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>. A list of available options can be found in the
+reference section (<a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a>) or with <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span> <span class="pre">--help</span></code>.</p>
 <section id="program-input">
 <span id="methods-fm-program-input"></span><h3>Program input<a class="headerlink" href="#program-input" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> needs an atomistic reference run to perform coarse-graining. Therefore,
@@ -140,7 +142,7 @@ run.</p>
 coarse-grained model (see <a class="reference internal" href="input_files.html#input-files"><span class="std std-ref">Input files</span></a>). At last, a control
 file has to be created, which contains all the information for
 coarse-graining the interactions and parameters for the force-matching
-run. This file is specified by the tag <code class="docutils literal notranslate"><span class="pre">–options</span></code> in the XMLformat. An
+run. This file is specified with the option <code class="docutils literal notranslate"><span class="pre">--options</span></code> in XML format. An
 example might look like the following</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cg&gt;</span>
 <span class="w">  </span><span class="cm">&lt;!--fmatch section --&gt;</span>
@@ -167,22 +169,25 @@ example might look like the following</p>
 <span class="nt">&lt;/cg&gt;</span>
 </pre></div>
 </div>
-<p>Similarly to the case of spline fitting,
-the parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> have to be chosen in such a way as
 to avoid empty bins within the grid. Determining <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> by
 using <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code> is recommended (see <a class="reference internal" href="input_files.html#input-files-setting-files"><span class="std std-ref">Setting files</span></a>). A full description
-of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">csgapps</span></a>.</p>
+of all available options can be found in <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
 </section>
 <section id="program-output">
 <span id="methods-fm-program-output"></span><h3>Program output<a class="headerlink" href="#program-output" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file for each interaction, specified in
 the CG-options file (<code class="docutils literal notranslate"><span class="pre">--options</span></code>). These files have 4 columns
-containing distance, corresponding force, a table flag and the force
-error, which is estimated via a block-averaging procedure. If you are
+containing distance, corresponding force, the force error, which is
+estimated via a block-averaging procedure, and a table flag. If you are
 working with an angle, then the first column will contain the
 corresponding angle in radians.</p>
-<p>To get table-files for GROMACS, integrate the forces in order to get
-potentials and do extrapolation and potentially smoothing afterwards.</p>
+<p>To get table-files for an MD package, the forces have to be integrated to
+potentials, and extrapolated and possibly smoothed at the borders (see
+<a class="reference internal" href="preparing.html#preparing-post-processing-of-the-potential"><span class="std std-ref">Post-processing of the potential</span></a>); VOTCA provides no tool for
+these steps any more.</p>
+<p>For dihedral (bonded) interactions, <code class="docutils literal notranslate"><span class="pre">&lt;fmatch&gt;&lt;periodic&gt;1&lt;/periodic&gt;&lt;/fmatch&gt;</span></code>
+in the interaction section enforces a periodic spline.</p>
 <p>Output files are not only produced at the end of the program execution,
 but also after every successful processing of each block. The user is
 free to have a look at the output files and decide to stop <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code>, provided
@@ -240,7 +245,7 @@ way as to avoid empty bins within the grid. Determining <code class="docutils li
 <code class="docutils literal notranslate"><span class="pre">--options</span></code>, <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> produces a separate <code class="docutils literal notranslate"><span class="pre">.force</span></code> file, as well as a
 <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file. Due to the functional form of the Stillinger-Weber potential,
 <code class="docutils literal notranslate"><span class="pre">csg_fmatch</span></code> outputs the three-body force in angular direction, as well as the angular potential.
-Therefore, in contrast to the two-body force (see section <span class="xref std std-ref">methods_fm_integration</span>), the angular
+Therefore, in contrast to the two-body force, the angular
 three-body force does not have to be numerically integrated. The <code class="docutils literal notranslate"><span class="pre">.force</span></code>, as well as
 the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file have 4 columns containing the angle in radians, the force or potential,
 the error (which is estimated via a block-averaging procedure) and a table flag.</p>
@@ -248,6 +253,32 @@ the error (which is estimated via a block-averaging procedure) and a table flag.
 LAMMPS with the MANYBODY <em>pair_style sw/angle/table</em> (<a class="reference external" href="https://docs.lammps.org/pair_sw_angle_table.html">https://docs.lammps.org/pair_sw_angle_table.html</a>). For this, the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> file has to be
 converted into a table format according to the LAMMPS <em>angle_style table</em> (<a class="reference external" href="https://docs.lammps.org/angle_table.html">https://docs.lammps.org/angle_table.html</a>).</p>
 </section>
+</section>
+<section id="relative-entropy">
+<h2>Relative entropy<a class="headerlink" href="#relative-entropy" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">csg_reupdate</span></code> performs one update of the parameters of analytic or
+cubic B-spline potentials by relative entropy minimization
+<a class="reference internal" href="bibliography.html#shell2008" id="id1"><span>[Shell2008]</span></a>, <a class="reference internal" href="bibliography.html#mashayakrelative" id="id2"><span>[mashayakrelative]</span></a> (see also <a class="reference internal" href="bibliography.html#chaimovich2011" id="id3"><span>[Chaimovich2011]</span></a>,
+<a class="reference internal" href="bibliography.html#rudzinski-coarse-graining-2011" id="id4"><span>[rudzinski_coarse-graining_2011]</span></a>, <a class="reference internal" href="bibliography.html#lu-coarse-graining-2014" id="id5"><span>[lu_coarse-graining_2014]</span></a>, and
+<a class="reference internal" href="bibliography.html#wu2005" id="id6"><span>[Wu2005]</span></a> for the related phase-space overlap measures). It needs the target distributions
+of the atomistic system (e.g. from <code class="docutils literal notranslate"><span class="pre">csg_stat</span></code>) and a trajectory of the
+coarse-grained model with the current potentials; the iteration (running
+the coarse-grained simulation with the new potentials, and repeating) has to
+be scripted by the user. The settings file needs <code class="docutils literal notranslate"><span class="pre">cg.inverse.kBT</span></code> and
+<code class="docutils literal notranslate"><span class="pre">cg.inverse.scale</span></code> and, per interaction, the <code class="docutils literal notranslate"><span class="pre">re</span></code> section
+(<code class="docutils literal notranslate"><span class="pre">function</span></code>: <code class="docutils literal notranslate"><span class="pre">lj126</span></code>, <code class="docutils literal notranslate"><span class="pre">ljg</span></code> or <code class="docutils literal notranslate"><span class="pre">cbspl</span></code>, and <code class="docutils literal notranslate"><span class="pre">cbspl.nknots</span></code>);
+<code class="docutils literal notranslate"><span class="pre">csg_reupdate</span> <span class="pre">--gentable</span> <span class="pre">true</span></code> only writes the potential tables for given
+parameters. See <a class="reference internal" href="reference.html#reference-programs"><span class="std std-ref">Programs</span></a> and <a class="reference internal" href="reference.html#reference-settings-file"><span class="std std-ref">Settings file</span></a>.</p>
+</section>
+<section id="inverse-monte-carlo">
+<h2>Inverse Monte Carlo<a class="headerlink" href="#inverse-monte-carlo" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">csg_stat</span> <span class="pre">--do-imc</span></code> computes, in addition to the distributions, the
+cross-correlation matrices of the inverse Monte Carlo method
+<a class="reference internal" href="bibliography.html#lyubartsev-1995" id="id7"><span>[Lyubartsev:1995]</span></a> for all interactions of the same
+<code class="docutils literal notranslate"><span class="pre">inverse.imc.group</span></code>; <code class="docutils literal notranslate"><span class="pre">csg_imc_solve</span></code> solves the resulting linear system
+(optionally with Tikhonov regularization, <code class="docutils literal notranslate"><span class="pre">--regularization</span></code>) for the
+potential update. As for relative entropy, the update of the tables and the
+iteration have to be done by the user.</p>
 </section>
 </section>
 
@@ -262,7 +293,7 @@ converted into a table format according to the LAMMPS <em>angle_style table</em>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, VOTCA Development Team.</p>
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
