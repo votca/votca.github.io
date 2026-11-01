@@ -128,7 +128,7 @@
              
   <section id="podcoupling">
 <h1><span class="section-number">12.4.1.4.18. </span>podcoupling<a class="headerlink" href="#podcoupling" title="Link to this heading">¶</a></h1>
-<p>Computes an electronic coupling between two fragments of a SINGLE, already-converged, ordinary (unconstrained, neutral) ground-state DFT calculation, via Projection Operator Diabatization (POD2, Ghan et al.) – separately diagonalizing each fragment’s own donor/acceptor Fock sub-block (in the original AO basis) and reading the coupling off the resulting off-diagonal block, with the paper’s own eqn (10) Lowdin correction applied for the two fragment orbitals’ own non-orthogonality. Suited specifically to COVALENTLY-BONDED fragment pairs, where neither CDFT (a self-consistent, constrained calculation on the intact system) nor FODFT (two separately-converged, ISOLATED fragment calculations, which cannot represent a bond crossing the fragment boundary at all) apply cleanly – for non-bonded fragment pairs, the existing ‘coupling’ tool (DIPRO) remains the established, directly comparable choice. See Baumeier, Kirkpatrick, Andrienko, PCCP 2010, 12, 11103 for the closely related DIPRO method this eqn (10) correction is drawn from, and arXiv:1512.00200 for a direct comparison of POD/POD2 against FODFT and CDFT.
+<p>Electronic coupling between two covalently bonded fragments of one converged ground-state DFT calculation, by projection-operator diabatization (POD2): each fragment’s Fock sub-block is diagonalized separately and the coupling is read from the off-diagonal block, with the Lowdin correction for the overlap of the two fragment orbitals (as in DIPRO, Baumeier et al., PCCP 12, 11103 (2010)). For non-bonded fragments use the coupling tool (DIPRO).
 The following table contains the defaults input options for the calculator, The default <cite>OPTIONAL</cite> means this option is switched off, if no input is given.
 <cite>REQUIRED</cite> arguments have to be specified, otherwise an error is thrown.</p>
 <table class="docutils align-center">
@@ -158,9 +158,8 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-odd"><td><p>orb_file</p></td>
 <td><p>system.orb</p></td>
 <td><div class="line-block">
-<div class="line">Input orb file – a SINGLE, already-converged, ordinary</div>
-<div class="line">(unconstrained, neutral) ground-state DFT calculation</div>
-<div class="line">on the intact, covalently-bonded supermolecule</div>
+<div class="line">Converged ground-state DFT calculation (orb file) of the</div>
+<div class="line">bonded supermolecule</div>
 </div>
 </td>
 <td></td>
@@ -168,9 +167,8 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>fragment_A</p></td>
 <td></td>
 <td><div class="line-block">
-<div class="line">Atom indices (0-based) making up fragment A, e.g. ‘0:5’</div>
-<div class="line">or ‘0 1 2 3 4 5’ – same syntax as cdft.indices and diabatization.xml’s</div>
-<div class="line">own fragment indices</div>
+<div class="line">Atom indices (0-based) of fragment A, e.g. ‘0:5’ or ‘0</div>
+<div class="line">1 2 3 4 5’ (same syntax as cdft.indices)</div>
 </div>
 </td>
 <td></td>
@@ -178,8 +176,8 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-odd"><td><p>fragment_B</p></td>
 <td></td>
 <td><div class="line-block">
-<div class="line">Atom indices (0-based) making up fragment B – disjoint</div>
-<div class="line">from fragment_A, same syntax</div>
+<div class="line">Atom indices (0-based) of fragment B, disjoint from fragment_A</div>
+<div class="line"><br /></div>
 </div>
 </td>
 <td></td>
@@ -187,74 +185,46 @@ The following table contains the defaults input options for the calculator, The 
 <tr class="row-even"><td><p>levA</p></td>
 <td><p>1</p></td>
 <td><div class="line-block">
-<div class="line">Number of orbitals to cover for fragment A, counting outward</div>
-<div class="line">from its own HOMO/LUMO boundary, covering BOTH occupied</div>
-<div class="line">(hole-transport) and virtual (electron-transport) orbitals</div>
-<div class="line">together in one calculation – same convention as DFTcoupling’s</div>
-<div class="line">own levA option exactly. 1 covers just {HOMO, LUMO}; 2</div>
-<div class="line">covers {HOMO-1, HOMO, LUMO, LUMO+1}; etc.</div>
+<div class="line">Number of occupied and of virtual orbitals of fragment</div>
+<div class="line">A, counted from the HOMO/LUMO gap (as levA of the coupling</div>
+<div class="line">tool): 1 covers HOMO and LUMO, 2 covers HOMO-1 to LUMO+1,</div>
+<div class="line">etc.</div>
 </div>
 </td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>levB</p></td>
 <td><p>1</p></td>
-<td><div class="line-block">
-<div class="line">Same as levA, for fragment B – same convention as DFTcoupling’s</div>
-<div class="line">own levB option</div>
-</div>
-</td>
+<td><p>As levA, for fragment B</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>write_cube_files</p></td>
 <td><p>false</p></td>
 <td><div class="line-block">
-<div class="line">If true, writes a .cube file for each fragment orbital</div>
-<div class="line">actually covered by levA/levB (both fragments), useful</div>
-<div class="line">for visualizing/sanity-checking which orbitals the coupling</div>
-<div class="line">calculation used</div>
+<div class="line">Write a cube file for each fragment orbital covered by</div>
+<div class="line">levA/levB</div>
 </div>
 </td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>xsteps</p></td>
 <td><p>25</p></td>
-<td><div class="line-block">
-<div class="line">Gridpoints in x-direction for cube file export – same</div>
-<div class="line">option as gencube’s own xsteps, only used if write_cube_files</div>
-<div class="line">is true</div>
-</div>
-</td>
+<td><p>Grid points in x for the cube files (as in gencube)</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>ysteps</p></td>
 <td><p>25</p></td>
-<td><div class="line-block">
-<div class="line">Gridpoints in y-direction for cube file export – same</div>
-<div class="line">option as gencube’s own ysteps, only used if write_cube_files</div>
-<div class="line">is true</div>
-</div>
-</td>
+<td><p>Grid points in y for the cube files (as in gencube)</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-odd"><td><p>zsteps</p></td>
 <td><p>25</p></td>
-<td><div class="line-block">
-<div class="line">Gridpoints in z-direction for cube file export – same</div>
-<div class="line">option as gencube’s own zsteps, only used if write_cube_files</div>
-<div class="line">is true</div>
-</div>
-</td>
+<td><p>Grid points in z for the cube files (as in gencube)</p></td>
 <td><p>int+</p></td>
 </tr>
 <tr class="row-even"><td><p>padding</p></td>
 <td><p>6.5</p></td>
-<td><div class="line-block">
-<div class="line">How far the cube-file grid should start from the molecule,</div>
-<div class="line">same option as gencube’s own padding, only used if write_cube_files</div>
-<div class="line">is true</div>
-</div>
-</td>
+<td><p>Distance of the cube grid from the molecule (as in gencube)</p></td>
 <td><p>float+</p></td>
 </tr>
 </tbody>

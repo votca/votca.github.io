@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From an MD morphology to a state file &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Charge transport in amorphous thiophene" href="CHARGE_TRANSPORT.html" />
+    <link rel="prev" title="Single Point Energy using pyxtp" href="single_point.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">From an MD morphology to a state file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#The-input">The input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#The-mapping-file">The mapping file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Mapping-the-snapshot">Mapping the snapshot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Checking-the-mapping">Checking the mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Neighbour-list">Neighbour list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">From an MD morphology to a state file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/MAPPING.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="From-an-MD-morphology-to-a-state-file">
+<h1>From an MD morphology to a state file<a class="headerlink" href="#From-an-MD-morphology-to-a-state-file" title="Link to this heading">¶</a></h1>
+<p>VOTCA-XTP works on molecular morphologies from molecular dynamics (MD). The first step of every multiscale workflow is the same: the atoms of the MD snapshot are grouped into the molecules (<em>segments</em>) that the electronic-structure calculations work with, each segment is assigned a QM geometry and classical multipoles, and pairs of neighbouring segments are listed. The result is a <em>state file</em> (<code class="docutils literal notranslate"><span class="pre">state.hdf5</span></code>) that all later calculators read and extend.</p>
+<p>This tutorial does this step for an amorphous film of 1000 thiophene molecules simulated with LAMMPS. The tutorials <em>Charge transport in amorphous thiophene</em> and <em>Excitations of thiophene in its environment</em> start from the same morphology.</p>
+<p><strong>You will:</strong> write a mapping file, map the MD snapshot, check the mapping, and build the neighbour list.</p>
+<section id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>VOTCA installed and the environment activated with <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> (see the <a class="reference external" href="https://github.com/votca/votca/blob/master/share/sphinx/INSTALL.rst">installation instructions</a>).</p></li>
+<li><p>Python with <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p></li>
+</ul>
+<p>The VOTCA programs are command-line tools. Below they are called through a small helper <code class="docutils literal notranslate"><span class="pre">run()</span></code>, which prints only the last lines of their output, if any; in a terminal you would call them directly. At the end of their output, the programs list the references to cite for the methods they used.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a VOTCA command; print the last `show` lines of its output (0: none).&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&#39; failed&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="n">show</span><span class="p">:]))</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span> <span class="k">if</span> <span class="n">output</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -f state.hdf5 skeleton.xml *.pdb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="The-input">
+<h2>The input<a class="headerlink" href="#The-input" title="Link to this heading">¶</a></h2>
+<p>The morphology consists of two LAMMPS files in <code class="docutils literal notranslate"><span class="pre">MD_FILES</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">thiophene.data</span></code>, the <em>topology</em>: atoms with their types, masses and charges, and the bonds, which define the molecules;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traj.dump</span></code>, the <em>trajectory</em>: atom positions (here a single snapshot at time step 10000).</p></li>
+</ul>
+<p>For GROMACS the topology is the run input file (<code class="docutils literal notranslate"><span class="pre">topol.tpr</span></code>) and the trajectory a <code class="docutils literal notranslate"><span class="pre">.gro</span></code>, <code class="docutils literal notranslate"><span class="pre">.trr</span></code> or <code class="docutils literal notranslate"><span class="pre">.xtc</span></code> file; everything below works the same way.</p>
+<p>In addition, each kind of molecule needs data from separate gas-phase calculations: optimized QM geometries for the neutral, anionic and cationic molecule (<code class="docutils literal notranslate"><span class="pre">QC_FILES/thiophene_{n,e,h}.xyz</span></code>) and atomic multipoles with polarizabilities for the same states (<code class="docutils literal notranslate"><span class="pre">MP_FILES/thiophene_{n,e,h}.mps</span></code>).</p>
+</section>
+<section id="The-mapping-file">
+<h2>The mapping file<a class="headerlink" href="#The-mapping-file" title="Link to this heading">¶</a></h2>
+<p>The mapping file tells <code class="docutils literal notranslate"><span class="pre">xtp_map</span></code> which MD atoms form a segment and how they correspond to the atoms of the QM geometry and of the multipole file. The names it must use are those of the MD topology. <code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-m</span></code> writes a skeleton with these names:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_map -t MD_FILES/thiophene.data -c MD_FILES/traj.dump -s skeleton.xml -m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;skeleton.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;topology&gt;
+        &lt;molecules&gt;
+                &lt;molecule&gt;
+                        &lt;mdname&gt;C4H4S1&lt;/mdname&gt;
+                        &lt;segments&gt;
+                                &lt;segment&gt;
+                                        &lt;name&gt;UPTOYOU_BUTUNIQUE&lt;/name&gt;
+                                        &lt;qmcoords_n&gt;XYZFILE_GROUNDSTATE&lt;/qmcoords_n&gt;
+                                        &lt;multipoles_n&gt;MPSFILE_GROUNDSTATE&lt;/multipoles_n&gt;
+                                        &lt;map2md&gt;WANTTOMAPTOMDGEOMETRY&lt;/map2md&gt;
+                                        &lt;U_xX_nN_h&gt;REORG1_hole&lt;/U_xX_nN_h&gt;
+                                        &lt;U_nX_nN_h&gt;REORG2_hole&lt;/U_nX_nN_h&gt;
+                                        &lt;U_xN_xX_h&gt;REORG3_hole&lt;/U_xN_xX_h&gt;
+                                        &lt;fragments&gt;
+                                                &lt;fragment&gt;
+                                                        &lt;name&gt;UPTOYOU_BUTUNIQUE&lt;/name&gt;
+                                                        &lt;mdatoms&gt; 0:C63:0 0:C63:1 0:S23:2 0:C63:3 0:C63:4 0:H20:5 0:H20:6 0:H20:7 0:H20:8&lt;/mdatoms&gt;
+                                                        &lt;qmatoms&gt;IDS of QMATOMS i.e 0:C 1:H 2:C&lt;/qmatoms&gt;
+                                                        &lt;mpoles&gt;IDS of MPOLES i.e 0:C 1:H 2:C&lt;/mpoles&gt;
+                                                        &lt;weights&gt;weights for mapping(often atomic mass) i.e. 12  1 12&lt;/weights&gt;
+                                                        &lt;localframe&gt;IDs of up to 3 qmatoms or mpoles i.e. 0 1 2&lt;/localframe&gt;
+                                                &lt;/fragment&gt;
+                                        &lt;/fragments&gt;
+                                &lt;/segment&gt;
+                        &lt;/segments&gt;
+                &lt;/molecule&gt;
+        &lt;/molecules&gt;
+&lt;/topology&gt;
+
+</pre></div></div>
+</div>
+<p>The LAMMPS reader names the molecule by its composition (<code class="docutils literal notranslate"><span class="pre">C4H4S1</span></code>) and every atom by its element (recognized from the mass) followed by its LAMMPS atom type (<code class="docutils literal notranslate"><span class="pre">C63</span></code>, <code class="docutils literal notranslate"><span class="pre">S23</span></code>, <code class="docutils literal notranslate"><span class="pre">H20</span></code>). An MD atom is written as <code class="docutils literal notranslate"><span class="pre">residue:name:index</span></code>, where the index counts the atoms within the molecule. With GROMACS the molecule and atom names of the topology are used.</p>
+<p>The complete mapping file <code class="docutils literal notranslate"><span class="pre">system.xml</span></code> fills in the placeholders:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;?xml version=&#34;1.0&#34;?&gt;
+&lt;topology&gt;
+  &lt;molecules&gt;
+    &lt;molecule&gt;
+      &lt;mdname&gt;C4H4S1&lt;/mdname&gt;
+      &lt;segments&gt;
+        &lt;segment&gt;
+          &lt;name&gt;thiophene&lt;/name&gt;
+          &lt;qmcoords_n&gt;QC_FILES/thiophene_n.xyz&lt;/qmcoords_n&gt;
+          &lt;qmcoords_e&gt;QC_FILES/thiophene_e.xyz&lt;/qmcoords_e&gt;
+          &lt;qmcoords_h&gt;QC_FILES/thiophene_h.xyz&lt;/qmcoords_h&gt;
+          &lt;multipoles_n&gt;MP_FILES/thiophene_n.mps&lt;/multipoles_n&gt;
+          &lt;multipoles_e&gt;MP_FILES/thiophene_e.mps&lt;/multipoles_e&gt;
+          &lt;multipoles_h&gt;MP_FILES/thiophene_h.mps&lt;/multipoles_h&gt;
+          &lt;map2md&gt;0&lt;/map2md&gt;
+          &lt;U_xX_nN_h&gt;8.7140&lt;/U_xX_nN_h&gt;
+          &lt;U_nX_nN_h&gt;0.1908&lt;/U_nX_nN_h&gt;
+          &lt;U_xN_xX_h&gt;0.5711&lt;/U_xN_xX_h&gt;
+          &lt;U_xX_nN_e&gt;1.5972&lt;/U_xX_nN_e&gt;
+          &lt;U_nX_nN_e&gt;0.1940&lt;/U_nX_nN_e&gt;
+          &lt;U_xN_xX_e&gt;0.1879&lt;/U_xN_xX_e&gt;
+          &lt;fragments&gt;
+            &lt;fragment&gt;
+              &lt;name&gt;thiophene&lt;/name&gt;
+              &lt;mdatoms&gt; 0:C63:0 0:C63:1 0:S23:2 0:C63:3 0:C63:4 0:H20:5 0:H20:6 0:H20:7 0:H20:8&lt;/mdatoms&gt;
+              &lt;qmatoms&gt; 0:C 1:C 2:S 3:C 4:C 5:H 6:H 7:H 8:H &lt;/qmatoms&gt;
+              &lt;mpoles&gt;  0:C 1:C 2:S 3:C 4:C 5:H 6:H 7:H 8:H&lt;/mpoles&gt;
+              &lt;weights&gt; 12 12 32 12 12 1 1 1 1&lt;/weights&gt;
+              &lt;localframe&gt;1 2 3&lt;/localframe&gt;
+            &lt;/fragment&gt;
+          &lt;/fragments&gt;
+        &lt;/segment&gt;
+      &lt;/segments&gt;
+    &lt;/molecule&gt;
+  &lt;/molecules&gt;
+&lt;/topology&gt;
+
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>A <strong>segment</strong> is the unit of the electronic-structure calculations; here one segment per molecule. A large molecule can be split into several segments, e.g. one per conjugated unit of a polymer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qmcoords_*</span></code> and <code class="docutils literal notranslate"><span class="pre">multipoles_*</span></code> give the QM geometry and the multipoles for each state: <code class="docutils literal notranslate"><span class="pre">n</span></code> neutral, <code class="docutils literal notranslate"><span class="pre">e</span></code> electron (anion), <code class="docutils literal notranslate"><span class="pre">h</span></code> hole (cation).</p></li>
+<li><p>A <strong>fragment</strong> is a rigid part of a segment. <code class="docutils literal notranslate"><span class="pre">mdatoms</span></code>, <code class="docutils literal notranslate"><span class="pre">qmatoms</span></code> and <code class="docutils literal notranslate"><span class="pre">mpoles</span></code> list corresponding atoms in the same order; the QM geometry is placed onto the MD atoms of each fragment by a rigid-body fit, using the <code class="docutils literal notranslate"><span class="pre">weights</span></code> (here the masses) and the local frame defined by the atoms in <code class="docutils literal notranslate"><span class="pre">localframe</span></code>. With <code class="docutils literal notranslate"><span class="pre">map2md</span></code> set to 1, the QM atoms are put directly onto the MD positions instead.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U_xX_nN_*</span></code>, <code class="docutils literal notranslate"><span class="pre">U_nX_nN_*</span></code> and <code class="docutils literal notranslate"><span class="pre">U_xN_xX_*</span></code> are internal energies (in eV) of the molecule in the charged state from gas-phase calculations; they enter the site energies and reorganization energies of the charge-transport tutorial.</p></li>
+</ul>
+</section>
+<section id="Mapping-the-snapshot">
+<h2>Mapping the snapshot<a class="headerlink" href="#Mapping-the-snapshot" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">xtp_map</span></code> reads the topology and trajectory, applies the mapping, and writes the state file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_map -t MD_FILES/thiophene.data -c MD_FILES/traj.dump -s system.xml -f state.hdf5&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Creating statefile state.hdf5
+Frame with id 10000 was not in statefile state.hdf5 ,adding it now.
+Wrote MD topology (step = 10000, time = 0) to state.hdf5
+... .
+</pre></div></div>
+</div>
+<p>The state file is an HDF5 file with one group per frame; each segment stores its atoms with the MD positions (in bohr):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;box diagonal (nm):&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="s2">&quot;box&quot;</span><span class="p">][()])</span> <span class="o">*</span> <span class="mf">0.0529177</span><span class="p">)</span>
+    <span class="n">segments</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;segments:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">segments</span><span class="p">))</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">segments</span><span class="p">[</span><span class="s2">&quot;segment0&quot;</span><span class="p">][</span><span class="s2">&quot;atoms&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;atoms of segment 0:&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+box diagonal (nm): [5.15643722 5.15643722 5.15643722]
+segments: 1000
+atoms of segment 0: C63 C63 S23 C63 C63 H20 H20 H20 H20
+</pre></div></div>
+</div>
+</section>
+<section id="Checking-the-mapping">
+<h2>Checking the mapping<a class="headerlink" href="#Checking-the-mapping" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> writes the segments as they are in the MD (<code class="docutils literal notranslate"><span class="pre">md_segments_*.pdb</span></code>), with the QM geometries mapped onto them (<code class="docutils literal notranslate"><span class="pre">qm_segments_*.pdb</span></code>), and with the multipoles of the charged states (<code class="docutils literal notranslate"><span class="pre">mp_segments_*.pdb</span></code>). Viewing them in e.g. VMD on top of each other is the quickest check that the atoms correspond. Here we compare the mapped QM geometries with the MD geometry numerically: since the QM geometry is fitted as a rigid body, the deviation measures how far the molecules in the MD differ
+from the optimized gas-phase geometry.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e mapchecker -c map_file=system.xml -f state.hdf5&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_pdb</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">38</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">38</span><span class="p">:</span><span class="mi">46</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">46</span><span class="p">:</span><span class="mi">54</span><span class="p">])]</span>
+                     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s2">&quot;ATOM&quot;</span><span class="p">,</span> <span class="s2">&quot;HETATM&quot;</span><span class="p">))])</span>
+
+
+<span class="n">md</span> <span class="o">=</span> <span class="n">read_pdb</span><span class="p">(</span><span class="s2">&quot;md_segments_step_10000.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qm</span> <span class="o">=</span> <span class="n">read_pdb</span><span class="p">(</span><span class="s2">&quot;qm_segments_n_step_10000.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">rmsd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">md</span> <span class="o">-</span> <span class="n">qm</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSD between MD and mapped QM geometry: mean </span><span class="si">{</span><span class="n">rmsd</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> A, max </span><span class="si">{</span><span class="n">rmsd</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> A&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RMSD between MD and mapped QM geometry: mean 0.180 A, max 0.372 A
+</pre></div></div>
+</div>
+<p>A wrong atom order in the mapping file shows up as a large deviation (several Å) for every molecule.</p>
+</section>
+<section id="Neighbour-list">
+<h2>Neighbour list<a class="headerlink" href="#Neighbour-list" title="Link to this heading">¶</a></h2>
+<p>Charge or energy transfer is computed for pairs of segments that are close to each other. <code class="docutils literal notranslate"><span class="pre">neighborlist</span></code> lists all pairs with at least one pair of atoms closer than the cutoff (here 0.6 nm):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e neighborlist -c constant=0.6 -f state.hdf5&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">][</span><span class="s2">&quot;pairs&quot;</span><span class="p">][()]</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="s2">&quot;delta_Rx&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">pairs</span><span class="p">[</span><span class="s2">&quot;delta_Ry&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">pairs</span><span class="p">[</span><span class="s2">&quot;delta_Rz&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.0529177</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="si">}</span><span class="s2"> pairs, </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> neighbours per molecule&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;centre-of-mass distance (nm)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;pairs&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10151 pairs, 20.3 neighbours per molecule
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_MAPPING_13_1.png" src="../_images/xtp-tutorials_MAPPING_13_1.png" />
+</div>
+</div>
+<p>The cutoff acts on the closest atoms, so the centre-of-mass distances of the pairs extend beyond it. Whether the cutoff is large enough can be checked later from the couplings: those of the most distant pairs should be negligible.</p>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The mapping file connects the MD topology to the QM geometries and multipoles of each segment; <code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-m</span></code> writes a skeleton with the names of the MD topology.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_map</span></code> writes the state file; <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code> checks the mapping; <code class="docutils literal notranslate"><span class="pre">neighborlist</span></code> adds the pairs.</p></li>
+<li><p>The state file is the input for all further steps: site energies, couplings and transport (<em>Charge transport in amorphous thiophene</em>) or excited states in the environment (<em>Excitations of thiophene in its environment</em>).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="single_point.html" class="btn btn-neutral float-left" title="Single Point Energy using pyxtp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CHARGE_TRANSPORT.html" class="btn btn-neutral float-right" title="Charge transport in amorphous thiophene" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

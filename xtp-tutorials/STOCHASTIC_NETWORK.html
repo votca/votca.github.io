@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Charge transport in an amorphous thiophene morphology" href="LAMMPS_KMC.html" />
+    <link rel="next" title="Developer and Contributor Guide" href="../DEVELOPERS_GUIDE.html" />
     <link rel="prev" title="Charge and exciton transport on a model lattice" href="TRANSPORT.html" /> 
 </head>
 
@@ -60,8 +60,9 @@
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Larger systems with the stochastic network model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
@@ -73,7 +74,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
 </ul>
 </li>
 </ul>
@@ -298,10 +298,21 @@ Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard d
 Wrote MADN_stats.dat
 ==============================================================================
 Please cite the methods used in this run:
-  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
-  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012), doi:10.1103/PhysRevB.86.184202
-  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of extended Gaussian disorder models from microscopic charge transport simulations, J. Chem. Theory Comput. 10, 2508 (2014), doi:10.1021/ct500269r
-  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in molecular charge transport networks of organic semiconductors, Phys. Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen,
+      Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and
+      Junghans, VOTCA: multiscale frameworks for quantum and classical
+      simulations in soft matter, J. Open Source Softw. 9, 6864 (2024),
+      doi:10.21105/joss.06864
+  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling
+      of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012),
+      doi:10.1103/PhysRevB.86.184202
+  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of
+      extended Gaussian disorder models from microscopic charge transport
+      simulations, J. Chem. Theory Comput. 10, 2508 (2014),
+      doi:10.1021/ct500269r
+  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in
+      molecular charge transport networks of organic semiconductors, Phys.
+      Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
 ==============================================================================
 </pre></div></div>
 </div>
@@ -568,10 +579,21 @@ Validation: 4 model network(s) of 1000 sites (seeds 1 to 4), mean and standard d
 Wrote BCP_stats.dat
 ==============================================================================
 Please cite the methods used in this run:
-  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen, Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and Junghans, VOTCA: multiscale frameworks for quantum and classical simulations in soft matter, J. Open Source Softw. 9, 6864 (2024), doi:10.21105/joss.06864
-  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012), doi:10.1103/PhysRevB.86.184202
-  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of extended Gaussian disorder models from microscopic charge transport simulations, J. Chem. Theory Comput. 10, 2508 (2014), doi:10.1021/ct500269r
-  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in molecular charge transport networks of organic semiconductors, Phys. Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
+  [1] Baumeier, Wehner, Renaud, Zapata Ruiz, Halver, Madhikar, Gerritsen,
+      Tirimbo, Sijen, Rosenberger, Brown, Sundaram, Krajniak, Bernhardt, and
+      Junghans, VOTCA: multiscale frameworks for quantum and classical
+      simulations in soft matter, J. Open Source Softw. 9, 6864 (2024),
+      doi:10.21105/joss.06864
+  [2] Baumeier, Stenzel, Poelking, Andrienko, and Schmidt, Stochastic modeling
+      of molecular charge transport networks, Phys. Rev. B 86, 184202 (2012),
+      doi:10.1103/PhysRevB.86.184202
+  [3] Kordt, Stenzel, Baumeier, Schmidt, and Andrienko, Parametrization of
+      extended Gaussian disorder models from microscopic charge transport
+      simulations, J. Chem. Theory Comput. 10, 2508 (2014),
+      doi:10.1021/ct500269r
+  [4] Chen, van der Hoorn, and Baumeier, Automatic identification of traps in
+      molecular charge transport networks of organic semiconductors, Phys.
+      Rev. B 111, 224209 (2025), doi:10.1103/shyl-kcfp
 ==============================================================================
 </pre></div></div>
 </div>
@@ -753,7 +775,7 @@ sites much better. It is still an approximation: carriers also leave a deep regi
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="TRANSPORT.html" class="btn btn-neutral float-left" title="Charge and exciton transport on a model lattice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="LAMMPS_KMC.html" class="btn btn-neutral float-right" title="Charge transport in an amorphous thiophene morphology" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../DEVELOPERS_GUIDE.html" class="btn btn-neutral float-right" title="Developer and Contributor Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

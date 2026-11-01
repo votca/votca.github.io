@@ -124,14 +124,24 @@
   <section id="workflow-and-calculator-structure">
 <h1><span class="section-number">12. </span>Workflow and Calculator Structure<a class="headerlink" href="#workflow-and-calculator-structure" title="Link to this heading">¶</a></h1>
 <p>A typical workflow for a morphology from molecular dynamics (see the
-QMMM_GROMACS tutorial) is</p>
-<ol class="arabic simple">
+tutorials <code class="docutils literal notranslate"><span class="pre">MAPPING</span></code> and <code class="docutils literal notranslate"><span class="pre">CHARGE_TRANSPORT</span></code>) is</p>
+<ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-t</span> <span class="pre">topol.tpr</span> <span class="pre">-c</span> <span class="pre">conf.gro</span> <span class="pre">-s</span> <span class="pre">system.xml</span> <span class="pre">-f</span> <span class="pre">state.hdf5</span></code>: map the
 MD configuration to molecules (segments) with the mapping file
 <code class="docutils literal notranslate"><span class="pre">system.xml</span></code>, which also refers to the QM geometries and the
 multipole/polarizable (MPS) files of each segment and state;
 <code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">mapchecker</span></code> writes the mapped structures as .pdb files for
-inspection.</p></li>
+inspection.</p>
+<p>Other MD formats work the same way, only the input files differ. For
+LAMMPS, give the data file as topology and a dump file as trajectory, e.g.
+<code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-t</span> <span class="pre">system.data</span> <span class="pre">-c</span> <span class="pre">traj.dump</span> <span class="pre">-s</span> <span class="pre">system.xml</span> <span class="pre">-f</span> <span class="pre">state.hdf5</span></code>. The LAMMPS reader derives names that the mapping file has to
+use: atom types are the element (recognized from the mass) followed by
+the LAMMPS type number (<code class="docutils literal notranslate"><span class="pre">C63</span></code>, <code class="docutils literal notranslate"><span class="pre">S23</span></code>), and molecules are named by
+their composition in alphabetical order (<code class="docutils literal notranslate"><span class="pre">C4H4S1</span></code> for thiophene; a
+suffix <code class="docutils literal notranslate"><span class="pre">-0</span></code>, <code class="docutils literal notranslate"><span class="pre">-1</span></code>, … distinguishes different molecules with the
+same composition). <code class="docutils literal notranslate"><span class="pre">xtp_map</span> <span class="pre">-m</span></code> writes a skeleton mapping file with
+these names for any input format.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">neighborlist</span></code>: pairs of neighbouring segments.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xtp_run</span> <span class="pre">-e</span> <span class="pre">einternal</span></code>: reads internal (gas-phase) site energies and
 reorganization energies (e.g. <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">energies_file=system.xml</span></code>) into the

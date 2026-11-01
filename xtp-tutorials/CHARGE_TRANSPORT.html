@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charge transport in amorphous thiophene &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Excitations of thiophene in its environment" href="EXCITATIONS.html" />
+    <link rel="prev" title="From an MD morphology to a state file" href="MAPPING.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Charge transport in amorphous thiophene</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Morphology-and-neighbours">Morphology and neighbours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Reorganization-and-internal-energies">Reorganization and internal energies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Site-energies-in-the-environment">Site energies in the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Electronic-couplings">Electronic couplings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Transport">Transport</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Bulk-mobility">Bulk mobility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Time-of-flight-and-traps">Time of flight and traps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">Charge transport in amorphous thiophene</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/CHARGE_TRANSPORT.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Charge-transport-in-amorphous-thiophene">
+<h1>Charge transport in amorphous thiophene<a class="headerlink" href="#Charge-transport-in-amorphous-thiophene" title="Link to this heading">¶</a></h1>
+<p>How mobile are electrons and holes in an amorphous film of thiophene? This tutorial goes through the multiscale workflow that answers this question: from the MD morphology to the parameters of the hopping rates, and from the rates to mobilities and times of flight.</p>
+<p>Charges hop between molecules <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> with the Marcus rate</p>
+<div class="math notranslate nohighlight">
+\[\omega_{ij} = \frac{2\pi}{\hbar}\frac{|J_{ij}|^2}{\sqrt{4\pi\lambda_{ij}k_\mathrm{B}T}}\exp\left[-\frac{(\Delta E_{ij} - q\mathbf{F}\cdot\mathbf{r}_{ij} - \lambda_{ij})^2}{4\lambda_{ij}k_\mathrm{B}T}\right],\]</div>
+<p>which needs three ingredients for every pair of neighbours:</p>
+<ol class="arabic simple">
+<li><p>the <strong>reorganization energy</strong> <span class="math notranslate nohighlight">\(\lambda\)</span> (from gas-phase calculations of a single molecule),</p></li>
+<li><p>the <strong>site energy difference</strong> <span class="math notranslate nohighlight">\(\Delta E_{ij} = E_i - E_j\)</span> (internal energies plus the electrostatic and polarization energy of the charge in its environment),</p></li>
+<li><p>the <strong>electronic coupling</strong> <span class="math notranslate nohighlight">\(J_{ij}\)</span> (from DFT calculations of the pair).</p></li>
+</ol>
+<p>Computing these for all 1000 molecules and 10151 pairs takes hours, so here we compute them for a few molecules and pairs, compare with the full set provided in <code class="docutils literal notranslate"><span class="pre">state_reference.hdf5</span></code>, and then use the full set for the transport calculations.</p>
+<p>The morphology and the mapping are explained in the tutorial <em>From an MD morphology to a state file</em>.</p>
+<section id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>VOTCA installed and the environment activated with <code class="docutils literal notranslate"><span class="pre">VOTCARC.bash</span></code> (see the <a class="reference external" href="https://github.com/votca/votca/blob/master/share/sphinx/INSTALL.rst">installation instructions</a>).</p></li>
+<li><p>Python with <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a VOTCA command; print the last `show` lines of its output (0: none).&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&#39; failed&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="n">show</span><span class="p">:]))</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span> <span class="k">if</span> <span class="n">output</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
+
+<span class="n">HARTREE</span> <span class="o">=</span> <span class="mf">27.211386</span>  <span class="c1"># eV</span>
+<span class="n">BOHR</span> <span class="o">=</span> <span class="mf">0.0529177</span>  <span class="c1"># nm</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">only_jobs</span><span class="p">(</span><span class="n">jobfile</span><span class="p">,</span> <span class="n">ids</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mark all jobs except those with the given ids as COMPLETE, so only these run.&quot;&quot;&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">jobfile</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;job&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+            <span class="n">job</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;COMPLETE&quot;</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jobfile</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a &#39;key value unit&#39; result file of the transport calculators into a dictionary.&quot;&quot;&quot;</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="k">continue</span>
+        <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">values</span>
+
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf state.hdf5 *.jobs *_jobs.xml ewaldbackground.hdf5 OR_FILES QMMM qmmm_mm.xml eqm.xml iqm.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Morphology-and-neighbours">
+<h2>Morphology and neighbours<a class="headerlink" href="#Morphology-and-neighbours" title="Link to this heading">¶</a></h2>
+<p>We map the MD snapshot and list the pairs whose closest atoms are less than 0.6 nm apart:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_map -t MD_FILES/thiophene.data -c MD_FILES/traj.dump -s system.xml -f state.hdf5&quot;</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e neighborlist -c constant=0.6 -f state.hdf5&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Reorganization-and-internal-energies">
+<h2>Reorganization and internal energies<a class="headerlink" href="#Reorganization-and-internal-energies" title="Link to this heading">¶</a></h2>
+<p>The internal energies of the charged molecule come from four gas-phase calculations (neutral and charged molecule, each at its own optimized geometry and at that of the other state) and are listed in the mapping file <code class="docutils literal notranslate"><span class="pre">system.xml</span></code> (in eV):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U_xX_nN</span></code>: energy of the charged molecule in its geometry minus that of the neutral molecule in its geometry (electron affinity or ionization energy, up to the sign),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U_nX_nN</span></code>: energy of the neutral molecule in the geometry of the charged one, relative to its minimum,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U_xN_xX</span></code>: energy of the charged molecule in the neutral geometry, relative to its minimum.</p></li>
+</ul>
+<p>The reorganization energy of a hop is $:nbsphinx-math:<cite>lambda `= $ ``U_nX_nN`</cite> <span class="math notranslate nohighlight">\(+\)</span> <code class="docutils literal notranslate"><span class="pre">U_xN_xX</span></code>. <code class="docutils literal notranslate"><span class="pre">einternal</span></code> copies these values into the state file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e einternal -c energies_file=system.xml -f state.hdf5&quot;</span><span class="p">)</span>
+<span class="n">segment</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;system.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;.//segment&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">carrier</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;electron&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;hole&quot;</span><span class="p">)]:</span>
+    <span class="n">lam</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">segment</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U_nX_nN_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">segment</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U_xN_xX_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: reorganization energy </span><span class="si">{</span><span class="n">lam</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+electron: reorganization energy 0.382 eV
+hole: reorganization energy 0.762 eV
+</pre></div></div>
+</div>
+</section>
+<section id="Site-energies-in-the-environment">
+<h2>Site energies in the environment<a class="headerlink" href="#Site-energies-in-the-environment" title="Link to this heading">¶</a></h2>
+<p>A charge on a molecule interacts with the permanent multipoles of the surrounding molecules and polarizes them. This changes the site energy by several tenths of an eV and, since every molecule has a different environment, causes the energetic disorder that dominates transport in amorphous materials.</p>
+<p>We describe the environment classically: every molecule carries the atomic multipoles and polarizabilities of <code class="docutils literal notranslate"><span class="pre">MP_FILES</span></code> (for its state <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code> or <code class="docutils literal notranslate"><span class="pre">h</span></code>), and induced dipoles are computed self-consistently. Electrostatics are long-ranged, so the periodic environment is included with Ewald summation in two steps:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> converges the induced dipoles of the whole periodic neutral system once.</p></li>
+<li><p>For each molecule and state, a <code class="docutils literal notranslate"><span class="pre">qmmm</span></code> job places the molecule in the given state into an explicitly polarizable shell (here 1.5 nm) inside the frozen periodic background. The site energy is the energy difference between the charged and the neutral job.</p></li>
+</ol>
+<p>The settings below trade accuracy for speed (<code class="docutils literal notranslate"><span class="pre">screening_factor=4</span></code> instead of 6 and a looser tolerance); with the defaults <code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> takes several minutes here.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e ewaldbackground -c multipoles=system.xml realspace.screening_factor=4.0 &quot;</span>
+    <span class="s2">&quot;polarmethod.tolerance=1e-5 polarmethod.use_block_jacobi_preconditioner=true -f state.hdf5&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The options of the <code class="docutils literal notranslate"><span class="pre">qmmm</span></code> jobs are given in an XML file. Region 0 is the explicitly polarizable shell around the molecule of the job, region 1 the periodic background:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qmmm_options</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="s2">&lt;options&gt;</span>
+<span class="s2">  &lt;qmmm&gt;</span>
+<span class="s2">    &lt;map_file&gt;system.xml&lt;/map_file&gt;</span>
+<span class="s2">    &lt;job_file&gt;qmmm_mm_jobs.xml&lt;/job_file&gt;</span>
+<span class="s2">    &lt;io_jobfile&gt;</span>
+<span class="s2">      &lt;states&gt;n e h&lt;/states&gt;</span>
+<span class="s2">      &lt;segments&gt;0 1 2&lt;/segments&gt;</span>
+<span class="s2">    &lt;/io_jobfile&gt;</span>
+<span class="s2">    &lt;regions&gt;</span>
+<span class="s2">      &lt;polarregion&gt;</span>
+<span class="s2">        &lt;id&gt;0&lt;/id&gt;</span>
+<span class="s2">        &lt;segments&gt;jobfile&lt;/segments&gt;</span>
+<span class="s2">        &lt;cutoff&gt;</span>
+<span class="s2">          &lt;geometry&gt;n&lt;/geometry&gt;</span>
+<span class="s2">          &lt;radius&gt;1.5&lt;/radius&gt;</span>
+<span class="s2">          &lt;region&gt;0&lt;/region&gt;</span>
+<span class="s2">        &lt;/cutoff&gt;</span>
+<span class="s2">      &lt;/polarregion&gt;</span>
+<span class="s2">      &lt;ewaldregion&gt;</span>
+<span class="s2">        &lt;id&gt;1&lt;/id&gt;</span>
+<span class="s2">        &lt;checkpoint&gt;ewaldbackground.hdf5&lt;/checkpoint&gt;</span>
+<span class="s2">      &lt;/ewaldregion&gt;</span>
+<span class="s2">    &lt;/regions&gt;</span>
+<span class="s2">  &lt;/qmmm&gt;</span>
+<span class="s2">&lt;/options&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;qmmm_mm.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">qmmm_options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Jobs are handled by <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code> in three steps: <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">write</span></code> writes a job file with one job per molecule and state (here molecules 0, 1 and 2 in the states <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code>, <code class="docutils literal notranslate"><span class="pre">h</span></code>), <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">run</span></code> runs the jobs (several processes can work on the same job file, <code class="docutils literal notranslate"><span class="pre">-x</span></code> sets the threads per job), and <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">read</span></code> stores the results in the state file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e qmmm -o qmmm_mm.xml -f state.hdf5 -j write&quot;</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e qmmm -o qmmm_mm.xml -f state.hdf5 -j run -x 2&quot;</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e qmmm -o qmmm_mm.xml -f state.hdf5 -j read&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mine</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state_reference.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ref</span><span class="p">:</span>
+    <span class="n">ours</span> <span class="o">=</span> <span class="n">mine</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span>
+    <span class="n">theirs</span> <span class="o">=</span> <span class="n">ref</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;molecule  carrier  this run (eV)  reference (eV)&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">carrier</span> <span class="ow">in</span> <span class="s2">&quot;eh&quot;</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">ours</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;segment</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;site_eng_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">HARTREE</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">theirs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;segment</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;site_eng_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">HARTREE</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">8d</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">carrier</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">13.3f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">14.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+molecule  carrier  this run (eV)  reference (eV)
+       0        e         -0.669          -0.702
+       0        h         -0.860          -0.828
+       1        e         -0.538          -0.565
+       1        h         -0.953          -0.925
+       2        e         -0.660          -0.681
+       2        h         -0.906          -0.885
+</pre></div></div>
+</div>
+<p>The environment lowers the energy of both carriers by 0.5 to 1 eV, by different amounts for different molecules. The reference set was computed for all molecules with comparable settings; the values agree to within a few hundredths of an eV, the size of the differences caused by the settings.</p>
+</section>
+<section id="Electronic-couplings">
+<h2>Electronic couplings<a class="headerlink" href="#Electronic-couplings" title="Link to this heading">¶</a></h2>
+<p>The coupling <span class="math notranslate nohighlight">\(J_{ij}\)</span> of a pair is computed by projecting the frontier orbitals of the two molecules onto the orbitals of the pair (dimer projection, <code class="docutils literal notranslate"><span class="pre">dftcoupling</span></code>). This needs a DFT calculation of each molecule (<code class="docutils literal notranslate"><span class="pre">eqm</span></code>) and of each pair (<code class="docutils literal notranslate"><span class="pre">iqm</span></code>). We compute the first three pairs of the neighbour list, which share molecule 0:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">][</span><span class="s2">&quot;pairs&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">chosen</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">molecules</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">chosen</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s2">&quot;Seg1Id&quot;</span><span class="p">],</span> <span class="n">pairs</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s2">&quot;Seg2Id&quot;</span><span class="p">])})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pairs:&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="nb">int</span><span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s2">&quot;Seg1Id&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s2">&quot;Seg2Id&quot;</span><span class="p">]))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">chosen</span><span class="p">])</span>
+
+<span class="n">dft</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;dftpackage&gt;</span>
+<span class="s2">      &lt;basisset&gt;3-21G&lt;/basisset&gt;</span>
+<span class="s2">      &lt;auxbasisset&gt;aux-def2-svp&lt;/auxbasisset&gt;</span>
+<span class="s2">    &lt;/dftpackage&gt;&quot;&quot;&quot;</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;eqm.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="s2">&lt;options&gt;&lt;eqm&gt;&lt;map_file&gt;system.xml&lt;/map_file&gt;&lt;tasks&gt;input,dft,parse&lt;/tasks&gt;</span><span class="si">{</span><span class="n">dft</span><span class="si">}</span>
+<span class="s2">&lt;/eqm&gt;&lt;/options&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;iqm.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="s2">&lt;options&gt;&lt;iqm&gt;&lt;map_file&gt;system.xml&lt;/map_file&gt;&lt;tasks&gt;input,dft,parse,dftcoupling&lt;/tasks&gt;</span><span class="si">{</span><span class="n">dft</span><span class="si">}</span>
+<span class="s2">    &lt;readjobfile&gt;&lt;electron&gt;thiophene:e1&lt;/electron&gt;&lt;hole&gt;thiophene:h1&lt;/hole&gt;&lt;/readjobfile&gt;</span>
+<span class="s2">&lt;/iqm&gt;&lt;/options&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e eqm -o eqm.xml -f state.hdf5 -j write&quot;</span><span class="p">)</span>
+<span class="n">only_jobs</span><span class="p">(</span><span class="s2">&quot;eqm.jobs&quot;</span><span class="p">,</span> <span class="n">molecules</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e eqm -o eqm.xml -f state.hdf5 -j run -x 2&quot;</span><span class="p">)</span>
+
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e iqm -o iqm.xml -f state.hdf5 -j write&quot;</span><span class="p">)</span>
+<span class="n">only_jobs</span><span class="p">(</span><span class="s2">&quot;iqm.jobs&quot;</span><span class="p">,</span> <span class="n">chosen</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e iqm -o iqm.xml -f state.hdf5 -j run -x 2&quot;</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_parallel -e iqm -o iqm.xml -f state.hdf5 -j read&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pairs: [(0, 9), (0, 19), (0, 88)]
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">readjobfile</span></code> selects which orbitals are stored as the coupling of each carrier: the LUMO (<code class="docutils literal notranslate"><span class="pre">e1</span></code>) for electrons and the HOMO (<code class="docutils literal notranslate"><span class="pre">h1</span></code>) for holes. The state file stores <span class="math notranslate nohighlight">\(|J|^2\)</span> (in Hartree<span class="math notranslate nohighlight">\(^2\)</span>):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mine</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;state_reference.hdf5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ref</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">mine</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">][</span><span class="s2">&quot;pairs&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">ref</span><span class="p">[</span><span class="s2">&quot;frame_10000&quot;</span><span class="p">][</span><span class="s2">&quot;neighborlist&quot;</span><span class="p">][</span><span class="s2">&quot;pairs&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pair      carrier  |J| this run (meV)  |J| reference (meV)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">chosen</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">carrier</span> <span class="ow">in</span> <span class="s2">&quot;eh&quot;</span><span class="p">:</span>
+        <span class="n">j_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;jeff2</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="n">HARTREE</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="n">j_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;jeff2</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="n">HARTREE</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;Seg1Id&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;Seg2Id&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">&lt;4d</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">carrier</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">j_a</span><span class="si">:</span><span class="s2">18.3g</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">j_b</span><span class="si">:</span><span class="s2">19.3g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pair      carrier  |J| this run (meV)  |J| reference (meV)
+  0-9           e                70.2                 67.2
+  0-9           h                44.3                 46.4
+  0-19          e                2.57                 6.79
+  0-19          h                 2.3                 5.91
+  0-88          e             0.00121                    0
+  0-88          h             0.00349                    0
+</pre></div></div>
+</div>
+<p>The couplings decrease exponentially with the distance and depend strongly on the relative orientation of the molecules: the three pairs of molecule 0 span several orders of magnitude. The strong coupling agrees closely with the reference; the weak ones differ by up to a factor of a few, since small couplings are sensitive to the tails of the orbitals and hence to the basis set (here the small 3-21G). The pair 0-88 is 0.9 nm apart and its coupling is negligible; in the reference set, such
+distant pairs (about a third of the neighbour list) have no coupling at all (<span class="math notranslate nohighlight">\(J=0\)</span>), which makes no difference for transport.</p>
+</section>
+<section id="Transport">
+<h2>Transport<a class="headerlink" href="#Transport" title="Link to this heading">¶</a></h2>
+<p>The reference state file contains all ingredients for all molecules and pairs. Its distributions of site energies and couplings give a first impression of the transport properties: <code class="docutils literal notranslate"><span class="pre">eanalyze</span></code> and <code class="docutils literal notranslate"><span class="pre">ianalyze</span></code> write histograms.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e eanalyze -c resolution_sites=0.03 -f state_reference.hdf5&quot;</span><span class="p">)</span>
+<span class="n">run</span><span class="p">(</span><span class="s2">&quot;xtp_run -e ianalyze -c resolution_logJ2=0.1 states=e,h -f state_reference.hdf5&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">carrier</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;electrons&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;holes&quot;</span><span class="p">)]:</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eanalyze.sitehist_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">.out&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">hist</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">hist</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">coupling</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ianalyze.ihist_</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s2">.out&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coupling</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">coupling</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;site energy - mean (eV)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;molecules&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">(|J|^2/\mathrm</span><span class="si">{eV}</span><span class="s2">^2)$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;pairs&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_CHARGE_TRANSPORT_17_0.png" src="../_images/xtp-tutorials_CHARGE_TRANSPORT_17_0.png" />
+</div>
+</div>
+<p>The width of the site energy distribution, the energetic disorder <span class="math notranslate nohighlight">\(\sigma\)</span>, controls how strongly carriers are trapped; the couplings span many orders of magnitude, so a few well-coupled pairs carry most of the current.</p>
+<section id="Bulk-mobility">
+<h3>Bulk mobility<a class="headerlink" href="#Bulk-mobility" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> follows carriers through the periodic box with kinetic Monte Carlo (KMC) and also solves the master equation for a single carrier exactly (<code class="docutils literal notranslate"><span class="pre">exact_mobility</span></code>), which needs no sampling:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;xtp_run -e kmcmultiple -c carriertype=electron field=&quot;1e7 0 0&quot; numberofcarriers=1 runs=8 &#39;</span>
+    <span class="s1">&#39;runtime=10000000 outputtime=0 -f state_reference.hdf5&#39;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;kmcmultiple_results.dat&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KMC </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;mobility&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;mobility_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> cm^2/Vs, exact </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;exact_mobility&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> cm^2/Vs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+KMC 7.99e-06 +- 6.5e-07 cm^2/Vs, exact 8.40e-06 cm^2/Vs
+</pre></div></div>
+</div>
+<p>The statistical error of the KMC is large: the electron spends most of its time on a few low-energy molecules and leaves them rarely. The exact value is cheap, so we use it (with a minimal KMC part, <code class="docutils literal notranslate"><span class="pre">runtime=1000</span></code>) to compare electrons and holes over a range of fields:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1e7</span>  <span class="c1"># V/m</span>
+<span class="k">for</span> <span class="n">carrier</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;electron&quot;</span><span class="p">,</span> <span class="s2">&quot;hole&quot;</span><span class="p">]:</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;xtp_run -e kmcmultiple -c carriertype=</span><span class="si">{</span><span class="n">carrier</span><span class="si">}</span><span class="s1"> field=&quot;</span><span class="si">{</span><span class="n">F</span><span class="si">}</span><span class="s1"> 0 0&quot; runtime=1000 outputtime=0 &#39;</span>
+            <span class="s1">&#39;resultfile=scan.dat ratefile=x occfile=x -f state_reference.hdf5&#39;</span><span class="p">)</span>
+        <span class="n">mu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">(</span><span class="s2">&quot;scan.dat&quot;</span><span class="p">)[</span><span class="s2">&quot;exact_mobility&quot;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fields</span> <span class="o">/</span> <span class="mf">1e2</span><span class="p">),</span> <span class="n">mu</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">carrier</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\sqrt</span><span class="si">{F}</span><span class="s2">$ ($\sqrt{\mathrm{V/cm}}$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;bulk mobility (cm$^2$/Vs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_CHARGE_TRANSPORT_21_0.png" src="../_images/xtp-tutorials_CHARGE_TRANSPORT_21_0.png" />
+</div>
+</div>
+<p>Electrons are about two orders of magnitude more mobile than holes in this morphology, largely because the reorganization energy of the hole is twice as large. The irregular field dependence reflects the few low-energy molecules that dominate transport in such a small box.</p>
+</section>
+<section id="Time-of-flight-and-traps">
+<h3>Time of flight and traps<a class="headerlink" href="#Time-of-flight-and-traps" title="Link to this heading">¶</a></h3>
+<p>In a time-of-flight experiment, carriers are injected at one electrode and the time until they reach the other is measured. <code class="docutils literal notranslate"><span class="pre">grw</span></code> computes the mean time of flight exactly for a slab cut from the box along <span class="math notranslate nohighlight">\(x\)</span> (electrons are injected in a 1 nm layer at one face and collected at the other; they move against the field, so the field points in <span class="math notranslate nohighlight">\(-x\)</span>). It also writes, in <code class="docutils literal notranslate"><span class="pre">grw_occupation.dat</span></code>, the fraction of the time of flight that the electron spends on each molecule:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;xtp_run -e grw -c carriertype=electron field=&quot;-1e7 0 0&quot; -f state_reference.hdf5&#39;</span><span class="p">)</span>
+<span class="n">grw</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;grw_results.dat&quot;</span><span class="p">)</span>
+<span class="n">occ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;grw_occupation.dat&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">segment</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">occ</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">fraction</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)),</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\log_</span><span class="si">{10}</span><span class="s2">$ (fraction of the time of flight)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;position along the transport direction (nm)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;site energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time of flight </span><span class="si">{</span><span class="n">grw</span><span class="p">[</span><span class="s1">&#39;tau_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">fraction</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;molecule </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">segment</span><span class="p">[</span><span class="n">s</span><span class="p">])</span><span class="si">}</span><span class="s2">: x = </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> nm, energy </span><span class="si">{</span><span class="n">energy</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> eV, &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fraction</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2"> of the time of flight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_CHARGE_TRANSPORT_23_0.png" src="../_images/xtp-tutorials_CHARGE_TRANSPORT_23_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+time of flight 3.93e-07 s
+molecule 19: x = 0.84 nm, energy 0.395 eV, 50% of the time of flight
+molecule 909: x = 0.27 nm, energy 0.403 eV, 30% of the time of flight
+molecule 995: x = 0.31 nm, energy 0.446 eV, 6% of the time of flight
+molecule 353: x = 2.32 nm, energy 0.402 eV, 3% of the time of flight
+molecule 70: x = 1.14 nm, energy 0.462 eV, 3% of the time of flight
+</pre></div></div>
+</div>
+<p>A handful of molecules hold the electron for most of the time of flight. <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> simulates the same experiment with KMC; its mean transit time agrees with <code class="docutils literal notranslate"><span class="pre">grw</span></code> within the statistical error, and the distribution over runs shows how broad the transit times are:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;xtp_run -e kmctof -c carriertype=electron field=&quot;-1e7 0 0&quot; runs=500 -f state_reference.hdf5&#39;</span><span class="p">)</span>
+<span class="n">tof</span> <span class="o">=</span> <span class="n">results</span><span class="p">(</span><span class="s2">&quot;kmctof_results.dat&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KMC </span><span class="si">{</span><span class="n">tof</span><span class="p">[</span><span class="s1">&#39;transit_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">tof</span><span class="p">[</span><span class="s1">&#39;transit_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> s, grw </span><span class="si">{</span><span class="n">grw</span><span class="p">[</span><span class="s1">&#39;tau_mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<span class="n">transit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;kmctof_runs.dat&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">transit</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">transit</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">transit</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mi">40</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;transit time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;runs&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+KMC 3.59e-07 +- 2.1e-08 s, grw 3.93e-07 s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_CHARGE_TRANSPORT_25_1.png" src="../_images/xtp-tutorials_CHARGE_TRANSPORT_25_1.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Hopping rates need reorganization energies (<code class="docutils literal notranslate"><span class="pre">einternal</span></code>), site energies in the environment (<code class="docutils literal notranslate"><span class="pre">ewaldbackground</span></code> and <code class="docutils literal notranslate"><span class="pre">qmmm</span></code>) and couplings (<code class="docutils literal notranslate"><span class="pre">eqm</span></code> and <code class="docutils literal notranslate"><span class="pre">iqm</span></code>); <code class="docutils literal notranslate"><span class="pre">xtp_parallel</span></code> distributes the per-molecule and per-pair jobs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kmcmultiple</span></code> gives bulk mobilities, its exact single-carrier value without statistical error; <code class="docutils literal notranslate"><span class="pre">grw</span></code> and <code class="docutils literal notranslate"><span class="pre">kmctof</span></code> give times of flight, and the occupation map of <code class="docutils literal notranslate"><span class="pre">grw</span></code> identifies the molecules that act as traps.</p></li>
+<li><p>This morphology is small (1000 molecules, about 5 nm): its mobilities are dominated by a few sites and should be taken as an illustration. Production calculations need larger systems (see the stochastic network model in the manual chapter <em>Transport Simulations</em>) and several snapshots.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MAPPING.html" class="btn btn-neutral float-left" title="From an MD morphology to a state file" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EXCITATIONS.html" class="btn btn-neutral float-right" title="Excitations of thiophene in its environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

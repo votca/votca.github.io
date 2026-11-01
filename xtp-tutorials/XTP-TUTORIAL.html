@@ -57,11 +57,11 @@
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a></li>
 </ul>
 </li>
 </ul>
@@ -113,11 +113,21 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">DFTGWBSE_ENERGY</span></code>: DFT and GW-BSE for a single molecule with <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">single_point</span></code> and <code class="docutils literal notranslate"><span class="pre">geometry_optimization</span></code>: the same with the Python
 (ASE) interface; they are built only if the Python bindings are.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">QMMM_GROMACS</span></code> and <code class="docutils literal notranslate"><span class="pre">QMMM_LAMMPS</span></code>: the full workflow for a GROMACS or
-LAMMPS morphology, from mapping to site energies, couplings and embedded
-GW-BSE.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TRANSPORT</span></code>, <code class="docutils literal notranslate"><span class="pre">STOCHASTIC_NETWORK</span></code> and <code class="docutils literal notranslate"><span class="pre">LAMMPS_KMC</span></code>: charge and
-exciton transport (KMC, time of flight, graph random walks, stochastic
+<li><p>Three tutorials on the same morphology, an amorphous film of 1000
+thiophene molecules from LAMMPS (<code class="docutils literal notranslate"><span class="pre">thiophene</span></code>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAPPING</span></code>: from the MD snapshot to the state file (mapping file,
+<code class="docutils literal notranslate"><span class="pre">xtp_map</span></code>, <code class="docutils literal notranslate"><span class="pre">mapchecker</span></code>, neighbour list).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHARGE_TRANSPORT</span></code>: reorganization energies, site energies in the
+periodic polarizable environment and couplings, then mobilities and
+times of flight.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXCITATIONS</span></code>: GW-BSE excitations of one molecule in vacuum, in a
+static and in a polarizable environment (iterative and embedded
+schemes).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRANSPORT</span></code> and <code class="docutils literal notranslate"><span class="pre">STOCHASTIC_NETWORK</span></code>: the transport calculators on
+model systems (KMC, time of flight, graph random walks, stochastic
 network models).</p></li>
 </ul>
 <div class="toctree-wrapper compound">
@@ -153,44 +163,37 @@ network models).</p></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Visualize-the-results">Visualize the results</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_GROMACS.html">QMMM workflow using GROMACS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_GROMACS.html#Note">Note</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#The-input">The input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#The-mapping-file">The mapping file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#Mapping-the-snapshot">Mapping the snapshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#Checking-the-mapping">Checking the mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#Neighbour-list">Neighbour list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html#Summary">Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling">Coupling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#Coupling-analysis">Coupling analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_GROMACS.html#QMMM-calculations">QMMM calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Morphology-and-neighbours">Morphology and neighbours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Reorganization-and-internal-energies">Reorganization and internal energies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Site-energies-in-the-environment">Site energies in the environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Electronic-couplings">Electronic couplings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Transport">Transport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CHARGE_TRANSPORT.html#Bulk-mobility">Bulk mobility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CHARGE_TRANSPORT.html#Time-of-flight-and-traps">Time of flight and traps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="QMMM_LAMMPS.html">QMMM workflow using LAMMPS and VOTCA-XTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#What-is-this-tutorial-about">What is this tutorial about</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Interacting-with-the-XTP-command-line-interface">Interacting with the XTP command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QMMM_LAMMPS.html#Note">Note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html#Summary">Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Setting-the-environment">Setting the environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Generate-the-topology-from-the-Gromacs-file">Generate the topology from the Gromacs file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Check-the-mapping">Check the mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Neighborlist-Calculation">Neighborlist Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Read-reorganization-energies">Read reorganization energies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Compute-site-energy">Compute site energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#Site-energy-and-pair-energy-analysis">Site energy and pair energy analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-energy-calculation">QM energy calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QM-calculation-for-pairs">QM calculation for pairs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="QMMM_LAMMPS.html#QMMM-Calculations">QMMM Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Job-options">Job options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Running-the-jobs">Running the jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Spectra">Spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html#Summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a><ul>
@@ -219,14 +222,6 @@ network models).</p></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html#BCP:-strong-disorder-and-a-trap">BCP: strong disorder and a trap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html#Many-small-boxes-are-not-one-large-box">Many small boxes are not one large box</a></li>
 <li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html#Summary">Summary</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="LAMMPS_KMC.html">Charge transport in an amorphous thiophene morphology</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Site-energies-and-couplings">Site energies and couplings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Bulk-mobility">Bulk mobility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Time-of-flight-and-trap-sites">Time of flight and trap sites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="LAMMPS_KMC.html#Summary">Summary</a></li>
 </ul>
 </li>
 </ul>
