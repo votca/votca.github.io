@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#general-source-installation-instructions">General (Source) Installation Instructions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dependency-installation">Dependency Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#libint">libint</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#macos-homebrew">macOS (Homebrew)</a></li>
 </ul>
 </li>
@@ -160,28 +161,67 @@ older versions run <code class="docutils literal notranslate"><span class="pre">
 <li><p>GROMACS 2021 or newer (optional; needed for reading GROMACS files)</p></li>
 <li><p>HDF5 (optional for CSG, where it enables h5md trajectories; required for XTP)</p></li>
 <li><p>For XTP (<code class="docutils literal notranslate"><span class="pre">-DBUILD_XTP=ON</span></code>) additionally: libint 2.6 or newer, libecpint,
-libxc, HDF5 with C++ bindings and Open Babel 3</p></li>
+libxc, HDF5 with C++ bindings and Open Babel 3. Analytic DFT forces need a
+libint with derivative integrals; see <a class="reference internal" href="#libint">libint</a> below.</p></li>
 </ul>
 </section>
 <section id="dependency-installation">
 <h3>Dependency Installation<a class="headerlink" href="#dependency-installation" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/ubuntu#L10-L13">Ubuntu</a></p>
 <p><a class="reference external" href="https://github.com/votca/buildenv/blob/master/fedora#L10-L15">Fedora</a></p>
-<p>If your distribution’s libint is too old, cmake can be run with the <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code> flag to build a suitable libint version.</p>
 <p>If your distribution has no libecpint package, build it from <a class="reference external" href="https://github.com/robashaw/libecpint">source</a>.</p>
+<section id="libint">
+<h4>libint<a class="headerlink" href="#libint" title="Link to this heading">¶</a></h4>
+<p>XTP’s analytic DFT forces (<code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.compute_forces</span></code>, used for
+geometry optimizations) need libint with first derivatives of the one-body,
+two-centre and three-centre integrals. The libint packages of most
+distributions and of Homebrew, and the official libint release tarballs, do
+not have them; XTP then builds and runs, but without analytic forces. The
+configure step reports which libint it uses and what it supports:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">libint2</span> <span class="n">derivative</span> <span class="n">integrals</span><span class="p">:</span> <span class="n">ONEBODY</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ERI2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ERI3</span><span class="o">=</span><span class="mi">1</span> <span class="p">(</span><span class="o">.../</span><span class="n">libint2</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">h</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">analytic</span> <span class="n">DFT</span> <span class="n">forces</span> <span class="n">ON</span>
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code>, VOTCA uses a libint with these derivatives
+instead (libint 2.13.1, generated for VOTCA and hosted at
+<a class="reference external" href="https://github.com/votca/libint-export/releases">votca/libint-export</a>). It
+is built once per machine and compiler into a cache outside the build
+directory (<code class="docutils literal notranslate"><span class="pre">~/.cache/votca</span></code>, on macOS <code class="docutils literal notranslate"><span class="pre">~/Library/Caches/votca</span></code>), which
+other build directories and branches reuse:</p>
+<ul class="simple">
+<li><p>configure downloads the libint export (about 130 MB, checksum-verified)
+and unpacks it into the cache;</p></li>
+<li><p>the first <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span></code> compiles libint before the rest of VOTCA
+(once; about 15–30 min on a few cores) and installs it into the cache;</p></li>
+<li><p>later configures use the installed libint and add no build step.</p></li>
+</ul>
+<p>With <code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code> the derivatives are always required: the configure
+step fails if the export lacks them (only possible with a different
+<code class="docutils literal notranslate"><span class="pre">VOTCA_LIBINT_EXPORT_URL</span></code>). Delete the cache directory to rebuild libint.</p>
+<p>Without <code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code>, the libint found on the system is used whether
+or not it has derivatives, and XTP is built without analytic forces if it
+does not. <code class="docutils literal notranslate"><span class="pre">-DREQUIRE_LIBINT_FORCES=ON</span></code> makes that a configure error
+instead, e.g. for builds that must support geometry optimizations
+(<code class="docutils literal notranslate"><span class="pre">-DCMAKE_PREFIX_PATH</span></code> pointing to a libint with derivatives, or CI).</p>
+<p>If another libint is installed where the compiler finds it first (for
+example Homebrew’s libint in <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/include</span></code>), compilation stops
+with an error naming the conflict; uninstall it, or <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">unlink</span> <span class="pre">libint</span></code>.</p>
+</section>
 <section id="macos-homebrew">
 <h4>macOS (Homebrew)<a class="headerlink" href="#macos-homebrew" title="Link to this heading">¶</a></h4>
 <p>On macOS (Apple silicon, macOS 13.3 or newer) use Apple’s <code class="docutils literal notranslate"><span class="pre">clang</span></code> from the
 Xcode command line tools and the dependencies from <a class="reference external" href="https://brew.sh">Homebrew</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>xcode-select --install
-brew install cmake eigen boost libint libecpint libxc hdf5 fftw libomp gromacs open-babel pybind11
+brew install cmake eigen boost libecpint libxc hdf5 fftw libomp gromacs open-babel pybind11
 cmake -B builddir -S votca -DBUILD_XTP=ON -DCMAKE_INSTALL_PREFIX=${prefix} \
-      -DCMAKE_PREFIX_PATH=&quot;$(brew --prefix libint)&quot;
+      -DBUILD_OWN_LIBINT=ON
 cmake --build builddir --parallel $(sysctl -n hw.ncpu)
 </pre></div>
 </div>
 <p>Notes:</p>
 <ul class="simple">
+<li><p>Homebrew’s <code class="docutils literal notranslate"><span class="pre">libint</span></code> has no derivative integrals and is not needed with
+<code class="docutils literal notranslate"><span class="pre">-DBUILD_OWN_LIBINT=ON</span></code>; if it is installed, <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">unlink</span> <span class="pre">libint</span></code>
+keeps its headers out of the way (see <a class="reference internal" href="#libint">libint</a>).</p></li>
 <li><p>Linear algebra uses Apple’s Accelerate framework, which <code class="docutils literal notranslate"><span class="pre">CMake</span></code> finds
 by itself (<code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">Found</span> <span class="pre">APPLE_ACCELERATE</span></code>). Do <strong>not</strong> install Homebrew’s
 <code class="docutils literal notranslate"><span class="pre">lapack</span></code> or <code class="docutils literal notranslate"><span class="pre">lapacke</span></code> for VOTCA: they are not needed.</p></li>
@@ -262,7 +302,19 @@ supported (ON/OFF, Default ON)</p></li>
 package called <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> (ON/OFF)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CMAKE_DISABLE_FIND_PACKAGE_HDF5</span></code> - Disable using <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> in CSG
 (h5md support; ON/OFF, Default OFF; not possible with <code class="docutils literal notranslate"><span class="pre">BUILD_XTP=ON</span></code>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code> - build an internal libint (ON/OFF, Default OFF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code> - use a libint with derivative integrals, built once
+per machine into a cache (ON/OFF, Default OFF; see <a class="reference internal" href="#libint">libint</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REQUIRE_LIBINT_FORCES</span></code> - fail if the system libint has no derivative
+integrals for analytic DFT forces (ON/OFF, Default OFF; always on with
+<code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOTCA_LIBINT_CACHE_DIR</span></code> - cache directory of <code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code>
+(also read from the environment; Default <code class="docutils literal notranslate"><span class="pre">~/.cache/votca</span></code>, on macOS
+<code class="docutils literal notranslate"><span class="pre">~/Library/Caches/votca</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOTCA_LIBINT_BUILD_JOBS</span></code> - parallel jobs of the one-time libint build
+(Default: all cores)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOTCA_LIBINT_EXPORT_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">VOTCA_LIBINT_EXPORT_SHA256</span></code> - another libint
+export (URL or local file) for <code class="docutils literal notranslate"><span class="pre">BUILD_OWN_LIBINT</span></code>; generate one with
+<code class="docutils literal notranslate"><span class="pre">CMakeModules/make_libint_export.sh</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">REQUIRE_MKL</span></code> - fail if Intel’s MKL is not found (ON/OFF, Default OFF)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MKL_THREADING</span></code> - MKL threading layer (<code class="docutils literal notranslate"><span class="pre">sequential</span></code>, <code class="docutils literal notranslate"><span class="pre">intel_thread</span></code>,
 <code class="docutils literal notranslate"><span class="pre">gnu_thread</span></code> or <code class="docutils literal notranslate"><span class="pre">tbb_thread</span></code>; Default <code class="docutils literal notranslate"><span class="pre">gnu_thread</span></code> with <code class="docutils literal notranslate"><span class="pre">g++</span></code>)</p></li>
