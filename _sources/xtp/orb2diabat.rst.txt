@@ -1,0 +1,33 @@
+
+orb2diabat
+**********
+Writes BSE excitations for Diabat 2.0: an fchk with the BSE orbitals (mofile) and Diabat's native electronic-state file (statefile).
+The following table contains the defaults input options for the calculator, The default `OPTIONAL` means this option is switched off, if no input is given. 
+`REQUIRED` arguments have to be specified, otherwise an error is thrown.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 20 15 15
+   :align: center
+
+   * - Property Name
+     - Default Value
+     - Description
+     - Valid Input
+   * - job_name
+     - system
+     - | Input file name without extension, also used for intermediate
+       | files
+     - 
+   * - spin
+     - singlet
+     - BSE spin type(s) to write; one statefile per type
+     - | singlet
+       | triplet
+       | all
+   * - nstates
+     - 0
+     - Number of lowest states to write, 0 writes all stored states
+     - int+
+.. note::
+   An *xml* file containing the defaults for the `orb2diabat` calculator can be created via `-p orb2diabat -o FILENAME` command line options `
