@@ -16,6 +16,8 @@
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -69,7 +71,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">11.3. XTP calculator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#results">11.4. Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forces">11.5. Forces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#examples">11.6. Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excited-state-dipoles-by-finite-fields">11.6. Excited-state dipoles by finite fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">11.7. Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
@@ -246,8 +249,62 @@ screening)</p></td>
 (displacement <code class="docutils literal notranslate"><span class="pre">eps=0.001</span></code> Å in <code class="docutils literal notranslate"><span class="pre">get_forces</span></code>), i.e. one full DFT and
 GW-BSE calculation per displaced coordinate.</p>
 </section>
+<section id="excited-state-dipoles-by-finite-fields">
+<h2><span class="section-number">11.6. </span>Excited-state dipoles by finite fields<a class="headerlink" href="#excited-state-dipoles-by-finite-fields" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pyxtp.finite_field.FiniteFieldDipoles</span></code> computes the change of the dipole
+moment on excitation, <span class="math notranslate nohighlight">\(\Delta\mu_n = \mathrm{d}\Omega_n/\mathrm{d}F\)</span>,
+and the diagonal of <span class="math notranslate nohighlight">\(\Delta\alpha_n = -\mathrm{d}^2\Omega_n/\mathrm{d}F^2\)</span>
+from GW-BSE excitation energies <span class="math notranslate nohighlight">\(\Omega_n\)</span> in small uniform fields
+(<code class="docutils literal notranslate"><span class="pre">dftpackage.externalfield</span></code>), together with the ground-state dipole and
+polarizability from the DFT energy. Unlike the dipole of the excited-state
+density (<code class="docutils literal notranslate"><span class="pre">Orbitals::DensityMatrixFull</span></code>, which is the unrelaxed difference
+density <span class="math notranslate nohighlight">\(XX^T + YY^T\)</span>), these are <em>relaxed</em>: they include the response
+of the orbitals, of the quasiparticle energies and of the screened
+interaction. For charge-transfer states the two can differ by a factor of
+about two.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.finite_field</span><span class="w"> </span><span class="kn">import</span> <span class="n">FiniteFieldDipoles</span><span class="p">,</span> <span class="n">write_xml</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">()</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">basis</span><span class="o">=</span><span class="s1">&#39;def2-tzvp&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;dftpackage/auxbasisset&#39;</span><span class="p">:</span> <span class="s1">&#39;aux-def2-tzvp&#39;</span><span class="p">})</span>
+<span class="n">ff</span> <span class="o">=</span> <span class="n">FiniteFieldDipoles</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;molecule.xyz&#39;</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+                        <span class="n">nthreads</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">components</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span> <span class="n">nstates</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">table</span><span class="p">())</span>
+<span class="n">write_xml</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;dipoles.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Each field component needs two <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> runs (<code class="docutils literal notranslate"><span class="pre">order=2</span></code>, field step
+<code class="docutils literal notranslate"><span class="pre">field=1e-3</span></code> Hartree/bohr) or four (<code class="docutils literal notranslate"><span class="pre">order=4</span></code>, which also reports a
+linearity check), plus one run without field. The runs are kept in
+<code class="docutils literal notranslate"><span class="pre">workdir</span></code> and reused if the calculation is repeated, e.g. with more
+components.</p></li>
+<li><p>The SCF is converged with <code class="docutils literal notranslate"><span class="pre">convergence_tightness=verytight</span></code>; the field
+changes the energies by only about <span class="math notranslate nohighlight">\(10^{-4}\)</span> Hartree. Self-consistent
+GW (evGW) must be well converged, too: a GW window whose highest levels
+have two quasiparticle solutions can make the differences noisy (use an
+explicit <code class="docutils literal notranslate"><span class="pre">qpmax</span></code>/<code class="docutils literal notranslate"><span class="pre">bsemax</span></code> below such levels).</p></li>
+<li><p>States are matched between the runs by the overlap of their BSE amplitudes,
+after transforming them into the zero-field orbitals, so that states which
+cross in the field are followed correctly. States that mix with others, or
+that are matched with an overlap below <code class="docutils literal notranslate"><span class="pre">overlap_threshold</span></code>, are marked;
+for groups of mixing states the derivative of the sum of their energies is
+given as well, which is reliable even when the individual values are not.</p></li>
+<li><p>Conventions: atomic units; <code class="docutils literal notranslate"><span class="pre">externalfield</span></code> adds <span class="math notranslate nohighlight">\(-\mathbf{F}\cdot\mathbf{r}\)</span>
+to the one-electron Hamiltonian, so that <span class="math notranslate nohighlight">\(\mathrm{d}E/\mathrm{d}\mathbf{F}\)</span>
+is the dipole moment. The ground-state dipole is given with respect to the
+centre of mass (the origin of the field operator).</p></li>
+</ul>
+<p>The command-line script <code class="docutils literal notranslate"><span class="pre">xtp_excited_dipoles</span></code> wraps this class. It is
+installed only together with <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> (see Installation) and has to run with
+the Python interpreter <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> was installed for. Example:
+<code class="docutils literal notranslate"><span class="pre">xtp_excited_dipoles</span> <span class="pre">-x</span> <span class="pre">molecule.xyz</span> <span class="pre">-o</span> <span class="pre">options.xml</span> <span class="pre">-t</span> <span class="pre">4</span> <span class="pre">--xml</span> <span class="pre">result.xml</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">options.xml</span></code> holds <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> options as for <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p>
+</section>
 <section id="examples">
-<h2><span class="section-number">11.6. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">11.7. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>See the tutorials <a class="reference internal" href="../xtp-tutorials/single_point.html"><span class="doc">Single Point Energy using pyxtp</span></a> (energy and absorption
 spectrum of CO) and <a class="reference internal" href="../xtp-tutorials/geometry_optimization.html"><span class="doc">Atomic Forces and Geometry Optimization</span></a> (excited-state
 forces and geometry optimization of CO).</p>
