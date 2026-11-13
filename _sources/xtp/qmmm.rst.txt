@@ -605,6 +605,27 @@ The following table contains the defaults input options for the calculator, The 
      - 1e-4
      - Threshold to convert an inactive atom to a border atom
      - float+
+   * - regions.qmregion.dftpackage.xtpdft.dft_in_dft.grow
+     - false
+     - | Grow the active region from activeatoms: add neighbouring
+       | atoms whose Mulliken population in a frontier orbital
+       | of the full calculation (occupied levels within grow_window
+       | of the HOMO; with truncate_basis also virtual levels above
+       | the LUMO) exceeds grow_threshold, until no more qualify;
+       | all hydrogens of active atoms come along. The coverage
+       | of the frontier orbitals by the active region is printed
+       | either way
+     - bool
+   * - regions.qmregion.dftpackage.xtpdft.dft_in_dft.grow_window
+     - 0.1
+     - | Frontier orbitals for grow: levels within this energy
+       | of the HOMO (and of the LUMO with truncate_basis)
+     - float+
+   * - regions.qmregion.dftpackage.xtpdft.dft_in_dft.grow_threshold
+     - 0.0025
+     - | Per-atom Mulliken population of a frontier orbital above
+       | which a neighbouring atom is added by grow
+     - float+
    * - regions.qmregion.dftpackage.xtpdft.screening_eps
      - 1e-9
      - screening eps
