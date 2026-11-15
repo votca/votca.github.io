@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
+  <title>12. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
-    <link rel="prev" title="10. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
+    <link rel="next" title="13. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
+    <link rel="prev" title="11. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,30 +54,31 @@
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">11. XTP ASE Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation">11.1. Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#environment-variables">11.1.1. Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projection_embedding.html">3. Projection-Based Embedding (DFT-in-DFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">4. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">6. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">7. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">8. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">9. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">10. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">11. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12. XTP ASE Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">12.1. Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">12.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#options">11.2. Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">11.3. XTP calculator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#results">11.4. Results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#forces">11.5. Forces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#excited-state-dipoles-by-finite-fields">11.6. Excited-state dipoles by finite fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#examples">11.7. Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">12.2. Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">12.3. XTP calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">12.4. Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forces">12.5. Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excited-state-dipoles-by-finite-fields">12.6. Excited-state dipoles by finite fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">12.7. Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">13. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">14. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">15. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -119,7 +120,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">11. </span>XTP ASE Interface</li>
+      <li class="breadcrumb-item active"><span class="section-number">12. </span>XTP ASE Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/pyxtp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,12 +131,12 @@
            <div itemprop="articleBody">
              
   <section id="xtp-ase-interface">
-<h1><span class="section-number">11. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">12. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
 <p>The Python package <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> provides an <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>
 calculator <code class="docutils literal notranslate"><span class="pre">xtp</span></code> that runs DFT and GW-BSE calculations (the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code>
 tool) on an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object.</p>
 <section id="installation">
-<h2><span class="section-number">11.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>The interface is built with VOTCA-XTP if <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> and the Python
 development files are found by CMake. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> installs the compiled
 bindings and, if the Python modules <code class="docutils literal notranslate"><span class="pre">ase</span></code>, <code class="docutils literal notranslate"><span class="pre">xmltodict</span></code>, <code class="docutils literal notranslate"><span class="pre">h5py</span></code>,
@@ -144,7 +145,7 @@ user site-packages directory (set <code class="docutils literal notranslate"><sp
 another directory). The plotting functions of <code class="docutils literal notranslate"><span class="pre">Visualization</span></code> also need
 <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <section id="environment-variables">
-<h3><span class="section-number">11.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">12.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
 <p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
 interface to find the default xml files and create the options data structure.
 You can set this environment variable in your shell configuration file
@@ -159,7 +160,7 @@ You can set this environment variable in your shell configuration file
 </section>
 </section>
 <section id="options">
-<h2><span class="section-number">11.2. </span>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.2. </span>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
 <p>All options of the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> tool are available in the <code class="docutils literal notranslate"><span class="pre">options</span></code>
 attribute of the calculator (an instance of <code class="docutils literal notranslate"><span class="pre">pyxtp.options.Options</span></code>),
 which mirrors the XML option files, e.g. <code class="docutils literal notranslate"><span class="pre">calc.options.dftpackage.basisset</span></code>
@@ -169,7 +170,7 @@ libxc names, e.g. <code class="docutils literal notranslate"><span class="pre">X
 <code class="docutils literal notranslate"><span class="pre">XC_GGA_X_PBE</span> <span class="pre">XC_GGA_C_PBE</span></code>.</p>
 </section>
 <section id="xtp-calculator">
-<h2><span class="section-number">11.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xtp(label=None,</span> <span class="pre">nthreads=1,</span> <span class="pre">options=None,</span> <span class="pre">directory='./',</span> <span class="pre">**kwargs)</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nthreads</span></code>: number of threads of the calculation</p></li>
@@ -209,14 +210,14 @@ routine (or as keyword arguments of the constructor):</p>
 <code class="docutils literal notranslate"><span class="pre">calc.set(**{'dftpackage/auxbasisset':</span> <span class="pre">'aux-def2-svp'})</span></code>.</p>
 </section>
 <section id="results">
-<h2><span class="section-number">11.4. </span>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.4. </span>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <p>Besides <code class="docutils literal notranslate"><span class="pre">get_potential_energy()</span></code> and <code class="docutils literal notranslate"><span class="pre">get_forces()</span></code> (ASE), the calculator
 provides e.g. <code class="docutils literal notranslate"><span class="pre">get_dft_energy()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_qp_corrections()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">get_oscillator_strengths(dynamic=False)</span></code>. <code class="docutils literal notranslate"><span class="pre">pyxtp.Visualization(atoms)</span></code>
 plots quasiparticle corrections, densities of states and absorption spectra.</p>
 </section>
 <section id="forces">
-<h2><span class="section-number">11.5. </span>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.5. </span>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">select_force(energy='energy',</span> <span class="pre">level=0,</span> <span class="pre">dynamic=False)</span></code> chooses the energy
 whose forces <code class="docutils literal notranslate"><span class="pre">get_forces</span></code> (and therefore an ASE optimizer) uses:</p>
 <table class="docutils align-default">
@@ -250,7 +251,7 @@ screening)</p></td>
 GW-BSE calculation per displaced coordinate.</p>
 </section>
 <section id="excited-state-dipoles-by-finite-fields">
-<h2><span class="section-number">11.6. </span>Excited-state dipoles by finite fields<a class="headerlink" href="#excited-state-dipoles-by-finite-fields" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.6. </span>Excited-state dipoles by finite fields<a class="headerlink" href="#excited-state-dipoles-by-finite-fields" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">pyxtp.finite_field.FiniteFieldDipoles</span></code> computes the change of the dipole
 moment on excitation, <span class="math notranslate nohighlight">\(\Delta\mu_n = \mathrm{d}\Omega_n/\mathrm{d}F\)</span>,
 and the diagonal of <span class="math notranslate nohighlight">\(\Delta\alpha_n = -\mathrm{d}^2\Omega_n/\mathrm{d}F^2\)</span>
@@ -304,7 +305,7 @@ the Python interpreter <code class="docutils literal notranslate"><span class="p
 where <code class="docutils literal notranslate"><span class="pre">options.xml</span></code> holds <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> options as for <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p>
 </section>
 <section id="examples">
-<h2><span class="section-number">11.7. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">12.7. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>See the tutorials <a class="reference internal" href="../xtp-tutorials/single_point.html"><span class="doc">Single Point Energy using pyxtp</span></a> (energy and absorption
 spectrum of CO) and <a class="reference internal" href="../xtp-tutorials/geometry_optimization.html"><span class="doc">Atomic Forces and Geometry Optimization</span></a> (excited-state
 forces and geometry optimization of CO).</p>
@@ -315,8 +316,8 @@ forces and geometry optimization of CO).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="10. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="12. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="11. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="13. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

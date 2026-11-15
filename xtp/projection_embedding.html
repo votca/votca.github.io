@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Projection-Based Embedding (DFT-in-DFT) &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Implementation Notes" href="implementation_notes.html" />
+    <link rel="prev" title="2. Electronic Structure Theories" href="elstruc_theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Projection-Based Embedding (DFT-in-DFT)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#theory">3.1. Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-an-embedded-calculation">3.2. Running an embedded calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-the-active-region">3.3. Choosing the active region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gw-bse-in-the-active-region">3.4. GW-BSE in the active region</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">4. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">6. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">7. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">8. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">9. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">10. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">11. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">12. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">13. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">14. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">15. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Projection-Based Embedding (DFT-in-DFT)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/projection_embedding.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="projection-based-embedding-dft-in-dft">
+<h1><span class="section-number">3. </span>Projection-Based Embedding (DFT-in-DFT)<a class="headerlink" href="#projection-based-embedding-dft-in-dft" title="Link to this heading">¶</a></h1>
+<p>Many systems of interest are too large for a GW-BSE calculation of the
+whole, while the excitation of interest is confined to a part of it: a
+chromophore with long side chains, a molecule at a donor-acceptor
+interface, a dye in its solvation shell. Projection-based embedding
+<a class="reference internal" href="bibliography.html#manby-2012" id="id1"><span>[Manby:2012]</span></a> splits such a system into an <em>active</em> region A, which keeps
+its full electronic structure, and an <em>inactive</em> region B, which is
+frozen at the DFT level. At the DFT level the split is exact: with the
+same functional in both regions, the embedded calculation reproduces the
+total energy and density of the full system. GW-BSE then works with the
+orbitals of the active region only, which reduces the size of the
+three-centre integrals and of the BSE Hamiltonian <a class="reference internal" href="bibliography.html#sundaram-2024" id="id2"><span>[Sundaram:2024]</span></a>.</p>
+<section id="theory">
+<h2><span class="section-number">3.1. </span>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
+<p>The starting point is a Kohn-Sham calculation of the full system with
+density matrix <span class="math notranslate nohighlight">\(\gamma\)</span>. Its occupied orbitals are localized with
+the Pipek-Mezey scheme <a class="reference internal" href="bibliography.html#pipek-1989" id="id3"><span>[Pipek:1989]</span></a>. A localized orbital belongs to the
+active region if its Mulliken population on at least one of the active
+atoms exceeds a threshold (0.4 by default); all others belong to B. This
+splits the density,</p>
+<div class="math notranslate nohighlight">
+\[\gamma = \gamma_A^0 + \gamma_B .\]</div>
+<p>The active region is then optimized in the field of the frozen inactive
+density. With <span class="math notranslate nohighlight">\(g[\gamma]\)</span> the Coulomb and exchange-correlation
+potential of a density and the embedding potential</p>
+<div class="math notranslate nohighlight">
+\[v_\text{emb} = g[\gamma_A^0 + \gamma_B] - g[\gamma_A^0] ,\]</div>
+<p>the active electrons see the Fock matrix</p>
+<div class="math notranslate nohighlight">
+\[F_A = h + g[\gamma_A] + v_\text{emb} + \mu P_B ,
+\qquad P_B = S \gamma_B S ,\]</div>
+<p>and the total energy is</p>
+<div class="math notranslate nohighlight">
+\[E[\gamma_A] = E_\text{DFT}[\gamma_A] + E_\text{DFT}[\gamma]
+- E_\text{DFT}[\gamma_A^0]
++ \mathrm{tr}\left[(\gamma_A - \gamma_A^0)\, v_\text{emb}\right]
++ \mu\, \mathrm{tr}\left[\gamma_A P_B\right] .\]</div>
+<p>The projector <span class="math notranslate nohighlight">\(P_B\)</span> with a large level shift <span class="math notranslate nohighlight">\(\mu\)</span> keeps the
+active orbitals orthogonal to the inactive ones: in the embedded
+calculation the inactive orbitals appear as levels near <span class="math notranslate nohighlight">\(\mu\)</span>, far
+above all physical levels, and the active electrons cannot fall into
+them. At self-consistency <span class="math notranslate nohighlight">\(\gamma_A = \gamma_A^0\)</span>, and the energy
+equals the full one; the log reports the difference (typically
+<span class="math notranslate nohighlight">\(10^{-7}\)</span> Ha).</p>
+<p>The embedded calculation can also run in a basis restricted to the
+active atoms and the <em>border</em> atoms of the inactive region, i.e. those
+with a basis function whose Mulliken population in <span class="math notranslate nohighlight">\(\gamma_A^0\)</span>
+exceeds <code class="docutils literal notranslate"><span class="pre">truncation_threshold</span></code> <a class="reference internal" href="bibliography.html#barnes-2013" id="id4"><span>[Barnes:2013]</span></a>, <a class="reference internal" href="bibliography.html#bennie-2015" id="id5"><span>[Bennie:2015]</span></a>. This
+makes the embedded calculation itself cheaper, but the result then
+depends on the threshold; <a class="reference internal" href="bibliography.html#sundaram-2024" id="id6"><span>[Sundaram:2024]</span></a> found it necessary to tighten
+it from <span class="math notranslate nohighlight">\(10^{-4}\)</span> to <span class="math notranslate nohighlight">\(10^{-5}\)</span> for a charge-transfer complex.</p>
+</section>
+<section id="running-an-embedded-calculation">
+<h2><span class="section-number">3.2. </span>Running an embedded calculation<a class="headerlink" href="#running-an-embedded-calculation" title="Link to this heading">¶</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">xtp_tools</span> <span class="pre">-e</span> <span class="pre">dftgwbse</span></code> the embedding needs the tasks <code class="docutils literal notranslate"><span class="pre">localize</span></code>
+and <code class="docutils literal notranslate"><span class="pre">dft_in_dft</span></code> after the DFT calculation of the full system, and the
+active atoms in <code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.dft_in_dft</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dftgwbse&gt;</span>
+<span class="w">  </span><span class="nt">&lt;job_name&gt;</span>system<span class="nt">&lt;/job_name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;dftpackage&gt;</span>
+<span class="w">    </span><span class="nt">&lt;basisset&gt;</span>def2-svp<span class="nt">&lt;/basisset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;auxbasisset&gt;</span>aux-def2-svp<span class="nt">&lt;/auxbasisset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;functional&gt;</span>XC_HYB_GGA_XC_PBEH<span class="nt">&lt;/functional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xtpdft&gt;</span>
+<span class="w">      </span><span class="nt">&lt;dft_in_dft&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activeatoms&gt;</span>0:15<span class="w"> </span>105<span class="w"> </span>106<span class="nt">&lt;/activeatoms&gt;</span>
+<span class="w">        </span><span class="nt">&lt;threshold&gt;</span>0.4<span class="nt">&lt;/threshold&gt;</span>
+<span class="w">        </span><span class="nt">&lt;levelshift&gt;</span>100000<span class="nt">&lt;/levelshift&gt;</span>
+<span class="w">        </span><span class="nt">&lt;truncate_basis&gt;</span>false<span class="nt">&lt;/truncate_basis&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/dft_in_dft&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xtpdft&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/dftpackage&gt;</span>
+<span class="w">  </span><span class="nt">&lt;tasks&gt;</span>input,dft,parse,localize,dft_in_dft,gwbse<span class="nt">&lt;/tasks&gt;</span>
+<span class="w">  </span><span class="nt">&lt;localize&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method&gt;</span>jacobi-sweeps<span class="nt">&lt;/method&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/localize&gt;</span>
+<span class="w">  </span><span class="nt">&lt;gwbse&gt;</span>
+<span class="w">    </span>...
+<span class="w">  </span><span class="nt">&lt;/gwbse&gt;</span>
+<span class="nt">&lt;/dftgwbse&gt;</span>
+</pre></div>
+</div>
+<p>The atom indices refer to the order of the atoms in the input geometry
+and use the range syntax <code class="docutils literal notranslate"><span class="pre">a:b</span></code> (inclusive) with single indices,
+separated by spaces or commas.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option (<code class="docutils literal notranslate"><span class="pre">dft_in_dft</span></code>)</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">activeatoms</span></code></p></td>
+<td><p>atoms of the active region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">threshold</span></code></p></td>
+<td><p>Mulliken population on an active atom above which a localized
+orbital is active (default 0.4)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">levelshift</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu\)</span> in Hartree (default <span class="math notranslate nohighlight">\(10^4\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">truncate_basis</span></code>, <code class="docutils literal notranslate"><span class="pre">truncation_threshold</span></code></p></td>
+<td><p>restrict the basis to active and border atoms (default off,
+<span class="math notranslate nohighlight">\(10^{-4}\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">grow</span></code>, <code class="docutils literal notranslate"><span class="pre">grow_window</span></code>, <code class="docutils literal notranslate"><span class="pre">grow_threshold</span></code></p></td>
+<td><p>grow the active region from the frontier orbitals (see below;
+default off, 0.1 eV, 0.0025)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The localization (<code class="docutils literal notranslate"><span class="pre">localize.method</span></code>) is done with a unitary optimizer
+by default; <code class="docutils literal notranslate"><span class="pre">jacobi-sweeps</span></code> can be more robust for large
+molecules.</p>
+<p>In a <code class="docutils literal notranslate"><span class="pre">qmmm</span></code> job the same <code class="docutils literal notranslate"><span class="pre">dft_in_dft</span></code> block goes into the
+<code class="docutils literal notranslate"><span class="pre">dftpackage</span></code> of the QM region, together with a <code class="docutils literal notranslate"><span class="pre">localize</span></code> block;
+the active atoms are then numbered in the order of the atoms of the QM
+region. The classical regions see the full density of the QM region.</p>
+</section>
+<section id="choosing-the-active-region">
+<h2><span class="section-number">3.3. </span>Choosing the active region<a class="headerlink" href="#choosing-the-active-region" title="Link to this heading">¶</a></h2>
+<p>The active region is a modelling choice, and the results of an embedded
+GW-BSE calculation depend on it more than on anything else. Two things
+should hold:</p>
+<ul class="simple">
+<li><p>the orbitals that take part in the excitation lie in it: an exciton
+whose hole extends across the cut cannot be described by the active
+orbitals;</p></li>
+<li><p>the cut goes through bonds that are electronically unimportant, such
+as the single bond to a saturated side chain, and not through a
+conjugated system.</p></li>
+</ul>
+<p>To help with this, the embedding step reports, before it starts:</p>
+<ul class="simple">
+<li><p>whether the active atoms of each molecule form one connected piece of
+the bond graph (a region that splits a molecule stops the run);</p></li>
+<li><p>the coverage of the frontier orbitals of the full calculation: the
+fraction of each occupied orbital within <code class="docutils literal notranslate"><span class="pre">grow_window</span></code> of the HOMO
+(Mulliken population) that lies on the active region, and the inactive
+atoms on which they have weight;</p></li>
+<li><p>inactive hydrogens bonded to active atoms and inactive heavy atoms
+bonded to two or more active ones.</p></li>
+</ul>
+<p>With <code class="docutils literal notranslate"><span class="pre">grow</span></code> the region is extended automatically: every atom of the
+molecules in the active region whose population in one of these frontier
+orbitals exceeds <code class="docutils literal notranslate"><span class="pre">grow_threshold</span></code> is added, together with the shortest
+chain of bonds that connects it to the region, then heavy atoms bonded
+to two or more active atoms, and the hydrogens of all active atoms.
+Without a truncated basis only the occupied frontier orbitals matter,
+since the embedded calculation keeps all virtual orbitals; with
+<code class="docutils literal notranslate"><span class="pre">truncate_basis</span></code> the virtual frontier orbitals are included as well.</p>
+</section>
+<section id="gw-bse-in-the-active-region">
+<h2><span class="section-number">3.4. </span>GW-BSE in the active region<a class="headerlink" href="#gw-bse-in-the-active-region" title="Link to this heading">¶</a></h2>
+<p>GW-BSE uses the occupied orbitals of the active region and, without a
+truncated basis, all virtual orbitals of the full basis; the inactive
+levels shifted to <span class="math notranslate nohighlight">\(\mu\)</span> are left out. The QP and BSE windows refer
+to these orbitals. A frozen core (<code class="docutils literal notranslate"><span class="pre">ignore_corelevels</span></code>) counts only the
+core levels of the active atoms.</p>
+<p>Two effects of the inactive region are missing in this plain form: it
+does not screen the interaction (the QP gap comes out too large and the
+electron-hole attraction too strong; the two errors partly cancel in the
+excitation energies), and its occupied orbitals are missing from the
+Green’s function. Both can be added with <code class="docutils literal notranslate"><span class="pre">gwbse.inactive_screening</span></code>
+and <code class="docutils literal notranslate"><span class="pre">gwbse.inactive_screening_complete_g</span></code>, described in
+<a class="reference internal" href="embedded_gwbse.html#pbe-inactive-screening"><span class="std std-ref">Projection-based embedding: screening by the inactive region</span></a>. The active region can be embedded in a
+polarizable environment at the same time (<a class="reference internal" href="embedded_gwbse.html"><span class="doc">Embedded GW-BSE: Screening by a Polarizable Environment</span></a>).</p>
+<p>The embedded GW-BSE is implemented for closed-shell active regions with
+an even number of electrons.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="elstruc_theory.html" class="btn btn-neutral float-left" title="2. Electronic Structure Theories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="implementation_notes.html" class="btn btn-neutral float-right" title="4. Implementation Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

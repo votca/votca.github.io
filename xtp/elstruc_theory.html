@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Implementation Notes" href="implementation_notes.html" />
+    <link rel="next" title="3. Projection-Based Embedding (DFT-in-DFT)" href="projection_embedding.html" />
     <link rel="prev" title="1. Introduction" href="xtp_introduction.html" /> 
 </head>
 
@@ -62,18 +62,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#many-body-green-s-functions-and-the-bethe-salpeter-equation">2.3. Many-Body Green’s Functions and the Bethe-Salpeter Equation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">3. Implementation Notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projection_embedding.html">3. Projection-Based Embedding (DFT-in-DFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">4. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">6. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">7. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">8. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">9. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">10. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">11. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">12. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">13. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">14. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">15. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -132,7 +133,7 @@
 <p>Excited state calculations require a reference ground state calculation within density-functional theory. VOTCA-XTP provides its own DFT engine based on atom-centered Gaussian-type orbitals, which is the default (<code class="docutils literal notranslate"><span class="pre">dftpackage.name=xtp</span></code>) and the only one supporting charge-response embedding, constrained DFT and second-order SCF, and an automated interface to the ORCA package <a class="reference internal" href="bibliography.html#neese-2012" id="id1"><span>[Neese:2012]</span></a>. It solves the Kohn-Sham Equations for the molecular orbitals <span class="math notranslate nohighlight">\(\phi_n^\textrm{KS}(\mathbf{r})\)</span> with orbital energies <span class="math notranslate nohighlight">\(\varepsilon_n^\textrm{KS}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-equ-ks">
 <span class="eqno">(2.1)<a class="headerlink" href="#equation-equ-ks" title="Link to this equation">¶</a></span>\[\left\{ -\frac{\hbar^2}{2m}\nabla^2 + V_\mathrm{ext}(\mathbf{r}) + V_\textrm{H}(\mathbf{r}) +V_\textrm{xc}(\mathbf{r})\right\}\phi_n^\textrm{KS}(\mathbf{r})  =\varepsilon_n^\textrm{KS} \phi_n^\textrm{KS}(\mathbf{r}) ,\]</div>
-<p>where <span class="math notranslate nohighlight">\(V_\textrm{ext}\)</span> is the external potential, <span class="math notranslate nohighlight">\(V_\textrm{H}\)</span> the Hartree potential, and <span class="math notranslate nohighlight">\(V_\textrm{xc}\)</span> the exchange-correlation potential. VOTCA-XTP also contains functionality for projector-based-embedding DFT-in-DFT ground state calculations <a class="reference internal" href="bibliography.html#manby-2012" id="id2"><span>[Manby:2012]</span></a>, in which a chosen <em>active</em> subregion of a molecular system is embedded into an inactive one, reproducing the total energy of the full system ground state exactly.</p>
+<p>where <span class="math notranslate nohighlight">\(V_\textrm{ext}\)</span> is the external potential, <span class="math notranslate nohighlight">\(V_\textrm{H}\)</span> the Hartree potential, and <span class="math notranslate nohighlight">\(V_\textrm{xc}\)</span> the exchange-correlation potential. VOTCA-XTP also contains functionality for projector-based-embedding DFT-in-DFT ground state calculations <a class="reference internal" href="bibliography.html#manby-2012" id="id2"><span>[Manby:2012]</span></a>, in which a chosen <em>active</em> subregion of a molecular system is embedded into an inactive one, reproducing the total energy of the full system ground state exactly. See <a class="reference internal" href="projection_embedding.html"><span class="doc">Projection-Based Embedding (DFT-in-DFT)</span></a>.</p>
 <p>For closed-shell systems, <a class="reference internal" href="#equation-equ-ks">Eq.2.1</a> is solved once for a common set of spatial orbitals doubly occupied by electrons of opposite spin (restricted Kohn-Sham, RKS). Open-shell systems – radicals, cations, anions, or any system with an odd number of electrons or a triplet or higher-multiplicity ground state – instead require separate equations for the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> spin channels, each with its own set of orbitals, orbital energies, and occupied-orbital count (unrestricted Kohn-Sham, UKS). The internal DFT engine automatically switches to the UKS formalism whenever the numbers of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> electrons differ, as is always the case, for example, for a molecule with an odd total charge or an unpaired electron.</p>
 <section id="self-consistent-field-convergence">
 <h3><span class="section-number">2.1.1. </span>Self-consistent field convergence<a class="headerlink" href="#self-consistent-field-convergence" title="Link to this heading">¶</a></h3>
@@ -215,7 +216,7 @@ Here, <span class="math notranslate nohighlight">\(K^\text{x}\)</span> is the re
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="xtp_introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="implementation_notes.html" class="btn btn-neutral float-right" title="3. Implementation Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="projection_embedding.html" class="btn btn-neutral float-right" title="3. Projection-Based Embedding (DFT-in-DFT)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

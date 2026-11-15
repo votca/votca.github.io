@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Implementation Notes &mdash; VOTCA 2026-dev documentation</title>
+  <title>4. Implementation Notes &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. GW-BSE in Practice: Methods, Numerics and Settings" href="gwbse_numerics.html" />
-    <link rel="prev" title="2. Electronic Structure Theories" href="elstruc_theory.html" /> 
+    <link rel="next" title="5. GW-BSE in Practice: Methods, Numerics and Settings" href="gwbse_numerics.html" />
+    <link rel="prev" title="3. Projection-Based Embedding (DFT-in-DFT)" href="projection_embedding.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,29 +54,30 @@
 <li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Implementation Notes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dft-self-consistent-field-convergence">3.1. DFT: self-consistent field convergence</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#second-order-trah-steps">3.1.1. Second-order (TRAH) steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projection_embedding.html">3. Projection-Based Embedding (DFT-in-DFT)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Implementation Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dft-self-consistent-field-convergence">4.1. DFT: self-consistent field convergence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#second-order-trah-steps">4.1.1. Second-order (TRAH) steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#constrained-dft">3.2. Constrained DFT</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hirshfeld-weight-function-and-forces">3.2.1. Hirshfeld weight function and forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constrained-dft">4.2. Constrained DFT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hirshfeld-weight-function-and-forces">4.2.1. Hirshfeld weight function and forces</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#gw-bse">3.3. GW-BSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gw-bse">4.3. GW-BSE</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">4. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">5. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">6. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">7. Transport Simulations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">8. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">9. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">10. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">11. XTP ASE Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">12. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">13. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">14. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">6. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">7. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">8. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">9. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">10. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">11. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">12. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">13. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">14. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">15. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -118,7 +119,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Implementation Notes</li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Implementation Notes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/implementation_notes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -129,13 +130,13 @@
            <div itemprop="articleBody">
              
   <section id="implementation-notes">
-<h1><span class="section-number">3. </span>Implementation Notes<a class="headerlink" href="#implementation-notes" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">4. </span>Implementation Notes<a class="headerlink" href="#implementation-notes" title="Link to this heading">¶</a></h1>
 <p>This page collects practical, code-level notes on the internal DFT, CDFT, and GW-BSE
 implementations that go beyond the level of detail in <a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>. It is aimed
 at developers and users who need to understand <em>why</em> a calculation behaves the way it
 does, not just the underlying theory.</p>
 <section id="dft-self-consistent-field-convergence">
-<h2><span class="section-number">3.1. </span>DFT: self-consistent field convergence<a class="headerlink" href="#dft-self-consistent-field-convergence" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">4.1. </span>DFT: self-consistent field convergence<a class="headerlink" href="#dft-self-consistent-field-convergence" title="Link to this heading">¶</a></h2>
 <p>The internal DFT engine dispatches to one of two convergence-acceleration classes
 depending on the system: a restricted-Kohn-Sham (RKS) class for closed-shell systems
 with equal numbers of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> electrons, and an
@@ -162,7 +163,7 @@ readily as it climbed once the SCF starts succeeding again. Both the damping ram
 a trailing-average stall detector (see below) are modeled directly on the equivalent
 mechanisms in ORCA’s own SCF converger.</p>
 <section id="second-order-trah-steps">
-<h3><span class="section-number">3.1.1. </span>Second-order (TRAH) steps<a class="headerlink" href="#second-order-trah-steps" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">4.1.1. </span>Second-order (TRAH) steps<a class="headerlink" href="#second-order-trah-steps" title="Link to this heading">¶</a></h3>
 <p>DIIS-family extrapolation is well known to struggle for open-shell systems with a
 small HOMO-LUMO gap, or for systems whose physically correct electronic configuration
 is not the solution DIIS happens to converge to; DIIS can also come to rest on a
@@ -258,7 +259,7 @@ difficult.</p>
 </section>
 </section>
 <section id="constrained-dft">
-<h2><span class="section-number">3.2. </span>Constrained DFT<a class="headerlink" href="#constrained-dft" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Constrained DFT<a class="headerlink" href="#constrained-dft" title="Link to this heading">¶</a></h2>
 <p>CDFT is implemented as two nested loops around the ordinary UKS SCF machinery described
 above: an inner loop that runs an ordinary UKS SCF for a fixed value of the constraint
 potential <span class="math notranslate nohighlight">\(V_c\)</span>, and an outer bisection loop that adjusts <span class="math notranslate nohighlight">\(V_c\)</span> until the
@@ -276,7 +277,7 @@ character across that interval, warm-starting from the previous, qualitatively
 different solution can bias the new inner SCF toward the wrong electronic state rather
 than simply providing a mildly imperfect starting point.</p>
 <section id="hirshfeld-weight-function-and-forces">
-<h3><span class="section-number">3.2.1. </span>Hirshfeld weight function and forces<a class="headerlink" href="#hirshfeld-weight-function-and-forces" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">4.2.1. </span>Hirshfeld weight function and forces<a class="headerlink" href="#hirshfeld-weight-function-and-forces" title="Link to this heading">¶</a></h3>
 <p>The Hirshfeld partitioning of <a class="reference internal" href="elstruc_theory.html#equation-equ-hirshfeld-weight">Eq.2.3</a> is evaluated on the same
 real-space integration grid used for the exchange-correlation energy, using free-atom
 reference densities computed once per element at the start of the calculation. Because
@@ -295,7 +296,7 @@ finite-difference forces on constrained systems.</p>
 </section>
 </section>
 <section id="gw-bse">
-<h2><span class="section-number">3.3. </span>GW-BSE<a class="headerlink" href="#gw-bse" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">4.3. </span>GW-BSE<a class="headerlink" href="#gw-bse" title="Link to this heading">¶</a></h2>
 <p>The <span class="math notranslate nohighlight">\(GW\)</span> and Bethe-Salpeter equation implementations, described theoretically in
 <a class="reference internal" href="elstruc_theory.html"><span class="doc">Electronic Structure Theories</span></a>, are built on top of the ground-state DFT orbitals and Fock matrix
 produced by the machinery above – either from the internal DFT engine or from the
@@ -311,8 +312,8 @@ are described in detail in <a class="reference internal" href="gwbse_numerics.ht
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="elstruc_theory.html" class="btn btn-neutral float-left" title="2. Electronic Structure Theories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="gwbse_numerics.html" class="btn btn-neutral float-right" title="4. GW-BSE in Practice: Methods, Numerics and Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="projection_embedding.html" class="btn btn-neutral float-left" title="3. Projection-Based Embedding (DFT-in-DFT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gwbse_numerics.html" class="btn btn-neutral float-right" title="5. GW-BSE in Practice: Methods, Numerics and Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
