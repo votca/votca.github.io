@@ -468,6 +468,17 @@ The following table contains the defaults input options for the calculator, The 
        | 0: what the --memory budget leaves after the stored integrals,
        | at least 1 GB (4 GB without --memory)
      - float+
+   * - gwbse.stream_rpa
+     - false
+     - | Do not store the three-center integrals of the occupied
+       | levels below the QP and BSE windows: their part of the
+       | RPA response is built in chunks (size from --memory) and
+       | not kept. Saves memory roughly in proportion to the number
+       | of such levels; costs one more pass over the AO integrals
+       | per chunk, for GW and again for the BSE. G0W0 and evGW
+       | (one stream per screening build) with sigma_integrator
+       | ppm
+     - bool
    * - gwbse.inactive_screening_radius
      - 0
      - | inactive_screening block: only inactive LMOs whose centroid
