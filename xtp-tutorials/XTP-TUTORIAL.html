@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="DFT + GWBSE Energy Calculation Using CH4" href="DFTGWBSE_ENERGY.html" />
-    <link rel="prev" title="15. Bibliography" href="../xtp/bibliography.html" /> 
+    <link rel="prev" title="17. Bibliography" href="../xtp/bibliography.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html">Vibronic spectra from GW gradients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
@@ -113,6 +114,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">DFTGWBSE_ENERGY</span></code>: DFT and GW-BSE for a single molecule with <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">single_point</span></code> and <code class="docutils literal notranslate"><span class="pre">geometry_optimization</span></code>: the same with the Python
 (ASE) interface; they are built only if the Python bindings are.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VIBRONIC_SPECTRA</span></code>: vibronically resolved photoemission, inverse
+photoemission and absorption spectra of formaldehyde from a
+finite-difference Hessian and analytic GW gradients (Python interface).</p></li>
 <li><p>Three tutorials on the same morphology, an amorphous film of 1000
 thiophene molecules from LAMMPS (<code class="docutils literal notranslate"><span class="pre">thiophene</span></code>):</p>
 <ul>
@@ -161,6 +165,19 @@ network models).</p></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Configure-the-xtp-calculator">Configure the <code class="docutils literal notranslate"><span class="pre">xtp</span></code> calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Run-the-calculation">Run the calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="single_point.html#Visualize-the-results">Visualize the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VIBRONIC_SPECTRA.html">Vibronic spectra from GW gradients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#What-this-tutorial-is-about">What this tutorial is about</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Step-1:-ground-state-geometry">Step 1: ground-state geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Step-2:-Hessian-by-finite-differences">Step 2: Hessian by finite differences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Step-3:-one-GW-BSE-run-with-gradients">Step 3: one GW-BSE run with gradients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Step-4:-couplings">Step 4: couplings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Step-5:-spectra-of-one-molecule">Step 5: spectra of one molecule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#More-levels-later,-without-a-new-GW-run">More levels later, without a new GW run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#Ensembles:-spectra-of-a-morphology">Ensembles: spectra of a morphology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VIBRONIC_SPECTRA.html#The-same-on-the-command-line">The same on the command line</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a><ul>
@@ -232,7 +249,7 @@ network models).</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../xtp/bibliography.html" class="btn btn-neutral float-left" title="15. Bibliography" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../xtp/bibliography.html" class="btn btn-neutral float-left" title="17. Bibliography" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="DFTGWBSE_ENERGY.html" class="btn btn-neutral float-right" title="DFT + GWBSE Energy Calculation Using CH4" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

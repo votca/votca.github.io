@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibronic spectra from GW gradients &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="From an MD morphology to a state file" href="MAPPING.html" />
+    <link rel="prev" title="Single Point Energy using pyxtp" href="single_point.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/XTP-MANUAL.html">XTP Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-TUTORIAL.html">XTP Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DFTGWBSE_ENERGY.html">DFT + GWBSE Energy Calculation Using CH4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_optimization.html">Atomic Forces and Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_point.html">Single Point Energy using <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vibronic spectra from GW gradients</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#What-this-tutorial-is-about">What this tutorial is about</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Settings">Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-1:-ground-state-geometry">Step 1: ground-state geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-2:-Hessian-by-finite-differences">Step 2: Hessian by finite differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-3:-one-GW-BSE-run-with-gradients">Step 3: one GW-BSE run with gradients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-4:-couplings">Step 4: couplings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-5:-spectra-of-one-molecule">Step 5: spectra of one molecule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#More-levels-later,-without-a-new-GW-run">More levels later, without a new GW run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Ensembles:-spectra-of-a-morphology">Ensembles: spectra of a morphology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#The-same-on-the-command-line">The same on the command line</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MAPPING.html">From an MD morphology to a state file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CHARGE_TRANSPORT.html">Charge transport in amorphous thiophene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXCITATIONS.html">Excitations of thiophene in its environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TRANSPORT.html">Charge and exciton transport on a model lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="STOCHASTIC_NETWORK.html">Larger systems with the stochastic network model</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xtp/Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-TUTORIAL.html">XTP Tutorials</a></li>
+      <li class="breadcrumb-item active">Vibronic spectra from GW gradients</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp-tutorials/VIBRONIC_SPECTRA.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Vibronic-spectra-from-GW-gradients">
+<h1>Vibronic spectra from GW gradients<a class="headerlink" href="#Vibronic-spectra-from-GW-gradients" title="Link to this heading">¶</a></h1>
+<section id="What-this-tutorial-is-about">
+<h2>What this tutorial is about<a class="headerlink" href="#What-this-tutorial-is-about" title="Link to this heading">¶</a></h2>
+<p>Photoemission (UPS), inverse photoemission (IPES) and absorption spectra of molecules are not sets of sharp lines: when an electron is removed, added or excited, the nuclei relax, and the spectrum shows a vibrational progression for every level. This tutorial computes such vibronically resolved spectra with <code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic</span></code>:</p>
+<ol class="arabic simple">
+<li><p>optimize the ground state with analytic DFT forces,</p></li>
+<li><p>compute the Hessian by finite differences of these forces,</p></li>
+<li><p>run DFT and GW-BSE <strong>once</strong>, with analytic gradients of a range of quasiparticle (QP) levels and of an excited state,</p></li>
+<li><p>turn the gradients into mode-resolved couplings (reorganization energies and Huang-Rhys factors),</p></li>
+<li><p>build the spectra (one molecule, then an ensemble) and plot them.</p></li>
+</ol>
+<p>Steps 1-3 are the expensive ones; everything after them takes seconds and can be repeated as often as needed. As an example we use formaldehyde in a small basis so that the whole notebook runs in a few minutes. The theory and all options are described in the manual section <em>Vibronic spectra</em>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">BFGS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">FiniteDifferenceHessian</span><span class="p">,</span> <span class="n">xtp_ground_state_factory</span><span class="p">,</span>
+                            <span class="n">QPLevels</span><span class="p">,</span> <span class="n">level_spectrum</span><span class="p">,</span> <span class="n">add_gradients</span><span class="p">,</span>
+                            <span class="n">couplings_from_gradient</span><span class="p">,</span> <span class="n">read_gap_gradient</span><span class="p">,</span>
+                            <span class="n">vibronic_lineshape</span><span class="p">,</span> <span class="n">Spectrum</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic.plot</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">paper_style</span><span class="p">,</span> <span class="n">plot_spectrum</span><span class="p">,</span> <span class="n">plot_couplings</span><span class="p">,</span>
+                                 <span class="n">SINGLE_COLUMN</span><span class="p">,</span> <span class="n">DOUBLE_COLUMN</span><span class="p">)</span>
+
+<span class="n">workdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;vibronic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="n">workdir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Settings">
+<h2>Settings<a class="headerlink" href="#Settings" title="Link to this heading">¶</a></h2>
+<p>The same DFT settings must be used in all steps: the Hessian, the gradients and the geometry belong to one potential energy surface. <code class="docutils literal notranslate"><span class="pre">settings</span></code> uses the <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> option names (<code class="docutils literal notranslate"><span class="pre">calc.set(**settings)</span></code>).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dftpackage/functional&#39;</span><span class="p">:</span> <span class="s1">&#39;XC_HYB_GGA_XC_PBEH&#39;</span><span class="p">,</span>   <span class="c1"># PBE0</span>
+            <span class="s1">&#39;dftpackage/basisset&#39;</span><span class="p">:</span> <span class="s1">&#39;def2-svp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dftpackage/auxbasisset&#39;</span><span class="p">:</span> <span class="s1">&#39;aux-def2-svp&#39;</span><span class="p">}</span>
+<span class="n">gw_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gwbse/gw/mode&#39;</span><span class="p">:</span> <span class="s1">&#39;G0W0&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gwbse/gw/sigma_integrator&#39;</span><span class="p">:</span> <span class="s1">&#39;ppm&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gwbse/bse/exctotal&#39;</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;dftpackage/convergence_tightness&#39;</span><span class="p">:</span> <span class="s1">&#39;verytight&#39;</span><span class="p">}</span>
+<span class="n">nthreads</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-1:-ground-state-geometry">
+<h2>Step 1: ground-state geometry<a class="headerlink" href="#Step-1:-ground-state-geometry" title="Link to this heading">¶</a></h2>
+<p>The couplings are computed at the minimum of the ground state, so the geometry has to be optimized tightly with the same method. <code class="docutils literal notranslate"><span class="pre">xtp_ground_state_factory</span></code> returns calculators that run only the DFT part of <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> with analytic forces.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">xtp_ground_state_factory</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">nthreads</span><span class="o">=</span><span class="n">nthreads</span><span class="p">)</span>
+
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;H2CO&#39;</span><span class="p">)</span>
+<span class="n">optdir</span> <span class="o">=</span> <span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;optimization&#39;</span>
+<span class="n">optdir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">optdir</span><span class="p">)</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="n">optdir</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="s1">&#39;bfgs.log&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">write</span><span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;minimum.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-2:-Hessian-by-finite-differences">
+<h2>Step 2: Hessian by finite differences<a class="headerlink" href="#Step-2:-Hessian-by-finite-differences" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">FiniteDifferenceHessian</span></code> displaces every atom along x, y and z in both directions (6N + 1 = 25 force calculations here). Every displacement runs in its own directory: a repeated <code class="docutils literal notranslate"><span class="pre">run()</span></code> skips what is done, an interrupted run resumes, and several processes (or array jobs, <code class="docutils literal notranslate"><span class="pre">run(part=i,</span> <span class="pre">nparts=n)</span></code>) can work on the same directory. The displaced SCFs start from the orbitals of the reference geometry.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fd</span> <span class="o">=</span> <span class="n">FiniteDifferenceHessian</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">factory</span><span class="p">,</span> <span class="n">workdir</span><span class="o">=</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;hessian&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fd</span><span class="o">.</span><span class="n">displacements</span><span class="p">()),</span> <span class="s1">&#39;force calculations&#39;</span><span class="p">)</span>
+<span class="n">fd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fd</span><span class="o">.</span><span class="n">status</span><span class="p">()[</span><span class="s1">&#39;pending&#39;</span><span class="p">],</span> <span class="s1">&#39;pending&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+25 force calculations
+[] pending
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">normal_modes()</span></code> assembles the Hessian and projects out translations and rotations exactly, so there are always 3N - 6 vibrations. The residual forces at the reference geometry and the asymmetry of the finite-difference Hessian tell how reliable the result is.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modes</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">normal_modes</span><span class="p">()</span>
+<span class="n">modes</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;modes.npz&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;max residual force: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fd</span><span class="o">.</span><span class="n">reference_forces</span><span class="p">())</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1"> eV/Angstrom&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hessian asymmetry:  </span><span class="si">{</span><span class="n">fd</span><span class="o">.</span><span class="n">asymmetry</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1"> eV/Angstrom^2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modes</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+max residual force: 4.1e-04 eV/Angstrom
+Hessian asymmetry:  1.9e-03 eV/Angstrom^2
+6 vibrational modes, 0 imaginary
+  1197.41   1268.25   1532.96   1897.20   2904.18   2969.94
+</pre></div></div>
+</div>
+</section>
+<section id="Step-3:-one-GW-BSE-run-with-gradients">
+<h2>Step 3: one GW-BSE run with gradients<a class="headerlink" href="#Step-3:-one-GW-BSE-run-with-gradients" title="Link to this heading">¶</a></h2>
+<p>At the minimum we run DFT and GW-BSE once and ask for analytic gradients of</p>
+<ul class="simple">
+<li><p>the QP energies of a range of levels (<code class="docutils literal notranslate"><span class="pre">qp_gradients</span></code>, here HOMO-3 to LUMO+2), for photoemission and inverse photoemission, and</p></li>
+<li><p>the lowest singlet excitation (<code class="docutils literal notranslate"><span class="pre">excited_state='s1'</span></code>), for absorption.</p></li>
+</ul>
+<p>Both are stored in the orb file. The gradients include the response of the QP corrections (G0W0 or evGW, plasmon-pole or exact self-energy).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gwdir</span> <span class="o">=</span> <span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;gw&#39;</span>
+<span class="n">gwdir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">gwdir</span><span class="p">)</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">nthreads</span><span class="o">=</span><span class="n">nthreads</span><span class="p">,</span> <span class="n">excited_state</span><span class="o">=</span><span class="s1">&#39;s1&#39;</span><span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="p">,</span> <span class="o">**</span><span class="n">gw_settings</span><span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">qp_gradients</span> <span class="o">=</span> <span class="s1">&#39;homo-3:lumo+2&#39;</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
+<span class="n">orbfile</span> <span class="o">=</span> <span class="n">gwdir</span> <span class="o">/</span> <span class="n">calc</span><span class="o">.</span><span class="n">hdf5_filename</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">QPLevels</span><span class="o">.</span><span class="n">from_orb</span><span class="p">(</span><span class="n">orbfile</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">levels</span><span class="o">.</span><span class="n">energies</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s1">8s</span><span class="si">}</span><span class="s1"> QP energy </span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s1">9.3f</span><span class="si">}</span><span class="s1"> eV&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+HOMO-3   QP energy   -16.469 eV
+HOMO-2   QP energy   -15.013 eV
+HOMO-1   QP energy   -13.800 eV
+HOMO     QP energy    -9.940 eV
+LUMO     QP energy     2.738 eV
+LUMO+1   QP energy     4.652 eV
+LUMO+2   QP energy     6.588 eV
+</pre></div></div>
+</div>
+</section>
+<section id="Step-4:-couplings">
+<h2>Step 4: couplings<a class="headerlink" href="#Step-4:-couplings" title="Link to this heading">¶</a></h2>
+<p>The gradient of an energy gap, projected on the mass-weighted normal modes, gives the reorganization energy <span class="math notranslate nohighlight">\(\lambda_\nu\)</span> and the Huang-Rhys factor <span class="math notranslate nohighlight">\(S_\nu = \lambda_\nu / \hbar\omega_\nu\)</span> of every mode. For the HOMO, the oxygen lone pair of formaldehyde, the coupling is weak; the deeper levels and the LUMO (<span class="math notranslate nohighlight">\(\pi^*\)</span>) couple strongly to the C=O stretch.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">levels</span><span class="o">.</span><span class="n">couplings</span><span class="p">(</span><span class="n">modes</span><span class="p">)):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">reorganization</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s1">8s</span><span class="si">}</span><span class="s1"> lambda = </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">total_reorganization</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> eV, &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;strongest mode </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">wavenumbers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> cm^-1 (S = </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">huang_rhys</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+HOMO-3   lambda = 0.692 eV, strongest mode 1533 cm^-1 (S = 2.14)
+HOMO-2   lambda = 0.239 eV, strongest mode 1897 cm^-1 (S = 0.81)
+HOMO-1   lambda = 0.573 eV, strongest mode 1897 cm^-1 (S = 2.37)
+HOMO     lambda = 0.022 eV, strongest mode 1533 cm^-1 (S = 0.11)
+LUMO     lambda = 0.323 eV, strongest mode 1897 cm^-1 (S = 1.10)
+LUMO+1   lambda = 0.249 eV, strongest mode 2904 cm^-1 (S = 0.64)
+LUMO+2   lambda = 0.186 eV, strongest mode 1897 cm^-1 (S = 0.43)
+</pre></div></div>
+</div>
+<p>The excited-state forces of S1 give the couplings of the absorption. <code class="docutils literal notranslate"><span class="pre">read_gap_gradient</span></code> takes the gradient of the excitation energy from the orb file (ground-state minus excited-state forces).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">couplings_from_gradient</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">read_gap_gradient</span><span class="p">(</span><span class="n">orbfile</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_couplings</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;S$_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+lambda = 0.3984 eV, sum S = 1.667, 6 modes
+   cm^-1   lambda/meV       S
+  1897.2       378.84   1.611
+  2904.2        18.84   0.052
+  1533.0         0.73   0.004
+  2969.9         0.00   0.000
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_VIBRONIC_SPECTRA_15_1.png" src="../_images/xtp-tutorials_VIBRONIC_SPECTRA_15_1.png" />
+</div>
+</div>
+</section>
+<section id="Step-5:-spectra-of-one-molecule">
+<h2>Step 5: spectra of one molecule<a class="headerlink" href="#Step-5:-spectra-of-one-molecule" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">level_spectrum</span></code> selects the levels that belong to a process and places the vibronic line shape of each at its QP energy:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>process</p></th>
+<th class="head"><p>levels</p></th>
+<th class="head"><p>energy axis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electron-removal</span></code></p></td>
+<td><p>occupied</p></td>
+<td><p>QP energy (HOMO, HOMO-1, …)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ionization</span></code></p></td>
+<td><p>occupied</p></td>
+<td><p>ionization energy, <span class="math notranslate nohighlight">\(-E_\mathrm{QP}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electron-addition</span></code></p></td>
+<td><p>empty</p></td>
+<td><p>QP energy (LUMO, LUMO+1, …)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">electron-affinity</span></code></p></td>
+<td><p>empty</p></td>
+<td><p>electron affinity, <span class="math notranslate nohighlight">\(-E_\mathrm{QP}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>The process also fixes on which side of the 0-0 line the progression lies. A small Gaussian broadening <code class="docutils literal notranslate"><span class="pre">sigma</span></code> gives every vibronic line a width.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ups</span> <span class="o">=</span> <span class="n">level_spectrum</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="s1">&#39;ionization&#39;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">ups</span><span class="o">.</span><span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s1">8s</span><span class="si">}</span><span class="s1"> lambda </span><span class="si">{</span><span class="n">ups</span><span class="o">.</span><span class="n">reorganization</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> eV, </span><span class="si">{</span><span class="n">note</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_spectrum</span><span class="p">(</span><span class="n">ups</span><span class="p">,</span> <span class="n">broadening</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">onset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">DOUBLE_COLUMN</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;onset </span><span class="si">{</span><span class="n">fig</span><span class="o">.</span><span class="n">onset</span><span class="p">[</span><span class="s1">&#39;onset&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> eV, first peak </span><span class="si">{</span><span class="n">fig</span><span class="o">.</span><span class="n">onset</span><span class="p">[</span><span class="s1">&#39;peak&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+HOMO-3   lambda 0.692 eV, molecular QP energy -16.4685 eV
+HOMO-2   lambda 0.239 eV, molecular QP energy -15.0128 eV
+HOMO-1   lambda 0.573 eV, molecular QP energy -13.7995 eV
+HOMO     lambda 0.022 eV, molecular QP energy -9.9399 eV
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_VIBRONIC_SPECTRA_17_1.png" src="../_images/xtp-tutorials_VIBRONIC_SPECTRA_17_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+onset 9.81 eV, first peak 9.92 eV
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">broadening</span></code> in <code class="docutils literal notranslate"><span class="pre">plot_spectrum</span></code> is an instrument resolution applied on top; the grey curve is the intrinsic spectrum. The onset is the tangent construction used for experimental UPS and IPES spectra. The inverse photoemission spectrum of the empty levels works the same way:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ipes</span> <span class="o">=</span> <span class="n">level_spectrum</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="s1">&#39;electron-addition&#39;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">ipes</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">&#39;ipes.dat&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_spectrum</span><span class="p">(</span><span class="n">ipes</span><span class="p">,</span> <span class="n">broadening</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">onset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_VIBRONIC_SPECTRA_19_0.png" src="../_images/xtp-tutorials_VIBRONIC_SPECTRA_19_0.png" />
+</div>
+</div>
+<p>The absorption line shape of S1 uses <code class="docutils literal notranslate"><span class="pre">vibronic_lineshape</span></code> directly; it is relative to the vertical excitation energy, which we take from the BSE run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega_s1</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">get_excited_state_total_energy</span><span class="p">()</span> <span class="o">-</span> <span class="n">calc</span><span class="o">.</span><span class="n">get_dft_energy</span><span class="p">()</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">vibronic_lineshape</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;absorption&#39;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">absorption</span> <span class="o">=</span> <span class="n">Spectrum</span><span class="p">(</span><span class="n">omega_s1</span> <span class="o">+</span> <span class="n">shape</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;S$_1$&#39;</span><span class="p">:</span> <span class="n">shape</span><span class="o">.</span><span class="n">intensity</span><span class="p">},</span> <span class="s1">&#39;absorption&#39;</span><span class="p">,</span>
+                      <span class="p">{</span><span class="s1">&#39;S$_1$&#39;</span><span class="p">:</span> <span class="n">shape</span><span class="o">.</span><span class="n">reorganization</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;vertical </span><span class="si">{</span><span class="n">omega_s1</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> eV, 0-0 </span><span class="si">{</span><span class="n">omega_s1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">shape</span><span class="o">.</span><span class="n">zero_zero</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> eV&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_spectrum</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">broadening</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+vertical 3.654 eV, 0-0 3.256 eV
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_VIBRONIC_SPECTRA_21_1.png" src="../_images/xtp-tutorials_VIBRONIC_SPECTRA_21_1.png" />
+</div>
+</div>
+</section>
+<section id="More-levels-later,-without-a-new-GW-run">
+<h2>More levels later, without a new GW run<a class="headerlink" href="#More-levels-later,-without-a-new-GW-run" title="Link to this heading">¶</a></h2>
+<p>For large molecules DFT and GW are the expensive part. Gradients of further levels can be added to the existing orb file: <code class="docutils literal notranslate"><span class="pre">add_gradients</span></code> runs <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> with <code class="docutils literal notranslate"><span class="pre">tasks=gradients</span></code>, which reads the file and computes only the levels whose gradients are not stored yet. The options must be those of the original run (basis sets and functional are checked).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_gradients</span><span class="p">(</span><span class="n">orbfile</span><span class="p">,</span> <span class="n">qp_levels</span><span class="o">=</span><span class="s1">&#39;homo-5:lumo+2&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="o">**</span><span class="n">settings</span><span class="p">,</span> <span class="o">**</span><span class="n">gw_settings</span><span class="p">},</span>
+              <span class="n">nthreads</span><span class="o">=</span><span class="n">nthreads</span><span class="p">)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">QPLevels</span><span class="o">.</span><span class="n">from_orb</span><span class="p">(</span><span class="n">orbfile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;HOMO-5&#39;, &#39;HOMO-4&#39;, &#39;HOMO-3&#39;, &#39;HOMO-2&#39;, &#39;HOMO-1&#39;, &#39;HOMO&#39;, &#39;LUMO&#39;, &#39;LUMO+1&#39;, &#39;LUMO+2&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="Ensembles:-spectra-of-a-morphology">
+<h2>Ensembles: spectra of a morphology<a class="headerlink" href="#Ensembles:-spectra-of-a-morphology" title="Link to this heading">¶</a></h2>
+<p>In a film every molecule has its own vertical energies, e.g. from QM/MM. Such site energies are passed per level; a level without site energies uses the distribution of the nearest level that has them, shifted by the difference of the molecular QP energies (<code class="docutils literal notranslate"><span class="pre">notes</span></code> says how each level was placed). Here we invent a Gaussian distribution of HOMO ionization energies of 500 sites (0.1 eV disorder, lowered by 1.2 eV by the polarization of the environment) for illustration. <code class="docutils literal notranslate"><span class="pre">select</span></code> restricts the
+spectrum to some levels.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">homo_index</span> <span class="o">=</span> <span class="n">levels</span><span class="o">.</span><span class="n">homo</span>
+<span class="n">e_homo</span> <span class="o">=</span> <span class="n">levels</span><span class="o">.</span><span class="n">energies</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">levels</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">homo_index</span><span class="p">)]</span>
+<span class="n">sites</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;homo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="n">e_homo</span> <span class="o">-</span> <span class="mf">1.2</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="mi">500</span><span class="p">)}</span>   <span class="c1"># ionization energies</span>
+
+<span class="c1"># only the valence levels (select), the deeper ones lie far out</span>
+<span class="n">film</span> <span class="o">=</span> <span class="n">level_spectrum</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="s1">&#39;ionization&#39;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+                      <span class="n">site_energies</span><span class="o">=</span><span class="n">sites</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;homo-3&#39;</span><span class="p">,</span> <span class="s1">&#39;homo-2&#39;</span><span class="p">,</span> <span class="s1">&#39;homo-1&#39;</span><span class="p">,</span> <span class="s1">&#39;homo&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">film</span><span class="o">.</span><span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s1">8s</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">note</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_spectrum</span><span class="p">(</span><span class="n">film</span><span class="p">,</span> <span class="n">broadening</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">onset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">DOUBLE_COLUMN</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+HOMO-3   site energies of HOMO shifted by +6.5287 eV (molecular QP energy difference)
+HOMO-2   site energies of HOMO shifted by +5.0730 eV (molecular QP energy difference)
+HOMO-1   site energies of HOMO shifted by +3.8596 eV (molecular QP energy difference)
+HOMO     500 site energies
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/xtp-tutorials_VIBRONIC_SPECTRA_25_1.png" src="../_images/xtp-tutorials_VIBRONIC_SPECTRA_25_1.png" />
+</div>
+</div>
+<p>A level keeps its colour in all figures (HOMO and LUMO first, then by the distance from the gap). To compare with a measurement, pass it as <code class="docutils literal notranslate"><span class="pre">experiment=(energies,</span> <span class="pre">intensities)</span></code>; it is scaled to the maximum of the broadened total.</p>
+</section>
+<section id="The-same-on-the-command-line">
+<h2>The same on the command line<a class="headerlink" href="#The-same-on-the-command-line" title="Link to this heading">¶</a></h2>
+<p>All steps are also available as the script <code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span></code> (installed together with <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code>), e.g. for runs on a cluster:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>hessian<span class="w"> </span>-x<span class="w"> </span>minimum.xyz<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--set<span class="w"> </span>dftpackage.basisset<span class="o">=</span>def2-svp<span class="w"> </span>--set<span class="w"> </span>dftpackage.auxbasisset<span class="o">=</span>aux-def2-svp
+xtp_vibronic<span class="w"> </span>hessian<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>--part<span class="w"> </span><span class="m">3</span><span class="w"> </span>--nparts<span class="w"> </span><span class="m">16</span><span class="w">     </span><span class="c1"># e.g. one array job</span>
+xtp_vibronic<span class="w"> </span>modes<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-m<span class="w"> </span>modes.npz
+xtp_vibronic<span class="w"> </span>gradients<span class="w"> </span>molecule.orb<span class="w"> </span>--levels<span class="w"> </span>homo-9:lumo+9<span class="w"> </span>-o<span class="w"> </span>options.xml
+xtp_vibronic<span class="w"> </span>spectrum<span class="w"> </span>-m<span class="w"> </span>modes.npz<span class="w"> </span>-g<span class="w"> </span>molecule.orb<span class="w"> </span>-p<span class="w"> </span>ionization<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sites<span class="w"> </span>site_energies.dat<span class="w"> </span>--columns<span class="w"> </span><span class="nv">homo</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>-o<span class="w"> </span>ups.dat
+xtp_vibronic<span class="w"> </span>plot<span class="w"> </span>-s<span class="w"> </span>ups.dat<span class="w"> </span>--broadening<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span>--onset<span class="w"> </span>-e<span class="w"> </span>measured.dat<span class="w"> </span>-o<span class="w"> </span>ups.pdf
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">&lt;command&gt;</span> <span class="pre">--help</span></code> lists all options.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="single_point.html" class="btn btn-neutral float-left" title="Single Point Energy using pyxtp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MAPPING.html" class="btn btn-neutral float-right" title="From an MD morphology to a state file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

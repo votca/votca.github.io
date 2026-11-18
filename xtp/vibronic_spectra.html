@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7. Vibronic Spectra &mdash; VOTCA 2026-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
+
+  
+      <script src="../_static/documentation_options.js?v=4019ed8d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Charge and Energy Transfer Theory" href="transfer_theory.html" />
+    <link rel="prev" title="6. Excited-State Gradients and Geometry Optimization" href="excited_state_gradients.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/customLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../INSTALL.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../csg/index.html">CSG Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="XTP-MANUAL.html">XTP Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="xtp_introduction.html">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elstruc_theory.html">2. Electronic Structure Theories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projection_embedding.html">3. Projection-Based Embedding (DFT-in-DFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">4. Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excited_state_gradients.html">6. Excited-State Gradients and Geometry Optimization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Vibronic Spectra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">7.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#theory">7.2. Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#couplings">7.2.1. Couplings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#line-shape">7.2.2. Line shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#process-and-energy-axis">7.2.3. Process and energy axis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ensembles-and-spectra-of-several-levels">7.2.4. Ensembles and spectra of several levels</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-by-step">7.3. Step by step</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ground-state-geometry">7.3.1. 1. Ground-state geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hessian">7.3.2. 2. Hessian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gradients">7.3.3. 3. Gradients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#couplings-and-spectra">7.3.4. 4. Couplings and spectra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#figures">7.3.5. 5. Figures</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">7.4. Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations-and-good-practice">7.5. Limitations and good practice</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">8. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">9. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">10. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">11. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">12. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">13. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyxtp.html">14. XTP ASE Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">15. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">16. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">17. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xtp-tutorials/XTP-TUTORIAL.html">XTP Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPERS_GUIDE.html">Developer and Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VOTCA_LANGUAGE_GUIDE.html">VOTCA Internal Contributor Language Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Architecture.html">The architecture of VOTCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Architecture.html">Architecture of votca-xtp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../websiteAndDocumentation.html">Website and Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/votca">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://twitter.com/votca_software">Twitter</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://groups.google.com/g/votca">Forum</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VOTCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Vibronic Spectra</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/xtp/vibronic_spectra.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vibronic-spectra">
+<span id="id1"></span><h1><span class="section-number">7. </span>Vibronic Spectra<a class="headerlink" href="#vibronic-spectra" title="Link to this heading">¶</a></h1>
+<p>When an electron is removed from a molecule (photoemission, UPS), added to
+it (inverse photoemission, IPES) or excited (absorption), the nuclei respond
+to the new charge distribution. A spectrum therefore does not consist of
+sharp lines at the quasiparticle (QP) or excitation energies but of
+vibrational progressions, whose shape and width are set by the coupling of
+the electronic level to the molecular vibrations. VOTCA-XTP computes these
+couplings from analytic GW and GW-BSE gradients and a ground-state Hessian,
+and turns them into vibronically resolved spectra of single molecules and of
+morphologies.</p>
+<p>The tools are in the Python package <code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic</span></code> and in the script
+<code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span></code>; both are installed with <a class="reference internal" href="pyxtp.html"><span class="doc">XTP ASE Interface</span></a>. The tutorial
+<a class="reference internal" href="../xtp-tutorials/VIBRONIC_SPECTRA.html"><span class="doc">Vibronic spectra from GW gradients</span></a> goes through all steps for
+formaldehyde.</p>
+<section id="overview">
+<h2><span class="section-number">7.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>A vibronic spectrum needs three ingredients, all at the minimum of the
+electronic ground state and with the same DFT settings:</p>
+<ul class="simple">
+<li><p>the <strong>normal modes</strong> (from the ground-state Hessian),</p></li>
+<li><p>the <strong>gradients</strong> of the energies whose spectrum is wanted (QP levels for
+UPS and IPES, BSE excitation energies for absorption), and</p></li>
+<li><p>the <strong>vertical energies</strong> at which the bands are placed: the QP or
+excitation energies of the molecule, or the site energies of a
+morphology (e.g. from QM/MM).</p></li>
+</ul>
+<p>The work is split into steps that each leave a file behind. Only the first
+three are expensive, and none of them has to be repeated to change
+temperature, broadening, levels or plots:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>Cost</p></th>
+<th class="head"><p>Result</p></th>
+<th class="head"><p>Repeat when</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ol class="arabic simple">
+<li><p>ground-state geometry</p></li>
+</ol>
+</td>
+<td><p>one DFT optimization</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">minimum.xyz</span></code></p></td>
+<td><p>the method changes</p></td>
+</tr>
+<tr class="row-odd"><td><ol class="arabic simple" start="2">
+<li><p>Hessian</p></li>
+</ol>
+</td>
+<td><p><span class="math notranslate nohighlight">\(6N+1\)</span> DFT force runs</p></td>
+<td><p>one directory per displacement, <code class="docutils literal notranslate"><span class="pre">modes.npz</span></code></p></td>
+<td><p>never (interrupted runs resume)</p></td>
+</tr>
+<tr class="row-even"><td><ol class="arabic simple" start="3">
+<li><p>GW(-BSE) with gradients</p></li>
+</ol>
+</td>
+<td><p>one GW(-BSE) run + gradients</p></td>
+<td><p>orb file</p></td>
+<td><p>never; further levels or states are added to it</p></td>
+</tr>
+<tr class="row-odd"><td><ol class="arabic simple" start="4">
+<li><p>spectrum</p></li>
+</ol>
+</td>
+<td><p>seconds</p></td>
+<td><p>text file, one column per level</p></td>
+<td><p>parameters, levels or site energies change</p></td>
+</tr>
+<tr class="row-even"><td><ol class="arabic simple" start="5">
+<li><p>figure</p></li>
+</ol>
+</td>
+<td><p>seconds</p></td>
+<td><p>PDF/SVG/PNG</p></td>
+<td><p>broadening, axis range, experiment overlay change</p></td>
+</tr>
+</tbody>
+</table>
+<p>On the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>hessian<span class="w"> </span>-x<span class="w"> </span>minimum.xyz<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span><span class="w"> </span>-o<span class="w"> </span>options.xml
+xtp_vibronic<span class="w"> </span>modes<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-m<span class="w"> </span>modes.npz
+xtp_tools<span class="w"> </span>-e<span class="w"> </span>dftgwbse<span class="w"> </span>-o<span class="w"> </span>dftgwbse.xml<span class="w"> </span>-n<span class="w"> </span><span class="m">8</span><span class="w">   </span><span class="c1"># with qp_gradients, see below</span>
+xtp_vibronic<span class="w"> </span>spectrum<span class="w"> </span>-m<span class="w"> </span>modes.npz<span class="w"> </span>-g<span class="w"> </span>molecule.orb<span class="w"> </span>-p<span class="w"> </span>ionization<span class="w"> </span>-o<span class="w"> </span>ups.dat
+xtp_vibronic<span class="w"> </span>plot<span class="w"> </span>-s<span class="w"> </span>ups.dat<span class="w"> </span>--broadening<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span>--onset<span class="w"> </span>-o<span class="w"> </span>ups.pdf
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">&lt;command&gt;</span> <span class="pre">--help</span></code> lists all options of a command.</p>
+</section>
+<section id="theory">
+<h2><span class="section-number">7.2. </span>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
+<section id="couplings">
+<h3><span class="section-number">7.2.1. </span>Couplings<a class="headerlink" href="#couplings" title="Link to this heading">¶</a></h3>
+<p>The model is that of displaced harmonic oscillators: the initial state (the
+neutral ground state) has the harmonic potential of its Hessian, and the
+final state (cation, anion or excited state) has the same frequencies and
+normal modes, displaced by the linear term of the energy gap
+<span class="math notranslate nohighlight">\(\Delta E = E_\mathrm{final} - E_\mathrm{initial}\)</span>. With the gradient
+<span class="math notranslate nohighlight">\(\mathbf g = \nabla \Delta E\)</span> at the ground-state minimum and the
+mass-weighted normal modes <span class="math notranslate nohighlight">\(\mathbf e_\nu\)</span> with frequencies
+<span class="math notranslate nohighlight">\(\omega_\nu\)</span>, the projections</p>
+<div class="math notranslate nohighlight">
+\[q_\nu = \mathbf e_\nu \cdot \mathbf M^{-1/2} \mathbf g\]</div>
+<p>give the reorganization energy and the Huang-Rhys factor of every mode,</p>
+<div class="math notranslate nohighlight">
+\[\lambda_\nu = \frac{q_\nu^2}{2\omega_\nu^2}, \qquad
+S_\nu = \frac{\lambda_\nu}{\hbar\omega_\nu}.\]</div>
+<p><span class="math notranslate nohighlight">\(\lambda = \sum_\nu \lambda_\nu\)</span> is the relaxation energy of the final
+state from the vertical point: the vertical and the adiabatic (0-0) energy
+differ by <span class="math notranslate nohighlight">\(\lambda\)</span>. For charge transfer between two molecules the
+reorganization energy is the sum of the <span class="math notranslate nohighlight">\(\lambda\)</span> of charging and
+discharging. The sign of the gradient does not matter.</p>
+<p>For a QP level <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(\Delta E\)</span> is the QP energy
+<span class="math notranslate nohighlight">\(E_p\)</span> itself: removing an electron from level <span class="math notranslate nohighlight">\(p\)</span> costs
+<span class="math notranslate nohighlight">\(-E_p\)</span>, adding one to an empty level gains it. For a BSE state it is
+the excitation energy <span class="math notranslate nohighlight">\(\Omega_n\)</span>. Both gradients are analytic and
+include the response of the QP corrections (see
+<a class="reference internal" href="excited_state_gradients.html"><span class="doc">Excited-State Gradients and Geometry Optimization</span></a>).</p>
+<p>Translations and rotations are projected out of the Hessian exactly (Eckart
+conditions at the reference geometry): there are always <span class="math notranslate nohighlight">\(3N-6\)</span>
+(<span class="math notranslate nohighlight">\(3N-5\)</span> for linear molecules) vibrations, and no frequency threshold
+is needed to remove the rigid-body motions.</p>
+</section>
+<section id="line-shape">
+<h3><span class="section-number">7.2.2. </span>Line shape<a class="headerlink" href="#line-shape" title="Link to this heading">¶</a></h3>
+<p>The thermal line shape of the transition, with the initial state in thermal
+equilibrium at temperature <span class="math notranslate nohighlight">\(T\)</span>, is the Fourier transform of the
+generating function (Lax, Kubo),</p>
+<div class="math notranslate nohighlight">
+\[F(E) = \frac{1}{2\pi}\int d\tau\, e^{i(E-E_{00})\tau}
+\exp\Big(\sum_\nu S_\nu\big[(n_\nu+1)e^{-i\omega_\nu\tau}
++ n_\nu e^{i\omega_\nu\tau} - (2n_\nu+1)\big]\Big)
+\, e^{-i\lambda_\mathrm{cl}\tau - \lambda_\mathrm{cl}k_BT\tau^2}
+\, e^{-\sigma^2\tau^2/2 - \gamma|\tau|},\]</div>
+<p>with <span class="math notranslate nohighlight">\(\tau = t/\hbar\)</span>, <span class="math notranslate nohighlight">\(\hbar = 1\)</span> in the exponents, and the
+Bose occupations <span class="math notranslate nohighlight">\(n_\nu\)</span>. At <span class="math notranslate nohighlight">\(T=0\)</span> it is a Poisson progression
+of lines <span class="math notranslate nohighlight">\(E_{00} + k\hbar\omega_\nu\)</span> with weights
+<span class="math notranslate nohighlight">\(e^{-S}S^k/k!\)</span>; at high temperature it becomes the Marcus Gaussian.
+The further terms are</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_\mathrm{cl}\)</span>: a classical reorganization energy, for
+modes that are not in the Hessian (the environment, <em>outer sphere</em>) or
+that are better treated classically, such as torsions that are hindered
+in a solid (option <code class="docutils literal notranslate"><span class="pre">classical_below</span></code>). It adds a Gaussian of variance
+<span class="math notranslate nohighlight">\(2\lambda_\mathrm{cl}k_BT\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span>: Gaussian (standard deviation) and
+Lorentzian (half width) broadening of every vibronic line, e.g. for the
+lifetime of the final state.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(F\)</span> is normalized, its mean is the vertical energy
+<span class="math notranslate nohighlight">\(E_\mathrm{vert} = E_{00} + \lambda\)</span>, and it is evaluated with one
+fast Fourier transform. A warning is printed if the time integral has not
+decayed on the grid (no broadening and no classical part).</p>
+</section>
+<section id="process-and-energy-axis">
+<h3><span class="section-number">7.2.3. </span>Process and energy axis<a class="headerlink" href="#process-and-energy-axis" title="Link to this heading">¶</a></h3>
+<p>Which side of <span class="math notranslate nohighlight">\(E_{00}\)</span> the progression lies on depends on the
+measurement and on the energy axis it is plotted on. <code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic</span></code>
+names the physical process instead:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>process</p></th>
+<th class="head"><p>energy axis (and site energies)</p></th>
+<th class="head"><p>progression</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">absorption</span></code></p></td>
+<td><p>photon energy, <span class="math notranslate nohighlight">\(S_0\to S_n\)</span> (<span class="math notranslate nohighlight">\(\Omega_n\)</span>)</p></td>
+<td><p>above</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">emission</span></code></p></td>
+<td><p>photon energy, <span class="math notranslate nohighlight">\(S_n\to S_0\)</span> (<span class="math notranslate nohighlight">\(\Omega_n\)</span>)</p></td>
+<td><p>below</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">electron-addition</span></code></p></td>
+<td><p>QP energy of the added electron (LUMO, LUMO+1, …;
+inverse photoemission)</p></td>
+<td><p>above</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">electron-removal</span></code></p></td>
+<td><p>QP energy of the removed electron (HOMO, HOMO-1, …;
+photoemission)</p></td>
+<td><p>below</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ionization</span></code></p></td>
+<td><p>ionization energy, <span class="math notranslate nohighlight">\(-E_\mathrm{QP}\)</span> of an
+occupied level (photoemission, binding energy)</p></td>
+<td><p>above</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">electron-affinity</span></code></p></td>
+<td><p>electron affinity, <span class="math notranslate nohighlight">\(-E_\mathrm{QP}\)</span> of an empty
+level (inverse photoemission)</p></td>
+<td><p>below</p></td>
+</tr>
+</tbody>
+</table>
+<p>For emission the modes should strictly be those of the excited state.</p>
+</section>
+<section id="ensembles-and-spectra-of-several-levels">
+<h3><span class="section-number">7.2.4. </span>Ensembles and spectra of several levels<a class="headerlink" href="#ensembles-and-spectra-of-several-levels" title="Link to this heading">¶</a></h3>
+<p>A spectrum of a film is the sum of the line shapes of all molecules, each
+placed at its own vertical energy <span class="math notranslate nohighlight">\(E_i\)</span> (e.g. QP or excitation
+energies from QM/MM):</p>
+<div class="math notranslate nohighlight">
+\[I(E) = \sum_i w_i F(E - E_i),\]</div>
+<p>with optional weights <span class="math notranslate nohighlight">\(w_i\)</span>, e.g. <span class="math notranslate nohighlight">\(e^{-z_i/\ell}\)</span> for the
+surface sensitivity of photoemission (depth <span class="math notranslate nohighlight">\(z_i\)</span>, inelastic mean free
+path <span class="math notranslate nohighlight">\(\ell\)</span>). The line shape <span class="math notranslate nohighlight">\(F\)</span> is that of one molecule; the
+disorder of the environment enters through the distribution of the
+<span class="math notranslate nohighlight">\(E_i\)</span>, the polarization of the environment through their mean.</p>
+<p>For UPS and IPES the bands of all levels are added, each with its own
+couplings. Often site energies are known only for the frontier levels;
+the other levels then use the distribution of the nearest level that has
+them, shifted rigidly by the difference of the molecular QP energies. All
+levels count equally: photoemission cross sections are not included.</p>
+<p>The onset of a spectrum is determined as in experiment: the tangent at the
+steepest point of the outer edge of the first band is extrapolated to zero
+intensity.</p>
+</section>
+</section>
+<section id="step-by-step">
+<h2><span class="section-number">7.3. </span>Step by step<a class="headerlink" href="#step-by-step" title="Link to this heading">¶</a></h2>
+<section id="ground-state-geometry">
+<h3><span class="section-number">7.3.1. </span>1. Ground-state geometry<a class="headerlink" href="#ground-state-geometry" title="Link to this heading">¶</a></h3>
+<p>The couplings are those at the ground-state minimum, so the geometry has to
+be optimized tightly with the same functional and basis set as the
+following steps, e.g. with analytic DFT forces through <a class="reference internal" href="pyxtp.html"><span class="doc">XTP ASE Interface</span></a> and
+ASE:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">BFGS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp_ground_state_factory</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dftpackage/functional&#39;</span><span class="p">:</span> <span class="s1">&#39;XC_HYB_GGA_XC_PBEH&#39;</span><span class="p">,</span>   <span class="c1"># PBE0</span>
+            <span class="s1">&#39;dftpackage/basisset&#39;</span><span class="p">:</span> <span class="s1">&#39;def2-tzvp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dftpackage/auxbasisset&#39;</span><span class="p">:</span> <span class="s1">&#39;aux-def2-tzvp&#39;</span><span class="p">}</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">xtp_ground_state_factory</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">nthreads</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;molecule.xyz&#39;</span><span class="p">)</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;minimum.xyz&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Functionals are given by their libxc names (<code class="docutils literal notranslate"><span class="pre">XC_HYB_GGA_XC_PBEH</span></code> for
+PBE0). The residual forces of the minimum are reported in step 2.</p>
+</section>
+<section id="hessian">
+<h3><span class="section-number">7.3.2. </span>2. Hessian<a class="headerlink" href="#hessian" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FiniteDifferenceHessian</span></code> differentiates analytic forces by central
+differences: every atom is displaced along <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and
+<span class="math notranslate nohighlight">\(z\)</span> in both directions (<span class="math notranslate nohighlight">\(6N+1\)</span> calculations with the reference;
+<code class="docutils literal notranslate"><span class="pre">scheme='forward'</span></code> needs <span class="math notranslate nohighlight">\(3N+1\)</span> but has a larger error). The
+default step of 0.005 Å reproduces analytic Hessians to about
+1 cm<sup>-1</sup> (see Validation).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="n">FiniteDifferenceHessian</span>
+
+<span class="n">fd</span> <span class="o">=</span> <span class="n">FiniteDifferenceHessian</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;minimum.xyz&#39;</span><span class="p">),</span> <span class="n">factory</span><span class="p">,</span>
+                             <span class="n">workdir</span><span class="o">=</span><span class="s1">&#39;hessian&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+<span class="n">fd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>                        <span class="c1"># or fd.run(part=i, nparts=n)</span>
+<span class="n">modes</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">normal_modes</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modes</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">modes</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;modes.npz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>hessian<span class="w"> </span>-x<span class="w"> </span>minimum.xyz<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-t<span class="w"> </span><span class="m">8</span><span class="w"> </span>-o<span class="w"> </span>options.xml
+xtp_vibronic<span class="w"> </span>status<span class="w"> </span>-w<span class="w"> </span>hessian
+xtp_vibronic<span class="w"> </span>modes<span class="w"> </span>-w<span class="w"> </span>hessian<span class="w"> </span>-m<span class="w"> </span>modes.npz
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Every displacement runs in its own directory of <code class="docutils literal notranslate"><span class="pre">workdir</span></code> and is
+claimed with a lock file. A repeated run skips what is done, so an
+interrupted run resumes, and several processes can work on the same
+<code class="docutils literal notranslate"><span class="pre">workdir</span></code> at the same time, on one machine or on cluster nodes that
+share the file system. <code class="docutils literal notranslate"><span class="pre">--part</span> <span class="pre">i</span> <span class="pre">--nparts</span> <span class="pre">n</span></code> (<code class="docutils literal notranslate"><span class="pre">run(part=i,</span>
+<span class="pre">nparts=n)</span></code>) splits the jobs deterministically, e.g. for array jobs. The
+reference geometry is computed first, and the displaced SCFs start from
+its orbitals.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">status</span> <span class="pre">--clear-locks</span></code> removes the locks of jobs that
+crashed.</p></li>
+<li><p>The workdir remembers geometry, step, scheme and atoms; a different
+setup is refused instead of mixing results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">modes</span></code> reports the largest residual force at the
+reference geometry and the asymmetry of the finite-difference Hessian.
+Imaginary frequencies mean that the geometry is not a minimum; their
+modes are left out of the couplings with a warning.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">indices</span></code> (<code class="docutils literal notranslate"><span class="pre">--atoms</span></code>) displaces only some atoms (partial Hessian).</p></li>
+<li><p>Any ASE calculator can be used through its own factory
+<code class="docutils literal notranslate"><span class="pre">f(directory,</span> <span class="pre">displacement)</span></code>; an existing ORCA Hessian can be read with
+<code class="docutils literal notranslate"><span class="pre">read_orca_hessian</span></code> (<code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">spectrum</span> <span class="pre">--orca-hess</span></code>).</p></li>
+</ul>
+</section>
+<section id="gradients">
+<h3><span class="section-number">7.3.3. </span>3. Gradients<a class="headerlink" href="#gradients" title="Link to this heading">¶</a></h3>
+<p>DFT and GW-BSE are run once at the minimum, with the gradients that are
+needed, using <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qp_gradients</span></code>: QP levels for UPS and IPES, as a list of levels or
+ranges relative to HOMO and LUMO or as absolute MO indices, e.g.
+<code class="docutils literal notranslate"><span class="pre">homo-9:lumo+9</span></code>, <code class="docutils literal notranslate"><span class="pre">homo,lumo</span></code> or <code class="docutils literal notranslate"><span class="pre">30:40</span></code>. The levels must lie in
+the QP window (<code class="docutils literal notranslate"><span class="pre">gwbse.qpmin</span></code>, <code class="docutils literal notranslate"><span class="pre">gwbse.qpmax</span></code>). No BSE is needed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">excited_state_forces</span></code>: one BSE state for absorption or emission, e.g.
+<code class="docutils literal notranslate"><span class="pre">s1</span></code> (needs <code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.compute_forces</span></code>).</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp</span><span class="w"> </span><span class="kn">import</span> <span class="n">xtp</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">nthreads</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">excited_state</span><span class="o">=</span><span class="s1">&#39;s1&#39;</span><span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;gwbse/gw/mode&#39;</span><span class="p">:</span> <span class="s1">&#39;evGW&#39;</span><span class="p">})</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">qp_gradients</span> <span class="o">=</span> <span class="s1">&#39;homo-9:lumo+9&#39;</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>        <span class="c1"># writes the orb file</span>
+</pre></div>
+</div>
+<p>The gradients are stored in the orb file. For more levels or another
+excited state later, DFT and GW-BSE need not be repeated:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>gradients<span class="w"> </span>molecule.orb<span class="w"> </span>--levels<span class="w"> </span>homo-15:lumo+15<span class="w"> </span>-o<span class="w"> </span>options.xml
+xtp_vibronic<span class="w"> </span>gradients<span class="w"> </span>molecule.orb<span class="w"> </span>--state<span class="w"> </span>s2<span class="w"> </span>-o<span class="w"> </span>options.xml
+</pre></div>
+</div>
+<p>This runs <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> with <code class="docutils literal notranslate"><span class="pre">tasks=gradients</span></code> and must use the options of
+the original run (basis sets and functional are compared with the file; a
+different GW-BSE setup is caught by the QP and excitation energies rebuilt
+for the gradient). Levels whose gradients are stored already are not
+recomputed. From Python: <code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic.add_gradients</span></code>.</p>
+<p>DFT, GW and the three-index integrals are shared by all levels; every
+level then costs one coupled-perturbed Kohn-Sham (Z-vector) solution and
+one pass over the integral derivatives. The
+gradients are those of the perturbative QP energies; see
+<a class="reference internal" href="excited_state_gradients.html"><span class="doc">Excited-State Gradients and Geometry Optimization</span></a> for the methods covered (closed shell, RI,
+G0W0 or evGW with the plasmon-pole or exact self-energy, no embedding).
+Gradients from other sources can be used as well: <code class="docutils literal notranslate"><span class="pre">read_gap_gradient</span></code>
+reads orb files, ORCA-style <code class="docutils literal notranslate"><span class="pre">.engrad</span></code> files and arrays in eV/Å.</p>
+</section>
+<section id="couplings-and-spectra">
+<h3><span class="section-number">7.3.4. </span>4. Couplings and spectra<a class="headerlink" href="#couplings-and-spectra" title="Link to this heading">¶</a></h3>
+<section id="single-molecule">
+<h4><span class="section-number">7.3.4.1. </span>Single molecule<a class="headerlink" href="#single-molecule" title="Link to this heading">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="n">NormalModes</span><span class="p">,</span> <span class="n">QPLevels</span><span class="p">,</span> <span class="n">level_spectrum</span>
+
+<span class="n">modes</span> <span class="o">=</span> <span class="n">NormalModes</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;modes.npz&#39;</span><span class="p">)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">QPLevels</span><span class="o">.</span><span class="n">from_orb</span><span class="p">(</span><span class="s1">&#39;molecule.orb&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">levels</span><span class="o">.</span><span class="n">couplings</span><span class="p">(</span><span class="n">modes</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ups</span> <span class="o">=</span> <span class="n">level_spectrum</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="s1">&#39;ionization&#39;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+                     <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">ups</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ups.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">level_spectrum</span></code> uses all occupied levels with gradients for
+<code class="docutils literal notranslate"><span class="pre">electron-removal</span></code> and <code class="docutils literal notranslate"><span class="pre">ionization</span></code> and all empty ones for
+<code class="docutils literal notranslate"><span class="pre">electron-addition</span></code> and <code class="docutils literal notranslate"><span class="pre">electron-affinity</span></code>; <code class="docutils literal notranslate"><span class="pre">select</span></code> restricts
+them, e.g. <code class="docutils literal notranslate"><span class="pre">select=['homo-2',</span> <span class="pre">'homo-1',</span> <span class="pre">'homo']</span></code>. Without site energies
+every band is placed at the molecular QP energy. The command line
+equivalent is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>spectrum<span class="w"> </span>-m<span class="w"> </span>modes.npz<span class="w"> </span>-g<span class="w"> </span>molecule.orb<span class="w"> </span>-p<span class="w"> </span>ionization<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sigma<span class="w"> </span><span class="m">0</span>.02<span class="w"> </span>-o<span class="w"> </span>ups.dat
+</pre></div>
+</div>
+<p>For one transition, e.g. the absorption to S<sub>1</sub>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">couplings_from_gradient</span><span class="p">,</span> <span class="n">read_gap_gradient</span><span class="p">,</span>
+                            <span class="n">vibronic_lineshape</span><span class="p">)</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">couplings_from_gradient</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">read_gap_gradient</span><span class="p">(</span><span class="s1">&#39;molecule.orb&#39;</span><span class="p">))</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">vibronic_lineshape</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;absorption&#39;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="c1"># shape.energy is relative to the vertical excitation energy,</span>
+<span class="c1"># shape.zero_zero is E_00 - E_vert</span>
+</pre></div>
+</div>
+<p>(<code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span> <span class="pre">lineshape</span> <span class="pre">-g</span> <span class="pre">molecule.orb</span> <span class="pre">-p</span> <span class="pre">absorption</span> <span class="pre">...</span></code>).
+<code class="docutils literal notranslate"><span class="pre">couplings_from_geometry</span></code> takes an optimized excited-state geometry
+instead of the gradient; the difference between the two routes measures
+anharmonicity and frequency changes.</p>
+</section>
+<section id="morphology">
+<h4><span class="section-number">7.3.4.2. </span>Morphology<a class="headerlink" href="#morphology" title="Link to this heading">¶</a></h4>
+<p>Site energies are given per level, on the energy axis of the process:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">film</span> <span class="o">=</span> <span class="n">level_spectrum</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="s1">&#39;electron-addition&#39;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+                      <span class="n">lambda_classical</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                      <span class="n">site_energies</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;lumo&#39;</span><span class="p">:</span> <span class="n">e_lumo</span><span class="p">,</span> <span class="s1">&#39;lumo+1&#39;</span><span class="p">:</span> <span class="n">e_lumo1</span><span class="p">},</span>
+                      <span class="n">weights</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">depth</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">film</span><span class="o">.</span><span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">note</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>spectrum<span class="w"> </span>-m<span class="w"> </span>modes.npz<span class="w"> </span>-g<span class="w"> </span>molecule.orb<span class="w"> </span>-p<span class="w"> </span>electron-addition<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--lambda-classical<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>--sites<span class="w"> </span>sites.dat<span class="w"> </span>--columns<span class="w"> </span><span class="nv">lumo</span><span class="o">=</span><span class="m">3</span>,lumo+1<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--where<span class="w"> </span><span class="s1">&#39;1&gt;4.0&#39;</span><span class="w"> </span>--weight-column<span class="w"> </span><span class="m">7</span><span class="w"> </span>-o<span class="w"> </span>ipes.dat
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--columns</span></code> assigns columns (0-based) of the site file to levels,
+<code class="docutils literal notranslate"><span class="pre">--where</span></code> selects rows (e.g. sites more than 4 nm below the surface, if
+column 1 holds the depth). Levels without site energies are shifted copies
+of the nearest level that has them; <code class="docutils literal notranslate"><span class="pre">notes</span></code> (and the header of the
+output file) say how every level was placed.</p>
+</section>
+<section id="parameters">
+<h4><span class="section-number">7.3.4.3. </span>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temperature</span></code></p></td>
+<td><p>K; enters the Bose occupations and the classical term</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lambda_classical</span></code></p></td>
+<td><p>classical (outer-sphere) reorganization energy, eV</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sigma</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
+<td><p>Gaussian (standard deviation) and Lorentzian (half width)
+broadening of every vibronic line, eV</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">classical_below</span></code></p></td>
+<td><p>modes below this energy are moved to the classical term
+(<code class="docutils literal notranslate"><span class="pre">--classical-below</span></code> in cm<sup>-1</sup>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">min_wavenumber</span></code></p></td>
+<td><p>modes below this frequency (cm<sup>-1</sup>) are left out;
+their <span class="math notranslate nohighlight">\(\lambda\)</span> is reported</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">step</span></code></p></td>
+<td><p>energy grid, eV</p></td>
+</tr>
+</tbody>
+</table>
+<p>The instrument resolution is best applied when plotting (below), so that
+it can be changed without recomputing the spectrum.</p>
+</section>
+</section>
+<section id="figures">
+<h3><span class="section-number">7.3.5. </span>5. Figures<a class="headerlink" href="#figures" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic.plot</span></code> (needs <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>) makes figures for
+publications: vector output, journal column widths (<code class="docutils literal notranslate"><span class="pre">SINGLE_COLUMN</span></code>
+3.375 in, <code class="docutils literal notranslate"><span class="pre">DOUBLE_COLUMN</span></code> 7 in), and colours that are distinguishable
+with colour-vision deficiencies. Every level keeps its colour in all
+figures (HOMO and LUMO first, then by the distance from the gap).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Spectrum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyxtp.vibronic.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">paper_style</span><span class="p">,</span> <span class="n">plot_spectrum</span><span class="p">,</span> <span class="n">plot_couplings</span>
+
+<span class="k">with</span> <span class="n">paper_style</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_spectrum</span><span class="p">(</span><span class="n">Spectrum</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;ipes.dat&#39;</span><span class="p">),</span> <span class="n">broadening</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                        <span class="n">onset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">experiment</span><span class="o">=</span><span class="p">(</span><span class="n">e_exp</span><span class="p">,</span> <span class="n">i_exp</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ipes.pdf&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">onset</span><span class="p">)</span>                  <span class="c1"># onset and first peak, eV</span>
+    <span class="n">plot_couplings</span><span class="p">(</span><span class="n">levels</span><span class="o">.</span><span class="n">couplings</span><span class="p">(</span><span class="n">modes</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;LUMO&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;lumo.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtp_vibronic<span class="w"> </span>plot<span class="w"> </span>-s<span class="w"> </span>ipes.dat<span class="w"> </span>--broadening<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span>--onset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--experiment<span class="w"> </span>measured.dat<span class="w"> </span>-o<span class="w"> </span>ipes.pdf
+xtp_vibronic<span class="w"> </span>lineshape<span class="w"> </span>-m<span class="w"> </span>modes.npz<span class="w"> </span>-g<span class="w"> </span>molecule.orb<span class="w"> </span>-p<span class="w"> </span>absorption<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--couplings<span class="w"> </span>s1_modes.txt<span class="w"> </span>-o<span class="w"> </span>s1.dat
+xtp_vibronic<span class="w"> </span>plot<span class="w"> </span>-c<span class="w"> </span>s1_modes.txt<span class="w"> </span>--title<span class="w"> </span>S1<span class="w"> </span>-o<span class="w"> </span>s1_modes.pdf
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">plot_spectrum</span></code> draws the contributions of the levels, the intrinsic
+total, the total with the instrument broadening (Gaussian, standard
+deviation) and an optional measured spectrum, scaled to the broadened
+total. With <code class="docutils literal notranslate"><span class="pre">onset</span></code> the tangent construction and the first peak are
+marked. <code class="docutils literal notranslate"><span class="pre">plot_couplings</span></code> shows <span class="math notranslate nohighlight">\(\lambda_\nu\)</span> (or <span class="math notranslate nohighlight">\(S_\nu\)</span>)
+per mode and the running sum.</p>
+</section>
+</section>
+<section id="validation">
+<h2><span class="section-number">7.4. </span>Validation<a class="headerlink" href="#validation" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Hessian: water, PBE0/def2-SVP, finite differences of xtp forces
+1642/3866/3966 cm<sup>-1</sup>, analytic Hessian of PySCF
+1643.5/3865.2/3964.9 cm<sup>-1</sup>.</p></li>
+<li><p>QP gradients against finite differences of the QP energies with GW
+recomputed at displaced geometries (water, HOMO-2 to LUMO+2): relative
+errors below <span class="math notranslate nohighlight">\(10^{-6}\)</span> for G0W0 and evGW with the plasmon-pole and
+the exact self-energy.</p></li>
+<li><p>Line shapes: Poisson progression at <span class="math notranslate nohighlight">\(T=0\)</span>, Marcus limit at high
+temperature, normalization, mean and variance, detailed balance
+(unit tests in <code class="docutils literal notranslate"><span class="pre">test_vibronic.py</span></code>).</p></li>
+</ul>
+</section>
+<section id="limitations-and-good-practice">
+<h2><span class="section-number">7.5. </span>Limitations and good practice<a class="headerlink" href="#limitations-and-good-practice" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Linear coupling only.</strong> The final state has the frequencies and modes
+of the initial state: no frequency changes, no Duschinsky rotation, and
+modes that are not displaced by symmetry do not appear even if their
+frequency changes (e.g. the out-of-plane mode of formaldehyde in
+S<sub>1</sub>). Herzberg-Teller effects are not included.</p></li>
+<li><p><strong>Consistency.</strong> Geometry, Hessian and gradients must come from the same
+functional and basis set, and the geometry must be a tight minimum: the
+gradient of the gap is only that of the final state if the ground-state
+gradient vanishes.</p></li>
+<li><p><strong>Soft modes.</strong> Low-frequency torsions have large Huang-Rhys factors but
+small <span class="math notranslate nohighlight">\(\lambda\)</span>; in a solid they are hindered. <code class="docutils literal notranslate"><span class="pre">classical_below</span></code>
+(e.g. 100 cm<sup>-1</sup>) moves them into the classical term,
+<code class="docutils literal notranslate"><span class="pre">min_wavenumber</span></code> leaves them out.</p></li>
+<li><p><strong>Intensities.</strong> All levels and sites count equally; cross sections of
+photoemission and the oscillator strengths of other transitions are not
+included.</p></li>
+<li><p><strong>QP levels.</strong> The gradients are those of the perturbative QP energies
+(diagonal QP Hamiltonian). Levels with two QP solutions of similar
+weight (e.g. high virtual levels in evGW) should be kept out of the QP
+window. For degenerate levels the gradient of their mean energy is used.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="excited_state_gradients.html" class="btn btn-neutral float-left" title="6. Excited-State Gradients and Geometry Optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transfer_theory.html" class="btn btn-neutral float-right" title="8. Charge and Energy Transfer Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2009-2026, VOTCA Development Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

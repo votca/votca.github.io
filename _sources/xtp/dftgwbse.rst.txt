@@ -336,6 +336,42 @@ The following table contains the defaults input options for the calculator, The 
      - | Maximum number of micro-iterations (Hessian products)
        | per second-order (TRAH) step.
      - int+
+   * - excited_state_forces
+     - OPTIONAL
+     - | BSE state (e.g. s1, t1) whose analytic nuclear forces
+       | are computed after the BSE and stored in the orb file
+       | (closed shell, fixed QP corrections; needs dftpackage.xtpdft.compute_forces
+       | true)
+     - 
+   * - qp_gradients
+     - OPTIONAL
+     - | Quasiparticle levels whose analytic nuclear energy gradients
+       | dE/dR are computed after GW and stored in the orb file
+       | (qp_gradients, qp_gradient_levels), e.g. for vibronic
+       | line shapes of photoemission spectra: a comma-separated
+       | list of levels or ranges relative to homo or lumo, or
+       | absolute MO indices (0-based), e.g. homo-3:lumo+3 or homo,lumo
+       | or 30:40. The levels must lie in the QP window. Closed
+       | shell, perturbative QP energies, G0W0 or evGW with sigma_integrator
+       | ppm or exact (otherwise, or with excited_state_forces_qp_response
+       | false, the gradients are those of the KS energies); no
+       | embedding. Degenerate levels get the gradient of their
+       | mean energy.
+     - 
+   * - excited_state_forces_follow
+     - OPTIONAL
+     - | excited_state_forces: orb file of an earlier geometry
+       | with excited-state forces; the forces are then computed
+       | for the state of the same type with the largest exciton
+       | overlap with that state (root following in geometry optimizations),
+       | instead of the state of excited_state_forces
+     - 
+   * - excited_state_forces_qp_response
+     - true
+     - | excited_state_forces: include the response of the QP corrections
+       | (sigma_integrator ppm or exact, G0W0 and evGW); false
+       | keeps them fixed
+     - bool
    * - mpsfile
      - OPTIONAL
      - MPS file to read from with external multipoles for embedding
@@ -357,14 +393,19 @@ The following table contains the defaults input options for the calculator, The 
      - 
    * - tasks
      - input,dft,parse,gwbse
-     - task to compute
+     - | task to compute. gradients (alone): no DFT or GW-BSE run;
+       | the gradients requested with qp_gradients and/or excited_state_forces
+       | are computed from the data of an earlier run in job_name.orb
+       | (same options as that run) and added to the file; QP gradients
+       | of levels that are already stored are kept
      - | [guess
        | input
        | dft
        | parse
        | gwbse
        | localize
-       | dft_in_dft]
+       | dft_in_dft
+       | gradients]
    * - gwbse.tasks
      - all
      - tasks to do

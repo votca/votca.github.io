@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
+  <title>14. XTP ASE Interface &mdash; VOTCA 2026-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=73cce014" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="13. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
-    <link rel="prev" title="11. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
+    <link rel="next" title="15. Workflow and Calculator Structure" href="workflows_and_calculators.html" />
+    <link rel="prev" title="13. Embedded GW-BSE: Screening by a Polarizable Environment" href="embedded_gwbse.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,28 +57,32 @@
 <li class="toctree-l2"><a class="reference internal" href="projection_embedding.html">3. Projection-Based Embedding (DFT-in-DFT)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="implementation_notes.html">4. Implementation Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gwbse_numerics.html">5. GW-BSE in Practice: Methods, Numerics and Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">6. Charge and Energy Transfer Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">7. Charge and Energy Transport Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">8. Transport Simulations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">9. Polarizable Ewald Embedding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">10. Polarizable Environments: Thole and Charge-Response Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">11. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">12. XTP ASE Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation">12.1. Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#environment-variables">12.1.1. Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excited_state_gradients.html">6. Excited-State Gradients and Geometry Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vibronic_spectra.html">7. Vibronic Spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer_theory.html">8. Charge and Energy Transfer Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_theory.html">9. Charge and Energy Transport Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_simulations.html">10. Transport Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ewald_embedding.html">11. Polarizable Ewald Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polarizable_environment.html">12. Polarizable Environments: Thole and Charge-Response Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_gwbse.html">13. Embedded GW-BSE: Screening by a Polarizable Environment</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">14. XTP ASE Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">14.1. Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">14.1.1. Environment variables</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#options">12.2. Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">12.3. XTP calculator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#results">12.4. Results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#forces">12.5. Forces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#excited-state-dipoles-by-finite-fields">12.6. Excited-state dipoles by finite fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#examples">12.7. Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">14.2. Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xtp-calculator">14.3. XTP calculator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">14.4. Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forces">14.5. Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analytic-excited-state-forces">14.6. Analytic excited-state forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excited-state-dipoles-by-finite-fields">14.7. Excited-state dipoles by finite fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vibronic-spectra">14.8. Vibronic spectra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">14.9. Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">13. Workflow and Calculator Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html">14. Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bibliography.html">15. Bibliography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows_and_calculators.html">15. Workflow and Calculator Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference.html">16. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibliography.html">17. Bibliography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#citations">Citations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="XTP-MANUAL.html#copyright">Copyright</a></li>
@@ -120,7 +124,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="XTP-MANUAL.html">XTP Manual</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">12. </span>XTP ASE Interface</li>
+      <li class="breadcrumb-item active"><span class="section-number">14. </span>XTP ASE Interface</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/xtp/pyxtp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -131,12 +135,12 @@
            <div itemprop="articleBody">
              
   <section id="xtp-ase-interface">
-<h1><span class="section-number">12. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">14. </span>XTP ASE Interface<a class="headerlink" href="#xtp-ase-interface" title="Link to this heading">¶</a></h1>
 <p>The Python package <code class="docutils literal notranslate"><span class="pre">pyxtp</span></code> provides an <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>
 calculator <code class="docutils literal notranslate"><span class="pre">xtp</span></code> that runs DFT and GW-BSE calculations (the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code>
 tool) on an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object.</p>
 <section id="installation">
-<h2><span class="section-number">12.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>The interface is built with VOTCA-XTP if <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> and the Python
 development files are found by CMake. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> installs the compiled
 bindings and, if the Python modules <code class="docutils literal notranslate"><span class="pre">ase</span></code>, <code class="docutils literal notranslate"><span class="pre">xmltodict</span></code>, <code class="docutils literal notranslate"><span class="pre">h5py</span></code>,
@@ -145,7 +149,7 @@ user site-packages directory (set <code class="docutils literal notranslate"><sp
 another directory). The plotting functions of <code class="docutils literal notranslate"><span class="pre">Visualization</span></code> also need
 <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <section id="environment-variables">
-<h3><span class="section-number">12.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">14.1.1. </span>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h3>
 <p>The environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VOTCASHARE</span></code> must be defined in order for the
 interface to find the default xml files and create the options data structure.
 You can set this environment variable in your shell configuration file
@@ -160,7 +164,7 @@ You can set this environment variable in your shell configuration file
 </section>
 </section>
 <section id="options">
-<h2><span class="section-number">12.2. </span>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.2. </span>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
 <p>All options of the <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> tool are available in the <code class="docutils literal notranslate"><span class="pre">options</span></code>
 attribute of the calculator (an instance of <code class="docutils literal notranslate"><span class="pre">pyxtp.options.Options</span></code>),
 which mirrors the XML option files, e.g. <code class="docutils literal notranslate"><span class="pre">calc.options.dftpackage.basisset</span></code>
@@ -170,7 +174,7 @@ libxc names, e.g. <code class="docutils literal notranslate"><span class="pre">X
 <code class="docutils literal notranslate"><span class="pre">XC_GGA_X_PBE</span> <span class="pre">XC_GGA_C_PBE</span></code>.</p>
 </section>
 <section id="xtp-calculator">
-<h2><span class="section-number">12.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.3. </span>XTP calculator<a class="headerlink" href="#xtp-calculator" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xtp(label=None,</span> <span class="pre">nthreads=1,</span> <span class="pre">options=None,</span> <span class="pre">directory='./',</span> <span class="pre">**kwargs)</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nthreads</span></code>: number of threads of the calculation</p></li>
@@ -210,14 +214,14 @@ routine (or as keyword arguments of the constructor):</p>
 <code class="docutils literal notranslate"><span class="pre">calc.set(**{'dftpackage/auxbasisset':</span> <span class="pre">'aux-def2-svp'})</span></code>.</p>
 </section>
 <section id="results">
-<h2><span class="section-number">12.4. </span>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.4. </span>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <p>Besides <code class="docutils literal notranslate"><span class="pre">get_potential_energy()</span></code> and <code class="docutils literal notranslate"><span class="pre">get_forces()</span></code> (ASE), the calculator
 provides e.g. <code class="docutils literal notranslate"><span class="pre">get_dft_energy()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_qp_corrections()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">get_oscillator_strengths(dynamic=False)</span></code>. <code class="docutils literal notranslate"><span class="pre">pyxtp.Visualization(atoms)</span></code>
 plots quasiparticle corrections, densities of states and absorption spectra.</p>
 </section>
 <section id="forces">
-<h2><span class="section-number">12.5. </span>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.5. </span>Forces<a class="headerlink" href="#forces" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">select_force(energy='energy',</span> <span class="pre">level=0,</span> <span class="pre">dynamic=False)</span></code> chooses the energy
 whose forces <code class="docutils literal notranslate"><span class="pre">get_forces</span></code> (and therefore an ASE optimizer) uses:</p>
 <table class="docutils align-default">
@@ -250,8 +254,67 @@ screening)</p></td>
 (displacement <code class="docutils literal notranslate"><span class="pre">eps=0.001</span></code> Å in <code class="docutils literal notranslate"><span class="pre">get_forces</span></code>), i.e. one full DFT and
 GW-BSE calculation per displaced coordinate.</p>
 </section>
+<section id="analytic-excited-state-forces">
+<h2><span class="section-number">14.6. </span>Analytic excited-state forces<a class="headerlink" href="#analytic-excited-state-forces" title="Link to this heading">¶</a></h2>
+<p>Theory, the dftgwbse options, recommended settings and validation are in
+<a class="reference internal" href="excited_state_gradients.html"><span class="doc">Excited-State Gradients and Geometry Optimization</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xtp(excited_state='s1')</span></code> (or <code class="docutils literal notranslate"><span class="pre">'t1'</span></code>, …) makes <code class="docutils literal notranslate"><span class="pre">get_potential_energy</span></code>
+return the total energy of that BSE state (DFT total energy plus the static
+excitation energy) and <code class="docutils literal notranslate"><span class="pre">get_forces</span></code> its analytic forces, computed after the
+BSE by <code class="docutils literal notranslate"><span class="pre">dftgwbse.excited_state_forces</span></code> (<code class="docutils literal notranslate"><span class="pre">dftpackage.xtpdft.compute_forces</span></code>
+is switched on automatically). This needs one GW-BSE run per geometry instead
+of one per displaced coordinate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">BFGS</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">xtp</span><span class="p">(</span><span class="n">nthreads</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">excited_state</span><span class="o">=</span><span class="s1">&#39;s1&#39;</span><span class="p">)</span>
+<span class="n">calc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;dftpackage/basisset&#39;</span><span class="p">:</span> <span class="s1">&#39;def2-svp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dftpackage/auxbasisset&#39;</span><span class="p">:</span> <span class="s1">&#39;aux-def2-svp&#39;</span><span class="p">})</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+<span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The gradient (<code class="docutils literal notranslate"><span class="pre">DFTEngine::BSEExcitationGradient</span></code>) is that of the BSE
+excitation energy (full or TDA) with static RPA screening, including the
+response of the Kohn-Sham orbitals, of the screening and of all integrals.
+With the plasmon-pole model (<code class="docutils literal notranslate"><span class="pre">gw.sigma_integrator</span></code> ppm, the default) and
+the full-frequency self-energy (exact) it also includes the response of the
+QP corrections, for G0W0 and for evGW
+(an adjoint equation through the self-consistent energies, including
+<code class="docutils literal notranslate"><span class="pre">gw.out_of_window_shift</span></code>), so the forces are the derivative of the energy
+returned (checked against finite differences to about 1e-4). With the
+exact self-energy, QP solutions can jump between branches near poles of the
+self-energy, which makes the energy discontinuous along a path; the forces
+belong to the branch found at that geometry. For evGW,
+energy and forces agree to the convergence of the GW iterations
+(<code class="docutils literal notranslate"><span class="pre">gw.sc_limit</span></code>). For geometry optimizations with evGW, set
+<code class="docutils literal notranslate"><span class="pre">gw.out_of_window_shift</span></code> to <code class="docutils literal notranslate"><span class="pre">nearest</span></code>: the default <code class="docutils literal notranslate"><span class="pre">max</span></code> shifts the
+levels outside the GW window by the largest correction in the window, so
+the energy has kinks where that level changes, and optimizations can stall
+there (formaldehyde S1, PBE0/def2-TZVPP: no convergence in 80 steps with
+<code class="docutils literal notranslate"><span class="pre">max</span></code>, 8 steps with <code class="docutils literal notranslate"><span class="pre">nearest</span></code>). For contour deformation (cda)
+the QP corrections are kept fixed (cf. Holzer, arXiv:2611.12617); for water
+(S1, PBE0/def2-SVP) this neglects about 10 % of the forces, and the energy,
+which contains the full GW response, is then not exactly consistent with
+the forces, so use an optimizer driven by the forces (e.g. ASE’s <code class="docutils literal notranslate"><span class="pre">BFGS</span></code>
+or <code class="docutils literal notranslate"><span class="pre">FIRE</span></code>). Requirements: xtp DFT
+with an auxiliary basis, closed shell, <code class="docutils literal notranslate"><span class="pre">bse.use_Hqp_offdiag</span></code> false, no QSGW, no embedding or environment
+screening. The run stops with an error if the excitation energy rebuilt for
+the gradient does not reproduce the BSE eigenvalue.</p>
+<p>Root following: with <code class="docutils literal notranslate"><span class="pre">xtp(excited_state='s2',</span> <span class="pre">follow_root=True)</span></code> the state
+is followed from geometry to geometry instead of keeping its label. From the
+second geometry on, <code class="docutils literal notranslate"><span class="pre">dftgwbse.excited_state_forces_follow</span></code> points to the orb
+file of the previous geometry, and energy and forces belong to the state of
+the same spin with the largest exciton overlap
+<span class="math notranslate nohighlight">\(|\langle X|X'\rangle - \langle Y|Y'\rangle|\)</span> with the previous state
+(excitons in the AO basis, with the overlap of the basis functions at the two
+geometries); <code class="docutils literal notranslate"><span class="pre">calc.tracked_state</span></code> gives its current label. The overlaps
+are logged; a warning flags steps where the largest one is below 0.5 or the
+next largest is above 80 % of it. Example, formaldehyde (G0W0/PBE0,
+def2-SVP) along the C=O stretch: the bright state that is S4 at 1.20 Å is
+followed through crossings to S3 (1.35 Å) and S2 (1.45 Å), with overlaps
+above 0.97 for steps of 0.05 Å.</p>
+</section>
 <section id="excited-state-dipoles-by-finite-fields">
-<h2><span class="section-number">12.6. </span>Excited-state dipoles by finite fields<a class="headerlink" href="#excited-state-dipoles-by-finite-fields" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.7. </span>Excited-state dipoles by finite fields<a class="headerlink" href="#excited-state-dipoles-by-finite-fields" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">pyxtp.finite_field.FiniteFieldDipoles</span></code> computes the change of the dipole
 moment on excitation, <span class="math notranslate nohighlight">\(\Delta\mu_n = \mathrm{d}\Omega_n/\mathrm{d}F\)</span>,
 and the diagonal of <span class="math notranslate nohighlight">\(\Delta\alpha_n = -\mathrm{d}^2\Omega_n/\mathrm{d}F^2\)</span>
@@ -304,11 +367,22 @@ the Python interpreter <code class="docutils literal notranslate"><span class="p
 <code class="docutils literal notranslate"><span class="pre">xtp_excited_dipoles</span> <span class="pre">-x</span> <span class="pre">molecule.xyz</span> <span class="pre">-o</span> <span class="pre">options.xml</span> <span class="pre">-t</span> <span class="pre">4</span> <span class="pre">--xml</span> <span class="pre">result.xml</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">options.xml</span></code> holds <code class="docutils literal notranslate"><span class="pre">dftgwbse</span></code> options as for <code class="docutils literal notranslate"><span class="pre">xtp_tools</span></code>.</p>
 </section>
+<section id="vibronic-spectra">
+<h2><span class="section-number">14.8. </span>Vibronic spectra<a class="headerlink" href="#vibronic-spectra" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pyxtp.vibronic</span></code> and the script <code class="docutils literal notranslate"><span class="pre">xtp_vibronic</span></code> compute vibronically
+resolved photoemission, inverse photoemission and absorption spectra from a
+finite-difference Hessian of analytic DFT forces and analytic GW and GW-BSE
+gradients, for single molecules and morphologies, and make figures for
+publications. See <a class="reference internal" href="vibronic_spectra.html"><span class="doc">Vibronic Spectra</span></a> and the tutorial
+<a class="reference internal" href="../xtp-tutorials/VIBRONIC_SPECTRA.html"><span class="doc">Vibronic spectra from GW gradients</span></a>.</p>
+</section>
 <section id="examples">
-<h2><span class="section-number">12.7. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">14.9. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>See the tutorials <a class="reference internal" href="../xtp-tutorials/single_point.html"><span class="doc">Single Point Energy using pyxtp</span></a> (energy and absorption
 spectrum of CO) and <a class="reference internal" href="../xtp-tutorials/geometry_optimization.html"><span class="doc">Atomic Forces and Geometry Optimization</span></a> (excited-state
-forces and geometry optimization of CO).</p>
+forces and geometry optimization of CO) and
+<a class="reference internal" href="../xtp-tutorials/VIBRONIC_SPECTRA.html"><span class="doc">Vibronic spectra from GW gradients</span></a> (vibronic UPS, IPES and absorption
+spectra of formaldehyde).</p>
 </section>
 </section>
 
@@ -316,8 +390,8 @@ forces and geometry optimization of CO).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="11. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="13. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="embedded_gwbse.html" class="btn btn-neutral float-left" title="13. Embedded GW-BSE: Screening by a Polarizable Environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflows_and_calculators.html" class="btn btn-neutral float-right" title="15. Workflow and Calculator Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
